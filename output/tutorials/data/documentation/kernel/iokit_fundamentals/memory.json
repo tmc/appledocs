@@ -1,0 +1,673 @@
+{
+  "abstract": [
+    {
+      "text": "Allocate, map, free, and manage memory in the kernel. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3572148,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Memory"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperInsertPage",
+      "type": "topic",
+      "url": "/documentation/kernel/1532970-iomapperinsertpage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperIOVMFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1532978-iomapperiovmfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperIOVMAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1532986-iomapperiovmalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575290-iofree": {
+      "abstract": [
+        {
+          "text": "Frees memory allocated with IOMalloc.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575290-iofree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1575290-iofree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned": {
+      "abstract": [
+        {
+          "text": "Allocates wired memory in the kernel map, with an alignment restriction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocAligned",
+      "type": "topic",
+      "url": "/documentation/kernel/1575291-iomallocaligned"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575300-iofreepageable": {
+      "abstract": [
+        {
+          "text": "Frees memory allocated with IOMallocPageable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575300-iofreepageable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFreePageable",
+      "type": "topic",
+      "url": "/documentation/kernel/1575300-iofreepageable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64": {
+      "abstract": [
+        {
+          "text": "Read eight bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead64",
+      "type": "topic",
+      "url": "/documentation/kernel/1575301-iomappedread64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache": {
+      "abstract": [
+        {
+          "text": "Flushes the processor cache for mapped memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFlushProcessorCache",
+      "type": "topic",
+      "url": "/documentation/kernel/1575308-ioflushprocessorcache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32": {
+      "abstract": [
+        {
+          "text": "Write four bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/1575310-iomappedwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32": {
+      "abstract": [
+        {
+          "text": "Read four bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/1575311-iomappedread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64": {
+      "abstract": [
+        {
+          "text": "Write eight bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite64",
+      "type": "topic",
+      "url": "/documentation/kernel/1575313-iomappedwrite64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16": {
+      "abstract": [
+        {
+          "text": "Write two bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/1575315-iomappedwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8": {
+      "abstract": [
+        {
+          "text": "Read one byte from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/1575317-iomappedread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8": {
+      "abstract": [
+        {
+          "text": "Write one byte to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/1575318-iomappedwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16": {
+      "abstract": [
+        {
+          "text": "Read two bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/1575322-iomappedread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc": {
+      "abstract": [
+        {
+          "text": "Allocates general purpose, wired memory in the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMalloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1575326-iomalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable": {
+      "abstract": [
+        {
+          "text": "Allocates pageable memory in the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocPageable",
+      "type": "topic",
+      "url": "/documentation/kernel/1575327-iomallocpageable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575330-iofreealigned": {
+      "abstract": [
+        {
+          "text": "Frees memory allocated with IOMallocAligned.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575330-iofreealigned",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFreeAligned",
+      "type": "topic",
+      "url": "/documentation/kernel/1575330-iofreealigned"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocZero",
+      "type": "topic",
+      "url": "/documentation/kernel/3074962-iomalloczero"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the big endian byte order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBigMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobigmemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor": {
+      "abstract": [
+        {
+          "text": "A simple memory descriptor that allocates its own buffer memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodevicememory": {
+      "abstract": [
+        {
+          "text": "An IOMemoryDescriptor used for device physical memory ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodevicememory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/iodevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand": {
+      "abstract": [
+        {
+          "text": "An object that converts memory references to I/O bus addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMAController",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmaeventsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmaeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMAEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmaeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGeneralMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iogeneralmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOInterleavedMemoryDescriptor object describes a memory area made up of portions of several other IOMemoryDescriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterleavedMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerleavedmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Locks",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/locks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "abstract": [
+        {
+          "text": "Allocate, map, free, and manage memory in the kernel. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the little endian byte order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLittleMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iolittlememorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomapper": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapper",
+      "type": "topic",
+      "url": "/documentation/kernel/iomapper"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor": {
+      "abstract": [
+        {
+          "text": "A mechanism to convert memory references to physical addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap": {
+      "abstract": [
+        {
+          "text": "A class defining common methods for describing a memory mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryMap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOMultiMemoryDescriptor object describes a memory area made up of several other IOMemoryDescriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMultiMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomultimemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the natural byte orientation for the CPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONaturalMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ionaturalmemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator": {
+      "abstract": [
+        {
+          "text": "A utility class to manage allocations from a range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORangeAllocator",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOSubMemoryDescriptor object describes a memory area made up of a portion of another IOMemoryDescriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSubMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iosubmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "abstract": [
+        {
+          "text": "Create strings, numbers, collections, data objects, and the other standard types employed by drivers and kernel extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572149",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodevicememory",
+        "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Descriptors"
+    },
+    {
+      "anchor": "3572150",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+        "doc://com.apple.documentation/documentation/kernel/iodmacontroller",
+        "doc://com.apple.documentation/documentation/kernel/iodmaeventsource"
+      ],
+      "kind": "taskGroup",
+      "title": "Direct Memory Access (DMA)"
+    },
+    {
+      "anchor": "3572147",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1575290-iofree",
+        "doc://com.apple.documentation/documentation/kernel/1575330-iofreealigned",
+        "doc://com.apple.documentation/documentation/kernel/1575300-iofreepageable"
+      ],
+      "kind": "taskGroup",
+      "title": "Deallocation"
+    },
+    {
+      "anchor": "3572144",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc",
+        "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned",
+        "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable",
+        "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator"
+      ],
+      "kind": "taskGroup",
+      "title": "Allocation"
+    },
+    {
+      "anchor": "3572171",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomapper",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap",
+        "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16",
+        "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32",
+        "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64",
+        "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8",
+        "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16",
+        "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32",
+        "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64",
+        "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8",
+        "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc",
+        "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree",
+        "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage",
+        "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache"
+      ],
+      "kind": "taskGroup",
+      "title": "Mapped Memory"
+    },
+    {
+      "anchor": "3572143",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor",
+        "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor",
+        "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor"
+      ],
+      "kind": "taskGroup",
+      "title": "Cursors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iokit_fundamentals/memory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

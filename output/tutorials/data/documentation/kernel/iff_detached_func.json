@@ -1,0 +1,209 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iff_detached_func"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1589953,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@iff_detached_func",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "iff_detached_func"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "iff_detached_func"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *cookie, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ifnet_t",
+              "text": "ifnet_t"
+            },
+            {
+              "kind": "text",
+              "text": " interface);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The cookie specified when this filter was attached.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cookie"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The interface this filter was detached from.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "interface"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iff_detached_func is called to notify the filter that it has been detached from an interface. This is the last call to the filter that will be made. A filter may be detached if the interface is detached or the detach filter function is called. In the case that the interface is being detached, your filter's event function will be called with the interface detaching event before the your detached function will be called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_data_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iff_detached_func"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

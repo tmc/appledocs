@@ -1,0 +1,487 @@
+{
+  "abstract": [
+    {
+      "text": "Adds a single-precision scalar value to a single-precision vector.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1579993-vdsp_vsadd"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1579993,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_vsadd",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_vsadd"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_vsadd"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__A, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IA, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__B, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__C, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IC, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __N);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real input vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Stride for ",
+                  "type": "text"
+                },
+                {
+                  "code": "A.",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IA"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Pointer to single-precision real input scalar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__B"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Stride for ",
+                  "type": "text"
+                },
+                {
+                  "code": "C.",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IC"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of elements to process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function calculates the sums of the first ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements of ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the scalar value ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", writing the result to ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3921182",
+              "metadata": {
+                "anchor": "3921182",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operation is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " for (n = 0; n < N; ++n)",
+            "    C[n] = A[n] + B[0];"
+          ],
+          "metadata": {
+            "anchor": "3921190",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/1450275-vdsp_vsadd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let a: [Float] = [1, 2, 4, 5]",
+            "var b: Float = 2",
+            "",
+            "let n = vDSP_Length(a.count)",
+            "",
+            "var c = [Float](repeating: 0,",
+            "                count: a.count)",
+            "",
+            "vDSP_vsadd(a, stride,",
+            "           &b,",
+            "           &c, stride,",
+            "           n)",
+            "",
+            "// Prints \"[3.0, 4.0, 6.0, 7.0]\"",
+            "print(c)"
+          ],
+          "metadata": {
+            "anchor": "3921189",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/accelerate/1450275-vdsp_vsadd": {
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/1450275-vdsp_vsadd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vsadd",
+      "type": "topic",
+      "url": "/documentation/accelerate/1450275-vdsp_vsadd"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579993-vdsp_vsadd#3921189": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579993-vdsp_vsadd#3921189",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/kernel/1579993-vdsp_vsadd#3921189"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579993-vdsp_vsadd#3921190": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579993-vdsp_vsadd#3921190",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/1579993-vdsp_vsadd#3921190"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3921182": {
+      "identifier": "link-media-3921182",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/kernel/1579993-vdsp_vsadd#3921182"
+    },
+    "media-3921182": {
+      "alt": "A diagram showing the operation of the vDSP_vsadd function. There are three rows. The top row represents the first input, vector A. The second row represents the second input, scalar B. The bottom row represents the output, vector C. The diagram has connecting lines from the input vectors to the output vector indicating the relationships between the inputs and output.",
+      "identifier": "media-3921182",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17587280e6/f26f940d-6899-4a11-8dfe-1431d62bc3ec.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1579993-vdsp_vsadd"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

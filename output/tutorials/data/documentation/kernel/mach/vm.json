@@ -1,0 +1,1211 @@
+{
+  "abstract": [
+    {
+      "text": "Create, destroy, and access pages in the virtual memory system.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/mach"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/mach/vm"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3572822,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vm"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1402342-mach_vm_copy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1402342-mach_vm_copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_vm_copy",
+      "type": "topic",
+      "url": "/documentation/kernel/1402342-mach_vm_copy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1502560-mach_memory_object_memory_entry_": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1502560-mach_memory_object_memory_entry_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_object_memory_entry_64",
+      "type": "topic",
+      "url": "/documentation/kernel/1502560-mach_memory_object_memory_entry_"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1502680-mach_memory_object_memory_entry": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1502680-mach_memory_object_memory_entry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_object_memory_entry",
+      "type": "topic",
+      "url": "/documentation/kernel/1502680-mach_memory_object_memory_entry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1502832-mach_memory_info": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1502832-mach_memory_info",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_info",
+      "type": "topic",
+      "url": "/documentation/kernel/1502832-mach_memory_info"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585201-vm_msync": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585201-vm_msync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_msync",
+      "type": "topic",
+      "url": "/documentation/kernel/1585201-vm_msync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585236-vm_behavior_set": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585236-vm_behavior_set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_behavior_set",
+      "type": "topic",
+      "url": "/documentation/kernel/1585236-vm_behavior_set"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585267-vm_purgable_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585267-vm_purgable_control",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_purgable_control",
+      "type": "topic",
+      "url": "/documentation/kernel/1585267-vm_purgable_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585275-vm_inherit": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585275-vm_inherit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_inherit",
+      "type": "topic",
+      "url": "/documentation/kernel/1585275-vm_inherit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585277-vm_copy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585277-vm_copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_copy",
+      "type": "topic",
+      "url": "/documentation/kernel/1585277-vm_copy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585284-vm_deallocate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585284-vm_deallocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_deallocate",
+      "type": "topic",
+      "url": "/documentation/kernel/1585284-vm_deallocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585294-vm_protect": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585294-vm_protect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_protect",
+      "type": "topic",
+      "url": "/documentation/kernel/1585294-vm_protect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585336-vm_remap": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585336-vm_remap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_remap",
+      "type": "topic",
+      "url": "/documentation/kernel/1585336-vm_remap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585350-vm_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585350-vm_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1585350-vm_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585351-vm_region_recurse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585351-vm_region_recurse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_recurse",
+      "type": "topic",
+      "url": "/documentation/kernel/1585351-vm_region_recurse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585354-vm_machine_attribute": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585354-vm_machine_attribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_machine_attribute",
+      "type": "topic",
+      "url": "/documentation/kernel/1585354-vm_machine_attribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585356-vm_map_page_query": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585356-vm_map_page_query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_page_query",
+      "type": "topic",
+      "url": "/documentation/kernel/1585356-vm_map_page_query"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585371-vm_read_overwrite": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585371-vm_read_overwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_read_overwrite",
+      "type": "topic",
+      "url": "/documentation/kernel/1585371-vm_read_overwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585377-vm_region": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585377-vm_region",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region",
+      "type": "topic",
+      "url": "/documentation/kernel/1585377-vm_region"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585381-vm_allocate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585381-vm_allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/1585381-vm_allocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585386-vm_region_64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585386-vm_region_64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_64",
+      "type": "topic",
+      "url": "/documentation/kernel/1585386-vm_region_64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585405-mach_make_memory_entry_64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585405-mach_make_memory_entry_64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_make_memory_entry_64",
+      "type": "topic",
+      "url": "/documentation/kernel/1585405-mach_make_memory_entry_64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585418-vm_map_64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585418-vm_map_64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_64",
+      "type": "topic",
+      "url": "/documentation/kernel/1585418-vm_map_64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585424-vm_region_recurse_64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585424-vm_region_recurse_64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_recurse_64",
+      "type": "topic",
+      "url": "/documentation/kernel/1585424-vm_region_recurse_64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585446-mach_make_memory_entry": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585446-mach_make_memory_entry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_make_memory_entry",
+      "type": "topic",
+      "url": "/documentation/kernel/1585446-mach_make_memory_entry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585462-vm_write": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585462-vm_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_write",
+      "type": "topic",
+      "url": "/documentation/kernel/1585462-vm_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585469-vm_mapped_pages_info": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585469-vm_mapped_pages_info",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_mapped_pages_info",
+      "type": "topic",
+      "url": "/documentation/kernel/1585469-vm_mapped_pages_info"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585510-vm_map": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585510-vm_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map",
+      "type": "topic",
+      "url": "/documentation/kernel/1585510-vm_map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585516-vm_read_list": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585516-vm_read_list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_read_list",
+      "type": "topic",
+      "url": "/documentation/kernel/1585516-vm_read_list"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1588863-vm_allocate_cpm": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1588863-vm_allocate_cpm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_allocate_cpm",
+      "type": "topic",
+      "url": "/documentation/kernel/1588863-vm_allocate_cpm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1588985-vm_wire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1588985-vm_wire",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_wire",
+      "type": "topic",
+      "url": "/documentation/kernel/1588985-vm_wire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/2937355-vm_map_exec_lockdown": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/2937355-vm_map_exec_lockdown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_exec_lockdown",
+      "type": "topic",
+      "url": "/documentation/kernel/2937355-vm_map_exec_lockdown"
+    },
+    "doc://com.apple.documentation/documentation/kernel/2967371-mach_memory_entry_access_trackin": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/2967371-mach_memory_entry_access_trackin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_entry_access_tracking",
+      "type": "topic",
+      "url": "/documentation/kernel/2967371-mach_memory_entry_access_trackin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/2967372-mach_memory_entry_purgable_contr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/2967372-mach_memory_entry_purgable_contr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_entry_purgable_control",
+      "type": "topic",
+      "url": "/documentation/kernel/2967372-mach_memory_entry_purgable_contr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3143277-mach_memory_entry_ownership": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3143277-mach_memory_entry_ownership",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_memory_entry_ownership",
+      "type": "topic",
+      "url": "/documentation/kernel/3143277-mach_memory_entry_ownership"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mach": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "mach",
+      "type": "topic",
+      "url": "/documentation/kernel/mach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mach/mach_vm": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach/mach_vm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mach VM",
+      "type": "topic",
+      "url": "/documentation/kernel/mach/mach_vm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mach/vm": {
+      "abstract": [
+        {
+          "text": "Create, destroy, and access pages in the virtual memory system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach/vm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vm",
+      "type": "topic",
+      "url": "/documentation/kernel/mach/vm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_array_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_array_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_array_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_array_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_attr_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_attr_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_attr_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_attr_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_behave_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_behave_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_behave_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_behave_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_cluster_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_cluster_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_cluster_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_cluster_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_control_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_control_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_control_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_control_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_copy_strategy_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_copy_strategy_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_copy_strategy_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_copy_strategy_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_default_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_default_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_default_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_default_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_fault_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_fault_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_fault_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_fault_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_flavor_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_flavor_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_flavor_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_flavor_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_name_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_name_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_name_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_name_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_offset_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_offset_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_offset_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_offset_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_perf_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_perf_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_perf_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_perf_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_return_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/memory_object_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/memory_object_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memory_object_t",
+      "type": "topic",
+      "url": "/documentation/kernel/memory_object_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm32_address_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm32_address_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm32_address_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm32_address_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm32_object_id_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm32_object_id_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm32_object_id_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm32_object_id_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm32_offset_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm32_offset_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm32_offset_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm32_offset_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm32_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm32_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm32_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm32_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_address_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_address_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_address_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_address_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_behavior_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_behavior_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_behavior_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_behavior_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_extmod_statistics_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_extmod_statistics_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_extmod_statistics_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_extmod_statistics_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_info_object_array_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_info_object_array_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_info_object_array_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_info_object_array_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_info_object_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_info_object_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_info_object_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_info_object_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_info_region_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_info_region_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_info_region_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_info_region_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_info_region_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_info_region_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_info_region_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_info_region_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_inherit_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_inherit_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_inherit_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_inherit_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_machine_attribute_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_machine_attribute_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_val_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_val_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_machine_attribute_val_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_machine_attribute_val_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_address_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_address_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_address_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_address_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_inspect_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_inspect_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_inspect_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_inspect_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_offset_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_offset_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_offset_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_offset_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_read_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_read_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_read_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_read_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_named_entry_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_named_entry_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_named_entry_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_named_entry_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_object_id_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_object_id_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_object_id_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_object_id_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_object_offset_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_object_offset_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_object_offset_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_object_offset_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_object_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_object_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_object_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_object_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_offset_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_offset_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_offset_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_offset_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_page_info_basic_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_page_info_basic_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_page_info_basic_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_page_info_basic_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_page_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_page_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_page_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_page_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_page_info_flavor_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_page_info_flavor_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_page_info_flavor_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_page_info_flavor_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_page_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_page_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_page_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_page_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_prot_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_prot_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_prot_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_prot_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_purgable_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_purgable_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_purgable_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_purgable_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_purgeable_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_purgeable_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_purgeable_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_purgeable_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_purgeable_stat_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_purgeable_stat_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_purgeable_stat_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_purgeable_stat_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_read_entry_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_read_entry_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_read_entry_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_read_entry_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_basic_info_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_basic_info_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_basic_info_data_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_basic_info_data_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_basic_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_basic_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_basic_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_basic_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_extended_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_extended_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_extended_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_extended_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_flavor_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_flavor_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_flavor_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_flavor_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_info_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_info_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_info_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_info_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_recurse_info_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_recurse_info_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_recurse_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_recurse_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_info_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_info_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_info_data_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_info_data_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_short_info_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_short_info_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_data_64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_data_64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_submap_short_info_data_64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_submap_short_info_data_64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_top_info_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_top_info_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_region_top_info_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_region_top_info_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_statistics64_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_statistics64_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_statistics64_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_statistics64_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_statistics64_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_statistics64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_statistics64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_statistics64_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_statistics_data_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_statistics_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_statistics_data_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_statistics_data_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_statistics_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_statistics_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_statistics_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_statistics_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_sync_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_sync_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_sync_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_sync_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_task_entry_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_task_entry_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_task_entry_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_task_entry_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/mach/mach_vm"
+      ],
+      "title": "Memory"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572824",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1585381-vm_allocate",
+        "doc://com.apple.documentation/documentation/kernel/1588863-vm_allocate_cpm",
+        "doc://com.apple.documentation/documentation/kernel/1585284-vm_deallocate",
+        "doc://com.apple.documentation/documentation/kernel/1585277-vm_copy",
+        "doc://com.apple.documentation/documentation/kernel/1402342-mach_vm_copy"
+      ],
+      "kind": "taskGroup",
+      "title": "Creation and Destruction"
+    },
+    {
+      "anchor": "3572817",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1585510-vm_map",
+        "doc://com.apple.documentation/documentation/kernel/1585418-vm_map_64",
+        "doc://com.apple.documentation/documentation/kernel/2937355-vm_map_exec_lockdown",
+        "doc://com.apple.documentation/documentation/kernel/1585356-vm_map_page_query",
+        "doc://com.apple.documentation/documentation/kernel/1585469-vm_mapped_pages_info",
+        "doc://com.apple.documentation/documentation/kernel/1585336-vm_remap",
+        "doc://com.apple.documentation/documentation/kernel/1585446-mach_make_memory_entry",
+        "doc://com.apple.documentation/documentation/kernel/1585405-mach_make_memory_entry_64",
+        "doc://com.apple.documentation/documentation/kernel/2967371-mach_memory_entry_access_trackin",
+        "doc://com.apple.documentation/documentation/kernel/3143277-mach_memory_entry_ownership",
+        "doc://com.apple.documentation/documentation/kernel/2967372-mach_memory_entry_purgable_contr"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory Mapping"
+    },
+    {
+      "anchor": "3572823",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1585350-vm_read",
+        "doc://com.apple.documentation/documentation/kernel/1585516-vm_read_list",
+        "doc://com.apple.documentation/documentation/kernel/1585371-vm_read_overwrite",
+        "doc://com.apple.documentation/documentation/kernel/1585462-vm_write"
+      ],
+      "kind": "taskGroup",
+      "title": "Reads and Writes"
+    },
+    {
+      "anchor": "3572820",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1585294-vm_protect",
+        "doc://com.apple.documentation/documentation/kernel/1588985-vm_wire",
+        "doc://com.apple.documentation/documentation/kernel/1502832-mach_memory_info",
+        "doc://com.apple.documentation/documentation/kernel/1585236-vm_behavior_set",
+        "doc://com.apple.documentation/documentation/kernel/1585354-vm_machine_attribute",
+        "doc://com.apple.documentation/documentation/kernel/1585267-vm_purgable_control",
+        "doc://com.apple.documentation/documentation/kernel/1585275-vm_inherit",
+        "doc://com.apple.documentation/documentation/kernel/1585201-vm_msync"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuration"
+    },
+    {
+      "anchor": "3572821",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1585377-vm_region",
+        "doc://com.apple.documentation/documentation/kernel/1585386-vm_region_64",
+        "doc://com.apple.documentation/documentation/kernel/1585351-vm_region_recurse",
+        "doc://com.apple.documentation/documentation/kernel/1585424-vm_region_recurse_64",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_data_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_data_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Regions"
+    },
+    {
+      "anchor": "3572829",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/vm_read_entry_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_inspect_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_read_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_address_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_behavior_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_info_object_array_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_inherit_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_machine_attribute_val_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_address_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_offset_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_size_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_map_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_named_entry_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_object_id_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_object_offset_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_object_size_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_offset_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_page_info_basic_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_page_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_page_info_flavor_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_page_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_prot_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_purgable_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_purgeable_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_basic_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_extended_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_flavor_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_info_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_recurse_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_submap_short_info_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_region_top_info_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_size_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_statistics64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_statistics_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_sync_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_task_entry_t",
+        "doc://com.apple.documentation/documentation/kernel/vm32_object_id_t",
+        "doc://com.apple.documentation/documentation/kernel/vm32_address_t",
+        "doc://com.apple.documentation/documentation/kernel/vm32_offset_t",
+        "doc://com.apple.documentation/documentation/kernel/vm32_size_t"
+      ],
+      "kind": "taskGroup",
+      "title": "VM Types"
+    },
+    {
+      "anchor": "3572825",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1502680-mach_memory_object_memory_entry",
+        "doc://com.apple.documentation/documentation/kernel/1502560-mach_memory_object_memory_entry_"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory Objects"
+    },
+    {
+      "anchor": "3572828",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/memory_object_array_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_attr_info_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_behave_info_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_cluster_size_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_control_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_copy_strategy_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_default_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_fault_info_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_flavor_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_info_data_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_info_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_name_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_offset_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_perf_info_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_return_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_size_t",
+        "doc://com.apple.documentation/documentation/kernel/memory_object_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory Object Types"
+    },
+    {
+      "anchor": "3696191",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/vm_info_region_64_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_info_region_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_info_object_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Debug"
+    },
+    {
+      "anchor": "3696192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/vm_statistics64_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_statistics_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_extmod_statistics_data_t",
+        "doc://com.apple.documentation/documentation/kernel/vm_purgeable_stat_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Statistics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/mach/vm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

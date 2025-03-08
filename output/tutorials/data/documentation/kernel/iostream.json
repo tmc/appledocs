@@ -1,0 +1,1541 @@
+{
+  "abstract": [
+    {
+      "text": "A class representing a stream of data buffers passed from kernel to user space and back again.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iostream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1589834,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOStream",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOStream class defines a mechanism for moving buffers of data from kernel space to user space or vice-versa. The policy for which direction the data flows and the nature of the data is left up the the implementer of the driver which uses IOStream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although it is expected that the client of an IOStream will be in user space, this is not required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "References to \"output\" mean \"from the IOStream to the user client\", and \"input\" means \"from the user client to the IOStream.\"",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioshareddataqueue": {
+      "abstract": [
+        {
+          "text": "A generic queue designed to pass data both from the kernel to a user process and from a user process to the kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioshareddataqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSharedDataQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioshareddataqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iosharedinterruptcontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iosharedinterruptcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSharedInterruptController",
+      "type": "topic",
+      "url": "/documentation/kernel/iosharedinterruptcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream": {
+      "abstract": [
+        {
+          "text": "A class representing a stream of data buffers passed from kernel to user space and back again.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589831-inputcallback": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589831-inputcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589831-inputcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589833-removebuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589833-removebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589833-removebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589835-getinputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589835-getinputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589835-getinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589836-setinputport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInputPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589836-setinputport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589836-setinputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589837-startstream": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589837-startstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589837-startstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589838-getbuffercount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBufferCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589838-getbuffercount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBufferCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589838-getbuffercount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589839-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589839-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589839-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589840-getbufferwithid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBufferWithID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589840-getbufferwithid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBufferWithID",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589840-getbufferwithid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589841-getstreammode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStreamMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589841-getstreammode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStreamMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589841-getstreammode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589843-addbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589843-addbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589843-addbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589845-initwithbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589845-initwithbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589845-initwithbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589846-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589846-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589846-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589847-getoutputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getOutputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589847-getoutputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589847-getoutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589851-newuserclient": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589851-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589851-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589852-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589852-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589852-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589853-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589853-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589853-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589854-getoutputport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getOutputPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589854-getoutputport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getOutputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589854-getoutputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589856-enqueueoutputentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueueOutputEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589856-enqueueoutputentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueueOutputEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589856-enqueueoutputentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589858-addbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589858-addbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589858-addbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589861-sendoutputnotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendOutputNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589861-sendoutputnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendOutputNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589861-sendoutputnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589862-getoutputqueuememorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getOutputQueueMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589862-getoutputqueuememorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getOutputQueueMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589862-getoutputqueuememorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589863-stopstream": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589863-stopstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589863-stopstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589866-setoutputport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOutputPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589866-setoutputport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOutputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589866-setoutputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589867-suspendstream": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspendStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589867-suspendstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspendStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589867-suspendstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589868-withbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589868-withbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589868-withbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589870-setstreammode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStreamMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589870-setstreammode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStreamMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589870-setstreammode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589871-destroyqueues": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "destroyQueues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589871-destroyqueues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destroyQueues",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589871-destroyqueues"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589872-enqueueoutputbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueueOutputBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589872-enqueueoutputbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueueOutputBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589872-enqueueoutputbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589873-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589873-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589873-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589874-getinputport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInputPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589874-getinputport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589874-getinputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589876-getbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589876-getbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589876-getbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589877-createqueues": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createQueues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589877-createqueues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createQueues",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589877-createqueues"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589878-removeallbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589878-removeallbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589878-removeallbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589879-getinputqueuememorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInputQueueMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589879-getinputqueuememorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInputQueueMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589879-getinputqueuememorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589880-inputsynccallback": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputSyncCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589880-inputsynccallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputSyncCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589880-inputsynccallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1589881-dequeueinputentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueInputEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1589881-dequeueinputentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dequeueInputEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1589881-dequeueinputentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809626-getstreammode": {
+      "abstract": [
+        {
+          "text": "Returns the mode of the stream, either input or output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809626-getstreammode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStreamMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809626-getstreammode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809631-setstreammode": {
+      "abstract": [
+        {
+          "text": "Sets the mode of the stream, either input or output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809631-setstreammode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setStreamMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809631-setstreammode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809638-startstream": {
+      "abstract": [
+        {
+          "text": "Start sending data on a stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809638-startstream",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "startStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809638-startstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809642-stopstream": {
+      "abstract": [
+        {
+          "text": "Stop sending data on a stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809642-stopstream",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stopStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809642-stopstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809648-suspendstream": {
+      "abstract": [
+        {
+          "text": "Temporarily suspend data flow on the stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809648-suspendstream",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "suspendStream",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809648-suspendstream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809653-dequeueinputentry": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809653-dequeueinputentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "dequeueInputEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809653-dequeueinputentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809665-enqueueoutputbuffer": {
+      "abstract": [
+        {
+          "text": "A convenience method for enqueueing a buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809665-enqueueoutputbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueueOutputBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809665-enqueueoutputbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809670-enqueueoutputentry": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809670-enqueueoutputentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueueOutputEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809670-enqueueoutputentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809680-handleclose": {
+      "abstract": [
+        {
+          "text": "The handleClose method destroys the shared input and output queues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809680-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809680-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809688-handleopen": {
+      "abstract": [
+        {
+          "text": "The handleOpen() method relies on the default IOService behavior to ensure that only one client has the stream open at a time. The shared input and output queues are created at open time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809688-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809688-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809695-newuserclient": {
+      "abstract": [
+        {
+          "text": "See the documentation for the IOService method newUserClient.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809695-newuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809695-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809702-createqueues": {
+      "abstract": [
+        {
+          "text": "Creates the shared input and output queues, without regard to whether the stream is open or not. Normally this is called by handleOpen().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809702-createqueues",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createQueues",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809702-createqueues"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809709-destroyqueues": {
+      "abstract": [
+        {
+          "text": "Releases the shared input and output queues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809709-destroyqueues",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "destroyQueues",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809709-destroyqueues"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809718-getinputqueue": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809718-getinputqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809718-getinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809727-getinputqueuememorydescriptor": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809727-getinputqueuememorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInputQueueMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809727-getinputqueuememorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809738-getoutputqueue": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809738-getoutputqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809738-getoutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809744-getoutputqueuememorydescriptor": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809744-getoutputqueuememorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOutputQueueMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809744-getoutputqueuememorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809754-inputcallback": {
+      "abstract": [
+        {
+          "text": "Input callback function to be implemented by a subclass;",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809754-inputcallback",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inputCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809754-inputcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809761-inputsynccallback": {
+      "abstract": [
+        {
+          "text": "Input callback function to be implemented by a subclass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809761-inputsynccallback",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inputSyncCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809761-inputsynccallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809770-getinputport": {
+      "abstract": [
+        {
+          "text": "Get the Mach port used to receive notifications from user space that a buffer has been added to the input queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809770-getinputport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809770-getinputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809774-getoutputport": {
+      "abstract": [
+        {
+          "text": "Get the Mach port used to send notifications to user space that a buffer has been added to the output queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809774-getoutputport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOutputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809774-getoutputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809783-sendoutputnotification": {
+      "abstract": [
+        {
+          "text": "Send a notification to the user client that data is available for reading on the output queue. This will result in the user's output handler being called, if they registered one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809783-sendoutputnotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "sendOutputNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809783-sendoutputnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809793-setinputport": {
+      "abstract": [
+        {
+          "text": "Set the Mach port used to receive notifications from user space that a buffer has been added to the input queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809793-setinputport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809793-setinputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809801-setoutputport": {
+      "abstract": [
+        {
+          "text": "Set the Mach port used to send notifications to user space that a buffer has been added to the output queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809801-setoutputport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setOutputPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809801-setoutputport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809807-addbuffer": {
+      "abstract": [
+        {
+          "text": "Add a buffer to an IOStream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809807-addbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809807-addbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809814-addbuffers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809814-addbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809814-addbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809821-getbuffercount": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809821-getbuffercount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBufferCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809821-getbuffercount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809828-getbuffers": {
+      "abstract": [
+        {
+          "text": "Get an array containing all the buffers in the stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809828-getbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809828-getbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809834-getbufferwithid": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809834-getbufferwithid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBufferWithID",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809834-getbufferwithid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809839-removeallbuffers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809839-removeallbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeAllBuffers()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809839-removeallbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809846-removeallbuffers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809846-removeallbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeAllBuffers()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809846-removeallbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809852-removebuffer": {
+      "abstract": [
+        {
+          "text": "Removes a buffer from the stream. Buffers cannot be removed while the stream is open, as this will change the buffer IDs of existing buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809852-removebuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeBuffer(IOStreamBuffer *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809852-removebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809860-removebuffer": {
+      "abstract": [
+        {
+          "text": "Removes a buffer from the stream. Buffers cannot be removed while the stream is open, as this will change the buffer IDs of existing buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809860-removebuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeBuffer(IOStreamBufferID)",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809860-removebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809867-free": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809867-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809867-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809875-initwithbuffers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809875-initwithbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809875-initwithbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/1809882-withbuffers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/1809882-withbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/1809882-withbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostream/3516782-removebuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostream/3516782-removebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostream/3516782-removebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostreambuffer": {
+      "abstract": [
+        {
+          "text": "A class representing a data buffer that is part of an IOStream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostreambuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStreamBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iostreambuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostreamuserclient": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostreamuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStreamUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iostreamuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iouserclient": {
+      "abstract": [
+        {
+          "text": "Provides a basis for communication between client applications and I/O Kit objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iouserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iouserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletion": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction_IOUserClient_KernelCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction_iouserclient_kernelcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletioninterface": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletioninterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction_IOUserClient_KernelCompletionInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction_iouserclient_kernelcompletioninterface"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioshareddataqueue",
+        "doc://com.apple.documentation/documentation/kernel/iosharedinterruptcontroller",
+        "doc://com.apple.documentation/documentation/kernel/iouserclient",
+        "doc://com.apple.documentation/documentation/kernel/iostreamuserclient",
+        "doc://com.apple.documentation/documentation/kernel/iostreambuffer",
+        "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletion",
+        "doc://com.apple.documentation/documentation/kernel/osaction_iouserclient_kernelcompletioninterface"
+      ],
+      "title": "User-Space Interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674718",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809626-getstreammode",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809631-setstreammode",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809638-startstream",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809642-stopstream",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809648-suspendstream"
+      ],
+      "kind": "taskGroup",
+      "title": "Stream control"
+    },
+    {
+      "anchor": "1674773",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809653-dequeueinputentry",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809665-enqueueoutputbuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809670-enqueueoutputentry"
+      ],
+      "kind": "taskGroup",
+      "title": "Queueing and dequeueing buffers"
+    },
+    {
+      "anchor": "1674792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809680-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809688-handleopen"
+      ],
+      "kind": "taskGroup",
+      "title": "Opening and closing streams"
+    },
+    {
+      "anchor": "1674810",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809695-newuserclient"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing user clients"
+    },
+    {
+      "anchor": "1674819",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809702-createqueues",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809709-destroyqueues",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809718-getinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809727-getinputqueuememorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809738-getoutputqueue",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809744-getoutputqueuememorydescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing shared queues"
+    },
+    {
+      "anchor": "1674862",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809754-inputcallback",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809761-inputsynccallback"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing notifications"
+    },
+    {
+      "anchor": "1674879",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809770-getinputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809774-getoutputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809783-sendoutputnotification",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809793-setinputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809801-setoutputport"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing notification ports"
+    },
+    {
+      "anchor": "1674910",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809807-addbuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809814-addbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809821-getbuffercount",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809828-getbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809834-getbufferwithid",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809839-removeallbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809846-removeallbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809852-removebuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809860-removebuffer"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing buffers in an IOStream"
+    },
+    {
+      "anchor": "1674967",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809867-free",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809875-initwithbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1809882-withbuffers"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating IOStream objects"
+    },
+    {
+      "anchor": "2863267",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589858-addbuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589843-addbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589877-createqueues",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589881-dequeueinputentry",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589871-destroyqueues",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589872-enqueueoutputbuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589856-enqueueoutputentry",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589852-free",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589838-getbuffercount",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589840-getbufferwithid",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589876-getbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589874-getinputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589835-getinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589879-getinputqueuememorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589853-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589854-getoutputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589847-getoutputqueue",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589862-getoutputqueuememorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589841-getstreammode",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589873-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589839-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589846-init",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589845-initwithbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589831-inputcallback",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589880-inputsynccallback",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589851-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589878-removeallbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589833-removebuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/3516782-removebuffer",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589861-sendoutputnotification",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589836-setinputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589866-setoutputport",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589870-setstreammode",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589837-startstream",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589863-stopstream",
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589867-suspendstream"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2863268",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostream/1589868-withbuffers"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iostream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Convert values between big-endian and little-endian formats. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/libkern/byte_order_utilities"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570869,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Byte Order Utilities"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390662-osreadswapint16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390662-osreadswapint16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSReadSwapInt16",
+      "type": "topic",
+      "url": "/documentation/kernel/1390662-osreadswapint16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390664-osreadswapint32": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390664-osreadswapint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSReadSwapInt32",
+      "type": "topic",
+      "url": "/documentation/kernel/1390664-osreadswapint32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390666-oswriteswapint64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390666-oswriteswapint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSWriteSwapInt64",
+      "type": "topic",
+      "url": "/documentation/kernel/1390666-oswriteswapint64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390668-oswriteswapint16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390668-oswriteswapint16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSWriteSwapInt16",
+      "type": "topic",
+      "url": "/documentation/kernel/1390668-oswriteswapint16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390672-oswriteswapint32": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390672-oswriteswapint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSWriteSwapInt32",
+      "type": "topic",
+      "url": "/documentation/kernel/1390672-oswriteswapint32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1390674-osreadswapint64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1390674-osreadswapint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSReadSwapInt64",
+      "type": "topic",
+      "url": "/documentation/kernel/1390674-osreadswapint64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517857-nxswaplittlelonglongtohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517857-nxswaplittlelonglongtohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleLongLongToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517857-nxswaplittlelonglongtohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517859-nxswaphostfloattolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517859-nxswaphostfloattolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostFloatToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517859-nxswaphostfloattolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517860-nxswaplittlefloattohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517860-nxswaplittlefloattohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleFloatToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517860-nxswaplittlefloattohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517861-nxswaphostinttolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517861-nxswaphostinttolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostIntToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517861-nxswaphostinttolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517863-nxswaphostdoubletolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517863-nxswaphostdoubletolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostDoubleToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517863-nxswaphostdoubletolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517865-nxswaphostdoubletobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517865-nxswaphostdoubletobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostDoubleToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517865-nxswaphostdoubletobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517867-nxconverthostdoubletoswapped": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517867-nxconverthostdoubletoswapped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXConvertHostDoubleToSwapped",
+      "type": "topic",
+      "url": "/documentation/kernel/1517867-nxconverthostdoubletoswapped"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517868-nxswapdouble": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517868-nxswapdouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapDouble",
+      "type": "topic",
+      "url": "/documentation/kernel/1517868-nxswapdouble"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517871-nxconverthostfloattoswapped": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517871-nxconverthostfloattoswapped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXConvertHostFloatToSwapped",
+      "type": "topic",
+      "url": "/documentation/kernel/1517871-nxconverthostfloattoswapped"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517873-nxswaphostinttobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517873-nxswaphostinttobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostIntToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517873-nxswaphostinttobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517877-nxconvertswappeddoubletohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517877-nxconvertswappeddoubletohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXConvertSwappedDoubleToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517877-nxconvertswappeddoubletohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517879-nxswaplonglong": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517879-nxswaplonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLongLong",
+      "type": "topic",
+      "url": "/documentation/kernel/1517879-nxswaplonglong"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517881-nxswaplittlelongtohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517881-nxswaplittlelongtohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleLongToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517881-nxswaplittlelongtohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517883-nxswaplittledoubletohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517883-nxswaplittledoubletohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleDoubleToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517883-nxswaplittledoubletohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517886-nxswapfloat": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517886-nxswapfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapFloat",
+      "type": "topic",
+      "url": "/documentation/kernel/1517886-nxswapfloat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517887-nxswapbiginttohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517887-nxswapbiginttohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigIntToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517887-nxswapbiginttohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517889-nxswaphostlongtobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517889-nxswaphostlongtobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostLongToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517889-nxswaphostlongtobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517890-nxswaphostlongtolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517890-nxswaphostlongtolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostLongToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517890-nxswaphostlongtolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517891-nxswaphostshorttolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517891-nxswaphostshorttolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostShortToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517891-nxswaphostshorttolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517892-nxswapbiglonglongtohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517892-nxswapbiglonglongtohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigLongLongToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517892-nxswapbiglonglongtohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517894-nxconvertswappedfloattohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517894-nxconvertswappedfloattohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXConvertSwappedFloatToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517894-nxconvertswappedfloattohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517895-nxswaphostlonglongtolittle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517895-nxswaphostlonglongtolittle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostLongLongToLittle",
+      "type": "topic",
+      "url": "/documentation/kernel/1517895-nxswaphostlonglongtolittle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517897-nxswapint": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517897-nxswapint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapInt",
+      "type": "topic",
+      "url": "/documentation/kernel/1517897-nxswapint"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517899-nxhostbyteorder": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517899-nxhostbyteorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXHostByteOrder",
+      "type": "topic",
+      "url": "/documentation/kernel/1517899-nxhostbyteorder"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517900-nxswaphostlonglongtobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517900-nxswaphostlonglongtobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostLongLongToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517900-nxswaphostlonglongtobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517901-nxswapbiglongtohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517901-nxswapbiglongtohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigLongToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517901-nxswapbiglongtohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517902-nxswaplong": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517902-nxswaplong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLong",
+      "type": "topic",
+      "url": "/documentation/kernel/1517902-nxswaplong"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517904-nxswapbigfloattohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517904-nxswapbigfloattohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigFloatToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517904-nxswapbigfloattohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517905-nxswapshort": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517905-nxswapshort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapShort",
+      "type": "topic",
+      "url": "/documentation/kernel/1517905-nxswapshort"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517906-nxswaplittleshorttohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517906-nxswaplittleshorttohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleShortToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517906-nxswaplittleshorttohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517908-nxswapbigshorttohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517908-nxswapbigshorttohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigShortToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517908-nxswapbigshorttohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517909-nxswaplittleinttohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517909-nxswaplittleinttohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapLittleIntToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517909-nxswaplittleinttohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517910-nxswapbigdoubletohost": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517910-nxswapbigdoubletohost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapBigDoubleToHost",
+      "type": "topic",
+      "url": "/documentation/kernel/1517910-nxswapbigdoubletohost"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517912-nxswaphostfloattobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517912-nxswaphostfloattobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostFloatToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517912-nxswaphostfloattobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1517913-nxswaphostshorttobig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1517913-nxswaphostshorttobig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NXSwapHostShortToBig",
+      "type": "topic",
+      "url": "/documentation/kernel/1517913-nxswaphostshorttobig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586855-oshostbyteorder": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586855-oshostbyteorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSHostByteOrder",
+      "type": "topic",
+      "url": "/documentation/kernel/1586855-oshostbyteorder"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/atomic_operations": {
+      "abstract": [
+        {
+          "text": "Increment and decrement numbers, perform compare-and-swap operations, and manipulate other data atomically. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/atomic_operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Atomic Operations",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/atomic_operations"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/byte_order_utilities": {
+      "abstract": [
+        {
+          "text": "Convert values between big-endian and little-endian formats. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/byte_order_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Byte Order Utilities",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/byte_order_utilities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "abstract": [
+        {
+          "text": "Create strings, numbers, collections, data objects, and the other standard types employed by drivers and kernel extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/libkern/atomic_operations"
+      ],
+      "title": "Fundamentals"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572135",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1586855-oshostbyteorder",
+        "doc://com.apple.documentation/documentation/kernel/1517899-nxhostbyteorder"
+      ],
+      "kind": "taskGroup",
+      "title": "Byte Order Utilities"
+    },
+    {
+      "anchor": "3572138",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1517910-nxswapbigdoubletohost",
+        "doc://com.apple.documentation/documentation/kernel/1517904-nxswapbigfloattohost",
+        "doc://com.apple.documentation/documentation/kernel/1517887-nxswapbiginttohost",
+        "doc://com.apple.documentation/documentation/kernel/1517892-nxswapbiglonglongtohost",
+        "doc://com.apple.documentation/documentation/kernel/1517901-nxswapbiglongtohost",
+        "doc://com.apple.documentation/documentation/kernel/1517908-nxswapbigshorttohost"
+      ],
+      "kind": "taskGroup",
+      "title": "Big Endian to Host"
+    },
+    {
+      "anchor": "3572133",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1517865-nxswaphostdoubletobig",
+        "doc://com.apple.documentation/documentation/kernel/1517912-nxswaphostfloattobig",
+        "doc://com.apple.documentation/documentation/kernel/1517873-nxswaphostinttobig",
+        "doc://com.apple.documentation/documentation/kernel/1517900-nxswaphostlonglongtobig",
+        "doc://com.apple.documentation/documentation/kernel/1517889-nxswaphostlongtobig",
+        "doc://com.apple.documentation/documentation/kernel/1517913-nxswaphostshorttobig"
+      ],
+      "kind": "taskGroup",
+      "title": "Host to Big Endian"
+    },
+    {
+      "anchor": "3572136",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1517883-nxswaplittledoubletohost",
+        "doc://com.apple.documentation/documentation/kernel/1517860-nxswaplittlefloattohost",
+        "doc://com.apple.documentation/documentation/kernel/1517909-nxswaplittleinttohost",
+        "doc://com.apple.documentation/documentation/kernel/1517857-nxswaplittlelonglongtohost",
+        "doc://com.apple.documentation/documentation/kernel/1517881-nxswaplittlelongtohost",
+        "doc://com.apple.documentation/documentation/kernel/1517906-nxswaplittleshorttohost"
+      ],
+      "kind": "taskGroup",
+      "title": "Little Endian to Host"
+    },
+    {
+      "anchor": "3572134",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1517863-nxswaphostdoubletolittle",
+        "doc://com.apple.documentation/documentation/kernel/1517859-nxswaphostfloattolittle",
+        "doc://com.apple.documentation/documentation/kernel/1517861-nxswaphostinttolittle",
+        "doc://com.apple.documentation/documentation/kernel/1517895-nxswaphostlonglongtolittle",
+        "doc://com.apple.documentation/documentation/kernel/1517890-nxswaphostlongtolittle",
+        "doc://com.apple.documentation/documentation/kernel/1517891-nxswaphostshorttolittle"
+      ],
+      "kind": "taskGroup",
+      "title": "Host to Little Endian"
+    },
+    {
+      "anchor": "3570871",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1390662-osreadswapint16",
+        "doc://com.apple.documentation/documentation/kernel/1390664-osreadswapint32",
+        "doc://com.apple.documentation/documentation/kernel/1390674-osreadswapint64",
+        "doc://com.apple.documentation/documentation/kernel/1390668-oswriteswapint16",
+        "doc://com.apple.documentation/documentation/kernel/1390672-oswriteswapint32",
+        "doc://com.apple.documentation/documentation/kernel/1390666-oswriteswapint64",
+        "doc://com.apple.documentation/documentation/kernel/1517867-nxconverthostdoubletoswapped",
+        "doc://com.apple.documentation/documentation/kernel/1517871-nxconverthostfloattoswapped",
+        "doc://com.apple.documentation/documentation/kernel/1517877-nxconvertswappeddoubletohost",
+        "doc://com.apple.documentation/documentation/kernel/1517894-nxconvertswappedfloattohost",
+        "doc://com.apple.documentation/documentation/kernel/1517868-nxswapdouble",
+        "doc://com.apple.documentation/documentation/kernel/1517886-nxswapfloat",
+        "doc://com.apple.documentation/documentation/kernel/1517897-nxswapint",
+        "doc://com.apple.documentation/documentation/kernel/1517902-nxswaplong",
+        "doc://com.apple.documentation/documentation/kernel/1517879-nxswaplonglong",
+        "doc://com.apple.documentation/documentation/kernel/1517905-nxswapshort"
+      ],
+      "kind": "taskGroup",
+      "title": "Swaps"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/libkern/byte_order_utilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

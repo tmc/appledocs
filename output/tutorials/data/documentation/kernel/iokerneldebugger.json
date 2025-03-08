@@ -1,0 +1,994 @@
+{
+  "abstract": [
+    {
+      "text": "Kernel debugger nub.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1434278,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOKernelDebugger",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOKernelDebugger"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOKernelDebugger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object interfaces with the KDP (kernel debugger protocol) module and dispatches KDP requests to its target (provider). The target, designated as the debugger device, must implement a pair of handler functions that are called to handle KDP transmit and receive requests during a debugging session. Only a single IOKernelDebugger in the system can be active at a given time. The active IOKernelDebugger is the one that has an IOKDP object attached as a client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The debugger device is usually a subclass of IOEthernetController. However, any IOService can service an IOKernelDebugger client, implement the two polled mode handlers, and transport the KDP packets through a data channel. However, KDP assumes that the debugger device is an Ethernet interface and therefore it will always send, and expect to receive, an Ethernet frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger": {
+      "abstract": [
+        {
+          "text": "Kernel debugger nub.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKernelDebugger",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434241-signaldebugger": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalDebugger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434241-signaldebugger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signalDebugger",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434241-signaldebugger"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434243-nullrxhandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullRxHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434243-nullrxhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nullRxHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434243-nullrxhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434245-nulllinkstatushandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullLinkStatusHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434245-nulllinkstatushandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nullLinkStatusHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434245-nulllinkstatushandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434247-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434247-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434247-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434249-powerstatewillchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateWillChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434249-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434249-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434253-interfacepublished": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfacePublished"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434253-interfacepublished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interfacePublished",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434253-interfacepublished"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434255-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434255-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434255-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434259-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434259-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434259-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434261-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434261-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434261-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434263-powerstatedidchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateDidChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434263-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434263-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434267-message": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434267-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434267-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434271-registerhandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434271-registerhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434271-registerhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434274-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434274-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434274-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434276-debugger": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434276-debugger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugger",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434276-debugger"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434281-unlock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434281-unlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434281-unlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434288-kdplinkstatusdispatcher": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "kdpLinkStatusDispatcher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434288-kdplinkstatusdispatcher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kdpLinkStatusDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434288-kdplinkstatusdispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434290-nulltxhandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullTxHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434290-nulltxhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nullTxHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434290-nulltxhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434292-nullsetmodehandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullSetModeHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434292-nullsetmodehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nullSetModeHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434292-nullsetmodehandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434293-kdpreceivedispatcher": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "kdpReceiveDispatcher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434293-kdpreceivedispatcher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kdpReceiveDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434293-kdpreceivedispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434295-kdpsetmodedispatcher": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "kdpSetModeDispatcher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434295-kdpsetmodedispatcher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kdpSetModeDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434295-kdpsetmodedispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434297-handleisopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIsOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434297-handleisopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434297-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434299-kdptransmitdispatcher": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "kdpTransmitDispatcher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434299-kdptransmitdispatcher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kdpTransmitDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434299-kdptransmitdispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434300-lock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "lock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434300-lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lock",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1434300-lock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812543-debugger": {
+      "abstract": [
+        {
+          "text": "Factory method that performs allocation and initialization of an IOKernelDebugger object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812543-debugger",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "debugger",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812543-debugger"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812554-free": {
+      "abstract": [
+        {
+          "text": "Frees the IOKernelDebugger instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812554-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812554-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812560-handleclose": {
+      "abstract": [
+        {
+          "text": "Handles a client close.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812560-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812560-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812565-handleisopen": {
+      "abstract": [
+        {
+          "text": "Queries whether a client has an open on this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812565-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812565-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812573-handleopen": {
+      "abstract": [
+        {
+          "text": "Handles a client open.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812573-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812573-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812584-init": {
+      "abstract": [
+        {
+          "text": "Initializes an IOKernelDebugger instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812584-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812584-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812595-kdplinkstatusdispatcher": {
+      "abstract": [
+        {
+          "text": "The KDP link status dispatch function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812595-kdplinkstatusdispatcher",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kdpLinkStatusDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812595-kdplinkstatusdispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812607-kdpreceivedispatcher": {
+      "abstract": [
+        {
+          "text": "The KDP receive dispatch function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812607-kdpreceivedispatcher",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kdpReceiveDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812607-kdpreceivedispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812616-kdpsetmodedispatcher": {
+      "abstract": [
+        {
+          "text": "The KDP set mode dispatch function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812616-kdpsetmodedispatcher",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kdpSetModeDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812616-kdpsetmodedispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812631-kdptransmitdispatcher": {
+      "abstract": [
+        {
+          "text": "The KDP transmit dispatch function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812631-kdptransmitdispatcher",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kdpTransmitDispatcher",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812631-kdptransmitdispatcher"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812643-lock": {
+      "abstract": [
+        {
+          "text": "Takes the debugger lock conditionally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812643-lock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lock",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812643-lock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812653-nulllinkstatushandler": {
+      "abstract": [
+        {
+          "text": "Null link status handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812653-nulllinkstatushandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nullLinkStatusHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812653-nulllinkstatushandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812663-nullrxhandler": {
+      "abstract": [
+        {
+          "text": "Null receive handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812663-nullrxhandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nullRxHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812663-nullrxhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812671-nullsetmodehandler": {
+      "abstract": [
+        {
+          "text": "Null set mode handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812671-nullsetmodehandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nullSetModeHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812671-nullsetmodehandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812684-nulltxhandler": {
+      "abstract": [
+        {
+          "text": "Null transmit handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812684-nulltxhandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nullTxHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812684-nulltxhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812705-powerstatedidchangeto": {
+      "abstract": [
+        {
+          "text": "Handles notification that the network controller did change power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812705-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812705-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812727-powerstatewillchangeto": {
+      "abstract": [
+        {
+          "text": "Handles notification that the network controller will change power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812727-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812727-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812741-registerhandler": {
+      "abstract": [
+        {
+          "text": "Registers the target and the handler functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812741-registerhandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812741-registerhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812763-signaldebugger": {
+      "abstract": [
+        {
+          "text": "Signal the kernel to enter the debugger when safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812763-signaldebugger",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "signalDebugger",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812763-signaldebugger"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812777-unlock": {
+      "abstract": [
+        {
+          "text": "Releases the debugger lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812777-unlock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/1812777-unlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iokerneldebugger/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokitdiagnostics": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokitdiagnostics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitDiagnostics",
+      "type": "topic",
+      "url": "/documentation/kernel/iokitdiagnostics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokitdiagnosticsparameters": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokitdiagnosticsparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitDiagnosticsParameters",
+      "type": "topic",
+      "url": "/documentation/kernel/iokitdiagnosticsparameters"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokitdiagnostics",
+        "doc://com.apple.documentation/documentation/kernel/iokitdiagnosticsparameters"
+      ],
+      "title": "Debugging"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818165",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812543-debugger",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812554-free",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812560-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812565-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812573-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812584-init",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812595-kdplinkstatusdispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812607-kdpreceivedispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812616-kdpsetmodedispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812631-kdptransmitdispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812643-lock",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812653-nulllinkstatushandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812663-nullrxhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812671-nullsetmodehandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812684-nulltxhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812705-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812727-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812741-registerhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812763-signaldebugger",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1812777-unlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818249",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2855883",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434274-free",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434261-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434255-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434297-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434247-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434259-init",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434267-message",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434263-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434249-powerstatewillchangeto"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2855884",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434276-debugger",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434253-interfacepublished",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434288-kdplinkstatusdispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434293-kdpreceivedispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434295-kdpsetmodedispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434299-kdptransmitdispatcher",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434300-lock",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434245-nulllinkstatushandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434243-nullrxhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434292-nullsetmodehandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434290-nulltxhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434271-registerhandler",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434241-signaldebugger",
+        "doc://com.apple.documentation/documentation/kernel/iokerneldebugger/1434281-unlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iokerneldebugger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1018 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a full or partial IP address.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avrouting/documentation/AVRouting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCustomRoutingPartialIP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVCustomRoutingPartialIP"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVRouting"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVCustomRoutingPartialIP"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVCustomRoutingPartialIP"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingPartialIP"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this type to define the IP address and subnet mask of known routes on a local network. Create an instance of this class and add it to a custom routing controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/knownRouteIPs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array like shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the IP address.",
+            "let anIPAddressInBytes:[UInt8] = [192, 168, 10, 5]",
+            "let address = Data(bytes: anIPAddressInBytes, count: anIPAddressInBytes.count)",
+            "",
+            "// Define the subnet mask.",
+            "let aMaskInBytes:[UInt8] = [255, 255, 255, 255]",
+            "let mask = Data(bytes: aMaskInBytes, count: aMaskInBytes.count)",
+            "",
+            "// Create a new object to represent the address and mask.",
+            "let partialIP = AVCustomRoutingPartialIP(address: address, mask: mask)",
+            "",
+            "// Add the instance to the custom routing controller's known routes.",
+            "routingController.knownRouteIPs.append(partialIP)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avrouting/documentation/AVRouting": {
+      "abstract": [
+        {
+          "text": "Display custom destinations to stream media in the system route picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVRouting",
+      "type": "topic",
+      "url": "/documentation/avrouting"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/knownRouteIPs": {
+      "abstract": [
+        {
+          "text": "An array of route addresses known to be on the local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "knownRouteIPs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCustomRoutingPartialIP",
+          "text": "AVCustomRoutingPartialIP"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/knownRouteIPs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "knownRouteIPs"
+        }
+      ],
+      "role": "symbol",
+      "title": "knownRouteIPs",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingcontroller/knownrouteips"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP": {
+      "abstract": [
+        {
+          "text": "An object that represents a full or partial IP address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingPartialIP"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingPartialIP"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCustomRoutingPartialIP",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingpartialip"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/address": {
+      "abstract": [
+        {
+          "text": "A full or partial IP address for a device known to be on the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "address"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/address",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "address"
+        }
+      ],
+      "role": "symbol",
+      "title": "address",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingpartialip/address"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/init(address:mask:)": {
+      "abstract": [
+        {
+          "text": "Creates an IP fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "address"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/init(address:mask:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAddress:mask:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(address:mask:)",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingpartialip/init(address:mask:)"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/mask": {
+      "abstract": [
+        {
+          "text": "A mask that represents how many octets of the IP address to respect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/mask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mask"
+        }
+      ],
+      "role": "symbol",
+      "title": "mask",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingpartialip/mask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-route-addresses",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/knownRouteIPs"
+      ],
+      "title": "Configuring route addresses"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-IP-fragment",
+      "identifiers": [
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/init(address:mask:)"
+      ],
+      "title": "Creating an IP fragment"
+    },
+    {
+      "anchor": "Inspecting-the-IP-fragment",
+      "identifiers": [
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/address",
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/mask"
+      ],
+      "title": "Inspecting the IP fragment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVCustomRoutingPartialIP"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingPartialIP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingPartialIP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avrouting/documentation/AVRouting"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-IP-fragment",
+              "identifiers": [
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/init(address:mask:)"
+              ],
+              "title": "Creating an IP fragment"
+            },
+            {
+              "anchor": "Inspecting-the-IP-fragment",
+              "identifiers": [
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/address",
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingPartialIP/mask"
+              ],
+              "title": "Inspecting the IP fragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-route-addresses",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/knownRouteIPs"
+              ],
+              "title": "Configuring route addresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVCustomRoutingPartialIP"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP/title",
+          "value": "AVCustomRoutingPartialIP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingPartialIP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingPartialIP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1address/title",
+          "value": "address"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1address/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "address"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1init(address:mask:)/title",
+          "value": "initWithAddress:mask:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1init(address:mask:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAddress:mask:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController~1knownRouteIPs/title",
+          "value": "knownRouteIPs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController~1knownRouteIPs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "knownRouteIPs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1mask/title",
+          "value": "mask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingPartialIP~1mask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avrouting/avcustomroutingpartialip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avrouting/avcustomroutingpartialip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

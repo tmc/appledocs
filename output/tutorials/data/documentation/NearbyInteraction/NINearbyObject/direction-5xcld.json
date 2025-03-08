@@ -1,0 +1,805 @@
+{
+  "abstract": [
+    {
+      "text": "A vector that points from the user’s device in the direction of the peer device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/direction-5xcld"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NINearbyObject(py)direction",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "direction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Nearby Interaction"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "direction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.3",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "direction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@simd_float3",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@simd_float3",
+              "text": "simd_float3"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "direction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectDirectionNotAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when direction is unavailable, such as when the app runs on Apple Watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPhone, it’s possible to recieve direction for nearby third-party accessories in sessions that enable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpreting-Direction",
+          "level": 3,
+          "text": "Interpreting Direction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property is a Cartesian triplet (x,y,z) in normalized units with a range of ",
+              "type": "text"
+            },
+            {
+              "code": "[0..1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Nearby Interaction models direction as a coordinate on a sphere, such that a ray cast from the sphere’s center through the coordinate points toward the peer device. For each axis, the sphere center is at coordinate 0, and the surface is at coordinate 1. As the user looks at the device’s screen,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The x-axis extends positively to the right.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The y-axis extends positively upward.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The z-axis extends negatively from the device’s center, away from the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates the direction-vector coordinate space from two different angles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3798527",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction": {
+      "abstract": [
+        {
+          "text": "Locate and interact with nearby devices using identifiers, distance, and direction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Nearby Interaction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject": {
+      "abstract": [
+        {
+          "text": "Location information for a peer device in an interaction session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NINearbyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NINearbyObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "NINearbyObject",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobject"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum": {
+      "abstract": [
+        {
+          "text": "Estimations of a nearby object’s vertical position in relation to the user’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerticalDirectionEstimate"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerticalDirectionEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NINearbyObject.VerticalDirectionEstimate",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/direction-5xcld": {
+      "abstract": [
+        {
+          "text": "A vector that points from the user’s device in the direction of the peer device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "direction"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/direction-5xcld",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "direction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobject/direction-5xcld"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/horizontalAngle-9ibky": {
+      "abstract": [
+        {
+          "text": "An angle in radians that indicates the azimuthal direction to the nearby object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "horizontalAngle"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/horizontalAngle-9ibky",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalAngle",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobject/horizontalangle-9ibky"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property": {
+      "abstract": [
+        {
+          "text": "The estimation of a nearby object’s vertical position as it relates to the user’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalDirectionEstimate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NINearbyObject",
+          "text": "NINearbyObject"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NINearbyObjectVerticalDirectionEstimate",
+          "text": "VerticalDirectionEstimate"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "verticalDirectionEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "verticalDirectionEstimate",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.property"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectAngleNotAvailable": {
+      "abstract": [
+        {
+          "text": "A value that indicates that a nearby object’s horizontal angle is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NINearbyObjectAngleNotAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectAngleNotAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NINearbyObjectAngleNotAvailable",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobjectanglenotavailable"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectDirectionNotAvailable": {
+      "abstract": [
+        {
+          "text": "A value that indicates that a nearby object’s direction is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NINearbyObjectDirectionNotAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectDirectionNotAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NINearbyObjectDirectionNotAvailable",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyobjectdirectionnotavailable"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraAssistanceEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraAssistanceEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraAssistanceEnabled",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session": {
+      "abstract": [
+        {
+          "text": "Measure the relative position of a nearby device and coach the user to sustain interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Initiating and maintaining a session",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/initiating-and-maintaining-a-session"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@simd_float3": {
+      "abstract": [
+        {
+          "text": "A vector of three 32-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@simd_float3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simd_float3",
+      "type": "topic",
+      "url": "/documentation/simd/simd_float3"
+    },
+    "media-3798527": {
+      "alt": "A diagram of a phone in two different orientations, each with a coordinate system that renders from an origin in the middle of the device. The phone on the left shows the back of the phone, with an up-axis labeled “+y”. Its horizontal axis points left, and is labeled “+x”. Its z-axis points toward the reader, and is labeled “-z”. The phone on the right faces toward the reader, with an up-axis labeled “+y”. Its horizontal axis points right and is labeled “+x”. Its z-axis points away from the reader, and is labeled “-z”.",
+      "identifier": "media-3798527",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eaa9b90498bacaef6df0517071bb32d9/media-3798527@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Acquiring-relative-direction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectDirectionNotAvailable",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/horizontalAngle-9ibky",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObjectAngleNotAvailable",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum"
+      ],
+      "title": "Acquiring relative direction"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@simd_float3/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:]3f",
+              "text": "float __attribute__((ext_vector_type(3)))"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "simd_float3"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/title",
+          "value": "cameraAssistanceEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraAssistanceEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject/title",
+          "value": "NINearbyObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject~1verticalDirectionEstimate-swift.property/title",
+          "value": "verticalDirectionEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject~1verticalDirectionEstimate-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "verticalDirectionEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject~1VerticalDirectionEstimate-swift.enum/title",
+          "value": "NINearbyObjectVerticalDirectionEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject~1VerticalDirectionEstimate-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyObjectVerticalDirectionEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyObject~1VerticalDirectionEstimate-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyObjectVerticalDirectionEstimate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/ninearbyobject/direction-5xcld"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

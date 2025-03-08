@@ -1,0 +1,1113 @@
+{
+  "abstract": [
+    {
+      "text": "Associates a block buffer of media data with a sample buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CoreMedia",
+    "externalID": "s:So17CMSampleBufferRefa9CoreMediaE07setDataB0yySo07CMBlockbC0aKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setDataBuffer"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CMBlockBufferRef",
+        "text": "CMBlockBuffer"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setDataBuffer(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDataBuffer"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dataBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMBlockBufferRef",
+              "text": "CMBlockBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A buffer that contains the media data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataBuffer"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method is a write-once operation; it fails if the sample buffer already has a data buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The purpose of this API is to allow you to create a sample buffer with timing and format information, before associating it with media data. For example, some media services may have access to sample size, timing, and format information, but only load the media data when accessed. Such services may create sample buffers with that information and insert them into queues early, and use this API to attach the media data when it’s ready.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a block buffer instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/SingleSampleBuffers": {
+      "abstract": [
+        {
+          "text": "A structure that holds all samples in a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SingleSampleBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/SingleSampleBuffers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SingleSampleBuffers"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSampleBuffer.SingleSampleBuffers",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/singlesamplebuffers"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/audioStreamPacketDescriptions()": {
+      "abstract": [
+        {
+          "text": "Creates an array of audio stream packet descriptions for the variable bytes per packet or variable frames per packet audio data in a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioStreamPacketDescriptions"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/audioStreamPacketDescriptions()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "audioStreamPacketDescriptions()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/audiostreampacketdescriptions()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/copyPCMData(fromRange:into:)": {
+      "abstract": [
+        {
+          "text": "Copies PCM audio data from a sample buffer into a prepopulated audio buffer list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyPCMData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/copyPCMData(fromRange:into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyPCMData(fromRange:into:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/copypcmdata(fromrange:into:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/dataBuffer": {
+      "abstract": [
+        {
+          "text": "A block buffer that contains the media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/dataBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/databuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/imageBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that contains the media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/imageBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/imagebuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(_:)": {
+      "abstract": [
+        {
+          "text": "Associates a block buffer of media data with a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDataBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDataBuffer(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/setdatabuffer(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(fromAudioBufferList:blockBufferMemoryAllocator:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a block buffer that contains a copy of the data from an audio buffer list, and sets it as the sample buffer’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDataBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromAudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferMemoryAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So17CMSampleBufferRefa9CoreMediaE5FlagsV",
+          "text": "Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(fromAudioBufferList:blockBufferMemoryAllocator:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDataBuffer(fromAudioBufferList:blockBufferMemoryAllocator:flags:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/setdatabuffer(fromaudiobufferlist:blockbuffermemoryallocator:flags:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/singleSampleBuffers()": {
+      "abstract": [
+        {
+          "text": "Returns all samples in a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "singleSampleBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So17CMSampleBufferRefa9CoreMediaE19SingleSampleBuffersV",
+          "text": "SingleSampleBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/singleSampleBuffers()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "singleSampleBuffers()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/singlesamplebuffers()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withAudioBufferList(blockBufferMemoryAllocator:flags:body:)": {
+      "abstract": [
+        {
+          "text": "Calls a closure with an audio buffer list that contains the data from a sample buffer and a block buffer backing the audio buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferMemoryAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So17CMSampleBufferRefa9CoreMediaE5FlagsV",
+          "text": "Flags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreAudio013UnsafeMutableB17BufferListPointerV",
+          "text": "UnsafeMutableAudioBufferListPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withAudioBufferList(blockBufferMemoryAllocator:flags:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAudioBufferList(blockBufferMemoryAllocator:flags:body:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/withaudiobufferlist(blockbuffermemoryallocator:flags:body:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withUnsafeAudioStreamPacketDescriptions(_:)": {
+      "abstract": [
+        {
+          "text": "Calls a closure with an audio stream packet description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeAudioStreamPacketDescriptions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SR",
+          "text": "UnsafeBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withUnsafeAudioStreamPacketDescriptions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeAudioStreamPacketDescriptions(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer/withunsafeaudiostreampacketdescriptions(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Modifying-Sample-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/dataBuffer",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/imageBuffer",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withAudioBufferList(blockBufferMemoryAllocator:flags:body:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/setDataBuffer(fromAudioBufferList:blockBufferMemoryAllocator:flags:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/copyPCMData(fromRange:into:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/audioStreamPacketDescriptions()",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/withUnsafeAudioStreamPacketDescriptions(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/singleSampleBuffers()",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSampleBuffer/SingleSampleBuffers"
+      ],
+      "title": "Modifying Sample Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/title",
+          "value": "CMBlockBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSampleBuffer/title",
+          "value": "CMSampleBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSampleBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmsamplebuffer/setdatabuffer(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

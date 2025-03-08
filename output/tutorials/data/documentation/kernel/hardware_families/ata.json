@@ -1,0 +1,571 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a driver that supports Advanced Technology Attachment (ATA) devices.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570807,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "ATA"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atadevicenub": {
+      "abstract": [
+        {
+          "text": "ATADeviceNub is a concrete implementation of IOATADevice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atadevicenub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATADeviceNub",
+      "type": "topic",
+      "url": "/documentation/kernel/atadevicenub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atadevicetype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atadevicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataDeviceType",
+      "type": "topic",
+      "url": "/documentation/kernel/atadevicetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataeventcode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataeventcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataEventCode",
+      "type": "topic",
+      "url": "/documentation/kernel/ataeventcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataflags": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ataflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataopcode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataopcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataOpcode",
+      "type": "topic",
+      "url": "/documentation/kernel/ataopcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataoperationtype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATAOperationType",
+      "type": "topic",
+      "url": "/documentation/kernel/ataoperationtype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atapiclientdata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atapiclientdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATAPIClientData",
+      "type": "topic",
+      "url": "/documentation/kernel/atapiclientdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atapicmdpacket": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atapicmdpacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATAPICmdPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/atapicmdpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atapiconfig": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atapiconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atapiConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/atapiconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataregmask": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataregmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataRegMask",
+      "type": "topic",
+      "url": "/documentation/kernel/ataregmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atarequestidentifier": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATARequestIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/atarequestidentifier"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atasockettype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atasockettype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataSocketType",
+      "type": "topic",
+      "url": "/documentation/kernel/atasockettype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atatimereventsource": {
+      "abstract": [
+        {
+          "text": "Extend the timer event source to allow checking for timer expiration from behind the workloop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atatimereventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATATimerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/atatimereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataunitid": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataunitid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ataUnitID",
+      "type": "topic",
+      "url": "/documentation/kernel/ataunitid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Advanced Technology Attachment (ATA) devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bluetooth",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/bluetooth"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports FireWire devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Thunderbolt devices or PCI cards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PCI",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/usb": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Universal Serial Bus (USB) devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/usb",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/usb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATABusCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand64": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATABusCommand64",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabusinfo": {
+      "abstract": [
+        {
+          "text": "used to indicate the capabilities of the bus the device is connected to, PIO and DMA modes supported, etc.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATABusInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabusinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATACompletionFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacompletionfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacontroller": {
+      "abstract": [
+        {
+          "text": "The base class for ata controller family. Provides the interface common to all ata bus controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAController",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig": {
+      "abstract": [
+        {
+          "text": "used for configuring and communicating the desired transfer modes of a device. A disk driver would typically use this object in conjunction with the 512-bytes of identification data from the drive and the IOATABusInfo object for the bus it is connected to. This object will determine the best matching transfer speeds available. the device driver will then send a series of Set Features commands to configure the drive and this object to the bus through the IOATADevice nub in order to configure the optimum transfer mode. The driver for the disk drive may choose to populate this object with whatever transfer mode desired, in the event that a different mode is required.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATADevConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice": {
+      "abstract": [
+        {
+          "text": "This object implements a relay to an ATA Bus where a drive is attached.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATADevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataioreg16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataioreg16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAIOReg16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataioreg16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataioreg32": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataioreg32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAIOReg32",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataioreg32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataioreg8": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataioreg8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAIOReg8",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataioreg8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatapiprotocoltransport": {
+      "abstract": [
+        {
+          "text": "SCSI Protocol Driver Family for ATAPI Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatapiprotocoltransport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAPIProtocolTransport",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatapiprotocoltransport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatareg16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatareg16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAReg16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatareg16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatareg32": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatareg32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAReg32",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatareg32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatareg8": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatareg8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATAReg8",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatareg8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataregptr16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataregptr16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATARegPtr16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataregptr16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataregptr32": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataregptr32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATARegPtr32",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataregptr32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioataregptr8": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioataregptr8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATARegPtr8",
+      "type": "topic",
+      "url": "/documentation/kernel/ioataregptr8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba": {
+      "abstract": [
+        {
+          "text": "If 48-bit LBAs are supported, IOExtendedLBA is used to represent a 48-bit LBA. The driver examines the ATA identify data to determine if 48-bit addressing is supported.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/usb"
+      ],
+      "title": "Hardware Interconnects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572189",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/atadevicenub",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice"
+      ],
+      "kind": "taskGroup",
+      "title": "Devices"
+    },
+    {
+      "anchor": "3572187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatacontroller"
+      ],
+      "kind": "taskGroup",
+      "title": "Controller"
+    },
+    {
+      "anchor": "3572190",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatareg32",
+        "doc://com.apple.documentation/documentation/kernel/ioatareg16",
+        "doc://com.apple.documentation/documentation/kernel/ioatareg8",
+        "doc://com.apple.documentation/documentation/kernel/ioataioreg32",
+        "doc://com.apple.documentation/documentation/kernel/ioataioreg16",
+        "doc://com.apple.documentation/documentation/kernel/ioataioreg8",
+        "doc://com.apple.documentation/documentation/kernel/ioataregptr32",
+        "doc://com.apple.documentation/documentation/kernel/ioataregptr16",
+        "doc://com.apple.documentation/documentation/kernel/ioataregptr8"
+      ],
+      "kind": "taskGroup",
+      "title": "Registers"
+    },
+    {
+      "anchor": "3572192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand64",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Commands"
+    },
+    {
+      "anchor": "3572198",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/atatimereventsource"
+      ],
+      "kind": "taskGroup",
+      "title": "Event Source"
+    },
+    {
+      "anchor": "3571906",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatapiprotocoltransport",
+        "doc://com.apple.documentation/documentation/kernel/atapiclientdata",
+        "doc://com.apple.documentation/documentation/kernel/atapicmdpacket"
+      ],
+      "kind": "taskGroup",
+      "title": "ATAPI"
+    },
+    {
+      "anchor": "3570811",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+        "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Base Types"
+    },
+    {
+      "anchor": "3572792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/atadevicetype",
+        "doc://com.apple.documentation/documentation/kernel/ataeventcode",
+        "doc://com.apple.documentation/documentation/kernel/ataflags",
+        "doc://com.apple.documentation/documentation/kernel/ataopcode",
+        "doc://com.apple.documentation/documentation/kernel/ataregmask",
+        "doc://com.apple.documentation/documentation/kernel/atasockettype",
+        "doc://com.apple.documentation/documentation/kernel/ataunitid",
+        "doc://com.apple.documentation/documentation/kernel/atapiconfig"
+      ],
+      "kind": "taskGroup",
+      "title": "Additional Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/hardware_families/ata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

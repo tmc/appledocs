@@ -1,0 +1,392 @@
+{
+  "abstract": [
+    {
+      "text": "Sets target values for selected single-precision coefficients within a valid single-precision multichannel biquad IIR filter object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1579946-vdsp_biquadm_settargetssingle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1579946,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_biquadm_SetTargetsSingle",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_biquadm_SetTargetsSingle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm_SetTargetsSingle"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_biquadm_Setup",
+              "text": "vDSP_biquadm_Setup"
+            },
+            {
+              "kind": "text",
+              "text": " __setup, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__targets, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " __interp_rate, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " __interp_threshold, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __start_sec, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __start_chn, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __nsec, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __nchn);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter state object whose coefficients the function updates.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__setup"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An input array of single-precision target values to the function applies to selected coefficients.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__targets"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The rate constant that determines the size of increments to the coefficient values. The rate’s value must be greater than zero, otherwise the function’s behavior is undefined. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__rate"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The threshold constant that determines how close a coefficient’s value must be to the target value before incrementation stops. The threshold’s value must be greater than zero, otherwise the function’s behavior is undefined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__threshold"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The first section to update in each channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__start_sec"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The first channel to update.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__start_chn"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of sections to update in each channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__nsec"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of channels to update.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__nchn"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide the filter coefficient targets as single-precision values. The function increments each selected coefficient at each sample until the difference between its value and the target value is less than a specified threshold.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The last four parameters define which coefficients the function changes. The actual increment for each selected coefficient is a function of the ",
+              "type": "text"
+            },
+            {
+              "code": "rate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant and the difference between the target value and its initial value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function doesn’t allocate any additional memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_Setup",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_biquadm_setup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1579946-vdsp_biquadm_settargetssingle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

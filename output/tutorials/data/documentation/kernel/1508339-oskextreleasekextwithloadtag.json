@@ -1,0 +1,520 @@
+{
+  "abstract": [
+    {
+      "text": "Release a loaded kext based on its load tag.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kern"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1508339-oskextreleasekextwithloadtag"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1508339,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@OSKextReleaseKextWithLoadTag",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "OSKextReleaseKextWithLoadTag"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSReturn",
+              "text": "OSReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSKextReleaseKextWithLoadTag"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSKextLoadTag",
+              "text": "OSKextLoadTag"
+            },
+            {
+              "kind": "text",
+              "text": " loadTag);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The load tag of the kext to be released. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/1508336-oskextgetcurrentloadtag",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "loadTag"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "kOSReturnSuccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the kext was released. ",
+              "type": "text"
+            },
+            {
+              "code": "kOSKextReturnNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the kext was not found. ",
+              "type": "text"
+            },
+            {
+              "code": "kOSKextReturnInvalidArgument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if ",
+              "type": "text"
+            },
+            {
+              "code": "loadTag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "kOSKextInvalidLoadTag",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kext should have been retained previously via ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1508272-oskextretainkextwithloadtag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function schedules an autounload scan for all kexts. When that scan occurs, if a kext has autounload enabled, it will be unloaded if there are no outstanding references to it and there are no instances of its Libkern C++ classes (if any).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kexts that define subclasses of IOService have autounload enabled automatically. Other kexts can use the reference count to manage automatic unload without having to define and create Libkern C++ objects. For example, a filesystem kext can be retained whenever a new mount is created, and released when a mount is removed. When the last mount is removed, the kext will be unloaded after a brief delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the autounload scan takes place after a delay of at least a minute, a kext that manages its own reference counts for autounload should be prepared to have its module stop function called even while the function calling this function is still running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A kext can get its own load tag using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1508336-oskextgetcurrentloadtag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kexts should not retain and release other kexts; linkage references are accounted for internally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508272-oskextretainkextwithloadtag": {
+      "abstract": [
+        {
+          "text": "Retain a loaded kext based on its load tag, and enable autounload for that kext.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508272-oskextretainkextwithloadtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextRetainKextWithLoadTag",
+      "type": "topic",
+      "url": "/documentation/kernel/1508272-oskextretainkextwithloadtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource": {
+      "abstract": [
+        {
+          "text": "Requests data from a nonlocalized resource file in a kext bundle on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextRequestResource",
+      "type": "topic",
+      "url": "/documentation/kernel/1508294-oskextrequestresource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508305-oskextgetcurrentidentifier": {
+      "abstract": [
+        {
+          "text": "Returns the CFBundleIdentifier for the calling kext as a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508305-oskextgetcurrentidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextGetCurrentIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/1508305-oskextgetcurrentidentifier"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508323-oskextloadkextwithidentifier": {
+      "abstract": [
+        {
+          "text": "Request that a kext be loaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508323-oskextloadkextwithidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextLoadKextWithIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/1508323-oskextloadkextwithidentifier"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508326-oskextgetcurrentversionstring": {
+      "abstract": [
+        {
+          "text": "Returns the CFBundleVersion for the calling kext as a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508326-oskextgetcurrentversionstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextGetCurrentVersionString",
+      "type": "topic",
+      "url": "/documentation/kernel/1508326-oskextgetcurrentversionstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508333-oskextgrabpgodata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508333-oskextgrabpgodata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextGrabPgoData",
+      "type": "topic",
+      "url": "/documentation/kernel/1508333-oskextgrabpgodata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508336-oskextgetcurrentloadtag": {
+      "abstract": [
+        {
+          "text": "Returns the run-time load tag for the calling kext as an ",
+          "type": "text"
+        },
+        {
+          "code": "OSKextLoadTag",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508336-oskextgetcurrentloadtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextGetCurrentLoadTag",
+      "type": "topic",
+      "url": "/documentation/kernel/1508336-oskextgetcurrentloadtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508339-oskextreleasekextwithloadtag": {
+      "abstract": [
+        {
+          "text": "Release a loaded kext based on its load tag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508339-oskextreleasekextwithloadtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextReleaseKextWithLoadTag",
+      "type": "topic",
+      "url": "/documentation/kernel/1508339-oskextreleasekextwithloadtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508350-oskextcancelrequest": {
+      "abstract": [
+        {
+          "text": "Cancels a pending user-space kext request without invoking the callback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508350-oskextcancelrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextCancelRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/1508350-oskextcancelrequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520989-kextd_ping": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520989-kextd_ping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kextd_ping",
+      "type": "topic",
+      "url": "/documentation/kernel/1520989-kextd_ping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1577598-kext_alloc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1577598-kext_alloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kext_alloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1577598-kext_alloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1577599-kext_alloc_init": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1577599-kext_alloc_init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kext_alloc_init",
+      "type": "topic",
+      "url": "/documentation/kernel/1577599-kext_alloc_init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1577600-kext_free": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1577600-kext_free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kext_free",
+      "type": "topic",
+      "url": "/documentation/kernel/1577600-kext_free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1588829-kext_request": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1588829-kext_request",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kext_request",
+      "type": "topic",
+      "url": "/documentation/kernel/1588829-kext_request"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1646297-oskextresetpgocountersunlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1646297-oskextresetpgocountersunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextResetPgoCountersUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1646297-oskextresetpgocountersunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1646298-oskextresetpgocounters": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1646298-oskextresetpgocounters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextResetPgoCounters",
+      "type": "topic",
+      "url": "/documentation/kernel/1646298-oskextresetpgocounters"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1646299-oskextresetpgocounterslock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1646299-oskextresetpgocounterslock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextResetPgoCountersLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1646299-oskextresetpgocounterslock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kern",
+      "type": "topic",
+      "url": "/documentation/kernel/kern"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1577598-kext_alloc",
+        "doc://com.apple.documentation/documentation/kernel/1577599-kext_alloc_init",
+        "doc://com.apple.documentation/documentation/kernel/1577600-kext_free",
+        "doc://com.apple.documentation/documentation/kernel/1588829-kext_request",
+        "doc://com.apple.documentation/documentation/kernel/1520989-kextd_ping",
+        "doc://com.apple.documentation/documentation/kernel/1508350-oskextcancelrequest",
+        "doc://com.apple.documentation/documentation/kernel/1508305-oskextgetcurrentidentifier",
+        "doc://com.apple.documentation/documentation/kernel/1508336-oskextgetcurrentloadtag",
+        "doc://com.apple.documentation/documentation/kernel/1508326-oskextgetcurrentversionstring",
+        "doc://com.apple.documentation/documentation/kernel/1508333-oskextgrabpgodata",
+        "doc://com.apple.documentation/documentation/kernel/1508323-oskextloadkextwithidentifier",
+        "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource",
+        "doc://com.apple.documentation/documentation/kernel/1646298-oskextresetpgocounters",
+        "doc://com.apple.documentation/documentation/kernel/1646299-oskextresetpgocounterslock",
+        "doc://com.apple.documentation/documentation/kernel/1646297-oskextresetpgocountersunlock",
+        "doc://com.apple.documentation/documentation/kernel/1508272-oskextretainkextwithloadtag"
+      ],
+      "title": "kext"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1508339-oskextreleasekextwithloadtag"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

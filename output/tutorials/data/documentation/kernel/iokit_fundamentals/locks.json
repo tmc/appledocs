@@ -1,0 +1,729 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3572177,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Locks"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552985-iowritelock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552985-iowritelock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOWriteLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552985-iowritelock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552986-iorecursivelocksleepdeadline": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552986-iorecursivelocksleepdeadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockSleepDeadline",
+      "type": "topic",
+      "url": "/documentation/kernel/1552986-iorecursivelocksleepdeadline"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552988-iorecursivelockgetmachlock": {
+      "abstract": [
+        {
+          "text": "Accessor to a Mach mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552988-iorecursivelockgetmachlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockGetMachLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552988-iorecursivelockgetmachlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552990-iosimplelockinit": {
+      "abstract": [
+        {
+          "text": "Initialize a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552990-iosimplelockinit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockInit",
+      "type": "topic",
+      "url": "/documentation/kernel/1552990-iosimplelockinit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552993-iorecursivelocktrylock": {
+      "abstract": [
+        {
+          "text": "Attempt to lock a recursive lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552993-iorecursivelocktrylock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockTryLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552993-iorecursivelocktrylock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552994-iounlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552994-iounlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552994-iounlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552995-iorecursivelockhavelock": {
+      "abstract": [
+        {
+          "text": "Check if a recursive lock is held by the calling thread.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552995-iorecursivelockhavelock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockHaveLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552995-iorecursivelockhavelock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552996-iorwlockwrite": {
+      "abstract": [
+        {
+          "text": "Lock a read/write lock for write.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552996-iorwlockwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/1552996-iorwlockwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552997-iosimplelocklock": {
+      "abstract": [
+        {
+          "text": "Lock a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552997-iosimplelocklock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1552997-iosimplelocklock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1552998-iosimplelockunlockenableinterrup": {
+      "abstract": [
+        {
+          "text": "Unlock a spin lock, and restore interrupt state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1552998-iosimplelockunlockenableinterrup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockUnlockEnableInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/1552998-iosimplelockunlockenableinterrup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553000-iolocklock": {
+      "abstract": [
+        {
+          "text": "Lock a mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553000-iolocklock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553000-iolocklock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553001-iorecursivelocksleep": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553001-iorecursivelocksleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/1553001-iorecursivelocksleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553003-iorwlockfree": {
+      "abstract": [
+        {
+          "text": "Frees a read/write lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553003-iorwlockfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1553003-iorwlockfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553004-iorwlockread": {
+      "abstract": [
+        {
+          "text": "Lock a read/write lock for read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553004-iorwlockread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockRead",
+      "type": "topic",
+      "url": "/documentation/kernel/1553004-iorwlockread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553005-iosimplelocklockdisableinterrupt": {
+      "abstract": [
+        {
+          "text": "Lock a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553005-iosimplelocklockdisableinterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockLockDisableInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/1553005-iosimplelocklockdisableinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553006-iolockunlock": {
+      "abstract": [
+        {
+          "text": "Unlock a mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553006-iolockunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553006-iolockunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553007-iotakelock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553007-iotakelock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTakeLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553007-iotakelock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553008-iolockgetmachlock": {
+      "abstract": [
+        {
+          "text": "Accessor to a Mach mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553008-iolockgetmachlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockGetMachLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553008-iolockgetmachlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553010-iorwlockalloc": {
+      "abstract": [
+        {
+          "text": "Allocates and initializes a read/write lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553010-iorwlockalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1553010-iorwlockalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553011-iorwlockunlock": {
+      "abstract": [
+        {
+          "text": "Unlock a read/write lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553011-iorwlockunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553011-iorwlockunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553012-iotrylock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553012-iotrylock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTryLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553012-iotrylock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553013-iorecursivelockalloc": {
+      "abstract": [
+        {
+          "text": "Allocates and initializes an recursive lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553013-iorecursivelockalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1553013-iorecursivelockalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553014-iorecursivelockwakeup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553014-iorecursivelockwakeup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockWakeup",
+      "type": "topic",
+      "url": "/documentation/kernel/1553014-iorecursivelockwakeup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553015-iosimplelockunlock": {
+      "abstract": [
+        {
+          "text": "Unlock a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553015-iosimplelockunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553015-iosimplelockunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553016-iolockwakeup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553016-iolockwakeup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockWakeup",
+      "type": "topic",
+      "url": "/documentation/kernel/1553016-iolockwakeup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553017-iosimplelockalloc": {
+      "abstract": [
+        {
+          "text": "Allocates and initializes a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553017-iosimplelockalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1553017-iosimplelockalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553018-iolocktrylock": {
+      "abstract": [
+        {
+          "text": "Attempt to lock a mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553018-iolocktrylock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockTryLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553018-iolocktrylock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553019-iosimplelockgetmachlock": {
+      "abstract": [
+        {
+          "text": "Accessor to a Mach spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553019-iosimplelockgetmachlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockGetMachLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553019-iosimplelockgetmachlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553020-iorecursivelocklock": {
+      "abstract": [
+        {
+          "text": "Lock a recursive lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553020-iorecursivelocklock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553020-iorecursivelocklock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553021-iolockalloc": {
+      "abstract": [
+        {
+          "text": "Allocates and initializes a mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553021-iolockalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1553021-iolockalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553022-ioreadlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553022-ioreadlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReadLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553022-ioreadlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553026-iolocksleep": {
+      "abstract": [
+        {
+          "text": "Sleep with mutex unlock and relock",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553026-iolocksleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/1553026-iolocksleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553027-iorwunlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553027-iorwunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553027-iorwunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553028-iolockinitwithstate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553028-iolockinitwithstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockInitWithState",
+      "type": "topic",
+      "url": "/documentation/kernel/1553028-iolockinitwithstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553029-iosimplelocktrylock": {
+      "abstract": [
+        {
+          "text": "Attempt to lock a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553029-iosimplelocktrylock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockTryLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553029-iosimplelocktrylock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553030-iolocksleepdeadline": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553030-iolocksleepdeadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockSleepDeadline",
+      "type": "topic",
+      "url": "/documentation/kernel/1553030-iolocksleepdeadline"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553031-iorecursivelockfree": {
+      "abstract": [
+        {
+          "text": "Frees a recursive lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553031-iorecursivelockfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1553031-iorecursivelockfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553032-iorecursivelockunlock": {
+      "abstract": [
+        {
+          "text": "Unlock a recursive lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553032-iorecursivelockunlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORecursiveLockUnlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553032-iorecursivelockunlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553033-iorwlockgetmachlock": {
+      "abstract": [
+        {
+          "text": "Accessor to a Mach read/write lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553033-iorwlockgetmachlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORWLockGetMachLock",
+      "type": "topic",
+      "url": "/documentation/kernel/1553033-iorwlockgetmachlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553034-iolockfree": {
+      "abstract": [
+        {
+          "text": "Frees a mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553034-iolockfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLockFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1553034-iolockfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1553035-iosimplelockfree": {
+      "abstract": [
+        {
+          "text": "Frees a spin lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1553035-iosimplelockfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1553035-iosimplelockfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3380136-iosimplelockdestroy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3380136-iosimplelockdestroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleLockDestroy",
+      "type": "topic",
+      "url": "/documentation/kernel/3380136-iosimplelockdestroy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioconditionlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioconditionlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConditionLock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioconditionlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/locks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Locks",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/locks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "abstract": [
+        {
+          "text": "Allocate, map, free, and manage memory in the kernel. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "abstract": [
+        {
+          "text": "Create strings, numbers, collections, data objects, and the other standard types employed by drivers and kernel extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572178",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1553017-iosimplelockalloc",
+        "doc://com.apple.documentation/documentation/kernel/1552990-iosimplelockinit",
+        "doc://com.apple.documentation/documentation/kernel/3380136-iosimplelockdestroy",
+        "doc://com.apple.documentation/documentation/kernel/1553035-iosimplelockfree",
+        "doc://com.apple.documentation/documentation/kernel/1553019-iosimplelockgetmachlock",
+        "doc://com.apple.documentation/documentation/kernel/1552997-iosimplelocklock",
+        "doc://com.apple.documentation/documentation/kernel/1553005-iosimplelocklockdisableinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/1553029-iosimplelocktrylock",
+        "doc://com.apple.documentation/documentation/kernel/1553015-iosimplelockunlock",
+        "doc://com.apple.documentation/documentation/kernel/1552998-iosimplelockunlockenableinterrup"
+      ],
+      "kind": "taskGroup",
+      "title": "Simple Locks"
+    },
+    {
+      "anchor": "3572180",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1553021-iolockalloc",
+        "doc://com.apple.documentation/documentation/kernel/1553028-iolockinitwithstate",
+        "doc://com.apple.documentation/documentation/kernel/1553034-iolockfree",
+        "doc://com.apple.documentation/documentation/kernel/1553012-iotrylock",
+        "doc://com.apple.documentation/documentation/kernel/1553007-iotakelock",
+        "doc://com.apple.documentation/documentation/kernel/1553000-iolocklock",
+        "doc://com.apple.documentation/documentation/kernel/1552994-iounlock",
+        "doc://com.apple.documentation/documentation/kernel/1553018-iolocktrylock",
+        "doc://com.apple.documentation/documentation/kernel/1553006-iolockunlock",
+        "doc://com.apple.documentation/documentation/kernel/1553016-iolockwakeup",
+        "doc://com.apple.documentation/documentation/kernel/1553026-iolocksleep",
+        "doc://com.apple.documentation/documentation/kernel/1553030-iolocksleepdeadline",
+        "doc://com.apple.documentation/documentation/kernel/1553008-iolockgetmachlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Mutexes"
+    },
+    {
+      "anchor": "3572182",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1553010-iorwlockalloc",
+        "doc://com.apple.documentation/documentation/kernel/1553003-iorwlockfree",
+        "doc://com.apple.documentation/documentation/kernel/1553033-iorwlockgetmachlock",
+        "doc://com.apple.documentation/documentation/kernel/1553004-iorwlockread",
+        "doc://com.apple.documentation/documentation/kernel/1553011-iorwlockunlock",
+        "doc://com.apple.documentation/documentation/kernel/1552996-iorwlockwrite",
+        "doc://com.apple.documentation/documentation/kernel/1553027-iorwunlock",
+        "doc://com.apple.documentation/documentation/kernel/1552985-iowritelock",
+        "doc://com.apple.documentation/documentation/kernel/1553022-ioreadlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Read/Write Locks"
+    },
+    {
+      "anchor": "3572158",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1553013-iorecursivelockalloc",
+        "doc://com.apple.documentation/documentation/kernel/1553031-iorecursivelockfree",
+        "doc://com.apple.documentation/documentation/kernel/1552988-iorecursivelockgetmachlock",
+        "doc://com.apple.documentation/documentation/kernel/1552995-iorecursivelockhavelock",
+        "doc://com.apple.documentation/documentation/kernel/1553020-iorecursivelocklock",
+        "doc://com.apple.documentation/documentation/kernel/1553001-iorecursivelocksleep",
+        "doc://com.apple.documentation/documentation/kernel/1552986-iorecursivelocksleepdeadline",
+        "doc://com.apple.documentation/documentation/kernel/1552993-iorecursivelocktrylock",
+        "doc://com.apple.documentation/documentation/kernel/1553032-iorecursivelockunlock",
+        "doc://com.apple.documentation/documentation/kernel/1553014-iorecursivelockwakeup"
+      ],
+      "kind": "taskGroup",
+      "title": "Recursive Locks"
+    },
+    {
+      "anchor": "3572172",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioconditionlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Condition Lock"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iokit_fundamentals/locks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1957 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new view of the texture, reinterpreting its data using a different pixel format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLTexture(im)newTextureViewWithPixelFormat:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "makeTextureView"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "pixelFormat"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MTLPixelFormat",
+        "text": "MTLPixelFormat"
+      },
+      {
+        "kind": "text",
+        "text": ") -> (any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(pl)MTLTexture",
+        "text": "MTLTexture"
+      },
+      {
+        "kind": "text",
+        "text": ")?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "newTextureViewWithPixelFormat:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "makeTextureView(pixelFormat:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeTextureView"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "pixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLPixelFormat",
+              "text": "MTLPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": ") -> (any "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLTexture",
+              "text": "MTLTexture"
+            },
+            {
+              "kind": "text",
+              "text": ")?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A new pixel format, which must be compatible with the original pixel format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pixelFormat"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new texture object that shares the same storage allocation of the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a texture normally, Metal allocates memory for the textureʼs pixel data. These storage allocations can be quite large. You can reduce memory use and avoid copying texture data by using a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texture view",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—a texture object that shares another textureʼs storage allocation, reinterpreting the pixel data in some other format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all pixel formats are compatible with one another. Reinterpretation of image data between pixel formats is supported within the following groups:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All 8-, 16-, 32-, 64-, and 128-bit color formats are compatible with other formats with the same bit length.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sRGB and non-sRGB forms of the same compressed format (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Combined depth-stencil texture formats and the related format used to access the stencil from a shader (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/depth24Unorm_stencil8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/x24_stencil8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method doesn’t change the original texture image data in any way, but it may drastically change how the data is interpreted. For example, given a texture with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Uint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pixel format that contains image data for Red ",
+              "type": "text"
+            },
+            {
+              "code": "0xFFFE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and Green ",
+              "type": "text"
+            },
+            {
+              "code": "0x0001",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", this method would reinterpret that data in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Uint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format as Red ",
+              "type": "text"
+            },
+            {
+              "code": "0x0001FFFE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some format reinterpretations are supported but may not be useful. For example, this method considers the 32-bit packed color formats ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10a2Unorm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDataType/rg11b10Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to be compatible, but it’s unlikely that the same data can be interpreted by both formats in a meaningful way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some format reinterpretations require you to create the source texture with a special usage flag. Set that flag only when necessary, as it can affect performance. For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/pixelFormatView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDataType/rg11b10Float": {
+      "abstract": [
+        {
+          "text": "A packed 32-bit format with three floating-point color components, two of which are 11-bit values, and one is a 10-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rg11b10Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDataType/rg11b10Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDataTypeRG11B10Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDataType.rg11b10Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtldatatype/rg11b10float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba": {
+      "abstract": [
+        {
+          "text": "Compressed format with two 16-bit color components and one 32-bit descriptor component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bc1_rgba"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBC1_RGBA"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bc1_rgba",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bc1_rgba"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba_srgb": {
+      "abstract": [
+        {
+          "text": "Compressed format with two 16-bit color components and one 32-bit descriptor component, with conversion between sRGB and linear space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bc1_rgba_srgb"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bc1_rgba_srgb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBC1_RGBA_sRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bc1_rgba_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bc1_rgba_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10a2Unorm": {
+      "abstract": [
+        {
+          "text": "A 32-bit packed pixel format with four normalized unsigned integer components: 10-bit blue, 10-bit green, 10-bit red, and 2-bit alpha.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgr10a2Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10a2Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGR10A2Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgr10a2Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgr10a2unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/depth24Unorm_stencil8": {
+      "abstract": [
+        {
+          "text": "A 32-bit combined depth and stencil pixel format with a 24-bit normalized unsigned integer for depth and an 8-bit unsigned integer for stencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depth24Unorm_stencil8"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/depth24Unorm_stencil8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatDepth24Unorm_Stencil8"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.depth24Unorm_stencil8",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/depth24unorm_stencil8"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Uint": {
+      "abstract": [
+        {
+          "text": "Ordinary format with one 32-bit unsigned integer component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "r32Uint"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Uint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatR32Uint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.r32Uint",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r32uint"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Uint": {
+      "abstract": [
+        {
+          "text": "Ordinary format with two 16-bit unsigned integer components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rg16Uint"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Uint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatRG16Uint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg16Uint",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg16uint"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/x24_stencil8": {
+      "abstract": [
+        {
+          "text": "A stencil pixel format used to read the stencil value from a texture with a combined 24-bit depth and 8-bit stencil value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "x24_stencil8"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/x24_stencil8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatX24_Stencil8"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.x24_stencil8",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/x24_stencil8"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:)": {
+      "abstract": [
+        {
+          "text": "Creates a new view of the texture, reinterpreting its data using a different pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTextureView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureViewWithPixelFormat:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTextureView(pixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/maketextureview(pixelformat:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:)": {
+      "abstract": [
+        {
+          "text": "Creates a new view of the texture, reinterpreting a subset of its data using a different type and pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTextureView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureType",
+          "text": "MTLTextureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "levels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeTextureView(pixelFormat:textureType:levels:slices:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/maketextureview(pixelformat:texturetype:levels:slices:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:swizzle:)": {
+      "abstract": [
+        {
+          "text": "Creates a new view of the texture, reinterpreting a subset of its data using a different type, pixel format, and swizzle pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTextureView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureType",
+          "text": "MTLTextureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "levels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "swizzle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLTextureSwizzleChannels",
+          "text": "MTLTextureSwizzleChannels"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:swizzle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeTextureView(pixelFormat:textureType:levels:slices:swizzle:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/maketextureview(pixelformat:texturetype:levels:slices:swizzle:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:": {
+      "abstract": [
+        {
+          "text": "Creates a new view of the texture, reinterpreting a subset of its data using a different type and pixel format.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newTextureViewWithPixelFormat:textureType:levels:slices:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureViewWithPixelFormat:textureType:levels:slices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newTextureViewWithPixelFormat:textureType:levels:slices:",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/newtextureviewwithpixelformat:texturetype:levels:slices:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:": {
+      "abstract": [
+        {
+          "text": "Creates a new view of the texture, reinterpreting a subset of its data using a different type, pixel format, and swizzle pattern.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/newtextureviewwithpixelformat:texturetype:levels:slices:swizzle:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/parent": {
+      "abstract": [
+        {
+          "text": "The parent texture used to create this texture, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentTexture"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/parent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeLevel": {
+      "abstract": [
+        {
+          "text": "The base level of the parent texture used to create this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentRelativeLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentRelativeLevel"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parentRelativeLevel",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/parentrelativelevel"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeSlice": {
+      "abstract": [
+        {
+          "text": "The base slice of the parent texture used to create this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentRelativeSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeSlice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentRelativeSlice"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parentRelativeSlice",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/parentrelativeslice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/pixelFormatView": {
+      "abstract": [
+        {
+          "text": "An option to create texture views with a different component layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormatView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/pixelFormatView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsagePixelFormatView"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormatView",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureusage/pixelformatview"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeLevel",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture/parent",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeSlice"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Creating-Textures-by-Reinterpreting-Existing-Texture-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:)",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture/makeTextureView(pixelFormat:textureType:levels:slices:swizzle:)"
+      ],
+      "title": "Creating Textures by Reinterpreting Existing Texture Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "newTextureViewWithPixelFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureViewWithPixelFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeLevel",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture/parent",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture/parentRelativeSlice"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Creating-Textures-by-Reinterpreting-Existing-Texture-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture/newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:"
+              ],
+              "title": "Creating Textures by Reinterpreting Existing Texture Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Qoobjc(pl)MTLTexture",
+                    "text": "id<MTLTexture>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "newTextureViewWithPixelFormat:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@MTLPixelFormat",
+                    "text": "MTLPixelFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "pixelFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A new pixel format, which must be compatible with the original pixel format.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "pixelFormat"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A new texture object that shares the same storage allocation of the texture.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDataType~1rg11b10Float/title",
+          "value": "MTLDataTypeRG11B10Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDataType~1rg11b10Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDataTypeRG11B10Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10a2Unorm/title",
+          "value": "MTLPixelFormatBGR10A2Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10a2Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGR10A2Unorm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1makeTextureView(pixelFormat:)/title",
+          "value": "newTextureViewWithPixelFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1makeTextureView(pixelFormat:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureViewWithPixelFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/title",
+          "value": "MTLPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bc1_rgba/title",
+          "value": "MTLPixelFormatBC1_RGBA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bc1_rgba/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBC1_RGBA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1r32Uint/title",
+          "value": "MTLPixelFormatR32Uint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1r32Uint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatR32Uint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1depth24Unorm_stencil8/title",
+          "value": "MTLPixelFormatDepth24Unorm_Stencil8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1depth24Unorm_stencil8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatDepth24Unorm_Stencil8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1x24_stencil8/title",
+          "value": "MTLPixelFormatX24_Stencil8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1x24_stencil8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatX24_Stencil8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parent/title",
+          "value": "parentTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parentRelativeLevel/title",
+          "value": "parentRelativeLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parentRelativeLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentRelativeLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage~1pixelFormatView/title",
+          "value": "MTLTextureUsagePixelFormatView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage~1pixelFormatView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureUsagePixelFormatView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1rg16Uint/title",
+          "value": "MTLPixelFormatRG16Uint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1rg16Uint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatRG16Uint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bc1_rgba_srgb/title",
+          "value": "MTLPixelFormatBC1_RGBA_sRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bc1_rgba_srgb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBC1_RGBA_sRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parentRelativeSlice/title",
+          "value": "parentRelativeSlice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1parentRelativeSlice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentRelativeSlice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtltexture/maketextureview(pixelformat:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtltexture/maketextureview(pixelformat:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

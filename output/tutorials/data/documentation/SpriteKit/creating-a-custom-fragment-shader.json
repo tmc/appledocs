@@ -1,0 +1,1231 @@
+{
+  "abstract": [
+    {
+      "text": "Write a fragment shader using the set of SpriteKit-exposed symbols, and supply it with custom data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-custom-fragment-shader"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Custom Fragment Shader"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your fragment shader should be written in the OpenGL ES 2.0 shading language. SpriteKit automatically does the necessary work to make sure this shader compiles correctly in both iOS and macOS. The shader object compiles your shader by appending the source code you provide to a preamble created by SpriteKit. This preamble declares all of the standard SpriteKit variables and functions, including declarations for any uniforms you have associated with the shader object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-SpriteKit-Provided-Data-in-a-Shader",
+          "level": 3,
+          "text": "Use SpriteKit-Provided Data in a Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table describes the SpriteKit symbols made available to your shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol declaration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sampler2D u_texture;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uniform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sampler associated with the texture used to render the node.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "float u_time;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uniform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The elapsed time in the simulation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "float u_path_length;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uniform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provided only when the shader is attached to an SKShapeNode [spritekit/skshapenode] object’s strokeShader [spritekit/skshapenode/1519784-strokeshader] property. This value represents the total length of the path, in points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "vec2 v_tex_coord;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Varying",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The coordinates used to access the texture. These coordinates are normalized so that the point (0.0,0.0) is in the bottom-left corner of the texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "vec4 v_color_mix;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Varying",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The premultiplied color value for the node being rendered.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "float v_path_distance;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Varying",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provided only when the shader is attached to an SKShapeNode [spritekit/skshapenode] object’s strokeShader [spritekit/skshapenode/1519784-strokeshader] property. This value represents the distance along the path in points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "vec4 SKDefaultShading()",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A function that provides the default behavior used by SpriteKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Provide-Custom-Per-Frame-Data-to-a-Shader",
+          "level": 3,
+          "text": "Provide Custom Per-Frame Data to a Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a global variable available to your shader, you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKUniform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and add it to the shader’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/uniforms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. Uniforms can be modified at any time on the CPU, but they’re constant on the GPU. Therefore, uniforms are the way to provide your shader with per-frame data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to pass a size value to a shader by using a uniform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let uniformBasedShader = SKShader(fileNamed: \"UsingUniform.fsh\")",
+            " ",
+            "let sprite = SKSpriteNode()",
+            "sprite.shader = uniformBasedShader",
+            " \t ",
+            "let spriteSize = vector_float2(Float(sprite.frame.size.width),",
+            "                               Float(sprite.frame.size.height))",
+            "uniformBasedShader.uniforms = [    ",
+            "    SKUniform(name: \"u_sprite_size\", vectorFloat2: spriteSize)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because uniforms are shared across executions in a given frame, every node that executes ",
+              "type": "text"
+            },
+            {
+              "code": "uniformBasedShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the example above will read the same value for ",
+              "type": "text"
+            },
+            {
+              "code": "u_sprite_size",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Custom-Per-Primitive-Data-to-a-Shader",
+          "level": 3,
+          "text": "Provide Custom Per-Primitive Data to a Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To associate shader variables with specific nodes, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAttribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Using attributes rather than uniforms allows a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to be shared between nodes, each one defining their own value for a shader variable. The following code demonstrates attributes by passing the size of a sprite to a shader as an attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let attributeBasedShader = SKShader(fileNamed: \"UsingAttributes.fsh\")",
+            "attributeBasedShader.attributes = [",
+            "    SKAttribute(name: \"a_sprite_size\", type: .vectorFloat2)",
+            "]",
+            " ",
+            "let sprite = SKSpriteNode()",
+            "sprite.shader = attributeBasedShader",
+            " ",
+            "let spriteSize = vector_float2(Float(sprite.frame.size.width),",
+            "                               Float(sprite.frame.size.height))",
+            "sprite.setValue(SKAttributeValue(vectorFloat2: spriteSize),",
+            "                forAttribute: \"a_sprite_size\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because an attribute defines a shader variable on the sprite node and not the shader object, every execution of ",
+              "type": "text"
+            },
+            {
+              "code": "attributeBasedShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will read its own value of ",
+              "type": "text"
+            },
+            {
+              "code": "a_sprite_size",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-Function-Body",
+          "level": 3,
+          "text": "Define a Function Body",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your shader should define a ",
+              "type": "text"
+            },
+            {
+              "code": "main()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. This function must set the ",
+              "type": "text"
+            },
+            {
+              "code": "gl_FragColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to a color value to use in the blend stage. Typically, the color value you return in this variable should already be premultiplied by the fragment’s alpha value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows a very simple fragment shader that provides the default shading behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void main()",
+            "{",
+            "   gl_FragColor = SKDefaultShading();",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAttribute": {
+      "abstract": [
+        {
+          "text": "A specification for dynamic per-node data used with a custom shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAttribute",
+      "type": "topic",
+      "url": "/documentation/spritekit/skattribute"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader": {
+      "abstract": [
+        {
+          "text": "An object that allows you to apply a custom fragment shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKShader"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKShader"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKShader",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(fileNamed:)": {
+      "abstract": [
+        {
+          "text": "Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fileNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(fileNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shaderWithFileNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fileNamed:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/init(filenamed:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new shader object using the specified source code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(source:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/init(source:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:uniforms:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new shader object using the specified source and uniform data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "uniforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKUniform",
+          "text": "SKUniform"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:uniforms:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSource:uniforms:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(source:uniforms:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/init(source:uniforms:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shader": {
+      "abstract": [
+        {
+          "text": "Creates a new empty shader object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "shader"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shader"
+        }
+      ],
+      "role": "symbol",
+      "title": "shader",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/shader"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:": {
+      "abstract": [
+        {
+          "text": "Creates a new shader object using the specified source code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "shaderWithSource:"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shaderWithSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shaderWithSource:",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/shaderwithsource:"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:uniforms:": {
+      "abstract": [
+        {
+          "text": "Creates a new shader object using the specified source and uniform data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "shaderWithSource:uniforms:"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:uniforms:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shaderWithSource:uniforms:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shaderWithSource:uniforms:",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/shaderwithsource:uniforms:"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/uniforms": {
+      "abstract": [
+        {
+          "text": "The list of uniforms associated with the shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKUniform",
+          "text": "SKUniform"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/uniforms",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniforms"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniforms",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshader/uniforms"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKUniform": {
+      "abstract": [
+        {
+          "text": "A container for uniform shader data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKUniform"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKUniform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKUniform"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKUniform",
+      "type": "topic",
+      "url": "/documentation/spritekit/skuniform"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-Shader",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(fileNamed:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:uniforms:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:)"
+      ],
+      "title": "Creating a Shader"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Shader",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(fileNamed:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:uniforms:",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shaderWithSource:",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/shader",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:uniforms:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShader/init(source:)"
+              ],
+              "title": "Creating a Shader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(source:)/title",
+          "value": "initWithSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(source:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1uniforms/title",
+          "value": "uniforms"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1uniforms/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniforms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader/title",
+          "value": "SKShader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAttribute/title",
+          "value": "SKAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKUniform/title",
+          "value": "SKUniform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKUniform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKUniform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKUniform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKUniform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(source:uniforms:)/title",
+          "value": "initWithSource:uniforms:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(source:uniforms:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSource:uniforms:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(fileNamed:)/title",
+          "value": "shaderWithFileNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShader~1init(fileNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "shaderWithFileNamed:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/creating-a-custom-fragment-shader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/creating-a-custom-fragment-shader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

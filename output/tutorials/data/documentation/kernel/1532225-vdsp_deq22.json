@@ -1,0 +1,455 @@
+{
+  "abstract": [
+    {
+      "text": "Performs two-pole, two-zero recursive filtering on a single-precision vector.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/appledsp"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1532225-vdsp_deq22"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1532225,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_deq22",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_deq22"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_deq22"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__A, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IA, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__B, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__C, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IC, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __N);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single-precision real input vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride for input vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IA"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Five single-precision input filter coefficients, with a stride of one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__B"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single-precision real output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride for output vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IC"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of new output elements to produce.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function creates ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " new values in output vector ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", beginning at the third element. The function performs two-pole, two-zero recursive filtering on input vector ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which must contain at least ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " + 2 values; ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must also contain at least ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " + 2 values.  Since the computation is recursive, prior to calling this function, initialize the first two elements in ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can only implement this function out of place — that is, the input and output memory must not overlap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function performs the following operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "or (n = 2; n < N+2; ++n) ",
+            "    C[n] =",
+            "        + A[n-0]*B[0]",
+            "        + A[n-1]*B[1]",
+            "        + A[n-2]*B[2]",
+            "        - C[n-1]*B[3]",
+            "        - C[n-2]*B[4];"
+          ],
+          "metadata": {
+            "anchor": "3949498",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532225-vdsp_deq22": {
+      "abstract": [
+        {
+          "text": "Performs two-pole, two-zero recursive filtering on a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532225-vdsp_deq22",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_deq22",
+      "type": "topic",
+      "url": "/documentation/kernel/1532225-vdsp_deq22"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532225-vdsp_deq22#3949498": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532225-vdsp_deq22#3949498",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/1532225-vdsp_deq22#3949498"
+    },
+    "doc://com.apple.documentation/documentation/kernel/appledsp": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/appledsp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppleDSP",
+      "type": "topic",
+      "url": "/documentation/kernel/appledsp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1532225-vdsp_deq22"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

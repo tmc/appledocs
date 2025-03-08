@@ -1,0 +1,483 @@
+{
+  "abstract": [
+    {
+      "text": "A customizable error type that you create to indicate problems with the address or contact information on an Apple Pay sheet.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2902739,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/ApplePayError",
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "11.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "11.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "ApplePayError"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ApplePayError"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you determine that there’s a problem with an address or contact information on the payment sheet, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a customized error message. Apple Pay highlights the area with an error and displays your message, making it easier for users to correct errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users must resolve any errors that you report on the Apple Pay sheet before they can finalize their transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The details you provide in an Apple Pay error include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "code ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": "— An error code that identifies the area of the error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "contactField ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": "— The specific field on the payment sheet with the error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "message ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": "— Your custom error message to display on the payment sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you found an error in the postal code of the shipping address, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " with the custom message text ",
+              "type": "text"
+            },
+            {
+              "code": "\"ZIP Code is invalid\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "new ApplePayError(\"shippingContactInvalid\", \"postalCode\", \"ZIP Code is invalid\")"
+          ],
+          "metadata": {
+            "anchor": "3993635",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " Apple Pay highlights the postal code field and displays the message text on the payment sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " requires Apple Pay API version 3 and later, and is only supported in Apple Pay JS API; it’s not available in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/apple_pay_status_codes": {
+      "abstract": [
+        {
+          "text": "Codes used to report the status of an Apple Pay session after a callback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/apple_pay_status_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay Status Codes",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/apple_pay_status_codes"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror": {
+      "abstract": [
+        {
+          "text": "A customizable error type that you create to indicate problems with the address or contact information on an Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayError",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror#3993635": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror#3993635",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror#3993635"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902740-contactfield": {
+      "abstract": [
+        {
+          "text": "The field name that contains the error on the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902740-contactfield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contactField",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror/2902740-contactfield"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902741-code": {
+      "abstract": [
+        {
+          "text": "The error code for this instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902741-code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "code",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror/2902741-code"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902742-message": {
+      "abstract": [
+        {
+          "text": "A localized, user-facing string that describes the error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902742-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror/2902742-message"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2970147-applepayerror": {
+      "abstract": [
+        {
+          "text": "Create an Apple Pay error object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2970147-applepayerror",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ApplePayError(errorCode, contactField, message)",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror/2970147-applepayerror"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcode": {
+      "abstract": [
+        {
+          "text": "The error code that indicates whether an error on the payment sheet is for shipping or billing information, or for another kind of error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayErrorCode",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerrorcode"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcontactfield": {
+      "abstract": [
+        {
+          "text": "Names of the fields in the shipping or billing contact information, used to locate errors in the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcontactfield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayErrorContactField",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerrorcontactfield"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment Request API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcode",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerrorcontactfield",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/apple_pay_status_codes"
+      ],
+      "title": "Status and errors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2970148",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2970147-applepayerror"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Apple Pay Error"
+    },
+    {
+      "anchor": "2903024",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902741-code",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902740-contactfield",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror/2902742-message"
+      ],
+      "kind": "taskGroup",
+      "title": "Error Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/applepayerror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "abstract": [
+    {
+      "text": "Applies a single-precision multichannel biquad IIR filter.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1579994-vdsp_biquadm"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1579994,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_biquadm",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_biquadm"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_biquadm_Setup",
+              "text": "vDSP_biquadm_Setup"
+            },
+            {
+              "kind": "text",
+              "text": " __Setup, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "_Nonnull"
+            },
+            {
+              "kind": "text",
+              "text": " *__X, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IX, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "_Nonnull"
+            },
+            {
+              "kind": "text",
+              "text": " *__Y, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IY, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __N);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "vDSP_biquadm_Setup",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object defining the filter to apply.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__setup"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of pointers, each of which specifies an array of single-precision input data for a single channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__X"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Stride for ",
+                  "type": "text"
+                },
+                {
+                  "code": "X",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " (see Discussion below).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IX"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of pointers, each of which specifies an array of single-precision output data for a single channel. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Y"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Stride for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Y",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " (see Discussion below).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IY"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of elements to filter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each channel, this function applies a cascaded biquad filter to the input values specified by the channel’s pointer in ",
+              "type": "text"
+            },
+            {
+              "code": "X",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function places the results in the array specified by the corresponding pointer in ",
+              "type": "text"
+            },
+            {
+              "code": "Y",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function supports interleaved data. In this case, define the stride as the number of channels, and the pointers as consecutive locations in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For the best performance and energy efficiency, specify a stride of ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for non-interleaved data. Specify a stride equal to the number of channels for interleaved data. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Performance and Energy Efficiency",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function updates the state contained in the ",
+              "type": "text"
+            },
+            {
+              "code": "setup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object upon return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_biquadm_setup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_Setup",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_biquadm_setup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1579994-vdsp_biquadm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2071 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a driver that supports FireWire devices. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570813,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "FireWire"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589086-iofwgetabsolutetime": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589086-iofwgetabsolutetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWGetAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/kernel/1589086-iofwgetabsolutetime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589087-fwupdatecrc16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589087-fwupdatecrc16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWUpdateCRC16",
+      "type": "topic",
+      "url": "/documentation/kernel/1589087-fwupdatecrc16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589088-fwcomputecrc16": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589088-fwcomputecrc16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWComputeCRC16",
+      "type": "topic",
+      "url": "/documentation/kernel/1589088-fwcomputecrc16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589089-addfwcycletimetofwcycletime": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589089-addfwcycletimetofwcycletime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AddFWCycleTimeToFWCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/1589089-addfwcycletimetofwcycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589090-subtractfwcycletimefromfwcycleti": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589090-subtractfwcycletimefromfwcycleti",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SubtractFWCycleTimeFromFWCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/1589090-subtractfwcycletimefromfwcycleti"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avccommandhandlerinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avccommandhandlerinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCCommandHandlerInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/avccommandhandlerinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcconnectionrecord": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcconnectionrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCConnectionRecord",
+      "type": "topic",
+      "url": "/documentation/kernel/avcconnectionrecord"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsinparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsinparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCConnectTargetPlugsInParams",
+      "type": "topic",
+      "url": "/documentation/kernel/avcconnecttargetplugsinparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsoutparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsoutparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCConnectTargetPlugsOutParams",
+      "type": "topic",
+      "url": "/documentation/kernel/avcconnecttargetplugsoutparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectioninparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectioninparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCGetTargetPlugConnectionInParams",
+      "type": "topic",
+      "url": "/documentation/kernel/avcgettargetplugconnectioninparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectionoutparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectionoutparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCGetTargetPlugConnectionOutParams",
+      "type": "topic",
+      "url": "/documentation/kernel/avcgettargetplugconnectionoutparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcsubunitinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcsubunitinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCSubunitInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/avcsubunitinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcsubunitplugrecord": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcsubunitplugrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCSubunitPlugRecord",
+      "type": "topic",
+      "url": "/documentation/kernel/avcsubunitplugrecord"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcunitplugrecord": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcunitplugrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCUnitPlugRecord",
+      "type": "topic",
+      "url": "/documentation/kernel/avcunitplugrecord"
+    },
+    "doc://com.apple.documentation/documentation/kernel/avcunitplugs": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/avcunitplugs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCUnitPlugs",
+      "type": "topic",
+      "url": "/documentation/kernel/avcunitplugs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcallcommandproc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcallcommandproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCallCommandProc",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcallcommandproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcallcommandprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcallcommandprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCallCommandProcPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcallcommandprocptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcallproc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcallproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCallProc",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcallproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcallprocdatatype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcallprocdatatype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCallProcDataType",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcallprocdatatype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcallprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcallprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCallProcPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcallprocptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcommandptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcommandptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCommandPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcommandptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclcompilerdatatype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclcompilerdatatype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLCompilerDataType",
+      "type": "topic",
+      "url": "/documentation/kernel/dclcompilerdatatype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcljump": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcljump",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLJump",
+      "type": "topic",
+      "url": "/documentation/kernel/dcljump"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcljumpptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcljumpptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLJumpPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dcljumpptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcllabel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcllabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLLabel",
+      "type": "topic",
+      "url": "/documentation/kernel/dcllabel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcllabelptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcllabelptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLLabelPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dcllabelptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclnudclleader": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclnudclleader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLNuDCLLeader",
+      "type": "topic",
+      "url": "/documentation/kernel/dclnudclleader"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclptrtimestamp": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclptrtimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLPtrTimeStamp",
+      "type": "topic",
+      "url": "/documentation/kernel/dclptrtimestamp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclptrtimestampptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclptrtimestampptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLPtrTimeStampPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclptrtimestampptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbits": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLSetTagSyncBits",
+      "type": "topic",
+      "url": "/documentation/kernel/dclsettagsyncbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbitsptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbitsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLSetTagSyncBitsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclsettagsyncbitsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltimestamp": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTimeStamp",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltimestamp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltimestampptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltimestampptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTimeStampPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltimestampptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltransferbuffer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltransferbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTransferBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltransferbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltransferbufferptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltransferbufferptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTransferBufferPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltransferbufferptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltransferpacket": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltransferpacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTransferPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltransferpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dcltransferpacketptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dcltransferpacketptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLTransferPacketPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dcltransferpacketptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclupdatedcllist": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclupdatedcllist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLUpdateDCLList",
+      "type": "topic",
+      "url": "/documentation/kernel/dclupdatedcllist"
+    },
+    "doc://com.apple.documentation/documentation/kernel/dclupdatedcllistptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/dclupdatedcllistptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DCLUpdateDCLListPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/dclupdatedcllistptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwaddress": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/fwaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwaddressptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwaddressptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWAddressPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwaddressptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwasyncphycallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwasyncphycallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWAsyncPHYCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwasyncphycallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwasyncstreamcallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwasyncstreamcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWAsyncStreamCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwasyncstreamcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwasyncstreamreceivecallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwasyncstreamreceivecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWAsyncStreamReceiveCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwasyncstreamreceivecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwbuscallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwbuscallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWBusCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwbuscallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwclientcommandid": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwclientcommandid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWClientCommandID",
+      "type": "topic",
+      "url": "/documentation/kernel/fwclientcommandid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwdevicecallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwdevicecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWDeviceCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwdevicecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationproc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWIsochChannelForceStopNotificationProc",
+      "type": "topic",
+      "url": "/documentation/kernel/fwisochchannelforcestopnotificationproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWIsochChannelForceStopNotificationProcPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwisochchannelforcestopnotificationprocptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwmultiisochreceivelistenercallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwmultiisochreceivelistenercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWMultiIsochReceiveListenerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwmultiisochreceivelistenercallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwphypacketcallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwphypacketcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWPHYPacketCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwphypacketcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwreadcallback": {
+      "abstract": [
+        {
+          "text": "Callback called when a read request packet is received for a 'virtual' firewire address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwreadcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWReadCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwreadcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2FetchAgentWriteCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2fetchagentwritecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponse",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponsePtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponseptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ManagementCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2managementcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifycallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statusblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statuscallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsegment": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsegment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwwritecallback": {
+      "abstract": [
+        {
+          "text": "Callback called when a write request packet is received for a 'virtual' firewire address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwwritecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWWriteCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwwritecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewire_guid": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewire_guid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWire_GUID",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewire_guid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewiremodel_id": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewiremodel_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireModel_ID",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewiremodel_id"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewirenodeid": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewirenodeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireNodeID",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewirenodeid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewireproduct_name": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewireproduct_name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireProduct_Name",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewireproduct_name"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewirerom": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewirerom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireROM",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewirerom"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewireselfids": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewireselfids",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireSelfIDs",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewireselfids"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewirespeed": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewirespeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewirespeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewiretdm": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewiretdm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireTDM",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewiretdm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewireunit_spec_id": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewireunit_spec_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireUnit_Spec_ID",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewireunit_spec_id"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewireunit_sw_version": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewireunit_sw_version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireUnit_SW_Version",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewireunit_sw_version"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_id": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireVendor_ID",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewirevendor_id"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_name": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gFireWireVendor_Name",
+      "type": "topic",
+      "url": "/documentation/kernel/gfirewirevendor_name"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Advanced Technology Attachment (ATA) devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bluetooth",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/bluetooth"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports FireWire devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Thunderbolt devices or PCI cards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PCI",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/usb": {
+      "abstract": [
+        {
+          "text": "Implement a driver that supports Universal Serial Bus (USB) devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/usb",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/usb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioavccommandresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioavccommandresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAVCCommandResponse",
+      "type": "topic",
+      "url": "/documentation/kernel/ioavccommandresponse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioavcframefields": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioavcframefields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAVCFrameFields",
+      "type": "topic",
+      "url": "/documentation/kernel/ioavcframefields"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioavcopcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioavcopcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAVCOpcodes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioavcopcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioavcunittypes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioavcunittypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAVCUnitTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioavcunittypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioconfigdirectory": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioconfigdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConfigDirectory",
+      "type": "topic",
+      "url": "/documentation/kernel/ioconfigdirectory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodclprogram": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodclprogram",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODCLProgram",
+      "type": "topic",
+      "url": "/documentation/kernel/iodclprogram"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodcltranslatelisten": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodcltranslatelisten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODCLTranslateListen",
+      "type": "topic",
+      "url": "/documentation/kernel/iodcltranslatelisten"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodcltranslatetalk": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodcltranslatetalk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODCLTranslateTalk",
+      "type": "topic",
+      "url": "/documentation/kernel/iodcltranslatetalk"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodcltranslator": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodcltranslator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODCLTranslator",
+      "type": "topic",
+      "url": "/documentation/kernel/iodcltranslator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCAsynchronousCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcasynchronouscommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommandcallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommandcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCAsynchronousCommandCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcasynchronouscommandcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavccommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavccommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavccommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub": {
+      "abstract": [
+        {
+          "text": "nub for AVC devices",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCNub",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcnub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit": {
+      "abstract": [
+        {
+          "text": "nub for sub unit of AVC devices. Just for matching, calls the AVC unit for all functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCSubUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcsubunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunitplughandlercallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunitplughandlercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCSubunitPlugHandlerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcsubunitplughandlercallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetcommandhandlercallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetcommandhandlercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCTargetCommandHandlerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavctargetcommandhandlercallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetspace": {
+      "abstract": [
+        {
+          "text": "object to centralize the AVC Target mode support",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCTargetSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavctargetspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit": {
+      "abstract": [
+        {
+          "text": "nub for AVC devices",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirebus": {
+      "abstract": [
+        {
+          "text": "IOFireWireBus is a public class the provides access to general FireWire functionality...",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirebus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireBus",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirebus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirebusaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirebusaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireBusAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirebusaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirecontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirecontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireController",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirecontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirecontrolleraux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirecontrolleraux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireControllerAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirecontrolleraux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiredevice": {
+      "abstract": [
+        {
+          "text": "Represents a FireWire device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiredevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiredevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiredeviceaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiredeviceaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireDeviceAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiredeviceaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireduplicateguidlist": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireduplicateguidlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireDuplicateGUIDList",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireduplicateguidlist"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireirmallocation": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireirmallocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireIRMAllocation",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireirmallocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireLocalNode",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirelocalnode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnodeaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnodeaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireLocalNodeAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirelocalnodeaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivelistener": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivelistener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireMultiIsochReceiveListener",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiremultiisochreceivelistener"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivepacket": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivepacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireMultiIsochReceivePacket",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiremultiisochreceivepacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirenub": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirenub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireNub",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirenub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirenubaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirenubaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireNubAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirenubaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirepcrcallback": {
+      "abstract": [
+        {
+          "text": "Callback called after a successful lock transaction to a plug.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirepcrcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWirePCRCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirepcrcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirepcrspace": {
+      "abstract": [
+        {
+          "text": "object to multiplex users of the PCR plug registers",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirepcrspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWirePCRSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirepcrspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirepowermanager": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirepowermanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWirePowerManager",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirepowermanager"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login": {
+      "abstract": [
+        {
+          "text": "Supplies the login maintenance and Normal Command ORB execution portions of the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2Login",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun": {
+      "abstract": [
+        {
+          "text": "Provider for most drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2LUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb": {
+      "abstract": [
+        {
+          "text": "Supplies non login related management ORBs. Management ORBs can be executed independent of a login, if necessary. Management ORBs are created using the IOFireWireSBP2LUN interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2managementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb": {
+      "abstract": [
+        {
+          "text": "Represents an SBP2 normal command ORB. Supplies the APIs for configuring normal command ORBs. This includes setting the command block and writing the page tables for I/O. The ORBs are executed using the submitORB method in IOFireWireSBP2Login.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2target": {
+      "abstract": [
+        {
+          "text": "Serves as bridge between IOFireWireUnit and IOFireWireLUN.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2Target",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2target"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2userclient": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2userclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2UserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2userclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireserialbusprotocoltransport": {
+      "abstract": [
+        {
+          "text": "SCSI Protocol Driver Family for FireWire SBP2 Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireserialbusprotocoltransport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSerialBusProtocolTransport",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireserialbusprotocoltransport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresessionref": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresessionref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSessionRef",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresessionref"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireunit": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireunitaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireunitaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireUnitAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireunitaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwaddressspace": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwaddressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwaddressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwaddressspaceaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwaddressspaceaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAddressSpaceAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwaddressspaceaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwarxreqintcompletehandler": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwarxreqintcompletehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWARxReqIntCompleteHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwarxreqintcompletehandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwasynccommand": {
+      "abstract": [
+        {
+          "text": "Send an async request to a device",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwasynccommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAsyncCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwasynccommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwasyncphycommand": {
+      "abstract": [
+        {
+          "text": "Send an async PHY packet",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwasyncphycommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAsyncPHYCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwasyncphycommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwasyncstreamcommand": {
+      "abstract": [
+        {
+          "text": "Send an async stream packet",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwasyncstreamcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAsyncStreamCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwasyncstreamcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcasynccommandstate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcasynccommandstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCAsyncCommandState",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcasynccommandstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcplugtypes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcplugtypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCPlugTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcplugtypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientasynccommandcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientasynccommandcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCProtocolUserClientAsyncCommandCodes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcprotocoluserclientasynccommandcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientcommandcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientcommandcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCProtocolUserClientCommandCodes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcprotocoluserclientcommandcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcsubunitplugmessages": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcsubunitplugmessages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCSubunitPlugMessages",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcsubunitplugmessages"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientasynccommandcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientasynccommandcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCUserClientAsyncCommandCodes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcuserclientasynccommandcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientcommandcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientcommandcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWAVCUserClientCommandCodes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwavcuserclientcommandcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwbuscommand": {
+      "abstract": [
+        {
+          "text": "Bus control commands",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwbuscommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWBusCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwbuscommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwcmdq": {
+      "abstract": [
+        {
+          "text": "Structure for head of a queue of IOFWCommands",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwcmdq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWCmdQ",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwcmdq"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwcommand": {
+      "abstract": [
+        {
+          "text": "Base class for FireWire commands",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwcompareandswapcommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwcompareandswapcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWCompareAndSwapCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwcompareandswapcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwdcl": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwdcl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWDCL",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwdcl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwdclnotificationtype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwdclnotificationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWDCLNotificationType",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwdclnotificationtype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwdelaycommand": {
+      "abstract": [
+        {
+          "text": "Command to execute some code after a specified delay (in microseconds) All it does is timeout after the specified delay, hence calling the completion callback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwdelaycommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWDelayCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwdelaycommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwduplicateguidrec": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwduplicateguidrec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWDuplicateGUIDRec",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwduplicateguidrec"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwisochchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwisochchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWIsochChannel",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwisochchannel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwisochport": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwisochport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWIsochPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwisochport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwisochportoptions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwisochportoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWIsochPortOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwisochportoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwisochresourceflags": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwisochresourceflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWIsochResourceFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwisochresourceflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwlocalisochport": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwlocalisochport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWLocalIsochPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwlocalisochport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwnodescan": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwnodescan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWNodeScan",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwnodescan"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwphypacketlistener": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwphypacketlistener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPHYPacketListener",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwphypacketlistener"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwphysicalaccessmode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwphysicalaccessmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPhysicalAccessMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwphysicalaccessmode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspace": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPhysicalAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwphysicaladdressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspaceaux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspaceaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPhysicalAddressSpaceAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwphysicaladdressspaceaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspace": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPseudoAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwpseudoaddressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspaceaux": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspaceaux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWPseudoAddressSpaceAux",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwpseudoaddressspaceaux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwreadcommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwreadcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWReadCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwreadcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwreadflags": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwreadflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWReadFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwreadflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwreadquadcommand": {
+      "abstract": [
+        {
+          "text": "An easier to use version of IOFWReadCommand for use when the data to be transferred is an integer number of quads. Note that block read requests will be used for transfers greater than one quad unless setMaxPacket(4) is called.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwreadquadcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWReadQuadCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwreadquadcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwreceivedcl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwreceivedcl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWReceiveDCL",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwreceivedcl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwrequestrefcon": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwrequestrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWRequestRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwrequestrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsbp2userclientcommandcodes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsbp2userclientcommandcodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSBP2UserClientCommandCodes",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsbp2userclientcommandcodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsecuritymode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsecuritymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSecurityMode",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsecuritymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsenddcl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsenddcl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSendDCL",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsenddcl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsimplecontiguousphysicaladdressspace": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsimplecontiguousphysicaladdressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSimpleContiguousPhysicalAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsimplecontiguousphysicaladdressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsimplephysicaladdressspace": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsimplephysicaladdressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSimplePhysicalAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsimplephysicaladdressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwskipcycledcl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwskipcycledcl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSkipCycleDCL",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwskipcycledcl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwspeed": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwspeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwsyncer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwsyncer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWSyncer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwsyncer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwuserobjectexporter": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwuserobjectexporter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWUserObjectExporter",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwuserobjectexporter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwwritecommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwwritecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWWriteCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwwritecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwwriteflags": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwwriteflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWWriteFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwwriteflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofwwritequadcommand": {
+      "abstract": [
+        {
+          "text": "An easier to use version of IOFWWriteCommand for use when the data to be transferred is small and an integer number of quads. Note that block read requests will be used for transfers greater than one quad unless setMaxPacket(4) is called. kMaxWriteQuads is the largest legal number of quads that this object can be asked to transfer (the data is copied into an internal buffer in init() and reinit()).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofwwritequadcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFWWriteQuadCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iofwwritequadcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iolocalconfigdirectory": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iolocalconfigdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLocalConfigDirectory",
+      "type": "topic",
+      "url": "/documentation/kernel/iolocalconfigdirectory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ucinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ucinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ucinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/bluetooth",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/usb"
+      ],
+      "title": "Hardware Interconnects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572444",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewireserialbusprotocoltransport",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2target",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirecontroller",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirebus"
+      ],
+      "kind": "taskGroup",
+      "title": "Interfaces"
+    },
+    {
+      "anchor": "3572445",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirenub"
+      ],
+      "kind": "taskGroup",
+      "title": "Nubs"
+    },
+    {
+      "anchor": "3572449",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiredevice"
+      ],
+      "kind": "taskGroup",
+      "title": "Devices"
+    },
+    {
+      "anchor": "3572451",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewirecontrolleraux",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnodeaux",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirebusaux",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiredeviceaux",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireunitaux",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirenubaux"
+      ],
+      "kind": "taskGroup",
+      "title": "Auxilliary Units"
+    },
+    {
+      "anchor": "3572450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2userclient"
+      ],
+      "kind": "taskGroup",
+      "title": "User-Space Access"
+    },
+    {
+      "anchor": "3572443",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommand",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetspace",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavccommand",
+        "doc://com.apple.documentation/documentation/kernel/avccommandhandlerinfo",
+        "doc://com.apple.documentation/documentation/kernel/avcconnectionrecord",
+        "doc://com.apple.documentation/documentation/kernel/avcsubunitinfo",
+        "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsinparams",
+        "doc://com.apple.documentation/documentation/kernel/avcconnecttargetplugsoutparams",
+        "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectioninparams",
+        "doc://com.apple.documentation/documentation/kernel/avcgettargetplugconnectionoutparams",
+        "doc://com.apple.documentation/documentation/kernel/avcsubunitplugrecord",
+        "doc://com.apple.documentation/documentation/kernel/avcunitplugrecord",
+        "doc://com.apple.documentation/documentation/kernel/avcunitplugs"
+      ],
+      "kind": "taskGroup",
+      "title": "AVC Support"
+    },
+    {
+      "anchor": "3572447",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodclprogram",
+        "doc://com.apple.documentation/documentation/kernel/iodcltranslatelisten",
+        "doc://com.apple.documentation/documentation/kernel/iodcltranslatetalk",
+        "doc://com.apple.documentation/documentation/kernel/iodcltranslator",
+        "doc://com.apple.documentation/documentation/kernel/iofwreceivedcl",
+        "doc://com.apple.documentation/documentation/kernel/iofwsenddcl",
+        "doc://com.apple.documentation/documentation/kernel/iofwskipcycledcl",
+        "doc://com.apple.documentation/documentation/kernel/iofwdcl",
+        "doc://com.apple.documentation/documentation/kernel/dclcallcommandproc",
+        "doc://com.apple.documentation/documentation/kernel/dclcallcommandprocptr",
+        "doc://com.apple.documentation/documentation/kernel/dclcallproc",
+        "doc://com.apple.documentation/documentation/kernel/dclcallprocdatatype",
+        "doc://com.apple.documentation/documentation/kernel/dclcallprocptr",
+        "doc://com.apple.documentation/documentation/kernel/dclcommand",
+        "doc://com.apple.documentation/documentation/kernel/dclcommandptr",
+        "doc://com.apple.documentation/documentation/kernel/dclcompilerdatatype",
+        "doc://com.apple.documentation/documentation/kernel/dcljump",
+        "doc://com.apple.documentation/documentation/kernel/dcljumpptr",
+        "doc://com.apple.documentation/documentation/kernel/dcllabel",
+        "doc://com.apple.documentation/documentation/kernel/dcllabelptr",
+        "doc://com.apple.documentation/documentation/kernel/dclnudclleader",
+        "doc://com.apple.documentation/documentation/kernel/dclptrtimestamp",
+        "doc://com.apple.documentation/documentation/kernel/dclptrtimestampptr",
+        "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbits",
+        "doc://com.apple.documentation/documentation/kernel/dclsettagsyncbitsptr",
+        "doc://com.apple.documentation/documentation/kernel/dcltimestamp",
+        "doc://com.apple.documentation/documentation/kernel/dcltimestampptr",
+        "doc://com.apple.documentation/documentation/kernel/dcltransferbuffer",
+        "doc://com.apple.documentation/documentation/kernel/dcltransferbufferptr",
+        "doc://com.apple.documentation/documentation/kernel/dcltransferpacket",
+        "doc://com.apple.documentation/documentation/kernel/dcltransferpacketptr",
+        "doc://com.apple.documentation/documentation/kernel/dclupdatedcllist",
+        "doc://com.apple.documentation/documentation/kernel/dclupdatedcllistptr"
+      ],
+      "kind": "taskGroup",
+      "title": "DCL Support"
+    },
+    {
+      "anchor": "3572446",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback"
+      ],
+      "kind": "taskGroup",
+      "title": "Serial Bus Protocol 2"
+    },
+    {
+      "anchor": "3572448",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofwaddressspaceaux",
+        "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspaceaux",
+        "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspaceaux",
+        "doc://com.apple.documentation/documentation/kernel/iofwsimplecontiguousphysicaladdressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirepcrspace",
+        "doc://com.apple.documentation/documentation/kernel/iofwpseudoaddressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofwsimplephysicaladdressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofwphysicaladdressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofwaddressspace"
+      ],
+      "kind": "taskGroup",
+      "title": "Address Spaces"
+    },
+    {
+      "anchor": "3572452",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofwcompareandswapcommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwasynccommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwasyncphycommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwasyncstreamcommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwbuscommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwcommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwdelaycommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwreadcommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwreadquadcommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwwritecommand",
+        "doc://com.apple.documentation/documentation/kernel/iofwwritequadcommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Commands"
+    },
+    {
+      "anchor": "3570847",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1589090-subtractfwcycletimefromfwcycleti",
+        "doc://com.apple.documentation/documentation/kernel/1589089-addfwcycletimetofwcycletime",
+        "doc://com.apple.documentation/documentation/kernel/1589086-iofwgetabsolutetime",
+        "doc://com.apple.documentation/documentation/kernel/1589088-fwcomputecrc16",
+        "doc://com.apple.documentation/documentation/kernel/1589087-fwupdatecrc16"
+      ],
+      "kind": "taskGroup",
+      "title": "Utilities"
+    },
+    {
+      "anchor": "3571896",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofwduplicateguidrec",
+        "doc://com.apple.documentation/documentation/kernel/iofwarxreqintcompletehandler",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcasynccommandstate",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcplugtypes",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientasynccommandcodes",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcprotocoluserclientcommandcodes",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcsubunitplugmessages",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientasynccommandcodes",
+        "doc://com.apple.documentation/documentation/kernel/iofwavcuserclientcommandcodes",
+        "doc://com.apple.documentation/documentation/kernel/iofwcmdq",
+        "doc://com.apple.documentation/documentation/kernel/iofwdclnotificationtype",
+        "doc://com.apple.documentation/documentation/kernel/iofwisochportoptions",
+        "doc://com.apple.documentation/documentation/kernel/iofwisochresourceflags",
+        "doc://com.apple.documentation/documentation/kernel/iofwnodescan",
+        "doc://com.apple.documentation/documentation/kernel/iofwphysicalaccessmode",
+        "doc://com.apple.documentation/documentation/kernel/iofwreadflags",
+        "doc://com.apple.documentation/documentation/kernel/iofwrequestrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofwsbp2userclientcommandcodes",
+        "doc://com.apple.documentation/documentation/kernel/iofwsecuritymode",
+        "doc://com.apple.documentation/documentation/kernel/iofwspeed",
+        "doc://com.apple.documentation/documentation/kernel/iofwwriteflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcasynchronouscommandcallback",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunitplughandlercallback",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavctargetcommandhandlercallback",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirepcrcallback",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresessionref",
+        "doc://com.apple.documentation/documentation/kernel/ioavccommandresponse",
+        "doc://com.apple.documentation/documentation/kernel/ioavcframefields",
+        "doc://com.apple.documentation/documentation/kernel/ioavcopcodes",
+        "doc://com.apple.documentation/documentation/kernel/ioavcunittypes",
+        "doc://com.apple.documentation/documentation/kernel/fwaddress",
+        "doc://com.apple.documentation/documentation/kernel/fwaddressptr",
+        "doc://com.apple.documentation/documentation/kernel/fwasyncphycallback",
+        "doc://com.apple.documentation/documentation/kernel/fwasyncstreamcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwasyncstreamreceivecallback",
+        "doc://com.apple.documentation/documentation/kernel/fwbuscallback",
+        "doc://com.apple.documentation/documentation/kernel/fwclientcommandid",
+        "doc://com.apple.documentation/documentation/kernel/fwdevicecallback",
+        "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationproc",
+        "doc://com.apple.documentation/documentation/kernel/fwisochchannelforcestopnotificationprocptr",
+        "doc://com.apple.documentation/documentation/kernel/fwmultiisochreceivelistenercallback",
+        "doc://com.apple.documentation/documentation/kernel/fwphypacketcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwreadcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsegment",
+        "doc://com.apple.documentation/documentation/kernel/fwwritecallback"
+      ],
+      "kind": "taskGroup",
+      "title": "Types"
+    },
+    {
+      "anchor": "3572423",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/gfirewiremodel_id",
+        "doc://com.apple.documentation/documentation/kernel/gfirewirenodeid",
+        "doc://com.apple.documentation/documentation/kernel/gfirewireproduct_name",
+        "doc://com.apple.documentation/documentation/kernel/gfirewirerom",
+        "doc://com.apple.documentation/documentation/kernel/gfirewireselfids",
+        "doc://com.apple.documentation/documentation/kernel/gfirewirespeed",
+        "doc://com.apple.documentation/documentation/kernel/gfirewiretdm",
+        "doc://com.apple.documentation/documentation/kernel/gfirewireunit_sw_version",
+        "doc://com.apple.documentation/documentation/kernel/gfirewireunit_spec_id",
+        "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_id",
+        "doc://com.apple.documentation/documentation/kernel/gfirewirevendor_name",
+        "doc://com.apple.documentation/documentation/kernel/gfirewire_guid"
+      ],
+      "kind": "taskGroup",
+      "title": "Global IDs"
+    },
+    {
+      "anchor": "3570809",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ucinfo",
+        "doc://com.apple.documentation/documentation/kernel/iolocalconfigdirectory",
+        "doc://com.apple.documentation/documentation/kernel/ioconfigdirectory",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireduplicateguidlist",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireirmallocation",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivelistener",
+        "doc://com.apple.documentation/documentation/kernel/iofwphypacketlistener",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiremultiisochreceivepacket",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirepowermanager",
+        "doc://com.apple.documentation/documentation/kernel/iofwisochchannel",
+        "doc://com.apple.documentation/documentation/kernel/iofwisochport",
+        "doc://com.apple.documentation/documentation/kernel/iofwlocalisochport",
+        "doc://com.apple.documentation/documentation/kernel/iofwsyncer",
+        "doc://com.apple.documentation/documentation/kernel/iofwuserobjectexporter"
+      ],
+      "kind": "taskGroup",
+      "title": "FireWire Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/hardware_families/firewire"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

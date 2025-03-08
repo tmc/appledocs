@@ -1,0 +1,1127 @@
+{
+  "abstract": [
+    {
+      "text": "Request a valid session from the Apple Pay server.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session"
+  },
+  "kind": "article",
+  "legacy_identifier": 2948363,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting an Apple Pay payment session"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a new Apple Pay payment session for each transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3199976",
+          "level": 3,
+          "text": "Post a request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server posts a request using mutual TLS (mTLS) by calling the Apple Pay server’s Payment Session endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "POST https://apple-pay-gateway.apple.com/paymentservices/paymentSession ",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Endpoint (Global)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "POST https://cn-apple-pay-gateway.apple.com/paymentservices/paymentSession",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Endpoint (China region)",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The endpoint returns an opaque Apple Pay session object for Apple Pay on the web, Apple Pay on macOS, and for Apple Pay in Apple Messages for Business.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Apple Pay on the web, you can also use the endpoint ",
+              "type": "text"
+            },
+            {
+              "code": "POST https://<validation URL>/paymentSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a fully qualified validation URL that you receive in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Be sure to allow all of the domains listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Ensure that your server accesses only the validation URLs provided by Apple in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and fails for other URLs. It’s a best practice to use a strict allow list for the validation URLs. You must send the payment session request from your server; never request the session from the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "3199965",
+          "level": 3,
+          "text": "Provide request parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the merchant identity certificate associated with your merchant ID in the request. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your merchant ID. For payment platforms registering merchants through the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", this should be the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "partnerInternalMerchantIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " defined for the each registered merchant.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "merchantIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string of 64 or fewer UTF-8 characters containing the canonical name for your store, suitable for display. A good display name remains a consistent value for the store and doesn't contain dynamic values such as incrementing order numbers. Don’t localize the name. Use only characters from the supported character sets in the fonts listed in the table below.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "displayName",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A predefined value that identifies the e-commerce application making the request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "initiative",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A value you provide based on the initiative.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "initiativeContext",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values for ",
+              "type": "text"
+            },
+            {
+              "code": "initiative",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "initiativeContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depend on the kind of application you’re building:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple Pay on the web, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“web”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiative",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiativeContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, provide your fully qualified domain name associated with your Apple Pay Merchant Identity Certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple Messages for Business, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“messaging”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiative",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiativeContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, provide your payment gateway URL. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3905687",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple Pay on macOS, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“in_app”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiative",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "initiativeContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, provide your developer team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On supported models of MacBook Pro, the Touch Bar displays the value you supply for the ",
+              "type": "text"
+            },
+            {
+              "code": "displayName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The following table lists the valid fonts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [],
+            "anchor": "3199966",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Font",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Arabic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MyriadArabic-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bengali",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "KohinoorBangla-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chinese",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PingFangTC-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "English",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SF-Compact-Text-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hebrew",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Myriad-Hebrew.ttc",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hindi",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "KohinoorDevanagari-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Japanese",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PingFangTC-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Korean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NanumGothic.ttf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Telegu",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "KohinoorTelugu-Regular.otf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Thai",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ayuthaya.ttf",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3199963",
+          "level": 3,
+          "text": "Receive the payment session object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to the ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request, your server receives an opaque Apple Pay session object. The session expires after five minutes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple Pay on the web, pass the session object to the completion method, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple Pay in Apple Messages for Business, pass the session object to your Messaging Service Provider (MSP), which handles communicating with Apple Messages for Business on your behalf.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3199967",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A session request with a JSON payload for Apple Pay on the web.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    merchantIdentifier: \"merchant.com.example.mystore\",",
+            "    displayName: \"MyStore\",",
+            "    initiative: \"web\",",
+            "    initiativeContext: \"mystore.example.com\"",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3199971",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "displayName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you provide in the payload appears in the Touch Bar like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3199964",
+              "metadata": {
+                "anchor": "3199964",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Start Session is being phased out and replaced by Payment Session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI": {
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Pay Web Merchant Registration API",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session": {
+      "abstract": [
+        {
+          "text": "Provide a payment request and create the session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Apple Pay Session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation": {
+      "abstract": [
+        {
+          "text": "Validate your merchant identity and receive a session object for each payment request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Merchant Validation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session": {
+      "abstract": [
+        {
+          "text": "Request a valid session from the Apple Pay server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting an Apple Pay payment session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199966": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199966",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199966"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199971": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199971",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199971"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession": {
+      "abstract": [
+        {
+          "text": "A session object for managing the payment process on the web. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePaySession",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeMerchantValidation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onvalidatemerchant",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3905687": {
+      "identifier": "link-3905687",
+      "kind": "article",
+      "role": "link",
+      "title": "Type Interactive",
+      "type": "topic",
+      "url": "https://register.apple.com/resources/messages/msp-rest-api/type-interactive"
+    },
+    "link-media-3199964": {
+      "identifier": "link-media-3199964",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session#3199964"
+    },
+    "media-3199964": {
+      "alt": "A screenshot of the Touch Bar requesting Touch ID for an Apple Pay transaction.",
+      "identifier": "media-3199964",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5526d3b75/rendered2x-1642123722.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/949d3fa712/renderedDark2x-1642123723.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession"
+      ],
+      "title": "Apple Pay session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

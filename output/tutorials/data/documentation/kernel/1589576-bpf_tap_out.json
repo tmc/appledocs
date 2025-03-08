@@ -1,0 +1,344 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/net"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1589576,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@bpf_tap_out#*$@S@__ifnet#i#*$@S@__mbuf#*v#l#",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "bpf_tap_out"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "bpf_tap_out"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ifnet_t",
+              "text": "ifnet_t"
+            },
+            {
+              "kind": "text",
+              "text": " interface, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/u_int32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@u_int32_t",
+              "text": "u_int32_t"
+            },
+            {
+              "kind": "text",
+              "text": " dlt, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/mbuf_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mbuf_t",
+              "text": "mbuf_t"
+            },
+            {
+              "kind": "text",
+              "text": " packet, "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *header, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " header_len);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The interface the packet was or will be transmitted on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "interface"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data link type of the packet.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dlt"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The packet received.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "packet"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional pointer to a header that will be prepended.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "header"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the header was specified, the length of the header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "headerlen"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this function when your interface trasmits a packet. This function will check if any bpf devices need a a copy of the packet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfattach",
+      "type": "topic",
+      "url": "/documentation/kernel/1589467-bpfattach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_tap_in",
+      "type": "topic",
+      "url": "/documentation/kernel/1589470-bpf_tap_in"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_tap_out",
+      "type": "topic",
+      "url": "/documentation/kernel/1589576-bpf_tap_out"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_attach",
+      "type": "topic",
+      "url": "/documentation/kernel/1589700-bpf_attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mbuf_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mbuf_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mbuf_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mbuf_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/net": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/net",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "net",
+      "type": "topic",
+      "url": "/documentation/kernel/net"
+    },
+    "doc://com.apple.documentation/documentation/kernel/size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/u_int32_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/u_int32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "u_int32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/u_int32_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach",
+        "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in",
+        "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach"
+      ],
+      "title": "bpf"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1589576-bpf_tap_out"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

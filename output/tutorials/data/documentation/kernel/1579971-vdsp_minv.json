@@ -1,0 +1,446 @@
+{
+  "abstract": [
+    {
+      "text": "Calculates the minimum value in a single-precision vector.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1579971-vdsp_minv"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1579971,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_minv",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_minv"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_minv"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__A, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IA, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__C, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __N);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real input vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Stride for ",
+                  "type": "text"
+                },
+                {
+                  "code": "A.",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__I"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Output scalar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of elements to process. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "N",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is zero (",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "), this function returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "-INFINITY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function calculates the minimum value of the first ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements of ",
+              "type": "text"
+            },
+            {
+              "code": "A ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "and writes the result to ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3921213",
+              "metadata": {
+                "anchor": "3921213",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operation is: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*C = +INFINITY;",
+            "for (n = 0; n < N; ++n)",
+            "    if (*C > A[n*I])",
+            "        *C = A[n*I];"
+          ],
+          "metadata": {
+            "anchor": "3921209",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/1450267-vdsp_minv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let stride = vDSP_Stride(1)",
+            "",
+            "let a: [Float] = [-1.5, 2.25, 3.6,",
+            "                  0.2, -0.1, -4.3]",
+            "let n = vDSP_Length(a.count)",
+            "",
+            "var c: Float = .nan",
+            "",
+            "vDSP_minv(a,",
+            "          stride,",
+            "          &c,",
+            "          n)",
+            "",
+            "print(\"min\", c) // Prints \"min -4.3\""
+          ],
+          "metadata": {
+            "anchor": "3921219",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/accelerate/1450267-vdsp_minv": {
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/1450267-vdsp_minv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_minv",
+      "type": "topic",
+      "url": "/documentation/accelerate/1450267-vdsp_minv"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579971-vdsp_minv#3921209": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579971-vdsp_minv#3921209",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/1579971-vdsp_minv#3921209"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579971-vdsp_minv#3921219": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579971-vdsp_minv#3921219",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/kernel/1579971-vdsp_minv#3921219"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3921213": {
+      "identifier": "link-media-3921213",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/kernel/1579971-vdsp_minv#3921213"
+    },
+    "media-3921213": {
+      "alt": "A diagram showing the operation of the vDSP_minv function. There are three rows. The top row represents the input, vector A. The second row represents the minimum value operation. The bottom row represents the output, vector C. The diagram has connecting lines from the input vectors to the operation and from the operation to the output vector indicating the relationships between the input and output.",
+      "identifier": "media-3921213",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b5b1320bd/ecc1829f-9f36-47ce-a44d-9aa2019feb13.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1579971-vdsp_minv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

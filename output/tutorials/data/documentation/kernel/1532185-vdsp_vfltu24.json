@@ -1,0 +1,490 @@
+{
+  "abstract": [
+    {
+      "text": "Converts unsigned 24-bit integer values to single-precision floating-point values.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/appledsp"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1532185-vdsp_vfltu24"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1532185,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_vfltu24",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_vfltu24"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_vfltu24"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/vdsp_uint24",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_uint24",
+              "text": "vDSP_uint24"
+            },
+            {
+              "kind": "text",
+              "text": " *vDSP_input1, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ptrdiff_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ptrdiff_t",
+              "text": "ptrdiff_t"
+            },
+            {
+              "kind": "text",
+              "text": " vDSP_stride1, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *vDSP_input2, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ptrdiff_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ptrdiff_t",
+              "text": "ptrdiff_t"
+            },
+            {
+              "kind": "text",
+              "text": " vDSP_stride2, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " vDSP_size);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The 24-bit integer input vector. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride for input vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IA"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single-precision floating-point output vector. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride for output vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IC"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of values to convert.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Converts the signed 24-bit integer values in the input vector ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to single precision floating-point values and places the results in the output vector ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function performs the following operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    for (n = 0; n < N; ++n)",
+            "        C[n*IC] = (float)A[n*IA];"
+          ],
+          "metadata": {
+            "anchor": "1673353",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/accelerate/vdsp_uint24": {
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/vdsp_uint24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_uint24",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_uint24"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532172-vdsp_vfix16": {
+      "abstract": [
+        {
+          "text": "Converts an array of single-precision floating-point values to signed 16-bit integer values, rounding toward zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532172-vdsp_vfix16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vfix16",
+      "type": "topic",
+      "url": "/documentation/kernel/1532172-vdsp_vfix16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532178-vdsp_vsmfixu24": {
+      "abstract": [
+        {
+          "text": "Scales and converts single-precision floating-point values to unsigned 24-bit integer values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532178-vdsp_vsmfixu24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vsmfixu24",
+      "type": "topic",
+      "url": "/documentation/kernel/1532178-vdsp_vsmfixu24"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532181-vdsp_vflt32": {
+      "abstract": [
+        {
+          "text": "Converts an array of signed 32-bit integers to single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532181-vdsp_vflt32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vflt32",
+      "type": "topic",
+      "url": "/documentation/kernel/1532181-vdsp_vflt32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532185-vdsp_vfltu24": {
+      "abstract": [
+        {
+          "text": "Converts unsigned 24-bit integer values to single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532185-vdsp_vfltu24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vfltu24",
+      "type": "topic",
+      "url": "/documentation/kernel/1532185-vdsp_vfltu24"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532185-vdsp_vfltu24#1673353": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532185-vdsp_vfltu24#1673353",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/1532185-vdsp_vfltu24#1673353"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532198-vdsp_vfix32": {
+      "abstract": [
+        {
+          "text": "Converts an array of single-precision floating-point values to signed 32-bit integer values, rounding toward zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532198-vdsp_vfix32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vfix32",
+      "type": "topic",
+      "url": "/documentation/kernel/1532198-vdsp_vfix32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532200-vdsp_vsmfix24": {
+      "abstract": [
+        {
+          "text": "Scales and converts single-precision floating-point values to signed 24-bit integer values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532200-vdsp_vsmfix24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vsmfix24",
+      "type": "topic",
+      "url": "/documentation/kernel/1532200-vdsp_vsmfix24"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532204-vdsp_vflt16": {
+      "abstract": [
+        {
+          "text": "Converts an array of signed 16-bit integers to single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532204-vdsp_vflt16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vflt16",
+      "type": "topic",
+      "url": "/documentation/kernel/1532204-vdsp_vflt16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532208-vdsp_vflt24": {
+      "abstract": [
+        {
+          "text": "Converts signed 24-bit integer values to single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532208-vdsp_vflt24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vflt24",
+      "type": "topic",
+      "url": "/documentation/kernel/1532208-vdsp_vflt24"
+    },
+    "doc://com.apple.documentation/documentation/kernel/appledsp": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/appledsp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppleDSP",
+      "type": "topic",
+      "url": "/documentation/kernel/appledsp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ptrdiff_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ptrdiff_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ptrdiff_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ptrdiff_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1532200-vdsp_vsmfix24",
+        "doc://com.apple.documentation/documentation/kernel/1532178-vdsp_vsmfixu24",
+        "doc://com.apple.documentation/documentation/kernel/1532172-vdsp_vfix16",
+        "doc://com.apple.documentation/documentation/kernel/1532198-vdsp_vfix32",
+        "doc://com.apple.documentation/documentation/kernel/1532204-vdsp_vflt16",
+        "doc://com.apple.documentation/documentation/kernel/1532208-vdsp_vflt24",
+        "doc://com.apple.documentation/documentation/kernel/1532181-vdsp_vflt32"
+      ],
+      "title": "Conversion Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1532185-vdsp_vfltu24"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

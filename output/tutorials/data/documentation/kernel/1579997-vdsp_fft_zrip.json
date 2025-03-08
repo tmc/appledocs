@@ -1,0 +1,494 @@
+{
+  "abstract": [
+    {
+      "text": "Computes a forward or inverse in-place, single-precision real FFT.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1579997-vdsp_fft_zrip"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1579997,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_fft_zrip",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_fft_zrip"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_fft_zrip"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/fftsetup",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FFTSetup",
+              "text": "FFTSetup"
+            },
+            {
+              "kind": "text",
+              "text": " __Setup, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/dspsplitcomplex",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DSPSplitComplex",
+              "text": "DSPSplitComplex"
+            },
+            {
+              "kind": "text",
+              "text": " *__C, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IC, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __Log2N, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/fftdirection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FFTDirection",
+              "text": "FFTDirection"
+            },
+            {
+              "kind": "text",
+              "text": " __Direction);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The FFT setup structure for this transform. The setup’s structure ",
+                  "type": "text"
+                },
+                {
+                  "code": "Log2N",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be greater than or equal to this function’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Log2N",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Setup"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the input-output data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride between the elements in ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", set to 1 for best performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__IC"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The base 2 exponent of the number of elements to process. For example, to process 1024 elements, specify 10 for parameter ",
+                  "type": "text"
+                },
+                {
+                  "code": "Log2N",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Log2N"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A flag that specifies the transform direction. Pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_forward",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to transform from the time domain to the frequency domain. Pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_inverse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to transform from the frequency domain to the time domain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Direction"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Forward transforms read real input and write packed complex output. Inverse transforms read packed complex input and write real output. As a result of packing the frequency-domain data, time-domain data and its equivalent frequency-domain data have the same storage requirements. You can find more details on the packing format in Data Packing for Real FFTs in vDSP Programming Guide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1685521",
+              "metadata": {
+                "anchor": "1685521",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where F is ",
+              "type": "text"
+            },
+            {
+              "code": "Direction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", C is ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and N is two raised to the power of ",
+              "type": "text"
+            },
+            {
+              "code": "Log2N",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1580009-vdsp_create_fftsetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1579978-vdsp_destroy_fftsetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/accelerate/dspsplitcomplex": {
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/dspsplitcomplex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DSPSplitComplex",
+      "type": "topic",
+      "url": "/documentation/accelerate/dspsplitcomplex"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579978-vdsp_destroy_fftsetup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579978-vdsp_destroy_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_destroy_fftsetup",
+      "type": "topic",
+      "url": "/documentation/kernel/1579978-vdsp_destroy_fftsetup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1580009-vdsp_create_fftsetup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1580009-vdsp_create_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_create_fftsetup",
+      "type": "topic",
+      "url": "/documentation/kernel/1580009-vdsp_create_fftsetup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_forward": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_forward",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFFTDirection_Forward",
+      "type": "topic",
+      "url": "/documentation/kernel/1645049-anonymous/kfftdirection_forward"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_inverse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645049-anonymous/kfftdirection_inverse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFFTDirection_Inverse",
+      "type": "topic",
+      "url": "/documentation/kernel/1645049-anonymous/kfftdirection_inverse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fftdirection": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fftdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FFTDirection",
+      "type": "topic",
+      "url": "/documentation/kernel/fftdirection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fftsetup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FFTSetup",
+      "type": "topic",
+      "url": "/documentation/kernel/fftsetup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-1685521": {
+      "identifier": "link-media-1685521",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/kernel/1579997-vdsp_fft_zrip#1685521"
+    },
+    "media-1685521": {
+      "identifier": "media-1685521",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/097ccd4f03/vdsp_23_2x_56158015-f6d8-403d-8a82-7e093c4374e9.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1579997-vdsp_fft_zrip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

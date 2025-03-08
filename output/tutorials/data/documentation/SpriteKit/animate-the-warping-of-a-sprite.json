@@ -1,0 +1,1462 @@
+{
+  "abstract": [
+    {
+      "text": "Interpolate warping from source to destination warp geometry grids.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/animate-the-warping-of-a-sprite"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Animate the Warping of a Sprite"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by supplying two arrays of normalized vertex positions. The ",
+              "type": "text"
+            },
+            {
+              "code": "sourcePositions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array defines the positions of the vertices in the unwarped geometry and the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationPositions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array defines the final, warped destination positions for the source vertices. Both arrays are one dimensional and in row-major order, which means that you additionally have to supply the number of columns and rows of the geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of columns or rows is one less than the number of horizontal or vertical vertices, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The origin of the vertex positions is in the bottom left of the grid. The following code shows how you can create an array of evenly spaced vertices that could act as a default set of source positions for a warp geometry with two columns and two rows. The first item in the array refers to the position at the bottom left, and the last item refers to the position at the top right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sourcePositions: [float2] = [",
+            "    float2(0, 1),   float2(0.5, 1),   float2(1, 1),",
+            "    float2(0, 0.5), float2(0.5, 0.5), float2(1, 0.5),",
+            "    float2(0, 0),   float2(0.5, 0),   float2(1, 0)",
+            "]",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you wanted to give the effect of horizontally squeezing a grid defined by the above vertices around its middle — which would cause it to stretch vertically — you could use a set of destination positions, as shown in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let destinationPositions: [float2] = [",
+            "    float2(-0.25, 1.5), float2(0.5, 1.75), float2(1.25, 1.5),",
+            "    float2(0.25, 0.5),   float2(0.5, 0.5),   float2(0.75, 0.5),",
+            "    float2(-0.25, -0.5),  float2(0.5, -0.75),  float2(1.25, -0.5)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "sourcePositions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "destinationPositions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays to define a warp geometry object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let warpGeometryGrid = SKWarpGeometryGrid(columns: 2,",
+            "                                          rows: 2,",
+            "                                          sourcePositions: sourcePositions,",
+            "                                          destinationPositions: destinationPositions)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A geometry grid warps the geometry defined by the source positions (left illustration) into a new geometry defined by the destination positions (right illustration).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2975377",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several options are available for applying this geometry to a node that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", such as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The geometry can be applied immediately, without animation, by setting the nodes’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable/warpGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You may elect to use this technique if you are calculating and applying the destination positions with each scene update; for example, in response to a user’s touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single warp can be applied over time to give an animated morphing effect using the action created by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/warp(to:duration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use a warp action, you first need to define an initial geometry and set it as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable/warpGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the node you want to warp. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid/init(columns:rows:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer creates a suitable geometry that has no distortion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the stretched warp geometry created above is used to initialize a warp action with a duration specified in seconds. The node’s run method executes the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sprite = SKSpriteNode()",
+            "let warpGeometryGridNoWarp = SKWarpGeometryGrid(columns: 2, rows: 2)",
+            "sprite.warpGeometry = warpGeometryGridNoWarp",
+            "let warpAction = SKAction.warp(to: warpGeometryGrid,duration: 0.5)",
+            "sprite.run(warpAction!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can chain together multiple warp geometries to create complex morphing animations. For example, you may want to begin with the warp geometry that does not deform the node, morph to the stretched geometry at 0.5”, and finish the sequence by returning to the first geometry at 0.75”. The following code creates this action, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/animate(withWarps:times:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let warpAction = SKAction.animate(withWarps:[warpGeometryGridNoWarp, ",
+            "                                             warpGeometryGrid,",
+            "                                             warpGeometryGridNoWarp],                                  ",
+            "                                  times: [0.25, 0.5, 0.75])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects that subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " but don’t conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — can be warped by adding them as children of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. You can, for example, use this approach to distort vector artwork supplied as simple geometric primitives or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and rendered with a shape node.  Warping a particle emitter node that has been added as a child of an effect node allows precise control of the overall shape of a particle system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics/cgpath": {
+      "abstract": [
+        {
+          "text": "An immutable graphics path: a mathematical description of shapes or lines to be drawn in a graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpath"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/animate(withWarps:times:)": {
+      "abstract": [
+        {
+          "text": "Creates an action to distort a node through a sequence of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withWarps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKWarpGeometry",
+          "text": "SKWarpGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "times"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/animate(withWarps:times:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animateWithWarps:times:"
+        }
+      ],
+      "role": "symbol",
+      "title": "animate(withWarps:times:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/animate(withwarps:times:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/warp(to:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates an action to distort a node based using an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "warp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKWarpGeometry",
+          "text": "SKWarpGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/warp(to:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "warpTo:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "warp(to:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/warp(to:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode": {
+      "abstract": [
+        {
+          "text": "A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEffectNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode": {
+      "abstract": [
+        {
+          "text": "A mathematical shape that can be stroked or filled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKShapeNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshapenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that plays video content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKVideoNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skvideonode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry": {
+      "abstract": [
+        {
+          "text": "A definition for a deformation of nodes that conform to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKWarpGeometry",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpgeometry"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid": {
+      "abstract": [
+        {
+          "text": "A definition for a grid-based deformation of nodes that conform to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometryGrid"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometryGrid"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKWarpGeometryGrid",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpgeometrygrid"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid/init(columns:rows:)": {
+      "abstract": [
+        {
+          "text": "Creates a warp geometry grid of a specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columns"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometryGrid/init(columns:rows:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gridWithColumns:rows:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(columns:rows:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpgeometrygrid/init(columns:rows:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that can be warped and animated by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKWarpable"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKWarpable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKWarpable",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpable"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable/warpGeometry": {
+      "abstract": [
+        {
+          "text": "The warp geometry used to define the distortion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "warpGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKWarpGeometry",
+          "text": "SKWarpGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable/warpGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "warpGeometry"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "warpGeometry",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpable/warpgeometry"
+    },
+    "media-2975377": {
+      "alt": "Warped geometry",
+      "identifier": "media-2975377",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3fc81b85459ba8a414e02f7c584254ad/media-2975377@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1warp(to:duration:)/title",
+          "value": "warpTo:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1warp(to:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "warpTo:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/title",
+          "value": "SKShapeNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/title",
+          "value": "SKWarpable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/title",
+          "value": "SKVideoNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1animate(withWarps:times:)/title",
+          "value": "animateWithWarps:times:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1animate(withWarps:times:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "animateWithWarps:times:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgpath/title",
+          "value": "CGPathRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/title",
+          "value": "SKWarpGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometryGrid/title",
+          "value": "SKWarpGeometryGrid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometryGrid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometryGrid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometryGrid/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometryGrid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable~1warpGeometry/title",
+          "value": "warpGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable~1warpGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "warpGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometryGrid~1init(columns:rows:)/title",
+          "value": "gridWithColumns:rows:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometryGrid~1init(columns:rows:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "gridWithColumns:rows:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/title",
+          "value": "SKEffectNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/animate-the-warping-of-a-sprite"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/animate-the-warping-of-a-sprite"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
