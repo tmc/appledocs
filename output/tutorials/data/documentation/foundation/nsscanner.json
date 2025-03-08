@@ -1,0 +1,1033 @@
+{
+  "abstract": [
+    {
+      "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsscanner"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414895,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScanner",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSScanner"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScanner"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object interprets and converts the characters of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the nature of class clusters, a scanner object isn’t an actual instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to ignore a set of characters as it scans the string, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1410204-characterstobeskipped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the unscanned remainder of the string, use ",
+              "type": "text"
+            },
+            {
+              "code": "[[scanner string] substringFromIndex: [scanner scanLocation]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector": {
+      "abstract": [
+        {
+          "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDataDetector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression": {
+      "abstract": [
+        {
+          "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScanner",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1407591-scanstring": {
+      "abstract": [
+        {
+          "text": "Scans a given string, returning an equivalent string object by reference if a match is found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanString:intoString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1407591-scanstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanString:intoString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1407591-scanstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal": {
+      "abstract": [
+        {
+          "text": "Scans for an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDecimal",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDecimal:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDecimal:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1408025-scandecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUnsignedLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUnsignedLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1408559-scanunsignedlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1409488-casesensitive": {
+      "abstract": [
+        {
+          "text": "Flag that indicates whether the receiver distinguishes case in the characters it scans.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1409488-casesensitive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caseSensitive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1409488-casesensitive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1409531-locale": {
+      "abstract": [
+        {
+          "text": "The locale to use when scanning.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1409531-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1409531-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1410204-characterstobeskipped": {
+      "abstract": [
+        {
+          "text": "Character set containing the characters the scanner ignores when looking for a scannable element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1410204-characterstobeskipped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "charactersToBeSkipped",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1410204-characterstobeskipped"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint": {
+      "abstract": [
+        {
+          "text": "Scans for an int value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1410914-scanint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger": {
+      "abstract": [
+        {
+          "text": "Scans for an NSInteger value from a decimal representation, returning a found value by reference",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInteger:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInteger:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411082-scaninteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexFloat:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexFloat:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411236-scanhexfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a float value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanFloat:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanFloat:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411677-scanfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexDouble:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexDouble:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411780-scanhexdouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411971-scanuptostring": {
+      "abstract": [
+        {
+          "text": "Scans the string until a given string is encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpToString:intoString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411971-scanuptostring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpToString:intoString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411971-scanuptostring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1412629-scanlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1412759-scanhexlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1412801-atend": {
+      "abstract": [
+        {
+          "text": "Flag that indicates whether the receiver has exhausted all significant characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1412801-atend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atEnd",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1412801-atend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1413294-scanlocation": {
+      "abstract": [
+        {
+          "text": "The character position at which the receiver will begin its next scanning operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1413294-scanlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanLocation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1413294-scanlocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1413598-scanuptocharactersfromset": {
+      "abstract": [
+        {
+          "text": "Scans the string until a character from a given character set is encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpToCharactersFromSet:intoString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1413598-scanuptocharactersfromset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpToCharactersFromSet:intoString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1413598-scanuptocharactersfromset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexInt:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexInt:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1413857-scanhexint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1415577-localizedscannerwithstring": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScanner",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that scans a given string according to the user’s default locale. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedScannerWithString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1415577-localizedscannerwithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedScannerWithString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1415577-localizedscannerwithstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDouble:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDouble:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1415922-scandouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1417131-initwithstring": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScanner",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to scan a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1417131-initwithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1417131-initwithstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1417575-scancharactersfromset": {
+      "abstract": [
+        {
+          "text": "Scans the string as long as characters from a given character set are encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanCharactersFromSet:intoString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1417575-scancharactersfromset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanCharactersFromSet:intoString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1417575-scancharactersfromset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1418109-string": {
+      "abstract": [
+        {
+          "text": "The string the scanner will scan.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1418109-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1418109-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1420483-scannerwithstring": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScanner",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that scans a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "scannerWithString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1420483-scannerwithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scannerWithString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1420483-scannerwithstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult": {
+      "abstract": [
+        {
+          "text": "An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextCheckingResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+        "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+        "doc://com.apple.documentation/documentation/foundation/nsnotfound"
+      ],
+      "title": "Pattern Matching"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1669551",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1420483-scannerwithstring",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1415577-localizedscannerwithstring",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1417131-initwithstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Scanner"
+    },
+    {
+      "anchor": "1669589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1418109-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Scanner’s String"
+    },
+    {
+      "anchor": "1669610",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1413294-scanlocation",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1409488-casesensitive",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1410204-characterstobeskipped",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1409531-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring a Scanner"
+    },
+    {
+      "anchor": "1669646",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1417575-scancharactersfromset",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1413598-scanuptocharactersfromset",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1407591-scanstring",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411971-scanuptostring"
+      ],
+      "kind": "taskGroup",
+      "title": "Scanning Characters and Strings"
+    },
+    {
+      "anchor": "3023109",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong"
+      ],
+      "kind": "taskGroup",
+      "title": "Scanning Numeric Values"
+    },
+    {
+      "anchor": "3023108",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1412801-atend"
+      ],
+      "kind": "taskGroup",
+      "title": "Monitoring Scanner Progress"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscanner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/scanner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

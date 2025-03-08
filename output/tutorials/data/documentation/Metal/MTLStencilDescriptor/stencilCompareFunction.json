@@ -1,0 +1,1103 @@
+{
+  "abstract": [
+    {
+      "text": "The comparison that is performed between the masked reference value and a masked value in the stencil attachment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilCompareFunction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLStencilDescriptor(py)stencilCompareFunction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "stencilCompareFunction"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MTLCompareFunction",
+        "text": "MTLCompareFunction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "stencilCompareFunction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "stencilCompareFunction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "stencilCompareFunction"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLCompareFunction",
+              "text": "MTLCompareFunction"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "stencilCompareFunction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/less",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then the stencil test passes if the masked reference value is less than the masked stored stencil value. The default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/always",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which indicates that the stencil test always passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The stored stencil value and the reference value are both ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "masked",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by performing a logical AND operation with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/readMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value before the comparison takes place. For more information on possible values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCompareFunction": {
+      "abstract": [
+        {
+          "text": "Options used to specify how a sample compare operation should be performed on a depth texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCompareFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCompareFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCompareFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomparefunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/always": {
+      "abstract": [
+        {
+          "text": "A new value always passes the comparison test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "always"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/always",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCompareFunctionAlways"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCompareFunction.always",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomparefunction/always"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/less": {
+      "abstract": [
+        {
+          "text": "A new value passes the comparison test if it is less than the existing value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "less"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction/less",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCompareFunctionLess"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCompareFunction.less",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomparefunction/less"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setStencilReferenceValue(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the same comparison value for front- and back-facing primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStencilReferenceValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setStencilReferenceValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStencilReferenceValue:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setStencilReferenceValue(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setstencilreferencevalue(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that defines the front-facing or back-facing stencil operations of a depth and stencil state object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStencilDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStencilDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStencilDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthFailureOperation": {
+      "abstract": [
+        {
+          "text": "The operation that is performed to update the values in the stencil attachment when the stencil test passes, but the depth test fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthFailureOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStencilOperation",
+          "text": "MTLStencilOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthFailureOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthFailureOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthFailureOperation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor/depthfailureoperation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation": {
+      "abstract": [
+        {
+          "text": "The operation that is performed to update the values in the stencil attachment when both the stencil test and the depth test pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthStencilPassOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStencilOperation",
+          "text": "MTLStencilOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthStencilPassOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthStencilPassOperation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor/depthstencilpassoperation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/readMask": {
+      "abstract": [
+        {
+          "text": "A bitmask that determines from which bits that stencil comparison tests can read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/readMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "readMask",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor/readmask"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilCompareFunction": {
+      "abstract": [
+        {
+          "text": "The comparison that is performed between the masked reference value and a masked value in the stencil attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stencilCompareFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCompareFunction",
+          "text": "MTLCompareFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilCompareFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stencilCompareFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "stencilCompareFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor/stencilcomparefunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation": {
+      "abstract": [
+        {
+          "text": "The operation that is performed to update the values in the stencil attachment when the stencil test fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stencilFailureOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStencilOperation",
+          "text": "MTLStencilOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stencilFailureOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "stencilFailureOperation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor/stencilfailureoperation"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setStencilReferenceValue(_:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Specifying-Stencil-Functions-and-Operations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation",
+        "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthFailureOperation",
+        "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation"
+      ],
+      "title": "Specifying Stencil Functions and Operations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "stencilCompareFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stencilCompareFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setStencilReferenceValue(_:)"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Specifying-Stencil-Functions-and-Operations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation",
+                "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthFailureOperation",
+                "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation"
+              ],
+              "title": "Specifying Stencil Functions and Operations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLCompareFunction",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@MTLCompareFunction",
+                    "text": "MTLCompareFunction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "stencilCompareFunction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction~1always/title",
+          "value": "MTLCompareFunctionAlways"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction~1always/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCompareFunctionAlways"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setStencilReferenceValue(_:)/title",
+          "value": "setStencilReferenceValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setStencilReferenceValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStencilReferenceValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1stencilFailureOperation/title",
+          "value": "stencilFailureOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1stencilFailureOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stencilFailureOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction/title",
+          "value": "MTLCompareFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCompareFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCompareFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction~1less/title",
+          "value": "MTLCompareFunctionLess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCompareFunction~1less/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCompareFunctionLess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1depthStencilPassOperation/title",
+          "value": "depthStencilPassOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1depthStencilPassOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthStencilPassOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1depthFailureOperation/title",
+          "value": "depthFailureOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1depthFailureOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthFailureOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/title",
+          "value": "MTLStencilDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1readMask/title",
+          "value": "readMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1readMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1stencilCompareFunction/title",
+          "value": "stencilCompareFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor~1stencilCompareFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stencilCompareFunction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlstencildescriptor/stencilcomparefunction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlstencildescriptor/stencilcomparefunction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
