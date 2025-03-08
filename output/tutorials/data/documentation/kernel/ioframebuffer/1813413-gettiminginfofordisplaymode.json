@@ -1,0 +1,893 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a timing description for a display mode.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1813413,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOFramebuffer"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "getTimingInfoForDisplayMode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOReturn getTimingInfoForDisplayMode( "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IODisplayModeIDdisplayMode,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOTimingInformation *info ); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A display mode ID representing the mode to examine.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "displayMode"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The driver returns the information for the display mode in this structure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the mode has an Apple defined constant, such as timingVESA_1024x768_75hz, it should be returned in the appleTimingID field. Otherwise the field should be set to timingInvalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the driver is able to supply detailed timing information, it should return it in the detailedInfo.v2 field of the structure, otherwise the driver should clear the kIODetailedTimingValid flag from the flags field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The IODetailedTimingInformationV2 structure is documented in IOGraphicsTypes.h",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "info"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "an IOReturn code. A return other than kIOReturnSuccess will prevent the system from using the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOFramebuffer subclasses should implement this method to return timing information for a display mode. This allows the OS to enable display modes based on its knowledge of the connected display type. Two types of timing information are defined, by Apple defined constant, or by a detailed description of the timing parameters of the mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics and Displays",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/graphics_and_displays"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFramebuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags": {
+      "abstract": [
+        {
+          "text": "Return display sense information for legacy Apple sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "connectFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812972-connectflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage": {
+      "abstract": [
+        {
+          "text": "Utility method of IOFramebuffer to convert cursor image to a hardware cursor format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "convertCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812983-convertcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest": {
+      "abstract": [
+        {
+          "text": "Carry out an I2C request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doI2CRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812996-doi2crequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller": {
+      "abstract": [
+        {
+          "text": "Perform first time setup of the framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enableController",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813011-enablecontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor": {
+      "abstract": [
+        {
+          "text": "Perform any needed cache flushing after software cursor rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813022-flushcursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange": {
+      "abstract": [
+        {
+          "text": "Return reference to IODeviceMemory object representing memory range of framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getApertureRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813036-getaperturerange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense": {
+      "abstract": [
+        {
+          "text": "Return display sense information for legacy Apple sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAppleSense",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813053-getapplesense"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute": {
+      "abstract": [
+        {
+          "text": "Generic method to retrieve some attribute of the framebuffer device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813070-getattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to retrieve some attribute of the framebuffer device, specific to one display connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813093-getattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount": {
+      "abstract": [
+        {
+          "text": "Reports the number of display connections the device supports, driven from one framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getConnectionCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813110-getconnectioncount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode": {
+      "abstract": [
+        {
+          "text": "Return the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCurrentDisplayMode(IODisplayModeID *, IOIndex *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock": {
+      "abstract": [
+        {
+          "text": "Return display EDID data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDDCBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813183-getddcblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount": {
+      "abstract": [
+        {
+          "text": "Return the number of display modes the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDisplayModeCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes": {
+      "abstract": [
+        {
+          "text": "Return the number of display modes the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDisplayModes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813237-getdisplaymodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode": {
+      "abstract": [
+        {
+          "text": "Return information about a given display mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInformationForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats": {
+      "abstract": [
+        {
+          "text": "List the pixel formats the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelFormats",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813303-getpixelformats"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode": {
+      "abstract": [
+        {
+          "text": "Obsolete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelFormatsForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation": {
+      "abstract": [
+        {
+          "text": "Return information about the framebuffer format for a given display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelInformation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813353-getpixelinformation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode": {
+      "abstract": [
+        {
+          "text": "Return the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode": {
+      "abstract": [
+        {
+          "text": "Returns a timing description for a display mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTimingInfoForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange": {
+      "abstract": [
+        {
+          "text": "Return reference to IODeviceMemory object representing memory range of all the cards vram.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getVRAMRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813443-getvramrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent": {
+      "abstract": [
+        {
+          "text": "Notify IOFramebuffer superclass code of events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813481-handleevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect": {
+      "abstract": [
+        {
+          "text": "Return display DDC connect state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "hasDDCConnect",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813510-hasddcconnect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock": {
+      "abstract": [
+        {
+          "text": "Reads the input state of the I2C clock line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813550-readddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata": {
+      "abstract": [
+        {
+          "text": "Reads the input state of the I2C data line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813593-readddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype": {
+      "abstract": [
+        {
+          "text": "Set callbacks for driver to call on interrupt events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerForInterruptType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable": {
+      "abstract": [
+        {
+          "text": "Enable an aperture on the framebuffer (usually unimplemented, no OS usage).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setApertureEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813646-setapertureenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute": {
+      "abstract": [
+        {
+          "text": "Generic method to set some attribute of the framebuffer device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813661-setattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to set some attribute of the framebuffer device, specific to one display connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813672-setattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries": {
+      "abstract": [
+        {
+          "text": "Set the color lookup table to be used by the framebuffer in indexed modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCLUTWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813680-setclutwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers current display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCurrentDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage": {
+      "abstract": [
+        {
+          "text": "Set a new image for the hardware cursor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813692-setcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate": {
+      "abstract": [
+        {
+          "text": "Set a new position and visibility for the hardware cursor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCursorState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813699-setcursorstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock": {
+      "abstract": [
+        {
+          "text": "Sets the state of the I2C clock line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813707-setddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata": {
+      "abstract": [
+        {
+          "text": "Sets the state of the I2C data line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813718-setddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings": {
+      "abstract": [
+        {
+          "text": "Installs an array of OS programmed detailed timings to be made available by the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDetailedTimings",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813724-setdetailedtimings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers current display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813732-setdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable": {
+      "abstract": [
+        {
+          "text": "Set the gamma table to be used by the framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setGammaTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813739-setgammatable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate": {
+      "abstract": [
+        {
+          "text": "Enable or disable a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInterruptState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813744-setinterruptstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt": {
+      "abstract": [
+        {
+          "text": "Remove a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unregisterInterrupt(void *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt": {
+      "abstract": [
+        {
+          "text": "Enable or disable a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unregisterInterrupt(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming": {
+      "abstract": [
+        {
+          "text": "Reports whether a detailed timing is able to be programmed with the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "validateDetailedTiming",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
