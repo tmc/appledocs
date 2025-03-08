@@ -1,1 +1,2120 @@
-{"identifier":{"url":"doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)","interfaceLanguage":"swift"},"primaryContentSections":[{"declarations":[{"platforms":["macOS"],"tokens":[{"text":"@","kind":"attribute"},{"identifier":"doc://com.externally.resolved.symbol/s:ScM","text":"MainActor","kind":"attribute","preciseIdentifier":"s:ScM"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"drag","kind":"identifier"},{"text":"(","kind":"text"},{"text":"_","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"image","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSImage","text":"NSImage","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSImage"},{"text":", ","kind":"text"},{"text":"at","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"baseLocation","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/c:@T@NSPoint","text":"NSPoint","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSPoint"},{"text":", ","kind":"text"},{"text":"offset","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"initialOffset","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/c:@T@NSSize","text":"NSSize","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSSize"},{"text":", ","kind":"text"},{"text":"event","kind":"externalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSEvent","text":"NSEvent","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSEvent"},{"text":", ","kind":"text"},{"text":"pasteboard","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"pboard","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSPasteboard","text":"NSPasteboard","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPasteboard"},{"text":", ","kind":"text"},{"text":"source","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"sourceObj","kind":"internalParam"},{"text":": ","kind":"text"},{"text":"Any","kind":"keyword"},{"text":", ","kind":"text"},{"text":"slideBack","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"slideFlag","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/s:Sb","text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"},{"text":")","kind":"text"}],"languages":["swift"]}],"kind":"declarations"},{"kind":"parameters","parameters":[{"content":[{"inlineContent":[{"text":"The object to be dragged.","type":"text"}],"type":"paragraph"}],"name":"image"},{"content":[{"inlineContent":[{"text":"Location of the image’s bottom-left corner in the window’s coordinate system. It determines the placement of the dragged image under the pointer.","type":"text"}],"type":"paragraph"}],"name":"baseLocation"},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The pointer’s location relative to the mouse-down location. Not used in macOS 10.4 and later."}]}],"name":"initialOffset"},{"content":[{"inlineContent":[{"text":"The left-mouse down event that triggered the dragging operation.","type":"text"}],"type":"paragraph"}],"name":"event"},{"content":[{"type":"paragraph","inlineContent":[{"text":"The pasteboard that holds the data to be transferred to the destination.","type":"text"}]}],"name":"pboard"},{"content":[{"type":"paragraph","inlineContent":[{"text":"The object serving as the controller of the dragging operation. It must conform to the ","type":"text"},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSDraggingSource","isActive":true},{"text":" protocol.","type":"text"}]}],"name":"sourceObj"},{"content":[{"inlineContent":[{"text":"Specifies whether the drag image should slide back to ","type":"text"},{"code":"baseLocation","type":"codeVoice"},{"text":" if it’s rejected by the drag destination. Pass ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/true","isActive":true,"type":"reference"},{"text":" to specify slide back behavior or ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/false","isActive":true,"type":"reference"},{"text":" to specify that it should not.","type":"text"}],"type":"paragraph"}],"name":"slideFlag"}]},{"kind":"content","content":[{"type":"heading","level":2,"text":"Discussion","anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"This method should be invoked only from within a view’s implementation of the "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)","isActive":true},{"type":"text","text":" or "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)","isActive":true},{"type":"text","text":" methods (which overrides the version defined in "},{"type":"codeVoice","code":"NSResponder"},{"type":"text","text":" class). Essentially the same as the "},{"type":"codeVoice","code":"NSView"},{"type":"text","text":" method of the same name, except that "},{"type":"codeVoice","code":"baseLocation"},{"type":"text","text":" is given in the "},{"type":"codeVoice","code":"NSWindow"},{"type":"text","text":" object’s base coordinate system."}]}]}],"metadata":{"platforms":[{"deprecatedAt":"15.4","unavailable":false,"introducedAt":"10.0","beta":false,"deprecated":false,"name":"macOS","message":"Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead."}],"symbolKind":"method","roleHeading":"Instance Method","navigatorTitle":[{"text":"dragImage:at:offset:event:pasteboard:source:slideBack:","kind":"identifier"}],"modules":[{"name":"AppKit"}],"externalID":"c:objc(cs)NSWindow(im)dragImage:at:offset:event:pasteboard:source:slideBack:","role":"symbol","title":"drag(_:at:offset:event:pasteboard:source:slideBack:)","extendedModule":"AppKit","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"drag","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSImage","text":"NSImage","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"at","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSPoint","text":"NSPoint","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"offset","kind":"externalParam"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSSize","preciseIdentifier":"c:@T@NSSize"},{"kind":"text","text":", "},{"kind":"externalParam","text":"event"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":", "},{"kind":"externalParam","text":"pasteboard"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSPasteboard","preciseIdentifier":"c:objc(cs)NSPasteboard"},{"kind":"text","text":", "},{"kind":"externalParam","text":"source"},{"kind":"text","text":": "},{"kind":"keyword","text":"Any"},{"kind":"text","text":", "},{"kind":"externalParam","text":"slideBack"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":")"}]},"variants":[{"paths":["/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)"],"traits":[{"interfaceLanguage":"occ"}]}],"seeAlsoSections":[{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)","doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()"],"title":"Dragging Items","generated":true,"anchor":"Dragging-Items"}],"abstract":[{"text":"Begins a dragging session.","type":"text"}],"deprecationSummary":[{"inlineContent":[{"text":"Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead.","type":"text"}],"type":"paragraph"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"sections":[],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSWindow"]]},"kind":"symbol","references":{"doc://com.apple.appkit/documentation/AppKit/NSWindow":{"type":"topic","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"NSWindow"}],"url":"/documentation/appkit/nswindow","title":"NSWindow","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSWindow"}],"abstract":[{"type":"text","text":"A window that an app displays on the screen."}],"role":"symbol"},"doc://com.externally.resolved.symbol/c:@T@NSSize":{"abstract":[{"type":"text","text":"A two-dimensional size."}],"url":"/documentation/foundation/nssize","kind":"symbol","role":"symbol","title":"NSSize","identifier":"doc://com.externally.resolved.symbol/c:@T@NSSize","type":"topic","fragments":[{"kind":"text","text":"typealias "},{"kind":"identifier","text":"NSSize"}]},"doc://com.externally.resolved.symbol/c:@T@NSPoint":{"abstract":[{"text":"A point in a Cartesian coordinate system.","type":"text"}],"url":"/documentation/foundation/nspoint","kind":"symbol","role":"symbol","title":"NSPoint","identifier":"doc://com.externally.resolved.symbol/c:@T@NSPoint","type":"topic","fragments":[{"text":"typealias ","kind":"text"},{"text":"NSPoint","kind":"identifier"}]},"doc://com.externally.resolved.symbol/s:Sb":{"title":"Bool","type":"topic","identifier":"doc://com.externally.resolved.symbol/s:Sb","role":"symbol","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Bool","kind":"identifier"}],"abstract":[{"type":"text","text":"A value type whose instances are either `true` or `false`."}],"kind":"symbol","url":"/documentation/Swift/Bool"},"doc://com.apple.documentation/documentation/swift/true":{"title":"true","type":"topic","identifier":"doc://com.apple.documentation/documentation/swift/true","role":"symbol","abstract":[{"type":"text","text":"A true value."}],"kind":"symbol","url":"/documentation/swift/true"},"doc://com.apple.documentation/documentation/swift/false":{"title":"false","type":"topic","identifier":"doc://com.apple.documentation/documentation/swift/false","role":"symbol","abstract":[{"text":"A false value.","type":"text"}],"kind":"symbol","url":"/documentation/swift/false"},"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)":{"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"mouseDown","kind":"identifier"},{"text":"(","kind":"text"},{"text":"with","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSEvent","text":"NSEvent","kind":"typeIdentifier"},{"text":")","kind":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)","abstract":[{"text":"Informs the receiver that the user has pressed the left mouse button.","type":"text"}],"type":"topic","title":"mouseDown(with:)","kind":"symbol","navigatorTitle":[{"text":"mouseDown:","kind":"identifier"}],"url":"/documentation/appkit/nsresponder/mousedown(with:)","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit":{"kind":"symbol","url":"/documentation/appkit","title":"AppKit","type":"topic","abstract":[{"text":"Construct and manage a graphical, event-driven user interface for your macOS app.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit","role":"collection"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","kind":"technologies"},"doc://com.apple.appkit/documentation/AppKit/NSImage":{"kind":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSImage","url":"/documentation/appkit/nsimage","navigatorTitle":[{"text":"NSImage","kind":"identifier"}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSImage","kind":"identifier"}],"type":"topic","title":"NSImage","role":"symbol","abstract":[{"text":"A high-level interface for manipulating image data.","type":"text"}]},"doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:":{"type":"topic","role":"symbol","abstract":[{"text":"Initiates a dragging operation from the view, allowing the user to drag arbitrary data with a specified icon into any application that has window or view objects that accept dragged data.","type":"text"}],"kind":"symbol","url":"/documentation/appkit/nsview/dragimage:at:offset:event:pasteboard:source:slideback:","title":"dragImage:at:offset:event:pasteboard:source:slideBack:","deprecated":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:","navigatorTitle":[{"text":"dragImage:at:offset:event:pasteboard:source:slideBack:","kind":"identifier"}],"fragments":[{"text":"- ","kind":"text"},{"text":"dragImage:at:offset:event:pasteboard:source:slideBack:","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)":{"title":"mouseDragged(with:)","kind":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)","url":"/documentation/appkit/nsresponder/mousedragged(with:)","navigatorTitle":[{"kind":"identifier","text":"mouseDragged:"}],"abstract":[{"text":"Informs the receiver that the user has moved the mouse with the left button pressed.","type":"text"}],"role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"mouseDragged"},{"kind":"text","text":"("},{"kind":"externalParam","text":"with"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":")"}]},"doc://com.apple.appkit/documentation/AppKit/NSEvent":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSEvent","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"NSEvent"}],"role":"symbol","type":"topic","title":"NSEvent","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSEvent"}],"abstract":[{"type":"text","text":"An object that contains information about an input action, such as a mouse click or a key press."}],"url":"/documentation/appkit/nsevent"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)":{"abstract":[{"text":"Begins a dragging session.","type":"text"}],"kind":"symbol","type":"topic","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)","deprecated":true,"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"drag"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSImage","text":"NSImage","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"at","kind":"externalParam"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","text":"NSPoint","preciseIdentifier":"c:@T@NSPoint"},{"text":", ","kind":"text"},{"text":"offset","kind":"externalParam"},{"kind":"text","text":": "},{"preciseIdentifier":"c:@T@NSSize","text":"NSSize","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"kind":"externalParam","text":"event"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSEvent","text":"NSEvent","kind":"typeIdentifier"},{"kind":"text","text":", "},{"text":"pasteboard","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPasteboard","text":"NSPasteboard","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"source","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Any","kind":"keyword"},{"text":", ","kind":"text"},{"text":"slideBack","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sb","text":"Bool","kind":"typeIdentifier"},{"text":")","kind":"text"}],"title":"drag(_:at:offset:event:pasteboard:source:slideBack:)","url":"/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)","navigatorTitle":[{"text":"dragImage:at:offset:event:pasteboard:source:slideBack:","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()":{"abstract":[{"type":"text","text":"Unregisters the window as a possible destination for dragging operations."}],"url":"/documentation/appkit/nswindow/unregisterdraggedtypes()","kind":"symbol","title":"unregisterDraggedTypes()","navigatorTitle":[{"kind":"identifier","text":"unregisterDraggedTypes"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"unregisterDraggedTypes"},{"kind":"text","text":"()"}],"type":"topic","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()"},"doc://com.apple.appkit/documentation/AppKit/NSPasteboard":{"url":"/documentation/appkit/nspasteboard","title":"NSPasteboard","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"NSPasteboard"}],"kind":"symbol","type":"topic","navigatorTitle":[{"text":"NSPasteboard","kind":"identifier"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSPasteboard","abstract":[{"text":"An object that transfers data to and from the pasteboard server.","type":"text"}],"role":"symbol"},"doc://com.externally.resolved.symbol/s:ScM":{"abstract":[{"text":"A singleton actor whose executor is equivalent to the main dispatch queue.","type":"text"}],"url":"/documentation/Swift/MainActor","fragments":[{"text":"@globalActor","kind":"attribute"},{"text":" ","kind":"text"},{"kind":"keyword","text":"final"},{"text":" ","kind":"text"},{"text":"actor","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MainActor","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/s:ScM","title":"MainActor","type":"topic","role":"symbol","kind":"symbol"},"doc://com.externally.resolved.symbol/c:@T@BOOL":{"title":"BOOL","kind":"symbol","abstract":[{"type":"text","text":"Type to represent a Boolean value."}],"type":"topic","role":"symbol","url":"/documentation/objectivec/bool","identifier":"doc://com.externally.resolved.symbol/c:@T@BOOL"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)":{"abstract":[{"type":"text","text":"Registers a set of pasteboard types that the window accepts as the destination of an image-dragging session."}],"url":"/documentation/appkit/nswindow/registerfordraggedtypes(_:)","kind":"symbol","title":"registerForDraggedTypes(_:)","navigatorTitle":[{"kind":"identifier","text":"registerForDraggedTypes:"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"registerForDraggedTypes"},{"kind":"text","text":"(["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPasteboard","text":"NSPasteboard"},{"kind":"text","text":"."},{"preciseIdentifier":"c:@T@NSPasteboardType","kind":"typeIdentifier","text":"PasteboardType"},{"kind":"text","text":"])"}],"type":"topic","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)"},"doc://com.apple.appkit/documentation/AppKit/NSDraggingSource":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSDraggingSource","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSDraggingSource","kind":"identifier"}],"type":"topic","abstract":[{"type":"text","text":"A set of methods that are implemented by the source object in a dragging session."}],"url":"/documentation/appkit/nsdraggingsource","title":"NSDraggingSource","kind":"symbol","role":"symbol","navigatorTitle":[{"text":"NSDraggingSource","kind":"identifier"}]}},"variantOverrides":[{"patch":[{"op":"replace","path":"/identifier/interfaceLanguage","value":"occ"},{"op":"replace","path":"/metadata/platforms","value":[{"name":"macOS","introducedAt":"10.0","unavailable":false,"deprecated":false,"beta":false,"deprecatedAt":"15.4"}]},{"op":"replace","path":"/metadata/roleHeading","value":"Instance Method"},{"op":"replace","path":"/metadata/title","value":"dragImage:at:offset:event:pasteboard:source:slideBack:"},{"op":"replace","path":"/metadata/symbolKind","value":"method"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"dragImage:at:offset:event:pasteboard:source:slideBack:","kind":"identifier"}],"path":"/metadata/fragments"},{"op":"replace","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSWindow"]]},"path":"/hierarchy"},{"op":"add","value":null,"path":"/topicSections"},{"op":"add","value":null,"path":"/relationshipsSections"},{"op":"replace","value":[{"anchor":"Related-Documentation","title":"Related Documentation","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:"]},{"anchor":"Dragging-Items","title":"Dragging Items","generated":true,"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)","doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()"]}],"path":"/seeAlsoSections"},{"op":"replace","value":{"declarations":[{"platforms":["Mac Catalyst","macOS"],"tokens":[{"text":"- (","kind":"text"},{"text":"void","preciseIdentifier":"c:v","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"dragImage:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSImage","text":"NSImage","identifier":"doc://com.apple.appkit/documentation/AppKit/NSImage","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"image","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"at:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@NSPoint","text":"NSPoint","identifier":"doc://com.externally.resolved.symbol/c:@T@NSPoint","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"baseLocation","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"offset:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@NSSize","text":"NSSize","identifier":"doc://com.externally.resolved.symbol/c:@T@NSSize","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"initialOffset","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"event:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSEvent","text":"NSEvent","identifier":"doc://com.apple.appkit/documentation/AppKit/NSEvent","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"event","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"pasteboard:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPasteboard","text":"NSPasteboard","identifier":"doc://com.apple.appkit/documentation/AppKit/NSPasteboard","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"pboard","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"source:","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"keyword","text":"id"},{"kind":"text","text":") "},{"kind":"internalParam","text":"sourceObj"},{"kind":"text","text":" "},{"kind":"identifier","text":"slideBack:"},{"kind":"text","text":"("},{"identifier":"doc://com.externally.resolved.symbol/c:@T@BOOL","kind":"typeIdentifier","text":"BOOL","preciseIdentifier":"c:@T@BOOL"},{"kind":"text","text":") "},{"kind":"internalParam","text":"slideFlag"},{"kind":"text","text":";"}],"languages":["occ"]}],"kind":"declarations"},"path":"/primaryContentSections/0"},{"op":"replace","path":"/primaryContentSections/1","value":{"kind":"parameters","parameters":[{"content":[{"inlineContent":[{"text":"The object to be dragged.","type":"text"}],"type":"paragraph"}],"name":"image"},{"content":[{"inlineContent":[{"text":"Location of the image’s bottom-left corner in the window’s coordinate system. It determines the placement of the dragged image under the pointer.","type":"text"}],"type":"paragraph"}],"name":"baseLocation"},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The pointer’s location relative to the mouse-down location. Not used in macOS 10.4 and later."}]}],"name":"initialOffset"},{"content":[{"inlineContent":[{"text":"The left-mouse down event that triggered the dragging operation.","type":"text"}],"type":"paragraph"}],"name":"event"},{"content":[{"type":"paragraph","inlineContent":[{"text":"The pasteboard that holds the data to be transferred to the destination.","type":"text"}]}],"name":"pboard"},{"content":[{"type":"paragraph","inlineContent":[{"text":"The object serving as the controller of the dragging operation. It must conform to the ","type":"text"},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSDraggingSource","isActive":true},{"text":" protocol.","type":"text"}]}],"name":"sourceObj"},{"content":[{"inlineContent":[{"text":"Specifies whether the drag image should slide back to ","type":"text"},{"code":"baseLocation","type":"codeVoice"},{"text":" if it’s rejected by the drag destination. Pass ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/true","isActive":true,"type":"reference"},{"text":" to specify slide back behavior or ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/false","isActive":true,"type":"reference"},{"text":" to specify that it should not.","type":"text"}],"type":"paragraph"}],"name":"slideFlag"}]}},{"op":"replace","value":[{"inlineContent":[{"type":"text","text":"Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead."}],"type":"paragraph"}],"path":"/deprecationSummary"},{"op":"replace","value":"NSWindow","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title"},{"op":"replace","value":[{"text":"NSWindow","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindow"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle"},{"op":"replace","value":"mouseDown:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"mouseDown:"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/fragments"},{"op":"replace","value":"NSImage","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSImage"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments"},{"op":"replace","value":[{"text":"NSImage","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle"},{"op":"replace","value":"mouseDragged:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDragged(with:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"mouseDragged:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDragged(with:)/fragments"},{"op":"replace","value":"NSEvent","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/title"},{"op":"replace","value":[{"text":"NSEvent","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSEvent"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/navigatorTitle"},{"op":"replace","value":"dragImage:at:offset:event:pasteboard:source:slideBack:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1drag(_:at:offset:event:pasteboard:source:slideBack:)/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"dragImage:at:offset:event:pasteboard:source:slideBack:"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1drag(_:at:offset:event:pasteboard:source:slideBack:)/fragments"},{"op":"replace","value":"unregisterDraggedTypes","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1unregisterDraggedTypes()/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"unregisterDraggedTypes"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1unregisterDraggedTypes()/fragments"},{"op":"replace","value":"NSPasteboard","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSPasteboard"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSPasteboard"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle"},{"op":"replace","value":"registerForDraggedTypes:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1registerForDraggedTypes(_:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"registerForDraggedTypes:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1registerForDraggedTypes(_:)/fragments"},{"op":"replace","value":"NSDraggingSource","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSDraggingSource"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSDraggingSource"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/navigatorTitle"}],"traits":[{"interfaceLanguage":"occ"}]}],"diffAvailability":{"minor":{"change":"modified","platform":"Xcode","versions":["16.2","16.3 beta 2"]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Begins a dragging session.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:objc(cs)NSWindow(im)dragImage:at:offset:event:pasteboard:source:slideBack:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "drag"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSImage",
+        "text": "NSImage"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "at"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSPoint",
+        "text": "NSPoint"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "offset"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSSize",
+        "text": "NSSize"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "event"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSEvent",
+        "text": "NSEvent"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "pasteboard"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSPasteboard",
+        "text": "NSPasteboard"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "source"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "slideBack"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.4",
+        "introducedAt": "10.0",
+        "message": "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead.",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "drag(_:at:offset:event:pasteboard:source:slideBack:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drag"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "image"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImage",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "at"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "baseLocation"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "offset"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "initialOffset"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSSize",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSEvent",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "pasteboard"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pboard"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPasteboard",
+              "text": "NSPasteboard"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "source"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sourceObj"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "slideBack"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "slideFlag"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object to be dragged.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "image"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Location of the image’s bottom-left corner in the window’s coordinate system. It determines the placement of the dragged image under the pointer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "baseLocation"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pointer’s location relative to the mouse-down location. Not used in macOS 10.4 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "initialOffset"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The left-mouse down event that triggered the dragging operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "event"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pasteboard that holds the data to be transferred to the destination.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pboard"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object serving as the controller of the dragging operation. It must conform to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sourceObj"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Specifies whether the drag image should slide back to ",
+                  "type": "text"
+                },
+                {
+                  "code": "baseLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if it’s rejected by the drag destination. Pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to specify slide back behavior or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to specify that it should not.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "slideFlag"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method should be invoked only from within a view’s implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods (which overrides the version defined in ",
+              "type": "text"
+            },
+            {
+              "code": "NSResponder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class). Essentially the same as the ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the same name, except that ",
+              "type": "text"
+            },
+            {
+              "code": "baseLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is given in the ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object’s base coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that are implemented by the source object in a dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingsource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains information about an input action, such as a mouse click or a key press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that transfers data to and from the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the user has pressed the left mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mousedown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the user has moved the mouse with the left button pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDragged(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDragged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mousedragged(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:": {
+      "abstract": [
+        {
+          "text": "Initiates a dragging operation from the view, allowing the user to drag arbitrary data with a specified icon into any application that has window or view objects that accept dragged data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dragImage:at:offset:event:pasteboard:source:slideBack:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/dragimage:at:offset:event:pasteboard:source:slideback:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)": {
+      "abstract": [
+        {
+          "text": "Begins a dragging session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slideBack"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drag(_:at:offset:event:pasteboard:source:slideBack:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a set of pasteboard types that the window accepts as the destination of an image-dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForDraggedTypes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForDraggedTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForDraggedTypes(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/registerfordraggedtypes(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()": {
+      "abstract": [
+        {
+          "text": "Unregisters the window as a possible destination for dragging operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterDraggedTypes"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterDraggedTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterDraggedTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/unregisterdraggedtypes()"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSPoint": {
+      "abstract": [
+        {
+          "text": "A point in a Cartesian coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPoint",
+      "type": "topic",
+      "url": "/documentation/foundation/nspoint"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSSize": {
+      "abstract": [
+        {
+          "text": "A two-dimensional size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSize",
+      "type": "topic",
+      "url": "/documentation/foundation/nssize"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dragging-Items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()"
+      ],
+      "title": "Dragging Items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.4",
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Dragging-Items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/unregisterDraggedTypes()"
+              ],
+              "title": "Dragging Items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "dragImage:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSImage",
+                    "text": "NSImage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "image"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "at:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSPoint",
+                    "text": "NSPoint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "baseLocation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "offset:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSSize",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSSize",
+                    "text": "NSSize"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "initialOffset"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "event:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSEvent",
+                    "text": "NSEvent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "event"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "pasteboard:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSPasteboard",
+                    "text": "NSPasteboard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "pboard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "source:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "id"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "sourceObj"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "slideBack:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "slideFlag"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The object to be dragged.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "image"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Location of the image’s bottom-left corner in the window’s coordinate system. It determines the placement of the dragged image under the pointer.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "baseLocation"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pointer’s location relative to the mouse-down location. Not used in macOS 10.4 and later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "initialOffset"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The left-mouse down event that triggered the dragging operation.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "event"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pasteboard that holds the data to be transferred to the destination.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "pboard"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The object serving as the controller of the dragging operation. It must conform to the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " protocol.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "sourceObj"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies whether the drag image should slide back to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "baseLocation",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if it’s rejected by the drag destination. Pass ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to specify slide back behavior or ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to specify that it should not.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "slideFlag"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title",
+          "value": "NSWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/title",
+          "value": "mouseDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDragged(with:)/title",
+          "value": "mouseDragged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDragged(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDragged:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/title",
+          "value": "NSEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1drag(_:at:offset:event:pasteboard:source:slideBack:)/title",
+          "value": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1drag(_:at:offset:event:pasteboard:source:slideBack:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dragImage:at:offset:event:pasteboard:source:slideBack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1unregisterDraggedTypes()/title",
+          "value": "unregisterDraggedTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1unregisterDraggedTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterDraggedTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1registerForDraggedTypes(_:)/title",
+          "value": "registerForDraggedTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1registerForDraggedTypes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForDraggedTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/title",
+          "value": "NSDraggingSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nswindow/drag(_:at:offset:event:pasteboard:source:slideback:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
