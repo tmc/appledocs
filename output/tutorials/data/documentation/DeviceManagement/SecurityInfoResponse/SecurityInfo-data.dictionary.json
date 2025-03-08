@@ -1,0 +1,1475 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary that contains security-related information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-commands:SecurityInfoResponse.SecurityInfo",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "SecurityInfoResponse.SecurityInfo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecurityInfoResponse.SecurityInfo"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Command",
+    "symbolKind": "dictionary",
+    "title": "SecurityInfoResponse.SecurityInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecurityInfoResponse.SecurityInfo"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system booted using an Authenticated Root Volume. This value is available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AuthenticatedRootVolumeEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of seconds before a device goes to sleep after being idle. This value is only available on Shared iPad in iOS 17 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AutoLockTime",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "allowed",
+                "disallowed",
+                "not supported"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This value specifies whether the Secure Enclave Processor (SEP) supports and allows secure operations to use the Bootstrap Token. The value is automatically set for devices enrolled through the Device Enrollment Program (DEP). The user can also manually set this value in the RecoveryOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This value is available for Apple silicon in macOS 11 and later. Not available for user enrollment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "BootstrapTokenAllowedForAuthentication",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device can accept a Bootstrap Token from the MDM server instead of prompting for user authentication prior to enabling kernel extensions. This includes enabling kexts through the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.syspolicy.kernel-extension-policy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payload or triggering the ",
+                  "type": "text"
+                },
+                {
+                  "code": "RestartDevice",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command with ",
+                  "type": "text"
+                },
+                {
+                  "code": "RebuildKernelCache",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This only applies when ",
+                  "type": "text"
+                },
+                {
+                  "code": "BootstrapTokenAllowedForAuthentication",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This value is available for Apple silicon in macOS 11 and later. Not available for user enrollment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "BootstrapTokenRequiredForKernelExtensionApproval",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device can accept a Bootstrap Token from the MDM server instead of prompting for user authentication prior to installation. This only applies when ",
+                  "type": "text"
+                },
+                {
+                  "code": "BootstrapTokenAllowedForAuthentication",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This value is available for Apple silicon in macOS 11 and later. Not available for user enrollment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "BootstrapTokenRequiredForSoftwareUpdate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device has enabled FileVault full disk encryption (FDE). This value is available in macOS 10.9 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FDE_Enabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", FileVault FDE has an institutional recovery key. This value is available in macOS 10.9 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FDE_HasInstitutionalRecoveryKey",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", FileVault FDE has a personal recovery key. This value is available in macOS 10.9 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FDE_HasPersonalRecoveryKey",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the FileVault personal recovery key has enabled escrow with a recovery key, this value contains the key. The certificate from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " profile encrypts the key and wraps it as CMS data. This value is available in macOS 10.13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FDE_PersonalRecoveryKeyCMS",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the FileVault personal recovery key has enabled escrow with a recovery key, this value is the device serial number. This is the value that displays to the user at the EFI login window as part of the help message if they enter their password incorrectly three times. The server also uses this value as an index when saving the device personal recovery key. This replaces the ",
+                  "type": "text"
+                },
+                {
+                  "code": "recordNumber",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that the server returned in the previous escrow mechanism. This value is available in macOS 10.13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FDE_PersonalRecoveryKeyDeviceKey",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains the firewall settings. This value is available in macOS 10.12 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FirewallSettings",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirewallSettings-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:SecurityInfoResponse.SecurityInfo.FirewallSettings",
+              "text": "SecurityInfoResponse.SecurityInfo.FirewallSettings"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains the status of the EFI firmware password. This value is available in macOS 10.13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "FirmwarePasswordStatus",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirmwarePasswordStatus-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:SecurityInfoResponse.SecurityInfo.FirmwarePasswordStatus",
+              "text": "SecurityInfoResponse.SecurityInfo.FirmwarePasswordStatus"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An integer that indicates the underlying hardware encryption capabilities of the device, which is one of the following values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "1",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Block-level encryption",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "2",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": File-level encryption",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "3",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Both block-level and file-level encryption",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Important",
+              "style": "important",
+              "type": "aside"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "HardwareEncryptionCaps",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "IsRecoveryLockEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "ManagementStatus",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/ManagementStatus-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:SecurityInfoResponse.SecurityInfo.ManagementStatus",
+              "text": "SecurityInfoResponse.SecurityInfo.ManagementStatus"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "PasscodeCompliant",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "PasscodeCompliantWithProfiles",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "PasscodeLockGracePeriod",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "PasscodeLockGracePeriodEnforced",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "PasscodePresent",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "RemoteDesktopEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "SecureBoot",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:SecurityInfoResponse.SecurityInfo.SecureBoot",
+              "text": "SecurityInfoResponse.SecurityInfo.SecureBoot"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "4.0.0",
+          "name": "SystemIntegrityProtectionEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a device to have data protection, ",
+                  "type": "text"
+                },
+                {
+                  "code": "HardwareEncryptionCaps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be ",
+                  "type": "text"
+                },
+                {
+                  "code": "3",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "PasscodePresent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "This value is available in iOS 4 and later, and tvOS 6 and later."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IsRecoveryLockEnabled: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a password is required to enter recovery (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetRecoveryLockCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). Available in macOS 11.5 and later and only on Apple silicon devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ManagementStatus: A dictionary that contains the status of the device’s MDM enrollment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PasscodeCompliant: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the user’s passcode is compliant with all requirements on the device, including Exchange and other accounts. This value is available in iOS 4 and later, and tvOS 6 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PasscodeCompliantWithProfiles: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the user’s passcode is compliant with requirements from profiles. This key doesn’t apply to User-Enrolled devices. This value is available in iOS 4 and later, and tvOS 6 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PasscodeLockGracePeriod: The user preference for the number of seconds before a locked screen requires the device passcode to unlock it. This value is only available for Shared iPad.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PasscodeLockGracePeriodEnforced: The enforced value for the number of seconds before a locked screen requires the device passcode to unlock it. If a device has a passcode, changing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PasscodeLockGracePeriod",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a larger value doesn’t take effect until the user logs out or removes the passcode. This value is only available for Shared iPad.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PasscodePresent: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the device has a passcode. This key doesn’t apply to User-Enrolled devices. This value is available in iOS 4 and later, and tvOS 6 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "RemoteDesktopEnabled: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", Remote Desktop is active on the device. This value is available in macOS 10.14.4 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SystemIntegrityProtectionEnabled: If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", System Integrity Protection (SIP) is active on the device. This value is available in macOS 10.12 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SecureBoot: A dictionary that contains the device’s Secure Boot settings. This value is available in macOS 10.15 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure FileVault recovery key escrow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FDERecoveryKeyEscrow"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FDERecoveryKeyEscrow"
+        }
+      ],
+      "role": "symbol",
+      "title": "FDERecoveryKeyEscrow",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fderecoverykeyescrow"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to get security-related information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/ErrorChainItem": {
+      "abstract": [
+        {
+          "text": "A dictionary that describes an error chain item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.ErrorChainItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/ErrorChainItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.ErrorChainItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.ErrorChainItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/errorchainitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains security-related information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirewallSettings-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the firewall settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.FirewallSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirewallSettings-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.FirewallSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo.FirewallSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary/firewallsettings-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirmwarePasswordStatus-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the status of the EFI firmware password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.FirmwarePasswordStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirmwarePasswordStatus-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.FirmwarePasswordStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo.FirmwarePasswordStatus",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary/firmwarepasswordstatus-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/ManagementStatus-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the status of the device’s MDM enrollment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.ManagementStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/ManagementStatus-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.ManagementStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo.ManagementStatus",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary/managementstatus-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The response object for the secure boot settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.SecureBoot"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.SecureBoot"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo.SecureBoot",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary/secureboot-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary/ReducedSecurity-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the device’s reduced security settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.SecureBoot.ReducedSecurity"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary/ReducedSecurity-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecurityInfoResponse.SecurityInfo.SecureBoot.ReducedSecurity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecurityInfoResponse.SecurityInfo.SecureBoot.ReducedSecurity",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary/secureboot-data.dictionary/reducedsecurity-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetRecoveryLockCommand": {
+      "abstract": [
+        {
+          "text": "The command to set the password for Recovery Lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetRecoveryLockCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetRecoveryLockCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetRecoveryLockCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetRecoveryLockCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setrecoverylockcommand"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/ErrorChainItem"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Commands",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirewallSettings-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/FirmwarePasswordStatus-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/ManagementStatus-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SecurityInfoResponse/SecurityInfo-data.dictionary/SecureBoot-data.dictionary/ReducedSecurity-data.dictionary"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/securityinforesponse/securityinfo-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2696 @@
+{
+  "abstract": [
+    {
+      "text": "The base class for graphics devices to be made available as part of the desktop.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "The IOFramebuffer class only enables simple framebuffer operation, which is not sufficient for the full macOS user experience. This class is not intended for use by third-party device drivers and is documented for informational purposes only.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioframebuffer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1397458,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFramebuffer",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFramebuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFramebuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iographicsdevice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOGraphicsDevice",
+              "text": "IOGraphicsDevice"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOFramebuffer base class defines APIs used to publish a linear framebuffer device. Device driver writers should subclass this class to provide a X native driver. macOS will also utilize 'ndrv' drivers via a subclass of IOFramebuffer IONDRVFramebuffer that does not require device driver writers to provide a X native driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are no in kernel clients of IOFramebuffer aside from rudimentary console and panic UI supported by the IOFramebuffer class. The IOFramebuffer class provides the IOUserClient implementation to allow the CoreGraphics server to provide the user accessible interface to all displays on a macOS system, and this is further layered underneath application frameworks. Device driver writers should not need any knowledge of this part of the interfaces. Similarly the instance variables of IOFramebuffer are mostly used for cursor rendering which is handled by the IOFramebuffer class, and should be avoided by subclass implementors. Only IOFramebuffer methods with header documentation in this header are designed for subclasses to implement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOFramebuffer provides simple framebuffer operation - acceleration for 2D, 3D and video may be provided by a separate implementation of the IOAccelerator class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/graphics_and_displays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics and Displays",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/graphics_and_displays"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolattribute": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFBCursorControlAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/iofbcursorcontrolattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolcallouts": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolcallouts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFBCursorControlCallouts",
+      "type": "topic",
+      "url": "/documentation/kernel/iofbcursorcontrolcallouts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer": {
+      "abstract": [
+        {
+          "text": "The base class for graphics devices to be made available as part of the desktop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFramebuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397450-setddcdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDDCData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397450-setddcdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397450-setddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397460-setclutwithentries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCLUTWithEntries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397460-setclutwithentries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCLUTWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397460-setclutwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397462-unregisterinterrupt": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397462-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unregisterInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397462-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397470-showcursor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "showCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397470-showcursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397470-showcursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397472-readddcclock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readDDCClock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397472-readddcclock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397472-readddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397475-setcursorstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCursorState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397475-setcursorstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCursorState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397475-setcursorstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397479-getpixelformats": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPixelFormats"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397479-getpixelformats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPixelFormats",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397479-getpixelformats"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397481-switchbackingframebuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "switchBackingFramebuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397481-switchbackingframebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "switchBackingFramebuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397481-switchbackingframebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397489-isconsoledevice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConsoleDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397489-isconsoledevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isConsoleDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397489-isconsoledevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397491-setaggressiveness": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAggressiveness"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397491-setaggressiveness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAggressiveness",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397491-setaggressiveness"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397497-enablecontroller": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397497-enablecontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableController",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397497-enablecontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397499-getpixelformatsfordisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPixelFormatsForDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397499-getpixelformatsfordisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPixelFormatsForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397499-getpixelformatsfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397501-getconnectioncount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getConnectionCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397501-getconnectioncount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getConnectionCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397501-getconnectioncount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397505-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397505-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397505-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397507-flushcursor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397507-flushcursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397507-flushcursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397509-getattributeforconnection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttributeForConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397509-getattributeforconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397509-getattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397512-getvramrange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVRAMRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397512-getvramrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getVRAMRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397512-getvramrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397518-open": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397518-open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "open",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397518-open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397520-getaggressiveness": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAggressiveness"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397520-getaggressiveness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAggressiveness",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397520-getaggressiveness"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397522-setgammatable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setGammaTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397522-setgammatable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setGammaTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397522-setgammatable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397524-getinformationfordisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInformationForDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397524-getinformationfordisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInformationForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397524-getinformationfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397527-getdisplaymodes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDisplayModes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397527-getdisplaymodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDisplayModes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397527-getdisplaymodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397529-setattributeforconnection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributeForConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397529-setattributeforconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397529-setattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397532-getattribute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397532-getattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397532-getattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397536-newuserclient": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397536-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397536-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397542-resetcursor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397542-resetcursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397542-resetcursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397547-getattributeforconnectionext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttributeForConnectionExt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397547-getattributeforconnectionext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttributeForConnectionExt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397547-getattributeforconnectionext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397549-getcurrentdisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397549-getcurrentdisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCurrentDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397549-getcurrentdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397551-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397551-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397551-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397553-setddcclock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDDCClock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397553-setddcclock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397553-setddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397555-getddcblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDDCBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397555-getddcblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDDCBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397555-getddcblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397560-setattributeext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributeExt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397560-setattributeext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributeExt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397560-setattributeext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397562-getpixelinformation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPixelInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397562-getpixelinformation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPixelInformation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397562-getpixelinformation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397564-getapplesense": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAppleSense"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397564-getapplesense",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAppleSense",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397564-getapplesense"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397568-setupforcurrentconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setupForCurrentConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397568-setupforcurrentconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setupForCurrentConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397568-setupforcurrentconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397570-hidecursor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "hideCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397570-hidecursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hideCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397570-hidecursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397574-getattributeext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttributeExt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397574-getattributeext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttributeExt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397574-getattributeext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397576-getboundingrect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBoundingRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397576-getboundingrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBoundingRect",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397576-getboundingrect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397578-stop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397578-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397578-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397584-powerstatedidchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateDidChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397584-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397584-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397588-setdisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397588-setdisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397588-setdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397592-setbackingframebuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBackingFramebuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397592-setbackingframebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBackingFramebuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397592-setbackingframebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397594-requestprobe": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestProbe"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397594-requestprobe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestProbe",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397594-requestprobe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397597-getaperturerange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getApertureRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397597-getaperturerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getApertureRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397597-getaperturerange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397604-close": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "close"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397604-close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "close",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397604-close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397606-handleevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397606-handleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397606-handleevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397608-getstartupdisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStartupDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397608-getstartupdisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397608-getstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397610-setattribute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397610-setattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397610-setattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397614-requestterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397614-requestterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397614-requestterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397616-setcursorimage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCursorImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397616-setcursorimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397616-setcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397618-hasddcconnect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasDDCConnect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397618-hasddcconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasDDCConnect",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397618-hasddcconnect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397623-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397623-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397623-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397625-convertcursorimage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertCursorImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397625-convertcursorimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397625-convertcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397628-initialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397628-initialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initialize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397628-initialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397632-getcontrollerworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getControllerWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397632-getcontrollerworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getControllerWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397632-getcontrollerworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397636-enableddcraster": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableDDCRaster"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397636-enableddcraster",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableDDCRaster",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397636-enableddcraster"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397648-gettiminginfofordisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimingInfoForDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397648-gettiminginfofordisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTimingInfoForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397648-gettiminginfofordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397650-connectflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397650-connectflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397650-connectflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397655-doi2crequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doI2CRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397655-doi2crequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doI2CRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397655-doi2crequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397659-getworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397659-getworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397659-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397663-deliverframebuffernotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliverFramebufferNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397663-deliverframebuffernotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deliverFramebufferNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397663-deliverframebuffernotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397665-powerstatewillchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateWillChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397665-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397665-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397667-serializeinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serializeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397667-serializeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serializeInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397667-serializeinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397669-getnotificationsemaphore": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationSemaphore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397669-getnotificationsemaphore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNotificationSemaphore",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397669-getnotificationsemaphore"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397671-getdisplaymodecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDisplayModeCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397671-getdisplaymodecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDisplayModeCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397671-getdisplaymodecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397677-setinterruptstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInterruptState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397677-setinterruptstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInterruptState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397677-setinterruptstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397679-movecursor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397679-movecursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397679-movecursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397681-getgraphicssystemworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getGraphicsSystemWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397681-getgraphicssystemworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getGraphicsSystemWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397681-getgraphicssystemworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397685-addframebuffernotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addFramebufferNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397685-addframebuffernotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addFramebufferNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397685-addframebuffernotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397689-readddcdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readDDCData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397689-readddcdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397689-readddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397691-getvbltime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVBLTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397691-getvbltime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getVBLTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397691-getvbltime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397697-setattributeforconnectionext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributeForConnectionExt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397697-setattributeforconnectionext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributeForConnectionExt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397697-setattributeforconnectionext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397705-setstartupdisplaymode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStartupDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397705-setstartupdisplaymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397705-setstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397709-setnumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397709-setnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397709-setnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397713-validatedetailedtiming": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateDetailedTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397713-validatedetailedtiming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateDetailedTiming",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397713-validatedetailedtiming"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397715-setdetailedtimings": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDetailedTimings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397715-setdetailedtimings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDetailedTimings",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397715-setdetailedtimings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397717-callplatformfunction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "callPlatformFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397717-callplatformfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callPlatformFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397717-callplatformfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397719-setapertureenable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setApertureEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397719-setapertureenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setApertureEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397719-setapertureenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397721-registerforinterrupttype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForInterruptType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397721-registerforinterrupttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForInterruptType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397721-registerforinterrupttype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397723-setpowerstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397723-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1397723-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags": {
+      "abstract": [
+        {
+          "text": "Return display sense information for legacy Apple sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "connectFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812972-connectflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage": {
+      "abstract": [
+        {
+          "text": "Utility method of IOFramebuffer to convert cursor image to a hardware cursor format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "convertCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812983-convertcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest": {
+      "abstract": [
+        {
+          "text": "Carry out an I2C request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doI2CRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1812996-doi2crequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller": {
+      "abstract": [
+        {
+          "text": "Perform first time setup of the framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enableController",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813011-enablecontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor": {
+      "abstract": [
+        {
+          "text": "Perform any needed cache flushing after software cursor rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813022-flushcursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange": {
+      "abstract": [
+        {
+          "text": "Return reference to IODeviceMemory object representing memory range of framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getApertureRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813036-getaperturerange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense": {
+      "abstract": [
+        {
+          "text": "Return display sense information for legacy Apple sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAppleSense",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813053-getapplesense"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute": {
+      "abstract": [
+        {
+          "text": "Generic method to retrieve some attribute of the framebuffer device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813070-getattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to retrieve some attribute of the framebuffer device, specific to one display connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813093-getattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount": {
+      "abstract": [
+        {
+          "text": "Reports the number of display connections the device supports, driven from one framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getConnectionCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813110-getconnectioncount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode": {
+      "abstract": [
+        {
+          "text": "Return the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCurrentDisplayMode(IODisplayModeID *, IOIndex *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock": {
+      "abstract": [
+        {
+          "text": "Return display EDID data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDDCBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813183-getddcblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount": {
+      "abstract": [
+        {
+          "text": "Return the number of display modes the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDisplayModeCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes": {
+      "abstract": [
+        {
+          "text": "Return the number of display modes the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDisplayModes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813237-getdisplaymodes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode": {
+      "abstract": [
+        {
+          "text": "Return information about a given display mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInformationForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats": {
+      "abstract": [
+        {
+          "text": "List the pixel formats the framebuffer supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelFormats",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813303-getpixelformats"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode": {
+      "abstract": [
+        {
+          "text": "Obsolete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelFormatsForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation": {
+      "abstract": [
+        {
+          "text": "Return information about the framebuffer format for a given display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPixelInformation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813353-getpixelinformation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode": {
+      "abstract": [
+        {
+          "text": "Return the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode": {
+      "abstract": [
+        {
+          "text": "Returns a timing description for a display mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTimingInfoForDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange": {
+      "abstract": [
+        {
+          "text": "Return reference to IODeviceMemory object representing memory range of all the cards vram.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getVRAMRange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813443-getvramrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent": {
+      "abstract": [
+        {
+          "text": "Notify IOFramebuffer superclass code of events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813481-handleevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect": {
+      "abstract": [
+        {
+          "text": "Return display DDC connect state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "hasDDCConnect",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813510-hasddcconnect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock": {
+      "abstract": [
+        {
+          "text": "Reads the input state of the I2C clock line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813550-readddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata": {
+      "abstract": [
+        {
+          "text": "Reads the input state of the I2C data line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813593-readddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype": {
+      "abstract": [
+        {
+          "text": "Set callbacks for driver to call on interrupt events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerForInterruptType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable": {
+      "abstract": [
+        {
+          "text": "Enable an aperture on the framebuffer (usually unimplemented, no OS usage).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setApertureEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813646-setapertureenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute": {
+      "abstract": [
+        {
+          "text": "Generic method to set some attribute of the framebuffer device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAttribute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813661-setattribute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to set some attribute of the framebuffer device, specific to one display connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813672-setattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries": {
+      "abstract": [
+        {
+          "text": "Set the color lookup table to be used by the framebuffer in indexed modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCLUTWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813680-setclutwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers current display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCurrentDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage": {
+      "abstract": [
+        {
+          "text": "Set a new image for the hardware cursor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCursorImage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813692-setcursorimage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate": {
+      "abstract": [
+        {
+          "text": "Set a new position and visibility for the hardware cursor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCursorState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813699-setcursorstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock": {
+      "abstract": [
+        {
+          "text": "Sets the state of the I2C clock line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDDCClock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813707-setddcclock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata": {
+      "abstract": [
+        {
+          "text": "Sets the state of the I2C data line on a bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDDCData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813718-setddcdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings": {
+      "abstract": [
+        {
+          "text": "Installs an array of OS programmed detailed timings to be made available by the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDetailedTimings",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813724-setdetailedtimings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers current display mode and depth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813732-setdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable": {
+      "abstract": [
+        {
+          "text": "Set the gamma table to be used by the framebuffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setGammaTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813739-setgammatable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate": {
+      "abstract": [
+        {
+          "text": "Enable or disable a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInterruptState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813744-setinterruptstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode": {
+      "abstract": [
+        {
+          "text": "Set the framebuffers display mode and depth to be used during boot and at startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setStartupDisplayMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt": {
+      "abstract": [
+        {
+          "text": "Remove a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unregisterInterrupt(void *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt": {
+      "abstract": [
+        {
+          "text": "Enable or disable a callback previously installed by registerForInterruptType().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unregisterInterrupt(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming": {
+      "abstract": [
+        {
+          "text": "Reports whether a detailed timing is able to be programmed with the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "validateDetailedTiming",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870087-message": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870087-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2870087-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870088-willterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "willTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870088-willterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2870088-willterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870089-diagnosereport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "diagnoseReport"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870089-diagnosereport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "diagnoseReport",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2870089-diagnosereport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870090-terminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870090-terminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2870090-terminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870091-didterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "didTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870091-didterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2870091-didterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2880391-addframebuffernotificationwithop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addFramebufferNotificationWithOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2880391-addframebuffernotificationwithop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addFramebufferNotificationWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2880391-addframebuffernotificationwithop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2887410-attach": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attach"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2887410-attach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attach",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2887410-attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923478-sendlimitstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendLimitState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923478-sendlimitstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendLimitState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2923478-sendlimitstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923479-resetlimitstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetLimitState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923479-resetlimitstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetLimitState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/2923479-resetlimitstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3194323-setproperties": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3194323-setproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/3194323-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3656573-handlevbl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleVBL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3656573-handlevbl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleVBL",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/3656573-handlevbl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioframebuffer/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioframebuffer/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioframebuffer/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iographicsdevice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iographicsdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGraphicsDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iographicsdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iondrvframebuffer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iondrvframebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONDRVFramebuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iondrvframebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotvector": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTVector",
+      "type": "topic",
+      "url": "/documentation/kernel/iotvector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iographicsdevice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iondrvframebuffer",
+        "doc://com.apple.documentation/documentation/kernel/iographicsdevice",
+        "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolattribute",
+        "doc://com.apple.documentation/documentation/kernel/iofbcursorcontrolcallouts",
+        "doc://com.apple.documentation/documentation/kernel/iotvector"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1819346",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812972-connectflags",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812983-convertcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1812996-doi2crequest",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813011-enablecontroller",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813022-flushcursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813036-getaperturerange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813053-getapplesense",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813070-getattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813093-getattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813110-getconnectioncount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813145-getcurrentdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813183-getddcblock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813210-getdisplaymodecount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813237-getdisplaymodes",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813269-getinformationfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813303-getpixelformats",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813329-getpixelformatsfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813353-getpixelinformation",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813382-getstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813413-gettiminginfofordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813443-getvramrange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813481-handleevent",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813510-hasddcconnect",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813550-readddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813593-readddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813622-registerforinterrupttype",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813646-setapertureenable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813661-setattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813672-setattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813680-setclutwithentries",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813685-setcurrentdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813692-setcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813699-setcursorstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813707-setddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813718-setddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813724-setdetailedtimings",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813732-setdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813739-setgammatable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813744-setinterruptstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813749-setstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813753-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813757-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1813761-validatedetailedtiming"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1819439",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1819442",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2855350",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397685-addframebuffernotification",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2880391-addframebuffernotificationwithop",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2887410-attach",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397717-callplatformfunction",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397604-close",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397650-connectflags",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397625-convertcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397663-deliverframebuffernotification",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870089-diagnosereport",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870091-didterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397655-doi2crequest",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397497-enablecontroller",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397636-enableddcraster",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397507-flushcursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397623-free",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397520-getaggressiveness",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397597-getaperturerange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397564-getapplesense",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397532-getattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397574-getattributeext",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397509-getattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397547-getattributeforconnectionext",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397576-getboundingrect",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397501-getconnectioncount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397632-getcontrollerworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397549-getcurrentdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397555-getddcblock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397671-getdisplaymodecount",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397527-getdisplaymodes",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397681-getgraphicssystemworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397524-getinformationfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397505-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397669-getnotificationsemaphore",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397479-getpixelformats",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397499-getpixelformatsfordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397562-getpixelinformation",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397608-getstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397648-gettiminginfofordisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397691-getvbltime",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397512-getvramrange",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397659-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397606-handleevent",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397618-hasddcconnect",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397570-hidecursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397489-isconsoledevice",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870087-message",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397679-movecursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397536-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397518-open",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397584-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397665-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397472-readddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397689-readddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397721-registerforinterrupttype",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397594-requestprobe",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397614-requestterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397542-resetcursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923479-resetlimitstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2923478-sendlimitstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397667-serializeinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397491-setaggressiveness",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397719-setapertureenable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397610-setattribute",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397560-setattributeext",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397529-setattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397697-setattributeforconnectionext",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397592-setbackingframebuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397460-setclutwithentries",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397616-setcursorimage",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397475-setcursorstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397553-setddcclock",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397450-setddcdata",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397715-setdetailedtimings",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397588-setdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397522-setgammatable",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397677-setinterruptstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397709-setnumber",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397723-setpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3194323-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397705-setstartupdisplaymode",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397568-setupforcurrentconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397470-showcursor",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397551-start",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397578-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397481-switchbackingframebuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870090-terminate",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397462-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397713-validatedetailedtiming",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/2870088-willterminate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2855351",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/3656573-handlevbl",
+        "doc://com.apple.documentation/documentation/kernel/ioframebuffer/1397628-initialize"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioframebuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
