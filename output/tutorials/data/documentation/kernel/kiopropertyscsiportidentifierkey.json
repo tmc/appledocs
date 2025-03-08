@@ -1,0 +1,240 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space",
+        "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space/defines"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/kiopropertyscsiportidentifierkey"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407881,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:IOStorageControllerCharacteristics.h@2878@macro@kIOPropertySCSIPortIdentifierKey",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "20.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Macro",
+    "symbolKind": "macro",
+    "title": "kIOPropertySCSIPortIdentifierKey"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIOPropertySCSIPortIdentifierKey"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This key is the unique port identifier for the device server node located at this port, or for the initiating host port. The format for this data is allowed to be vendor-specific, as long as it is guaranteed to be unique. Length is arbitrary, to allow for itnerfaces with non-standard identifier rules. It is recommended to have this be a copy of an existing standard unique identifier for this port, should one already exist for your interface type",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requirement: Mandatory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            " ",
+            "<dict>",
+            "   <key>Protocol Characteristics</key>",
+            "   <dict>",
+            "   \t<key>Physical Interconnect</key>",
+            "   \t<string>Fibre Channel Interface</string>",
+            "   \t<key>Physical Interconnect Location</key>",
+            "   \t<string>External</string>",
+            "   \t<key>Node World Wide Name</key>",
+            "   \t<data>0011223344556677</data>",
+            "   \t<key>Unique SCSI Port Identifier</key>",
+            "   \t<data>0011223344556677</data>",
+            "   </dict>",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "2556889",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example2:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            " ",
+            "<dict>",
+            "   <key>Controller Characteristics</key>",
+            "   <dict>",
+            "   \t<key>Unique SCSI Port Identifier</key>",
+            "   \t<data>0011223344556677</data>",
+            "   </dict>",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "2556890",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOStorageProtocolCharacteristics.h User-Space",
+      "type": "topic",
+      "url": "/documentation/iokit/iostorageprotocolcharacteristics_h_user-space"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space/defines": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iostorageprotocolcharacteristics_h_user-space/defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Defines",
+      "type": "topic",
+      "url": "/documentation/iokit/iostorageprotocolcharacteristics_h_user-space/defines"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiopropertyscsiportidentifierkey#2556889": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiopropertyscsiportidentifierkey#2556889",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/kiopropertyscsiportidentifierkey#2556889"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiopropertyscsiportidentifierkey#2556890": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiopropertyscsiportidentifierkey#2556890",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/kernel/kiopropertyscsiportidentifierkey#2556890"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/kiopropertyscsiportidentifierkey",
+        "documentation/driverkit/kiopropertyscsiportidentifierkey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
