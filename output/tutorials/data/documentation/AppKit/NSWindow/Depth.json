@@ -1,1 +1,2397 @@
-{"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/appkit/nswindow/depth"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/appkit/nswindow/depth"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"metadata":{"externalID":"c:@E@NSWindowDepth","roleHeading":"Enumeration","title":"NSWindow.Depth","symbolKind":"enum","navigatorTitle":[{"text":"Depth","kind":"identifier"}],"platforms":[{"beta":false,"introducedAt":"10.6","name":"macOS","deprecated":false,"unavailable":false}],"role":"symbol","extendedModule":"AppKit","modules":[{"name":"AppKit"}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Depth","kind":"identifier"}]},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSWindow"]]},"abstract":[{"type":"text","text":"A type that represents the depth, or amount of memory, for a single pixel in a window or screen."}],"topicSections":[{"anchor":"Constants","title":"Constants","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB"]},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar"],"title":"Accessing Depth Details","anchor":"Accessing-Depth-Details"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)"],"title":"Initializers","anchor":"Initializers","generated":true}],"sections":[],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth"},"seeAlsoSections":[{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection","doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType","doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw","doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType","doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode","doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions","doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct","doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct","doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum","doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support","doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position"],"title":"Constants","anchor":"Constants","generated":true}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"platforms":["macOS"],"tokens":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"Depth"}]}]},{"content":[{"type":"heading","level":2,"anchor":"overview","text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"A depth of "},{"type":"codeVoice","code":"0"},{"text":" indicates default depth. Don’t make window depths persistent because they aren’t the same across systems.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Use the functions "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName","isActive":true},{"type":"text","text":", "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel","isActive":true},{"type":"text","text":", and "},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar","isActive":true,"type":"reference"},{"text":" to extract info from an ","type":"text"},{"code":"NSWindowDepth","type":"codeVoice"},{"text":" value.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"Use ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSBestDepth"},{"text":" to compute window depths. ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSBestDepth"},{"text":" tries to accommodate all the parameters (match or better). If there are multiple matches, this function uses color space first, then bits per sample (","type":"text"},{"type":"codeVoice","code":"bps"},{"text":"), then ","type":"text"},{"type":"codeVoice","code":"planar"},{"text":", then bits per pixel (","type":"text"},{"type":"codeVoice","code":"bpp)"},{"text":" to determine the closest match. Use ","type":"text"},{"type":"codeVoice","code":"0"},{"text":" for ","type":"text"},{"type":"codeVoice","code":"bpp"},{"text":" to indicate the default, the same as the number of bits per plane: either ","type":"text"},{"type":"codeVoice","code":"bps"},{"text":" or ","type":"text"},{"type":"codeVoice","code":"bps"},{"text":" * ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents"},{"text":". You may use other values as hints to provide backing stores of different configurations — for instance, 8-bit color.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"You can also use one of the explicit bit depths defined in "},{"type":"codeVoice","code":"Explicit Window Depth Limits"},{"type":"text","text":" for the "},{"type":"codeVoice","code":"NSWindow"},{"type":"text","text":" property "},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit","isActive":true,"type":"reference"},{"type":"text","text":"."}]}],"kind":"content"}],"kind":"symbol","relationshipsSections":[{"identifiers":["doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP","doc://com.externally.resolved.symbol/s:SQ","doc://com.externally.resolved.symbol/s:SH","doc://com.externally.resolved.symbol/s:SY","doc://com.externally.resolved.symbol/s:s8SendableP"],"title":"Conforms To","type":"conformsTo","kind":"relationships"}],"references":{"doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum":{"kind":"symbol","role":"symbol","fragments":[{"kind":"keyword","text":"enum"},{"text":" ","kind":"text"},{"text":"SharingType","kind":"identifier"}],"abstract":[{"text":"Constants that represent the access levels other processes can have to a window’s content.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum","navigatorTitle":[{"text":"SharingType","kind":"identifier"}],"title":"NSWindow.SharingType","url":"/documentation/appkit/nswindow/sharingtype-swift.enum","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB":{"fragments":[{"text":"case","kind":"keyword"},{"text":" ","kind":"text"},{"text":"sixtyfourBitRGB","kind":"identifier"}],"role":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB","navigatorTitle":[{"text":"NSWindowDepthSixtyfourBitRGB","kind":"identifier"}],"title":"NSWindow.Depth.sixtyfourBitRGB","url":"/documentation/appkit/nswindow/depth/sixtyfourbitrgb","abstract":[{"text":"Sixty four bit RGB depth limit.","type":"text"}],"kind":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar":{"kind":"symbol","url":"/documentation/appkit/nswindow/depth/isplanar","title":"isPlanar","navigatorTitle":[{"text":"NSPlanarFromDepth","kind":"identifier"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isPlanar","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"}],"type":"topic","abstract":[{"text":"Returns whether the specified window depth is planar.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType":{"url":"/documentation/appkit/nswindow/buttontype","role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ButtonType","kind":"identifier"}],"title":"NSWindow.ButtonType","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType","kind":"symbol","type":"topic","navigatorTitle":[{"text":"ButtonType","kind":"identifier"}],"abstract":[{"text":"Constants that provide a way to access standard title bar buttons.","type":"text"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)":{"fragments":[{"text":"init","kind":"identifier"},{"text":"?(","kind":"text"},{"text":"rawValue","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Int32","preciseIdentifier":"s:s5Int32V","kind":"typeIdentifier"},{"text":")","kind":"text"}],"role":"symbol","url":"/documentation/appkit/nswindow/depth/init(rawvalue:)","kind":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)","title":"init(rawValue:)","abstract":[]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel":{"kind":"symbol","url":"/documentation/appkit/nswindow/depth/bitsperpixel","role":"symbol","navigatorTitle":[{"text":"NSBitsPerPixelFromDepth","kind":"identifier"}],"abstract":[{"type":"text","text":"Returns the bits per pixel for the specified window depth."}],"title":"bitsPerPixel","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"bitsPerPixel","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Int","preciseIdentifier":"s:Si","kind":"typeIdentifier"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSBestDepth":{"fragments":[{"text":"NSBestDepth","kind":"identifier"}],"type":"topic","abstract":[{"text":"Attempts to return a window depth adequate for the specified parameters.","type":"text"}],"url":"/documentation/appkit/nsbestdepth","identifier":"doc://com.apple.appkit/documentation/AppKit/NSBestDepth","title":"NSBestDepth","kind":"symbol","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"NumberListOptions"}],"type":"topic","abstract":[{"text":"Options to use when retrieving window numbers from the system.","type":"text"}],"url":"/documentation/appkit/nswindow/numberlistoptions","title":"NSWindow.NumberListOptions","kind":"symbol","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"NumberListOptions"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths","abstract":[{"type":"text","text":"An array that contains all available windows depths."}],"role":"symbol","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"text":"var","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"availableDepths"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSWindow","text":"NSWindow"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"c:@E@NSWindowDepth","text":"Depth"},{"kind":"text","text":"]"}],"title":"availableDepths","kind":"symbol","url":"/documentation/appkit/nswindow/depth/availabledepths","type":"topic"},"doc://com.externally.resolved.symbol/s:SQ":{"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"type":"topic","title":"Equatable","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/s:SQ","role":"symbol","url":"/documentation/Swift/Equatable"},"doc://com.externally.resolved.symbol/s:s8SendableP":{"identifier":"doc://com.externally.resolved.symbol/s:s8SendableP","role":"symbol","type":"topic","url":"/documentation/Swift/Sendable","abstract":[{"text":"A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.","type":"text"}],"fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Sendable","kind":"identifier"}],"title":"Sendable","kind":"symbol"},"doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP":{"url":"/documentation/Swift/BitwiseCopyable","kind":"symbol","title":"BitwiseCopyable","identifier":"doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP","type":"topic","abstract":[{"text":"","type":"text"}],"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"BitwiseCopyable"},{"kind":"text","text":" : ~Escapable"}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)","role":"symbol","type":"topic","url":"/documentation/appkit/nswindow/depth/bestdepth(colorspacename:bitspersample:bitsperpixel:isplanar:)","abstract":[{"text":"Determines the best window depth that most closely matches the given properties.","type":"text"}],"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"text":"func","kind":"keyword"},{"kind":"text","text":" "},{"text":"bestDepth","kind":"identifier"},{"text":"(","kind":"text"},{"text":"colorSpaceName","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"NSColorSpaceName","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSColorSpaceName"},{"text":", ","kind":"text"},{"text":"bitsPerSample","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Int","kind":"typeIdentifier","preciseIdentifier":"s:Si"},{"text":", ","kind":"text"},{"text":"bitsPerPixel","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Int","kind":"typeIdentifier","preciseIdentifier":"s:Si"},{"text":", ","kind":"text"},{"text":"isPlanar","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"},{"text":") -> (","kind":"text"},{"text":"NSWindow","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSWindow"},{"text":".","kind":"text"},{"text":"Depth","kind":"typeIdentifier","preciseIdentifier":"c:@E@NSWindowDepth"},{"text":", isExactMatch","kind":"text"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"},{"text":")","kind":"text"}],"title":"bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)","kind":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct":{"url":"/documentation/appkit/nswindow/collectionbehavior-swift.struct","kind":"symbol","abstract":[{"text":"Window collection behaviors related to Mission Control, Spaces, and Stage Manager.","type":"text"}],"title":"NSWindow.CollectionBehavior","fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"kind":"identifier","text":"CollectionBehavior"}],"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"CollectionBehavior"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit":{"title":"depthLimit","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"depthLimit"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)NSWindow","kind":"typeIdentifier","text":"NSWindow"},{"text":".","kind":"text"},{"preciseIdentifier":"c:@E@NSWindowDepth","text":"Depth","kind":"typeIdentifier"}],"type":"topic","role":"symbol","url":"/documentation/appkit/nswindow/depthlimit","kind":"symbol","abstract":[{"type":"text","text":"The depth limit of the window."}],"navigatorTitle":[{"text":"depthLimit","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct":{"abstract":[{"text":"Specifies whether the window is occluded.","type":"text"}],"url":"/documentation/appkit/nswindow/occlusionstate-swift.struct","kind":"symbol","role":"symbol","title":"NSWindow.OcclusionState","navigatorTitle":[{"text":"OcclusionState","kind":"identifier"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OcclusionState","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum":{"kind":"symbol","role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"TabbingMode"}],"abstract":[{"type":"text","text":"The preferred tabbing behavior of a window."}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum","navigatorTitle":[{"kind":"identifier","text":"TabbingMode"}],"title":"NSWindow.TabbingMode","url":"/documentation/appkit/nswindow/tabbingmode-swift.enum","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum":{"url":"/documentation/appkit/nswindow/animationbehavior-swift.enum","role":"symbol","kind":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum","navigatorTitle":[{"text":"AnimationBehavior","kind":"identifier"}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimationBehavior","kind":"identifier"}],"title":"NSWindow.AnimationBehavior","abstract":[{"text":"Constants that control the automatic window animation behavior windows use when ordering to the front or out of view.","type":"text"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB":{"fragments":[{"kind":"keyword","text":"case"},{"text":" ","kind":"text"},{"text":"onehundredtwentyeightBitRGB","kind":"identifier"}],"role":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB","navigatorTitle":[{"text":"NSWindowDepthOnehundredtwentyeightBitRGB","kind":"identifier"}],"title":"NSWindow.Depth.onehundredtwentyeightBitRGB","url":"/documentation/appkit/nswindow/depth/onehundredtwentyeightbitrgb","abstract":[{"text":"One hundred and twenty eight bit RGB depth limit.","type":"text"}],"kind":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"numberOfColorComponents","kind":"identifier"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"}],"navigatorTitle":[{"kind":"identifier","text":"NSNumberOfColorComponents"}],"type":"topic","abstract":[{"text":"Returns the number of color components in the specified color space.","type":"text"}],"url":"/documentation/appkit/nscolorspacename/numberofcolorcomponents","identifier":"doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents","title":"numberOfColorComponents","kind":"symbol","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB":{"fragments":[{"text":"case","kind":"keyword"},{"text":" ","kind":"text"},{"text":"twentyfourBitRGB","kind":"identifier"}],"role":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB","navigatorTitle":[{"text":"NSWindowDepthTwentyfourBitRGB","kind":"identifier"}],"title":"NSWindow.Depth.twentyfourBitRGB","url":"/documentation/appkit/nswindow/depth/twentyfourbitrgb","abstract":[{"type":"text","text":"Twenty four bit RGB depth limit."}],"kind":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName":{"type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"colorSpaceName"},{"kind":"text","text":": "},{"preciseIdentifier":"c:@T@NSColorSpaceName","kind":"typeIdentifier","text":"NSColorSpaceName"},{"kind":"text","text":"?"}],"url":"/documentation/appkit/nswindow/depth/colorspacename","title":"colorSpaceName","abstract":[{"text":"Returns the name of the color space corresponding to the passed window depth.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"NSColorSpaceFromDepth"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName","kind":"symbol","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType","abstract":[{"text":"Constants that specify how the window device buffers the drawing done in a window.","type":"text"}],"role":"symbol","kind":"symbol","fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"BackingStoreType"}],"title":"NSWindow.BackingStoreType","url":"/documentation/appkit/nswindow/backingstoretype","type":"topic","navigatorTitle":[{"kind":"identifier","text":"BackingStoreType"}]},"doc://com.externally.resolved.symbol/s:SY":{"type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"RawRepresentable","kind":"identifier"},{"text":"<","kind":"text"},{"text":"RawValue","kind":"typeIdentifier","preciseIdentifier":"s:SY8RawValueQa"},{"text":">","kind":"text"}],"url":"/documentation/Swift/RawRepresentable","title":"RawRepresentable","abstract":[{"text":"A type that can be converted to and from an associated raw value.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:SY","kind":"symbol","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support":{"url":"/documentation/appkit/application-kit-version-for-deferred-window-display-support","kind":"article","abstract":[{"text":"The version of the AppKit.framework containing a specific bug fix or capability.","type":"text"}],"title":"Application Kit Version for Deferred Window Display Support","role":"collectionGroup","identifier":"doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw":{"title":"NSRunLoop—Ordering Modes for NSWindow","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw","abstract":[{"text":"Constants that specify the priority for runloop messages.","type":"text"}],"role":"collectionGroup","url":"/documentation/appkit/nsrunloop-ordering-modes-for-nsw","kind":"article"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","kind":"technologies"},"doc://com.apple.appkit/documentation/AppKit/NSWindow":{"type":"topic","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"NSWindow"}],"url":"/documentation/appkit/nswindow","title":"NSWindow","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSWindow"}],"abstract":[{"type":"text","text":"A window that an app displays on the screen."}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum":{"kind":"symbol","role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UserTabbingPreference","kind":"identifier"}],"abstract":[{"text":"A value that indicates the user’s preference for window tabbing.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum","navigatorTitle":[{"text":"UserTabbingPreference","kind":"identifier"}],"title":"NSWindow.UserTabbingPreference","url":"/documentation/appkit/nswindow/usertabbingpreference-swift.enum","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample":{"kind":"symbol","url":"/documentation/appkit/nswindow/depth/bitspersample","role":"symbol","navigatorTitle":[{"text":"NSBitsPerSampleFromDepth","kind":"identifier"}],"abstract":[{"type":"text","text":"Returns the bits per sample for the specified window depth."}],"title":"bitsPerSample","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"bitsPerSample","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Int","kind":"typeIdentifier","preciseIdentifier":"s:Si"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth","abstract":[{"text":"A type that represents the depth, or amount of memory, for a single pixel in a window or screen.","type":"text"}],"role":"symbol","navigatorTitle":[{"text":"Depth","kind":"identifier"}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Depth","kind":"identifier"}],"title":"NSWindow.Depth","kind":"symbol","url":"/documentation/appkit/nswindow/depth","type":"topic"},"doc://com.externally.resolved.symbol/s:SH":{"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Hashable"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"s:SQ","text":"Equatable"}],"url":"/documentation/Swift/Hashable","identifier":"doc://com.externally.resolved.symbol/s:SH","role":"symbol","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"A type that can be hashed into a `Hasher` to produce an integer hash value."}],"title":"Hashable"},"doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position":{"identifier":"doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position","title":"Application Kit Version for Custom Sheet Position","role":"collectionGroup","abstract":[{"text":"The version of the AppKit.framework containing a specific bug fix or capability.","type":"text"}],"kind":"article","type":"topic","url":"/documentation/appkit/application-kit-version-for-custom-sheet-position"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode":{"kind":"symbol","role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrderingMode","kind":"identifier"}],"abstract":[{"text":"Constants that let you specify how a window is ordered relative to another window.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode","navigatorTitle":[{"text":"OrderingMode","kind":"identifier"}],"title":"NSWindow.OrderingMode","url":"/documentation/appkit/nswindow/orderingmode","type":"topic"},"doc://com.apple.appkit/documentation/AppKit":{"kind":"symbol","url":"/documentation/appkit","title":"AppKit","type":"topic","abstract":[{"text":"Construct and manage a graphical, event-driven user interface for your macOS app.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit","role":"collection"},"doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum":{"fragments":[{"text":"enum","kind":"keyword"},{"kind":"text","text":" "},{"text":"TitleVisibility","kind":"identifier"}],"title":"NSWindow.TitleVisibility","url":"/documentation/appkit/nswindow/titlevisibility-swift.enum","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum","type":"topic","abstract":[{"text":"Specifies the appearance of the window’s title bar area.","type":"text"}],"kind":"symbol","navigatorTitle":[{"text":"TitleVisibility","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection":{"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SelectionDirection","kind":"identifier"}],"title":"NSWindow.SelectionDirection","url":"/documentation/appkit/nswindow/selectiondirection","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection","type":"topic","abstract":[{"text":"Constants that specify the direction a window is currently using to change the key view.","type":"text"}],"kind":"symbol","navigatorTitle":[{"text":"SelectionDirection","kind":"identifier"}]}},"variantOverrides":[{"patch":[{"path":"/identifier/interfaceLanguage","op":"replace","value":"occ"},{"path":"/metadata/platforms","op":"replace","value":[{"introducedAt":"10.6","name":"macOS","deprecated":false,"beta":false,"unavailable":false}]},{"path":"/metadata/roleHeading","op":"replace","value":"Enumeration"},{"path":"/metadata/title","op":"replace","value":"NSWindowDepth"},{"path":"/metadata/symbolKind","op":"replace","value":"enum"},{"path":"/metadata/fragments","op":"replace","value":[{"kind":"identifier","text":"NSWindowDepth"}]},{"path":"/metadata/navigatorTitle","op":"replace","value":[{"text":"NSWindowDepth","kind":"identifier"}]},{"path":"/hierarchy","op":"replace","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit"]]}},{"path":"/topicSections","op":"replace","value":[{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB"],"anchor":"Constants","title":"Constants"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName","doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar"],"anchor":"Accessing-Depth-Details","title":"Accessing Depth Details"}]},{"path":"/relationshipsSections","op":"replace","value":null},{"path":"/seeAlsoSections","op":"replace","value":[{"title":"Constants","anchor":"Constants","generated":true,"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection","doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType","doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw","doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType","doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode","doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions","doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct","doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct","doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum","doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum","doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support","doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position"]}]},{"path":"/primaryContentSections/0","op":"replace","value":{"kind":"declarations","declarations":[{"languages":["occ"],"tokens":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSWindowDepth","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"int32_t","preciseIdentifier":"c:@T@int32_t","kind":"typeIdentifier"},{"text":";","kind":"text"}],"platforms":["Mac Catalyst","macOS"]}]}},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/title","op":"replace","value":"NSWindowSharingType"},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/fragments","op":"replace","value":[{"text":"NSWindowSharingType","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/navigatorTitle","op":"replace","value":[{"text":"NSWindowSharingType","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1sixtyfourBitRGB/title","op":"replace","value":"NSWindowDepthSixtyfourBitRGB"},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1sixtyfourBitRGB/fragments","op":"replace","value":[{"kind":"identifier","text":"NSWindowDepthSixtyfourBitRGB"}]},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1isPlanar/title","op":"replace","value":"NSPlanarFromDepth"},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1isPlanar/fragments","op":"replace","value":[{"kind":"identifier","text":"NSPlanarFromDepth"}]},{"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/title","op":"replace","value":"NSWindowButton"},{"op":"replace","value":[{"text":"NSWindowButton","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/fragments"},{"op":"replace","value":[{"text":"NSWindowButton","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/navigatorTitle"},{"op":"replace","value":"NSBitsPerPixelFromDepth","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerPixel/title"},{"op":"replace","value":[{"text":"NSBitsPerPixelFromDepth","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerPixel/fragments"},{"op":"replace","value":"NSWindowNumberListOptions","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/title"},{"op":"replace","value":[{"text":"NSWindowNumberListOptions","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowNumberListOptions"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/navigatorTitle"},{"op":"replace","value":"NSWindowCollectionBehavior","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowCollectionBehavior"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowCollectionBehavior"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/navigatorTitle"},{"op":"replace","value":"depthLimit","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1depthLimit/title"},{"op":"replace","value":[{"text":"depthLimit","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1depthLimit/fragments"},{"op":"replace","value":"NSWindowOcclusionState","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/title"},{"op":"replace","value":[{"text":"NSWindowOcclusionState","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowOcclusionState"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/navigatorTitle"},{"op":"replace","value":"NSWindowTabbingMode","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/title"},{"op":"replace","value":[{"text":"NSWindowTabbingMode","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowTabbingMode"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/navigatorTitle"},{"op":"replace","value":"NSWindowAnimationBehavior","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowAnimationBehavior"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowAnimationBehavior"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/navigatorTitle"},{"op":"replace","value":"NSWindowDepthOnehundredtwentyeightBitRGB","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1onehundredtwentyeightBitRGB/title"},{"op":"replace","value":[{"text":"NSWindowDepthOnehundredtwentyeightBitRGB","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1onehundredtwentyeightBitRGB/fragments"},{"op":"replace","value":"NSNumberOfColorComponents","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName~1numberOfColorComponents/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSNumberOfColorComponents"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName~1numberOfColorComponents/fragments"},{"op":"replace","value":"NSWindowDepthTwentyfourBitRGB","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1twentyfourBitRGB/title"},{"op":"replace","value":[{"text":"NSWindowDepthTwentyfourBitRGB","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1twentyfourBitRGB/fragments"},{"op":"replace","value":"NSColorSpaceFromDepth","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1colorSpaceName/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSColorSpaceFromDepth"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1colorSpaceName/fragments"},{"op":"replace","value":"NSBackingStoreType","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSBackingStoreType"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSBackingStoreType"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/navigatorTitle"},{"op":"replace","value":"NSWindow","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindow"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments"},{"op":"replace","value":[{"text":"NSWindow","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle"},{"op":"replace","value":"NSWindowUserTabbingPreference","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/title"},{"op":"replace","value":[{"text":"NSWindowUserTabbingPreference","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/fragments"},{"op":"replace","value":[{"text":"NSWindowUserTabbingPreference","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/navigatorTitle"},{"op":"replace","value":"NSBitsPerSampleFromDepth","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerSample/title"},{"op":"replace","value":[{"text":"NSBitsPerSampleFromDepth","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerSample/fragments"},{"op":"replace","value":"NSWindowDepth","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/title"},{"op":"replace","value":[{"text":"NSWindowDepth","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/fragments"},{"op":"replace","value":[{"text":"NSWindowDepth","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/navigatorTitle"},{"op":"replace","value":"NSWindowOrderingMode","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowOrderingMode"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowOrderingMode"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/navigatorTitle"},{"op":"replace","value":"NSWindowTitleVisibility","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSWindowTitleVisibility"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/fragments"},{"op":"replace","value":[{"text":"NSWindowTitleVisibility","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/navigatorTitle"},{"op":"replace","value":"NSSelectionDirection","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSSelectionDirection"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/fragments"},{"op":"replace","value":[{"text":"NSSelectionDirection","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/navigatorTitle"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A type that represents the depth, or amount of memory, for a single pixel in a window or screen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:@E@NSWindowDepth",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Depth"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Depth"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NSWindow.Depth"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Depth"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A depth of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates default depth. Don’t make window depths persistent because they aren’t the same across systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to extract info from an ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowDepth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBestDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to compute window depths. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBestDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tries to accommodate all the parameters (match or better). If there are multiple matches, this function uses color space first, then bits per sample (",
+              "type": "text"
+            },
+            {
+              "code": "bps",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), then ",
+              "type": "text"
+            },
+            {
+              "code": "planar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then bits per pixel (",
+              "type": "text"
+            },
+            {
+              "code": "bpp)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine the closest match. Use ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "bpp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate the default, the same as the number of bits per plane: either ",
+              "type": "text"
+            },
+            {
+              "code": "bps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "bps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " * ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You may use other values as hints to provide backing stores of different configurations — for instance, 8-bit color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use one of the explicit bit depths defined in ",
+              "type": "text"
+            },
+            {
+              "code": "Explicit Window Depth Limits",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBestDepth": {
+      "abstract": [
+        {
+          "text": "Attempts to return a window depth adequate for the specified parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSBestDepth"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBestDepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBestDepth",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbestdepth"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents": {
+      "abstract": [
+        {
+          "text": "Returns the number of color components in the specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfColorComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName/numberOfColorComponents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNumberOfColorComponents"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfColorComponents",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorspacename/numberofcolorcomponents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that control the automatic window animation behavior windows use when ordering to the front or out of view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.AnimationBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/animationbehavior-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType": {
+      "abstract": [
+        {
+          "text": "Constants that specify how the window device buffers the drawing done in a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackingStoreType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackingStoreType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.BackingStoreType",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/backingstoretype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType": {
+      "abstract": [
+        {
+          "text": "Constants that provide a way to access standard title bar buttons.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.ButtonType",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/buttontype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct": {
+      "abstract": [
+        {
+          "text": "Window collection behaviors related to Mission Control, Spaces, and Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollectionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollectionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.CollectionBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/collectionbehavior-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth": {
+      "abstract": [
+        {
+          "text": "A type that represents the depth, or amount of memory, for a single pixel in a window or screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Depth"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Depth"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.Depth",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths": {
+      "abstract": [
+        {
+          "text": "An array that contains all available windows depths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableDepths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowDepth",
+          "text": "Depth"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableDepths",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/availabledepths"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)": {
+      "abstract": [
+        {
+          "text": "Determines the best window depth that most closely matches the given properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestDepth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "colorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorSpaceName",
+          "text": "NSColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerSample"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPlanar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowDepth",
+          "text": "Depth"
+        },
+        {
+          "kind": "text",
+          "text": ", isExactMatch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/bestdepth(colorspacename:bitspersample:bitsperpixel:isplanar:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel": {
+      "abstract": [
+        {
+          "text": "Returns the bits per pixel for the specified window depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBitsPerPixelFromDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitsPerPixel",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/bitsperpixel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample": {
+      "abstract": [
+        {
+          "text": "Returns the bits per sample for the specified window depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitsPerSample"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBitsPerSampleFromDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitsPerSample",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/bitspersample"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName": {
+      "abstract": [
+        {
+          "text": "Returns the name of the color space corresponding to the passed window depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorSpaceName",
+          "text": "NSColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorSpaceFromDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorSpaceName",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/colorspacename"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/init(rawvalue:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar": {
+      "abstract": [
+        {
+          "text": "Returns whether the specified window depth is planar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPlanar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPlanarFromDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPlanar",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/isplanar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB": {
+      "abstract": [
+        {
+          "text": "One hundred and twenty eight bit RGB depth limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onehundredtwentyeightBitRGB"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowDepthOnehundredtwentyeightBitRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.Depth.onehundredtwentyeightBitRGB",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/onehundredtwentyeightbitrgb"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB": {
+      "abstract": [
+        {
+          "text": "Sixty four bit RGB depth limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sixtyfourBitRGB"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowDepthSixtyfourBitRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.Depth.sixtyfourBitRGB",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/sixtyfourbitrgb"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB": {
+      "abstract": [
+        {
+          "text": "Twenty four bit RGB depth limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "twentyfourBitRGB"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowDepthTwentyfourBitRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.Depth.twentyfourBitRGB",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depth/twentyfourbitrgb"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions": {
+      "abstract": [
+        {
+          "text": "Options to use when retrieving window numbers from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumberListOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NumberListOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.NumberListOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/numberlistoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct": {
+      "abstract": [
+        {
+          "text": "Specifies whether the window is occluded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OcclusionState"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OcclusionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.OcclusionState",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/occlusionstate-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that let you specify how a window is ordered relative to another window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.OrderingMode",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/orderingmode"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection": {
+      "abstract": [
+        {
+          "text": "Constants that specify the direction a window is currently using to change the key view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SelectionDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SelectionDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.SelectionDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/selectiondirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that represent the access levels other processes can have to a window’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SharingType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SharingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.SharingType",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/sharingtype-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "The preferred tabbing behavior of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabbingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabbingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.TabbingMode",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/tabbingmode-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum": {
+      "abstract": [
+        {
+          "text": "Specifies the appearance of the window’s title bar area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TitleVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TitleVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.TitleVisibility",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/titlevisibility-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum": {
+      "abstract": [
+        {
+          "text": "A value that indicates the user’s preference for window tabbing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserTabbingPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserTabbingPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.UserTabbingPreference",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/usertabbingpreference-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit": {
+      "abstract": [
+        {
+          "text": "The depth limit of the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowDepth",
+          "text": "Depth"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/depthLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthLimit",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/depthlimit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position": {
+      "abstract": [
+        {
+          "text": "The version of the AppKit.framework containing a specific bug fix or capability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Application Kit Version for Custom Sheet Position",
+      "type": "topic",
+      "url": "/documentation/appkit/application-kit-version-for-custom-sheet-position"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support": {
+      "abstract": [
+        {
+          "text": "The version of the AppKit.framework containing a specific bug fix or capability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Application Kit Version for Deferred Window Display Support",
+      "type": "topic",
+      "url": "/documentation/appkit/application-kit-version-for-deferred-window-display-support"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw": {
+      "abstract": [
+        {
+          "text": "Constants that specify the priority for runloop messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSRunLoop—Ordering Modes for NSWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunloop-ordering-modes-for-nsw"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType",
+        "doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support",
+        "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Accessing-Depth-Details",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/availableDepths",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bestDepth(colorSpaceName:bitsPerSample:bitsPerPixel:isPlanar:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar"
+      ],
+      "title": "Accessing Depth Details"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSWindowDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/onehundredtwentyeightBitRGB",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/sixtyfourBitRGB",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/twentyfourBitRGB"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Accessing-Depth-Details",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerPixel",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/bitsPerSample",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/colorSpaceName",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/Depth/isPlanar"
+              ],
+              "title": "Accessing Depth Details"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/SelectionDirection",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/ButtonType",
+                "doc://com.apple.appkit/documentation/AppKit/nsrunloop-ordering-modes-for-nsw",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/BackingStoreType",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/OrderingMode",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/SharingType-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/NumberListOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/OcclusionState-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/TitleVisibility-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindow/TabbingMode-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-deferred-window-display-support",
+                "doc://com.apple.appkit/documentation/AppKit/application-kit-version-for-custom-sheet-position"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSWindowDepth"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@int32_t",
+                    "text": "int32_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/title",
+          "value": "NSWindowSharingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowSharingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SharingType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowSharingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1sixtyfourBitRGB/title",
+          "value": "NSWindowDepthSixtyfourBitRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1sixtyfourBitRGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepthSixtyfourBitRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1isPlanar/title",
+          "value": "NSPlanarFromDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1isPlanar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPlanarFromDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/title",
+          "value": "NSWindowButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1ButtonType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerPixel/title",
+          "value": "NSBitsPerPixelFromDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerPixel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBitsPerPixelFromDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/title",
+          "value": "NSWindowNumberListOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowNumberListOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1NumberListOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowNumberListOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/title",
+          "value": "NSWindowCollectionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowCollectionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1CollectionBehavior-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowCollectionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1depthLimit/title",
+          "value": "depthLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1depthLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/title",
+          "value": "NSWindowOcclusionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowOcclusionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OcclusionState-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowOcclusionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/title",
+          "value": "NSWindowTabbingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowTabbingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TabbingMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowTabbingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/title",
+          "value": "NSWindowAnimationBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowAnimationBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1AnimationBehavior-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowAnimationBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1onehundredtwentyeightBitRGB/title",
+          "value": "NSWindowDepthOnehundredtwentyeightBitRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1onehundredtwentyeightBitRGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepthOnehundredtwentyeightBitRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName~1numberOfColorComponents/title",
+          "value": "NSNumberOfColorComponents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName~1numberOfColorComponents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNumberOfColorComponents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1twentyfourBitRGB/title",
+          "value": "NSWindowDepthTwentyfourBitRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1twentyfourBitRGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepthTwentyfourBitRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1colorSpaceName/title",
+          "value": "NSColorSpaceFromDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1colorSpaceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSpaceFromDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/title",
+          "value": "NSBackingStoreType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBackingStoreType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1BackingStoreType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBackingStoreType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title",
+          "value": "NSWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/title",
+          "value": "NSWindowUserTabbingPreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowUserTabbingPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1UserTabbingPreference-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowUserTabbingPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerSample/title",
+          "value": "NSBitsPerSampleFromDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth~1bitsPerSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBitsPerSampleFromDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/title",
+          "value": "NSWindowDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1Depth/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/title",
+          "value": "NSWindowOrderingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowOrderingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1OrderingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowOrderingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/title",
+          "value": "NSWindowTitleVisibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowTitleVisibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1TitleVisibility-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowTitleVisibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/title",
+          "value": "NSSelectionDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSelectionDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1SelectionDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSelectionDirection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nswindow/depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nswindow/depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

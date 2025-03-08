@@ -1,0 +1,1795 @@
+{
+  "abstract": [
+    {
+      "text": "Returns layout attributes for the drop target at the specified point.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDropTarget(at:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:objc(cs)NSCollectionViewLayout(im)layoutAttributesForDropTargetAtPoint:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "layoutAttributesForDropTarget"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "at"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSPoint",
+        "text": "NSPoint"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+        "text": "NSCollectionViewLayoutAttributes"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "layoutAttributesForDropTargetAtPoint:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "layoutAttributesForDropTarget(at:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForDropTarget"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "at"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pointInCollectionView"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+              "text": "NSCollectionViewLayoutAttributes"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A point in the collection view’s coordinate system. Use this point to determine whether the drop would occur on an item or between items.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pointInCollectionView"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A layout attributes object that identifies the element in which the drop would occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default implementation of this method tests the specified point to see if it lands inside an item, supplementary view, or decoration view of the collection view. If it does, the method returns the layout attributes for that element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layouts that support inter-item gaps as drop targets must override this method and use it to return the layout attributes that represent that gap. In your implementation, calculate the index path just after the gap and pass that value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/init(forInterItemGapBefore:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/frame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the resulting attributes object to the rectangle that best represents the gap and also contains the specified point. When overriding this method, you can call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at any time to get the default behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class that you subclass and use to generate layout information for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/collectionViewContentSize": {
+      "abstract": [
+        {
+          "text": "The width and height of the collection view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionViewContentSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/collectionViewContentSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionViewContentSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionViewContentSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesClass": {
+      "abstract": [
+        {
+          "text": "Returns the class to use for layout attribute objects",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesClass",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesclass"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDecorationView(ofKind:at:)": {
+      "abstract": [
+        {
+          "text": "Returns the layout attributes of the decoration view at the specified location in your layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForDecorationView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionView",
+          "text": "NSCollectionView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSCollectionViewDecorationElementKind",
+          "text": "DecorationElementKind"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDecorationView(ofKind:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForDecorationViewOfKind:atIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForDecorationView(ofKind:at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesfordecorationview(ofkind:at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDropTarget(at:)": {
+      "abstract": [
+        {
+          "text": "Returns layout attributes for the drop target at the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForDropTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDropTarget(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForDropTargetAtPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForDropTarget(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesfordroptarget(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForElements(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the layout attribute objects for all items and views in the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForElements"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForElements(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForElementsInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForElements(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForInterItemGap(before:)": {
+      "abstract": [
+        {
+          "text": "Returns layout attributes for the inter-item gap at the specified location in your layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForInterItemGap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForInterItemGap(before:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForInterItemGapBeforeIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForInterItemGap(before:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesforinteritemgap(before:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForItem(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the layout attributes for the item at the specified index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForItem(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForItemAtIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForItem(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesforitem(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForSupplementaryView(ofKind:at:)": {
+      "abstract": [
+        {
+          "text": "Returns the layout attributes of the supplementary view at the specified location in your layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForSupplementaryView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionView",
+          "text": "NSCollectionView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSCollectionViewSupplementaryElementKind",
+          "text": "SupplementaryElementKind"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+          "text": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForSupplementaryView(ofKind:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForSupplementaryViewOfKind:atIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutAttributesForSupplementaryView(ofKind:at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/layoutattributesforsupplementaryview(ofkind:at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/prepare()": {
+      "abstract": [
+        {
+          "text": "Prepares the layout object to begin laying out content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/prepare()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare()",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/prepare()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:)": {
+      "abstract": [
+        {
+          "text": "Returns the offset value to use after an animated layout update or change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetContentOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProposedContentOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetContentOffsetForProposedContentOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetContentOffset(forProposedContentOffset:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/targetcontentoffset(forproposedcontentoffset:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:withScrollingVelocity:)": {
+      "abstract": [
+        {
+          "text": "Returns the offset value to use for the collection view’s content at the end of scrolling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetContentOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProposedContentOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withScrollingVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:withScrollingVelocity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetContentOffsetForProposedContentOffset:withScrollingVelocity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetContentOffset(forProposedContentOffset:withScrollingVelocity:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout/targetcontentoffset(forproposedcontentoffset:withscrollingvelocity:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes": {
+      "abstract": [
+        {
+          "text": "An object that contains layout-related attributes for an element in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewLayoutAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewLayoutAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewLayoutAttributes",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayoutattributes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/frame": {
+      "abstract": [
+        {
+          "text": "The frame rectangle of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "frame",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayoutattributes/frame"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/init(forInterItemGapBefore:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a layout attributes object for an inter-item gap view at the specified index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forInterItemGapBefore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes/init(forInterItemGapBefore:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForInterItemGapBeforeIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forInterItemGapBefore:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayoutattributes/init(forinteritemgapbefore:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSPoint": {
+      "abstract": [
+        {
+          "text": "A point in a Cartesian coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPoint",
+      "type": "topic",
+      "url": "/documentation/foundation/nspoint"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-Layout-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesClass",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/prepare()",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/collectionViewContentSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForElements(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForItem(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForSupplementaryView(ofKind:at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDecorationView(ofKind:at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForInterItemGap(before:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:withScrollingVelocity:)"
+      ],
+      "title": "Providing Layout Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "layoutAttributesForDropTargetAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForDropTargetAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providing-Layout-Information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesClass",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/prepare()",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/collectionViewContentSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForElements(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForItem(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForSupplementaryView(ofKind:at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForDecorationView(ofKind:at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/layoutAttributesForInterItemGap(before:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout/targetContentOffset(forProposedContentOffset:withScrollingVelocity:)"
+              ],
+              "title": "Providing Layout Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayoutAttributes",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSCollectionViewLayoutAttributes",
+                    "text": "NSCollectionViewLayoutAttributes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "layoutAttributesForDropTargetAtPoint:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSPoint",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSPoint",
+                    "text": "NSPoint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "pointInCollectionView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A point in the collection view’s coordinate system. Use this point to determine whether the drop would occur on an item or between items.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "pointInCollectionView"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A layout attributes object that identifies the element in which the drop would occur.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesClass/title",
+          "value": "layoutAttributesClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1prepare()/title",
+          "value": "prepareLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1prepare()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForDropTarget(at:)/title",
+          "value": "layoutAttributesForDropTargetAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForDropTarget(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForDropTargetAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes/title",
+          "value": "NSCollectionViewLayoutAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1targetContentOffset(forProposedContentOffset:)/title",
+          "value": "targetContentOffsetForProposedContentOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1targetContentOffset(forProposedContentOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "targetContentOffsetForProposedContentOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForSupplementaryView(ofKind:at:)/title",
+          "value": "layoutAttributesForSupplementaryViewOfKind:atIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForSupplementaryView(ofKind:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForSupplementaryViewOfKind:atIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForInterItemGap(before:)/title",
+          "value": "layoutAttributesForInterItemGapBeforeIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForInterItemGap(before:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForInterItemGapBeforeIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1targetContentOffset(forProposedContentOffset:withScrollingVelocity:)/title",
+          "value": "targetContentOffsetForProposedContentOffset:withScrollingVelocity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1targetContentOffset(forProposedContentOffset:withScrollingVelocity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "targetContentOffsetForProposedContentOffset:withScrollingVelocity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForElements(in:)/title",
+          "value": "layoutAttributesForElementsInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForElements(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForElementsInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForItem(at:)/title",
+          "value": "layoutAttributesForItemAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForItem(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForItemAtIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForDecorationView(ofKind:at:)/title",
+          "value": "layoutAttributesForDecorationViewOfKind:atIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1layoutAttributesForDecorationView(ofKind:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForDecorationViewOfKind:atIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes~1frame/title",
+          "value": "frame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes~1frame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1collectionViewContentSize/title",
+          "value": "collectionViewContentSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout~1collectionViewContentSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionViewContentSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes~1init(forInterItemGapBefore:)/title",
+          "value": "layoutAttributesForInterItemGapBeforeIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayoutAttributes~1init(forInterItemGapBefore:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForInterItemGapBeforeIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout/title",
+          "value": "NSCollectionViewLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewLayout"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionviewlayout/layoutattributesfordroptarget(at:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionviewlayout/layoutattributesfordroptarget(at:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

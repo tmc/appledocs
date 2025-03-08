@@ -1,0 +1,575 @@
+{
+  "abstract": [
+    {
+      "text": "A flag that instructs the filter to use pointers to data you provide at creation time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/BNNSFlagsUseClientPtr"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@EA@BNNSFlags@BNNSFlagsUseClientPtr",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "BNNSFlagsUseClientPtr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BNNSFlagsUseClientPtr"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "case",
+    "title": "BNNSFlagsUseClientPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFlagsUseClientPtr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set this flag to instruct the filter to keep the pointers you provide at creation time and to work directly from this data. In this case, the you must ensure these pointers remain valid through the entire lifetime of the filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If not set, the filter creation function allocates buffers and keeps an internal copy of the data. In that case, you don’t have to keep the pointers valid after the you’ve created the filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code returns a convolution layer with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let weights: [Float] = [ ... ]",
+            "let bias: [Float] = [ ... ]",
+            "",
+            "let convolutionLayer = weights.withUnsafeBufferPointer { weightsPtr -> BNNSFilter? in",
+            "    bias.withUnsafeBufferPointer { biasPtr in",
+            "        ",
+            "        let weightsDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                      layout: BNNSDataLayoutConvolutionWeightsOIHW,",
+            "                                                      size: (3, 3, 1, 1, 0, 0, 0, 0),",
+            "                                                      stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                      data: UnsafeMutableRawPointer(mutating: weightsPtr.baseAddress!),",
+            "                                                      data_type: .float,",
+            "                                                      table_data: nil,",
+            "                                                      table_data_type: .float,",
+            "                                                      data_scale: 1,",
+            "                                                      data_bias: 0)",
+            "        ",
+            "        let biasDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                   layout: BNNSDataLayoutVector,",
+            "                                                   size: (1, 0, 0, 1, 0, 0, 0, 0),",
+            "                                                   stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                   data: UnsafeMutableRawPointer(mutating: biasPtr.baseAddress!),",
+            "                                                   data_type: .float,",
+            "                                                   table_data: nil,",
+            "                                                   table_data_type: .float,",
+            "                                                   data_scale: 1,",
+            "                                                   data_bias: 0)",
+            "        ",
+            "        var layerParameters = BNNSLayerParametersConvolution(i_desc: inDescriptor,",
+            "                                                        w_desc: weightsDescriptor,",
+            "                                                        o_desc: outDescriptor,",
+            "                                                        bias: biasDescriptor,",
+            "                                                        activation: .identity,",
+            "                                                        x_stride: 1, y_stride: 1,",
+            "                                                        x_dilation_stride: 0, y_dilation_stride: 0,",
+            "                                                        x_padding: 0, y_padding: 0,",
+            "                                                        groups: 1,",
+            "                                                        pad: (0, 0, 0, 0))",
+            "        ",
+            "        var filterParameters = BNNSFilterParameters(flags: BNNSFlags.useClientPointer.rawValue,",
+            "                                                    n_threads: 1,",
+            "                                                    alloc_memory: nil,",
+            "                                                    free_memory: nil)",
+            "        ",
+            "        return  BNNSFilterCreateLayerConvolution(&layerParameters, &filterParameters)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If either ",
+              "type": "text"
+            },
+            {
+              "code": "weights",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mutate before calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the filter uses the new values. However, the convolution layer works with its internal copies of weights and bias if you pass a ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and subsequent changes have no effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a filter to a set of input objects, writing the result to a set of output objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterApplyBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterApplyBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfilterapplybatch(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags": {
+      "abstract": [
+        {
+          "text": "Options that control the behavior of a filter parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFlags",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsflags"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/BNNSFlagsUseClientPtr": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the filter to use pointers to data you provide at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFlagsUseClientPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/BNNSFlagsUseClientPtr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNSFlagsUseClientPtr",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsflags/bnnsflagsuseclientptr"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the filter to use pointers to data you provide at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useClientPointer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSFlags",
+          "text": "BNNSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useClientPointer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsflags/useclientpointer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFlags/title",
+          "value": "BNNSFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterApplyBatch(_:_:_:_:_:_:)/title",
+          "value": "BNNSFilterApplyBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterApplyBatch(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterApplyBatch"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsflags/bnnsflagsuseclientptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
