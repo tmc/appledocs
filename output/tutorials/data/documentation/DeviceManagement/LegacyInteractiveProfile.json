@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "The declaration to configure an interactive, legacy profile.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rmdm-declarations:LegacyInteractiveProfile",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "LegacyInteractiveProfile"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LegacyInteractiveProfile"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "LegacyInteractiveProfile"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "LegacyInteractiveProfile"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL of the profile to download and install, which needs to start with ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The system silently ignores any account or passcode payloads in the profile. Use their declarative configurations instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If a user enrollment triggers this configuration, the system silently ignores any MDM 1 payloads in macOS where the User Enrollment Mode setting is ",
+                  "type": "text"
+                },
+                {
+                  "code": "forbidden",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". In iOS, the system rejects the entire profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "15.0.0",
+          "name": "ProfileURL",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The visible name of the configuration. This name needs to indicate the nature of the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "15.0.0",
+          "name": "VisibleName",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.configuration.legacy.interactive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the declaration type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This declaration specifies an MDM 1 profile to present to the user, who may choose to download and install the profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The declaration may contain any profile that MDM supports. The system doesn’t allow MDM enrollment and Profile Services profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuration-Availability",
+          "level": 3,
+          "text": "Configuration Availability",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in Device Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in Local Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in System Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Calendar account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountCalDAV"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountCalDAV"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountCalDAV",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountcaldav"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an address book account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountCardDAV"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountCardDAV"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountCardDAV",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountcarddav"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an Exchange account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountExchange"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountExchange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountExchange",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountexchange"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Google account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountGoogle"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountGoogle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountGoogle",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountgoogle"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Lightweight Directory Access Protocol (LDAP) account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountLDAP"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountLDAP"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountLDAP",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountldap"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Mail account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountMail"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountMail"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountMail",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountmail"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Calendar subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountSubscribedCalendar"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountSubscribedCalendar"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountSubscribedCalendar",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountsubscribedcalendar"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a managed app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppManaged"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppManaged",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/appmanaged"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure disk management settings on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiskManagementSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DiskManagementSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DiskManagementSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/diskmanagementsettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an interactive, legacy profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LegacyInteractiveProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LegacyInteractiveProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "LegacyInteractiveProfile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/legacyinteractiveprofile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a legacy profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LegacyProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LegacyProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "LegacyProfile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/legacyprofile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions": {
+      "abstract": [
+        {
+          "text": "The declaration to configure status subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementStatusSubscriptions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementstatussubscriptions"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest": {
+      "abstract": [
+        {
+          "text": "The declaration to test the MDM system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementTest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementTest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementTest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementtest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure the math and calculator apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MathSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MathSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "MathSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/mathsettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure passcode policy settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasscodeSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/passcodesettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SafariExtensionSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure Safari Extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SafariExtensionSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SafariExtensionSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SafariExtensionSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SafariExtensionSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/safariextensionsettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configurations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SafariExtensionSettings"
+      ],
+      "title": "Configurations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/legacyinteractiveprofile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1546 @@
+{
+  "abstract": [
+    {
+      "text": "Resolve common problems when creating compositions, video compositions, and audio mixes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.5",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.5",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Debugging AVFoundation audio mixes, compositions, and video compositions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can construct elaborate and complex compositions, video compositions, and audio mixes with entirely valid values that produce unexpected results. This sample code project visualizes the composition on the screen and adopts the video composition validation-handling protocol to debug common pitfalls in compositions and audio mixes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the sample with Xcode 13.4.1 or later, and Swift 5.5 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This sample runs on physical devices with iPadOS 13.5 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run the app on any supported device. Use the play, pause, and scrubber controls to play and scrub through the composition in the upper portion of the screen. The debug view in the lower portion of the screen visualizes the composition, video composition, and audio mix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-the-composition",
+          "level": 3,
+          "text": "Visualize the composition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Visualization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is looking at a picture of a composition rather than looking at its code. This sample implements the ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to present a visual description on the screen of the underlying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that form the composition. Developers can drop the ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into their own apps. Itʼs a noninteractive view, and developers can extend it to draw their own video instructions. It helps in identifying any overlaps and gaps in the composition tracks, video instructions, and audio mix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-the-visualized-composition",
+          "level": 3,
+          "text": "Synchronize the visualized composition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class has an outlet to the ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBOutlet weak var compositionDebugView: CompositionDebugView!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a player item to display the composition in the upper portion of the screen using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that presents a native user interface to control playback. It creates this player item from the composition, video composition, and audio mix that the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates from the video files in the project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a player item from the simple editor composition.",
+            "self.playerItem = AVPlayerItem(asset: self.editor.composition())",
+            "/*",
+            " Set the player item's video composition and audio mix playback",
+            " settings from the corresponding values in the simple editor.",
+            "*/",
+            "self.playerItem.videoComposition = self.editor.videoComposition()",
+            "self.playerItem.audioMix = self.editor.audioMix()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To synchronize its player item with the ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "synchronize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, passing the player item as a parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the player item on the debug view to synchronize playback.",
+            "self.compositionDebugView.synchronize(with: self.playerItem)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CompositionDebugView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "synchronize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses the passed-in player item parameter to synchronize with its own drawing. It builds its visual display from the composition, video composition, and audio mix associated with the player item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func synchronize(with playerItem: AVPlayerItem) {",
+            "    self.playerItem = playerItem",
+            "    ",
+            "    if let composition = playerItem.asset as? AVMutableComposition {",
+            "        compositionTrackSegmentInfo = trackSegmentInfo(from: composition.tracks)",
+            "        duration = CMTimeMaximum(duration, composition.duration)",
+            "    }",
+            "",
+            "    if let audioMix = playerItem.audioMix {",
+            "        volumeRampAsPoints = volumeRampPoints(from: audioMix, duration: duration)",
+            "    }",
+            "",
+            "    if let videoComposition = playerItem.videoComposition {",
+            "        videoCompositionStages = videoCompStageInfo(from: videoComposition.instructions)",
+            "    }",
+            "",
+            "    drawingLayer.setNeedsDisplay()",
+            "    self.setNeedsDisplay()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-composition",
+          "level": 3,
+          "text": "Create the composition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class initialization creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to merge the videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private lazy var editorComposition: AVMutableComposition = {",
+            "    var comp = AVMutableComposition()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer calls the ",
+              "type": "text"
+            },
+            {
+              "code": "createComposition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to stitch the provided video clips together. It inserts the clips into alternating video and audio tracks in the composition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            " Place clips into alternating video and audio tracks in the composition,",
+            " and overlap them with transitionDuration. Set up the video composition to cycle",
+            " between \"pass through A\", \"transition from A to B\", and \"pass through B\".",
+            "*/",
+            "var nextClipStart = CMTime.zero",
+            "for clipIndex in 0..<clips.count {",
+            "    // Alternating targets: 0, 1, 0, 1, ...",
+            "    let asset = clips[clipIndex].asset",
+            "    let clipTimeRange = clips[clipIndex].availableTimeRange",
+            "    do {",
+            "        let clipVideoTrack = asset.tracks(withMediaType: AVMediaType.video)[0]",
+            "        try compVideoTrks[clipIndex % 2].insertTimeRange(clipTimeRange, of: clipVideoTrack, at: nextClipStart)",
+            "        let clipAudioTracks = asset.tracks(withMediaType: AVMediaType.audio)",
+            "        if clipAudioTracks.isEmpty {",
+            "            SimpleEditorUtils.display(\"Each clip must have an audio track.\")",
+            "            return false",
+            "        }",
+            "        try compAudioTrks[clipIndex % 2].insertTimeRange(clipTimeRange, of: clipAudioTracks[0], at: nextClipStart)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample overlaps the end of the first clip with the start of the second clip, and creates time ranges for a transition effect during the overlap period. The first clip ends with the transition, and the second clip begins with the transition. To set up the transition effect for the overlap period only, the sample enables compositing during the overlap, and disables it for the rest of the video composition. To do that, the sample creates a passthrough time range for each clip that excludes the transition period. This passthrough time range instructs the video compositor to pass through the frames without compositing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "passThroughTimeRanges[clipIndex] = CMTimeRangeMake(start: nextClipStart, duration: clipTimeRange.duration)",
+            "if clipIndex > 0 {",
+            "    passThroughTimeRanges[clipIndex].start = CMTimeAdd(passThroughTimeRanges[clipIndex].start,",
+            "                    transitionDuration)",
+            "}",
+            "passThroughTimeRanges[clipIndex].duration = CMTimeSubtract(passThroughTimeRanges[clipIndex].duration,",
+            "                    transitionDuration)",
+            "",
+            "/*",
+            " The end of this clip overlaps the start of the next by",
+            " transitionDuration.",
+            "*/",
+            "nextClipStart = CMTimeSubtract(CMTimeAdd(nextClipStart, clipTimeRange.duration), transitionDuration)",
+            "",
+            "// Retain the time range for the transition to the next item.",
+            "if clipIndex + 1 < clips.count {",
+            "    transitionTimeRanges[clipIndex] = CMTimeRangeMake(start: nextClipStart, duration: transitionDuration)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-video-composition-and-audio-mix",
+          "level": 3,
+          "text": "Create the video composition and audio mix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class initialization creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply effects between clips, and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableAudioMix",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for mixing the audio tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var editorAudioMix = AVMutableAudioMix()",
+            "",
+            "private lazy var editorVideoComposition: AVMutableVideoComposition = {",
+            "    var videoComp = AVMutableVideoComposition()",
+            "    // Every videoComposition needs these properties to be set:",
+            "    videoComp.frameDuration = CMTimeMake(value: 1, timescale: frameDuration)",
+            "    videoComp.renderSize = editorComposition.naturalSize",
+            "    return videoComp",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer calls the ",
+              "type": "text"
+            },
+            {
+              "code": "createVideoCompAndAudioMix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to add an opacity ramp transition between the video clips, and a volume ramp between the audio tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "instructions.append(passThroughInstruction)",
+            "",
+            "if currIndex + 1 < clips.count {",
+            "    // Add a transition from clip i to clip i+1.",
+            "    let transitionInstruction = AVMutableVideoCompositionInstruction()",
+            "    transitionInstruction.timeRange = transitionTimeRanges[currIndex]",
+            "    let fromLayer = AVMutableVideoCompositionLayerInstruction(assetTrack:",
+            "                        compVideoTracks[alternatingIndex])",
+            "    let toLayer = AVMutableVideoCompositionLayerInstruction(assetTrack:",
+            "                    compVideoTracks[1 - alternatingIndex])",
+            "    // Sets an opacity ramp to apply during the specified time range.",
+            "    toLayer.setOpacityRamp(fromStartOpacity: 0.0, toEndOpacity: 1.0,",
+            "                        timeRange: transitionTimeRanges[currIndex])",
+            "",
+            "    transitionInstruction.layerInstructions = [toLayer, fromLayer]",
+            "",
+            "    instructions.append(transitionInstruction)",
+            "",
+            "    // Add an audio mix to the first clip to fade in the volume ramps.",
+            "    let trackMix1 = AVMutableAudioMixInputParameters(track: compAudioTracks[0])",
+            "    trackMix1.setVolumeRamp(fromStartVolume: 1.0, toEndVolume: 0.0,",
+            "                            timeRange: transitionTimeRanges[0])",
+            "",
+            "    trackMixArray.append(trackMix1)",
+            "",
+            "    // Add an audio mix to the second clip to fade out the volume ramps.",
+            "    let trackMix2 = AVMutableAudioMixInputParameters(track: compAudioTracks[1])",
+            "    trackMix2.setVolumeRamp(fromStartVolume: 0.0, toEndVolume: 1.0,",
+            "                            timeRange: transitionTimeRanges[0])",
+            "    trackMix2.setVolumeRamp(fromStartVolume: 1.0, toEndVolume: 1.0,",
+            "                            timeRange: passThroughTimeRanges[1])",
+            "    trackMixArray.append(trackMix2)",
+            "}",
+            "",
+            "editorAudioMix.inputParameters = trackMixArray",
+            "editorVideoComposition.instructions = instructions"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Debug-video-compositions",
+          "level": 3,
+          "text": "Debug video compositions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionValidationHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol methods in the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to debug the video composition. These methods identify errors and indicate whether validation of a video composition needs to continue after finding specific errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s implementation of each of these functions displays an appropriate error dialog, and returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to stop any further validation of the video composition. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionValidationHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " documentation for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func videoComposition(_ videoComposition: AVVideoComposition, shouldContinueValidatingAfterFindingEmptyTimeRange timeRange: CMTimeRange) -> Bool {",
+            "        SimpleEditorUtils.display(\"Empty time range detected during validation.\")",
+            "        return false // Stop validation after finding errors.",
+            "}",
+            "",
+            "func videoComposition(_ videoComposition: AVVideoComposition, shouldContinueValidatingAfterFindingInvalidTimeRangeIn videoCompositionInstruction: AVVideoCompositionInstructionProtocol) -> Bool {",
+            "        SimpleEditorUtils.display(\"Invalid time range detected during validation.\")",
+            "        return false // Stop validation after finding errors.",
+            "}",
+            "",
+            "func videoComposition(_ videoComposition: AVVideoComposition, shouldContinueValidatingAfterFindingInvalidValueForKey key: String) -> Bool {",
+            "        SimpleEditorUtils.display(\"Invalid value for \\(key) detected during validation.\")",
+            "        return false // Stop validation after finding errors.",
+            "}",
+            "",
+            "func videoComposition(_ videoComposition: AVVideoComposition, shouldContinueValidatingAfterFindingInvalidTrackIDIn videoCompositionInstruction: AVVideoCompositionInstructionProtocol, layerInstruction: AVVideoCompositionLayerInstruction, asset: AVAsset) -> Bool {",
+            "        SimpleEditorUtils.display(\"Invalid track ID detected during validation.\")",
+            "        return false // Stop validation after finding errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "46bb8c54cf2e/DebuggingAVFoundationAudioMixesCompositionsAndVideoCompositions.zip": {
+      "checksum": "46bb8c54cf2efe8916c3965fd5144efc237fbd0002644eefe06a8a8eedf83b9b9b678e52a8ec49f39becbdf9a864d3a4fa1598bfb5ccc9ce6911b376ea7d7643",
+      "identifier": "46bb8c54cf2e/DebuggingAVFoundationAudioMixesCompositionsAndVideoCompositions.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/46bb8c54cf2e/DebuggingAVFoundationAudioMixesCompositionsAndVideoCompositions.zip"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix": {
+      "abstract": [
+        {
+          "text": "An object that manages the input parameters for mixing audio tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMix"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMix"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMix",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiomix"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition": {
+      "abstract": [
+        {
+          "text": "An object that combines and arranges media from multiple assets into a single composite asset that you can play or process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableAudioMix": {
+      "abstract": [
+        {
+          "text": "An object that manages the input parameters for mixing audio tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableAudioMix"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableAudioMix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableAudioMix"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableAudioMix",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutableaudiomix"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition": {
+      "abstract": [
+        {
+          "text": "An object that you use to create a new composition from existing assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition": {
+      "abstract": [
+        {
+          "text": "A mutable video composition subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction": {
+      "abstract": [
+        {
+          "text": "A mutable video composition instruction subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoCompositionInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocompositioninstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction": {
+      "abstract": [
+        {
+          "text": "An object used to modify the transform, cropping, and opacity ramps applied to a given track in a mutable composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionLayerInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionLayerInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoCompositionLayerInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocompositionlayerinstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition": {
+      "abstract": [
+        {
+          "text": "An object that describes how to compose video frames at particular points in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class": {
+      "abstract": [
+        {
+          "text": "An operation that a compositor performs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCompositionInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositioninstruction-swift.class"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction": {
+      "abstract": [
+        {
+          "text": "An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionLayerInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionLayerInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCompositionLayerInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositionlayerinstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionValidationHandling": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to indicate whether validation of a video composition should continue after specific errors are found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionValidationHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionValidationHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionValidationHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCompositionValidationHandling",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositionvalidationhandling"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/editing-and-playing-hdr-video": {
+      "abstract": [
+        {
+          "text": "Support high-dynamic-range (HDR) video content in your app by using the HDR editing and playback capabilities of AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/editing-and-playing-hdr-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Editing and Playing HDR Video",
+      "type": "topic",
+      "url": "/documentation/avfoundation/editing-and-playing-hdr-video"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects": {
+      "abstract": [
+        {
+          "text": "Define standard video transition effects, synchronize layer animations with media timing, and create custom video compositors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video effects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/video-effects"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "46bb8c54cf2e/DebuggingAVFoundationAudioMixesCompositionsAndVideoCompositions.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Built-in-video-compositing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/editing-and-playing-hdr-video",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction"
+      ],
+      "title": "Built-in video compositing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/title",
+          "value": "AVMutableVideoCompositionLayerInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/title",
+          "value": "AVMutableComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/title",
+          "value": "AVMutableVideoCompositionInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionValidationHandling/title",
+          "value": "AVVideoCompositionValidationHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionValidationHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionValidationHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionValidationHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionValidationHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/title",
+          "value": "AVVideoCompositionInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioMix/title",
+          "value": "AVAudioMix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioMix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioMix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/title",
+          "value": "AVComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableAudioMix/title",
+          "value": "AVMutableAudioMix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableAudioMix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableAudioMix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableAudioMix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableAudioMix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/title",
+          "value": "AVVideoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/title",
+          "value": "AVVideoCompositionLayerInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/title",
+          "value": "AVMutableVideoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoComposition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

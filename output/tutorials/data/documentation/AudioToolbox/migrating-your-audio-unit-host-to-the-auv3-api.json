@@ -1,0 +1,2739 @@
+{
+  "abstract": [
+    {
+      "text": "Update your Audio Unit (AU) host app to take advantage of the new features and capabilities of AUv3.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating Your Audio Unit Host to the AUv3 API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The latest Audio Unit standard, AUv3, provides a robust plug-in model built on app extensions. This model provides several benefits to host apps, including greater security and stability, multiple view configurations, and support for shared user presets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can adopt the new API while still retaining your ability to host AUv2 audio units. The framework’s bridging layer enables this capability by automatically translating AUv3 calls into their AUv2 equivalents, which means you can use a single API and work with both new and legacy audio units.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3531569",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a downloadable sample app that uses the core features of the AUv3 API, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-Audio-Units",
+          "level": 3,
+          "text": "Find Audio Units",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AVFoundation framework’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponentManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a convenient way to find audio components registered with the host system. You use it to search for audio units by description, predicate, or test case, and the component manager returns an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects matching your search criteria. The following code example shows how to use each approach to find all audio effects available on the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Access the singleton AVAudioUnitComponentManager instance.",
+            "let manager = AVAudioUnitComponentManager.shared()",
+            "",
+            "// Retrieve audio unit components by description.",
+            "let description = AudioComponentDescription(componentType: kAudioUnitType_Effect,",
+            "                                            componentSubType: 0,",
+            "                                            componentManufacturer: 0,",
+            "                                            componentFlags: 0,",
+            "                                            componentFlagsMask: 0)",
+            "let componentsByDesc = manager.components(matching: description)",
+            "",
+            "",
+            "// Retrieve audio unit components by predicate.",
+            "let predicate = NSPredicate(format: \"typeName CONTAINS 'Effect'\")",
+            "let componentsByPredicate = manager.components(matching: predicate)",
+            "",
+            "// Retrieve audio unit components by test.",
+            "let componentsByTest = manager.components { component, _ in",
+            "    return component.typeName == AVAudioUnitTypeEffect",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Instantiate-Audio-Units",
+          "level": 3,
+          "text": "Instantiate Audio Units",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve found the list of available audio components, the next step is to instantiate the component you want to use. To instantiate the audio unit, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectAudioUnit(at index: Int) {",
+            "    let description = components[index].audioComponentDescription",
+            "    ",
+            "    // Instantiate using AVFoundation's AVAudioUnit class method.",
+            "    AVAudioUnit.instantiate(with: description, options: []) { avAudioUnit, error in",
+            "        guard error == nil else {",
+            "            DispatchQueue.main.async { /* Show error message to user. */ }",
+            "            return",
+            "        }",
+            "        ",
+            "        // Audio unit successfully instantiated.",
+            "        // Connect it to AVAudioEngine to use.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A key difference between the two audio unit API versions is that AUv2 audio units are loaded into the host’s process, whereas AUv3 audio units are loaded out-of-process by default. In macOS only, if supported by the AUv3 audio unit, you can request loading it in-process by passing the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " option in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "options",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " argument. To verify that the audio unit was successfully loaded in-process, query its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isLoadedInProcess",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Interact-with-an-Audio-Unit",
+          "level": 3,
+          "text": "Interact with an Audio Unit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The way you interact with audio units using the AUv3 API differs from how you do so with the AUv2 API. With AUv2, you used C functions to operate on an audio unit. For example, the following code sets the maximum number of frames to render using the AUv2 API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the underlying AudioUnit instance.",
+            "let audioUnit = avAudioUnit.audioUnit",
+            "var maxFrames = UInt32(4096)",
+            "",
+            "// Set the maximum frames to render.",
+            "AudioUnitSetProperty(audioUnit,",
+            "                     kAudioUnitProperty_MaximumFramesPerSlice,",
+            "                     kAudioUnitScope_Global,",
+            "                     0,",
+            "                     &maxFrames,",
+            "                     UInt32(MemoryLayout<UInt32>.size))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In comparison, the AUv3 API provides a more natural interface that enables you to interact directly with the audio unit instance by calling its properties and methods. Using the AUv3 API, you set the maximum number of frames to render as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the underlying AUAudioUnit instance.",
+            "let audioUnit = avAudioUnit.auAudioUnit",
+            "audioUnit.maximumFramesToRender = 4096"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the AUv2 function and its AUv3 method or property equivalent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AUv2 API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AUv3 API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitInitialize(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/allocateRenderResources()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocates the audio unit’s needed resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitUninitialize(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deallocateRenderResources()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frees the audio unit’s rendering resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRender(_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderBlock",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Renders audio samples in a real-time context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitReset(_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/reset()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resets the audio unit’s state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitScheduleParameters(_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleParameterBlock",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedules a change to an audio unit parameter value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetProperty(_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetProperty(_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "audioUnit.propertyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modifies an audio unit property value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetParameter(_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetParameter(_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/parameterTree",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accesses the parameter tree object that’s used to get and set parameter values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Present-the-Audio-Units-User-Interface",
+          "level": 3,
+          "text": "Present the Audio Unit’s User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present the audio unit’s user interface, call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/requestViewController(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method asynchronously retrieves the audio unit’s view controller instance and returns it in a callback closure. The callback is invoked on a background thread, so you need to dispatch control back to the main queue before adding the audio unit’s user interface into your app’s view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "audioUnit.requestViewController { viewController in",
+            "    DispatchQueue.main.async {",
+            "        // Install the view controller's view in your host's user interface.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/allocateRenderResources()": {
+      "abstract": [
+        {
+          "text": "Allocates resources required to render audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateRenderResources"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/allocateRenderResources()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allocateRenderResourcesAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "allocateRenderResources()",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/allocaterenderresources()"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deallocateRenderResources()": {
+      "abstract": [
+        {
+          "text": "Deallocates resources required to render audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocateRenderResources"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deallocateRenderResources()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deallocateRenderResources"
+        }
+      ],
+      "role": "symbol",
+      "title": "deallocateRenderResources()",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/deallocaterenderresources()"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isLoadedInProcess": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLoadedInProcess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isLoadedInProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isLoadedInProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLoadedInProcess",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/isloadedinprocess"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/parameterTree": {
+      "abstract": [
+        {
+          "text": "An audio unit’s parameters, organized in a tree hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterTree"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUParameterTree",
+          "text": "AUParameterTree"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/parameterTree",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterTree"
+        }
+      ],
+      "role": "symbol",
+      "title": "parameterTree",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/parametertree"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderBlock": {
+      "abstract": [
+        {
+          "text": "The block that hosts use to ask the audio unit to render audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AURenderBlock",
+          "text": "AURenderBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/renderblock"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/requestViewController(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests an audio unit’s custom view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/requestViewController(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestViewControllerWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestViewController(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/requestviewcontroller(completionhandler:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/reset()": {
+      "abstract": [
+        {
+          "text": "Resets transitory rendering state to its initial state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/reset()"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleParameterBlock": {
+      "abstract": [
+        {
+          "text": "The block that hosts use to schedule parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleParameterBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AUScheduleParameterBlock",
+          "text": "AUScheduleParameterBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleParameterBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleParameterBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduleParameterBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/scheduleparameterblock"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadInProcess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentInstantiationOptions",
+          "text": "AudioComponentInstantiationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentInstantiation_LoadInProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadInProcess",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstantiationoptions/loadinprocess"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetParameter(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the value of an audio unit parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitGetParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitParameterID",
+          "text": "AudioUnitParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitScope",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitElement",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitParameterValue",
+          "text": "AudioUnitParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetParameter(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitGetParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitGetParameter(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitgetparameter(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetProperty(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the value of an audio unit property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitScope",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitElement",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitGetProperty(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitGetProperty(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitInitialize(_:)": {
+      "abstract": [
+        {
+          "text": "Initializes an audio unit",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitInitialize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitInitialize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitInitialize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitInitialize(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitinitialize(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRender(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initiates a rendering cycle for an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitRender"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioUnitRenderActionFlags",
+          "text": "AudioUnitRenderActionFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioTimeStamp",
+          "text": "AudioTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRender(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitRender"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitRender(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitrender(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitReset(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Resets an audio unit’s render state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitScope",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitElement",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitReset(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitReset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitReset(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitreset(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitScheduleParameters(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules changes to the value of an audio unit parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitScheduleParameters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioUnitParameterEvent",
+          "text": "AudioUnitParameterEvent"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitScheduleParameters(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitScheduleParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitScheduleParameters(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitscheduleparameters(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetParameter(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of an audio unit parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitSetParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitParameterID",
+          "text": "AudioUnitParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitScope",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitElement",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitParameterValue",
+          "text": "AudioUnitParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetParameter(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitSetParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitSetParameter(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitsetparameter(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetProperty(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of an audio unit property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitScope",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitElement",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitSetProperty(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitSetProperty(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitsetproperty(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitUninitialize(_:)": {
+      "abstract": [
+        {
+          "text": "Uninitializes an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitUninitialize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnit",
+          "text": "AudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitUninitialize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitUninitialize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitUninitialize(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounituninitialize(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins": {
+      "abstract": [
+        {
+          "text": "Deliver custom audio effects, instruments, and other audio behaviors using an Audio Unit v3 app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/hosting-audio-unit-extensions-using-the-auv2-api": {
+      "abstract": [
+        {
+          "text": "Update your existing Audio Unit v2 host app to load and use Audio Unit extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/hosting-audio-unit-extensions-using-the-auv2-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Hosting Audio Unit Extensions Using the AUv2 API",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments": {
+      "abstract": [
+        {
+          "text": "Add custom audio processing and MIDI instruments to your app by hosting Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating Audio Effects and Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/incorporating-audio-effects-and-instruments"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit": {
+      "abstract": [
+        {
+          "text": "A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioUnit",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioUnit"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance of an audio unit component asynchronously and wraps it in an audio unit class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "audioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioComponentDescription",
+          "text": "AudioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentInstantiationOptions",
+          "text": "AudioComponentInstantiationOptions"
+        },
+        {
+          "kind": "text",
+          "text": " = [], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioUnit",
+          "text": "AVAudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "instantiate(with:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponent": {
+      "abstract": [
+        {
+          "text": "An object that provides details about an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnitComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioUnitComponent",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioUnitComponent"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponentManager": {
+      "abstract": [
+        {
+          "text": "An object that provides a way to search and query audio components that the system registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnitComponentManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioUnitComponentManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioUnitComponentManager",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioUnitComponentManager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3531569": {
+      "alt": "A component diagram that shows the bridging support provided by the framework.",
+      "identifier": "media-3531569",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5490fa2df1cfa8948d30e81b2aaeca6/media-3531569@2x.png"
+        }
+      ]
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Host-App",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+      ],
+      "title": "Host App"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Host-App",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+              ],
+              "title": "Host App"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitUninitialize(_:)/title",
+          "value": "AudioUnitUninitialize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitUninitialize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitUninitialize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitGetProperty(_:_:_:_:_:_:)/title",
+          "value": "AudioUnitGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitGetProperty(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitScheduleParameters(_:_:_:)/title",
+          "value": "AudioUnitScheduleParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitScheduleParameters(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitScheduleParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1isLoadedInProcess/title",
+          "value": "isLoadedInProcess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1isLoadedInProcess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isLoadedInProcess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1requestViewController(completionHandler:)/title",
+          "value": "requestViewControllerWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1requestViewController(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestViewControllerWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1deallocateRenderResources()/title",
+          "value": "deallocateRenderResources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1deallocateRenderResources()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deallocateRenderResources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1parameterTree/title",
+          "value": "parameterTree"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1parameterTree/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parameterTree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioUnitComponentManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnitComponentManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitRender(_:_:_:_:_:_:)/title",
+          "value": "AudioUnitRender"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitRender(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitRender"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitGetParameter(_:_:_:_:_:)/title",
+          "value": "AudioUnitGetParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitGetParameter(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitGetParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitSetProperty(_:_:_:_:_:_:)/title",
+          "value": "AudioUnitSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitSetProperty(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitReset(_:_:_:)/title",
+          "value": "AudioUnitReset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitReset(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitReset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnit"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioNode",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioUnitComponent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnitComponent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiationOptions~1loadInProcess/title",
+          "value": "kAudioComponentInstantiation_LoadInProcess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiationOptions~1loadInProcess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentInstantiation_LoadInProcess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1scheduleParameterBlock/title",
+          "value": "scheduleParameterBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1scheduleParameterBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scheduleParameterBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitInitialize(_:)/title",
+          "value": "AudioUnitInitialize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitInitialize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitInitialize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitSetParameter(_:_:_:_:_:_:)/title",
+          "value": "AudioUnitSetParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitSetParameter(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitSetParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioUnit~1instantiate(with:options:completionHandler:)/title",
+          "value": "instantiateWithComponentDescription:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioUnit~1instantiate(with:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "instantiateWithComponentDescription:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@AudioComponentDescription",
+              "text": "AudioComponentDescription"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "audioComponentDescription"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AudioComponentInstantiationOptions",
+              "text": "AudioComponentInstantiationOptions"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioUnit",
+              "text": "AVAudioUnit"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "audioUnit"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1allocateRenderResources()/title",
+          "value": "allocateRenderResourcesAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1allocateRenderResources()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allocateRenderResourcesAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1renderBlock/title",
+          "value": "renderBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1renderBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderBlock"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

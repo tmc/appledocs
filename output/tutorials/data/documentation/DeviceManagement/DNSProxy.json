@@ -1,0 +1,713 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure DNS proxies.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:DNSProxy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "DNSProxy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DNSProxy"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "DNSProxy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "DNSProxy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bundle identifier of the app containing the DNS proxy network extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "AppBundleIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A globally-unique identifier for this DNS proxy configuration. Managed apps with the same ",
+                  "type": "text"
+                },
+                {
+                  "code": "DNSProxyUUID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in their app attributes have their DNS lookups traffic processed by the proxy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "DNSProxyUUID",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bundle identifier of the DNS proxy network extension to use. Declaring the bundle identifier is useful for apps that contain more than one DNS proxy extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "ProviderBundleIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dictionary of vendor-specific configuration items.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "ProviderConfiguration",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy/ProviderConfiguration-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:DNSProxy.ProviderConfiguration",
+              "text": "DNSProxy.ProviderConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.dnsProxy.managed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beginning with iOS 15, this profile is unsupervised and needs to be installed through MDM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>AppBundleIdentifier</key>",
+            "            <string>com.example.mydnsproxyapp</string>",
+            "            <key>ProviderBundleIdentifier</key>",
+            "            <string>com.example.mydnsproxyapp.mydnsproxyprovider</string>",
+            "            <key>ProviderConfiguration</key>",
+            "            <dict>",
+            "                <key>resolver</key>",
+            "                <dict>",
+            "                    <key>ipaddress</key>",
+            "                    <string>9.9.9.9</string>",
+            "                </dict>",
+            "            </dict>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.mydnsproxypayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.dnsProxy.managed</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>D6B3F3E4-A72E-49F1-AE2E-742A3A11BE1D</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>DNS Proxy</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>6a60bbe0-242c-493d-b338-c5885107f2af</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure DNS proxies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSProxy",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnsproxy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy/ProviderConfiguration-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary of vendor-specific configuration items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSProxy.ProviderConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy/ProviderConfiguration-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSProxy.ProviderConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSProxy.ProviderConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnsproxy/providerconfiguration-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GlobalHTTPProxy": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a global HTTP proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GlobalHTTPProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GlobalHTTPProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GlobalHTTPProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "GlobalHTTPProxy",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/globalhttpproxy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkProxyConfiguration": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure network proxies for a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkProxyConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkProxyConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkProxyConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkProxyConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/networkproxyconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Proxies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GlobalHTTPProxy",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkProxyConfiguration"
+      ],
+      "title": "Proxies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSProxy/ProviderConfiguration-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/dnsproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

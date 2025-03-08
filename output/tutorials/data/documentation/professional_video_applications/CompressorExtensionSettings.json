@@ -1,0 +1,1136 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods you use to manage the extension UI that displays the current encoder settings for users to view and customize.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CompressorExtensionSettings",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CompressorExtensionSettings"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CompressorExtensionSettings"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ProVideo Encoder Extensions"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CompressorExtensionSettings"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Unsupported OS: ProExtension"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettings"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encoder extensions provide a default settings template with audio and video settings for the extension’s custom output format. To allow users to view and customize these settings, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/edit(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encoder extension sessions are stateless and cannot persist data across different sessions. To save the encoder settings values, and make them persistent across different sessions, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsString()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.  When a user updates the encoder settings from the UI, the Compressor app calls this method to retrieve and save those settings as XML at the compressor end. When an extension restarts, or during an encoding process, the Compressor app provides these settings back to the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the methods in this interface to send other extension details, such as extension name and description, to the Compressor app to display them on its interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionColorSpaces": {
+      "abstract": [
+        {
+          "text": "An interface you use to specify the supported color spaces in an extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionColorSpaces"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionColorSpaces",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionColorSpaces"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompressorExtensionColorSpaces",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensioncolorspaces"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings": {
+      "abstract": [
+        {
+          "text": "A set of methods you use to manage the extension UI that displays the current encoder settings for users to view and customize.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompressorExtensionSettings",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/audioEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether audio is enabled for the source media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/audioEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioEnabled"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "audioEnabled",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/audioenabled"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/edit(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Displays a view that enables users to edit the current encoder settings, and then calls a handler upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSModalResponse",
+          "text": "ModalResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/edit(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editSettings:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "edit(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/edit(_:completionhandler:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/encoderName()": {
+      "abstract": [
+        {
+          "text": "Returns the encoder extension name to display in the Compressor app interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encoderName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/encoderName()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encoderName"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "encoderName()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/encodername()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/setSettingsString(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the encoder settings based on the string value supplied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSettingsString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/setSettingsString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSettingsString:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSettingsString(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/setsettingsstring(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsAttributes()": {
+      "abstract": [
+        {
+          "text": "Returns a set of audio and video encoding attributes to display on the Compressor app interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingsAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsAttributes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "settingsAttributes"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "settingsAttributes()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/settingsattributes()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsDescription()": {
+      "abstract": [
+        {
+          "text": "Returns a description of the current encoder settings to display in the Compressor app interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingsDescription"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsDescription()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "settingsDescription"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "settingsDescription()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/settingsdescription()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsString()": {
+      "abstract": [
+        {
+          "text": "Returns the current encoder settings string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingsString"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsString()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "settingsString"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "settingsString()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/settingsstring()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/videoEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether video is enabled for the source media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/videoEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoEnabled"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "videoEnabled",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettings/videoenabled"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettingsPtr": {
+      "abstract": [
+        {
+          "text": "The type alias for referencing the ",
+          "type": "text"
+        },
+        {
+          "code": "CompressorExtensionSettings",
+          "type": "codeVoice"
+        },
+        {
+          "text": "  object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionSettingsPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettingsPtr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionSettingsPtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompressorExtensionSettingsPtr",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionsettingsptr"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Displaying-the-Extension-View",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/edit(_:completionHandler:)"
+      ],
+      "title": "Displaying the Extension View"
+    },
+    {
+      "anchor": "Configuring-Extension-Settings",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/setSettingsString(_:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/audioEnabled",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/videoEnabled",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettingsPtr"
+      ],
+      "title": "Configuring Extension Settings"
+    },
+    {
+      "anchor": "Getting-Extension-Settings-and-Details",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsString()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsAttributes()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsDescription()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/encoderName()"
+      ],
+      "title": "Getting Extension Settings and Details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CompressorExtensionSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Displaying-the-Extension-View",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/edit(_:completionHandler:)"
+              ],
+              "title": "Displaying the Extension View"
+            },
+            {
+              "anchor": "Configuring-Extension-Settings",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/setSettingsString(_:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/audioEnabled",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/videoEnabled",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettingsPtr"
+              ],
+              "title": "Configuring Extension Settings"
+            },
+            {
+              "anchor": "Getting-Extension-Settings-and-Details",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsString()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsAttributes()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/settingsDescription()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionSettings/encoderName()"
+              ],
+              "title": "Getting Extension Settings and Details"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoder-Extension-Settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionColorSpaces"
+              ],
+              "title": "Encoder Extension Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Unsupported OS: ProExtension"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CompressorExtensionSettings"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionColorSpaces/title",
+          "value": "CompressorExtensionColorSpaces"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionColorSpaces/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionColorSpaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionColorSpaces/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionColorSpaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings/title",
+          "value": "CompressorExtensionSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsAttributes()/title",
+          "value": "settingsAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsAttributes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "settingsAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsDescription()/title",
+          "value": "settingsDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsDescription()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "settingsDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1videoEnabled/title",
+          "value": "videoEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1videoEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsString()/title",
+          "value": "settingsString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1settingsString()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "settingsString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1audioEnabled/title",
+          "value": "audioEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1audioEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1setSettingsString(_:)/title",
+          "value": "setSettingsString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1setSettingsString(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSettingsString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettingsPtr/title",
+          "value": "CompressorExtensionSettingsPtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettingsPtr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettingsPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettingsPtr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionSettingsPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1edit(_:completionHandler:)/title",
+          "value": "editSettings:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1edit(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "editSettings:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1encoderName()/title",
+          "value": "encoderName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionSettings~1encoderName()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encoderName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional_video_applications/compressorextensionsettings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional_video_applications/compressorextensionsettings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

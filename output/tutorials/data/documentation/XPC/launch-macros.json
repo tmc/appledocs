@@ -1,0 +1,2144 @@
+{
+  "abstract": [
+    {
+      "text": "Obsolete macros for use with the launch daemon.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC",
+        "doc://com.apple.xpc/documentation/XPC/XPC-macros"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/launch-macros"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Launch-related macros"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "LAUNCH_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macros originally allowed a ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " job to obtain file descriptors associated with the sockets it advertised in its ",
+              "type": "text"
+            },
+            {
+              "code": "launchd.plist(5)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, you should now use the more convenient ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/launch_activate_socket",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are no replacements for other uses of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/launch_msg",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, such as submitting, removing, starting, stopping and listing jobs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_INSTANCES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBINETDCOMPATIBILITY_INSTANCES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_INSTANCES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBINETDCOMPATIBILITY_INSTANCES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobinetdcompatibility_instances"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_WAIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBINETDCOMPATIBILITY_WAIT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_WAIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBINETDCOMPATIBILITY_WAIT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobinetdcompatibility_wait"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ABANDONPROCESSGROUP": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ABANDONPROCESSGROUP"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ABANDONPROCESSGROUP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ABANDONPROCESSGROUP",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_abandonprocessgroup"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ASSOCIATEDBUNDLEIDENTIFIERS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ASSOCIATEDBUNDLEIDENTIFIERS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ASSOCIATEDBUNDLEIDENTIFIERS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ASSOCIATEDBUNDLEIDENTIFIERS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_associatedbundleidentifiers"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BONJOURFDS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_BONJOURFDS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BONJOURFDS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_BONJOURFDS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_bonjourfds"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BUNDLEPROGRAM": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_BUNDLEPROGRAM"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BUNDLEPROGRAM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_BUNDLEPROGRAM",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_bundleprogram"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_DAY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_CAL_DAY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_DAY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_CAL_DAY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_cal_day"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_HOUR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_CAL_HOUR"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_HOUR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_CAL_HOUR",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_cal_hour"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MINUTE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_CAL_MINUTE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MINUTE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_CAL_MINUTE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_cal_minute"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MONTH": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_CAL_MONTH"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MONTH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_CAL_MONTH",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_cal_month"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_WEEKDAY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_CAL_WEEKDAY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_WEEKDAY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_CAL_WEEKDAY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_cal_weekday"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DATASTORES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DATASTORES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_datastores"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES_SIZELIMIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DATASTORES_SIZELIMIT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES_SIZELIMIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DATASTORES_SIZELIMIT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_datastores_sizelimit"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DEBUG": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DEBUG"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DEBUG",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DEBUG",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_debug"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DISABLED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DISABLED",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_disabled"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MACHINETYPE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DISABLED_MACHINETYPE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MACHINETYPE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DISABLED_MACHINETYPE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_disabled_machinetype"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MODELNAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DISABLED_MODELNAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MODELNAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DISABLED_MODELNAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_disabled_modelname"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DRAINMESSAGESONFAILEDINIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_DRAINMESSAGESONFAILEDINIT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DRAINMESSAGESONFAILEDINIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_DRAINMESSAGESONFAILEDINIT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_drainmessagesonfailedinit"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEGLOBBING": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ENABLEGLOBBING"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEGLOBBING",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ENABLEGLOBBING",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_enableglobbing"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEPRESSUREDEXIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ENABLEPRESSUREDEXIT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEPRESSUREDEXIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ENABLEPRESSUREDEXIT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_enablepressuredexit"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLETRANSACTIONS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ENABLETRANSACTIONS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLETRANSACTIONS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ENABLETRANSACTIONS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_enabletransactions"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENVIRONMENTVARIABLES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ENVIRONMENTVARIABLES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENVIRONMENTVARIABLES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ENVIRONMENTVARIABLES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_environmentvariables"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_EXITTIMEOUT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_EXITTIMEOUT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_EXITTIMEOUT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_EXITTIMEOUT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_exittimeout"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_GROUPNAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_GROUPNAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_GROUPNAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_GROUPNAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_groupname"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HARDRESOURCELIMITS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_HARDRESOURCELIMITS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HARDRESOURCELIMITS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_HARDRESOURCELIMITS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_hardresourcelimits"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSFIRST": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_HOPEFULLYEXITSFIRST"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSFIRST",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_HOPEFULLYEXITSFIRST",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_hopefullyexitsfirst"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSLAST": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_HOPEFULLYEXITSLAST"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSLAST",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_HOPEFULLYEXITSLAST",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_hopefullyexitslast"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_IGNOREPROCESSGROUPATSHUTDOWN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_IGNOREPROCESSGROUPATSHUTDOWN"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_IGNOREPROCESSGROUPATSHUTDOWN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_IGNOREPROCESSGROUPATSHUTDOWN",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_ignoreprocessgroupatshutdown"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INETDCOMPATIBILITY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_INETDCOMPATIBILITY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INETDCOMPATIBILITY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_INETDCOMPATIBILITY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_inetdcompatibility"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INITGROUPS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_INITGROUPS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INITGROUPS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_INITGROUPS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_initgroups"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_AFTERINITIALDEMAND": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_AFTERINITIALDEMAND"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_AFTERINITIALDEMAND",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_AFTERINITIALDEMAND",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_afterinitialdemand"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_CRASHED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_CRASHED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_CRASHED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_CRASHED",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_crashed"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_NETWORKSTATE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_NETWORKSTATE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_NETWORKSTATE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_NETWORKSTATE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_networkstate"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBACTIVE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBACTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBACTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBACTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_otherjobactive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBENABLED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBENABLED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBENABLED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBENABLED",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_otherjobenabled"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_PATHSTATE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_PATHSTATE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_PATHSTATE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_PATHSTATE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_pathstate"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_SUCCESSFULEXIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_KEEPALIVE_SUCCESSFULEXIT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_SUCCESSFULEXIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_KEEPALIVE_SUCCESSFULEXIT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_keepalive_successfulexit"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LABEL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LABEL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LABEL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LABEL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_label"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LASTEXITSTATUS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LASTEXITSTATUS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LASTEXITSTATUS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LASTEXITSTATUS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_lastexitstatus"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHEVENTS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LAUNCHEVENTS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHEVENTS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LAUNCHEVENTS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_launchevents"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHONLYONCE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LAUNCHONLYONCE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHONLYONCE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LAUNCHONLYONCE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_launchonlyonce"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LEGACYTIMERS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LEGACYTIMERS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LEGACYTIMERS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LEGACYTIMERS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_legacytimers"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHARDWARE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LIMITLOADFROMHARDWARE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHARDWARE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LIMITLOADFROMHARDWARE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_limitloadfromhardware"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHOSTS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LIMITLOADFROMHOSTS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHOSTS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LIMITLOADFROMHOSTS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_limitloadfromhosts"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHARDWARE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LIMITLOADTOHARDWARE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHARDWARE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LIMITLOADTOHARDWARE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_limitloadtohardware"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHOSTS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LIMITLOADTOHOSTS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHOSTS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LIMITLOADTOHOSTS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_limitloadtohosts"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOSESSIONTYPE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LIMITLOADTOSESSIONTYPE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOSESSIONTYPE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LIMITLOADTOSESSIONTYPE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_limitloadtosessiontype"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYBACKGROUNDIO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LOWPRIORITYBACKGROUNDIO"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYBACKGROUNDIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LOWPRIORITYBACKGROUNDIO",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_lowprioritybackgroundio"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYIO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_LOWPRIORITYIO"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_LOWPRIORITYIO",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_lowpriorityio"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICELOOKUPPOLICIES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_MACHSERVICELOOKUPPOLICIES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICELOOKUPPOLICIES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_MACHSERVICELOOKUPPOLICIES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_machservicelookuppolicies"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_MACHSERVICES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_MACHSERVICES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_machservices"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_HIDEUNTILCHECKIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_MACH_HIDEUNTILCHECKIN"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_HIDEUNTILCHECKIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_MACH_HIDEUNTILCHECKIN",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_mach_hideuntilcheckin"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_RESETATCLOSE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_MACH_RESETATCLOSE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_RESETATCLOSE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_MACH_RESETATCLOSE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_mach_resetatclose"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MATERIALIZEDATALESSFILES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_MATERIALIZEDATALESSFILES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MATERIALIZEDATALESSFILES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_MATERIALIZEDATALESSFILES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_materializedatalessfiles"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_NICE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_NICE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_NICE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_NICE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_nice"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ONDEMAND": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ONDEMAND"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ONDEMAND",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ONDEMAND",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_ondemand"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_PID"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_PID",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_pid"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_POLICIES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_POLICIES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_POLICIES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_POLICIES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_policies"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROCESSTYPE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_PROCESSTYPE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROCESSTYPE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_PROCESSTYPE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_processtype"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAM": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_PROGRAM"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_PROGRAM",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_program"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAMARGUMENTS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_PROGRAMARGUMENTS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAMARGUMENTS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_PROGRAMARGUMENTS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_programarguments"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PUBLISHESEVENTS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_PUBLISHESEVENTS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PUBLISHESEVENTS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_PUBLISHESEVENTS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_publishesevents"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_QUEUEDIRECTORIES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_QUEUEDIRECTORIES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_QUEUEDIRECTORIES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_QUEUEDIRECTORIES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_queuedirectories"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CORE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_CORE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CORE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_CORE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_core"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CPU": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_CPU"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CPU",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_CPU",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_cpu"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_DATA": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_DATA"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_DATA",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_DATA",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_data"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_FSIZE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_FSIZE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_FSIZE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_FSIZE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_fsize"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_MEMLOCK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_MEMLOCK"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_MEMLOCK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_MEMLOCK",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_memlock"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NOFILE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_NOFILE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NOFILE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_NOFILE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_nofile"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NPROC": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_NPROC"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NPROC",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_NPROC",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_nproc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_RSS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_RSS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_RSS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_RSS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_rss"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_STACK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RESOURCELIMIT_STACK"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_STACK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RESOURCELIMIT_STACK",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_resourcelimit_stack"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ROOTDIRECTORY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_ROOTDIRECTORY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ROOTDIRECTORY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_ROOTDIRECTORY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_rootdirectory"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RUNATLOAD": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_RUNATLOAD"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RUNATLOAD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_RUNATLOAD",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_runatload"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SESSIONCREATE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_SESSIONCREATE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SESSIONCREATE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_SESSIONCREATE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_sessioncreate"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOCKETS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_SOCKETS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOCKETS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_SOCKETS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_sockets"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOFTRESOURCELIMITS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_SOFTRESOURCELIMITS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOFTRESOURCELIMITS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_SOFTRESOURCELIMITS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_softresourcelimits"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SPAWNCONSTRAINT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_SPAWNCONSTRAINT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SPAWNCONSTRAINT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_SPAWNCONSTRAINT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_spawnconstraint"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDERRORPATH": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STANDARDERRORPATH"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDERRORPATH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STANDARDERRORPATH",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_standarderrorpath"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDINPATH": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STANDARDINPATH"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDINPATH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STANDARDINPATH",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_standardinpath"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDOUTPATH": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STANDARDOUTPATH"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDOUTPATH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STANDARDOUTPATH",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_standardoutpath"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTCALENDARINTERVAL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STARTCALENDARINTERVAL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTCALENDARINTERVAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STARTCALENDARINTERVAL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_startcalendarinterval"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTINTERVAL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STARTINTERVAL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTINTERVAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STARTINTERVAL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_startinterval"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTONMOUNT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_STARTONMOUNT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTONMOUNT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_STARTONMOUNT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_startonmount"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_THROTTLEINTERVAL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_THROTTLEINTERVAL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_THROTTLEINTERVAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_THROTTLEINTERVAL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_throttleinterval"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_TIMEOUT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_TIMEOUT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_TIMEOUT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_TIMEOUT",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_timeout"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_UMASK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_UMASK"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_UMASK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_UMASK",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_umask"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERENVIRONMENTVARIABLES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_USERENVIRONMENTVARIABLES"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERENVIRONMENTVARIABLES",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_USERENVIRONMENTVARIABLES",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_userenvironmentvariables"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERNAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_USERNAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERNAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_USERNAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_username"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WAITFORDEBUGGER": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_WAITFORDEBUGGER"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WAITFORDEBUGGER",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_WAITFORDEBUGGER",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_waitfordebugger"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WATCHPATHS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_WATCHPATHS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WATCHPATHS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_WATCHPATHS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_watchpaths"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WORKINGDIRECTORY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBKEY_WORKINGDIRECTORY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WORKINGDIRECTORY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBKEY_WORKINGDIRECTORY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobkey_workingdirectory"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBPOLICY_DENYCREATINGOTHERJOBS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBPOLICY_DENYCREATINGOTHERJOBS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBPOLICY_DENYCREATINGOTHERJOBS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBPOLICY_DENYCREATINGOTHERJOBS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobpolicy_denycreatingotherjobs"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_BONJOUR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_BONJOUR"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_BONJOUR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_BONJOUR",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_bonjour"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_FAMILY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_FAMILY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_FAMILY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_FAMILY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_family"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_MULTICASTGROUP": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_MULTICASTGROUP"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_MULTICASTGROUP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_MULTICASTGROUP",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_multicastgroup"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_NODENAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_NODENAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_NODENAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_NODENAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_nodename"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PASSIVE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PASSIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PASSIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PASSIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_passive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHGROUP": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PATHGROUP"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHGROUP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PATHGROUP",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_pathgroup"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHMODE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PATHMODE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHMODE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PATHMODE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_pathmode"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHNAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PATHNAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHNAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PATHNAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_pathname"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHOWNER": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PATHOWNER"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHOWNER",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PATHOWNER",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_pathowner"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PROTOCOL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_PROTOCOL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PROTOCOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_PROTOCOL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_protocol"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SECUREWITHKEY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_SECUREWITHKEY"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SECUREWITHKEY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_SECUREWITHKEY",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_securewithkey"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SERVICENAME": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_SERVICENAME"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SERVICENAME",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_SERVICENAME",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_servicename"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_TYPE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_JOBSOCKETKEY_TYPE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_TYPE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_JOBSOCKETKEY_TYPE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_jobsocketkey_type"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_CHECKIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_CHECKIN"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_CHECKIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_CHECKIN",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_checkin"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_GETJOB"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_GETJOB",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_getjob"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOBS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_GETJOBS"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOBS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_GETJOBS",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_getjobs"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_ADAPTIVE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PROCESSTYPE_ADAPTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_ADAPTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PROCESSTYPE_ADAPTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_processtype_adaptive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_APP": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PROCESSTYPE_APP"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_APP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PROCESSTYPE_APP",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_processtype_app"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_BACKGROUND": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PROCESSTYPE_BACKGROUND"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_BACKGROUND",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PROCESSTYPE_BACKGROUND",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_processtype_background"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_INTERACTIVE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PROCESSTYPE_INTERACTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_INTERACTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PROCESSTYPE_INTERACTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_processtype_interactive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_STANDARD": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PROCESSTYPE_STANDARD"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_STANDARD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PROCESSTYPE_STANDARD",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_processtype_standard"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PUBLISHESEVENTS_DOMAININTERNAL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_PUBLISHESEVENTS_DOMAININTERNAL"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PUBLISHESEVENTS_DOMAININTERNAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_PUBLISHESEVENTS_DOMAININTERNAL",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_publishesevents_domaininternal"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_REMOVEJOB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_REMOVEJOB"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_REMOVEJOB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_REMOVEJOB",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_removejob"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STARTJOB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_STARTJOB"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STARTJOB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_STARTJOB",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_startjob"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STOPJOB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_STOPJOB"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STOPJOB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_STOPJOB",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_stopjob"
+    },
+    "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_SUBMITJOB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LAUNCH_KEY_SUBMITJOB"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_SUBMITJOB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAUNCH_KEY_SUBMITJOB",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_key_submitjob"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC-macros": {
+      "abstract": [
+        {
+          "text": "Macros for use with XPC when coding in Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Macros",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-macros"
+    },
+    "doc://com.apple.xpc/documentation/XPC/launch_activate_socket": {
+      "abstract": [
+        {
+          "text": "Retrieves the file descriptors for sockets in the process’s ",
+          "type": "text"
+        },
+        {
+          "code": "launchd",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "launch_activate_socket"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/launch_activate_socket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launch_activate_socket",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_activate_socket"
+    },
+    "doc://com.apple.xpc/documentation/XPC/launch_msg": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "launch_msg"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/launch_msg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launch_msg",
+      "type": "topic",
+      "url": "/documentation/xpc/launch_msg"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Launch-macros",
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_INSTANCES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBINETDCOMPATIBILITY_WAIT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ABANDONPROCESSGROUP",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ASSOCIATEDBUNDLEIDENTIFIERS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BONJOURFDS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_BUNDLEPROGRAM",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_DAY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_HOUR",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MINUTE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_MONTH",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_CAL_WEEKDAY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DATASTORES_SIZELIMIT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DEBUG",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MACHINETYPE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DISABLED_MODELNAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_DRAINMESSAGESONFAILEDINIT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEGLOBBING",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLEPRESSUREDEXIT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENABLETRANSACTIONS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ENVIRONMENTVARIABLES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_EXITTIMEOUT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_GROUPNAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HARDRESOURCELIMITS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSFIRST",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_HOPEFULLYEXITSLAST",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_IGNOREPROCESSGROUPATSHUTDOWN",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INETDCOMPATIBILITY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_INITGROUPS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_AFTERINITIALDEMAND",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_CRASHED",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_NETWORKSTATE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBACTIVE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_OTHERJOBENABLED",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_PATHSTATE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_KEEPALIVE_SUCCESSFULEXIT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LABEL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LASTEXITSTATUS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHEVENTS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LAUNCHONLYONCE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LEGACYTIMERS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHARDWARE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADFROMHOSTS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHARDWARE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOHOSTS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LIMITLOADTOSESSIONTYPE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYBACKGROUNDIO",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_LOWPRIORITYIO",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICELOOKUPPOLICIES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACHSERVICES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_HIDEUNTILCHECKIN",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MACH_RESETATCLOSE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_MATERIALIZEDATALESSFILES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_NICE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ONDEMAND",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PID",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_POLICIES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROCESSTYPE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAM",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PROGRAMARGUMENTS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_PUBLISHESEVENTS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_QUEUEDIRECTORIES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CORE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_CPU",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_DATA",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_FSIZE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_MEMLOCK",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NOFILE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_NPROC",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_RSS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RESOURCELIMIT_STACK",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_ROOTDIRECTORY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_RUNATLOAD",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SESSIONCREATE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOCKETS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SOFTRESOURCELIMITS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_SPAWNCONSTRAINT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDERRORPATH",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDINPATH",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STANDARDOUTPATH",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTCALENDARINTERVAL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTINTERVAL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_STARTONMOUNT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_THROTTLEINTERVAL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_TIMEOUT",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_UMASK",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERENVIRONMENTVARIABLES",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_USERNAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WAITFORDEBUGGER",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WATCHPATHS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBKEY_WORKINGDIRECTORY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBPOLICY_DENYCREATINGOTHERJOBS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_BONJOUR",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_FAMILY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_MULTICASTGROUP",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_NODENAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PASSIVE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHGROUP",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHMODE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHNAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PATHOWNER",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_PROTOCOL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SECUREWITHKEY",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_SERVICENAME",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_JOBSOCKETKEY_TYPE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_CHECKIN",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOB",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_GETJOBS",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_ADAPTIVE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_APP",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_BACKGROUND",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_INTERACTIVE",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PROCESSTYPE_STANDARD",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_PUBLISHESEVENTS_DOMAININTERNAL",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_REMOVEJOB",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STARTJOB",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_STOPJOB",
+        "doc://com.apple.xpc/documentation/XPC/LAUNCH_KEY_SUBMITJOB"
+      ],
+      "title": "Launch macros"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/launch-macros"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

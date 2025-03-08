@@ -1,0 +1,1182 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies whether root certificates from unrecognized certification authorities are allowed.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "To ignore unknown root certificate errors, first disable Secure Transport’s automatic verification of peer certificates by calling",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    },
+    {
+      "inlineContent": [
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to set ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". When ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subsequently returns an ",
+          "type": "text"
+        },
+        {
+          "code": "errSSLServerAuthCompleted",
+          "type": "codeVoice"
+        },
+        {
+          "text": " result, obtain the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for the peer’s certificates and perform a custom trust evaluation with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " APIs (see the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/trust",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " section of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "Note that an unknown root certificate will cause ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to report ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " as the trust result.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SSLSetAllowsAnyRoot",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SSLSetAllowsAnyRoot"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SSLSetAllowsAnyRoot"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.2",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SSLSetAllowsAnyRoot"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SSLSetAllowsAnyRoot"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SSLContextRef",
+              "text": "SSLContextRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "anyRoot"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An SSL session context reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean flag specifying whether root certificates from unrecognized certification authorities (CAs) are allowed. The default for this flag is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", specifying that roots from unrecognized CAs are not allowed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "anyRoot"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system maintains a set of root certificates signed by known, trusted root CAs. When the ",
+              "type": "text"
+            },
+            {
+              "code": "anyRoot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Secure Transport does not return an error if one of the following two conditions occurs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The peer returns a certificate chain with a root certificate, and the chain verifies to that root, but the CA for the root certificate is not one of the known, trusted root CAs. This results in an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errSSLUnknownRootCert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " result code when the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anyRoot",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The peer returns a certificate chain that does not contain a root certificate, and the server can’t verify the chain to one of the trusted root certificates. This results in an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errSSLNoRootCert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " result code when the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anyRoot",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both of these error conditions are ignored when the ",
+              "type": "text"
+            },
+            {
+              "code": "anyRoot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", allowing connection to a peer for which trust could not be established.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use this function to allow an untrusted root to be used for validation of a certificate—for example, after prompting the user for permission to do so—remember to set the ",
+              "type": "text"
+            },
+            {
+              "code": "anyRoot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Boolean value back to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you don’t, any random root certificate can be used for signing a certificate chain. To add a certificate to the list of trusted roots, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SSLContext": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an SSL session context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLContext",
+      "type": "topic",
+      "url": "/documentation/security/sslcontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLHandshake(_:)": {
+      "abstract": [
+        {
+          "text": "Performs the SSL handshake.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLHandshake(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslhandshake(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth": {
+      "abstract": [
+        {
+          "text": "Enables returning from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " (with a result of ",
+          "type": "text"
+        },
+        {
+          "code": "errSSLServerAuthCompleted",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") when the server authentication portion of the handshake is complete to allow your application to perform its own certificate verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakOnServerAuth"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSSLSessionOptionBreakOnServerAuth"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSessionOption.breakOnServerAuth",
+      "type": "topic",
+      "url": "/documentation/security/sslsessionoption/breakonserverauth"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot": {
+      "abstract": [
+        {
+          "text": "Specifies whether root certificates from unrecognized certification authorities are allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetAllowsAnyRoot"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetAllowsAnyRoot",
+      "type": "topic",
+      "url": "/documentation/security/sslsetallowsanyroot"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies options for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionOption",
+          "text": "SSLSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionOption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionoption(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Evaluates trust for the specified certificate and policies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustEvaluate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustevaluate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure": {
+      "abstract": [
+        {
+          "text": "Trust is denied, but recovery may be possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recoverableTrustFailure"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTrustResultRecoverableTrustFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustResultType.recoverableTrustFailure",
+      "type": "topic",
+      "url": "/documentation/security/sectrustresulttype/recoverabletrustfailure"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the anchor certificates used when evaluating a trust management object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustSetAnchorCertificates(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetanchorcertificates(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/secure-transport-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the secure transport API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Transport Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-transport-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/title",
+          "value": "SSLSetSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType~1recoverableTrustFailure/title",
+          "value": "kSecTrustResultRecoverableTrustFailure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType~1recoverableTrustFailure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTrustResultRecoverableTrustFailure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/title",
+          "value": "kSSLSessionOptionBreakOnServerAuth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSSLSessionOptionBreakOnServerAuth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/title",
+          "value": "SSLContextRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/title",
+          "value": "SecTrustEvaluate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustEvaluate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificates(_:_:)/title",
+          "value": "SecTrustSetAnchorCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificates(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetAnchorCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/title",
+          "value": "SSLHandshake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLHandshake"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sslsetallowsanyroot"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

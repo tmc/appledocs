@@ -1,0 +1,2222 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration that describes a specific background appearance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:5UIKit25UIBackgroundConfigurationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIBackgroundConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIBackgroundConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UIBackgroundConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIBackgroundConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background configurations provide a lightweight way for you to create backgrounds for your views. Using a background configuration, you can obtain system default background styling for a variety of different view states. You apply background configurations directly to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or to cells, headers, and footers in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a background configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a background configuration with one of the default system styles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify the configuration to match your view’s style if you need additional customization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the view’s current background configuration to your configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "var backgroundConfig = UIBackgroundConfiguration.listPlainCell()",
+            "",
+            "// Set a nil background color to use the view's tint color. ",
+            "backgroundConfig.backgroundColor = nil ",
+            "",
+            "cell.backgroundConfiguration = backgroundConfig"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also start by creating an empty background configuration using ",
+              "type": "text"
+            },
+            {
+              "code": "clear()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which produces a transparent background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the system background styles provides system default values for different configuration states (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIConfigurationState-8d7pd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). If you apply a background configuration to a view whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/automaticallyUpdatesBackgroundConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system automatically updates the background configuration when the view’s state changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want additional customization beyond the system default values, you can choose to manually update the background configuration by overriding the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/updateConfiguration(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func updateConfiguration(using state: UIConfigurationState) {",
+            "    // Get the system default background configuration for a plain style list cell in the current state. ",
+            "    var backgroundConfig = UIBackgroundConfiguration.listPlainCell().updated(for: state) ",
+            "",
+            "    // Customize the background color to use the tint color when the cell is highlighted or selected. ",
+            "     if state.isHighlighted || state.isSelected { ",
+            "        backgroundConfig.backgroundColor = nil ",
+            "     } ",
+            "",
+            "    // Apply the background configuration to the cell. ",
+            "    self.backgroundConfiguration = backgroundConfig ",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you apply a configuration to a view, UIKit performs the actual drawing and rendering of the background. When you use background configurations instead of rendering your own backgrounds, the system provides automatic view hierarchy management, support for interactive and interruptible animations and transitions, and performance optimizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A configuration that describes a specific background appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBackgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The color of the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/backgroundcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColorTransformer": {
+      "abstract": [
+        {
+          "text": "The color transformer for resolving the background color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColorTransformer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit31UIConfigurationColorTransformerV",
+          "text": "UIConfigurationColorTransformer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColorTransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundColorTransformer",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/backgroundcolortransformer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundInsets": {
+      "abstract": [
+        {
+          "text": "The insets (or outsets, if negative) for the background and stroke, relative to the edges of the containing view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundInsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/backgroundinsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/clear()": {
+      "abstract": [
+        {
+          "text": "Creates an empty background configuration with a transparent background and no default styling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/clear()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clear()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/clear()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/cornerRadius": {
+      "abstract": [
+        {
+          "text": "The preferred corner radius, using a continuous corner curve, for the background and stroke.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/cornerRadius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cornerRadius",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/cornerradius"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/customView": {
+      "abstract": [
+        {
+          "text": "A custom view for the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/customView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customView",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/customview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/edgesAddingLayoutMarginsToBackgroundInsets": {
+      "abstract": [
+        {
+          "text": "The edges on which the configuration adds the containing view’s layout margins to the background insets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edgesAddingLayoutMarginsToBackgroundInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDirectionalRectEdge",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/edgesAddingLayoutMarginsToBackgroundInsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "edgesAddingLayoutMarginsToBackgroundInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/edgesaddinglayoutmarginstobackgroundinsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/image": {
+      "abstract": [
+        {
+          "text": "The image displayed in the view’s background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/image"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/imageContentMode": {
+      "abstract": [
+        {
+          "text": "A property that determines the layout of a background image in a view when its bounds change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageContentMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIViewContentMode",
+          "text": "ContentMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/imageContentMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageContentMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/imagecontentmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listAccompaniedSidebarCell()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a cell in an accompanied sidebar list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listAccompaniedSidebarCell"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listAccompaniedSidebarCell()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listAccompaniedSidebarCell()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listaccompaniedsidebarcell()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listCell()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listCell"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listCell()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listCell()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listcell()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listFooter()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listFooter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listFooter()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listFooter()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listfooter()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedCell()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a cell in a grouped list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listGroupedCell"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedCell()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listGroupedCell()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listgroupedcell()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedHeaderFooter()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a grouped list header or footer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listGroupedHeaderFooter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedHeaderFooter()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listGroupedHeaderFooter()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listgroupedheaderfooter()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listHeader()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listHeader"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listHeader()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listHeader()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listheader()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainCell()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a cell in a plain list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listPlainCell"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainCell()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listPlainCell()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listplaincell()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainHeaderFooter()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a plain list header or footer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listPlainHeaderFooter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainHeaderFooter()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listPlainHeaderFooter()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listplainheaderfooter()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarCell()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a cell in a sidebar list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSidebarCell"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarCell()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSidebarCell()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listsidebarcell()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarHeader()": {
+      "abstract": [
+        {
+          "text": "Creates the default configuration you use to style a sidebar list header.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSidebarHeader"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarHeader()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSidebarHeader()",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/listsidebarheader()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedBackgroundColor(for:)": {
+      "abstract": [
+        {
+          "text": "Generates the resolved background color for the specified tint color, using the background color and color transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvedBackgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedBackgroundColor(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolvedBackgroundColor(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/resolvedbackgroundcolor(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedStrokeColor(for:)": {
+      "abstract": [
+        {
+          "text": "Generates the resolved stroke color for the specified tint color, using the stroke color and color transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvedStrokeColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedStrokeColor(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolvedStrokeColor(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/resolvedstrokecolor(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/shadowProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shadowProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit18UIShadowPropertiesV",
+          "text": "UIShadowProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/shadowProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shadowProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/shadowproperties"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColor": {
+      "abstract": [
+        {
+          "text": "The color of the stroke.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strokeColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/strokecolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColorTransformer": {
+      "abstract": [
+        {
+          "text": "The color transformer for resolving the stroke color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeColorTransformer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit31UIConfigurationColorTransformerV",
+          "text": "UIConfigurationColorTransformer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColorTransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strokeColorTransformer",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/strokecolortransformer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeOutset": {
+      "abstract": [
+        {
+          "text": "The outset (or inset, if negative) for the stroke.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeOutset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeOutset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strokeOutset",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/strokeoutset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeWidth": {
+      "abstract": [
+        {
+          "text": "The width of the stroke.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strokeWidth",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/strokewidth"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/updated(for:)": {
+      "abstract": [
+        {
+          "text": "Generates a configuration for the specified state by applying the configuration’s default values for that state to any properties that you haven’t customized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit20UIConfigurationStateP",
+          "text": "UIConfigurationState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/updated(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updated(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/updated(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/visualEffect": {
+      "abstract": [
+        {
+          "text": "The visual effect that the configuration applies to the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIVisualEffect",
+          "text": "UIVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/visualEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uibackgroundconfiguration-swift.struct/visualeffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView": {
+      "abstract": [
+        {
+          "text": "An object that manages an ordered collection of data items and presents them using customizable layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/automaticallyUpdatesBackgroundConfiguration": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the cell automatically updates its background configuration when its state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesBackgroundConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/automaticallyUpdatesBackgroundConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesBackgroundConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyUpdatesBackgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcell/automaticallyupdatesbackgroundconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/updateConfiguration(using:)": {
+      "abstract": [
+        {
+          "text": "Updates the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit24UICellConfigurationStateV",
+          "text": "UICellConfigurationState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell/updateConfiguration(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConfiguration(using:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcell/updateconfiguration(using:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIConfigurationState-8d7pd": {
+      "abstract": [
+        {
+          "text": "The requirements for an object that encapsulates a view’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIConfigurationState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIConfigurationState-8d7pd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIConfigurationState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIConfigurationState",
+      "type": "topic",
+      "url": "/documentation/uikit/uiconfigurationstate-8d7pd"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "abstract": [
+        {
+          "text": "A view that presents data using rows in a single column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s17CustomReflectableP": {
+      "abstract": [
+        {
+          "text": "A type that explicitly supplies its own mirror.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s17CustomReflectableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomReflectable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s17CustomReflectableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-cell-background-configurations",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainCell()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedCell()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarCell()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listAccompaniedSidebarCell()"
+      ],
+      "title": "Creating cell background configurations"
+    },
+    {
+      "anchor": "Creating-header-and-footer-background-configurations",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listPlainHeaderFooter()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listGroupedHeaderFooter()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listSidebarHeader()"
+      ],
+      "title": "Creating header and footer background configurations"
+    },
+    {
+      "anchor": "Creating-an-empty-background-configuration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/clear()"
+      ],
+      "title": "Creating an empty background configuration"
+    },
+    {
+      "anchor": "Customizing-the-background",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/customView",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/cornerRadius",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundInsets",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/edgesAddingLayoutMarginsToBackgroundInsets",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColor",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/backgroundColorTransformer",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedBackgroundColor(for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/visualEffect",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColor",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeColorTransformer",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/resolvedStrokeColor(for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeWidth",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/strokeOutset",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/image",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/imageContentMode"
+      ],
+      "title": "Customizing the background"
+    },
+    {
+      "anchor": "Updating-background-configurations",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/updated(for:)"
+      ],
+      "title": "Updating background configurations"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/shadowProperties"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listCell()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listFooter()",
+        "doc://com.apple.uikit/documentation/UIKit/UIBackgroundConfiguration-swift.struct/listHeader()"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell~1automaticallyUpdatesBackgroundConfiguration/title",
+          "value": "automaticallyUpdatesBackgroundConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell~1automaticallyUpdatesBackgroundConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyUpdatesBackgroundConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/title",
+          "value": "UICollectionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/title",
+          "value": "UITableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uibackgroundconfiguration-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

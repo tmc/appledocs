@@ -1,0 +1,446 @@
+{
+  "abstract": [
+    {
+      "text": "A custom block that tells the audio unit which thread context to use for the next render cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@AURenderContextObserver",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "AURenderContextObserver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AURenderContextObserver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "AURenderContextObserver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#*1$@S@AudioUnitRenderContext)",
+              "text": "void (^)(const struct AudioUnitRenderContext *)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AURenderContextObserver"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide this block if your Audio Unit creates its own auxiliary real-time rendering threads and operates them in parallel with the host app’s rendering thread. For a v3 Audio Unit, assign your block to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderContextObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. For a v2 Audio Unit, assign this block to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the audio unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the implementation of your block to prepare your Audio Unit’s rendering threads. For example, use this block to remove the thread from its previous workgroup and join the new workgroup in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure passed to the block. If the new render context does not correspond to a real-time operation, the new workgroup might be ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system fetches and caches this block when it opens the Audio Unit. When the render context changes, the system calls the block from the render thread before it issues any new render requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderContextObserver": {
+      "abstract": [
+        {
+          "text": "The block that the system calls when the rendering context changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "renderContextObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/renderContextObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renderContextObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/rendercontextobserver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver": {
+      "abstract": [
+        {
+          "text": "A custom block that tells the audio unit which thread context to use for the next render cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AURenderContextObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AURenderContextObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/aurendercontextobserver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext": {
+      "abstract": [
+        {
+          "text": "A structure that contains thread context information for a real-time rendering operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitRenderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitRenderContext",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitrendercontext"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "If your Audio Unit plug-in creates auxiliary real-time rendering threads, add them to the host app’s audio workgroup so the system can schedule them appropriately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Audio Unit Auxiliary Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver": {
+      "abstract": [
+        {
+          "text": "The block that the system calls when the rendering context changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_RenderContextObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioUnitProperty_RenderContextObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitproperty_rendercontextobserver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Host-App-Workgroup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext"
+      ],
+      "title": "Host App Workgroup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/aurendercontextobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

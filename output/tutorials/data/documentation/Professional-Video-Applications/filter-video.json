@@ -1,0 +1,592 @@
+{
+  "abstract": [
+    {
+      "text": "A filter element that references a video effect.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "filter-video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apply video filters to elements that represent visual media, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "video",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "ref-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. For multicam clips, apply the video filters on the individual angles, represented by ",
+              "type": "text"
+            },
+            {
+              "code": "mc-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Color-Filters",
+          "level": 3,
+          "text": "Color Filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Describe color correction, as well as color matching and color balance effects using the ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element. The ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element references an associated ",
+              "type": "text"
+            },
+            {
+              "code": "effect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element in the resource section that designates the particular effect. In addition to the Color Board effect, Final Cut Pro 10.4 adds Color Curves, Color Wheel, and Hue/Saturation Curves as color-correction effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Final Cut Pro 10.2, color correction behaves similarly to other video filters and you can insert it anywhere in a series of video filters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply color correction with a collection of video-filter masks. The ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video-mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element describes both the filter and the masks and can have up to two ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " child elements. You can apply different color-correction parameters to the inside, the first ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, and the outside, the second ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, of the mask.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML 1.3 and later supports color filtering. Starting in FCPXML 1.5, you can describe color correction, color matching, and color balance effects using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "filter-video",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element instead of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "adjust-color",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "color-filter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " elements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Primary-Color-Grading",
+          "level": 3,
+          "text": "Primary Color Grading",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro supports the American Society of Cinematographers Color Decision List (ASC CDL) format for the exchange of basic primary color grading information between equipment and software from different manufacturers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FCPXML 1.1 added support for exporting the first primary color correction definition in ASC CDL format. Final Cut Pro v10.2 and later versions export ASC CDL information as an XML comment, as a child of the associated ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, if a color correction is applied to a clip in your project. Prior versions of Final Cut Pro exported ASC CDL information with the ",
+              "type": "text"
+            },
+            {
+              "code": "info-asc-cdl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element as a child of the associated ",
+              "type": "text"
+            },
+            {
+              "code": "clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ASC CDL information describes the primary color correction in ASC CDL format as three components: slope, offset, and power. The ASC CDL format represents each component as a vector of red, green, and blue adjustment values, for example, “",
+              "type": "text"
+            },
+            {
+              "code": "1.0 1.0 1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example export of ASC CDL information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<filter-video ref=\"r1\" name=\"Color Correction\">    ",
+            "    <!-- info-asc-cdl:  slope=\"1.05 1.05 1.05\" offset=\"0.0275 0.0275 0.0275\" power=\"1.25 1.2 1\"  -->",
+            "</filter-video>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters": {
+      "abstract": [
+        {
+          "text": "Specify values to change adjustment attributes and effects parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjustment Attributes and Effect Parameters",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adjustment-attributes-and-effect-parameters"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements": {
+      "abstract": [
+        {
+          "text": "Alter the audio and video output of story elements by using adjustment elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adjustment Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adjustment-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation": {
+      "abstract": [
+        {
+          "text": "Create animations by changing specific adjustment attributes and effect parameters over time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/animation"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption": {
+      "abstract": [
+        {
+          "text": "Represents a closed-caption or subtitle with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+      "kind": "article",
+      "role": "article",
+      "title": "caption",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/caption"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio": {
+      "abstract": [
+        {
+          "text": "A filter element that references an audio effect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "filter-audio",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/filter-audio"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters": {
+      "abstract": [
+        {
+          "text": "Designate a region to which you apply video filter by using a collection of masks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Masked Filters",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/masked-filters"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements": {
+      "abstract": [
+        {
+          "text": "Describe Final Cut Pro events and project data and their associated effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Story Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/story-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title": {
+      "abstract": [
+        {
+          "text": "Represents a title with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/title"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition": {
+      "abstract": [
+        {
+          "text": "Applies transition effects that either stand by itself (no neighboring elements), combine two neighboring elements, or apply to a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+      "kind": "article",
+      "role": "article",
+      "title": "transition",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/transition"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adjustment-and-Effects-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+      ],
+      "title": "Adjustment and Effects Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adjustment-and-Effects-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+              ],
+              "title": "Adjustment and Effects Elements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/filter-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/filter-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

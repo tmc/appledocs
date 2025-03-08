@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a single-precision Hamming window.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_window"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_hamm_window",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_hamm_window"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_hamm_window"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_hamm_window"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_hamm_window"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__C"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__N"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__Flag"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of elements in the output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A value that specifies whether the function creates a half window or a full window. Pass the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HALF_WINDOW",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " flag to create only the first ",
+                  "type": "text"
+                },
+                {
+                  "code": "(N+1)/2",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " points; pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to create a full-size window.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Flag"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_windowD",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions create a Hamming window vector using the following operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (n=0; n < N; ++n)",
+            "{",
+            "    C[n] = 0.54 - (0.46 * cos( 2 * pi * n / N ) );",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to generate a Hamming window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let n = vDSP_Length(1024)",
+            "",
+            "var c = [Float](repeating: 0,",
+            "                count: Int(n))",
+            "",
+            "vDSP_hamm_window(&c,",
+            "                 n,",
+            "                 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following illustrates the values of the output vector, ",
+              "type": "text"
+            },
+            {
+              "code": "c",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3233535",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HALF_WINDOW": {
+      "abstract": [
+        {
+          "text": "Specifies that the window should only contain the bottom half of the values (",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "(N+1)/2",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_HALF_WINDOW"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HALF_WINDOW",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_HALF_WINDOW"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_HALF_WINDOW",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_half_window"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_DENORM": {
+      "abstract": [
+        {
+          "text": "Specifies a denormalized Hann window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_HANN_DENORM"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_DENORM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_HANN_DENORM"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_HANN_DENORM",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hann_denorm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_NORM": {
+      "abstract": [
+        {
+          "text": "Specifies a normalized Hann window",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_HANN_NORM"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_NORM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_HANN_NORM"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_HANN_NORM",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hann_norm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length": {
+      "abstract": [
+        {
+          "text": "An unsigned-integer value that represents the size of vectors and the indices of elements in vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_length"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_window": {
+      "abstract": [
+        {
+          "text": "Creates a single-precision Blackman window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_blkman_window"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_window",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_blkman_window",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_blkman_window"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_windowD": {
+      "abstract": [
+        {
+          "text": "Creates a double-precision Blackman window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_blkman_windowD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_windowD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_blkman_windowD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_blkman_windowd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_window": {
+      "abstract": [
+        {
+          "text": "Creates a single-precision Hamming window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_hamm_window"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_window",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_hamm_window",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hamm_window"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_windowD": {
+      "abstract": [
+        {
+          "text": "Creates a double-precision Hamming window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_hamm_windowD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_windowD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_hamm_windowD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hamm_windowd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_window": {
+      "abstract": [
+        {
+          "text": "Creates a single-precision Hann window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_hann_window"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_window",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_hann_window",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hann_window"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_windowD": {
+      "abstract": [
+        {
+          "text": "Creates a double-precision Hann window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_hann_windowD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_windowD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_hann_windowD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_hann_windowd"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3233535": {
+      "alt": "Visualization of a Hamming window.",
+      "identifier": "media-3233535",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3d393e94ae8ea343b802ca3b64d3ef0/media-3233535@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vector-generation-with-window-functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_window",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_blkman_windowD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hamm_windowD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_window",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_hann_windowD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HALF_WINDOW",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_DENORM",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_HANN_NORM"
+      ],
+      "title": "Vector generation with window functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HANN_NORM/title",
+          "value": "vDSP_HANN_NORM"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HANN_NORM/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_HANN_NORM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HANN_DENORM/title",
+          "value": "vDSP_HANN_DENORM"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HANN_DENORM/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_HANN_DENORM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HALF_WINDOW/title",
+          "value": "vDSP_HALF_WINDOW"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_HALF_WINDOW/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_HALF_WINDOW"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/title",
+          "value": "vDSP_Length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vdsp_hamm_window"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

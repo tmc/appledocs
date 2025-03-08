@@ -1,0 +1,2055 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure the dock.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:Dock",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Dock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Dock"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "Dock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Dock"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", use the file in ",
+                  "type": "text"
+                },
+                {
+                  "code": "/Library/Preferences/com.apple.dockfixup.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when a new user or migrated user logs in. This option has no effect for existing users. Available in macOS 10.12 and later. Only available on the device channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "AllowDockFixupOverride",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables “Automatically hide and show the dock.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "autohide",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks “Automatically hide.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "autohide-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", disables changes to the dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "contents-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "minimize",
+                "maximize",
+                "none"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The behavior when the window’s title bar is double-clicked.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "dblclickbehavior",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks “Double-click a window’s title bar.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "dblclickbehavior-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "16"
+            },
+            {
+              "kind": "maximum",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The size of the largest magnification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "largesize",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables “Animate opening applications.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "launchanim",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks “Animate opening applications.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "launchanim-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables magnification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "magnification",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks magnification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "magnify-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks the magnification slider.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "magsize-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "AddDockMCXMyApplicationsFolder",
+                "AddDockMCXDocumentsFolder",
+                "AddDockMCXSharedFolder",
+                "AddDockMCXOriginalNetworkHomeFolder"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "One or more special folders that may be created at user login time and placed in the dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The “My Applications” item is only used for Simple Finder environments. The “Original Network Home” item is only used for mobile account users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "MCXDockSpecialFolders",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "genie",
+                "scale"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The minimize effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "mineffect",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks “Minimize windows using.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "mineffect-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables “Minimize windows into application icon.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "minimize-to-application",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", disables the “Minimize windows into application icon” checkbox.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "minintoapp-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "bottom",
+                "left",
+                "right"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The orientation of the dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "orientation",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of items located on the Applications side of the Dock that can be removed from the dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "persistent-apps",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:Dock.StaticItem",
+              "text": "Dock.StaticItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of items located on the Documents side of the Dock that can be removed from the dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "persistent-others",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:Dock.StaticItem",
+              "text": "Dock.StaticItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks the position.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "position-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If true, shows the process indicator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "show-process-indicators",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks “Show indicators.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "showindicators-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables “Show recent items.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "show-recents",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", disables “Show recent applications” checkbox.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "showrecents-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", locks the size slider.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "size-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of items located on the Applications side of the Dock and cannot be removed from that location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "static-apps",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:Dock.StaticItem",
+              "text": "Dock.StaticItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "static-apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "static-others",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionaries for the dock and ignores any items in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "persistent-apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "persistent-others",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionaries. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the contents are merged with the static items listed first.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "static-only",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of items located on the Documents side of the Dock and cannot be removed from that location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "static-others",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:Dock.StaticItem",
+              "text": "Dock.StaticItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "16"
+            },
+            {
+              "kind": "maximum",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tile size. Values must be in the range from 16 to 128.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "tilesize",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "manual",
+                "always",
+                "fullscreen"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set the “Prefer tabs when opening documents” to the provided value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "windowtabbing",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", disables “Prefer tabs when opening documents” checkbox.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.7.0",
+          "name": "windowtabbing-immutable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.dock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>tilesize</key>",
+            "            <integer>40</integer>",
+            "            <key>size-immutable</key>",
+            "            <true/>",
+            "            <key>magnification</key>",
+            "            <true/>",
+            "            <key>magnify-immutable</key>",
+            "            <true/>",
+            "            <key>largesize</key>",
+            "            <integer>100</integer>",
+            "            <key>magsize-immutable</key>",
+            "            <true/>",
+            "            <key>orientation</key>",
+            "            <string>left</string>",
+            "            <key>position-immutable</key>",
+            "            <true/>",
+            "            <key>mineffect</key>",
+            "            <string>genie</string>",
+            "            <key>mineffect-immutable</key>",
+            "            <true/>",
+            "            <key>windowtabbing</key>",
+            "            <string>manual</string>",
+            "            <key>windowtabbing-immutable</key>",
+            "            <true/>",
+            "            <key>dblclickbehavior</key>",
+            "            <string>maximize</string>",
+            "            <key>dblclickbehavior-immutable</key>",
+            "            <true/>",
+            "            <key>minimize-to-application</key>",
+            "            <true/>",
+            "            <key>minintoapp-immutable</key>",
+            "            <true/>",
+            "            <key>launchanim</key>",
+            "            <true/>",
+            "            <key>launchanim-immutable</key>",
+            "            <true/>",
+            "            <key>autohide</key>",
+            "            <false/>",
+            "            <key>autohide-immutable</key>",
+            "            <true/>",
+            "            <key>show-process-indicators</key>",
+            "            <false/>",
+            "            <key>showindicators-immutable</key>",
+            "            <true/>",
+            "            <key>show-recents</key>",
+            "            <false/>",
+            "            <key>showrecents-immutable</key>",
+            "            <true/>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.mydockpayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.dock</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>8d443602-52f2-48ff-aaa9-35b16c7c54c9</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>Dock</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>c139d3e0-5468-43b0-90bf-5e05b2e8cd6f</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the accessibility features of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Accessibility"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Accessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accessibility"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the desktop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Desktop"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Desktop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/desktop"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the dock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dock"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dock"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dock",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dock"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem": {
+      "abstract": [
+        {
+          "text": "Items that are located on the Documents side of the Dock and cannot be removed from that location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dock.StaticItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dock/staticitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains details about a dock item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem.Tile-data"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem.Tile-data"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dock.StaticItem.Tile-data",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dock/staticitem/tile-data-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary/File-data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "For Apple use only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem.Tile-data.File-data"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary/File-data-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dock.StaticItem.Tile-data.File-data"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dock.StaticItem.Tile-data.File-data",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dock/staticitem/tile-data-data.dictionary/file-data-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Finder settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Finder"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Finder"
+        }
+      ],
+      "role": "symbol",
+      "title": "Finder",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/finder"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the Home screen layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "HomeScreenLayout",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/homescreenlayout"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure menu extras.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedMenuExtras"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedMenuExtras"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedMenuExtras",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managedmenuextras"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notifications"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/notifications"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a user’s screen-saver settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreensaverUser"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreensaverUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreensaverUser",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/screensaveruser"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure setup-assistant settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetupAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetupAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetupAssistant",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setupassistant"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Time Machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeMachine",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/timemachine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine"
+      ],
+      "title": "User Experience"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock/StaticItem/Tile-data-data.dictionary/File-data-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/dock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

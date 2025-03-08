@@ -1,0 +1,1013 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure the domains under an organization’s management.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:Domains",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Domains"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Domains"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "Domains"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Domains"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [],
+          "introducedVersion": "8.0.0",
+          "name": "CrossSiteTrackingPreventionRelaxedApps",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of up to 10 strings. URLs matching the patterns listed here have relaxed enforcement of cross-site tracking prevention.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in iOS 16.2 and later and macOS 13.1 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "8.0.0",
+          "name": "CrossSiteTrackingPreventionRelaxedDomains",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of domains. The system considers email addresses that lack a suffix matching any of these strings out of domain and marked in Mail.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in iOS 8 and later and macOS 10.10 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "8.0.0",
+          "name": "EmailDomains",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of domains. Users can only save passwords in Safari from URLs matching the patterns listed here. This property doesn’t disable the autofill feature itself.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Supervised devices or Shared iPads need this property to enable saving passwords in Safari.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in iOS 9.3 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "8.0.0",
+          "name": "SafariPasswordAutoFillDomains",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of domains. The system considers URLs matching the patterns listed in this property managed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in iOS 9.3 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "8.0.0",
+          "name": "WebDomains",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.domains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A URL that begins with the prefix ",
+              "type": "text"
+            },
+            {
+              "code": "www.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is treated as though it doesn’t contain that prefix during matching. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "http://www.apple.com/store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is matched as ",
+              "type": "text"
+            },
+            {
+              "code": "http://apple.com/store",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Trailing slashes are ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a domain string entry contains a port number, the system considers only addresses that specify that port number managed. Otherwise, the system matches the domain without regard to the port number specified. For example, the pattern ",
+              "type": "text"
+            },
+            {
+              "code": "*.apple.com:8080",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches ",
+              "type": "text"
+            },
+            {
+              "code": "http://site.apple.com:8080/page.html",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but not ",
+              "type": "text"
+            },
+            {
+              "code": "http://site.apple.com/page.html",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", while the pattern ",
+              "type": "text"
+            },
+            {
+              "code": "*.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches both URLs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>EmailDomains</key>",
+            "            <array>",
+            "                <string>example.com</string>",
+            "            </array>",
+            "            <key>SafariPasswordAutoFillDomains</key>",
+            "            <array>",
+            "                <string>example.com</string>",
+            "            </array>",
+            "            <key>WebDomains</key>",
+            "            <array>",
+            "                <string>example.com</string>",
+            "            </array>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.mysafaridomainspayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.domains</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>0f94e664-4c36-4637-b264-19a533adc8e1</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>Domains</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>0cf6d95f-8e9f-49f3-9cba-c5e78de5430e</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure cellular settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cellular"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cellular"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cellular",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/cellular"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork": {
+      "abstract": [
+        {
+          "text": "The payload to provide device info on private network deployments, including geographical location, preference over Wi-Fi, and network deployment type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CellularPrivateNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CellularPrivateNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "CellularPrivateNetwork",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/cellularprivatenetwork"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the content-caching service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentCaching"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentCaching"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentCaching",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/contentcaching"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure encrypted DNS settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the domains under an organization’s management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Domains"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Domains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Domains",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/domains"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the firewall.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Firewall"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Firewall"
+        }
+      ],
+      "role": "symbol",
+      "title": "Firewall",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/firewall"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure network-usage rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkUsageRules"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkUsageRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkUsageRules",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/networkusagerules"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure relay settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Relay"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Relay"
+        }
+      ],
+      "role": "symbol",
+      "title": "Relay",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/relay"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Wi-Fi settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFi"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFi"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiFi",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/wifi"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure managed Wi-Fi settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFiManagedSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFiManagedSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiFiManagedSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/wifimanagedsettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Networking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings"
+      ],
+      "title": "Networking"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/domains"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

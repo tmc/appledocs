@@ -1,0 +1,758 @@
+{
+  "abstract": [
+    {
+      "text": "Allows the discovery of the RFCOMM channel ID assigned to the service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getRFCOMMChannelID(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)IOBluetoothSDPServiceRecord(im)getRFCOMMChannelID:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "getRFCOMMChannelID"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sp",
+        "text": "UnsafeMutablePointer"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@BluetoothRFCOMMChannelID",
+        "text": "BluetoothRFCOMMChannelID"
+      },
+      {
+        "kind": "text",
+        "text": ">!) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@IOReturn",
+        "text": "IOReturn"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOBluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "getRFCOMMChannelID:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "getRFCOMMChannelID(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRFCOMMChannelID"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rfcommChannelID"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sp",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/BluetoothRFCOMMChannelID",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BluetoothRFCOMMChannelID",
+              "text": "BluetoothRFCOMMChannelID"
+            },
+            {
+              "kind": "text",
+              "text": ">!) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@IOReturn",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOReturn",
+              "text": "IOReturn"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the location that will get the found RFCOMM channel ID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rfcommChannelID"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns kIOReturnSuccess if the channel ID is found.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method will search through the ProtoclDescriptorList attribute to find an entry with the RFCOMM UUID (UUID16: 0x0003). If one is found, it gets the second element of the data element sequence and sets the rfcommChannelID pointer to it. The channel ID only gets set when kIOReturnSuccess is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth": {
+      "abstract": [
+        {
+          "text": "Gain user-space access to Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOBluetooth",
+      "type": "topic",
+      "url": "/documentation/iobluetooth"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/BluetoothRFCOMMChannelID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BluetoothRFCOMMChannelID"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/BluetoothRFCOMMChannelID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BluetoothRFCOMMChannelID"
+        }
+      ],
+      "role": "symbol",
+      "title": "BluetoothRFCOMMChannelID",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/bluetoothrfcommchannelid"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord": {
+      "abstract": [
+        {
+          "text": "An instance of this class represents a single SDP service record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothSDPServiceRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothSDPServiceRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothSDPServiceRecord",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpservicerecord"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getRFCOMMChannelID(_:)": {
+      "abstract": [
+        {
+          "text": "Allows the discovery of the RFCOMM channel ID assigned to the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRFCOMMChannelID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothRFCOMMChannelID",
+          "text": "BluetoothRFCOMMChannelID"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOReturn",
+          "text": "IOReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getRFCOMMChannelID(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getRFCOMMChannelID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRFCOMMChannelID(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpservicerecord/getrfcommchannelid(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@IOReturn": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOReturn"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@IOReturn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReturn",
+      "type": "topic",
+      "url": "/documentation/iokit/ioreturn"
+    },
+    "doc://com.externally.resolved.symbol/s:Sp": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing and manipulating data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutablePointer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "getRFCOMMChannelID:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRFCOMMChannelID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@IOReturn",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@IOReturn",
+                    "text": "IOReturn"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "getRFCOMMChannelID:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/BluetoothRFCOMMChannelID",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BluetoothRFCOMMChannelID",
+                    "text": "BluetoothRFCOMMChannelID"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "rfcommChannelID"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A pointer to the location that will get the found RFCOMM channel ID.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "rfcommChannelID"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "Returns kIOReturnSuccess if the channel ID is found.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPServiceRecord~1getRFCOMMChannelID(_:)/title",
+          "value": "getRFCOMMChannelID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPServiceRecord~1getRFCOMMChannelID(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRFCOMMChannelID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPServiceRecord/title",
+          "value": "IOBluetoothSDPServiceRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPServiceRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPServiceRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPServiceRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPServiceRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1BluetoothRFCOMMChannelID/title",
+          "value": "BluetoothRFCOMMChannelID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1BluetoothRFCOMMChannelID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BluetoothRFCOMMChannelID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1BluetoothRFCOMMChannelID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BluetoothRFCOMMChannelID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothsdpservicerecord/getrfcommchannelid(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothsdpservicerecord/getrfcommchannelid(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

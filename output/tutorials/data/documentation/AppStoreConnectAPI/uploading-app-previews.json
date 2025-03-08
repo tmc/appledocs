@@ -1,0 +1,1047 @@
+{
+  "abstract": [
+    {
+      "text": "Upload your app previews, including video files, to App Store Connect by using the asset upload APIs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-metadata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-app-previews"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Uploading App Previews"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code includes a script written in Python that uploads a video as an app preview for an app. To run this sample, you must have an app in App Store Connect with a version in the “Prepare for Submission” state, and an app preview file to upload. You’ll also need your API key.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample’s script first generates an authentication token, so it can call the App Store Connect API. It then creates an app preview set or uses an existing one, if one exists. The script then reserves a new app preview associated with the app preview set, uploads the binary data, and commits the upload.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the process of uploading assets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Project",
+          "level": 3,
+          "text": "Configure the Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project requires Python 3, which is pre-installed on macOS 10.15. It uses Python’s pipenv dependency management system, which you need to install. Follow these steps to install pipenv and the required Python modules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Terminal app by typing Command-space and entering “Terminal.app” in the Spotlight search field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "pip3 install --user pipenv"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re prompted to install Xcode command line tools, follow the prompts. When installation is complete, run the above command again.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3. In Terminal, navigate to the folder that contains this sample project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cd UploadingAppPreviews"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the Python modules by entering:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "~/Library/Python/3.7/bin/pipenv install"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve installed your own version of Python, the pipenv path may be different.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-API-Key-to-the-Script-and-Prepare-the-Upload",
+          "level": 3,
+          "text": "Add the API Key to the Script and Prepare the Upload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare to run the script by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your API key to the script by editing the upload-preview.py file and adding your API Key information to the KEY CONFIGURATION section at the top of the file. To find your API key, log in to App Store Connect and open the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com/access/api",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The key is found in the Keys tab. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the video file you’d like to upload is available on your local machine. For more information about app previews, including technical specifications, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/app-store/app-previews/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app must be in App Store Connect with a version in the “Prepare for Submission” state. To upload the app preview, you’ll need the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bundle id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "platform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "version number",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "locale",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of this app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Provide-Command-Line-Parameters-to-Run-the-Script",
+          "level": 3,
+          "text": "Provide Command-Line Parameters to Run the Script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the command line, run this command, replacing the parameters with actual values:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "~/Library/Python/3.7/bin/pipenv run python3 upload-preview.py {bundle id} {platform} {version} {locale} {preview type} {path to video file}",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The command-line parameters are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{bundle id}—Your app’s bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{platform}—Your app’s platform. See Platform for valid values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{version}—The version of your app to which the preview applies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{locale}—The locale to which the preview applies. See Create an App Info Localization for valid values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{preview type}—The type of preview. See PreviewType for valid values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "{path to video file}—The path to the video file on your computer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example replaces ",
+              "type": "text"
+            },
+            {
+              "code": "{bundle id}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "com.mycompany.MyApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; ",
+              "type": "text"
+            },
+            {
+              "code": "{platform}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "IOS",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; ",
+              "type": "text"
+            },
+            {
+              "code": "{version}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; ",
+              "type": "text"
+            },
+            {
+              "code": "{locale}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "en-US",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; ",
+              "type": "text"
+            },
+            {
+              "code": "{preview type}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "IPHONE_65",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; and ",
+              "type": "text"
+            },
+            {
+              "code": "{path to video file}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with",
+              "type": "text"
+            },
+            {
+              "code": "../my-video.mp4.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "~/Library/Python/3.7/bin/pipenv run python3 upload-preview.py com.mycompany.MyApp IOS 1.0 en-US IPHONE_65 ../my-video.mp4"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-an-Authentication-Token",
+          "level": 3,
+          "text": "Generate an Authentication Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, the script creates a JSON Web Token (JWT) that it uses to authenticate each App Store Connect API request. The JWT includes an expiration timestamp, along with an Issuer ID, Key ID, and the appstoreconnect-v1 audience. The token is signed using the ES256 algorithm and the private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "def create_token():",
+            "    expiry = datetime.datetime.utcnow() + datetime.timedelta(minutes=20)",
+            "    token_data = jwt.encode(",
+            "        {",
+            "            'iss': ISSUER_ID,",
+            "            'aud': 'appstoreconnect-v1',",
+            "            'exp': expiry",
+            "        },",
+            "        PRIVATE_KEY,",
+            "        headers={",
+            "            'kid': KEY_ID",
+            "        },",
+            "        algorithm='ES256'",
+            "    )",
+            "    return token_data.decode('UTF-8')"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Find-or-Create-the-App-Preview-Set",
+          "level": 3,
+          "text": "Find or Create the App Preview Set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect API requires the addition of an app preview to an app preview set. Create one app preview set for each preview type and each locale. Each set includes up to three previews. For example, a set might have a 6.5 inch iPhone in the US English locale, and another in the Mexican Spanish locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the sample creates the app preview, it needs to find the right preview set or create a new set. The script first searches for the app by bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "app_response = make_http_request(",
+            "    \"GET\",",
+            "    f\"https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]={bundleId}\",",
+            "    headers={",
+            "        \"Authorization\": auth_header",
+            "    }",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the script searches for the version by platform and version number:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version_response = make_http_request(",
+            "    \"GET\",",
+            "    f\"https://api.appstoreconnect.apple.com/v1/apps/{app['id']}/appStoreVersions?filter[versionString]={version}&filter[platform]={platform}\",",
+            "    headers={",
+            "        \"Authorization\": auth_header",
+            "    }",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the version doesn’t have a localization for the given locale, the script creates a new one:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "selected_localization_response = make_http_request(",
+            "    \"POST\",",
+            "    \"https://api.appstoreconnect.apple.com/v1/appStoreVersionLocalizations\",",
+            "    headers={",
+            "        \"Authorization\": auth_header,",
+            "        \"Content-Type\": \"application/json\"",
+            "    },",
+            "    body=json.dumps({",
+            "        \"data\": {",
+            "            \"type\": \"appStoreVersionLocalizations\",",
+            "            \"attributes\": {",
+            "                \"locale\": locale",
+            "            },",
+            "            \"relationships\": {",
+            "                \"appStoreVersion\": {",
+            "                    \"data\": {",
+            "                        \"type\": \"appStoreVersions\",",
+            "                        \"id\": version['id']",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    })",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, if the localization doesn’t have an app preview set of the given type, the script creates one:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "preview_set_response = make_http_request(",
+            "    \"POST\",",
+            "    \"https://api.appstoreconnect.apple.com/v1/appPreviewSets\",",
+            "    headers={",
+            "        \"Authorization\": auth_header,",
+            "        \"Content-Type\": \"application/json\"",
+            "    },",
+            "    body=json.dumps({",
+            "        \"data\": {",
+            "            \"type\": \"appPreviewSets\",",
+            "            \"attributes\": {",
+            "                \"previewType\": previewType",
+            "            },",
+            "            \"relationships\": {",
+            "                \"appStoreVersionLocalization\": {",
+            "                    \"data\": {",
+            "                        \"type\": \"appStoreVersionLocalizations\",",
+            "                        \"id\": selected_localization['id']",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    })",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Reserve-an-App-Preview",
+          "level": 3,
+          "text": "Reserve an App Preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the sample project finds or creates the app preview set, it reserves a new app preview associated with the app preview set ID. The reservation tells App Store Connect the name and size of the file the script intends to upload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "reserve_preview_response = make_http_request(",
+            "    \"POST\",",
+            "    \"https://api.appstoreconnect.apple.com/v1/appPreviews\",",
+            "    headers={",
+            "        \"Authorization\": auth_header,",
+            "        \"Content-Type\": \"application/json\"",
+            "    },",
+            "    body=json.dumps({",
+            "        \"data\": {",
+            "            \"type\": \"appPreviews\",",
+            "            \"attributes\": {",
+            "                \"fileName\": os.path.basename(filePath),",
+            "                \"fileSize\": os.path.getsize(filePath)",
+            "            },",
+            "            \"relationships\": {",
+            "                \"appPreviewSet\": {",
+            "                    \"data\": {",
+            "                        \"type\": \"appPreviewSets\",",
+            "                        \"id\": selected_preview_set['id']",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    })",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Upload-the-Binary-Data",
+          "level": 3,
+          "text": "Upload the Binary Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to the reservation request, App Store Connect responds with a set of upload operations. Use the upload operations to upload a file, potentially in multiple parts. The sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "offset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "length",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the upload operation to extract a portion of the source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "with open(filePath, mode='rb') as file:",
+            "    file.seek(upload_operation['offset'])",
+            "    bytes = file.read(upload_operation['length'])"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method, url and requestHeaders in the upload operation are used for uploading the chunk of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "make_http_request(",
+            "    upload_operation['method'],",
+            "    upload_operation['url'],",
+            "    headers={h['name']: h['value'] for h in upload_operation['requestHeaders']},",
+            "    body=bytes",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Commit-the-App-Preview",
+          "level": 3,
+          "text": "Commit the App Preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once all the parts of the file are uploaded, the sample code then demonstrates how to commit the app preview by marking it uploaded and providing an MD5 checksum of the original source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "make_http_request(",
+            "    \"PATCH\",",
+            "    f\"https://api.appstoreconnect.apple.com/v1/appPreviews/{preview['id']}\",",
+            "    headers={",
+            "        \"Authorization\": auth_header,",
+            "        \"Content-Type\": \"application/json\"",
+            "    },",
+            "    body=json.dumps({",
+            "        \"data\": {",
+            "            \"type\": \"appPreviews\",",
+            "            \"id\": preview['id'],",
+            "            \"attributes\": {",
+            "                \"uploaded\": True,",
+            "                \"sourceFileChecksum\": hashlib.md5(open(filePath,'rb').read()).hexdigest()",
+            "            }",
+            "        }",
+            "    })",
+            ")"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Verify-the-App-Preview",
+          "level": 3,
+          "text": "Verify the App Preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect processes the asset asynchronously. Check the upload’s status in App Store Connect or by re-requesting the ",
+              "type": "text"
+            },
+            {
+              "code": "/v1/appPreview/{id}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and examining the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-metadata": {
+      "abstract": [
+        {
+          "text": "Manage the metadata of apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-metadata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Metadata",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-metadata"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-preview-sets": {
+      "abstract": [
+        {
+          "text": "Create sets of app previews to upload to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-preview-sets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Preview Sets",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-preview-sets"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-previews": {
+      "abstract": [
+        {
+          "text": "Upload and download app previews for an app locale and display target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-previews",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Previews",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-previews"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api": {
+      "abstract": [
+        {
+          "text": "Create API keys to sign JSON Web Tokens (JWTs) and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API Keys for App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-api-keys-for-app-store-connect-api"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect": {
+      "abstract": [
+        {
+          "text": "Upload screenshots, app previews, attachments for App Review, and routing app coverage files to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading Assets to App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/uploading-assets-to-app-store-connect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/access/api": {
+      "identifier": "https://appstoreconnect.apple.com/access/api",
+      "title": "Users & Access module",
+      "titleInlineContent": [
+        {
+          "text": "Users & Access module",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/access/api"
+    },
+    "https://developer.apple.com/app-store/app-previews/": {
+      "identifier": "https://developer.apple.com/app-store/app-previews/",
+      "title": "Show More with App Previews",
+      "titleInlineContent": [
+        {
+          "text": "Show More with App Previews",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/app-previews/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-App-Previews",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-preview-sets",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-previews"
+      ],
+      "title": "Managing App Previews"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/uploading-app-previews"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

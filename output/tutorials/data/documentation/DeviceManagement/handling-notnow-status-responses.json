@@ -1,0 +1,966 @@
+{
+  "abstract": [
+    {
+      "text": "Handle when a device won’t execute a command and instead returns a NotNow status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-notnow-status-responses"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling NotNow Status Responses"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specific conditions prevent a device from executing a command. For example, a device won’t execute some commands before the first unlock after a device boot. When this occurs, a device can respond to the server with a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status to indicate that later retries may succeed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the server receives a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response from a device, it can either stop sending commands to the device or send another command to it on the same connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-Server-and-Device-Polling",
+          "level": 3,
+          "text": "Understand Server and Device Polling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a server stops sending commands to a device, the device automatically polls the server when conditions change. However, the device doesn’t cache the failed command. If you configure the server to instruct the device to retry the command, it must send the command again when the device polls the server. The server doesn’t need to send another push notification in response to this status, but it can send another one to instruct the device to poll the server immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the server sends another command to the client on the same connection, and this new command returns anything other than a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response, the device won’t automatically poll the server as it would if the first command executed successfully. The server must send a push notification at a later time to instruct the device to reconnect. The device only polls the server in response to a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status if that’s the last status sent by the device to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-NotNow-Responses",
+          "level": 3,
+          "text": "Handle NotNow Responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, a device may not execute commands, but instead respond with a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status during these conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device is running on battery power in Power Nap and the server sends any command other than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeleteUserCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceLockCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/EraseDeviceCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestartDeviceCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ShutDownDeviceCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserListCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActivationLockBypassCodeCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearActivationLockBypassCodeCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnlockUserAccountCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The server sends an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InstallProfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RemoveProfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command on the user connection and the user’s keychain is locked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device is blocking the user’s login while it contacts the server and the server sends a request that can take a long time to process; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InstalledApplicationList",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid receiving a ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status response on iOS devices by executing any of the following commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceInformationCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceLockCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/EraseDeviceCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearPasscodeCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProvisioningProfileListCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstalledApplicationListCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestrictionsCommand",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActivationLockBypassCodeCommand": {
+      "abstract": [
+        {
+          "text": "The command to get the code to bypass Activation Lock on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivationLockBypassCodeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActivationLockBypassCodeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivationLockBypassCodeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivationLockBypassCodeCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activationlockbypasscodecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearActivationLockBypassCodeCommand": {
+      "abstract": [
+        {
+          "text": "The command to clear the Activation Lock bypass code on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClearActivationLockBypassCodeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearActivationLockBypassCodeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClearActivationLockBypassCodeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClearActivationLockBypassCodeCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clearactivationlockbypasscodecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearPasscodeCommand": {
+      "abstract": [
+        {
+          "text": "The command to clear the passcode on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClearPasscodeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClearPasscodeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClearPasscodeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClearPasscodeCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clearpasscodecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeleteUserCommand": {
+      "abstract": [
+        {
+          "text": "The command to delete a user’s account from a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeleteUserCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeleteUserCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeleteUserCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeleteUserCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deleteusercommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceInformationCommand": {
+      "abstract": [
+        {
+          "text": "The command to query a device for specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceInformationCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceInformationCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceInformationCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceInformationCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deviceinformationcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceLockCommand": {
+      "abstract": [
+        {
+          "text": "The command to lock a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceLockCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DeviceLockCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceLockCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceLockCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/devicelockcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/EraseDeviceCommand": {
+      "abstract": [
+        {
+          "text": "The command to erase a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EraseDeviceCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/EraseDeviceCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EraseDeviceCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "EraseDeviceCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/erasedevicecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstalledApplicationListCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of installed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstalledApplicationListCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstalledApplicationListCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstalledApplicationListCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstalledApplicationListCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installedapplicationlistcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of installed profiles on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProfileListCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProfileListCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProfileListCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/profilelistcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProvisioningProfileListCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of installed provisioning profiles on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProvisioningProfileListCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProvisioningProfileListCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProvisioningProfileListCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProvisioningProfileListCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/provisioningprofilelistcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestartDeviceCommand": {
+      "abstract": [
+        {
+          "text": "The command to restart a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestartDeviceCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestartDeviceCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestartDeviceCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestartDeviceCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/restartdevicecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestrictionsCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of restrictions on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictionsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RestrictionsCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictionsCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictionsCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/restrictionscommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ShutDownDeviceCommand": {
+      "abstract": [
+        {
+          "text": "The command to shut down a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShutDownDeviceCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ShutDownDeviceCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShutDownDeviceCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShutDownDeviceCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/shutdowndevicecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnlockUserAccountCommand": {
+      "abstract": [
+        {
+          "text": "The command to unlock a local user account on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnlockUserAccountCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnlockUserAccountCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnlockUserAccountCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnlockUserAccountCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/unlockuseraccountcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserListCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of users with active accounts on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserListCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserListCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserListCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserListCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/userlistcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/sending-mdm-commands-to-a-device": {
+      "abstract": [
+        {
+          "text": "Execute commands on a device and receive responses that contain the results of each operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/sending-mdm-commands-to-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending MDM Commands to a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/sending-mdm-commands-to-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/sending-mdm-commands-to-a-device"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/handling-notnow-status-responses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

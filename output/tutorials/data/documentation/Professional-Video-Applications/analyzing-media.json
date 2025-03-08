@@ -1,0 +1,3353 @@
+{
+  "abstract": [
+    {
+      "text": "Use the FxPlug analysis API to analyze frames of source media before rendering them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Frame-by-frame analysis of video clips is commonly required for rendering tasks that occur in an FxPlug plug-in. For example, tracking of objects and stabilization of video both require a pre-render analysis of video frames before rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4.1 introduces ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which FxPlug plug-ins can use to analyze video frames from source media in Final Cut Pro X or Motion. ",
+              "type": "text"
+            },
+            {
+              "code": "FxAnalysisAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the host app’s built-in analysis infrastructure so that your plug-in’s analysis can be performed in the background, and you can view the progress UI in the same location as the host’s own analysis processes. This provides a consistent user experience for both native effects and FxPlug plug-ins that require analysis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example plug-in ",
+              "type": "text"
+            },
+            {
+              "code": "FxBrightnessAnalysis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " demonstrates how to implement the analysis APIs for a filter that analyzes all frames and then adjusts the brightness of the frames to a consistent level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-desired-analysis-time-range",
+          "level": 3,
+          "text": "Set the desired analysis time range",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in can tell Motion and Final Cut Pro what time range to analyze. In the following example, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/desiredAnalysisTimeRange(_:forInputWith:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "desiredRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to whatever the host provides in ",
+              "type": "text"
+            },
+            {
+              "code": "inputTimeRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func desiredAnalysisTimeRange(_ desiredRange: inout CMTimeRange?, forInputWith inputTimeRange: CMTimeRange) throws {",
+                    "    // Whatever the host app has, we want to analyze",
+                    "    desiredRange = inputTimeRange",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)desiredAnalysisTimeRange:(CMTimeRange *)desiredRange",
+                    "           forInputWithTimeRange:(CMTimeRange)inputTimeRange",
+                    "                           error:(NSError **)error",
+                    "{",
+                    "    // Whatever the host app has, we want to analyze",
+                    "    *desiredRange = inputTimeRange;",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Set-up-your-plug-in-for-analysis",
+          "level": 3,
+          "text": "Set up your plug-in for analysis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up data arrays or variables that will be used later for analysis in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/setupAnalysis(for:frameDuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also use other FxPlug APIs like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " within this method to set parameter states during analysis, as in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    @objc func setupAnalysis(for analysisRange: CMTimeRange, frameDuration: CMTime) throws {",
+                    "        analysisLock.lock()",
+                    "        do {",
+                    "            startFrameTime = analysisRange.start",
+                    "            analysisFrameDuration = frameDuration",
+                    "            ",
+                    "            if analyzedData != nil {",
+                    "            free(_: analyzedData)",
+                    "                analyzedData = nil",
+                    "            }",
+                    "            ",
+                    "            let numFrames = round(CMTimeGetSeconds(analysisRange.duration) / CMTimeGetSeconds(frameDuration))",
+                    "            analyzedData = UnsafeMutablePointer.allocate(capacity: MemoryLayout<BrightnessAnalysis>.stride * size_t(numFrames))",
+                    "            let initedVal = BrightnessAnalysis(frameTime: CMTime.zero, averageLuminance: 0.0)",
+                    "            analyzedData?.initialize(to: initedVal)",
+                    "            nextAnalyzedFrameNum = 0",
+                    "        }",
+                    "        analysisLock.unlock() ",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)setupAnalysisForTimeRange:(CMTimeRange)analysisRange",
+                    "                    frameDuration:(CMTime)frameDuration",
+                    "                            error:(NSError**)error",
+                    "{",
+                    "    BOOL result = YES;",
+                    "    [analysisLock lock];",
+                    "    {",
+                    "        startFrameTime = analysisRange.start;",
+                    "        analysisFrameDuration = frameDuration;",
+                    "        ",
+                    "        if (analyzedData != NULL)",
+                    "        {",
+                    "            free(analyzedData);",
+                    "            analyzedData = NULL;",
+                    "        }",
+                    "        ",
+                    "        double numFrames = ceil(CMTimeGetSeconds(analysisRange.duration) / CMTimeGetSeconds(frameDuration));",
+                    "        totalFramesToAnalyze = ceil(numFrames);",
+                    "        analyzedData = malloc(sizeof(*analyzedData) * (size_t)numFrames);",
+                    "#if BACKWARDS_ANALYSIS",
+                    "        nextAnalyzedFrameNum = numFrames - 1;",
+                    "#else",
+                    "        nextAnalyzedFrameNum = 0;",
+                    "#endif // BACKWARDS_ANALYSIS",
+                    "    }",
+                    "    [analysisLock unlock];",
+                    "    ",
+                    "    return result;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Store-data-to-persist-between-application-launches",
+          "level": 3,
+          "text": "Store data to persist between application launches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in needs to store the analysis data in a parameter so that it can persist between application launches. You typically do this with a custom parameter added in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You also supply the user with a button to start the analysis in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When implementing custom parameters, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method so your custom parameters can be serialized and deserialized properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "   func addParameters() throws {",
+                    "        let paramAPI = _apiManager.api(for: FxParameterCreationAPI_v5.self) as! FxParameterCreationAPI_v5",
+                    "",
+                    "// ...",
+                    "        paramAPI.addCustomParameter(withName: \"Analysis Data\", parameterID: kParam.analysisData.rawValue, defaultValue: [AnyHashable : Any]() as NSCopying & NSSecureCoding & NSObjectProtocol, parameterFlags: FxParameterFlags( kFxParameterFlag_HIDDEN | kFxParameterFlag_NOT_ANIMATABLE))",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)addParametersWithError:(NSError * _Nullable * _Nullable)error {",
+                    "    id<FxParameterCreationAPI_v5>   paramAPI    = [_apiManager apiForProtocol:@protocol(FxParameterCreationAPI_v5)];",
+                    "    if (paramAPI == nil)",
+                    "    {",
+                    "        return NO;",
+                    "    }",
+                    "// ...",
+                    "",
+                    "    [paramAPI addCustomParameterWithName:@\"Analysis Data\"",
+                    "                             parameterID:kParam_AnalysisData",
+                    "                            defaultValue:[NSDictionary dictionary]",
+                    "                          parameterFlags:kFxParameterFlag_HIDDEN | kFxParameterFlag_NOT_ANIMATABLE];    ",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    func `class`(forCustomParameterID parameterID: UInt32) -> AnyClass {",
+                    "        if parameterID == kParam.analysisData.rawValue {",
+                    "            return NSDictionary.self",
+                    "        }",
+                    "        return NSNull.self",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (Class)classForCustomParameterID:(UInt32)parameterID",
+                    "{",
+                    "    if (parameterID == kParam_AnalysisData)",
+                    "    {",
+                    "        return [NSDictionary class];",
+                    "    }",
+                    "    ",
+                    "    return nil;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Start-the-analysis",
+          "level": 3,
+          "text": "Start the analysis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "FxBrightnessAnalysis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example plug-in, when the user clicks the Start Analysis push button parameter, the host app calls the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "-startAnalysis:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, which then initializes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and requests that the host start a forward analysis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3676024",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each plug-in instance is limited to only one analysis job at a time. If you attempt to start another analysis while an analysis is already in progress, the analysis API returns an error. As in the example code below, first check that the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI/analysisStateForEffect()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " isn’t ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisStarted",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisRequested",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before attempting to start an analysis.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    @objc func startAnalysis(_ sender: Any?) {",
+                    "        let analysisAPI = _apiManager.api(for: FxAnalysisAPI.self) as! FxAnalysisAPI?",
+                    "        let colorGamutAPI = _apiManager.api(for: FxColorGamutAPI_v2.self) as! FxColorGamutAPI_v2?",
+                    "        if (analysisAPI == nil) || (colorGamutAPI == nil) {",
+                    "            print(\"Unable to retrieve analysis API or color gamut API. Stopping analysis.\")",
+                    "            return",
+                    "        }",
+                    "        ",
+                    "        let rgbToYCbCr = colorGamutAPI?.colorMatrixFromDesiredRGBToYCbCr()!",
+                    "        let matrixData : UnsafeMutablePointer<Matrix44Data> = (rgbToYCbCr?.matrix())!",
+                    "        luminanceRed = matrixData.pointee.0.0",
+                    "        luminanceGreen = matrixData.pointee.0.1",
+                    "        luminanceBlue = matrixData.pointee.0.2",
+                    "        ",
+                    "        // If analysis isn't already happening, start it. If it is already happening, just",
+                    "        // continue on.",
+                    "        let currentState : FxAnalysisState = (analysisAPI?.analysisStateForEffect())!",
+                    "        if currentState != kFxAnalysisState_AnalysisStarted && currentState != kFxAnalysisState_AnalysisRequested {",
+                    "            do {",
+                    "                if BACKWARDS_ANALYSIS {",
+                    "                    try analysisAPI?.startBackwardAnalysis(kFxAnalysisLocation_CPU)",
+                    "                }",
+                    "                else {",
+                    "                    try analysisAPI?.startForwardAnalysis(kFxAnalysisLocation_CPU)",
+                    "                }",
+                    "            } catch {",
+                    "                print(\"Unable to start analysis due to error \\(error)\")",
+                    "            }",
+                    "        }",
+                    "    }",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)startAnalysis:(id)sender",
+                    "{",
+                    "    id<FxAnalysisAPI>   analysisAPI = [_apiManager apiForProtocol:@protocol(FxAnalysisAPI)];",
+                    "    id<FxColorGamutAPI_v2>  colorGamutAPI   = [_apiManager apiForProtocol:@protocol(FxColorGamutAPI_v2)];",
+                    "    if ((analysisAPI == nil) || (colorGamutAPI == nil))",
+                    "    {",
+                    "        NSLog (@\"Unable to retrieve analysis API or color gamut API. Stopping analysis.\");",
+                    "        return;",
+                    "    }",
+                    "    ",
+                    "    FxMatrix44* rgbToYCbCr  = [colorGamutAPI colorMatrixFromDesiredRGBToYCbCr];",
+                    "    Matrix44Data*   matrixData  = [rgbToYCbCr matrix];",
+                    "    luminanceRed = (*matrixData)[0][0];",
+                    "    luminanceGreen = (*matrixData)[0][1];",
+                    "    luminanceBlue = (*matrixData)[0][2];",
+                    "    ",
+                    "    // If analysis isn't already happening, start it. If it is already happening, just",
+                    "    // continue on.",
+                    "    FxAnalysisState currentState = [analysisAPI analysisStateForEffect];",
+                    "    if ((currentState != kFxAnalysisState_AnalysisStarted) && (currentState != kFxAnalysisState_AnalysisRequested))",
+                    "    {",
+                    "        NSError* err = nil;",
+                    "#if BACKWARDS_ANALYSIS",
+                    "        if (![analysisAPI startBackwardAnalysis:kFxAnalysisLocation_CPU",
+                    "                                          error:&err])",
+                    "#else",
+                    "        if (![analysisAPI startForwardAnalysis:kFxAnalysisLocation_CPU",
+                    "                                         error:&err])",
+                    "#endif // BACKWARDS_ANALYSIS",
+                    "        {",
+                    "            NSLog (@\"Analysis failed to start due to error: %@\", err);",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Analyze-the-frames-and-store-the-results",
+          "level": 3,
+          "text": "Analyze the frames and store the results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/analyzeFrame(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method allows you to analyze each frame and store results. In the following example the plug-in samples all the pixels to determine the average luminance of each frame, and then stores the ",
+              "type": "text"
+            },
+            {
+              "code": "averageLuminance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for each frame (",
+              "type": "text"
+            },
+            {
+              "code": "frameTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the ",
+              "type": "text"
+            },
+            {
+              "code": "analyzedData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The FxAnalysis API always analyzes all pixels in the frame, instead of just tiles.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    @objc func analyzeFrame(_ frame: FxImageTile!, at frameTime: CMTime) throws {",
+                    "",
+                    "        if frame?.ioSurface.pixelFormat == kCVPixelFormatType_128RGBAFloat {",
+                    "        ",
+                    "        // Calculate the average brightness of the next frames",
+                    "        var averageLuminance : Double = 0",
+                    "        let width : Int = (frame?.ioSurface.width)!",
+                    "        let height : Int = (frame?.ioSurface.height)!",
+                    "        ",
+                    "        frame?.ioSurface.lock(options: IOSurfaceLockOptions(rawValue: 0x00000001), seed: nil) //kIOSurfaceLockReadOnly",
+                    "        let rowBytes : Int = (frame?.ioSurface.bytesPerRow)!",
+                    "",
+                    "        let baseAddr = frame?.ioSurface.baseAddress",
+                    "        for row in 0..<height {",
+                    "            let rawPixels = baseAddr?.advanced(by: row * rowBytes)",
+                    "            let pixels = rawPixels?.bindMemory(to: Float32.self, capacity: width * 4)",
+                    "            var nextPixel = UnsafePointer<Float>(pixels)//Float = Float((pixels!) + (row * rowBytes))",
+                    "            for _ in 0..<width {",
+                    "                let red = Double(nextPixel!.pointee)",
+                    "                nextPixel = nextPixel?.advanced(by: 1)",
+                    "                let green = Double(nextPixel!.pointee)",
+                    "                nextPixel = nextPixel?.advanced(by: 1)",
+                    "                let blue = Double(nextPixel!.pointee)",
+                    "                nextPixel = nextPixel?.advanced(by: 2) // 2 because we want to skip alpha",
+                    "                ",
+                    "                luminanceRed *= red",
+                    "                luminanceGreen *= green",
+                    "                luminanceBlue *= blue",
+                    "                let luminance = luminanceRed + luminanceGreen + luminanceBlue",
+                    "                averageLuminance += luminance",
+                    "            }",
+                    "        }",
+                    "",
+                    "        frame?.ioSurface.unlock(options: IOSurfaceLockOptions(rawValue: 0x00000001), seed: nil) //kIOSurfaceLockReadOnly",
+                    "        ",
+                    "        ",
+                    "        averageLuminance /= Double(width) * Double(height)",
+                    "        ",
+                    "        analysisLock.lock()",
+                    "",
+                    "        // Add our analysis data to the array",
+                    "        print(\"Average luminance for frame at time \\(CMTimeGetSeconds(frameTime)) = \\(averageLuminance)\")",
+                    "            analyzedData?[nextAnalyzedFrameNum].frameTime = frameTime",
+                    "            analyzedData?[nextAnalyzedFrameNum].averageLuminance = averageLuminance",
+                    "",
+                    "            nextAnalyzedFrameNum += 1",
+                    "        ",
+                    "        // Attempt to save partial data. If it fails, don't worry because we'll save it all at the end",
+                    "        // Also, don't save on every frame, as it slows down the analysis too much. Save every 10th",
+                    "        // frame instead.",
+                    "        if (nextAnalyzedFrameNum % 10) == 0 {",
+                    "            do {",
+                    "                try saveAnalyzedData()",
+                    "            }",
+                    "            catch {",
+                    "                print(\"Unable to save partial analysis data\")",
+                    "            }",
+                    "        }",
+                    "        ",
+                    "        analysisLock.unlock()",
+                    "        }",
+                    "    }",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)analyzeFrame:(FxImageTile *)frame",
+                    "              atTime:(CMTime)frameTime",
+                    "               error:(NSError **)error",
+                    "{",
+                    "    if (frame.ioSurface.pixelFormat != kCVPixelFormatType_128RGBAFloat)",
+                    "    {",
+                    "        if (error != nil)",
+                    "        {",
+                    "            *error = [NSError errorWithDomain:FxPlugErrorDomain",
+                    "                                         code:kFxError_AnalysisError",
+                    "                                     userInfo:@{ NSLocalizedDescriptionKey : @\"Invalid bit depth for analysis data\" }];",
+                    "        }",
+                    "        return NO;",
+                    "    }",
+                    "    ",
+                    "    // Calculate the average brightness of the next frames",
+                    "    double averageLuminance = 0;",
+                    "    NSInteger   width   = frame.ioSurface.width;",
+                    "    NSInteger   height  = frame.ioSurface.height;",
+                    "    ",
+                    "    [frame.ioSurface lockWithOptions:kIOSurfaceLockReadOnly",
+                    "                                seed:nil];",
+                    "    ",
+                    "    NSUInteger  rowBytes= frame.ioSurface.bytesPerRow;",
+                    "    float*      pixels  = frame.ioSurface.baseAddress;",
+                    "    for (NSInteger row = 0; row < height; row++)",
+                    "    {",
+                    "        float*  nextPixel = (float*)((UInt8*)pixels + (row * rowBytes));",
+                    "        for (NSInteger col = 0; col < width; col++)",
+                    "        {",
+                    "            double  red = *nextPixel;",
+                    "            nextPixel++;",
+                    "            double  green = *nextPixel;",
+                    "            nextPixel++;",
+                    "            double  blue = *nextPixel;",
+                    "            nextPixel++;",
+                    "            nextPixel++; // skip alpha",
+                    "            ",
+                    "            double luminance = luminanceRed * red + luminanceGreen * green + luminanceBlue * blue;",
+                    "            averageLuminance += luminance;",
+                    "        }",
+                    "    }",
+                    "    ",
+                    "    [frame.ioSurface unlockWithOptions:kIOSurfaceLockReadOnly",
+                    "                                  seed:nil];",
+                    "    ",
+                    "    ",
+                    "    averageLuminance /= (double)width * (double)height;",
+                    "    ",
+                    "    [analysisLock lock];",
+                    "",
+                    "    // Add our analysis data to the array",
+                    "    NSLog (@\"Average luminance for frame at time %f = %f\", CMTimeGetSeconds(frameTime), averageLuminance);",
+                    "    analyzedData [ nextAnalyzedFrameNum ].frameTime = frameTime;",
+                    "    analyzedData [ nextAnalyzedFrameNum ].averageLuminance = averageLuminance;",
+                    "#if BACKWARDS_ANALYSIS",
+                    "    nextAnalyzedFrameNum--;",
+                    "#else",
+                    "    nextAnalyzedFrameNum++;",
+                    "#endif // BACKWARDS_ANALYSIS",
+                    "    ",
+                    "    // Attempt to save partial data. If it fails, don't worry because we'll save it all at the end",
+                    "    // Also, don't save on every frame, as it slows down the analysis too much. Save every 10th",
+                    "    // frame instead",
+                    "    if ((nextAnalyzedFrameNum % 10) == 0)",
+                    "    {",
+                    "        if (![self saveAnalyzedData:nil])",
+                    "        {",
+                    "            NSLog (@\"Unable to save partial analysis data\");",
+                    "        }",
+                    "    }",
+                    "    ",
+                    "    [analysisLock unlock];",
+                    "    ",
+                    "    return YES;",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above calls the ",
+              "type": "text"
+            },
+            {
+              "code": "-saveAnalyzedData:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function shown below every 10 frames. The function then saves the results into a custom parameter using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5/setCustomParameterValue(_:toParameter:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    func saveAnalyzedData() throws {",
+                    "        //let analysisData = Data(bytes: &analyzedData, count: nextAnalyzedFrameNum * MemoryLayout<BrightnessAnalysis>.stride)",
+                    "        let analysisData = NSData(bytes: analyzedData, length: nextAnalyzedFrameNum * MemoryLayout<BrightnessAnalysis>.stride)",
+                    "        var paramData: [AnyHashable : Any]? = nil",
+                    "        if let dictionary = CMTimeCopyAsDictionary(analysisFrameDuration, allocator: kCFAllocatorDefault) as? [AnyHashable : Any] {",
+                    "            paramData = [",
+                    "                kKey_FrameDuration : dictionary,",
+                    "                kKey_AnalysisData : analysisData,",
+                    "                kKey_NumAnalyzedFrames : NSNumber(value: nextAnalyzedFrameNum - 1)",
+                    "            ]",
+                    "        }",
+                    "",
+                    "        let paramAPI = _apiManager.api(for: FxParameterSettingAPI_v5.self) as! FxParameterSettingAPI_v5?",
+                    "        ",
+                    "           paramAPI?.setCustomParameterValue(paramData as (NSCopying & NSSecureCoding & NSObjectProtocol)?, toParameter: kParam.analysisData.rawValue, at: CMTime.zero)",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)saveAnalyzedData:(NSError**)error",
+                    "{",
+                    "    BOOL result = NO;",
+                    "    NSData* analysisData    = [NSData dataWithBytes:analyzedData",
+                    "                                             length:totalFramesToAnalyze * sizeof (*analyzedData)];",
+                    "    NSDictionary*   paramData   = [NSDictionary dictionaryWithObjectsAndKeys:",
+                    "                                   (NSDictionary*)CMTimeCopyAsDictionary(analysisFrameDuration, kCFAllocatorDefault), kKey_FrameDuration,",
+                    "                                   analysisData, kKey_AnalysisData,",
+                    "                                   [NSNumber numberWithInteger:nextAnalyzedFrameNum - 1], kKey_NumAnalyzedFrames,",
+                    "                                   nil];",
+                    "    ",
+                    "    result = YES;",
+                    "    id<FxParameterSettingAPI_v5>    paramAPI    = [_apiManager apiForProtocol:@protocol(FxParameterSettingAPI_v5)];",
+                    "    if (paramAPI != nil)",
+                    "    {",
+                    "        [paramAPI setCustomParameterValue:paramData",
+                    "                              toParameter:kParam_AnalysisData",
+                    "                                   atTime:kCMTimeZero];",
+                    "",
+                    "        result = YES;",
+                    "    }",
+                    "    else",
+                    "    {",
+                    "        if (error != nil)",
+                    "        {",
+                    "            *error = [NSError errorWithDomain:FxPlugErrorDomain",
+                    "                                         code:kFxError_APIUnavailable",
+                    "                                     userInfo:@{ NSLocalizedDescriptionKey : @\"Unable to retrieve the FxParameterSettingAPI_v5 in -cleanupAnalysis:\" }];",
+                    "        }",
+                    "    }",
+                    "    ",
+                    "    return result;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To cancel analysis, return ",
+                  "type": "text"
+                },
+                {
+                  "code": "NO",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and set the error in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/analyzeFrame(_:at:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Clean-up-after-analysis",
+          "level": 3,
+          "text": "Clean up after analysis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/cleanupAnalysis()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to do any necessary cleanup after the analysis is complete. The following example is from the ",
+              "type": "text"
+            },
+            {
+              "code": "FxBrightnessAnalysis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    @objc func cleanupAnalysis() throws {",
+                    "        // Update our parameters",
+                    "        analysisLock.lock()",
+                    "        do {",
+                    "            try saveAnalyzedData()",
+                    "            free(analyzedData)",
+                    "            analyzedData = nil",
+                    "        }",
+                    "        analysisLock.unlock()",
+                    "    }",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)cleanupAnalysis:(NSError **)error",
+                    "{",
+                    "    // Update our parameters",
+                    "    BOOL    result  = NO;",
+                    "    [analysisLock lock];",
+                    "    {",
+                    "        [self saveAnalyzedData:error];",
+                    "        free(analyzedData);",
+                    "        analyzedData = NULL;",
+                    "        result = YES;",
+                    "    }",
+                    "    [analysisLock unlock];",
+                    "    ",
+                    "    return result;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Determine-the-Current-Analysis-State",
+          "level": 3,
+          "text": "Determine the Current Analysis State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-analysisStateForEffect:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method returns the current analysis state as one of the following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not analyzing.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_NotAnalyzing",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Analysis has been requested, but it hasn’t started yet.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisRequested",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Analysis has started.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisStarted",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Analysis has completed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisCompleted",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The analysis was interrupted.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisInterrupted",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although not necessary, you can use these states to provide UI feedback, and to determine when the analysis is complete or whether it was interrupted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-analysis-data-for-use-in-rendering",
+          "level": 3,
+          "text": "Retrieve analysis data for use in rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During rendering, retrieve the analyzed data for each frame from the custom parameter in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6/getCustomParameterValue(_:fromParameter:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the frame’s value, process a result that your renderer will need, then pack it into the plug-in state for that frame. This example shows how to retrieve the analysis data for use in rendering. The steps that follow take you through the example in more detail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    func pluginState(_ pluginState: AutoreleasingUnsafeMutablePointer<NSData>?, at renderTime: CMTime, quality qualityLevel: UInt) throws {",
+                    "        let paramAPI = _apiManager!.api(for: FxParameterRetrievalAPI_v6.self) as! FxParameterRetrievalAPI_v6",
+                    "",
+                    "        var p: (NSCopying & NSSecureCoding & NSObjectProtocol)? = nil",
+                    "        var brightnessData = BrightnessEqualization(analysisCompleted: false, desiredBrightness: 0.0, actualBrightness: 0.0, frameDuration: CMTime.zero,",
+                    "                                                    rgbToYCbCr:matrixData(toFlatArray: FxMatrix44().matrix()), YCbCrToRGB:matrixData(toFlatArray: FxMatrix44().matrix()))",
+                    "        if (p != nil) &&",
+                    "            (paramAPI.getCustomParameterValue(AutoreleasingUnsafeMutablePointer<(NSCopying & NSSecureCoding & NSObjectProtocol)?>(&p),",
+                    "                                              fromParameter: kParam.analysisData.rawValue,",
+                    "                                              at: renderTime)) {",
+                    "            let analysisData = p as! NSDictionary",
+                    "        ",
+                    "            let completedAnalysis : Bool = analysisData.allKeys.count > 0",
+                    "            ",
+                    "            var frameDuration : CMTime = .invalid",
+                    "",
+                    "            if completedAnalysis {",
+                    "                let durationDict = ((analysisData.object(forKey: kKey_FrameDuration) ?? 0) as! NSDictionary)",
+                    "                frameDuration = CMTimeMakeFromDictionary(durationDict)",
+                    "            }",
+                    "            ",
+                    "            let numFramesAnalyzed : Int = (analysisData[kKey_NumAnalyzedFrames] as? NSNumber)?.intValue ?? 0",
+                    "            ",
+                    "            let analyzedParamData = analysisData[kKey_AnalysisData] as? NSData //UnsafeRawBufferPointer",
+                    "        ",
+                    "            let brightnessAnalysisPtr = analyzedParamData?.bytes",
+                    "            let brightnessAnalysis = brightnessAnalysisPtr?.bindMemory(to: BrightnessAnalysis.self, capacity: numFramesAnalyzed)",
+                    "            ",
+                    "            var actualBrightness = 1.0",
+                    "            ",
+                    "            if completedAnalysis {",
+                    "                actualBrightness = brightness(at: renderTime, frameDuration: frameDuration, numFrames: numFramesAnalyzed, fromData: brightnessAnalysis)",
+                    "            }",
+                    "            ",
+                    "            var desiredBrightness = 1.0",
+                    "            paramAPI.getFloatValue(&desiredBrightness, fromParameter: kParam.brightness.rawValue, at: renderTime)",
+                    "            ",
+                    "            let colorAPI = _apiManager!.api(for: FxColorGamutAPI_v2.self) as! FxColorGamutAPI_v2",
+                    "            ",
+                    "            let rgbToYCbCr = colorAPI.colorMatrixFromDesiredRGBToYCbCr()",
+                    "            let YCbCrToRGB = colorAPI.colorMatrixFromYCbCrToDesiredRGB()",
+                    "            ",
+                    "            let rgbToYCbCrData = rgbToYCbCr!.matrix()",
+                    "            let YCbCrToRGBData = YCbCrToRGB!.matrix()",
+                    "            brightnessData = BrightnessEqualization (analysisCompleted: completedAnalysis, desiredBrightness: desiredBrightness, actualBrightness: actualBrightness, frameDuration: frameDuration, rgbToYCbCr: matrixData(toFlatArray: rgbToYCbCrData), YCbCrToRGB: matrixData(toFlatArray: YCbCrToRGBData))",
+                    "        }",
+                    "        let renderData = NSData(bytes: &brightnessData, length: MemoryLayout<BrightnessEqualization>.stride)",
+                    "        ",
+                    "        pluginState!.pointee = renderData",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)pluginState:(NSData * _Nonnull * _Nullable)pluginState",
+                    "             atTime:(CMTime)renderTime",
+                    "            quality:(FxQuality)qualityLevel",
+                    "              error:(NSError * _Nullable * _Nullable)error {",
+                    "    id<FxParameterRetrievalAPI_v6>  paramAPI    = [_apiManager apiForProtocol:@protocol(FxParameterRetrievalAPI_v6)];",
+                    "    if (paramAPI == nil)",
+                    "    {",
+                    "        return NO;",
+                    "    }",
+                    "    ",
+                    "    NSDictionary* analysisData    = nil;",
+                    "    [paramAPI getCustomParameterValue:&analysisData",
+                    "                        fromParameter:kParam_AnalysisData",
+                    "                               atTime:renderTime];",
+                    "    BOOL    completedAnalysis = [[analysisData allKeys] count] > 0;",
+                    "    ",
+                    "    CMTime frameDuration = kCMTimeInvalid;",
+                    "    if (completedAnalysis)",
+                    "    {",
+                    "        frameDuration = CMTimeMakeFromDictionary((CFDictionaryRef)[analysisData objectForKey:kKey_FrameDuration]);",
+                    "    }",
+                    "    ",
+                    "    NSInteger   numFramesAnalyzed   = [[analysisData objectForKey:kKey_NumAnalyzedFrames] integerValue];",
+                    "    ",
+                    "    NSData* analyzedParamData = [analysisData objectForKey:kKey_AnalysisData];",
+                    "    BrightnessAnalysis* brightnessAnalysis  = (BrightnessAnalysis*)[analyzedParamData bytes];",
+                    "    double actualBrightness = 1.0;",
+                    "    if (completedAnalysis)",
+                    "    {",
+                    "        actualBrightness = [self brightnessAtTime:renderTime",
+                    "                                    frameDuration:frameDuration",
+                    "                                        numFrames:numFramesAnalyzed",
+                    "                                         fromData:brightnessAnalysis];",
+                    "    }",
+                    "    ",
+                    "    double desiredBrightness    = 1.0;",
+                    "    [paramAPI getFloatValue:&desiredBrightness",
+                    "              fromParameter:kParam_Brightness",
+                    "                     atTime:renderTime];",
+                    "",
+                    "    id<FxColorGamutAPI_v2>  colorAPI    = [_apiManager apiForProtocol:@protocol(FxColorGamutAPI_v2)];",
+                    "    FxMatrix44* rgbToYCbCr  = [colorAPI colorMatrixFromDesiredRGBToYCbCr];",
+                    "    FxMatrix44* YCbCrToRGB  = [colorAPI colorMatrixFromYCbCrToDesiredRGB];",
+                    "    ",
+                    "    Matrix44Data    *rgbToYCbCrData = [rgbToYCbCr matrix];",
+                    "    Matrix44Data    *YCbCrToRGBData = [YCbCrToRGB matrix];",
+                    "    struct BrightnessEqualization brightnessData = {",
+                    "        completedAnalysis,",
+                    "        desiredBrightness,",
+                    "        actualBrightness,",
+                    "        frameDuration,",
+                    "        [self matrixDataToFlatArray:rgbToYCbCrData],",
+                    "        [self matrixDataToFlatArray:YCbCrToRGBData]",
+                    "    };",
+                    "    ",
+                    "    NSMutableData*  renderData = [NSMutableData dataWithBytes:&brightnessData",
+                    "                                                       length:sizeof(brightnessData)];",
+                    "    ",
+                    "    *pluginState = renderData;",
+                    "    return YES;",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above example from the ",
+              "type": "text"
+            },
+            {
+              "code": "FxBrightnessAnalysis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plug-in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "analysisData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the current frame is retrieved from the custom parameter using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6/getCustomParameterValue(_:fromParameter:at:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A pointer to the data is then passed to a function called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "brightnessAtTime::::",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to determine the analyzed brightness value of the current frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "desiredBrightness",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value that was set in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kParam_Brightness",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " float slider parameter by the user is retrieved.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "actualBrightness",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "desiredBrightness",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values are packed into the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "brightnessData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " struct and returned as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "renderData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on working with ",
+              "type": "text"
+            },
+            {
+              "code": "pluginState",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Use the scheduling APIs in FxPlug to retrieve frames from different times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Scheduling media in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Learn about time handling in host apps and plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding time in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/understanding-time-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI/analysisStateForEffect()": {
+      "abstract": [
+        {
+          "text": "Fetches the state of frame analysis for your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analysisStateForEffect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI/analysisStateForEffect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analysisStateForEffect"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "analysisStateForEffect()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi/analysisstateforeffect()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer": {
+      "abstract": [
+        {
+          "text": "A protocol you implement in your plug-in to analyze frames that the plug-in is applied to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalyzer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/analyzeFrame(_:at:)": {
+      "abstract": [
+        {
+          "text": "Analyzes the next frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyzeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/analyzeFrame(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analyzeFrame:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "analyzeFrame(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer/analyzeframe(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/cleanupAnalysis()": {
+      "abstract": [
+        {
+          "text": "Completes any necessary cleanup work after your plug-in’s frame analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cleanupAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/cleanupAnalysis()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cleanupAnalysis:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cleanupAnalysis()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer/cleanupanalysis()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/desiredAnalysisTimeRange(_:forInputWith:)": {
+      "abstract": [
+        {
+          "text": "Requests the specified time range of frames you want to analyze.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredAnalysisTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forInputWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/desiredAnalysisTimeRange(_:forInputWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "desiredAnalysisTimeRange:forInputWithTimeRange:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "desiredAnalysisTimeRange(_:forInputWith:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer/desiredanalysistimerange(_:forinputwith:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/setupAnalysis(for:frameDuration:)": {
+      "abstract": [
+        {
+          "text": "Completes any setup work before starting the frame analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setupAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer/setupAnalysis(for:frameDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setupAnalysisForTimeRange:frameDuration:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setupAnalysis(for:frameDuration:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer/setupanalysis(for:frameduration:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3": {
+      "abstract": [
+        {
+          "text": "A collection of methods for manipulating the keyframes of your FxPlug 4 plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxKeyframeAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxkeyframeapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6/getCustomParameterValue(_:fromParameter:at:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the (possibly keyframed) value of a custom parameter at a given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCustomParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6/getCustomParameterValue(_:fromParameter:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCustomParameterValue:fromParameter:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "getCustomParameterValue(_:fromParameter:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v6/getcustomparametervalue(_:fromparameter:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to set parameter values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterSettingAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametersettingapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5/setCustomParameterValue(_:toParameter:at:)": {
+      "abstract": [
+        {
+          "text": "Sets a custom value for a custom parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCustomParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5/setCustomParameterValue(_:toParameter:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCustomParameterValue:toParameter:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setCustomParameterValue(_:toParameter:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametersettingapi_v5/setcustomparametervalue(_:toparameter:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()": {
+      "abstract": [
+        {
+          "text": "Tells the host application what parameters your plug-in requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addParameters"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addParametersWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addParameters()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/addparameters()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)": {
+      "abstract": [
+        {
+          "text": "Returns the class of the object contained in the custom parameter with the given ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCustomParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classForCustomParameterID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "class(forCustomParameterID:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/class(forcustomparameterid:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the plug-in’s parameter values, performs any calculations it needs to from those values, and packages up the result to be used later with rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSData",
+          "text": "NSData"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxQuality",
+          "text": "FxQuality"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pluginState:atTime:quality:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pluginState(_:at:quality:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/pluginstate(_:at:quality:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods provided by the host, so that a plug-in can query the timing properties of its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTimingAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisCompleted": {
+      "abstract": [
+        {
+          "text": "Analysis completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisCompleted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisCompleted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisCompleted"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxAnalysisState_AnalysisCompleted",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxanalysisstate_analysiscompleted"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisInterrupted": {
+      "abstract": [
+        {
+          "text": "Analysis interrupted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisInterrupted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisInterrupted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisInterrupted"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxAnalysisState_AnalysisInterrupted",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxanalysisstate_analysisinterrupted"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisRequested": {
+      "abstract": [
+        {
+          "text": "Analysis requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisRequested"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisRequested",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisRequested"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxAnalysisState_AnalysisRequested",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxanalysisstate_analysisrequested"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisStarted": {
+      "abstract": [
+        {
+          "text": "Analysis started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisStarted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_AnalysisStarted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_AnalysisStarted"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxAnalysisState_AnalysisStarted",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxanalysisstate_analysisstarted"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_NotAnalyzing": {
+      "abstract": [
+        {
+          "text": "Not currently analyzing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_NotAnalyzing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxAnalysisState",
+          "text": "FxAnalysisState"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxAnalysisState_NotAnalyzing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxAnalysisState_NotAnalyzing"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxAnalysisState_NotAnalyzing",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxanalysisstate_notanalyzing"
+    },
+    "media-3676024": {
+      "alt": "A screen shot of the FxBrightnessAnalysis example’s parameter inspector.",
+      "identifier": "media-3676024",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a65290b5f56ab91bdd845fde80d43cee/media-3676024@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/932d4dbd7e709a4240a59429829df5ce/media-3676024~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-and-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+      ],
+      "title": "Time and analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-and-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+              ],
+              "title": "Time and analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_NotAnalyzing/title",
+          "value": "kFxAnalysisState_NotAnalyzing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_NotAnalyzing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxAnalysisState_NotAnalyzing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/title",
+          "value": "FxAnalysisAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI~1analysisStateForEffect()/title",
+          "value": "analysisStateForEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI~1analysisStateForEffect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "analysisStateForEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisRequested/title",
+          "value": "kFxAnalysisState_AnalysisRequested"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisRequested/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxAnalysisState_AnalysisRequested"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisStarted/title",
+          "value": "kFxAnalysisState_AnalysisStarted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisStarted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxAnalysisState_AnalysisStarted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1analyzeFrame(_:at:)/title",
+          "value": "analyzeFrame:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1analyzeFrame(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "analyzeFrame:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5~1setCustomParameterValue(_:toParameter:at:)/title",
+          "value": "setCustomParameterValue:toParameter:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5~1setCustomParameterValue(_:toParameter:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCustomParameterValue:toParameter:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/title",
+          "value": "FxAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/title",
+          "value": "FxAnalysisAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/title",
+          "value": "addParametersWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addParametersWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/title",
+          "value": "FxKeyframeAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6~1getCustomParameterValue(_:fromParameter:at:)/title",
+          "value": "getCustomParameterValue:fromParameter:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6~1getCustomParameterValue(_:fromParameter:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCustomParameterValue:fromParameter:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisInterrupted/title",
+          "value": "kFxAnalysisState_AnalysisInterrupted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisInterrupted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxAnalysisState_AnalysisInterrupted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/title",
+          "value": "FxParameterSettingAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1setupAnalysis(for:frameDuration:)/title",
+          "value": "setupAnalysisForTimeRange:frameDuration:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1setupAnalysis(for:frameDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setupAnalysisForTimeRange:frameDuration:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisCompleted/title",
+          "value": "kFxAnalysisState_AnalysisCompleted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxAnalysisState_AnalysisCompleted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxAnalysisState_AnalysisCompleted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1class(forCustomParameterID:)/title",
+          "value": "classForCustomParameterID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1class(forCustomParameterID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classForCustomParameterID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/title",
+          "value": "pluginState:atTime:quality:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pluginState:atTime:quality:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1cleanupAnalysis()/title",
+          "value": "cleanupAnalysis:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1cleanupAnalysis()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cleanupAnalysis:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1desiredAnalysisTimeRange(_:forInputWith:)/title",
+          "value": "desiredAnalysisTimeRange:forInputWithTimeRange:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer~1desiredAnalysisTimeRange(_:forInputWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "desiredAnalysisTimeRange:forInputWithTimeRange:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/title",
+          "value": "FxTimingAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/analyzing-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/analyzing-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

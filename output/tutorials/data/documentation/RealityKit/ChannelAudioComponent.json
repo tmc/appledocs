@@ -1,1 +1,865 @@
-{"relationshipsSections":[{"kind":"relationships","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component","doc://com.externally.resolved.symbol/s:s8CopyableP","doc://com.externally.resolved.symbol/s:Se","doc://com.externally.resolved.symbol/s:SE","doc://com.externally.resolved.symbol/s:SQ","doc://com.externally.resolved.symbol/s:SH"],"type":"conformsTo","title":"Conforms To"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"paths":["/documentation/realitykit/channelaudiocomponent"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent","interfaceLanguage":"swift"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"sections":[],"abstract":[{"type":"text","text":"A component that configures channel-based rendering of sounds from an entity."}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ChannelAudioComponent"}]}]},{"kind":"content","content":[{"text":"Overview","anchor":"overview","type":"heading","level":2},{"inlineContent":[{"text":"Channel audio sources route the audio resource’s channels directly to the device’s output without any spatialization or reverberation","type":"text"},{"text":" ","type":"text"},{"text":"applied. Neither the position nor orientation of the entity is taken into consideration for channel rendering.","type":"text"},{"text":" ","type":"text"},{"text":"For example,","type":"text"},{"text":" ","type":"text"},{"text":"the left channel is heard from the left,","type":"text"},{"text":" ","type":"text"},{"text":"and the right channel is heard from the right,","type":"text"},{"text":" ","type":"text"},{"text":"regardless of where the user is oriented.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"text":"The channels of multichannel audio resources are panned according to their channel layout, including rear channels.","type":"text"}],"type":"paragraph"},{"code":["let entity = Entity()","let resource = try AudioFileResource.load(named: \"MyAudioFile\")","entity.channelAudio = ChannelAudioComponent()","entity.playAudio(resource)"],"type":"codeListing","syntax":"swift"},{"inlineContent":[{"text":"The ","type":"text"},{"code":"ChannelAudioComponent","type":"codeVoice"},{"text":" allows you to set the overall level of all sounds played from the entity with the ","type":"text"},{"code":"gain","type":"codeVoice"},{"text":" property,","type":"text"},{"text":" ","type":"text"},{"text":"in relative Decibels, in the range ","type":"text"},{"code":"-.infinity ... .zero","type":"codeVoice"},{"text":" where ","type":"text"},{"code":"-infinity","type":"codeVoice"},{"text":" is silent and ","type":"text"},{"code":".zero","type":"codeVoice"},{"text":" is nominal.","type":"text"}],"type":"paragraph"},{"code":["entity.channelAudio?.gain = -10"],"type":"codeListing","syntax":"swift"},{"inlineContent":[{"type":"text","text":"Channel audio sources are well suited to play back sounds not associated with any visual elements in a scene."}],"type":"paragraph"}]}],"kind":"symbol","topicSections":[{"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)"],"generated":true,"anchor":"Initializers","title":"Initializers"},{"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain"],"generated":true,"anchor":"Instance-Properties","title":"Instance Properties"},{"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations"],"generated":true,"anchor":"Default-Implementations","title":"Default Implementations"}],"metadata":{"roleHeading":"Structure","role":"symbol","modules":[{"name":"RealityKit"}],"platforms":[{"name":"iOS","beta":false,"deprecated":false,"unavailable":false,"introducedAt":"18.0"},{"name":"iPadOS","beta":false,"deprecated":false,"unavailable":false,"introducedAt":"18.0"},{"name":"Mac Catalyst","beta":false,"deprecated":false,"unavailable":false,"introducedAt":"18.0"},{"name":"macOS","beta":false,"deprecated":false,"unavailable":false,"introducedAt":"15.0"},{"name":"visionOS","beta":false,"deprecated":false,"unavailable":false,"introducedAt":"1.0"}],"externalID":"s:17RealityFoundation21ChannelAudioComponentV","symbolKind":"struct","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ChannelAudioComponent"}],"navigatorTitle":[{"kind":"identifier","text":"ChannelAudioComponent"}],"title":"ChannelAudioComponent"},"seeAlsoSections":[{"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game","doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent","doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent"],"generated":true,"anchor":"Audio-source-components","title":"Audio source components"}],"references":{"doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent":{"abstract":[{"text":"A component that configures how sounds emit from an entity into a person’s environment.","type":"text"}],"navigatorTitle":[{"text":"SpatialAudioComponent","kind":"identifier"}],"role":"symbol","url":"/documentation/realitykit/spatialaudiocomponent","kind":"symbol","title":"SpatialAudioComponent","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SpatialAudioComponent","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent"},"doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game":{"abstract":[{"type":"text","text":"Build an immersive game using RealityKit audio, simulation, and rendering features."}],"kind":"article","images":[{"identifier":"spaceship_page_image.png","type":"card"}],"title":"Creating a Spaceship game","type":"topic","role":"sampleCode","url":"/documentation/realitykit/creating-a-spaceship-game","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations","abstract":[],"kind":"article","role":"collectionGroup","type":"topic","url":"/documentation/realitykit/channelaudiocomponent/decodable-implementations","title":"Decodable Implementations"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.externally.resolved.symbol/s:SQ":{"url":"/documentation/Swift/Equatable","kind":"symbol","title":"Equatable","role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:SQ"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations":{"kind":"article","title":"Equatable Implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations","url":"/documentation/realitykit/channelaudiocomponent/equatable-implementations","role":"collectionGroup","type":"topic","abstract":[]},"doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent":{"abstract":[{"type":"text","text":"A component that configures the ambient rendering of sounds from an entity."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent","title":"AmbientAudioComponent","navigatorTitle":[{"text":"AmbientAudioComponent","kind":"identifier"}],"url":"/documentation/realitykit/ambientaudiocomponent","kind":"symbol","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AmbientAudioComponent","kind":"identifier"}]},"doc://com.externally.resolved.symbol/s:Se":{"role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Decodable"}],"kind":"symbol","type":"topic","identifier":"doc://com.externally.resolved.symbol/s:Se","abstract":[{"text":"A type that can decode itself from an external representation.","type":"text"}],"url":"/documentation/Swift/Decodable","title":"Decodable"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)","abstract":[{"type":"text","text":"Configure the behavior of a channel audio source."}],"kind":"symbol","role":"symbol","type":"topic","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"gain"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation5AudioO","text":"Audio"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation5AudioO7Decibela","text":"Decibel"},{"kind":"text","text":")"}],"url":"/documentation/realitykit/channelaudiocomponent/init(gain:)","title":"init(gain:)"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent":{"title":"ChannelAudioComponent","abstract":[{"text":"A component that configures channel-based rendering of sounds from an entity.","type":"text"}],"type":"topic","kind":"symbol","role":"symbol","url":"/documentation/realitykit/channelaudiocomponent","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ChannelAudioComponent","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent","navigatorTitle":[{"text":"ChannelAudioComponent","kind":"identifier"}]},"spaceship_page_image.png":{"variants":[{"url":"https://docs-assets.developer.apple.com/published/8f1f2f7bea09df5c78609f7bc6780ae0/spaceship_page_image.png","traits":["1x","light"]}],"alt":null,"identifier":"spaceship_page_image.png","type":"image"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.externally.resolved.symbol/s:SH":{"identifier":"doc://com.externally.resolved.symbol/s:SH","kind":"symbol","type":"topic","role":"symbol","title":"Hashable","url":"/documentation/Swift/Hashable","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Hashable","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"Equatable","kind":"typeIdentifier","preciseIdentifier":"s:SQ"}],"abstract":[{"text":"A type that can be hashed into a `Hasher` to produce an integer hash value.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations":{"role":"collectionGroup","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations","abstract":[],"type":"topic","url":"/documentation/realitykit/channelaudiocomponent/component-implementations","kind":"article","title":"Component Implementations"},"doc://com.externally.resolved.symbol/s:s8CopyableP":{"url":"/documentation/Swift/Copyable","kind":"symbol","title":"Copyable","role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Copyable","kind":"identifier"}],"abstract":[{"text":"A type whose values can be implicitly or explicitly copied.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:s8CopyableP"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations":{"title":"Encodable Implementations","role":"collectionGroup","url":"/documentation/realitykit/channelaudiocomponent/encodable-implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations","type":"topic","abstract":[],"kind":"article"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.externally.resolved.symbol/s:SE":{"role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Encodable"}],"type":"topic","url":"/documentation/Swift/Encodable","identifier":"doc://com.externally.resolved.symbol/s:SE","title":"Encodable","kind":"symbol","abstract":[{"text":"A type that can encode itself to an external representation.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations":{"role":"collectionGroup","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations","abstract":[],"type":"topic","url":"/documentation/realitykit/channelaudiocomponent/hashable-implementations","kind":"article","title":"Hashable Implementations"},"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain":{"title":"gain","role":"symbol","url":"/documentation/realitykit/channelaudiocomponent/gain","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain","type":"topic","abstract":[{"text":"The overall level for all sounds emitted from an entity. In relative Decibels, in the range  ","type":"text"},{"code":"-.infinity ... .zero","type":"codeVoice"},{"text":" where","type":"text"},{"text":" ","type":"text"},{"code":".zero","type":"codeVoice"},{"text":" is the default.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"gain","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Audio","preciseIdentifier":"s:17RealityFoundation5AudioO","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Decibel","preciseIdentifier":"s:17RealityFoundation5AudioO7Decibela","kind":"typeIdentifier"}],"kind":"symbol"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that configures channel-based rendering of sounds from an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation21ChannelAudioComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ChannelAudioComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ChannelAudioComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ChannelAudioComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ChannelAudioComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Channel audio sources route the audio resource’s channels directly to the device’s output without any spatialization or reverberation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applied. Neither the position nor orientation of the entity is taken into consideration for channel rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the left channel is heard from the left,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the right channel is heard from the right,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of where the user is oriented.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The channels of multichannel audio resources are panned according to their channel layout, including rear channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let entity = Entity()",
+            "let resource = try AudioFileResource.load(named: \"MyAudioFile\")",
+            "entity.channelAudio = ChannelAudioComponent()",
+            "entity.playAudio(resource)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ChannelAudioComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows you to set the overall level of all sounds played from the entity with the ",
+              "type": "text"
+            },
+            {
+              "code": "gain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in relative Decibels, in the range ",
+              "type": "text"
+            },
+            {
+              "code": "-.infinity ... .zero",
+              "type": "codeVoice"
+            },
+            {
+              "text": " where ",
+              "type": "text"
+            },
+            {
+              "code": "-infinity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is silent and ",
+              "type": "text"
+            },
+            {
+              "code": ".zero",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is nominal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "entity.channelAudio?.gain = -10"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Channel audio sources are well suited to play back sounds not associated with any visual elements in a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the ambient rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AmbientAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/ambientaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures channel-based rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChannelAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/decodable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/encodable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/hashable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain": {
+      "abstract": [
+        {
+          "text": "The overall level for all sounds emitted from an entity. In relative Decibels, in the range  ",
+          "type": "text"
+        },
+        {
+          "code": "-.infinity ... .zero",
+          "type": "codeVoice"
+        },
+        {
+          "text": " where",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": ".zero",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO",
+          "text": "Audio"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO7Decibela",
+          "text": "Decibel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gain",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/gain"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)": {
+      "abstract": [
+        {
+          "text": "Configure the behavior of a channel audio source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO",
+          "text": "Audio"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO7Decibela",
+          "text": "Decibel"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(gain:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent/init(gain:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures how sounds emit from an entity into a person’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game": {
+      "abstract": [
+        {
+          "text": "Build an immersive game using RealityKit audio, simulation, and rendering features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+      "images": [
+        {
+          "identifier": "spaceship_page_image.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Spaceship game",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spaceship-game"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "spaceship_page_image.png": {
+      "alt": null,
+      "identifier": "spaceship_page_image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f1f2f7bea09df5c78609f7bc6780ae0/spaceship_page_image.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-source-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent"
+      ],
+      "title": "Audio source components"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/init(gain:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/gain"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Component-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Decodable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Encodable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Equatable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/channelaudiocomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

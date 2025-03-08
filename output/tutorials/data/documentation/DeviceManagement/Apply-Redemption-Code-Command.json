@@ -1,0 +1,713 @@
+{
+  "abstract": [
+    {
+      "text": "Complete the installation of an app using a redemption code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:mdm#ApplyRedemptionCodeCommand",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Apply Redemption Code Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Apply a Redemption Code"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "mdm#ApplyRedemptionCodeCommand"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeCommand",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:ApplyRedemptionCodeCommand",
+          "text": "ApplyRedemptionCodeCommand"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The command to send a redemption code to complete installation of an app on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response from the device after it processes the command to complete the installation of an app using a redemption code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:ApplyRedemptionCodeResponse",
+              "text": "ApplyRedemptionCodeResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sending a redemption code to an app that doesn’t need it produces an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to the following sections to determine supported channels and requirements, and to see an example request and response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Command-Availability",
+          "level": 3,
+          "text": "Command Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required Access Right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AllowAppInstallation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>Identifier</key>",
+                    "        <string>com.example.app</string>",
+                    "        <key>RedemptionCode</key>",
+                    "        <string>SB56LT7YX8RH</string>",
+                    "        <key>RequestType</key>",
+                    "        <string>ApplyRedemptionCode</string>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_ApplyRedemptionCode</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_ApplyRedemptionCode</string>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>00008020-001305842600013A</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command": {
+      "abstract": [
+        {
+          "text": "Complete the installation of an app using a redemption code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Apply Redemption Code Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Apply a Redemption Code",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apply-redemption-code-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeCommand": {
+      "abstract": [
+        {
+          "text": "The command to send a redemption code to complete installation of an app on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplyRedemptionCodeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplyRedemptionCodeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplyRedemptionCodeCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/applyredemptioncodecommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to complete the installation of an app using a redemption code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplyRedemptionCodeResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplyRedemptionCodeResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplyRedemptionCodeResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/applyredemptioncoderesponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install a third-party app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install an enterprise app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Enterprise Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an Enterprise App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-enterprise-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command": {
+      "abstract": [
+        {
+          "text": "Query attributes in managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Attributes Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query App Attributes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-attributes-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command": {
+      "abstract": [
+        {
+          "text": "Get app configurations from managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Configuration Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-configuration-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command": {
+      "abstract": [
+        {
+          "text": "Get app feedback from a managed app on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Feedback Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Feedback",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-feedback-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command": {
+      "abstract": [
+        {
+          "text": "Get the status of all managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Managed Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command": {
+      "abstract": [
+        {
+          "text": "Remove an installed managed app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command": {
+      "abstract": [
+        {
+          "text": "Force validation of developer and universal provisioning profiles for enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Validate Applications Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Validate Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/validate-applications-command"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managed-Apps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command"
+      ],
+      "title": "Managed Apps"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Command-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ApplyRedemptionCodeResponse"
+      ],
+      "title": "Command and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/apply-redemption-code-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

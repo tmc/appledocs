@@ -1,0 +1,695 @@
+{
+  "abstract": [
+    {
+      "text": "Creates an object encapsulating locale and text-break information, for the purpose of finding boundaries in Unicode text.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use CFStringTokenizer (for locale-sensitive word, line, paragraph, and sentence breaks) and CFStringGetRangeOfComposedCharactersAtIndex (for cluster breaks) instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390362,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@UCCreateTextBreakLocator",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "UCCreateTextBreakLocator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UCCreateTextBreakLocator"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/localeref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@LocaleRef",
+              "text": "LocaleRef"
+            },
+            {
+              "kind": "text",
+              "text": " locale, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/localeoperationvariant",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@LocaleOperationVariant",
+              "text": "LocaleOperationVariant"
+            },
+            {
+              "kind": "text",
+              "text": " opVariant, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/uctextbreaktype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UCTextBreakType",
+              "text": "UCTextBreakType"
+            },
+            {
+              "kind": "text",
+              "text": " breakTypes, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextBreakLocatorRef",
+              "text": "TextBreakLocatorRef"
+            },
+            {
+              "kind": "text",
+              "text": " *breakRef);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " representing a specific locale, or pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to request the default system locale. You can supply the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "kUnicodeTextBreakClass",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "opClass",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter of the Locales Utilities functions ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleOperationCountLocales",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleOperationGetLocales",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to obtain the locales available for finding text boundaries on the current system. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "locale"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleOperationVariant",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value identifying a text-break operation variant within the locale specified in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "locale",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. You can also pass 0 to request the default text-break variant for any locale. To obtain the varieties of locale-specific text-break variants that are currently available, you can supply the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "kUnicodeTextBreakClass",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "opClass",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter of the Locales Utilities functions ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleOperationCountLocales",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "LocaleOperationGetLocales",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "opVariant"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "code": "UCTextBreakType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value specifying each type of text boundary that the text-break locator should support. You do not need to create a text-break locator solely for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "BreakChar",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " type; it is locale-independent and automatically supported by the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If ",
+                  "type": "text"
+                },
+                {
+                  "code": "BreakChar",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is the only type for which you call the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UCCreateTextBreakLocator",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function, on return the ",
+                  "type": "text"
+                },
+                {
+                  "code": "breakRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter returns a ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value (with no error). ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "breakTypes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a value of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextBreakLocatorRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". On return, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextBreakLocatorRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value contains a valid reference to a new text-break locator object. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "breakRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code.  The function can return memory errors and ",
+              "type": "text"
+            },
+            {
+              "code": "paramErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for example, if the ",
+              "type": "text"
+            },
+            {
+              "code": "breakRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or if invalid bits are set in the ",
+              "type": "text"
+            },
+            {
+              "code": "breakTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter). It can also return resource errors in Mac OS 9 and CarbonLib.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find boundaries in Unicode text, you must supply locale and text-break specifications to the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You provide this information by means of a text-break locator object, created via the ",
+              "type": "text"
+            },
+            {
+              "code": "UCCreateTextBreakLocator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. When finished with the text-break locator object, you should dispose of it using the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UCCreateTextBreakLocator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function creates a text-break locator object for a specified locale, a specified text-break variant within that locale, and a specified set of break types. The different types of breaks or boundaries in a line of Unicode text can include",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boundaries of characters (treating surrogate pairs as a single character). ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Boundaries of character clusters. A cluster is a group of characters that should be treated as single text element for editing operations such as cursor movement. Typically this includes groups such as a base character followed by a sequence of combining characters, for example, a Hangul syllable represented as a sequence of conjoining jamo characters or an Indic consonant cluster. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Boundaries of words. This can be used to determine what to highlight as the result of a double-click. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Potential line break locations. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1770079",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function can move memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator": {
+      "abstract": [
+        {
+          "text": "Creates an object encapsulating locale and text-break information, for the purpose of finding boundaries in Unicode text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCCreateTextBreakLocator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390362-uccreatetextbreaklocator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator": {
+      "abstract": [
+        {
+          "text": "Disposes a text-break locator object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCDisposeTextBreakLocator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390419-ucdisposetextbreaklocator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak": {
+      "abstract": [
+        {
+          "text": "Uses locale-specific text-break information to find boundaries in Unicode text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCFindTextBreak",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390429-ucfindtextbreak"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/localeoperationvariant": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/localeoperationvariant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocaleOperationVariant",
+      "type": "topic",
+      "url": "/documentation/coreservices/localeoperationvariant"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/localeref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/localeref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocaleRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/localeref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextBreakLocatorRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/textbreaklocatorref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uctextbreaktype": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uctextbreaktype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCTextBreakType",
+      "type": "topic",
+      "url": "/documentation/coreservices/uctextbreaktype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+        "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator"
+      ],
+      "title": "Identifying Unicode Text Boundaries"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1390362-uccreatetextbreaklocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

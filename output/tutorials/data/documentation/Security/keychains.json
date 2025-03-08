@@ -1,0 +1,3355 @@
+{
+  "abstract": [
+    {
+      "text": "Create and manage entire keychains in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/keychains"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Keychains"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, apps have access to a single keychain (which logically encompasses the iCloud keychain). This keychain is automatically unlocked when the user unlocks the device and then locked when the device is locked. An app can access only its own keychain items, or those shared with a group to which the app belongs. It can’t manage the keychain container itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, however, the system supports an arbitrary number of keychains. You typically rely on the user to manage these with the Keychain Access app and work implicitly with the default keychain, much as you would in iOS. Nevertheless, the keychain services API does provide functions that you can use to manipulate keychains directly. For example, you can create and manage a keychain that is private to your app. On the other hand, robust access control mechanisms typically make this unnecessary for anything other than an app trying to replicate the keychain access utility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SEC_KEYCHAIN_SETTINGS_VERS1": {
+      "abstract": [
+        {
+          "text": "Defines the keychain settings version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SEC_KEYCHAIN_SETTINGS_VERS1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SEC_KEYCHAIN_SETTINGS_VERS1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SEC_KEYCHAIN_SETTINGS_VERS1"
+        }
+      ],
+      "role": "symbol",
+      "title": "SEC_KEYCHAIN_SETTINGS_VERS1",
+      "type": "topic",
+      "url": "/documentation/security/sec_keychain_settings_vers1"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychain": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychain"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychain",
+      "type": "topic",
+      "url": "/documentation/security/seckeychain"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers your keychain event callback function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainCallback",
+          "text": "SecKeychainCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainEventMask",
+          "text": "SecKeychainEventMask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAddCallback(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainaddcallback(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCallback": {
+      "abstract": [
+        {
+          "text": "A customized callback function that keychain services call when a keychain event has occurred.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCallback",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincallback"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo": {
+      "abstract": [
+        {
+          "text": "Information about a keychain event that keychain services deliver to your app via a callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallbackInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallbackInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCallbackInfo",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincallbackinfo"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopyAccess(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the application access of a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopyAccess(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopyAccess(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopyaccess(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopyDefault(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a pointer to the default keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDefault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopyDefault(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopyDefault(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopydefault(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainDefault(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the default keychain from a specified preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDomainDefault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainDefault(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDomainDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopyDomainDefault(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopydomaindefault(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainSearchList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the keychain search list for a specified preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDomainSearchList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainSearchList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopyDomainSearchList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopyDomainSearchList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopydomainsearchlist(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopySearchList(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a keychain search list.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopySearchList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopySearchList(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopySearchList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopySearchList(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopysearchlist(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCopySettings(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains a keychain’s settings.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopySettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainSettings",
+          "text": "SecKeychainSettings"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCopySettings(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCopySettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCopySettings(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincopysettings(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCreate(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an empty keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCreate(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCreate(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincreate(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes one or more keychains from the default keychain search list, and removes the keychain itself if it is a file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainDelete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaindelete(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainEvent": {
+      "abstract": [
+        {
+          "text": "The list of keychain events that can trigger a callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainEvent",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainevent"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainEventMask": {
+      "abstract": [
+        {
+          "text": "Bit masks corresponding to the events that can trigger a keychain callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEventMask"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainEventMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEventMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainEventMask",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaineventmask"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetCSPHandle": {
+      "abstract": [
+        {
+          "text": "Returns the CSSM CSP handle for the given keychain object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetCSPHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetCSPHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainGetCSPHandle",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetcsphandle"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetDLDBHandle": {
+      "abstract": [
+        {
+          "text": "Returns the CSSM database handle for a given keychain object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetDLDBHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetDLDBHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainGetDLDBHandle",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetdldbhandle"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetPath(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the path of a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetPath(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetPath(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetpath(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetPreferenceDomain(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the current keychain preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetPreferenceDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetPreferenceDomain(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetPreferenceDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetPreferenceDomain(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetpreferencedomain(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetStatus(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves status information of a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainStatus",
+          "text": "SecKeychainStatus"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetStatus(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetStatus(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetstatus(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a keychain object belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetUserInteractionAllowed(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether keychain services functions that normally display a user interaction are allowed to do so.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetUserInteractionAllowed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetUserInteractionAllowed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetUserInteractionAllowed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetUserInteractionAllowed(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetuserinteractionallowed(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainGetVersion(_:)": {
+      "abstract": [
+        {
+          "text": "Determines the version of keychain services installed on the user’s system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetVersion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainGetVersion(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainGetVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainGetVersion(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaingetversion(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemGetDLDBHandle": {
+      "abstract": [
+        {
+          "text": "Returns the CSSM database handle for a given keychain item object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemGetDLDBHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemGetDLDBHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItemGetDLDBHandle",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemgetdldbhandle"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemGetUniqueRecordID": {
+      "abstract": [
+        {
+          "text": "Returns a CSSM unique record for the given keychain item object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemGetUniqueRecordID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemGetUniqueRecordID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItemGetUniqueRecordID",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemgetuniquerecordid"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainLock(_:)": {
+      "abstract": [
+        {
+          "text": "Locks a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainLock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainLock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainLock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainLock(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainlock(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainLockAll()": {
+      "abstract": [
+        {
+          "text": "Locks all keychains belonging to the current user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainLockAll"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainLockAll()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainLockAll"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainLockAll()",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainlockall()"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainOpen(_:_:)": {
+      "abstract": [
+        {
+          "text": "Opens a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainOpen"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainOpen(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainOpen"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainOpen(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainopen(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters your keychain event callback function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainRemoveCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainCallback",
+          "text": "SecKeychainCallback"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainRemoveCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainRemoveCallback(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainremovecallback(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSearch": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains information about a keychain search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearch"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSearch",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsearch"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Finds the next keychain item matching the given search criteria.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainSearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSearchCreateFromAttributes": {
+      "abstract": [
+        {
+          "text": "Creates a search object matching a list of zero or more attributes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearchCreateFromAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearchCreateFromAttributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainSearchCreateFromAttributes",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsearchcreatefromattributes"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSearchGetTypeID": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a keychain search object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearchGetTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearchGetTypeID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainSearchGetTypeID",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsearchgettypeid"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetAccess(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the application access for a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetAccess(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetAccess(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetaccess(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetDefault(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDefault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetDefault(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetDefault(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetdefault(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetDomainDefault(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default keychain for a specified preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDomainDefault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetDomainDefault(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDomainDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetDomainDefault(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetdomaindefault(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetDomainSearchList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the keychain search list for a specified preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDomainSearchList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetDomainSearchList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetDomainSearchList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetDomainSearchList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetdomainsearchlist(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetPreferenceDomain(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the keychain preference domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetPreferenceDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecPreferencesDomain",
+          "text": "SecPreferencesDomain"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetPreferenceDomain(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetPreferenceDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetPreferenceDomain(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetpreferencedomain(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetSearchList(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the list of keychains to use in the default keychain search list.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetSearchList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetSearchList(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetSearchList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetSearchList(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetsearchlist(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetSettings(_:_:)": {
+      "abstract": [
+        {
+          "text": "Changes the settings of a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainSettings",
+          "text": "SecKeychainSettings"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetSettings(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetSettings(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetsettings(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSetUserInteractionAllowed(_:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables the user interface for keychain services functions that automatically display a user interface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetUserInteractionAllowed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSetUserInteractionAllowed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSetUserInteractionAllowed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSetUserInteractionAllowed(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsetuserinteractionallowed(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSettings": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about keychain settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainSettings",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsettings"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainStatus": {
+      "abstract": [
+        {
+          "text": "A value that defines the current status of a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainStatus",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainstatus"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainStatus-values": {
+      "abstract": [
+        {
+          "text": "Valid values for the keychain status type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainStatus-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SecKeychainStatus Values",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainstatus-values"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainUnlock(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unlocks a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainUnlock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainUnlock(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainUnlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainUnlock(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainunlock(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPreferencesDomain": {
+      "abstract": [
+        {
+          "text": "The keychain preference domains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPreferencesDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPreferencesDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPreferencesDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPreferencesDomain",
+      "type": "topic",
+      "url": "/documentation/security/secpreferencesdomain"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creation-and-Deletion",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainCreate(_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainDelete(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychain",
+        "doc://com.apple.security/documentation/Security/SecKeychainGetTypeID()"
+      ],
+      "title": "Creation and Deletion"
+    },
+    {
+      "anchor": "Locking-and-Unlocking",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainLock(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainLockAll()",
+        "doc://com.apple.security/documentation/Security/SecKeychainUnlock(_:_:_:_:)"
+      ],
+      "title": "Locking and Unlocking"
+    },
+    {
+      "anchor": "Settings",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainSetSettings(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopySettings(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSettings",
+        "doc://com.apple.security/documentation/Security/SEC_KEYCHAIN_SETTINGS_VERS1"
+      ],
+      "title": "Settings"
+    },
+    {
+      "anchor": "Keychain-Management",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainGetVersion(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainOpen(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSetDefault(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopyDefault(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainGetPath(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainGetStatus(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainStatus",
+        "doc://com.apple.security/documentation/Security/SecKeychainStatus-values"
+      ],
+      "title": "Keychain Management"
+    },
+    {
+      "anchor": "Search",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainSetSearchList(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopySearchList(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSearch"
+      ],
+      "title": "Search"
+    },
+    {
+      "anchor": "User-Interaction",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainSetUserInteractionAllowed(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainGetUserInteractionAllowed(_:)"
+      ],
+      "title": "User Interaction"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCallback",
+        "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+        "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+        "doc://com.apple.security/documentation/Security/SecKeychainEventMask"
+      ],
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "Preference-Domains",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainGetPreferenceDomain(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSetPreferenceDomain(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainDefault(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSetDomainDefault(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainSearchList(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainSetDomainSearchList(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecPreferencesDomain"
+      ],
+      "title": "Preference Domains"
+    },
+    {
+      "anchor": "Access",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainSetAccess(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainCopyAccess(_:_:)"
+      ],
+      "title": "Access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creation-and-Deletion",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainCreate(_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainDelete(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychain",
+                "doc://com.apple.security/documentation/Security/SecKeychainGetTypeID()"
+              ],
+              "title": "Creation and Deletion"
+            },
+            {
+              "anchor": "Locking-and-Unlocking",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainLock(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainLockAll()",
+                "doc://com.apple.security/documentation/Security/SecKeychainUnlock(_:_:_:_:)"
+              ],
+              "title": "Locking and Unlocking"
+            },
+            {
+              "anchor": "Settings",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainSetSettings(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopySettings(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSettings",
+                "doc://com.apple.security/documentation/Security/SEC_KEYCHAIN_SETTINGS_VERS1"
+              ],
+              "title": "Settings"
+            },
+            {
+              "anchor": "Keychain-Management",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainGetVersion(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainOpen(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSetDefault(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopyDefault(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainGetPath(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainGetStatus(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainStatus",
+                "doc://com.apple.security/documentation/Security/SecKeychainStatus-values"
+              ],
+              "title": "Keychain Management"
+            },
+            {
+              "anchor": "Search",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainSetSearchList(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopySearchList(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSearch",
+                "doc://com.apple.security/documentation/Security/SecKeychainSearchGetTypeID",
+                "doc://com.apple.security/documentation/Security/SecKeychainSearchCreateFromAttributes",
+                "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext"
+              ],
+              "title": "Search"
+            },
+            {
+              "anchor": "User-Interaction",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainSetUserInteractionAllowed(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainGetUserInteractionAllowed(_:)"
+              ],
+              "title": "User Interaction"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCallback",
+                "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+                "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+                "doc://com.apple.security/documentation/Security/SecKeychainEventMask"
+              ],
+              "title": "Callbacks"
+            },
+            {
+              "anchor": "Preference-Domains",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainGetPreferenceDomain(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSetPreferenceDomain(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainDefault(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSetDomainDefault(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopyDomainSearchList(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainSetDomainSearchList(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecPreferencesDomain"
+              ],
+              "title": "Preference Domains"
+            },
+            {
+              "anchor": "Access",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainSetAccess(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainCopyAccess(_:_:)"
+              ],
+              "title": "Access"
+            },
+            {
+              "anchor": "Legacy-Symbols",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainGetCSPHandle",
+                "doc://com.apple.security/documentation/Security/SecKeychainGetDLDBHandle",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemGetDLDBHandle",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemGetUniqueRecordID"
+              ],
+              "title": "Legacy Symbols"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopySearchList(_:)/title",
+          "value": "SecKeychainCopySearchList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopySearchList(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopySearchList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopySettings(_:_:)/title",
+          "value": "SecKeychainCopySettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopySettings(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopySettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPreferencesDomain/title",
+          "value": "SecPreferencesDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPreferencesDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPreferencesDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPreferencesDomain/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPreferencesDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDomainSearchList(_:_:)/title",
+          "value": "SecKeychainCopyDomainSearchList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDomainSearchList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopyDomainSearchList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyAccess(_:_:)/title",
+          "value": "SecKeychainCopyAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyAccess(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopyAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDomainDefault(_:_:)/title",
+          "value": "SecKeychainCopyDomainDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDomainDefault(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopyDomainDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDefault(_:)/title",
+          "value": "SecKeychainCopyDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCopyDefault(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCopyDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetPath(_:_:_:)/title",
+          "value": "SecKeychainGetPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetPath(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainStatus/title",
+          "value": "SecKeychainStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/title",
+          "value": "SecKeychainCallbackInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallbackInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallbackInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetPreferenceDomain(_:)/title",
+          "value": "SecKeychainGetPreferenceDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetPreferenceDomain(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetPreferenceDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddCallback(_:_:_:)/title",
+          "value": "SecKeychainAddCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddCallback(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAddCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/title",
+          "value": "SecKeychainEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetUserInteractionAllowed(_:)/title",
+          "value": "SecKeychainGetUserInteractionAllowed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetUserInteractionAllowed(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetUserInteractionAllowed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetPreferenceDomain(_:)/title",
+          "value": "SecKeychainSetPreferenceDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetPreferenceDomain(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetPreferenceDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSearch/title",
+          "value": "SecKeychainSearchRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSearch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SEC_KEYCHAIN_SETTINGS_VERS1/title",
+          "value": "SEC_KEYCHAIN_SETTINGS_VERS1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SEC_KEYCHAIN_SETTINGS_VERS1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SEC_KEYCHAIN_SETTINGS_VERS1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDefault(_:)/title",
+          "value": "SecKeychainSetDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDefault(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetAccess(_:_:)/title",
+          "value": "SecKeychainSetAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetAccess(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetTypeID()/title",
+          "value": "SecKeychainGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSettings/title",
+          "value": "SecKeychainSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/title",
+          "value": "SecKeychainCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDomainSearchList(_:_:)/title",
+          "value": "SecKeychainSetDomainSearchList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDomainSearchList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetDomainSearchList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetVersion(_:)/title",
+          "value": "SecKeychainGetVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetVersion(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetSearchList(_:)/title",
+          "value": "SecKeychainSetSearchList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetSearchList(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetSearchList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychain/title",
+          "value": "SecKeychainRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychain/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainUnlock(_:_:_:_:)/title",
+          "value": "SecKeychainUnlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainUnlock(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainUnlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetSettings(_:_:)/title",
+          "value": "SecKeychainSetSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetSettings(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCreate(_:_:_:_:_:_:)/title",
+          "value": "SecKeychainCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCreate(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainLockAll()/title",
+          "value": "SecKeychainLockAll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainLockAll()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainLockAll"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEventMask/title",
+          "value": "SecKeychainEventMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEventMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEventMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEventMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEventMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainDelete(_:)/title",
+          "value": "SecKeychainDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainLock(_:)/title",
+          "value": "SecKeychainLock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainLock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainLock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainRemoveCallback(_:)/title",
+          "value": "SecKeychainRemoveCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainRemoveCallback(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainRemoveCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetUserInteractionAllowed(_:)/title",
+          "value": "SecKeychainSetUserInteractionAllowed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetUserInteractionAllowed(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetUserInteractionAllowed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainOpen(_:_:)/title",
+          "value": "SecKeychainOpen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainOpen(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainOpen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDomainDefault(_:_:)/title",
+          "value": "SecKeychainSetDomainDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainSetDomainDefault(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainSetDomainDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetStatus(_:_:)/title",
+          "value": "SecKeychainGetStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainGetStatus(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainGetStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/keychains"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/keychains"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

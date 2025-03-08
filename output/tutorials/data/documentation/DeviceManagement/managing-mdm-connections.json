@@ -1,0 +1,598 @@
+{
+  "abstract": [
+    {
+      "text": "Establish or remove a connection between a device and an MDM server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-connections"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Managing MDM Connections"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mobile device management begins when you set up a server and distribute your MDM enrollment profile to devices to initiate connecting them. Then, you can send commands to managed devices to get detailed information about the device, install apps and books, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the device installs an MDM enrollment profile and connects to the server, it can receive commands from the server. When you remove the MDM enrollment profile from a device, that terminates the device mangagement relationship with the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-New-Device-Management-Connection",
+          "level": 3,
+          "text": "Create a New Device Management Connection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A connection between your MDM server and a device enables you to send commands to the device that it executes and reports back the results. An MDM server and a device complete the following steps to establish a connection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user or adminstrator installs an MDM enrollment profile on the device. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device checks in and authenticates with the MDM server. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The MDM server accepts the device, or for Automated Device Enrollment, it can send an error instead, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorCodeSoftwareUpdateRequired",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device provides its push notification token to the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MDM enrollment profile contains a payload that provides information necessary for a device to connect to an MDM server and authenticate with it. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MDM",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a description of the information to include in the payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device presents its identity certificate to the MDM server for authentication, along with its ",
+              "type": "text"
+            },
+            {
+              "code": "UDID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and push-notification token. The MDM server uses this token to initate a transaction with the device. This token may change, and when it does, the device automatically checks in with the MDM server to provide the new token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Although MDM uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "UDID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "s, they’re deprecated in iOS. A ",
+                  "type": "text"
+                },
+                {
+                  "code": "UDID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " may contain special characters, such as dashes, and its length isn’t guaranteed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-Device-Restores",
+          "level": 3,
+          "text": "Handle Device Restores",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user can restore their connected device from a backup. If the backup contains an MDM enrollment profile, the system restores management of the device, and the device schedules delivery of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TokenUpdateRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " check-in message to the server. However, if the user restores the backup to a different device, the system won’t restore MDM service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server can either accept the device by replying with a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status code, or reject the device with a ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status code. If your server replies with a ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status code, the device removes the enrollment profile that contains the MDM payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Configure your server to respond with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "401",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " HTTP status code to any device that it isn’t actively managing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Terminate-Management-of-a-Device",
+          "level": 3,
+          "text": "Terminate Management of a Device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminate a management relationship with a device by performing one of these actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the enrollment profile that contains the MDM payload. An MDM server can always remove this profile, even if it doesn’t have the access rights to add or remove configuration profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to any request from the device with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "401",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " HTTP status. The device automatically removes the enrollment profile that contains the MDM payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorCodeSoftwareUpdateRequired": {
+      "abstract": [
+        {
+          "text": "An error response that indicates the system requires a software update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorCodeSoftwareUpdateRequired"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorCodeSoftwareUpdateRequired",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorCodeSoftwareUpdateRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorCodeSoftwareUpdateRequired",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorcodesoftwareupdaterequired"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/MDM": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure mobile device management (MDM) settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDM"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MDM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDM"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDM",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/mdm"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TokenUpdateRequest": {
+      "abstract": [
+        {
+          "text": "The request object for sending the new token details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TokenUpdateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TokenUpdateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TokenUpdateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TokenUpdateRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/tokenupdaterequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles": {
+      "abstract": [
+        {
+          "text": "Choose the technique to deploy MDM enrollment profiles for your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying MDM Enrollment Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deploying-mdm-enrollment-profiles"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices": {
+      "abstract": [
+        {
+          "text": "Ensure secure MDM connectivity with valid certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Certificates for MDM Servers and Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-certificates-for-mdm-servers-and-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices": {
+      "abstract": [
+        {
+          "text": "Create a service configuration entry point to your MDM server to access to frequently used information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying MDM Server Administration for iOS Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/simplifying-mdm-server-administration-for-ios-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Enrollment-Errors",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorCodeSoftwareUpdateRequired"
+      ],
+      "title": "Enrollment Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/managing-mdm-connections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

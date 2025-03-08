@@ -1,0 +1,434 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsunitconverter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1817013,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitConverter",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUnitConverter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUnitConverter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For units that can be converted by a scale factor or linear equation, use the concrete subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1891773",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSUnitConverter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an abstract class that is intended for subclassing. You can implement your own subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitConverter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to convert between units according to any desired mapping function. For example, units may be converted using a logarithmic, exponential, or quantile scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1891774",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All subclasses must fully implement the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823668-baseunitvaluefromvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823657-valuefrombaseunitvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1891775",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As stated above, most physical units can be converted using a linear equation with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You should only create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitConverter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for units that cannot be converted in this way. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverter": {
+      "abstract": [
+        {
+          "text": "An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitConverter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823657-valuefrombaseunitvalue": {
+      "abstract": [
+        {
+          "text": "For a given unit, returns the specified value of the base unit in terms of that unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueFromBaseUnitValue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823657-valuefrombaseunitvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valueFromBaseUnitValue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverter/1823657-valuefrombaseunitvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823668-baseunitvaluefromvalue": {
+      "abstract": [
+        {
+          "text": "For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseUnitValueFromValue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823668-baseunitvaluefromvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseUnitValueFromValue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverter/1823668-baseunitvaluefromvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear": {
+      "abstract": [
+        {
+          "text": "A description of how to convert between units using a linear equation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitConverterLinear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverterlinear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear"
+      ],
+      "title": "Conversion"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1891776",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823668-baseunitvaluefromvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsunitconverter/1823657-valuefrombaseunitvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting Between Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitconverter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitconverter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

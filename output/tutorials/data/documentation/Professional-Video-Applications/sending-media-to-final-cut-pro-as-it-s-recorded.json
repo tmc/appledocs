@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "Designate media as a growing file to make it available to users while it’s still being recorded.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-media-to-final-cut-pro-as-it-s-recorded"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending media to Final Cut Pro as it’s recorded"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your users may want to start using a media file in Final Cut Pro even while your app continues recording a video stream into the same file. Before recording begins, your app should designate the file as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "growing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " file — a file that continues to have media added to it. How to make this designation depends on the file format being used for the recording. Final Cut Pro supports editing growing media files in both QuickTime Movie and Material eXchange Format (MXF) file formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app sends a growing file to Final Cut Pro, Final Cut Pro periodically checks the file’s modification date. If Final Cut Pro determines that the file has been modified, it reads the file again. Once a file has been designated as a growing file, your users can drag it to Final Cut Pro (if your app supports drag and drop functionality) or your app can use an Apple event to send the growing file to Final Cut Pro programmatically. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Designate-a-QuickTime-Movie-as-a-Growing-File",
+          "level": 3,
+          "text": "Designate a QuickTime Movie as a Growing File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime Movie normally uses a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "consolidated",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " table of contents that allows random access to media. However, to edit a QuickTime Movie while recording it, the movie must be created using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "movie fragments",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which uses a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "distributed",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " table of contents for the file. A distributed table of contents lets Final Cut Pro access the media file while content is still being added.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a QuickTime Movie that lets your users work on the file as it’s being recorded:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Record the movie using movie fragments. (See “Working with Fragmented Movies” in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAsset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "movieFragmentInterval",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AVAssetWriter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class instance that’s writing the media file to a value between 15 and 30 seconds. Or, if you’re recording with a connected device, set that same property (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "movieFragmentInterval",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AVCaptureMovieFileOutput",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Designate-Media-in-an-MXF-File-Format-as-a-Growing-File",
+          "level": 3,
+          "text": "Designate Media in an MXF File Format as a Growing File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app records media in an MXF file, and you want your users to be able to use the media in Final Cut Pro while recording, your app must specify the ",
+              "type": "text"
+            },
+            {
+              "code": "duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the recorded file as ",
+              "type": "text"
+            },
+            {
+              "code": "\"unknown\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about recording in MXF format, see the ST 377-1:2011 - SMPTE Standard - Material Exchange Format (MXF) - File Format Specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAsset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Manage and streamline the sending of batches of media assets and timeline sequences from your app using Apple events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending Data Programmatically to Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/sending-data-programmatically-to-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-media-and-metadata-to-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets, timeline sequences, and metadata from your app to Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-media-and-metadata-to-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending Media and Metadata to Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/sending-media-and-metadata-to-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Add drag and drop support so your users can drag media assets and timeline sequences from your app directly into Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Drag and Drop for Data Sent to Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Sent-from-Your-App-to-Final-Cut-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-media-and-metadata-to-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro"
+      ],
+      "title": "Data Sent from Your App to Final Cut Pro"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-Sent-from-Your-App-to-Final-Cut-Pro",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-media-and-metadata-to-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro"
+              ],
+              "title": "Data Sent from Your App to Final Cut Pro"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/sending-media-to-final-cut-pro-as-it-s-recorded"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/sending-media-to-final-cut-pro-as-it-s-recorded"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1609 @@
+{
+  "abstract": [
+    {
+      "text": "Update existing FxPlug 3 plug-ins to out-of-process FxPlug 4 plug-ins.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating FxPlug 3 plug-ins to FxPlug 4"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4 plug-ins run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "out-of-process",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which means they run in a dedicated process outside the host app. Communication between the host and the plug-in occurs through an interprocess communication service (XPC) using IOSurface objects, which are suitable for sharing textures across process boundaries. Out-of-process plug-ins developed with FxPlug 4 have a slightly different structure than plug-ins developed with earlier versions of FxPlug. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In FxPlug 3, a plug-in was embedded within an XPC service, which was then embedded in a plug-in’s application wrapper. FxPlug 4 plug-ins remove the innermost layer, moving the actual plug-in code into the XPC service. Thus, you now have just two targets: a wrapper application and an XPC service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you developed plug-ins with FxPlug 3, you need to upgrade them to FxPlug 4 for compatibility with current versions of Final Cut Pro and Motion. Use the following process to update each plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-additional-search-paths-to-support-a-sparse-SDK",
+          "level": 3,
+          "text": "Add additional search paths to support a sparse SDK",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4.1 adopts a sparse SDK, which reduces the bundle size of your built plug-in. After installing FxPlug 4.1 and opening an Xcode project of an older plug-in, you may see the ",
+              "type": "text"
+            },
+            {
+              "code": "’FxPlug/FxPlugSDK.h’ file not found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error. This error shouldn’t occur after you complete these steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode’s Project Navigator (Shift-Command-1), select your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Builds Settings tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the All tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Search for “Additional SDK” in the build settings search field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify Additional SDKs (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ADDITIONAL_SDKS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/Developer/SDKs/FxPlug.sdk",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Build Settings of the Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Search for “Framework Search” in the build settings search field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify Framework Search Paths (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FRAMEWORK_SEARCH_PATHS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/Frameworks $(inherited)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Build Settings of the Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clean (Shift-Command-K) the project and then build (Command-R) again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Set-up-build-targets",
+          "level": 3,
+          "text": "Set up build targets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 3 plug-in code was embedded within an XPC service, which was then embedded in the plug-in’s application wrapper. In version 4, FxPlug moves the plug-in code into the XPC service, thereby removing the innermost layer. As a result, you now have just two targets, a wrapper application and an XPC service, whereas previously there were three targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To migrate your plug-ins to the new structure, in the ",
+              "type": "text"
+            },
+            {
+              "code": "main.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of the XPC service, include the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlug/FxPlugSDK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header and include this line in ",
+              "type": "text"
+            },
+            {
+              "code": "main.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "FxPrincipal.startServicePrincipal()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[FxPrincipal startServicePrincipal];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Change the filter code to include it in the XPC service build target. Then remove the XPC protocol and otherwise refactor your filter code to live within the XPC service as a stand-alone class. To see an example of this, look at how ",
+              "type": "text"
+            },
+            {
+              "code": "FxGradientCheckerboard.mm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is structured in the FxGradientCheckerboard example plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-your-plug-in-conform-to-the-FxTileableEffect-protocol",
+          "level": 3,
+          "text": "Make your plug-in conform to the FxTileableEffect protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In earlier versions of FxPlug, effects had to conform to either the ",
+              "type": "text"
+            },
+            {
+              "code": "FxFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FxGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocols. In FxPlug 4, your plug-in must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol instead. Host applications now render effects in tiles, which is usually more efficient. Tileable rendering is the same technique that Apple’s own plug-ins use to render.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your actual plug-in code exists in an ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "FxTileableEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, and your plug-in must implement this new protocol as indicated in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxTileableEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rendering process differs between the earlier and current versions of FxPlug. In earlier versions of FxPlug, rendering occurred when the ",
+              "type": "text"
+            },
+            {
+              "code": "renderOutput:withInput:withInfo:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method was called by the host application:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// FxPlug 3",
+            "- (BOOL)renderOutput:(FxImage *)outputImage",
+            "           withInput:(FxImage *)inputImage",
+            "            withInfo:(FxRenderInfo)renderInfo"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now, rendering occurs when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called by the host application:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// FxPlug 4",
+                    "func renderDestinationImage(_ destinationImage: FxImageTile, sourceImages: [FxImageTile], pluginState: Data?, at renderTime: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// FxPlug 4",
+                    "- (BOOL)renderDestinationImage:(FxImageTile *)destinationImage",
+                    "                  sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "                   pluginState:(NSData *)pluginState",
+                    "                        atTime:(CMTime)renderTime",
+                    "                         error:(NSError * _Nullable *)outError"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "All FxPlug APIs now represent time using ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "code": "FxTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". See ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+                  "type": "text"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Make-changes-to-the-information-property-lists-for-your-plug-ins",
+          "level": 3,
+          "text": "Make changes to the information property lists for your plug-ins",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Revise plug-in information property lists (",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to reflect some notable changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrate the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fxplug",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values over to the XPC service’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for a complete list of what to add).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the new keys to the XPC’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RunLoopType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JoinExistingSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and a Dictionary named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_AdditionalSubServices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-XPCService-entry",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information about these keys).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the XPC’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, under the “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PluginKit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "” section, revise the Protocol key to use a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PROXPCProtocol",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxXPCProtocol",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your plug-in used dynamic registration, then it previously had an in-process component. This is no longer the case in FxPlug 4.1, so you need to make the following changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrate the registrar code that was in your in-process bundle to the XPC bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the in-process bundle from your plug-in.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delete the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EmbeddedCode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EmbeddedProtocol",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys from the XPC’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrate the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProPlugDictionaryVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProPlugDynamicRegistration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys over to the XPC’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new key, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProPlugDynamicRegistrationPrincipalClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to the XPC’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and make the value the name of your registrar class. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-ProPlugDynamicRegistration-and-ProPlugDynamicRegistrationPrincipalClass-keys",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Remove-deprecated-methods-from-FxTemporalImageAPI",
+          "level": 3,
+          "text": "Remove deprecated methods from FxTemporalImageAPI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All versions of ",
+              "type": "text"
+            },
+            {
+              "code": "FxTemporalImageAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are deprecated in FxPlug 4.1 and aren’t accessible in an FxPlug 4-based plug-in, so remove deprecated methods from the ",
+              "type": "text"
+            },
+            {
+              "code": "FxTemporalImageAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " such as ",
+              "type": "text"
+            },
+            {
+              "code": "getInputTexture:withInfo:atFxTime:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scheduling method of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", that information is used to determine which frames are required for your plug-in to render. Those frames are automatically added to the ",
+              "type": "text"
+            },
+            {
+              "code": "sourceImages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the order in which you specify them in your scheduling methods. (See the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPictureInPicture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "FxTemporalBlur",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plug-ins for examples.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-other-deprecated-APIs-or-update-to-the-latest-versions",
+          "level": 3,
+          "text": "Remove other deprecated APIs, or update to the latest versions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remove methods from the deprecated APIs ",
+              "type": "text"
+            },
+            {
+              "code": "FxHostCapabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "FxWindowAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "FxAppearanceAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "FxHostResourcesAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "FxRenderNotificationAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "FxProgressAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Convert or update any implemented methods in ",
+              "type": "text"
+            },
+            {
+              "code": "FxFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "FxGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "FxTransition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the appropriate FxPlug 4 methods available in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Most other FxPlug APIs are updated with new versions specifically for use in FxPlug 4 style plug-ins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-ProPlugDynamicRegistration-and-ProPlugDynamicRegistrationPrincipalClass-keys": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-ProPlugDynamicRegistration-and-ProPlugDynamicRegistrationPrincipalClass-keys",
+      "kind": "section",
+      "title": "Add ProPlugDynamicRegistration and ProPlugDynamicRegistrationPrincipalClass keys",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins#Add-ProPlugDynamicRegistration-and-ProPlugDynamicRegistrationPrincipalClass-keys"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-XPCService-entry": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins#Add-XPCService-entry",
+      "kind": "section",
+      "title": "Add XPCService entry",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins#Add-XPCService-entry"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Register and render FxPlug plug-ins with Motion and Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Using out-of-process FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-out-of-process-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins": {
+      "abstract": [
+        {
+          "text": "Version plug-ins to add new capabilities, or obsolete them to remove them from the Motion Library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Versioning and obsoleting old plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/versioning-and-obsoleting-old-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Sends a request that the host wants your plug-in to do its rendering for a given output image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/renderdestinationimage(_:sourceimages:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Tells the host application how many frames from the given input sources your plug-in requires in order to render at the given render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSArray",
+          "text": "NSArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs:withPluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "scheduleInputs(_:withPluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/scheduleinputs(_:withpluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a host application implements to identify the plug-in version used by a project when it was first created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxVersioningAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Legacy-plug-ins",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+      ],
+      "title": "Legacy plug-ins"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Legacy-plug-ins",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+              ],
+              "title": "Legacy plug-ins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/title",
+          "value": "FxVersioningAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/title",
+          "value": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/title",
+          "value": "scheduleInputs:withPluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleInputs:withPluginState:atTime:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

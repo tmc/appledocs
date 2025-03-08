@@ -1,1 +1,1221 @@
-{"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent","interfaceLanguage":"swift"},"seeAlsoSections":[{"title":"Cameras","generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent","doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation","doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera"],"anchor":"Cameras"}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"tokens":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"text":"PerspectiveCameraComponent","kind":"identifier"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"]}]},{"kind":"content","content":[{"text":"Overview","level":2,"type":"heading","anchor":"overview"},{"type":"paragraph","inlineContent":[{"text":"Each scene requires a camera that defines the viewpoint from","type":"text"},{"text":" ","type":"text"},{"text":"which RealityKit renders the scene.","type":"text"},{"text":" ","type":"text"},{"text":"In RealityKit, the default camera is a ","type":"text"},{"type":"emphasis","inlineContent":[{"text":"perspective camera","type":"text"}]},{"text":",","type":"text"},{"text":" ","type":"text"},{"text":"which simulates the way real cameras and human vision work.","type":"text"},{"text":" ","type":"text"},{"text":"Entities that are farther away from the camera render smaller.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"For an alternative camera solution, see ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent"},{"text":".","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"To create a perspective camera, add this component to an entity.","type":"text"}]},{"syntax":"swift","type":"codeListing","code":["let cameraEntity = Entity()","","// Place the camera 2 meters along the z-axis,","// looking at the scene origin.","let cameraPosition: SIMD3<Float> = [0, 0, 2]","cameraEntity.look(at: .zero, from: cameraPosition, relativeTo: nil)","","cameraEntity.components.set(PerspectiveCameraComponent())"]},{"type":"paragraph","inlineContent":[{"type":"text","text":"A "},{"type":"codeVoice","code":"PerspectiveCameraComponent"},{"type":"text","text":" defines the camera settings for a"},{"type":"text","text":" "},{"type":"text","text":"perspective camera, such as the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees"},{"type":"text","text":"."},{"type":"text","text":" "},{"type":"text","text":"The entity’s "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform"},{"type":"text","text":" defines the camera entity’s viewpoint and direction."},{"type":"text","text":" "},{"type":"text","text":"The direction it points is along the entity’s negative z-axis."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"In AR scenarios, the system provides the camera automatically;"},{"type":"text","text":" "},{"type":"text","text":"however, in non-AR scenarios, the app needs to set the camera."},{"type":"text","text":" "},{"type":"text","text":"If the app doesn’t provide a camera, the system uses the default perspective camera."}]}]}],"kind":"symbol","topicSections":[{"title":"Creating a camera component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)"],"anchor":"Creating-a-camera-component"},{"title":"Setting focal points","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near"],"anchor":"Setting-focal-points"},{"title":"Setting the field of view","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation"],"anchor":"Setting-the-field-of-view"},{"title":"Registering a component type","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()"],"anchor":"Registering-a-component-type"},{"title":"Comparing perspective camera components","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)"],"anchor":"Comparing-perspective-camera-components"},{"title":"Default Implementations","generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations"],"anchor":"Default-Implementations"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"abstract":[{"text":"A component that defines a virtual camera and its controls.","type":"text"}],"relationshipsSections":[{"kind":"relationships","type":"conformsTo","title":"Conforms To","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component","doc://com.externally.resolved.symbol/s:SQ"]}],"sections":[],"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/perspectivecameracomponent"]}],"metadata":{"roleHeading":"Structure","role":"symbol","symbolKind":"struct","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PerspectiveCameraComponent","kind":"identifier"}],"title":"PerspectiveCameraComponent","platforms":[{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"iOS","unavailable":false},{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"iPadOS","unavailable":false},{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"Mac Catalyst","unavailable":false},{"beta":false,"introducedAt":"10.15","deprecated":false,"name":"macOS","unavailable":false},{"beta":false,"deprecated":false,"name":"visionOS","unavailable":false}],"modules":[{"name":"RealityKit"}],"externalID":"s:17RealityFoundation26PerspectiveCameraComponentV","navigatorTitle":[{"text":"PerspectiveCameraComponent","kind":"identifier"}]},"references":{"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)":{"abstract":[{"type":"text","text":"Creates a perspective camera component from near and far clipping planes and a field of view."}],"title":"init(near:far:fieldOfViewInDegrees:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)","url":"/documentation/realitykit/perspectivecameracomponent/init(near:far:fieldofviewindegrees:)","kind":"symbol","role":"symbol","type":"topic","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"near"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"},{"kind":"text","text":", "},{"kind":"externalParam","text":"far"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"},{"kind":"text","text":", "},{"kind":"externalParam","text":"fieldOfViewInDegrees"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"},{"kind":"text","text":")"}]},"doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent":{"kind":"symbol","url":"/documentation/realitykit/orthographiccameracomponent","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent","role":"symbol","title":"OrthographicCameraComponent","abstract":[{"type":"text","text":"A component that defines an orthographic virtual camera and its settings."}],"type":"topic","navigatorTitle":[{"text":"OrthographicCameraComponent","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrthographicCameraComponent","kind":"identifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)","role":"symbol","type":"topic","url":"/documentation/realitykit/perspectivecameracomponent/!=(_:_:)","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"!=","kind":"identifier"},{"text":" ","kind":"text"},{"text":"(","kind":"text"},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"}],"kind":"symbol","title":"!=(_:_:)","abstract":[{"type":"text","text":"Returns a Boolean value indicating whether two values are not equal."}]},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations":{"url":"/documentation/realitykit/perspectivecameracomponent/equatable-implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations","type":"topic","title":"Equatable Implementations","kind":"article","role":"collectionGroup","abstract":[]},"doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform":{"type":"topic","kind":"symbol","abstract":[{"text":"The transform of an entity relative to its parent.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform","url":"/documentation/realitykit/hastransform/transform","title":"transform","role":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"transform","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation9TransformV","text":"Transform","kind":"typeIdentifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent":{"title":"ProjectiveTransformCameraComponent","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ProjectiveTransformCameraComponent"}],"navigatorTitle":[{"kind":"identifier","text":"ProjectiveTransformCameraComponent"}],"url":"/documentation/realitykit/projectivetransformcameracomponent","kind":"symbol","abstract":[{"text":"A component that defines a virtual camera with a custom projection matrix.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent","type":"topic","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.externally.resolved.symbol/s:SQ":{"url":"/documentation/Swift/Equatable","kind":"symbol","title":"Equatable","role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:SQ"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent":{"abstract":[{"type":"text","text":"A component that defines a virtual camera and its controls."}],"url":"/documentation/realitykit/perspectivecameracomponent","navigatorTitle":[{"text":"PerspectiveCameraComponent","kind":"identifier"}],"kind":"symbol","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PerspectiveCameraComponent","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent","title":"PerspectiveCameraComponent"},"doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation":{"abstract":[{"type":"text","text":"The orientations that a camera’s field-of-view degrees can apply."}],"type":"topic","url":"/documentation/realitykit/camerafieldofvieworientation","title":"CameraFieldOfViewOrientation","role":"symbol","navigatorTitle":[{"text":"CameraFieldOfViewOrientation","kind":"identifier"}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CameraFieldOfViewOrientation","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera":{"kind":"symbol","navigatorTitle":[{"text":"PerspectiveCamera","kind":"identifier"}],"title":"PerspectiveCamera","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PerspectiveCamera","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera","type":"topic","abstract":[{"text":"A virtual camera that establishes the rendering perspective.","type":"text"}],"url":"/documentation/realitykit/perspectivecamera","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)","role":"symbol","type":"topic","url":"/documentation/realitykit/perspectivecameracomponent/==(_:_:)","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"==","kind":"identifier"},{"text":" ","kind":"text"},{"text":"(","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26PerspectiveCameraComponentV","text":"PerspectiveCameraComponent"},{"kind":"text","text":", "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26PerspectiveCameraComponentV","text":"PerspectiveCameraComponent"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"}],"kind":"symbol","title":"==(_:_:)","abstract":[{"type":"text","text":"Returns a Boolean value indicating whether two values are equal."}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation":{"kind":"symbol","url":"/documentation/realitykit/perspectivecameracomponent/fieldofvieworientation","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"fieldOfViewOrientation"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"CameraFieldOfViewOrientation","preciseIdentifier":"s:17RealityFoundation28CameraFieldOfViewOrientationO"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation","role":"symbol","title":"fieldOfViewOrientation","abstract":[{"text":"The orientation with which the system uses to apply the field-of-view degrees.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations":{"url":"/documentation/realitykit/perspectivecameracomponent/component-implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations","type":"topic","title":"Component Implementations","kind":"article","role":"collectionGroup","abstract":[]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)":{"abstract":[{"type":"text","text":"Creates a perspective camera component from near and far clipping planes,"},{"type":"text","text":" "},{"type":"text","text":"a field of view, and an orientation."}],"title":"init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)","url":"/documentation/realitykit/perspectivecameracomponent/init(near:far:fieldofviewindegrees:fieldofvieworientation:)","kind":"symbol","role":"symbol","type":"topic","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"near","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"far","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"fieldOfViewInDegrees","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"fieldOfViewOrientation","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"CameraFieldOfViewOrientation","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation28CameraFieldOfViewOrientationO"},{"text":")","kind":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees":{"kind":"symbol","url":"/documentation/realitykit/perspectivecameracomponent/fieldofviewindegrees","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"fieldOfViewInDegrees"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees","role":"symbol","title":"fieldOfViewInDegrees","abstract":[{"text":"The camera’s total field of view in degrees.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()":{"fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"registerComponent","kind":"identifier"},{"text":"()","kind":"text"}],"url":"/documentation/realitykit/perspectivecameracomponent/registercomponent()","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()","type":"topic","title":"registerComponent()","kind":"symbol","role":"symbol","abstract":[{"text":"Registers a new component type.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far":{"kind":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"far","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"}],"title":"far","url":"/documentation/realitykit/perspectivecameracomponent/far","abstract":[{"type":"text","text":"The maximum distance in meters from the camera that the camera can see."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far","role":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near":{"kind":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"near","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"}],"title":"near","url":"/documentation/realitykit/perspectivecameracomponent/near","abstract":[{"type":"text","text":"The minimum distance in meters from the camera that the camera can see."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near","role":"symbol","type":"topic"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that defines a virtual camera and its controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation26PerspectiveCameraComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PerspectiveCameraComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PerspectiveCameraComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PerspectiveCameraComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PerspectiveCameraComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each scene requires a camera that defines the viewpoint from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which RealityKit renders the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In RealityKit, the default camera is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "perspective camera",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which simulates the way real cameras and human vision work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Entities that are farther away from the camera render smaller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an alternative camera solution, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a perspective camera, add this component to an entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cameraEntity = Entity()",
+            "",
+            "// Place the camera 2 meters along the z-axis,",
+            "// looking at the scene origin.",
+            "let cameraPosition: SIMD3<Float> = [0, 0, 2]",
+            "cameraEntity.look(at: .zero, from: cameraPosition, relativeTo: nil)",
+            "",
+            "cameraEntity.components.set(PerspectiveCameraComponent())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "PerspectiveCameraComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines the camera settings for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perspective camera, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines the camera entity’s viewpoint and direction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The direction it points is along the entity’s negative z-axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In AR scenarios, the system provides the camera automatically;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "however, in non-AR scenarios, the app needs to set the camera.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the app doesn’t provide a camera, the system uses the default perspective camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation": {
+      "abstract": [
+        {
+          "text": "The orientations that a camera’s field-of-view degrees can apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFieldOfViewOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraFieldOfViewOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CameraFieldOfViewOrientation",
+      "type": "topic",
+      "url": "/documentation/realitykit/camerafieldofvieworientation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform": {
+      "abstract": [
+        {
+          "text": "The transform of an entity relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/hastransform/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an orthographic virtual camera and its settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrthographicCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/orthographiccameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera": {
+      "abstract": [
+        {
+          "text": "A virtual camera that establishes the rendering perspective.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCamera",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecamera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera and its controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/!=(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26PerspectiveCameraComponentV",
+          "text": "PerspectiveCameraComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26PerspectiveCameraComponentV",
+          "text": "PerspectiveCameraComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/==(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far": {
+      "abstract": [
+        {
+          "text": "The maximum distance in meters from the camera that the camera can see.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "far"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "far",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/far"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees": {
+      "abstract": [
+        {
+          "text": "The camera’s total field of view in degrees.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldOfViewInDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fieldOfViewInDegrees",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/fieldofviewindegrees"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation": {
+      "abstract": [
+        {
+          "text": "The orientation with which the system uses to apply the field-of-view degrees.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldOfViewOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CameraFieldOfViewOrientationO",
+          "text": "CameraFieldOfViewOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fieldOfViewOrientation",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/fieldofvieworientation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)": {
+      "abstract": [
+        {
+          "text": "Creates a perspective camera component from near and far clipping planes and a field of view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "near"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "far"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fieldOfViewInDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(near:far:fieldOfViewInDegrees:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/init(near:far:fieldofviewindegrees:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)": {
+      "abstract": [
+        {
+          "text": "Creates a perspective camera component from near and far clipping planes,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a field of view, and an orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "near"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "far"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fieldOfViewInDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fieldOfViewOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CameraFieldOfViewOrientationO",
+          "text": "CameraFieldOfViewOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/init(near:far:fieldofviewindegrees:fieldofvieworientation:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near": {
+      "abstract": [
+        {
+          "text": "The minimum distance in meters from the camera that the camera can see.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "near"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "near",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/near"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()": {
+      "abstract": [
+        {
+          "text": "Registers a new component type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerComponent()",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent/registercomponent()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera with a custom projection matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProjectiveTransformCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/projectivetransformcameracomponent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:SQ"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Cameras",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera"
+      ],
+      "title": "Cameras"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-camera-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/init(near:far:fieldOfViewInDegrees:fieldOfViewOrientation:)"
+      ],
+      "title": "Creating a camera component"
+    },
+    {
+      "anchor": "Setting-focal-points",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/far",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/near"
+      ],
+      "title": "Setting focal points"
+    },
+    {
+      "anchor": "Setting-the-field-of-view",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewInDegrees",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/fieldOfViewOrientation"
+      ],
+      "title": "Setting the field of view"
+    },
+    {
+      "anchor": "Registering-a-component-type",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/registerComponent()"
+      ],
+      "title": "Registering a component type"
+    },
+    {
+      "anchor": "Comparing-perspective-camera-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/==(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/!=(_:_:)"
+      ],
+      "title": "Comparing perspective camera components"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Component-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/perspectivecameracomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

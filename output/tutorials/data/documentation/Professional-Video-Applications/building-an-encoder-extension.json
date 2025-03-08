@@ -1,0 +1,548 @@
+{
+  "abstract": [
+    {
+      "text": "Create an encoder extension in Xcode by using the Encoder Extension template.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/encoder-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-encoder-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building an Encoder Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to integrate a custom output file format into the Compressor export settings to allow users to export their Final Cut Pro projects to that format, consider creating an encoder extension. You add and configure an encoder extension as a separate target alongside a macOS app. If you don’t have a functional macOS app, create an empty one to contain the encoder extension. The app that contains your extension is called the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "container app",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Xcode template project that comes with the Compressor Extension SDK as a starting point to create your encoder extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-Compressor-Extension-SDK",
+          "level": 3,
+          "text": "Install the Compressor Extension SDK",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download and install the Compressor Extension SDK from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/all/?q=Encoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the installer that comes with the Compressor Extension SDK. It installs the Xcode template in the appropriate locations on your computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-Encoder-Extension-Target-to-Your-Project",
+          "level": 3,
+          "text": "Add an Encoder Extension Target to Your Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an encoder extension target to your macOS app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Xcode and open your existing macOS app project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Xcode template window (shown in the illustration below), choose the macOS tab, select the Encoder Extension template from the Compressor Encoder Extension section, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a product name for your extension and set other options, like your organization name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure that you select your app project in the Project menu, and your macOS app target in the Embed in Application menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3646158",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode template sets up relevant build options and creates an initial set of project files for the encoder extension. The initial set of files includes an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and default source files for an encoder extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode template configures the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in your initial project with the default information about your extension capabilities, and identifies your extension as a Compressor app encoder extension. In most cases, you don’t need to modify this file. For an explanation of the available keys and values, see the Information Property List Keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-and-Run-Your-Project",
+          "level": 3,
+          "text": "Build and Run Your Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that the system can find and register your extension for use within the Compressor app interface, build and run your project. In the Xcode Editor toolbar, click the Run button (►), or choose Product > Run (Command-R).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the build process, Xcode inserts the extension in the proper place in your app bundle, and you get an encoder extension bundle (ending in ",
+              "type": "text"
+            },
+            {
+              "code": ".appex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that runs in its own process, independent of the container app. When Xcode completes the build, it launches the container app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize your extension, modify the target’s source and resource file as you like, and recompile. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Launching the container app once registers your extension as an available encoder extension for the Compressor app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Debug-Your-Encoder-Extension",
+          "level": 3,
+          "text": "Debug Your Encoder Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the build and run process is complete, the Compressor app makes your extension available in its interface. To view your extension, launch the Compressor app. In the Settings pane, click the Add pop-up menu and select New Setting. The new extension should now be visible in the Format menu of the dialog that appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can connect the Xcode debugger to an encoder extension process after launching the extension. Note that several extension processes may be associated with the Compressor app.  Use the activity monitor to find the process you want to debug, and attach the Xcode debugger to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using a distributed encoder cluster while debugging. In a distributed processing environment, the Compressor app randomly assigns an encoding job to an available extension process, and you won’t know in advance which extension process receives which encoder job. With a single encoder instance, the Compressor app assigns all work to that encoder instance, and you can debug in a single process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attach the Xcode debugger after launching the extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invoke the extension from the Compressor app interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Xcode menu, choose Debug > Attach to Process, then select the extension by name or from the list of running processes.\u2028",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode debugger attaches to the extension’s process, sets active breakpoints, and lets the extension execute. At this point, you can use the same Xcode debugging features you use to debug other processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-Your-Extension",
+          "level": 3,
+          "text": "Distribute Your Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your encoder extension to users, submit the container app to the App Store. When a user installs the containing app, the extension it contains is installed and becomes available in the Compressor interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/encoder-extensions": {
+      "abstract": [
+        {
+          "text": "Add custom output file formats to the Final Cut Pro workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/encoder-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encoder Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/encoder-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/download/all/?q=Encoder": {
+      "identifier": "https://developer.apple.com/download/all/?q=Encoder",
+      "title": "Apple’s developer website",
+      "titleInlineContent": [
+        {
+          "text": "Apple’s developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/all/?q=Encoder"
+    },
+    "media-3646158": {
+      "alt": "Screenshot showing the Encoder Extension template location in the Xcode template window.",
+      "identifier": "media-3646158",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3c71cfb04a1db3b3e36a0fee28ac82a/media-3646158@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3c71cfb04a1db3b3e36a0fee28ac82a/media-3646158~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-encoder-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-encoder-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

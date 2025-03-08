@@ -1,0 +1,796 @@
+{
+  "abstract": [
+    {
+      "text": "Establishes a connection to a launch agent or launch daemon with the name you specify.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_mach_service"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@xpc_session_create_mach_service",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_create_mach_service"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_create_mach_service"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "xpc_session_create_mach_service"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_session_t",
+              "text": "xpc_session_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_session_create_mach_service"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mach_service"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "target_queue"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@xpc_session_create_flags_t",
+              "text": "xpc_session_create_flags_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_rich_error_t",
+              "text": "xpc_rich_error_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error_out"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the Mach service to connect to. The service name must exist in the Mach bootstrap accessible to the process and advertised in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mach_service"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dispatch queue to use for session events. You can specify a concurrent dispatch queue. If you specify ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", the session uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "DISPATCH_TARGET_QUEUE_DEFAULT",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "target_queue"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Attributes the session uses when establishing the connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If provided, a pointer that receives an error if the connection fails.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error_out"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new session object if the connection succeeds; otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the service can’t be found or is unavailable. If the connection fails, this method populates the ",
+              "type": "text"
+            },
+            {
+              "code": "error_out",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, if set, with an error that describes the failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the session object this method returns is activated and is ready to accept messages. To create an inactive session, specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You’re responsible for calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_release",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to dispose of the session when it’s no longer needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/nil": {
+      "abstract": [
+        {
+          "text": "Defines the `id` of a null class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Nil",
+      "type": "topic",
+      "url": "/documentation/objectivec/nil"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_release": {
+      "abstract": [
+        {
+          "text": "Decrements the reference count of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_release"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_release",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_release"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t": {
+      "abstract": [
+        {
+          "text": "A type that describes an error, and whether you can retry the operation that experienced the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_copy_description": {
+      "abstract": [
+        {
+          "text": "Copies the description string of a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_copy_description"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_copy_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_copy_description",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_copy_description"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum": {
+      "abstract": [
+        {
+          "text": "Options that specify how to create inactive or privileged sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_create_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_create_flags_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_create_flags_t-c.enum"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE": {
+      "abstract": [
+        {
+          "text": "Configures a new session in an inactive state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_SESSION_CREATE_INACTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_SESSION_CREATE_INACTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_create_flags_t-c.enum/xpc_session_create_inactive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_create_mach_service": {
+      "abstract": [
+        {
+          "text": "Establishes a connection to a launch agent or launch daemon with the name you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_create_mach_service"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_mach_service",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_create_mach_service",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_create_mach_service"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_create_xpc_service": {
+      "abstract": [
+        {
+          "text": "Establishes a connection to an XPC service with the name you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_create_xpc_service"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_xpc_service",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_create_xpc_service",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_create_xpc_service"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_set_target_queue": {
+      "abstract": [
+        {
+          "text": "Sets the target dispatch queue on an inactive session for processing messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_set_target_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_set_target_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_set_target_queue",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_set_target_queue"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0": {
+      "abstract": [
+        {
+          "text": "A C type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_session_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_t-10if0"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/Dispatch/dispatch_queue_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-session",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_create_xpc_service",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_set_target_queue",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_copy_description"
+      ],
+      "title": "Creating a session"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_dispatch_queue",
+              "text": "NSObject<OS_dispatch_queue>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/title",
+          "value": "xpc_rich_error_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/title",
+          "value": "xpc_session_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_session_create_mach_service"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

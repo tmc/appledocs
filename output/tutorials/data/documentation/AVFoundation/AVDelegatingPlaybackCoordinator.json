@@ -1,0 +1,2208 @@
+{
+  "abstract": [
+    {
+      "text": "A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVDelegatingPlaybackCoordinator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVDelegatingPlaybackCoordinator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVDelegatingPlaybackCoordinator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVDelegatingPlaybackCoordinator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object coordinates the state of custom player objects, such as those that render media using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or that play audio using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinatorPlaybackControlDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol so that your app responds to playback commands from the coordinator. The commands provide the details of a requested state change so you can control your player object accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3783472",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateRateChange(to:options:)": {
+      "abstract": [
+        {
+          "text": "Coordinates a rate change across all participants, waiting for others to become ready, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateRateChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDelegatingPlaybackCoordinatorRateChangeOptions",
+          "text": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateRateChange(to:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coordinateRateChangeToRate:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coordinateRateChange(to:options:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/coordinateratechange(to:options:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateSeek(to:options:)": {
+      "abstract": [
+        {
+          "text": "Coordinates a seek to the specified time for all connected participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateSeek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDelegatingPlaybackCoordinatorSeekOptions",
+          "text": "AVDelegatingPlaybackCoordinatorSeekOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateSeek(to:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coordinateSeekToTime:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coordinateSeek(to:options:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/coordinateseek(to:options:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/currentItemIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/currentItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/currentitemidentifier"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/init(playbackControlDelegate:)": {
+      "abstract": [
+        {
+          "text": "Creates a playback coordinator for a custom playback object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "playbackControlDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVPlaybackCoordinatorPlaybackControlDelegate",
+          "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/init(playbackControlDelegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPlaybackControlDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(playbackControlDelegate:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/init(playbackcontroldelegate:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/playbackControlDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate object for the playback coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackControlDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVPlaybackCoordinatorPlaybackControlDelegate",
+          "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/playbackControlDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackControlDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackControlDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/playbackcontroldelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/reapplyCurrentItemStateToPlaybackControlDelegate()": {
+      "abstract": [
+        {
+          "text": "Tells the coordinator to reissue current play state commands to synchronize the current item to the state of other participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reapplyCurrentItemStateToPlaybackControlDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/reapplyCurrentItemStateToPlaybackControlDelegate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reapplyCurrentItemStateToPlaybackControlDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "reapplyCurrentItemStateToPlaybackControlDelegate()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/reapplycurrentitemstatetoplaybackcontroldelegate()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)": {
+      "abstract": [
+        {
+          "text": "Tells the coordinator to transition to a new item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionToItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposingInitialTimingBasedOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator/transitiontoitem(withidentifier:proposinginitialtimingbasedon:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand": {
+      "abstract": [
+        {
+          "text": "A command that indicates to start buffering data in preparation for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorBufferingCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorBufferingCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorBufferingCommand",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPauseCommand": {
+      "abstract": [
+        {
+          "text": "A command that indicates to pause playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPauseCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPauseCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPauseCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorPauseCommand",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorpausecommand"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlayCommand": {
+      "abstract": [
+        {
+          "text": "A command that indicates to play at a specific rate and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPlayCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlayCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPlayCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorPlayCommand",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorplaycommand"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlaybackControlCommand": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for playback commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlaybackControlCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorRateChangeOptions": {
+      "abstract": [
+        {
+          "text": "Constants that define rate change options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorRateChangeOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorRateChangeOptions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand": {
+      "abstract": [
+        {
+          "text": "A command that indicates to seek to a new time in the item timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorSeekCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorSeekCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorSeekCommand",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekOptions": {
+      "abstract": [
+        {
+          "text": "Constants that define seek options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorSeekOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinatorSeekOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinatorSeekOptions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the playback of players in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinatorPlaybackControlDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the method to implement to respond to playback commands from the playback coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinatorPlaybackControlDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlaybackCoordinatorPlaybackControlDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplaybackcoordinatorplaybackcontroldelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "A playback coordinator subclass that coordinates the playback of player objects in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer": {
+      "abstract": [
+        {
+          "text": "An object used to decompress audio and play compressed or uncompressed audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferAudioRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferAudioRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferAudioRenderer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebufferaudiorenderer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferDisplayLayer": {
+      "abstract": [
+        {
+          "text": "An object that displays compressed or uncompressed video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferDisplayLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferDisplayLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferDisplayLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebufferdisplaylayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback": {
+      "abstract": [
+        {
+          "text": "Create synchronized media experiences that enable users to watch and listen across devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Coordinated Media Playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/supporting-coordinated-media-playback"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3783472": {
+      "alt": "A diagram representing two devices that each contain representations of the app, AVDelegatingPlaybackCoordinator, playback control delegate, and custom playback object relationships. The two AVDelegatingPlaybackCoordinator items have a two-way dotted-line connection between the two devices.",
+      "identifier": "media-3783472",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1475dd7253b6e97cc096c2648300c98/media-3783472@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44b98f365a7845fac8a1cb8ab5fdcc33/media-3783472~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "SharePlay",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator"
+      ],
+      "title": "SharePlay"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Coordinator",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/init(playbackControlDelegate:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinatorPlaybackControlDelegate"
+      ],
+      "title": "Creating a Coordinator"
+    },
+    {
+      "anchor": "Identifying-Items",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/currentItemIdentifier"
+      ],
+      "title": "Identifying Items"
+    },
+    {
+      "anchor": "Accessing-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/playbackControlDelegate"
+      ],
+      "title": "Accessing the Delegate"
+    },
+    {
+      "anchor": "Coordinating-State-Changes",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateRateChange(to:options:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateSeek(to:options:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/reapplyCurrentItemStateToPlaybackControlDelegate()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekOptions",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorRateChangeOptions"
+      ],
+      "title": "Coordinating State Changes"
+    },
+    {
+      "anchor": "Playback-Commands",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlaybackControlCommand",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlayCommand",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPauseCommand",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand"
+      ],
+      "title": "Playback Commands"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVDelegatingPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Coordinator",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/init(playbackControlDelegate:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinatorPlaybackControlDelegate"
+              ],
+              "title": "Creating a Coordinator"
+            },
+            {
+              "anchor": "Identifying-Items",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/currentItemIdentifier"
+              ],
+              "title": "Identifying Items"
+            },
+            {
+              "anchor": "Accessing-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/playbackControlDelegate"
+              ],
+              "title": "Accessing the Delegate"
+            },
+            {
+              "anchor": "Coordinating-State-Changes",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateRateChange(to:options:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/coordinateSeek(to:options:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator/reapplyCurrentItemStateToPlaybackControlDelegate()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekOptions",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorRateChangeOptions"
+              ],
+              "title": "Coordinating State Changes"
+            },
+            {
+              "anchor": "Playback-Commands",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlaybackControlCommand",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPlayCommand",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorPauseCommand",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorBufferingCommand"
+              ],
+              "title": "Playback Commands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "SharePlay",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator"
+              ],
+              "title": "SharePlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVDelegatingPlaybackCoordinator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVPlaybackCoordinator",
+                    "text": "AVPlaybackCoordinator"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1reapplyCurrentItemStateToPlaybackControlDelegate()/title",
+          "value": "reapplyCurrentItemStateToPlaybackControlDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1reapplyCurrentItemStateToPlaybackControlDelegate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reapplyCurrentItemStateToPlaybackControlDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)/title",
+          "value": "transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1transitionToItem(withIdentifier:proposingInitialTimingBasedOn:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinatorPlaybackControlDelegate/title",
+          "value": "AVPlaybackCoordinatorPlaybackControlDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinatorPlaybackControlDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinatorPlaybackControlDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinatorPlaybackControlDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekCommand/title",
+          "value": "AVDelegatingPlaybackCoordinatorSeekCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorSeekCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorSeekCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorRateChangeOptions/title",
+          "value": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorRateChangeOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorRateChangeOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorRateChangeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlaybackControlCommand/title",
+          "value": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlaybackControlCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlaybackControlCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPlaybackControlCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/title",
+          "value": "AVPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekOptions/title",
+          "value": "AVDelegatingPlaybackCoordinatorSeekOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorSeekOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorSeekOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorSeekOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorBufferingCommand/title",
+          "value": "AVDelegatingPlaybackCoordinatorBufferingCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorBufferingCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorBufferingCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorBufferingCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorBufferingCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferDisplayLayer/title",
+          "value": "AVSampleBufferDisplayLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferDisplayLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferDisplayLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferDisplayLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferDisplayLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1init(playbackControlDelegate:)/title",
+          "value": "initWithPlaybackControlDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1init(playbackControlDelegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithPlaybackControlDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1coordinateSeek(to:options:)/title",
+          "value": "coordinateSeekToTime:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1coordinateSeek(to:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coordinateSeekToTime:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1coordinateRateChange(to:options:)/title",
+          "value": "coordinateRateChangeToRate:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1coordinateRateChange(to:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coordinateRateChangeToRate:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/title",
+          "value": "AVSampleBufferAudioRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferAudioRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferAudioRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPauseCommand/title",
+          "value": "AVDelegatingPlaybackCoordinatorPauseCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPauseCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPauseCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPauseCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPauseCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlayCommand/title",
+          "value": "AVDelegatingPlaybackCoordinatorPlayCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlayCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPlayCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinatorPlayCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinatorPlayCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1currentItemIdentifier/title",
+          "value": "currentItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1currentItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/title",
+          "value": "AVDelegatingPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1playbackControlDelegate/title",
+          "value": "playbackControlDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator~1playbackControlDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackControlDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/title",
+          "value": "AVPlayerPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerPlaybackCoordinator"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avdelegatingplaybackcoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avdelegatingplaybackcoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

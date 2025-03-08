@@ -1,0 +1,443 @@
+{
+  "abstract": [
+    {
+      "text": "Cancels the specified dispatch block asynchronously.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_cancel"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_block_cancel",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_block_cancel"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_block_cancel"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_block_cancel"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_block_cancel"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_block_t",
+              "text": "dispatch_block_t"
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dispatch block to cancel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The result of passing ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or a block object not returned by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function is undefined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cancellation causes any future execution of the dispatch block to return immediately, but does not affect any execution of the block object that is already in progress.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Release of any resources associated with the block object is delayed until execution of the block object is next attempted (or any execution already in progress completes).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Take care to ensure that a block object that may be canceled does not capture any resources that require execution of the block body in order to be released, such as memory allocated with ",
+                  "type": "text"
+                },
+                {
+                  "code": "malloc(3)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on which the block body calls ",
+                  "type": "text"
+                },
+                {
+                  "code": "free(3)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Such resources are leaked if the block body is never executed due to cancellation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_cancel": {
+      "abstract": [
+        {
+          "text": "Cancels the specified dispatch block asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_cancel",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_cancel"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch block on the heap using an existing block and the given flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_create"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_create"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_create_with_qos_class"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_create_with_qos_class",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_create_with_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t": {
+      "abstract": [
+        {
+          "text": "The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_testcancel": {
+      "abstract": [
+        {
+          "text": "Tests whether the given dispatch block has been canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_testcancel"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_testcancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_testcancel",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_testcancel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Canceling-a-Work-Item",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_testcancel"
+      ],
+      "title": "Canceling a Work Item"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_block_cancel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

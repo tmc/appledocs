@@ -1,1 +1,1608 @@
-{"sections":[],"seeAlsoSections":[{"generated":true,"identifiers":["doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services","doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations","doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets","doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users","doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints","doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications","doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"],"title":"Essentials","anchor":"Essentials"}],"primaryContentSections":[{"kind":"content","content":[{"text":"Overview","type":"heading","level":2,"anchor":"overview"},{"inlineContent":[{"type":"text","text":"New features and improved asynchronous processing in App and Book Management API 2 enable MDMs to manage apps and books in a faster and more scalable way than ever before. To take advantage of these new features, MDMs need to change the way in which they manage apps and books."}],"type":"paragraph"},{"inlineContent":[{"text":"For more information, see ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services","type":"reference"},{"text":". For an overview of what’s new in version 2, watch the WWDC21 presentation ","type":"text"},{"isActive":true,"identifier":"https://developer.apple.com/videos/play/wwdc2021/10137","type":"reference"},{"text":".","type":"text"}],"type":"paragraph"},{"text":"Understand endpoint changes","type":"heading","level":3,"anchor":"Understand-endpoint-changes"},{"inlineContent":[{"text":"The following table shows the differences between the API 1 and API 2 endpoints. For more information about specific API protocols and usage, see ","type":"text"},{"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management","type":"reference","isActive":true},{"text":".","type":"text"}],"type":"paragraph"},{"header":"row","type":"table","rows":[[[{"inlineContent":[{"type":"text","text":"Version 1"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"HTTP method"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Version 2"}],"type":"paragraph"}],[{"inlineContent":[{"text":"HTTP method","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"editVPPUserSrv"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"code":"users/update","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}]],[[{"inlineContent":[{"code":"getAssignments","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[{"type":"codeVoice","code":"assignments"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"GET"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"getVPPAssetsSrv"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"code":"assets","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"GET"}],"type":"paragraph"}]],[[{"inlineContent":[{"code":"getVPPLicensesSrv","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[],"type":"paragraph"}],[{"inlineContent":[],"type":"paragraph"}]],[[{"inlineContent":[{"code":"getVPPUsersSrv","type":"codeVoice"},{"type":"text","text":" "},{"type":"image","identifier":"spacer"},{"type":"text","text":" "},{"code":"getVPPUserSrv","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[{"code":"users","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"GET"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"manageVPPLicensesByAdamIdSrv"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"code":"assets/associate","type":"codeVoice"},{"text":" ","type":"text"},{"identifier":"spacer","type":"image"},{"text":" ","type":"text"},{"code":"assets/disassociate","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"registerVPPUserSrv"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[{"type":"codeVoice","code":"users/create"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"retireVPPUserSrv"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"codeVoice","code":"users/retire"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"codeVoice","code":"VPPClientConfigSrv"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[{"code":"client/config","type":"codeVoice"},{"type":"text","text":" "},{"type":"image","identifier":"spacer"},{"text":" ","type":"text"},{"code":"client/config","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"text":"POST ","type":"text"},{"identifier":"spacer","type":"image"},{"type":"text","text":" GET"}],"type":"paragraph"}]],[[{"inlineContent":[{"code":"VPPServiceConfigSrv","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}],[{"inlineContent":[{"type":"codeVoice","code":"service/config"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"GET"}],"type":"paragraph"}]],[[{"inlineContent":[],"type":"paragraph"}],[{"inlineContent":[],"type":"paragraph"}],[{"inlineContent":[{"code":"status","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"text":"GET","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[],"type":"paragraph"}],[{"inlineContent":[],"type":"paragraph"}],[{"inlineContent":[{"code":"assets/revoke","type":"codeVoice"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"POST"}],"type":"paragraph"}]]]},{"text":"Track assignments","type":"heading","level":3,"anchor":"Track-assignments"},{"inlineContent":[{"type":"text","text":"Assignment tracking in version 2 is very similar to that in version 1; however, version 2 no longer supports the use of license IDs. To simplify the management process, version 2 deprecates the "},{"type":"codeVoice","code":"getVPPLicensesSrv"},{"type":"text","text":" endpoint. This means that MDMs can no longer use Apple-assigned IDs to identify their license assignments."}],"type":"paragraph"},{"inlineContent":[{"text":"To properly identify an assignment through ","type":"text"},{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e","isActive":true},{"type":"text","text":", version 2 uses the combination of "},{"code":"adamId","type":"codeVoice"},{"type":"text","text":" and "},{"type":"codeVoice","code":"clientUserId"},{"type":"text","text":" for user-based assignments, or "},{"code":"adamId","type":"codeVoice"},{"text":" and ","type":"text"},{"code":"serialNumber","type":"codeVoice"},{"type":"text","text":" for device-based assignments. An MDM can also use the "},{"code":"adamId","type":"codeVoice"},{"type":"text","text":" alone to retrieve all assignments for that "},{"type":"codeVoice","code":"adamId"},{"text":".","type":"text"}],"type":"paragraph"},{"text":"Use pagination","type":"heading","level":3,"anchor":"Use-pagination"},{"inlineContent":[{"type":"text","text":"In version 1, results batch through a "},{"type":"codeVoice","code":"batchToken"},{"type":"text","text":" if the total number of records exceeds the limit results. With batches, the initial request occurs with no "},{"code":"batchToken","type":"codeVoice"},{"type":"text","text":". The response includes "},{"code":"batchToken","type":"codeVoice"},{"text":" with the first batch of records if the number of records exceeds a server-controlled limit. To get the next batch of records, the MDM needs to include the batch token in the subsequent requests. ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints"},{"text":" is version 2’s solution to work with larger result sets more efficiently.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"In the new API, when the number of records in a response exceeds a server-controlled limit, the server paginates the response. Endpoints that support pagination, such as "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1"},{"type":"text","text":" and "},{"isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln","type":"reference"},{"type":"text","text":", can accept a page index query parameter. Using the page index, you can access a response page directly; you don’t need to access pages sequentially. Additionally, to reduce the time it takes to retrieve the full set, an MDM can make paginated requests in parallel."}],"type":"paragraph"},{"text":"Batch requests","type":"heading","level":3,"anchor":"Batch-requests"},{"inlineContent":[{"type":"text","text":"In version 1, all asset management calls occur synchronously. It’s the MDM’s responsibility to batch large requests and send them in parallel to Apple. This results in sending many small simultaneous requests to Apple, which sometimes leads to resource contention and failed requests. With version 2, MDMs can send a single, much larger request and rely on Apple to batch the request and process it asynchronously, enforcing parallelism on the server. This results in processing optimization, which fulfills large requests more quickly and more reliably."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"To take advantage of batching, MDMs can discontinue the use of small, parallel management requests and, instead, group similar "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets"},{"type":"text","text":" and "},{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets","isActive":true},{"type":"text","text":" tasks into a single, larger request. An MDM can perform thousands of assignments or unassignments in a single request. The "},{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config","isActive":true},{"text":" response specifies the maximum number of ","type":"text"},{"code":"adamIds","type":"codeVoice"},{"text":", ","type":"text"},{"code":"clientUserIds,","type":"codeVoice"},{"text":" and ","type":"text"},{"type":"codeVoice","code":"serialNumbers"},{"text":" the version 2 management requests accept.","type":"text"}],"type":"paragraph"},{"text":"Subscribe to notifications","type":"heading","level":3,"anchor":"Subscribe-to-notifications"},{"inlineContent":[{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications","isActive":true},{"type":"text","text":" in version 2 provides a huge improvement to the tracking of the latest events for MDMs. MDMs no longer require fetching on assignment endpoints to confirm the results of management requests. MDMs can configure a notification host and send notifications to the MDMs upon the completion of asset and user-management requests."}],"type":"paragraph"},{"inlineContent":[{"text":"In addition to receiving notifications for MDM-initiated events, an MDM may also receive a notification for user-initiated events, such as asset purchases and transfers.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"For information about subscribing to different notification types, see "},{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest","isActive":true},{"type":"text","text":"."}],"type":"paragraph"},{"text":"Set MDM information","type":"heading","level":3,"anchor":"Set-MDM-information"},{"inlineContent":[{"type":"text","text":"In version 2, when creating a "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest"},{"type":"text","text":", the MDM can include "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo"},{"type":"text","text":" in the request. The server returns this information on all subsequent responses to identify which MDM is managing the location. It’s important to interrogate the "},{"type":"codeVoice","code":"MdmInfo"},{"type":"text","text":" content API responses to ensure no other MDM is attempting to manage the data in this location."}],"type":"paragraph"},{"inlineContent":[{"text":"Within ","type":"text"},{"code":"MdmInfo","type":"codeVoice"},{"text":", the MDMs have the opportunity to include ","type":"text"},{"code":"metadata","type":"codeVoice"},{"text":", a free-form field to store additional information for the organization. Note: In version 2, ","type":"text"},{"type":"codeVoice","code":"metadata"},{"type":"text","text":" replaces "},{"type":"codeVoice","code":"clientContext"},{"type":"text","text":" from version 1. It’s advisable to include informative plain text descriptors, particularly in the "},{"code":"name","type":"codeVoice"},{"type":"text","text":" field, to help identify the MDM in the case of any discrepancies. Once an MDM uses version 2, the "},{"code":"clientContext","type":"codeVoice"},{"type":"text","text":" in version 1 for that location is automatically updated to display ‘token being used in v2’."}],"type":"paragraph"},{"text":"Perform occasional syncs","type":"heading","level":3,"anchor":"Perform-occasional-syncs"},{"inlineContent":[{"type":"text","text":"Notifications remove the necessity for MDMs to continually sync with Apple for asset and user counts, which occurs frequently in version 1. However, it’s a best practice for MDMs to occasionally sync their data using "},{"isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1","type":"reference"},{"type":"text","text":", "},{"type":"reference","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln","isActive":true},{"type":"text","text":", or "},{"isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e","type":"reference"},{"text":" to avoid missing notifications, especially when an MDM doesn’t initiate a request.","type":"text"}],"type":"paragraph"},{"text":"Sanitize MDM information","type":"heading","level":3,"anchor":"Sanitize-MDM-information"},{"inlineContent":[{"type":"text","text":"To maintain MDM hygiene, update the "},{"type":"codeVoice","code":"mdmInfo"},{"text":" field using the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1","type":"reference"},{"text":" endpoint to reflect any changes. Prior to releasing a location, remove any assets assigned to a location through transferring. If an MDM is failing to receive notifications, it’s preferable to sanitize the ","type":"text"},{"type":"codeVoice","code":"notificationUrl"},{"type":"text","text":" field and reset it to a reachable url."}],"type":"paragraph"}]}],"metadata":{"roleHeading":"Article","role":"article","modules":[{"name":"Device Management"}],"title":"Upgrading to the new App and Book Management API"},"abstract":[{"text":"Manage devices and content across your organization using the new API version.","type":"text"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"paths":["/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"],"traits":[{"interfaceLanguage":"data"}]}],"kind":"article","identifier":{"url":"doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api","interfaceLanguage":"data"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.devicemanagement/documentation/DeviceManagement","doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management"]]},"references":{"doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo":{"kind":"symbol","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo","title":"MdmInfo","role":"symbol","type":"topic","abstract":[{"type":"text","text":"Information about the MDM client."}],"navigatorTitle":[{"kind":"identifier","text":"MdmInfo"}],"url":"/documentation/devicemanagement/mdminfo","fragments":[{"kind":"text","text":"object "},{"kind":"identifier","text":"MdmInfo"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints":{"role":"article","title":"Using Paginated Endpoints","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints","url":"/documentation/devicemanagement/using-paginated-endpoints","kind":"article","type":"topic","abstract":[{"text":"Manage paginated endpoints to efficiently work with large record sets.","type":"text"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1":{"url":"/documentation/devicemanagement/client-config-4szk1","abstract":[{"type":"text","text":"Store client-specific information on the server."}],"kind":"symbol","role":"symbol","navigatorTitle":[{"text":"Client Config","kind":"identifier"}],"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1","type":"topic","title":"Client Config"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e":{"kind":"symbol","abstract":[{"type":"text","text":"Get the set of current assignments for users or devices."}],"title":"Get Assignments","navigatorTitle":[{"text":"Get Assignments","kind":"identifier"}],"url":"/documentation/devicemanagement/get-assignments-9wv1e","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e","type":"topic","role":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets":{"kind":"symbol","abstract":[{"text":"Associate assets with client user IDs and serial numbers.","type":"text"}],"title":"Associate Assets","navigatorTitle":[{"text":"Associate Assets","kind":"identifier"}],"url":"/documentation/devicemanagement/associate-assets","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets","type":"topic","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","url":"/documentation/technologies","title":"Technologies","abstract":[{"type":"text","text":""}],"kind":"technologies","identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications":{"role":"article","url":"/documentation/devicemanagement/subscribing-to-notifications","kind":"article","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications","type":"topic","abstract":[{"type":"text","text":"Listen to notifications to keep track of the latest events for an organization."}],"title":"Subscribing to Notifications"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses":{"role":"article","url":"/documentation/devicemanagement/handling-error-responses","kind":"article","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses","type":"topic","abstract":[{"type":"text","text":"Investigate service request errors and troubleshoot solutions."}],"title":"Handling Error Responses"},"spacer":{"alt":null,"identifier":"spacer","type":"image","variants":[{"url":"https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png","traits":["1x","light"]}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets":{"type":"topic","url":"/documentation/devicemanagement/managing-assets","kind":"article","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets","title":"Managing Assets","role":"article","abstract":[{"text":"Retrieve key information to effectively manage assets across an organization’s users and devices.","type":"text"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets":{"role":"symbol","title":"Disassociate Assets","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets","type":"topic","abstract":[{"text":"Disassociate assets from client user IDs and serial numbers.","type":"text"}],"kind":"symbol","url":"/documentation/devicemanagement/disassociate-assets","navigatorTitle":[{"text":"Disassociate Assets","kind":"identifier"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest":{"title":"ClientConfigRequest","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest","role":"symbol","fragments":[{"text":"object ","kind":"text"},{"text":"ClientConfigRequest","kind":"identifier"}],"navigatorTitle":[{"text":"ClientConfigRequest","kind":"identifier"}],"type":"topic","abstract":[{"text":"The request for the client configuration.","type":"text"}],"url":"/documentation/devicemanagement/clientconfigrequest","kind":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users":{"type":"topic","url":"/documentation/devicemanagement/managing-users","kind":"article","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users","title":"Managing Users","role":"article","abstract":[{"text":"Retrieve key information to effectively manage users across an organization.","type":"text"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config":{"role":"symbol","type":"topic","kind":"symbol","url":"/documentation/devicemanagement/service-config","abstract":[{"text":"Provides the full list of web service URLs, notification types, request limits, and possible error codes.","type":"text"}],"title":"Service Config","navigatorTitle":[{"text":"Service Config","kind":"identifier"}],"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln":{"role":"symbol","url":"/documentation/devicemanagement/get-users-4mwln","kind":"symbol","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Get Users"}],"abstract":[{"type":"text","text":"Get information about a set of users."}],"title":"Get Users"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management":{"url":"/documentation/devicemanagement/app-and-book-management","abstract":[{"text":"Manage apps and books for your students and employees.","type":"text"}],"kind":"article","role":"collectionGroup","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management","type":"topic","title":"App and Book Management"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services":{"url":"/documentation/devicemanagement/managing-apps-and-books-through-web-services","abstract":[{"type":"text","text":"Associate app and book purchases with users or devices."}],"kind":"article","role":"article","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services","type":"topic","title":"Managing Apps and Books Through Web Services"},"https://developer.apple.com/videos/play/wwdc2021/10137":{"url":"https://developer.apple.com/videos/play/wwdc2021/10137","titleInlineContent":[{"type":"text","text":"Improve MDM assignment of Apps and Books"}],"identifier":"https://developer.apple.com/videos/play/wwdc2021/10137","title":"Improve MDM assignment of Apps and Books","type":"link"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1":{"type":"topic","url":"/documentation/devicemanagement/get-assets-4ski1","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"Get Assets"}],"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1","title":"Get Assets","role":"symbol","abstract":[{"text":"Get the set of assets that your organization manages.","type":"text"}]},"doc://com.apple.devicemanagement/documentation/DeviceManagement":{"role":"collection","title":"Device Management","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"Manage your organization’s devices remotely."}],"url":"/documentation/devicemanagement","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations":{"url":"/documentation/devicemanagement/apps-and-books-for-organizations","kind":"article","role":"collectionGroup","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations","title":"Apps and Books for Organizations","type":"topic","abstract":[{"type":"text","text":"Get details about apps and books to show to your users."}]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Manage devices and content across your organization using the new API version.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Upgrading to the new App and Book Management API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New features and improved asynchronous processing in App and Book Management API 2 enable MDMs to manage apps and books in a faster and more scalable way than ever before. To take advantage of these new features, MDMs need to change the way in which they manage apps and books.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an overview of what’s new in version 2, watch the WWDC21 presentation ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10137",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-endpoint-changes",
+          "level": 3,
+          "text": "Understand endpoint changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the differences between the API 1 and API 2 endpoints. For more information about specific API protocols and usage, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Version 1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HTTP method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Version 2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HTTP method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "editVPPUserSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "users/update",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "getAssignments",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "assignments",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "getVPPAssetsSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "assets",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "getVPPLicensesSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "getVPPUsersSrv",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "getVPPUserSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "users",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "manageVPPLicensesByAdamIdSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "assets/associate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "assets/disassociate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "registerVPPUserSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "users/create",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "retireVPPUserSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "users/retire",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VPPClientConfigSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "client/config",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client/config",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VPPServiceConfigSrv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "service/config",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GET",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "assets/revoke",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "POST",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Track-assignments",
+          "level": 3,
+          "text": "Track assignments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assignment tracking in version 2 is very similar to that in version 1; however, version 2 no longer supports the use of license IDs. To simplify the management process, version 2 deprecates the ",
+              "type": "text"
+            },
+            {
+              "code": "getVPPLicensesSrv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. This means that MDMs can no longer use Apple-assigned IDs to identify their license assignments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To properly identify an assignment through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", version 2 uses the combination of ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "clientUserId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for user-based assignments, or ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "serialNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for device-based assignments. An MDM can also use the ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " alone to retrieve all assignments for that ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-pagination",
+          "level": 3,
+          "text": "Use pagination",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In version 1, results batch through a ",
+              "type": "text"
+            },
+            {
+              "code": "batchToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the total number of records exceeds the limit results. With batches, the initial request occurs with no ",
+              "type": "text"
+            },
+            {
+              "code": "batchToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The response includes ",
+              "type": "text"
+            },
+            {
+              "code": "batchToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the first batch of records if the number of records exceeds a server-controlled limit. To get the next batch of records, the MDM needs to include the batch token in the subsequent requests. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is version 2’s solution to work with larger result sets more efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the new API, when the number of records in a response exceeds a server-controlled limit, the server paginates the response. Endpoints that support pagination, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", can accept a page index query parameter. Using the page index, you can access a response page directly; you don’t need to access pages sequentially. Additionally, to reduce the time it takes to retrieve the full set, an MDM can make paginated requests in parallel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Batch-requests",
+          "level": 3,
+          "text": "Batch requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In version 1, all asset management calls occur synchronously. It’s the MDM’s responsibility to batch large requests and send them in parallel to Apple. This results in sending many small simultaneous requests to Apple, which sometimes leads to resource contention and failed requests. With version 2, MDMs can send a single, much larger request and rely on Apple to batch the request and process it asynchronously, enforcing parallelism on the server. This results in processing optimization, which fulfills large requests more quickly and more reliably.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To take advantage of batching, MDMs can discontinue the use of small, parallel management requests and, instead, group similar ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks into a single, larger request. An MDM can perform thousands of assignments or unassignments in a single request. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " response specifies the maximum number of ",
+              "type": "text"
+            },
+            {
+              "code": "adamIds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "clientUserIds,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "serialNumbers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the version 2 management requests accept.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subscribe-to-notifications",
+          "level": 3,
+          "text": "Subscribe to notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in version 2 provides a huge improvement to the tracking of the latest events for MDMs. MDMs no longer require fetching on assignment endpoints to confirm the results of management requests. MDMs can configure a notification host and send notifications to the MDMs upon the completion of asset and user-management requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to receiving notifications for MDM-initiated events, an MDM may also receive a notification for user-initiated events, such as asset purchases and transfers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about subscribing to different notification types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-MDM-information",
+          "level": 3,
+          "text": "Set MDM information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In version 2, when creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the MDM can include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the request. The server returns this information on all subsequent responses to identify which MDM is managing the location. It’s important to interrogate the ",
+              "type": "text"
+            },
+            {
+              "code": "MdmInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content API responses to ensure no other MDM is attempting to manage the data in this location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within ",
+              "type": "text"
+            },
+            {
+              "code": "MdmInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the MDMs have the opportunity to include ",
+              "type": "text"
+            },
+            {
+              "code": "metadata",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a free-form field to store additional information for the organization. Note: In version 2, ",
+              "type": "text"
+            },
+            {
+              "code": "metadata",
+              "type": "codeVoice"
+            },
+            {
+              "text": " replaces ",
+              "type": "text"
+            },
+            {
+              "code": "clientContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from version 1. It’s advisable to include informative plain text descriptors, particularly in the ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, to help identify the MDM in the case of any discrepancies. Once an MDM uses version 2, the ",
+              "type": "text"
+            },
+            {
+              "code": "clientContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in version 1 for that location is automatically updated to display ‘token being used in v2’.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-occasional-syncs",
+          "level": 3,
+          "text": "Perform occasional syncs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notifications remove the necessity for MDMs to continually sync with Apple for asset and user counts, which occurs frequently in version 1. However, it’s a best practice for MDMs to occasionally sync their data using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to avoid missing notifications, especially when an MDM doesn’t initiate a request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sanitize-MDM-information",
+          "level": 3,
+          "text": "Sanitize MDM information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain MDM hygiene, update the ",
+              "type": "text"
+            },
+            {
+              "code": "mdmInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to reflect any changes. Prior to releasing a location, remove any assets assigned to a location through transferring. If an MDM is failing to receive notifications, it’s preferable to sanitize the ",
+              "type": "text"
+            },
+            {
+              "code": "notificationUrl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field and reset it to a reachable url.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets": {
+      "abstract": [
+        {
+          "text": "Associate assets with client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Associate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Associate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/associate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Config"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Config",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-config-4szk1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest": {
+      "abstract": [
+        {
+          "text": "The request for the client configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClientConfigRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clientconfigrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets": {
+      "abstract": [
+        {
+          "text": "Disassociate assets from client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disassociate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disassociate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disassociate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1": {
+      "abstract": [
+        {
+          "text": "Get the set of assets that your organization manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-4ski1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e": {
+      "abstract": [
+        {
+          "text": "Get the set of current assignments for users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-9wv1e"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln": {
+      "abstract": [
+        {
+          "text": "Get information about a set of users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-users-4mwln"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo": {
+      "abstract": [
+        {
+          "text": "Information about the MDM client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MdmInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MdmInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "MdmInfo",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/mdminfo"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config": {
+      "abstract": [
+        {
+          "text": "Provides the full list of web service URLs, notification types, request limits, and possible error codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Config",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Service Config"
+        }
+      ],
+      "role": "symbol",
+      "title": "Service Config",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/service-config"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations": {
+      "abstract": [
+        {
+          "text": "Get details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apps and Books for Organizations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apps-and-books-for-organizations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Error Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-error-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services": {
+      "abstract": [
+        {
+          "text": "Associate app and book purchases with users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage assets across an organization’s users and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage users across an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications": {
+      "abstract": [
+        {
+          "text": "Listen to notifications to keep track of the latest events for an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Subscribing to Notifications",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/subscribing-to-notifications"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints": {
+      "abstract": [
+        {
+          "text": "Manage paginated endpoints to efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Paginated Endpoints",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/using-paginated-endpoints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10137": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10137",
+      "title": "Improve MDM assignment of Apps and Books",
+      "titleInlineContent": [
+        {
+          "text": "Improve MDM assignment of Apps and Books",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10137"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

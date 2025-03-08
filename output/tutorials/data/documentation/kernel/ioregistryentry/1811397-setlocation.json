@@ -1,0 +1,1182 @@
+{
+  "abstract": [
+    {
+      "text": "Sets a location string for the registry entry, in a particular plane, or globally.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811397-setlocation"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811397,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IORegistryEntry"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "setLocation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual void setLocation("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " const OSSymbol *location, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " const IORegistryPlane *plane = 0 ); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A C-string location string which will be copied, or an OSSymbol which will be retained.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "location"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The plane object, or zero to set the global location string.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "plane"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Entries can be given a location string in a particular plane, or globally. If the plane is specified the location applies only to that plane, otherwise the global location is set. The location string may be used during path lookups of registry entries, to distinguish between sibling entries with the same name. The default IORegistryEntry parsing of location strings expects a list of hex numbers separated by commas, though subclasses of IORegistryEntry might do their own parsing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810177-attachtochild": {
+      "abstract": [
+        {
+          "text": "Method called in the parent entry when a child attaches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810177-attachtochild",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attachToChild",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810177-attachtochild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810196-attachtoparent": {
+      "abstract": [
+        {
+          "text": "Attaches a entry to a parent entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810196-attachtoparent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attachToParent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810196-attachtoparent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810215-childfrompath": {
+      "abstract": [
+        {
+          "text": "Looks up a registry entry by relative path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810215-childfrompath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "childFromPath",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810215-childfrompath"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810236-comparename": {
+      "abstract": [
+        {
+          "text": "Compares the name of the entry with one name, and optionally returns the matching name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810236-comparename",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "compareName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810236-comparename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810259-comparenames": {
+      "abstract": [
+        {
+          "text": "Compares the name of the entry with one or more names, and optionally returns the matching name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810259-comparenames",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "compareNames",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810259-comparenames"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810279-copychildentry": {
+      "abstract": [
+        {
+          "text": "Returns an registry entry's first child entry in a plane. Available in macOS 10.1 or later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810279-copychildentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyChildEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810279-copychildentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810296-copylocation": {
+      "abstract": [
+        {
+          "text": "Returns the location string assigned to the registry entry as an OSSymbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810296-copylocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810296-copylocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810315-copyname": {
+      "abstract": [
+        {
+          "text": "Returns the name assigned to the registry entry as an OSSymbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810315-copyname",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810315-copyname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810335-copyparententry": {
+      "abstract": [
+        {
+          "text": "Returns an registry entry's first parent entry in a plane. Available in macOS 10.1 or later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810335-copyparententry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyParentEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810335-copyparententry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810352-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810352-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810352-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810371-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy. Available in macOS 10.1 or later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810371-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const char *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810371-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810386-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810386-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810386-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810403-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy. Available in macOS 10.1 or later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810403-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const OSString *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810403-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810428-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810428-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810428-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810451-copyproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy. Available in macOS 10.1 or later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810451-copyproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyProperty(const OSSymbol *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810451-copyproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810478-dealiaspath": {
+      "abstract": [
+        {
+          "text": "Strips any aliases from the head of path and returns the full path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810478-dealiaspath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "dealiasPath",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810478-dealiaspath"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810509-detachabove": {
+      "abstract": [
+        {
+          "text": "Detaches an entry from all its parent entries in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810509-detachabove",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachAbove",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810509-detachabove"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810550-detachall": {
+      "abstract": [
+        {
+          "text": "Detaches an entry and all its children recursively in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810550-detachall",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachAll",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810550-detachall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810594-detachfromchild": {
+      "abstract": [
+        {
+          "text": "Detaches a child entry from its parent in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810594-detachfromchild",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachFromChild",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810594-detachfromchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810632-detachfromparent": {
+      "abstract": [
+        {
+          "text": "Detaches an entry from a parent entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810632-detachfromparent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachFromParent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810632-detachfromparent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810672-dictionarywithproperties": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain copy a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810672-dictionarywithproperties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "dictionaryWithProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810672-dictionarywithproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810704-free": {
+      "abstract": [
+        {
+          "text": "Standard free method for all IORegistryEntry subclasses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810704-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810704-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810742-frompath": {
+      "abstract": [
+        {
+          "text": "Looks up a registry entry by relative path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810742-frompath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "fromPath(const char *, const IORegistryPlane *, char *, int *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810742-frompath"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810796-frompath": {
+      "abstract": [
+        {
+          "text": "Looks up a registry entry by path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810796-frompath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "fromPath(const char *, const IORegistryPlane *, char *, int *, IORegistryEntry *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810796-frompath"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810842-getchildentry": {
+      "abstract": [
+        {
+          "text": "Returns an registry entry's first child entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810842-getchildentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getChildEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810842-getchildentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810873-getchilditerator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over an registry entry's child entries in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810873-getchilditerator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getChildIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810873-getchilditerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810910-getdepth": {
+      "abstract": [
+        {
+          "text": "Counts the maximum number of entries between an entry and the registry root, in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810910-getdepth",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDepth",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810910-getdepth"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810941-getgenerationcount": {
+      "abstract": [
+        {
+          "text": "Returns an generation count for all registry changing operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810941-getgenerationcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getGenerationCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810941-getgenerationcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810970-getlocation": {
+      "abstract": [
+        {
+          "text": "Returns the location string assigned to the registry entry as a C-string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810970-getlocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810970-getlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810990-getname": {
+      "abstract": [
+        {
+          "text": "Returns the name assigned to the registry entry as a C-string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810990-getname",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1810990-getname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811012-getparententry": {
+      "abstract": [
+        {
+          "text": "Returns an registry entry's first parent entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811012-getparententry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getParentEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811012-getparententry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811037-getparentiterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over an registry entry's parent entries in a specified plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811037-getparentiterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getParentIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811037-getparentiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811074-getpath": {
+      "abstract": [
+        {
+          "text": "Create a path for a registry entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811074-getpath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPath",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811074-getpath"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811114-getpathcomponent": {
+      "abstract": [
+        {
+          "text": "Create a path component for a registry entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811114-getpathcomponent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPathComponent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811114-getpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811147-getplane": {
+      "abstract": [
+        {
+          "text": "Looks up the plane object by a C-string name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811147-getplane",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPlane",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811147-getplane"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811182-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811182-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811182-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811215-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811215-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const char *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811215-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811230-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811230-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811230-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811244-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811244-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const OSString *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811244-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811254-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811254-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811254-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811263-getproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to obtain a property from a registry entry or one of its parents (or children) in the hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811263-getproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProperty(const OSSymbol *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811263-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811272-getpropertytable": {
+      "abstract": [
+        {
+          "text": "Unsynchronized accessor to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811272-getpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811272-getpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811281-getregistryentryid": {
+      "abstract": [
+        {
+          "text": "Returns an ID for the registry entry that is global to all tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811281-getregistryentryid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRegistryEntryID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811281-getregistryentryid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811288-getregistryroot": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the root instance of the registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811288-getregistryroot",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRegistryRoot",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811288-getregistryroot"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811299-init": {
+      "abstract": [
+        {
+          "text": "Standard init method for all IORegistryEntry subclasses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811299-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811299-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811307-inplane": {
+      "abstract": [
+        {
+          "text": "Determines whether a registry entry is attached in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811307-inplane",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inPlane",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811307-inplane"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811317-ischild": {
+      "abstract": [
+        {
+          "text": "Determines whether a registry entry is the child of another in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811317-ischild",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isChild",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811317-ischild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811327-isparent": {
+      "abstract": [
+        {
+          "text": "Determines whether a registry entry is the parent of another in a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811327-isparent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isParent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811327-isparent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811335-makeplane": {
+      "abstract": [
+        {
+          "text": "Constructs an IORegistryPlane object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811335-makeplane",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "makePlane",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811335-makeplane"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811343-removeproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to remove a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811343-removeproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811343-removeproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811354-removeproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to remove a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811354-removeproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeProperty(const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811354-removeproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811362-removeproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to remove a property from a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811362-removeproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeProperty(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811362-removeproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811370-runpropertyaction": {
+      "abstract": [
+        {
+          "text": "Single thread a call to an action w.r.t. the property lock",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811370-runpropertyaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "runPropertyAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811370-runpropertyaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811384-serializeproperties": {
+      "abstract": [
+        {
+          "text": "Synchronized method to serialize a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811384-serializeproperties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serializeProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811384-serializeproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811397-setlocation": {
+      "abstract": [
+        {
+          "text": "Sets a location string for the registry entry, in a particular plane, or globally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811397-setlocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811397-setlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811407-setname": {
+      "abstract": [
+        {
+          "text": "Sets a name for the registry entry, in a particular plane, or globally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811407-setname",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setName(const char *, const IORegistryPlane *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811407-setname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811420-setname": {
+      "abstract": [
+        {
+          "text": "Sets a name for the registry entry, in a particular plane, or globally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811420-setname",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setName(const OSSymbol *, const IORegistryPlane *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811420-setname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811430-setproperties": {
+      "abstract": [
+        {
+          "text": "Optionally supported external method to set properties in a registry entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811430-setproperties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811430-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811442-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to construct and add an OSData property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811442-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811442-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811451-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to construct and add an OSBoolean property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811451-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const char *, bool)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811451-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811461-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to construct and add a OSString property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811461-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const char *, const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811461-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811476-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to add a property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811476-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const char *, OSObject *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811476-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811491-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to construct and add an OSNumber property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811491-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const char *, unsigned long long, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811491-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811507-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to add a property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811507-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const OSString *, OSObject *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811507-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811520-setproperty": {
+      "abstract": [
+        {
+          "text": "Synchronized method to add a property to a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811520-setproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperty(const OSSymbol *, OSObject *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811520-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811536-setpropertytable": {
+      "abstract": [
+        {
+          "text": "Replace a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811536-setpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry/1811536-setpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810177-attachtochild",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810196-attachtoparent",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810215-childfrompath",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810236-comparename",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810259-comparenames",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810279-copychildentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810296-copylocation",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810315-copyname",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810335-copyparententry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810352-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810371-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810386-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810403-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810428-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810451-copyproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810478-dealiaspath",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810509-detachabove",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810550-detachall",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810594-detachfromchild",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810632-detachfromparent",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810672-dictionarywithproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810704-free",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810742-frompath",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810796-frompath",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810842-getchildentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810873-getchilditerator",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810910-getdepth",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810941-getgenerationcount",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810970-getlocation",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1810990-getname",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811012-getparententry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811037-getparentiterator",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811074-getpath",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811114-getpathcomponent",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811147-getplane",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811182-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811215-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811230-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811244-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811254-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811263-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811272-getpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811281-getregistryentryid",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811288-getregistryroot",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811299-init",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811307-inplane",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811317-ischild",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811327-isparent",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811335-makeplane",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811343-removeproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811354-removeproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811362-removeproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811370-runpropertyaction",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811384-serializeproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811407-setname",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811420-setname",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811430-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811442-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811451-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811461-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811476-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811491-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811507-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811520-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry/1811536-setpropertytable"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioregistryentry/1811397-setlocation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies a local identifier to use within the FCPXML document.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/id"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "id"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each resource has an ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute that specifies a local identifier to use within the FCPXML document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the code example below identifies an asset resource with a local identifier of ",
+              "type": "text"
+            },
+            {
+              "code": "r1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<asset id=\"r1\" name=\"MyMovieFile\">",
+            "   ",
+            "   <media-rep kind=\"original-media\" src=\"file:///path/to/MyMovieFile.mov\" /> ",
+            "",
+            "</asset>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A video or audio element that uses the asset can refer to it by its local identifier in other places in the same FCPXML document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<video ref=\"r1\" ... >"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Third-party tools may use any string for a local identifier as long as the string begins with a letter and no two resources in the same FCPXML document share the same local identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most resources, Final Cut Pro also assigns a long unique identifier that it writes when exporting the FCPXML document. Final Cut Pro specifies this unique identifier as a value od the ",
+              "type": "text"
+            },
+            {
+              "code": "uid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute in the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Except for assets, Final Cut Pro manages unique identifiers, which third-party tools must not generate or alter. For information on asset unique identifier, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Asset-Element-Attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro has both a local identifier and a unique identifier to distinguish between resources that already exist and resources Final Cut Pro imports for the first time. Exported FCPXML documents that refer to existing resources have unique identifiers assigned by Final Cut Pro, whereas imported FCPXML documents that contain new resources only have local identifiers. A local identifier provides an identity for a new resource in an FCPXML document before Final Cut Pro assigns it a permanent unique identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset": {
+      "abstract": [
+        {
+          "text": "Define file-based media managed in a Final Cut Pro library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "asset",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/asset"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Asset-Element-Attributes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Asset-Element-Attributes",
+      "kind": "section",
+      "title": "Asset Element Attributes",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/asset#Asset-Element-Attributes"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect": {
+      "abstract": [
+        {
+          "text": "Reference visual, audio, or custom effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "effect",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/effect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format": {
+      "abstract": [
+        {
+          "text": "Reference a video-format definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/format"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name": {
+      "abstract": [
+        {
+          "text": "Specifies the name of the resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name",
+      "kind": "article",
+      "role": "article",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/name"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resource-Element-Attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name"
+      ],
+      "title": "Resource Element Attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resource-Element-Attributes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name"
+              ],
+              "title": "Resource Element Attributes"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

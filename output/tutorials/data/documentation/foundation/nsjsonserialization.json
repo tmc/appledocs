@@ -1,0 +1,694 @@
+{
+  "abstract": [
+    {
+      "text": "An object that converts between JSON and the equivalent Foundation objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410883,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSJSONSerialization",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSJSONSerialization"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSJSONSerialization"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class to convert JSON to Foundation objects and convert Foundation objects to JSON.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert a Foundation object to JSON, the object must have the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The top level object is an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", unless you set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions/nsjsonwritingfragmentsallowed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All objects are instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All dictionary keys are instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Numbers are neither ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NaN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nor infinity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other rules may apply. Calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418461-isvalidjsonobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or attempting a conversion are the definitive ways to tell if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class can convert given object to JSON data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On iOS 7 and later and macOS 10.9 and later, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " is thread safe.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types": {
+      "abstract": [
+        {
+          "text": "Encode and decode JSON data, regardless of its structure, using Swift’s JSON support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using JSON with Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/using_json_with_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonreadingoptions": {
+      "abstract": [
+        {
+          "text": "Options used when creating Foundation objects from JSON data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonreadingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSJSONReadingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonreadingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization": {
+      "abstract": [
+        {
+          "text": "An object that converts between JSON and the equivalent Foundation objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSJSONSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1413636-datawithjsonobject": {
+      "abstract": [
+        {
+          "text": "Returns JSON data from a Foundation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataWithJSONObject:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1413636-datawithjsonobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataWithJSONObject:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization/1413636-datawithjsonobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1415493-jsonobjectwithdata": {
+      "abstract": [
+        {
+          "text": "Returns a Foundation object from given JSON data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONObjectWithData:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1415493-jsonobjectwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONObjectWithData:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization/1415493-jsonobjectwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1417433-writejsonobject": {
+      "abstract": [
+        {
+          "text": "Writes a given JSON object to a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeJSONObject:toStream:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1417433-writejsonobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeJSONObject:toStream:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization/1417433-writejsonobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418059-jsonobjectwithstream": {
+      "abstract": [
+        {
+          "text": "Returns a Foundation object from JSON data in a given stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONObjectWithStream:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418059-jsonobjectwithstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONObjectWithStream:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization/1418059-jsonobjectwithstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418461-isvalidjsonobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the serializer can convert a given object to JSON data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidJSONObject:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418461-isvalidjsonobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidJSONObject:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonserialization/1418461-isvalidjsonobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions": {
+      "abstract": [
+        {
+          "text": "Options for writing JSON data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSJSONWritingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonwritingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions/nsjsonwritingfragmentsallowed": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions/nsjsonwritingfragmentsallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSJSONWritingFragmentsAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/nsjsonwritingoptions/nsjsonwritingfragmentsallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnull": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNull",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnull"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types"
+      ],
+      "title": "JSON"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661309",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1415493-jsonobjectwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418059-jsonobjectwithstream",
+        "doc://com.apple.documentation/documentation/foundation/nsjsonreadingoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a JSON Object"
+    },
+    {
+      "anchor": "1661332",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1413636-datawithjsonobject",
+        "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1417433-writejsonobject",
+        "doc://com.apple.documentation/documentation/foundation/nsjsonwritingoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsjsonserialization/1418461-isvalidjsonobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating JSON Data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsjsonserialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/jsonserialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

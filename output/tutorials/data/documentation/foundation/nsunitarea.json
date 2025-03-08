@@ -1,0 +1,1378 @@
+{
+  "abstract": [
+    {
+      "text": "A unit of measure for area.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsunitarea"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1690643,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitArea",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUnitArea"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUnitArea"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDimension",
+              "text": "NSDimension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitArea",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent specific quantities of area using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1867958",
+          "level": 3,
+          "text": "Area",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Area is a quantity of extent in two dimensions. Area can be expressed by SI derived units in terms of square meters (m",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "2",
+                  "type": "text"
+                }
+              ],
+              "type": "superscript"
+            },
+            {
+              "text": "). Area is also commonly measured in square feet (ft",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "2",
+                  "type": "text"
+                }
+              ],
+              "type": "superscript"
+            },
+            {
+              "text": ") and acres (ac).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitArea",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines its base unit as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and provides the following units, which are initialized using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " converters with the specified coefficients:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2556945",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Megameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856008-squaremegameters",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mm²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1e12",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Kilometers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856053-squarekilometers",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "km²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000000.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "m²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Centimeter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856030-squarecentimeters",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "cm²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0.0001",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Millimeters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856039-squaremillimeters",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "mm²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0.000001",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Micrometers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856041-squaremicrometers",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "µm²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1e-12",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Nanometers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856072-squarenanometers",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "nm²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1e-18",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Inches",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856067-squareinches",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "in²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0.00064516",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Feet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856014-squarefeet",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ft²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0.092903",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Yards",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856070-squareyards",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yd²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0.836127",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square Miles",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856097-squaremiles",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "mi²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2.59e+6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acres",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856099-acres",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ac",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "4046.86",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ares",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856064-ares",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "a",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hectares",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856066-hectares",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ha",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdimension": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDimension",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdimension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmeasurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMeasurement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmeasurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitangle": {
+      "abstract": [
+        {
+          "text": "A unit of measure for planar angle and rotation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitangle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitAngle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitangle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea": {
+      "abstract": [
+        {
+          "text": "A unit of measure for area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitArea",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea#2556945": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea#2556945",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsunitarea#2556945"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters": {
+      "abstract": [
+        {
+          "text": "The square meters unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareMeters",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1855985-squaremeters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856008-squaremegameters": {
+      "abstract": [
+        {
+          "text": "The square megameters unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856008-squaremegameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareMegameters",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856008-squaremegameters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856014-squarefeet": {
+      "abstract": [
+        {
+          "text": "The square feet unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856014-squarefeet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareFeet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856014-squarefeet"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856030-squarecentimeters": {
+      "abstract": [
+        {
+          "text": "The square centimeters unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856030-squarecentimeters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareCentimeters",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856030-squarecentimeters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856039-squaremillimeters": {
+      "abstract": [
+        {
+          "text": "The square millimeters unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856039-squaremillimeters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareMillimeters",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856039-squaremillimeters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856041-squaremicrometers": {
+      "abstract": [
+        {
+          "text": "The square micrometers unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856041-squaremicrometers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareMicrometers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856041-squaremicrometers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856053-squarekilometers": {
+      "abstract": [
+        {
+          "text": "The square kilometers unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856053-squarekilometers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareKilometers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856053-squarekilometers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856064-ares": {
+      "abstract": [
+        {
+          "text": "The ares unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856064-ares",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ares",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856064-ares"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856066-hectares": {
+      "abstract": [
+        {
+          "text": "The hectares unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856066-hectares",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hectares",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856066-hectares"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856067-squareinches": {
+      "abstract": [
+        {
+          "text": "The square inches unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856067-squareinches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareInches",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856067-squareinches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856070-squareyards": {
+      "abstract": [
+        {
+          "text": "The square yards unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856070-squareyards",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareYards",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856070-squareyards"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856072-squarenanometers": {
+      "abstract": [
+        {
+          "text": "The square nanometers unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856072-squarenanometers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareNanometers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856072-squarenanometers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856097-squaremiles": {
+      "abstract": [
+        {
+          "text": "The square miles unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856097-squaremiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "squareMiles",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856097-squaremiles"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856099-acres": {
+      "abstract": [
+        {
+          "text": "The acres unit of area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856099-acres",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acres",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1856099-acres"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitarea/1888702-baseunit": {
+      "abstract": [
+        {
+          "text": "Returns the base unit of area. Equal to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitarea/1888702-baseunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "baseUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitarea/1888702-baseunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitConverterLinear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverterlinear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitlength": {
+      "abstract": [
+        {
+          "text": "A unit of measure for length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitLength",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitlength"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitvolume": {
+      "abstract": [
+        {
+          "text": "A unit of measure for volume.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitVolume",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitvolume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdimension"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitlength",
+        "doc://com.apple.documentation/documentation/foundation/nsunitvolume",
+        "doc://com.apple.documentation/documentation/foundation/nsunitangle"
+      ],
+      "title": "Physical Dimension"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1867959",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1888702-baseunit"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Base Unit"
+    },
+    {
+      "anchor": "1867960",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856008-squaremegameters",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856053-squarekilometers",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1855985-squaremeters",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856030-squarecentimeters",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856039-squaremillimeters",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856041-squaremicrometers",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856072-squarenanometers",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856067-squareinches",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856014-squarefeet",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856070-squareyards",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856097-squaremiles",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856099-acres",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856064-ares",
+        "doc://com.apple.documentation/documentation/foundation/nsunitarea/1856066-hectares"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitarea"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitarea"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

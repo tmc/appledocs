@@ -1,0 +1,338 @@
+{
+  "abstract": [
+    {
+      "text": "Adds the current thread to the specified workgroup. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/os/3649707-os_workgroup_join"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3649707,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_workgroup_join",
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_workgroup_join"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_workgroup_join"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_t",
+              "text": "os_workgroup_t"
+            },
+            {
+              "kind": "text",
+              "text": " wg, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_join_token_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_join_token_t",
+              "text": "os_workgroup_join_token_t"
+            },
+            {
+              "kind": "text",
+              "text": " token_out);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The workgroup to join. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "wg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An empty token structure. This function fills the provided structure with information about the workgroup relationship. Save this structure so you can remove the thread from the workgroup later.  ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "token_out"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, or a nonzero error code that indicates why the function failed. Common error codes include ",
+              "type": "text"
+            },
+            {
+              "code": "EINVAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "EALREADY",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, this method returns ",
+              "type": "text"
+            },
+            {
+              "code": "EALREADY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the thread already belongs to a workgroup. It returns ",
+              "type": "text"
+            },
+            {
+              "code": "EINVAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the workgroup is already canceled. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call this function, the current thread must not belong to any workgroup. This function adds the thread to the specified workgroup and updates the ",
+              "type": "text"
+            },
+            {
+              "code": "token_out",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. You may call this function safely from a real-time thread of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Save the ",
+                  "type": "text"
+                },
+                {
+                  "code": "token_out",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter so that you can remove the thread from the workgroup later. When removing a thread, the thread, workgroup, and token data must match the original values you specify for this function; if they don’t, the system aborts your process. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/os": {
+      "identifier": "doc://com.apple.documentation/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.documentation/documentation/os/os_workgroup_join_token_t": {
+      "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_join_token_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_join_token_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_join_token_t"
+    },
+    "doc://com.apple.documentation/documentation/os/os_workgroup_t": {
+      "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/os/3649707-os_workgroup_join"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

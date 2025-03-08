@@ -1,0 +1,311 @@
+{
+  "abstract": [
+    {
+      "text": "Manipulate audio components in compound clips based on each clip’s role.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-in-compound-clips"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Audio Components in Compound Clips"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you reference a compound clip in a timeline, you can manipulate its audio components based on the clip’s role. By default, Final Cut Pro merges components from the compound clip with the same main role into a single component. Override this behavior to see the individual subroles by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "ref-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element’s ",
+              "type": "text"
+            },
+            {
+              "code": "useAudioSubroles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the code listing below, the ",
+              "type": "text"
+            },
+            {
+              "code": "ref-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element references a compound clip, created from the clip from the first clode listing in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/compound-clip-media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page. Because the ",
+              "type": "text"
+            },
+            {
+              "code": "useAudioSubroles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is set to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", all subroles are accessible. The example applies ",
+              "type": "text"
+            },
+            {
+              "code": "Rumble Reducer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " effect on the two components with the ",
+              "type": "text"
+            },
+            {
+              "code": "dialogue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subroles. The volume on the component with the ",
+              "type": "text"
+            },
+            {
+              "code": "music.music-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subrole is turned down by ",
+              "type": "text"
+            },
+            {
+              "code": "6dB",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<ref-clip name=\"MyCompoundClip\" ref=\"r1\" duration=\"5s\" useAudioSubroles=\"1\">   <audio-role-source role=\"dialogue.dialogue-1\">",
+            "      <filter-audio ref=\"r6\" name=\"Rumble Reducer\" />",
+            "   </audio-role-source>",
+            "   <audio-role-source role=\"dialogue.dialogue-2\">",
+            "      <filter-audio ref=\"r6\" name=\"Rumble Reducer\" />",
+            "   </audio-role-source>",
+            "   <audio-role-source role=\"music.music-1\">",
+            "      <adjust-volume amount=\"-6dB\" />",
+            "   </audio-role-source>",
+            "</ref-clip>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/compound-clip-media": {
+      "abstract": [
+        {
+          "text": "Group combination of clips as a unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/compound-clip-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Compound Clip Media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/compound-clip-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compound-Clip-Media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/compound-clip-media"
+      ],
+      "title": "Compound Clip Media"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Compound-Clip-Media",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/compound-clip-media"
+              ],
+              "title": "Compound Clip Media"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/audio-components-in-compound-clips"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/audio-components-in-compound-clips"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

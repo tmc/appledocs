@@ -1,0 +1,982 @@
+{
+  "abstract": [
+    {
+      "text": "Discovers the descriptors of a characteristic.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverDescriptors(for:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CBPeripheral(im)discoverDescriptorsForCharacteristic:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "discoverDescriptors"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "for"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+        "text": "CBCharacteristic"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Bluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "discoverDescriptorsForCharacteristic:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "discoverDescriptors(for:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "characteristic"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+              "text": "CBCharacteristic"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The characteristic whose descriptors you want to discover.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "characteristic"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the peripheral discovers one or more descriptors of the specified characteristic, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverDescriptorsFor:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of its delegate object. After the peripheral discovers the descriptors of the characteristic, you can access them through the characteristic’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic/descriptors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/corebluetooth"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic": {
+      "abstract": [
+        {
+          "text": "A characteristic of a remote peripheral’s service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBCharacteristic"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBCharacteristic",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbcharacteristic"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic/descriptors": {
+      "abstract": [
+        {
+          "text": "A list of the descriptors discovered in this characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBDescriptor",
+          "text": "CBDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic/descriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "descriptors",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbcharacteristic/descriptors"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral": {
+      "abstract": [
+        {
+          "text": "A remote peripheral device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheral",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)": {
+      "abstract": [
+        {
+          "text": "Discovers the specified characteristics of a service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discoverCharacteristics"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBService",
+          "text": "CBService"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discoverCharacteristics:forService:"
+        }
+      ],
+      "role": "symbol",
+      "title": "discoverCharacteristics(_:for:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/discovercharacteristics(_:for:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverDescriptors(for:)": {
+      "abstract": [
+        {
+          "text": "Discovers the descriptors of a characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discoverDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+          "text": "CBCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverDescriptors(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discoverDescriptorsForCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "discoverDescriptors(for:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/discoverdescriptors(for:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverDescriptorsFor:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the peripheral found descriptors for a characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDiscoverDescriptorsFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+          "text": "CBCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverDescriptorsFor:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheral:didDiscoverDescriptorsForCharacteristic:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheral(_:didDiscoverDescriptorsFor:error:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:diddiscoverdescriptorsfor:error:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Discovering-Characteristics-and-Descriptors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)"
+      ],
+      "title": "Discovering Characteristics and Descriptors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "discoverDescriptorsForCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverDescriptorsForCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Discovering-Characteristics-and-Descriptors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)"
+              ],
+              "title": "Discovering Characteristics and Descriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "discoverDescriptorsForCharacteristic:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCharacteristic",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+                    "text": "CBCharacteristic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "characteristic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The characteristic whose descriptors you want to discover.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "characteristic"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCharacteristic~1descriptors/title",
+          "value": "descriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCharacteristic~1descriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "descriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverDescriptors(for:)/title",
+          "value": "discoverDescriptorsForCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverDescriptors(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverDescriptorsForCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCharacteristic/title",
+          "value": "CBCharacteristic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCharacteristic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCharacteristic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title",
+          "value": "CBPeripheral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverCharacteristics(_:for:)/title",
+          "value": "discoverCharacteristics:forService:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverCharacteristics(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverCharacteristics:forService:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverDescriptorsFor:error:)/title",
+          "value": "peripheral:didDiscoverDescriptorsForCharacteristic:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverDescriptorsFor:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:didDiscoverDescriptorsForCharacteristic:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheral/discoverdescriptors(for:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheral/discoverdescriptors(for:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

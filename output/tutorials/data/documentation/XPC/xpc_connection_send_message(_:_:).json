@@ -1,0 +1,1066 @@
+{
+  "abstract": [
+    {
+      "text": "Sends a message over the connection to the destination service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message(_:_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@xpc_connection_send_message",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "xpc_connection_send_message"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@xpc_connection_t",
+        "text": "xpc_connection_t"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@xpc_object_t",
+        "text": "xpc_object_t"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "xpc_connection_send_message"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "xpc_connection_send_message(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_message"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connection"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_connection_t",
+              "text": "xpc_connection_t"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "message"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_object_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_object_t",
+              "text": "xpc_object_t"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The connection over which the message shall be sent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "connection"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The message to send. This must be a dictionary object. This dictionary is logically copied by the connection, so it is safe to modify the dictionary after this call.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "message"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Messages are delivered in FIFO order. This API is safe to call from multiple GCD queues. There is no indication that a message was delivered successfully. This is because even once the message has been successfully enqueued on the remote end, there are no guarantees about when the runtime will dequeue the message and invoke the other connection’s event handler block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this API is used to send a message that is in reply to another message, there is no guarantee of ordering between the invocations of the connection’s event handler and the reply handler for that message, even if they are targeted to the same queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After extensive study, we have found that clients who are interested in the state of the message on the server end are typically holding open transactions related to that message. And the only reliable way to track the lifetime of that transaction is at the protocol layer. So the server should send a reply message, which upon receiving, will cause the client to close its transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_barrier(_:_:)": {
+      "abstract": [
+        {
+          "text": "Issues a barrier against the connection’s message-send activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_barrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_t",
+          "text": "xpc_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_barrier(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_barrier"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_send_barrier(_:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_send_barrier(_:_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sends a message over the connection to the destination service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_t",
+          "text": "xpc_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_send_message(_:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_send_message(_:_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sends a message over the connection to the destination service and associates a handler to invoke when the remote service sends a reply message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message_with_reply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_t",
+          "text": "xpc_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_handler_t",
+          "text": "xpc_handler_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message_with_reply"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_send_message_with_reply(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_send_message_with_reply(_:_:_:_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply_sync(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sends a message over the connection and blocks the caller until it receives a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message_with_reply_sync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_t",
+          "text": "xpc_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply_sync(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_send_message_with_reply_sync"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_send_message_with_reply_sync(_:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_send_message_with_reply_sync(_:_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_t": {
+      "abstract": [
+        {
+          "text": "A type that represents a connection to a named service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_main(_:)": {
+      "abstract": [
+        {
+          "text": "Starts listening for incoming connections and processes them with the specified event handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_main"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_handler_t",
+          "text": "xpc_connection_handler_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_main(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_main"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_main(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_main(_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_object_t": {
+      "abstract": [
+        {
+          "text": "A type that can describe all XPC objects, including dictionaries, arrays, strings, and numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_object_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_object_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_barrier(_:_:)",
+        "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply(_:_:_:_:)",
+        "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply_sync(_:_:)",
+        "doc://com.apple.xpc/documentation/XPC/xpc_main(_:)"
+      ],
+      "title": "Messages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "xpc_connection_send_message"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_message"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.xpc/documentation/XPC"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Messages",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_barrier(_:_:)",
+                "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply(_:_:_:_:)",
+                "doc://com.apple.xpc/documentation/XPC/xpc_connection_send_message_with_reply_sync(_:_:)",
+                "doc://com.apple.xpc/documentation/XPC/xpc_main(_:)"
+              ],
+              "title": "Messages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "xpc_connection_send_message"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@xpc_connection_t",
+                    "text": "xpc_connection_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "connection"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_object_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@xpc_object_t",
+                    "text": "xpc_object_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "message"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The connection over which the message shall be sent.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "connection"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The message to send. This must be a dictionary object. This dictionary is logically copied by the connection, so it is safe to modify the dictionary after this call.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "message"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_barrier(_:_:)/title",
+          "value": "xpc_connection_send_barrier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_barrier(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_barrier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_main(_:)/title",
+          "value": "xpc_main"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_main(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_main"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_t/title",
+          "value": "xpc_connection_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message_with_reply(_:_:_:_:)/title",
+          "value": "xpc_connection_send_message_with_reply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message_with_reply(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_message_with_reply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/title",
+          "value": "xpc_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message_with_reply_sync(_:_:)/title",
+          "value": "xpc_connection_send_message_with_reply_sync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message_with_reply_sync(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_message_with_reply_sync"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message(_:_:)/title",
+          "value": "xpc_connection_send_message"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_send_message(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_send_message"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_connection_send_message(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xpc/xpc_connection_send_message(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1149 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch metadata for apps from the catalog by using their identifiers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:get:v1-catalog-{}-apps#ids",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/catalog/{storefront}/apps"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Metadata for Multiple Catalog Apps"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.ent.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/apps#ids"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory that you specify with an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefrontobjects",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appletv",
+                "ipad",
+                "iphone",
+                "mac",
+                "realityDevice",
+                "web"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional platforms the app supports that you want to get metadata for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "additionalPlatforms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "description",
+                "fileSizeByDevice",
+                "languageList",
+                "latestVersionInfo",
+                "privacyPolicyUrl",
+                "requirementsByDeviceFamily",
+                "screenshotsByType",
+                "supportURLForLanguage",
+                "versionHistory",
+                "websiteUrl"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response. These attributes are usually more expensive, so only extend them if absolutely necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Classifier (optional): A resource type to apply the parameter to, ",
+                  "type": "text"
+                },
+                {
+                  "code": "apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "books",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifiers for the catalog apps. The maximum fetch limit is 100.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ids",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of relationship names to include for resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Classifier (optional): A resource type to apply the parameter to, ",
+                  "type": "text"
+                },
+                {
+                  "code": "apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "books",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, which you specify with a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object that ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " specifies. Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appletv",
+                "ipad",
+                "iphone",
+                "mac",
+                "realityDevice",
+                "web"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The platform the user-facing app is running on. You use this to get metadata for the specified platform.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "platform",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of relationship names to relate for resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Classifier (optional): A resource type to apply the parameter to, ",
+                  "type": "text"
+                },
+                {
+                  "code": "apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "books",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "relate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:AppsResponse",
+              "text": "AppsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "?ids=623592465,363556704&platform=iphone"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": [",
+                    "    {",
+                    "      \"id\": \"623592465\",",
+                    "      \"type\": \"apps\",",
+                    "      \"href\": \"/v1/catalog/us/apps/623592465\",",
+                    "      \"attributes\": {",
+                    "        \"isVppDeviceBasedLicensingEnabled\": true,",
+                    "        \"offers\": [",
+                    "          {",
+                    "            \"buyParams\": \"productType=C&price=1990&salableAdamId=623592465&pricingParameters=STDQ&pg=default&marketType=EDU&appExtVrsId=860907818\",",
+                    "            \"type\": \"buy\",",
+                    "            \"priceFormatted\": \"$1.99\",",
+                    "            \"price\": 1.99,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"iosSoftware\",",
+                    "                \"size\": 207355904",
+                    "              }",
+                    "            ]",
+                    "          },",
+                    "          {",
+                    "            \"pricePerUnitFormatted\": \"$1.99\",",
+                    "            \"buyParams\": \"productType=C&price=39800&salableAdamId=623592465&pricingParameters=STDQ&pg=default&marketType=EDU&appExtVrsId=860907818\",",
+                    "            \"quantity\": 20,",
+                    "            \"pricePerUnit\": 1.99,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"type\": \"buy\",",
+                    "            \"priceFormatted\": \"$39.80\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"iosSoftware\",",
+                    "                \"size\": 207355904",
+                    "              }",
+                    "            ],",
+                    "            \"price\": 39.8",
+                    "          }",
+                    "        ],",
+                    "        \"isFirstPartyHideableApp\": false,",
+                    "        \"contentRatingsBySystem\": {",
+                    "          \"appsApple\": {",
+                    "            \"name\": \"12+\",",
+                    "            \"value\": 300,",
+                    "            \"rank\": 3,",
+                    "            \"advisories\": [",
+                    "              \"Infrequent/Mild Alcohol, Tobacco, or Drug Use or References\",",
+                    "              \"Infrequent/Mild Profanity or Crude Humor\",",
+                    "              \"Infrequent/Mild Mature/Suggestive Themes\"",
+                    "            ]",
+                    "          }",
+                    "        },",
+                    "        \"deviceFamilies\": [",
+                    "          \"iphone\",",
+                    "          \"ipad\",",
+                    "          \"ipod\"",
+                    "        ],",
+                    "        \"usesClassKit\": false,",
+                    "        \"url\": \"https://apps.apple.com/us/app/heads-up/id623592465\",",
+                    "        \"userRating\": {",
+                    "          \"value\": 4.9,",
+                    "          \"ratingCount\": 1987",
+                    "        },",
+                    "        \"isB2BCustomApp\": false,",
+                    "        \"name\": \"app name 1\",",
+                    "        \"genreDisplayName\": \"Word\",",
+                    "        \"artistName\": \"artist\",",
+                    "        \"isIOSBinaryMacOSCompatible\": false,",
+                    "        \"supportsDeviceSharing\": false,",
+                    "        \"hasEula\": false,",
+                    "        \"platformAttributes\": {",
+                    "          \"ios\": {",
+                    "            \"requiredCapabilitiesForRealityDevice\": \"arm64 gamekit metal \",",
+                    "            \"seller\": \"company\",",
+                    "            \"minimumMacOSVersion\": \"11.0\",",
+                    "            \"minimumOSVersion\": \"13.0\",",
+                    "            \"subtitle\": \"subtitle\",",
+                    "            \"bundleId\": \"com.bundle.id\",",
+                    "            \"artwork\": {",
+                    "              \"width\": 1024,",
+                    "              \"height\": 1024,",
+                    "              \"url\": \"https://isq11.mzstatic.com/image/thumb/Purple126/v4/71/b3/2a/71b32a24-34d2-7a89-ffba-8c252a140eb6/AppIconHalloween-0-0-1x_U007epad-0-85-220.png/{w}x{h}bb.{f}\",",
+                    "              \"bgColor\": \"ffffff\",",
+                    "              \"textColor1\": \"090000\",",
+                    "              \"textColor2\": \"2e150b\",",
+                    "              \"textColor3\": \"3a3333\",",
+                    "              \"textColor4\": \"58443c\"",
+                    "            },",
+                    "            \"isVisionOSCompatible\": false,",
+                    "            \"minimumVisionOSVersion\": \"1.0\",",
+                    "            \"externalVersionId\": 860907818,",
+                    "            \"requiredCapabilities\": \"arm64 gamekit metal \"",
+                    "          }",
+                    "        }",
+                    "      },",
+                    "      \"relationships\": {",
+                    "        \"genres\": {",
+                    "          \"href\": \"/v1/catalog/us/apps/623592465/genres\",",
+                    "          \"data\": [",
+                    "            {",
+                    "              \"id\": \"6014\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/6014\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"App Store\",",
+                    "                \"name\": \"Games\",",
+                    "                \"parentId\": \"36\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id6014\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"6016\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/6016\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"App Store\",",
+                    "                \"name\": \"Entertainment\",",
+                    "                \"parentId\": \"36\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id6016\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"7019\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/7019\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"Games\",",
+                    "                \"name\": \"Word\",",
+                    "                \"parentId\": \"6014\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id7019\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"7005\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/7005\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"Games\",",
+                    "                \"name\": \"Card\",",
+                    "                \"parentId\": \"6014\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id7005\"",
+                    "              }",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"id\": \"363556704\",",
+                    "      \"type\": \"apps\",",
+                    "      \"href\": \"/v1/catalog/us/apps/363556704\",",
+                    "      \"attributes\": {",
+                    "        \"isVppDeviceBasedLicensingEnabled\": true,",
+                    "        \"offers\": [",
+                    "          {",
+                    "            \"buyParams\": \"productType=C&price=27990&salableAdamId=363556704&pricingParameters=STDQ&pg=default&marketType=EDU&appExtVrsId=865697157\",",
+                    "            \"type\": \"buy\",",
+                    "            \"priceFormatted\": \"$27.99\",",
+                    "            \"price\": 27.99,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"iosSoftware\",",
+                    "                \"size\": 81773568",
+                    "              }",
+                    "            ]",
+                    "          },",
+                    "          {",
+                    "            \"pricePerUnitFormatted\": \"$27.99\",",
+                    "            \"buyParams\": \"productType=C&price=559800&salableAdamId=363556704&pricingParameters=STDQ&pg=default&marketType=EDU&appExtVrsId=865697157\",",
+                    "            \"quantity\": 20,",
+                    "            \"pricePerUnit\": 27.99,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"type\": \"buy\",",
+                    "            \"priceFormatted\": \"$559.80\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"iosSoftware\",",
+                    "                \"size\": 81773568",
+                    "              }",
+                    "            ],",
+                    "            \"price\": 559.8",
+                    "          }",
+                    "        ],",
+                    "        \"isFirstPartyHideableApp\": false,",
+                    "        \"contentRatingsBySystem\": {",
+                    "          \"appsApple\": {",
+                    "            \"name\": \"4+\",",
+                    "            \"value\": 100,",
+                    "            \"rank\": 1",
+                    "          }",
+                    "        },",
+                    "        \"deviceFamilies\": [",
+                    "          \"watch\",",
+                    "          \"iphone\",",
+                    "          \"ipad\",",
+                    "          \"ipod\"",
+                    "        ],",
+                    "        \"usesClassKit\": false,",
+                    "        \"url\": \"url\",",
+                    "        \"userRating\": {",
+                    "          \"value\": 0,",
+                    "          \"ratingCount\": 0",
+                    "        },",
+                    "        \"watchBundleId\": \"com.watch.bundle\",",
+                    "        \"isB2BCustomApp\": false,",
+                    "        \"name\": \"app2\",",
+                    "        \"genreDisplayName\": \"Sports\",",
+                    "        \"artistName\": \"artist\",",
+                    "        \"isIOSBinaryMacOSCompatible\": false,",
+                    "        \"supportsDeviceSharing\": false,",
+                    "        \"hasEula\": false,",
+                    "        \"platformAttributes\": {",
+                    "          \"ios\": {",
+                    "            \"requiredCapabilitiesForRealityDevice\": \"accelerometer arm64 gamekit location-services wifi \",",
+                    "            \"seller\": \"seller\",",
+                    "            \"minimumMacOSVersion\": \"11.0\",",
+                    "            \"minimumOSVersion\": \"12.0\",",
+                    "            \"bundleId\": \"com.bundle.id\",",
+                    "            \"artwork\": {",
+                    "              \"width\": 1024,",
+                    "              \"height\": 1024,",
+                    "              \"url\": \"https://isq11.mzstatic.com/image/thumb/Purple221/v4/4d/f2/5b/4df25b59-eace-40b1-7a88-d0882780fe41/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/{w}x{h}bb.{f}\",",
+                    "              \"bgColor\": \"e9e9e9\",",
+                    "              \"textColor1\": \"000000\",",
+                    "              \"textColor2\": \"4a0000\",",
+                    "              \"textColor3\": \"2f2f2f\",",
+                    "              \"textColor4\": \"6a2e2e\"",
+                    "            },",
+                    "            \"isVisionOSCompatible\": false,",
+                    "            \"externalVersionId\": 865697157,",
+                    "            \"requiredCapabilities\": \"accelerometer arm64 gamekit location-services wifi \"",
+                    "          }",
+                    "        }",
+                    "      },",
+                    "      \"relationships\": {",
+                    "        \"genres\": {",
+                    "          \"href\": \"/v1/catalog/us/apps/363556704/genres\",",
+                    "          \"data\": [",
+                    "            {",
+                    "              \"id\": \"6004\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/6004\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"App Store\",",
+                    "                \"name\": \"Sports\",",
+                    "                \"parentId\": \"36\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id6004\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"6010\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/6010\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"App Store\",",
+                    "                \"name\": \"Navigation\",",
+                    "                \"parentId\": \"36\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id6010\"",
+                    "              }",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      }",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/appsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "The collection of errors that occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for apps from the catalog by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Multiple Catalog Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-apps"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for an app from the catalog by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/apps/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for a Catalog App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-apps-_id_"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for books from the catalog by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/books"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Multiple Catalog Books",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-books"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for a book from the catalog by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/books/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for a Catalog Book",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-books-_id_"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for apps and books from the catalog by using a search term.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Catalog Search Results"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Catalog Search Results",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-catalog-search-results"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for your apps by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Your Apps Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Your Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-your-apps-metadata"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for your books by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Your Books Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Your Books",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-your-books-metadata"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates an incorrect authorization header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/unauthorizedresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-and-book-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results"
+      ],
+      "title": "App and book metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppsResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse"
+      ],
+      "title": "Responses"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-v1-catalog-_storefront_-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

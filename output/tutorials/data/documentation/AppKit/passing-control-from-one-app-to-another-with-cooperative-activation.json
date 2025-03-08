@@ -1,0 +1,1653 @@
+{
+  "abstract": [
+    {
+      "text": "Request focus for your app, and coordinate passing control from one app to another.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/app-and-environment",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/passing-control-from-one-app-to-another-with-cooperative-activation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Passing control from one app to another with cooperative activation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone uses your app and another app unexpectedly steals focus, the user experience can be compromised. Not only is it inconvenient for people to switch back to their original app, if they’re typing when the switch occurs, they might accidentally enter text into the wrong app, inadvertently disclosing sensitive information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cooperative activation addresses this problem by making app activation a request instead of a command. Instead of apps stealing focus, they now request focus from the system when they’re ready. This means apps should set expectations accordingly when requesting activation and not assume the system will grant them activation. The system dynamically determines whether to grant activation state based on the context. This lets you request focus for your app when needed, and hand off focus from one app to another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10054: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10054",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-activation-to-gain-focus",
+          "level": 3,
+          "text": "Request activation to gain focus",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app needs focus, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, or its shorthand version ",
+              "type": "text"
+            },
+            {
+              "code": "NSApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function when you want your app to request activation for itself.",
+                    "NSApp.activate()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function when you want your app to request activation for itself.",
+                    "[NSApp activate];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this function sends a message to the system requesting activation for the app. Requesting activation doesn’t guarantee your app gains focus. People ultimately decide which apps gain focus by activating them through their device’s user interface. But if, after considering the user’s intent and larger system context, the system honors your app’s request, your app activates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transfer-control-from-one-app-to-another-by-yielding-and-then-activating",
+          "level": 3,
+          "text": "Transfer control from one app to another by yielding and then activating",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Passing control from one app to another is a two-step process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "First yield from the currently running active app to the target app that you want to gain focus.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then activate the target app when it’s ready.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4311539",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only the active app can influence the activation context. It does so by yielding to an explicit target app before the target app activates. Then, when the target app requests activation, the system uses the yield as part of the context when making its decision. If the system honors the request, the active app deactivates, and the target app activates. Otherwise, the active app remains active. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWorkspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically handles this for you when opening URLs or applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to pass control from your active app to another target app (such as TextEdit, which is a good test candidate because it comes installed on every Mac):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get an instance of the target app you want to pass control to by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", passing in the bundle identifier of the target app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yield to the target app by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", passing the target app instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then activate the target by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the target app instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// When you want to pass control to another application.",
+                    "",
+                    "// Get an instance of the app you want to activate.",
+                    "if let targetApp = NSRunningApplication.runningApplications(withBundleIdentifier:",
+                    "                                                                \"com.apple.TextEdit\").first {",
+                    "    // Yield to it.",
+                    "    NSApp.yieldActivation(to:targetApp)",
+                    "    ",
+                    "    // Then activate it.",
+                    "    targetApp.activate()",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// When you want to pass control from your app to another.",
+                    "",
+                    "// Get an instance to the app you want to activate.",
+                    "NSArray<NSRunningApplication *> *targetApps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@\"com.apple.TextEdit\"];",
+                    "NSRunningApplication *targetApp = [targetApps firstObject];",
+                    "",
+                    "if (targetApp != nil) {",
+                    "    // Yield to it.",
+                    "    [NSApp yieldActivationToApplication: targetApp];",
+                    "    ",
+                    "    // Then activate it.",
+                    "    [targetApp activateWithOptions:0];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if the app you want to pass control to isn’t currently running, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "NSApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, passing in the bundle identifier of the target app you want to activate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function from the active process.",
+                    "// Yield to the app using the app's bundleIdentifier.",
+                    "NSApp.yieldActivation(toApplicationWithBundleIdentifier: \"com.example.targetApp\")"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function from the active process.",
+                    "// Yield to the app using the app's bundleIdentifier.",
+                    "[NSApp yieldActivationToApplicationWithBundleIdentifier: @\"com.example.targetApp\"];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the target app when it’s ready to gain focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function from the target process.",
+                    "// Have the app activate itself when it's ready.",
+                    "NSApp.activate()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Call this function from the target process.",
+                    "// Have the app activate itself when it's ready.",
+                    "[NSApp activate];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choosing between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for activation depends on which app you want to initiate the activation. Use ",
+              "type": "text"
+            },
+            {
+              "code": "NSRunningApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want the active app to control when the target app activates. Use ",
+              "type": "text"
+            },
+            {
+              "code": "NSApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (or ",
+              "type": "text"
+            },
+            {
+              "code": "NSApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") if you want the target app to activate itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Replace-calls-to-deactivate",
+          "level": 3,
+          "text": "Replace calls to deactivate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", there’s no need to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the app losing focus. Cooperative activation APIs cause the receiver to draw inactive when another app activates. This is typically the behavior you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or equivalent. There’s also no need to call ",
+              "type": "text"
+            },
+            {
+              "code": "deactivate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if an app is hidden by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/hide()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system implies deactivation when the app hides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s main event loop and resources used by all of that app’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplication",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/ActivationOptions": {
+      "abstract": [
+        {
+          "text": "The following flags are for ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/activate(options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/ActivationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplication.ActivationOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/activationoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()": {
+      "abstract": [
+        {
+          "text": "Activates the receiver app, if appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activate"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/activate()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()": {
+      "abstract": [
+        {
+          "text": "Deactivates the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deactivate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deactivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "deactivate()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/deactivate()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this is the active app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/isactive"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/shared": {
+      "abstract": [
+        {
+          "text": "Returns the application instance, creating it if it doesn’t exist yet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/shared"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)": {
+      "abstract": [
+        {
+          "text": "Explicitly allows another app to make itself active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yieldActivation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunningApplication",
+          "text": "NSRunningApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yieldActivationToApplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "yieldActivation(to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/yieldactivation(to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Explicitly allows another app to make itself active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yieldActivation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toApplicationWithBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yieldActivationToApplicationWithBundleIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "yieldActivation(toApplicationWithBundleIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/yieldactivation(toapplicationwithbundleidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication": {
+      "abstract": [
+        {
+          "text": "An object that can manipulate and provide information for a single instance of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRunningApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRunningApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRunningApplication",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunningapplication"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/activate(options:)": {
+      "abstract": [
+        {
+          "text": "Attempts to activate the application using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSApplicationActivationOptions",
+          "text": "ActivationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/activate(options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate(options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunningapplication/activate(options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/hide()": {
+      "abstract": [
+        {
+          "text": "Attempts to hide or the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/hide()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hide"
+        }
+      ],
+      "role": "symbol",
+      "title": "hide()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunningapplication/hide()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of currently running applications with the specified bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runningApplications"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunningApplication",
+          "text": "NSRunningApplication"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runningApplicationsWithBundleIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runningApplications(withBundleIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunningapplication/runningapplications(withbundleidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWorkspace": {
+      "abstract": [
+        {
+          "text": "A workspace that can launch other apps and perform a variety of file-handling services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWorkspace"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWorkspace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWorkspace"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWorkspace",
+      "type": "topic",
+      "url": "/documentation/appkit/nsworkspace"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Learn about the objects that you use to interact with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Environment",
+      "type": "topic",
+      "url": "/documentation/appkit/app-and-environment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10054": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10054",
+      "title": "What’s new in AppKit",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in AppKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10054"
+    },
+    "media-4311539": {
+      "alt": "A block diagram showing two app instances on the left stacked on top of one another, with arrows pointing out of the boxes into another box titled System makes a decision on the right. Within the topmost app instance box, titled Active app, is another box titled Yield to target. It’s sequentially to the left of a similar box in the bottom app instance titled Activate. The sequence of boxes implies you call Yield to target on the Active app instance before Activate on the Target app instance.",
+      "identifier": "media-4311539",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/290772882a3166f50918eed2c57cf0dd/media-4311539@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2451df0161157c7cb5a0ea957cdb8c4d/media-4311539~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activating-and-Deactivating-the-App",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/isActive",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication/ActivationOptions"
+      ],
+      "title": "Activating and Deactivating the App"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Activating-and-Deactivating-the-App",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/activate()",
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/deactivate()",
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/isActive",
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSApplication/ActivationOptions"
+              ],
+              "title": "Activating and Deactivating the App"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1shared/title",
+          "value": "sharedApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1runningApplications(withBundleIdentifier:)/title",
+          "value": "runningApplicationsWithBundleIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1runningApplications(withBundleIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "runningApplicationsWithBundleIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1deactivate()/title",
+          "value": "deactivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1deactivate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deactivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/title",
+          "value": "NSApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1activate(options:)/title",
+          "value": "activateWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1activate(options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1ActivationOptions/title",
+          "value": "NSApplicationActivationOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1ActivationOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplicationActivationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1ActivationOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplicationActivationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWorkspace/title",
+          "value": "NSWorkspace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWorkspace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWorkspace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWorkspace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWorkspace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1activate()/title",
+          "value": "activate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1activate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/title",
+          "value": "NSRunningApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRunningApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRunningApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1yieldActivation(to:)/title",
+          "value": "yieldActivationToApplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1yieldActivation(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "yieldActivationToApplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1hide()/title",
+          "value": "hide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication~1hide()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1yieldActivation(toApplicationWithBundleIdentifier:)/title",
+          "value": "yieldActivationToApplicationWithBundleIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1yieldActivation(toApplicationWithBundleIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "yieldActivationToApplicationWithBundleIdentifier:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/passing-control-from-one-app-to-another-with-cooperative-activation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/passing-control-from-one-app-to-another-with-cooperative-activation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

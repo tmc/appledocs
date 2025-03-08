@@ -1,0 +1,1172 @@
+{
+  "abstract": [
+    {
+      "text": "Listen to notifications to keep track of the latest events for an organization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Subscribing to Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notifications make it easy to learn about changes to an organization’s assets, assignments, and users. Using notifications is the simplest way to keep track of the latest events for an organization, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asset count events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asset management events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User management events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-associated events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about subscribing to different notification types, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each notification has these common fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "notificationId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each notification has a unique ID that you can use for deduping notifications that the server happens to send multiple times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "notificationType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of notification. You can use this to determine how to deserialize the notification value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "notification",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains the JSON object with the changed data. Each notification type has a uniquely structured notification JSON object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ID of the location for the notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notifications resemble the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {...},",
+            "    \"notificationId\": \"01654971-0d81-467a-9e62-bf8e15e8dabd\",",
+            "    \"notificationType\": \"ASSET_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server delivers notifications on a best-effort basis. The server attempts to deliver them 3 times within 1-5 minute(s) and without intervals. An HTTP 2xx response status from an MDM server indicates a successful notification delivery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notifications require a URL and an authentication token. The URL must use the HTTPS protocol, and the authentication token is in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc6750",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details about these parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The server sends a test notification of type TEST_NOTIFICATION when configuring notifications with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If delivery fails, the system rejects the configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test notification has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {},",
+            "    \"notificationId\": \"792e327f-63ea-4658-9aec-f16f4327e3a8\",",
+            "    \"notificationType\": \"TEST_NOTIFICATION\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-Asset-Counts",
+          "level": 3,
+          "text": "Update Asset Counts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update total asset counts upon receiving an ",
+              "type": "text"
+            },
+            {
+              "code": "ASSET_COUNT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification type that the server sends when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user buys an asset",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user transfers an asset between locations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user refunds an asset",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notifications have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"adamId\": \"408709785\",",
+            "        \"countDelta\": -12,",
+            "        \"pricingParam\": \"STDQ\"",
+            "    },",
+            "    \"notificationId\": \"4a7801be-53f0-42e1-9505-81c0d1dc9da3\",",
+            "    \"notificationType\": \"ASSET_COUNT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "pricingParam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pair represent the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Asset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the count that is changing, and the ",
+              "type": "text"
+            },
+            {
+              "code": "countDelta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the amount that the count is changing by. The amount can be a positive or a negative number depending on whether the count is increasing or decreasing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Track-Assignments",
+          "level": 3,
+          "text": "Track Assignments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track assignments upon receiving an ",
+              "type": "text"
+            },
+            {
+              "code": "ASSET_MANAGEMENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification type that the server sends when it associates or disassociates an asset. The body of the notification contains a list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assignment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assignment notifications for associations have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"assignments\": [",
+            "            {",
+            "                \"adamId\": \"408709785\",",
+            "                \"pricingParam\": \"STDQ\",",
+            "                \"serialNumber\": \"97c42a74-c30e-4172-a65f-6e5a5ba3d477\"",
+            "            },",
+            "            {",
+            "                \"adamId\": \"408709785\",",
+            "                \"pricingParam\": \"STDQ\",",
+            "                \"serialNumber\": \"495622d3-76f1-4fd3-8647-3f0365159170\"",
+            "            },",
+            "            {",
+            "                \"adamId\": \"408709785\",",
+            "                \"pricingParam\": \"STDQ\",",
+            "                \"serialNumber\": \"eabcbb89-8213-4185-afb4-30cae931ea37\"",
+            "            },",
+            "            ...",
+            "        ],",
+            "        \"eventId\": \"87cbc650-16cc-4f9e-a833-e622f377a9f7\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"ASSOCIATE\"",
+            "    },",
+            "    \"notificationId\": \"ba8bbb23-44c2-44f6-a928-eff6ba5ffac3\",",
+            "    \"notificationType\": \"ASSET_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assignment notifications for disassociations have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"assignments\": [",
+            "            {",
+            "                \"adamId\": \"408709785\",",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"pricingParam\": \"STDQ\"",
+            "            }",
+            "        ],",
+            "        \"eventId\": \"4bd7371e-6482-4933-8e97-c29f25b7f5f5\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"DISASSOCIATE\"",
+            "    },",
+            "    \"notificationId\": \"545e1f6f-ca8b-4e6c-98fe-a7ac3ef63b29\",",
+            "    \"notificationType\": \"ASSET_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assignment notifications for revoke calls have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"assignments\": [",
+            "            {",
+            "                \"adamId\": \"408709785\",",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"pricingParam\": \"STDQ\"",
+            "            },",
+            "            {",
+            "                \"adamId\": \"329103948\",",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"pricingParam\": \"STDQ\"",
+            "            }",
+            "",
+            "        ],",
+            "        \"eventId\": \"4bd7371e-6482-4933-8e97-c29f25b7f5f5\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"REVOKE\"",
+            "    },",
+            "    \"notificationId\": \"545e1f6f-ca8b-4e6c-98fe-a7ac3ef63b28\",",
+            "    \"notificationType\": \"ASSET_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Track-User-Events",
+          "level": 3,
+          "text": "Track User Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track users upon receiving a ",
+              "type": "text"
+            },
+            {
+              "code": "USER_MANAGEMENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification type that the server sends when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a user",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updating a user",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retiring a user",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notifications for creating a user have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"eventId\": \"e0def1f8-9158-4343-9c52-8dd32da50b9b\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"CREATE\",",
+            "        \"users\": [",
+            "            {",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"email\": \"client-100@apple.com\",",
+            "                \"inviteCode\": \"f551b37da07146628e8dcbe0111f0364\",",
+            "                \"status\": \"Registered\"",
+            "            }",
+            "        ]",
+            "    },",
+            "    \"notificationId\": \"4c0bbb9b-d5a6-4860-83ef-5cf362783c1e\",",
+            "    \"notificationType\": \"USER_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notifications for updating a user have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"eventId\": \"e0def1f8-9158-4343-9c52-8dd32da50b9b\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"UPDATE\",",
+            "        \"users\": [",
+            "            {",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"email\": \"client-100@apple.com\",",
+            "                \"inviteCode\": \"f551b37da07146628e8dcbe0111f0364\",",
+            "                \"status\": \"Registered\"",
+            "            }",
+            "        ]",
+            "    },",
+            "    \"notificationId\": \"4c0bbb9b-d5a6-4860-83ef-5cf362783c1e\",",
+            "    \"notificationType\": \"USER_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notifications for retiring a user have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"eventId\": \"e0def1f8-9158-4343-9c52-8dd32da50b9b\",",
+            "        \"result\": \"SUCCESS\",",
+            "        \"type\": \"RETIRE\",",
+            "        \"users\": [",
+            "            {",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"email\": \"client-100@apple.com\",",
+            "                \"inviteCode\": \"f551b37da07146628e8dcbe0111f0364\",",
+            "                \"status\": \"Retired\"",
+            "            }",
+            "        ]",
+            "    },",
+            "    \"notificationId\": \"4c0bbb9b-d5a6-4860-83ef-5cf362783c1e\",",
+            "    \"notificationType\": \"USER_MANAGEMENT\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Track-User-Associations",
+          "level": 3,
+          "text": "Track User Associations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track users upon receiving a USER_ASSOCIATED notification type that the server sends when a user accepts an invite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notifications have the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"notification\": {",
+            "        \"associatedUsers\": [",
+            "            {",
+            "                \"clientUserId\": \"client-100\",",
+            "                \"email\": \"client-100@apple.com\",",
+            "                \"idHash\": \"leSKk3IaE2vk2KLmv2k3/200D3=\",",
+            "                \"inviteCode\": \"f551b37da07146628e8dcbe0111f0364\",",
+            "                \"status\": \"Associated\"",
+            "            }",
+            "        ]",
+            "    },",
+            "    \"notificationId\": \"90b83144-fb93-4837-9c52-0ae147bdc421\",",
+            "    \"notificationType\": \"USER_ASSOCIATED\",",
+            "    \"uId\": \"2049025000431439\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Asset": {
+      "abstract": [
+        {
+          "text": "A product in the store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Asset"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Asset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Asset"
+        }
+      ],
+      "role": "symbol",
+      "title": "Asset",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/asset"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assignment": {
+      "abstract": [
+        {
+          "text": "The asset assignment for a user or device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Assignment"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Assignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assignment",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/assignment"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Config"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Config",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-config-4szk1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest": {
+      "abstract": [
+        {
+          "text": "The request for the client configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClientConfigRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clientconfigrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations": {
+      "abstract": [
+        {
+          "text": "Get details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apps and Books for Organizations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apps-and-books-for-organizations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Error Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-error-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services": {
+      "abstract": [
+        {
+          "text": "Associate app and book purchases with users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage assets across an organization’s users and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage users across an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across your organization using the new API version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to the new App and Book Management API",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints": {
+      "abstract": [
+        {
+          "text": "Manage paginated endpoints to efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Paginated Endpoints",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/using-paginated-endpoints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://tools.ietf.org/html/rfc6750": {
+      "identifier": "https://tools.ietf.org/html/rfc6750",
+      "title": "bearer token format",
+      "titleInlineContent": [
+        {
+          "text": "bearer token format",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc6750"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/subscribing-to-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

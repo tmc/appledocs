@@ -1,0 +1,367 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain a list of people the server manages, across the organization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:dep:post:roster-class-person",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Fetch Person Roster"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get the List of People"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://mdmenrollment.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "roster/class/person"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-services:dep:RosterRequest",
+          "text": "RosterRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The object containing the request information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful. The server returns a list of people.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPersonResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-services:dep:RosterPersonResponse",
+              "text": "RosterPersonResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server was unable to process the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to instructors and students, this list may contain additional people who don’t belong to any class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster": {
+      "abstract": [
+        {
+          "text": "Obtain a list of people the server manages, across the organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Person Roster"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the List of People",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-person-roster"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster-Sync": {
+      "abstract": [
+        {
+          "text": "Get updates about the list of people the server manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster-Sync",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Person Roster Sync"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sync the List of People",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-person-roster-sync"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPerson": {
+      "abstract": [
+        {
+          "text": "A person’s properties and their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterPerson",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterperson"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPersonResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the people in the organization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterPersonResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPersonResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterPersonResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterPersonResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterpersonresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest": {
+      "abstract": [
+        {
+          "text": "The request for a list of classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "People-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPerson",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Person-Roster-Sync"
+      ],
+      "title": "People Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterPersonResponse"
+      ],
+      "title": "Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/fetch-person-roster"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

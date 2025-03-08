@@ -1,0 +1,599 @@
+{
+  "abstract": [
+    {
+      "text": "Ask the host to generate the unique binary identifier (",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCodeInfoUnique",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": ") from the copy on disk at the path given.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/kSecCSGenerateGuestHash"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@Ea@kSecCSDedicatedHost@kSecCSGenerateGuestHash",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "kSecCSGenerateGuestHash"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s6UInt32V",
+        "text": "UInt32"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "kSecCSGenerateGuestHash"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "kSecCSGenerateGuestHash"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecCSGenerateGuestHash"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s6UInt32V",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s6UInt32V",
+              "text": "UInt32"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ideally, when the host launches the guest code it should bring the signature in the code directory into memory at the same time, create the unique binary identifier by calculating the SHA-1 hash of the signature, and pass it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecGuestAttributeHash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute in the dictionary when it creates a guest. Doing so guarantees that the identifier was made from the same version of the code as was loaded into memory. This identifier can be used by the host and other processes to make sure the code has not been altered, because the hash of the code directory is a unique identifier of a particular instance of the signature. The ",
+              "type": "text"
+            },
+            {
+              "code": "kSecCSGenerateGuestHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag tells Code Signing Services to fetch the signature from disk and do the calculation itself. Having the system create the identifier from the code on disk is convenient but is not the most secure option because it is possible for an attacker with write access to substitute a different copy of the code directory on disk after the code is loaded into memory but before the system generates the identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostCreateGuest": {
+      "abstract": [
+        {
+          "text": "Creates a new guest and describes its initial properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostCreateGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostCreateGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostcreateguest"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCSGenerateGuestHash": {
+      "abstract": [
+        {
+          "text": "Ask the host to generate the unique binary identifier (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/kSecCodeInfoUnique",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") from the copy on disk at the path given.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCSGenerateGuestHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCSGenerateGuestHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCSGenerateGuestHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCSGenerateGuestHash",
+      "type": "topic",
+      "url": "/documentation/security/kseccsgenerateguesthash"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCodeInfoUnique": {
+      "abstract": [
+        {
+          "text": "A key whose value is a binary number that uniquely identifies static code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCodeInfoUnique"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCodeInfoUnique",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCodeInfoUnique"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCodeInfoUnique",
+      "type": "topic",
+      "url": "/documentation/security/kseccodeinfounique"
+    },
+    "doc://com.apple.security/documentation/Security/kSecGuestAttributeHash": {
+      "abstract": [
+        {
+          "text": "A key whose value is a data object containing the SHA-1 hash of the code directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecGuestAttributeHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecGuestAttributeHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecGuestAttributeHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecGuestAttributeHash",
+      "type": "topic",
+      "url": "/documentation/security/ksecguestattributehash"
+    },
+    "doc://com.externally.resolved.symbol/s:s6UInt32V": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s6UInt32V",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt32",
+      "type": "topic",
+      "url": "/documentation/Swift/UInt32"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "kSecCSGenerateGuestHash"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCSGenerateGuestHash"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "kSecCSGenerateGuestHash"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCSGenerateGuestHash/title",
+          "value": "kSecCSGenerateGuestHash"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCSGenerateGuestHash/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCSGenerateGuestHash"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecGuestAttributeHash/title",
+          "value": "kSecGuestAttributeHash"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecGuestAttributeHash/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecGuestAttributeHash"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCodeInfoUnique/title",
+          "value": "kSecCodeInfoUnique"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCodeInfoUnique/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCodeInfoUnique"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/kseccsgenerateguesthash"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/kseccsgenerateguesthash"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

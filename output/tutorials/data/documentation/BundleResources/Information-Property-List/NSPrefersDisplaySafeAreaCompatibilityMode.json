@@ -1,0 +1,1047 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether the app prefers to run in compatibility mode when necessary.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPrefersDisplaySafeAreaCompatibilityMode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSPrefersDisplaySafeAreaCompatibilityMode",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPrefersDisplaySafeAreaCompatibilityMode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "NSPrefersDisplaySafeAreaCompatibilityMode"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "NSPrefersDisplaySafeAreaCompatibilityMode",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "boolean"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Mac computers that include a camera housing in the screen bezel, the system provides a compatibility mode to prevent apps from unintentionally putting content in the region the housing occupies. When this mode is active, the system changes the active area of the display to avoid the camera housing. The new active area ensures your app’s contents are always visible and not obscured by the camera housing. The system activates this compatibility mode when an app that requires it places a window behind the camera housing in the current desktop or full-screen space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Mac computers that include a camera housing, the Finder adds a checkbox to your app’s Get Info panel to enable or disable compatibility mode. If your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPrefersDisplaySafeAreaCompatibilityMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key, the Finder doesn’t add that checkbox; instead, it uses the value of the key to determine whether to run your app in compatibility mode. Set the value of the key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to always run your app in compatibility mode, and set it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to never run your app in compatibility mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you audit your app and verify that it runs correctly on Mac computers that include a camera housing, add this key to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and set its value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you discover issues during your audit, add the key and set its value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " until you’re able to fix those issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "On Mac computers that include a camera housing in the bezel, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-uglc",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopRightArea-gr2n",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " properties of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " contain the regions to the left and right of the camera housing. Use those properties and the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/visibleFrame",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to determine where to display your content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAccentColorName": {
+      "abstract": [
+        {
+          "text": "The name of a color in an asset catalog to use for a target’s global accent color.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAccentColorName",
+      "kind": "symbol",
+      "name": "NSAccentColorName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccentColorName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccentColorName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsaccentcolorname"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPrefersDisplaySafeAreaCompatibilityMode": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app prefers to run in compatibility mode when necessary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPrefersDisplaySafeAreaCompatibilityMode",
+      "kind": "symbol",
+      "name": "NSPrefersDisplaySafeAreaCompatibilityMode",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrefersDisplaySafeAreaCompatibilityMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrefersDisplaySafeAreaCompatibilityMode",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsprefersdisplaysafeareacompatibilitymode"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetBackgroundColorName": {
+      "abstract": [
+        {
+          "text": "The name of a color in an asset catalog to use for a widget’s configuration interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetBackgroundColorName",
+      "kind": "symbol",
+      "name": "NSWidgetBackgroundColorName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWidgetBackgroundColorName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWidgetBackgroundColorName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nswidgetbackgroundcolorname"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPad app is capable of sharing the screen with other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+      "kind": "symbol",
+      "name": "UIRequiresFullScreen",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRequiresFullScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRequiresFullScreen",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uirequiresfullscreen"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if an iOS or iPadOS app appears as full screen in Assistive Access.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Supports full screen in Assistive Access",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+      "kind": "symbol",
+      "name": "UISupportsFullScreenInAssistiveAccess",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISupportsFullScreenInAssistiveAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISupportsFullScreenInAssistiveAccess",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uisupportsfullscreeninassistiveaccess"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle": {
+      "abstract": [
+        {
+          "text": "The user interface style for the app.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "User Interface Style",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+      "kind": "symbol",
+      "name": "UIUserInterfaceStyle",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserInterfaceStyle",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uiuserinterfacestyle"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewEdgeAntialiasing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Core Animation layers use antialiasing when drawing a layer that isn’t aligned to pixel boundaries.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Renders with edge antialiasing",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewEdgeAntialiasing",
+      "kind": "symbol",
+      "name": "UIViewEdgeAntialiasing",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewEdgeAntialiasing"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewEdgeAntialiasing",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uiviewedgeantialiasing"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewGroupOpacity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Core Animation sublayers inherit the opacity of their superlayer.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Renders with group opacity",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewGroupOpacity",
+      "kind": "symbol",
+      "name": "UIViewGroupOpacity",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewGroupOpacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewGroupOpacity",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uiviewgroupopacity"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIWhitePointAdaptivityStyle": {
+      "abstract": [
+        {
+          "text": "The app’s white-point adaptivity style, enabled on devices with True Tone displays.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "White Point Adaptivity Style",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIWhitePointAdaptivityStyle",
+      "kind": "symbol",
+      "name": "UIWhitePointAdaptivityStyle",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWhitePointAdaptivityStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWhitePointAdaptivityStyle",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uiwhitepointadaptivitystyle"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen": {
+      "abstract": [
+        {
+          "text": "An object that describes the attributes of a computer’s monitor or screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScreen",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-uglc": {
+      "abstract": [
+        {
+          "text": "The unobscured portion of the top-left corner of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "auxiliaryTopLeftArea"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-uglc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "auxiliaryTopLeftArea",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-uglc"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopRightArea-gr2n": {
+      "abstract": [
+        {
+          "text": "The unobscured portion of the top-right corner of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "auxiliaryTopRightArea"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/auxiliaryTopRightArea-gr2n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "auxiliaryTopRightArea",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/auxiliaryTopRightArea-gr2n"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/visibleFrame": {
+      "abstract": [
+        {
+          "text": "The current location and dimensions of the visible screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibleFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/visibleFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visibleFrame",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/visibleFrame"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewEdgeAntialiasing",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIWhitePointAdaptivityStyle",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewGroupOpacity",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAccentColorName",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetBackgroundColorName"
+      ],
+      "title": "Styling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPrefersDisplaySafeAreaCompatibilityMode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrefersDisplaySafeAreaCompatibilityMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Styling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewEdgeAntialiasing",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIWhitePointAdaptivityStyle",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIViewGroupOpacity",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAccentColorName",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetBackgroundColorName"
+              ],
+              "title": "Styling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIRequiresFullScreen/title",
+          "value": "UIRequiresFullScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIRequiresFullScreen/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRequiresFullScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIViewGroupOpacity/title",
+          "value": "UIViewGroupOpacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIViewGroupOpacity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewGroupOpacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIUserInterfaceStyle/title",
+          "value": "UIUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIUserInterfaceStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIWhitePointAdaptivityStyle/title",
+          "value": "UIWhitePointAdaptivityStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIWhitePointAdaptivityStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWhitePointAdaptivityStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIViewEdgeAntialiasing/title",
+          "value": "UIViewEdgeAntialiasing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIViewEdgeAntialiasing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewEdgeAntialiasing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UISupportsFullScreenInAssistiveAccess/title",
+          "value": "UISupportsFullScreenInAssistiveAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UISupportsFullScreenInAssistiveAccess/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISupportsFullScreenInAssistiveAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAccentColorName/title",
+          "value": "NSAccentColorName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAccentColorName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccentColorName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1visibleFrame/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "visibleFrame"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPrefersDisplaySafeAreaCompatibilityMode/title",
+          "value": "NSPrefersDisplaySafeAreaCompatibilityMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPrefersDisplaySafeAreaCompatibilityMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrefersDisplaySafeAreaCompatibilityMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetBackgroundColorName/title",
+          "value": "NSWidgetBackgroundColorName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetBackgroundColorName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWidgetBackgroundColorName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScreen"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsprefersdisplaysafeareacompatibilitymode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsprefersdisplaysafeareacompatibilitymode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

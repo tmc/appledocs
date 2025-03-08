@@ -1,0 +1,2994 @@
+{
+  "abstract": [
+    {
+      "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)FxTileableEffect",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FxTileableEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FxTileableEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "FxPlug"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "FxTileableEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Unsupported OS: FxPlug"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An object that obtains the various API objects your plug-in needs for communicating with the host application.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "apiManager"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this protocol, your plug-in can render select portions of its output, or tiles, to increase efficiency and to operate outside the host’s process. Your plug-in should saves a weak reference to the ",
+              "type": "text"
+            },
+            {
+              "code": "apiManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to use in subsequent calls. The plug-in initializes its properties and instance variables and returns a pointer to ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If any part of initialization fails in an unrecoverable way, this method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4": {
+      "abstract": [
+        {
+          "text": "Update existing FxPlug 3 plug-ins to out-of-process FxPlug 4 plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating FxPlug 3 plug-ins to FxPlug 4",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Maintain consistent rendering at all resolutions and aspect ratios by using pixel transforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/optimizing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images": {
+      "abstract": [
+        {
+          "text": "Render only the necessary tiles of an image in your FxPlug plug-in to improve efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with tiled images",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/working-with-tiled-images"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth": {
+      "abstract": [
+        {
+          "text": "Constants used to identify bit depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxDepth"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxDepth",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxdepth"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates": {
+      "abstract": [
+        {
+          "text": "Constants used to identify coordinate spaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxDrawingCoordinates"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxDrawingCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxDrawingCoordinates",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxdrawingcoordinates"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError": {
+      "abstract": [
+        {
+          "text": "Errors returned by plug-in hosts applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxError"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxError",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxerror"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxField": {
+      "abstract": [
+        {
+          "text": "Constants used to identify a field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxField"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxField"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxField",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxfield"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxFieldOrder": {
+      "abstract": [
+        {
+          "text": "Constants used to identify the field order of an image stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxFieldOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxFieldOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxFieldOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxFieldOrder",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxfieldorder"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageColorInfo": {
+      "abstract": [
+        {
+          "text": "Identifies some color properties of an FxImage instance. These include the color space, gamma level, and, in the case of ",
+          "type": "text"
+        },
+        {
+          "code": "YCbCr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " images, the color matrix for conversion to RGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageColorInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageColorInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageColorInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageColorInfo",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagecolorinfo"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPlugErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for FxPlug-related errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPlugErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPlugErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPlugErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPlugErrorDomain",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxplugerrordomain"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint2D": {
+      "abstract": [
+        {
+          "text": "A 2D point representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPoint2D"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPoint2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPoint2D",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpoint2d"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint3D": {
+      "abstract": [
+        {
+          "text": "A 3D point representation",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPoint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPoint3D",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpoint3d"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality": {
+      "abstract": [
+        {
+          "text": "Constants used to identify rendering quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxQuality",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxquality"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRect": {
+      "abstract": [
+        {
+          "text": "A 2D axis-aligned rectangle with integer coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxrect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRectsAreEqual(_:_:)": {
+      "abstract": [
+        {
+          "text": "Compares two rectangle structures and determines if they are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRectsAreEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRectsAreEqual(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRectsAreEqual"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRectsAreEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxrectsareequal(_:_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxSize": {
+      "abstract": [
+        {
+          "text": "A structure to store width and height values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxSize"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxSize",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxsize"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()": {
+      "abstract": [
+        {
+          "text": "Tells the host application what parameters your plug-in requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addParameters"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addParametersWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addParameters()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/addparameters()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)": {
+      "abstract": [
+        {
+          "text": "Returns the class of the object contained in the custom parameter with the given ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCustomParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classForCustomParameterID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "class(forCustomParameterID:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/class(forcustomparameterid:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/classes(forCustomParameterID:)": {
+      "abstract": [
+        {
+          "text": "Returns the classes of the objects contained in the custom parameter with the given ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCustomParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/classes(forCustomParameterID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classesForCustomParameterID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "classes(forCustomParameterID:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/classes(forcustomparameterid:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Calculates the bounds of the output image determined by the various inputs and plug-in state at the given render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImageRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/destinationimagerect(_:sourceimages:destinationimage:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/finishInitialSetup()": {
+      "abstract": [
+        {
+          "text": "Finishes the initial setup and is called exactly once on first application of your plug-in to allow it to do anything else it needs to in order to finish setting itself up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishInitialSetup"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/finishInitialSetup()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishInitialSetup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "finishInitialSetup()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/finishinitialsetup()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)": {
+      "abstract": [
+        {
+          "text": "Initializes the API manager for your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "apiManager"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PROAPIAccessing",
+          "text": "PROAPIAccessing"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAPIManager:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "init(apiManager:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/init(apimanager:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)": {
+      "abstract": [
+        {
+          "text": "Executes when the host detects that a parameter has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterChanged:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterChanged(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/parameterchanged(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginInstanceAddedToDocument()": {
+      "abstract": [
+        {
+          "text": "Notifies your plug-in when it becomes part of user’s document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pluginInstanceAddedToDocument"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginInstanceAddedToDocument()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pluginInstanceAddedToDocument"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pluginInstanceAddedToDocument()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/plugininstanceaddedtodocument()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the plug-in’s parameter values, performs any calculations it needs to from those values, and packages up the result to be used later with rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSData",
+          "text": "NSData"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxQuality",
+          "text": "FxQuality"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pluginState:atTime:quality:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pluginState(_:at:quality:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/pluginstate(_:at:quality:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/properties(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the host application about what the plug-in needs and supports, such as whether it renders in a gamma-corrected color space or a linear one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDictionary",
+          "text": "NSDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ">?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/properties(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "properties:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "properties(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/properties(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Sends a request that the host wants your plug-in to do its rendering for a given output image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/renderdestinationimage(_:sourceimages:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Tells the host application how many frames from the given input sources your plug-in requires in order to render at the given render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSArray",
+          "text": "NSArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs:withPluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "scheduleInputs(_:withPluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/scheduleinputs(_:withpluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Calculate the input rectangle needed for the given image input and the output tile to be rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceTileRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationTileRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/sourcetilerect(_:sourceimageindex:sourceimages:destinationtilerect:destinationimage:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PROAPIAccessing"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PROAPIAccessing"
+        }
+      ],
+      "role": "symbol",
+      "title": "PROAPIAccessing",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/proapiaccessing"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty": {
+      "abstract": [
+        {
+          "text": "An empty rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Empty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Empty"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxRect_Empty",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxrect_empty"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite": {
+      "abstract": [
+        {
+          "text": "An infinite rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Infinite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Infinite"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxRect_Infinite",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxrect_infinite"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rendering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins"
+      ],
+      "title": "Rendering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-up-your-plug-in",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/finishInitialSetup()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginInstanceAddedToDocument()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/properties(_:)"
+      ],
+      "title": "Setting up your plug-in"
+    },
+    {
+      "anchor": "Adding-and-setting-parameters",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/classes(forCustomParameterID:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)"
+      ],
+      "title": "Adding and setting parameters"
+    },
+    {
+      "anchor": "Determining-input-and-output-bounds",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRectsAreEqual(_:_:)"
+      ],
+      "title": "Determining input and output bounds"
+    },
+    {
+      "anchor": "Rendering-an-output",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)"
+      ],
+      "title": "Rendering an output"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Data types defined in the FxPlug SDK that may not be class-specific.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Data-types",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxField",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxFieldOrder",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint2D",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint3D",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRect",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxSize",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageColorInfo"
+      ],
+      "title": "Data types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPlugErrorDomain"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-up-your-plug-in",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/finishInitialSetup()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginInstanceAddedToDocument()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/properties(_:)"
+              ],
+              "title": "Setting up your plug-in"
+            },
+            {
+              "anchor": "Adding-and-setting-parameters",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/class(forCustomParameterID:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/classes(forCustomParameterID:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)"
+              ],
+              "title": "Adding and setting parameters"
+            },
+            {
+              "anchor": "Determining-input-and-output-bounds",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRectsAreEqual(_:_:)"
+              ],
+              "title": "Determining input and output bounds"
+            },
+            {
+              "anchor": "Rendering-an-output",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)"
+              ],
+              "title": "Rendering an output"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Data types defined in the FxPlug SDK that may not be class-specific.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Data-types",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxField",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxFieldOrder",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint2D",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPoint3D",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRect",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxSize",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageColorInfo"
+              ],
+              "title": "Data types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxQuality",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDepth",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPlugErrorDomain"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rendering",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins"
+              ],
+              "title": "Rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Unsupported OS: FxPlug"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "FxTileableEffect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1class(forCustomParameterID:)/title",
+          "value": "classForCustomParameterID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1class(forCustomParameterID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classForCustomParameterID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRectsAreEqual(_:_:)/title",
+          "value": "FxRectsAreEqual"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRectsAreEqual(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRectsAreEqual"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/title",
+          "value": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/title",
+          "value": "FxError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1properties(_:)/title",
+          "value": "properties:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1properties(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "properties:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/title",
+          "value": "FxDrawingCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDrawingCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDrawingCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Empty/title",
+          "value": "kFxRect_Empty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Empty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxRect_Empty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageColorInfo/title",
+          "value": "FxImageColorInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageColorInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageColorInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageColorInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageColorInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)/title",
+          "value": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxSize/title",
+          "value": "FxSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxSize/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint2D/title",
+          "value": "FxPoint2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPoint2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPoint2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRect/title",
+          "value": "FxRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1PROAPIAccessing/title",
+          "value": "PROAPIAccessing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1PROAPIAccessing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PROAPIAccessing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1PROAPIAccessing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PROAPIAccessing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint3D/title",
+          "value": "FxPoint3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPoint3D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/title",
+          "value": "pluginState:atTime:quality:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pluginState:atTime:quality:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)/title",
+          "value": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxField/title",
+          "value": "FxField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxFieldOrder/title",
+          "value": "FxFieldOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxFieldOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxFieldOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxFieldOrder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxFieldOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1classes(forCustomParameterID:)/title",
+          "value": "classesForCustomParameterID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1classes(forCustomParameterID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classesForCustomParameterID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Infinite/title",
+          "value": "kFxRect_Infinite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Infinite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxRect_Infinite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxQuality/title",
+          "value": "FxQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxQuality/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1finishInitialSetup()/title",
+          "value": "finishInitialSetup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1finishInitialSetup()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishInitialSetup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/title",
+          "value": "scheduleInputs:withPluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleInputs:withPluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/title",
+          "value": "parameterChanged:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterChanged:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginInstanceAddedToDocument()/title",
+          "value": "pluginInstanceAddedToDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginInstanceAddedToDocument()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pluginInstanceAddedToDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1init(apiManager:)/title",
+          "value": "initWithAPIManager:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1init(apiManager:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAPIManager:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDepth/title",
+          "value": "FxDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDepth/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/title",
+          "value": "addParametersWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addParametersWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPlugErrorDomain/title",
+          "value": "FxPlugErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPlugErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPlugErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fxtileableeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fxtileableeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1052 @@
+{
+  "abstract": [
+    {
+      "text": "A playback-related change that occurs during the session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "GroupActivities",
+    "externalID": "s:15GroupActivities0A12SessionEventV6ActionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Action"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Action"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "GroupSessionEvent.Action"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Action"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this structure to communicate playback-related changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to participants using the system UI. You can use this structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to communicate the following types of events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transport-related events for a custom player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changes to a playback queue your app manages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a change occurs in your custom player or playback queue, create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an instance of this structure to describe the change and wrap it in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. To display the event to the participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the session. The system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "formats and displays the information you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app uses AV Foundation to play content, you don’t need to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "communicate transport-related events yourself. AV Foundation generates",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "appropriate events when the user plays, pauses, seeks, or skips tracks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)": {
+      "abstract": [
+        {
+          "text": "Posts an event to the system, which displays the information in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system UI.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showNotice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showNotice(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/shownotice(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent": {
+      "abstract": [
+        {
+          "text": "A session-related event that appears in the system UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionEvent",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct": {
+      "abstract": [
+        {
+          "text": "A playback-related change that occurs during the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionEvent.Action",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/QueueChange": {
+      "abstract": [
+        {
+          "text": "A type that describes a modification to the playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueChange"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/QueueChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionEvent.Action.QueueChange",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/queuechange"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/pause": {
+      "abstract": [
+        {
+          "text": "An action that indicates an end to playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/pause",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pause",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/pause"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/play": {
+      "abstract": [
+        {
+          "text": "An action that indicates the start of playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/play",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "play",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/play"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/seek": {
+      "abstract": [
+        {
+          "text": "An event that indicates a change to the current playback location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/seek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seek",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/seek"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/skip(item:)": {
+      "abstract": [
+        {
+          "text": "Returns an event that indicates a skipped track or playback item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "skip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/skip(item:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "skip(item:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/skip(item:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue": {
+      "abstract": [
+        {
+          "text": "An action that represents a nonspecific change to the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatedQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updatedQueue",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/updatedqueue"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue(_:)": {
+      "abstract": [
+        {
+          "text": "Returns an action that represents a change to the playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatedQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV11QueueChangeV",
+          "text": "QueueChange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updatedQueue(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.struct/updatedqueue(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/action-swift.property": {
+      "abstract": [
+        {
+          "text": "The reason for the event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV6ActionV",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/action-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/action-swift.property"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/originator": {
+      "abstract": [
+        {
+          "text": "The participant that initiated the event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "originator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities11ParticipantV",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/originator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originator",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/originator"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/url": {
+      "abstract": [
+        {
+          "text": "The URL to open when the participant taps the event link in the system UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent/url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-event-details",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/originator",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/url",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/action-swift.property"
+      ],
+      "title": "Getting the event details"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-playback-related-actions",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/play",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/pause",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/seek",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/skip(item:)"
+      ],
+      "title": "Getting playback-related actions"
+    },
+    {
+      "anchor": "Getting-change-related-actions",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue(_:)",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/updatedQueue",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent/Action-swift.struct/QueueChange"
+      ],
+      "title": "Getting change-related actions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/groupsessionevent/action-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

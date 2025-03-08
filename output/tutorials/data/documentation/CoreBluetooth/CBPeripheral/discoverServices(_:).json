@@ -1,1 +1,1052 @@
-{"schemaVersion":{"major":0,"minor":3,"patch":0},"metadata":{"externalID":"c:objc(cs)CBPeripheral(im)discoverServices:","navigatorTitle":[{"text":"discoverServices:","kind":"identifier"}],"title":"discoverServices(_:)","platforms":[{"unavailable":false,"introducedAt":"5.0","deprecated":false,"beta":false,"name":"iOS"},{"unavailable":false,"introducedAt":"5.0","deprecated":false,"beta":false,"name":"iPadOS"},{"unavailable":false,"introducedAt":"13.1","deprecated":false,"beta":false,"name":"Mac Catalyst"},{"unavailable":false,"introducedAt":"10.7","deprecated":false,"beta":false,"name":"macOS"},{"name":"tvOS","deprecated":false,"beta":false,"introducedAt":"9.0","unavailable":false},{"name":"visionOS","deprecated":false,"beta":false,"introducedAt":"1.0","unavailable":false},{"name":"watchOS","deprecated":false,"beta":false,"introducedAt":"2.0","unavailable":false}],"modules":[{"name":"Core Bluetooth"}],"symbolKind":"method","role":"symbol","roleHeading":"Instance Method","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"discoverServices","kind":"identifier"},{"text":"([","kind":"text"},{"preciseIdentifier":"c:objc(cs)CBUUID","text":"CBUUID","kind":"typeIdentifier"},{"text":"]?)","kind":"text"}]},"seeAlsoSections":[{"generated":true,"title":"Discovering Services","identifiers":["doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services"],"anchor":"Discovering-Services"}],"sections":[],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.corebluetooth/documentation/CoreBluetooth","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"]]},"abstract":[{"text":"Discovers the specified services of the peripheral.","type":"text"}],"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"tokens":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"discoverServices","kind":"identifier"},{"text":"(","kind":"text"},{"text":"_","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"serviceUUIDs","kind":"internalParam"},{"text":": [","kind":"text"},{"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","text":"CBUUID","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBUUID"},{"text":"]?)","kind":"text"}],"languages":["swift"]}],"kind":"declarations"},{"kind":"parameters","parameters":[{"content":[{"inlineContent":[{"type":"text","text":"An array of "},{"isActive":true,"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","type":"reference"},{"type":"text","text":" objects that you are interested in. Each "},{"isActive":true,"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","type":"reference"},{"type":"text","text":" object represents a UUID that identifies the type of service you want to discover."}],"type":"paragraph"}],"name":"serviceUUIDs"}]},{"content":[{"type":"heading","text":"Discussion","level":2,"anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"text":"You can provide an array of ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","type":"reference"},{"text":" objects—representing service UUIDs—in the ","type":"text"},{"code":"serviceUUIDs","type":"codeVoice"},{"text":" parameter. When you do, the peripheral returns only the services of the peripheral that match the provided UUIDs.","type":"text"}]},{"content":[{"inlineContent":[{"type":"text","text":""},{"type":"text","text":" "},{"type":"text","text":"If the "},{"type":"codeVoice","code":"servicesUUIDs"},{"type":"text","text":" parameter is "},{"type":"codeVoice","code":"nil"},{"type":"text","text":", this method returns all of the peripheral’s available services. This is much slower than providing an array of service UUIDs to search for."}],"type":"paragraph"}],"type":"aside","style":"note","name":"Note"},{"type":"paragraph","inlineContent":[{"text":"When the peripheral discovers one or more services, it calls the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)","type":"reference"},{"text":": method of its delegate object. After a peripheral discovers services, you can access them through the peripheral’s ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services","type":"reference"},{"text":" property.","type":"text"}]}],"kind":"content"}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/corebluetooth/cbperipheral/discoverservices(_:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/corebluetooth/cbperipheral/discoverservices(_:)"]}],"kind":"symbol","references":{"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/technologies","kind":"technologies","type":"topic","title":"Technologies","role":"overview","url":"/documentation/technologies"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth":{"title":"Core Bluetooth","abstract":[{"text":"Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.","type":"text"}],"url":"/documentation/corebluetooth","kind":"symbol","type":"topic","role":"collection","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)":{"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)","title":"peripheral(_:didDiscoverServices:)","role":"symbol","kind":"symbol","url":"/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:diddiscoverservices:)","abstract":[{"type":"text","text":"Tells the delegate that peripheral service discovery succeeded."}],"navigatorTitle":[{"text":"peripheral:didDiscoverServices:","kind":"identifier"}],"type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"peripheral"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"CBPeripheral","preciseIdentifier":"c:objc(cs)CBPeripheral"},{"kind":"text","text":", "},{"text":"didDiscoverServices","kind":"externalParam"},{"text":": (any ","kind":"text"},{"text":"Error","preciseIdentifier":"s:s5ErrorP","kind":"typeIdentifier"},{"text":")?)","kind":"text"}]},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)":{"type":"topic","url":"/documentation/corebluetooth/cbperipheral/discoverincludedservices(_:for:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"discoverIncludedServices"},{"kind":"text","text":"(["},{"preciseIdentifier":"c:objc(cs)CBUUID","kind":"typeIdentifier","text":"CBUUID"},{"kind":"text","text":"]?, "},{"kind":"externalParam","text":"for"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)CBService","kind":"typeIdentifier","text":"CBService"},{"kind":"text","text":")"}],"navigatorTitle":[{"kind":"identifier","text":"discoverIncludedServices:forService:"}],"kind":"symbol","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)","title":"discoverIncludedServices(_:for:)","abstract":[{"type":"text","text":"Discovers the specified included services of a previously-discovered service."}],"role":"symbol"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services":{"navigatorTitle":[{"text":"services","kind":"identifier"}],"url":"/documentation/corebluetooth/cbperipheral/services","kind":"symbol","title":"services","role":"symbol","abstract":[{"type":"text","text":"A list of a peripheral’s discovered services."}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"services"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBService","text":"CBService"},{"text":"]?","kind":"text"}]},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)":{"kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"discoverServices"},{"kind":"text","text":"(["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBUUID","text":"CBUUID"},{"kind":"text","text":"]?)"}],"navigatorTitle":[{"text":"discoverServices:","kind":"identifier"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)","type":"topic","role":"symbol","abstract":[{"text":"Discovers the specified services of the peripheral.","type":"text"}],"title":"discoverServices(_:)","url":"/documentation/corebluetooth/cbperipheral/discoverservices(_:)"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral":{"url":"/documentation/corebluetooth/cbperipheral","abstract":[{"text":"A remote peripheral device.","type":"text"}],"type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CBPeripheral","kind":"identifier"}],"kind":"symbol","role":"symbol","title":"CBPeripheral","navigatorTitle":[{"text":"CBPeripheral","kind":"identifier"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID":{"type":"topic","abstract":[{"type":"text","text":"A universally unique identifier, as defined by Bluetooth standards."}],"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CBUUID"}],"url":"/documentation/corebluetooth/cbuuid","kind":"symbol","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","navigatorTitle":[{"kind":"identifier","text":"CBUUID"}],"title":"CBUUID","role":"symbol"}},"variantOverrides":[{"patch":[{"op":"replace","value":"occ","path":"/identifier/interfaceLanguage"},{"op":"replace","value":[{"beta":false,"unavailable":false,"name":"iOS","introducedAt":"5.0","deprecated":false},{"beta":false,"unavailable":false,"name":"iPadOS","introducedAt":"5.0","deprecated":false},{"beta":false,"unavailable":false,"name":"Mac Catalyst","introducedAt":"13.1","deprecated":false},{"introducedAt":"10.7","beta":false,"deprecated":false,"name":"macOS","unavailable":false},{"introducedAt":"9.0","beta":false,"deprecated":false,"name":"tvOS","unavailable":false},{"introducedAt":"1.0","beta":false,"deprecated":false,"name":"visionOS","unavailable":false},{"introducedAt":"2.0","beta":false,"deprecated":false,"name":"watchOS","unavailable":false}],"path":"/metadata/platforms"},{"op":"replace","value":"Instance Method","path":"/metadata/roleHeading"},{"op":"replace","value":"discoverServices:","path":"/metadata/title"},{"path":"/metadata/symbolKind","op":"replace","value":"method"},{"path":"/metadata/fragments","op":"replace","value":[{"text":"- ","kind":"text"},{"text":"discoverServices:","kind":"identifier"}]},{"path":"/hierarchy","op":"replace","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.corebluetooth/documentation/CoreBluetooth","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"]]}},{"value":null,"path":"/topicSections","op":"add"},{"value":null,"path":"/relationshipsSections","op":"add"},{"value":[{"generated":true,"anchor":"Discovering-Services","title":"Discovering Services","identifiers":["doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services"]}],"path":"/seeAlsoSections","op":"replace"},{"value":{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"tokens":[{"kind":"text","text":"- ("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":") "},{"kind":"identifier","text":"discoverServices:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"NSArray<CBUUID *>","preciseIdentifier":"c:Q$objc(cs)NSArray"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"serviceUUIDs"},{"kind":"text","text":";"}],"languages":["occ"]}]},"path":"/primaryContentSections/0","op":"replace"},{"path":"/primaryContentSections/1","op":"replace","value":{"parameters":[{"content":[{"type":"paragraph","inlineContent":[{"text":"An array of ","type":"text"},{"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","type":"reference","isActive":true},{"text":" objects that you are interested in. Each ","type":"text"},{"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID","type":"reference","isActive":true},{"text":" object represents a UUID that identifies the type of service you want to discover.","type":"text"}]}],"name":"serviceUUIDs"}],"kind":"parameters"}},{"value":"peripheral:didDiscoverServices:","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverServices:)/title","op":"replace"},{"value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"peripheral:didDiscoverServices:"}],"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverServices:)/fragments","op":"replace"},{"value":"discoverIncludedServices:forService:","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverIncludedServices(_:for:)/title","op":"replace"},{"value":[{"text":"- ","kind":"text"},{"text":"discoverIncludedServices:forService:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverIncludedServices(_:for:)/fragments","op":"replace"},{"value":"services","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1services/title","op":"replace"},{"value":[{"kind":"identifier","text":"services"}],"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1services/fragments","op":"replace"},{"value":"discoverServices:","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/title","op":"replace"},{"value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"discoverServices:"}],"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/fragments","op":"replace"},{"value":"CBPeripheral","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title","op":"replace"},{"value":[{"kind":"identifier","text":"CBPeripheral"}],"op":"replace","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments"},{"value":[{"text":"CBPeripheral","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle"},{"value":"CBUUID","op":"replace","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/title"},{"value":[{"text":"CBUUID","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/fragments"},{"value":[{"kind":"identifier","text":"CBUUID"}],"op":"replace","path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/navigatorTitle"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Discovers the specified services of the peripheral.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CBPeripheral(im)discoverServices:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "discoverServices"
+      },
+      {
+        "kind": "text",
+        "text": "(["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CBUUID",
+        "text": "CBUUID"
+      },
+      {
+        "kind": "text",
+        "text": "]?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Bluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "discoverServices:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "discoverServices(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverServices"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "serviceUUIDs"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBUUID",
+              "text": "CBUUID"
+            },
+            {
+              "kind": "text",
+              "text": "]?)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects that you are interested in. Each ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object represents a UUID that identifies the type of service you want to discover.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "serviceUUIDs"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects—representing service UUIDs—in the ",
+              "type": "text"
+            },
+            {
+              "code": "serviceUUIDs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. When you do, the peripheral returns only the services of the peripheral that match the provided UUIDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "servicesUUIDs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", this method returns all of the peripheral’s available services. This is much slower than providing an array of service UUIDs to search for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the peripheral discovers one or more services, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": method of its delegate object. After a peripheral discovers services, you can access them through the peripheral’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/corebluetooth"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral": {
+      "abstract": [
+        {
+          "text": "A remote peripheral device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheral",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)": {
+      "abstract": [
+        {
+          "text": "Discovers the specified included services of a previously-discovered service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discoverIncludedServices"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBService",
+          "text": "CBService"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discoverIncludedServices:forService:"
+        }
+      ],
+      "role": "symbol",
+      "title": "discoverIncludedServices(_:for:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/discoverincludedservices(_:for:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)": {
+      "abstract": [
+        {
+          "text": "Discovers the specified services of the peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discoverServices"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discoverServices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "discoverServices(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/discoverservices(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services": {
+      "abstract": [
+        {
+          "text": "A list of a peripheral’s discovered services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "services"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBService",
+          "text": "CBService"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "services"
+        }
+      ],
+      "role": "symbol",
+      "title": "services",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/services"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that peripheral service discovery succeeded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDiscoverServices"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverServices:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheral:didDiscoverServices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheral(_:didDiscoverServices:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:diddiscoverservices:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID": {
+      "abstract": [
+        {
+          "text": "A universally unique identifier, as defined by Bluetooth standards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBUUID"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBUUID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBUUID",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbuuid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Discovering-Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services"
+      ],
+      "title": "Discovering Services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "discoverServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Discovering-Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/services"
+              ],
+              "title": "Discovering Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "discoverServices:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<CBUUID *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "serviceUUIDs"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " objects that you are interested in. Each ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object represents a UUID that identifies the type of service you want to discover.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "serviceUUIDs"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverServices:)/title",
+          "value": "peripheral:didDiscoverServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverServices:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:didDiscoverServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverIncludedServices(_:for:)/title",
+          "value": "discoverIncludedServices:forService:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverIncludedServices(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverIncludedServices:forService:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1services/title",
+          "value": "services"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1services/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/title",
+          "value": "discoverServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title",
+          "value": "CBPeripheral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/title",
+          "value": "CBUUID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBUUID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBUUID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBUUID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheral/discoverservices(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheral/discoverservices(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

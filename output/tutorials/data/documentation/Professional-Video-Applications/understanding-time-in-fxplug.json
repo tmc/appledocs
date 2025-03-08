@@ -1,0 +1,1767 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about time handling in host apps and plug-ins.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding time in FxPlug"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4 uses rational time of ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+              "type": "text"
+            },
+            {
+              "text": " type to handle all timing in the host apps and plug-ins. Time can be in the form of a specific time or duration in an effect, object, or timeline (project). When FxPlug methods use ",
+              "type": "text"
+            },
+            {
+              "code": "time",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "renderTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that time generally refers to the current time that the host is providing or requesting. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides methods to access other time values available in the host app. For FxPlug methods that don’t provide time, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine current playhead time in the project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Time-in-Motion",
+          "level": 3,
+          "text": "Time in Motion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Motion projects, timelines always start at zero, regardless of the custom timecode the user may set in the project’s properties. Input time is also always relative to the timeline start time. Other times of significance are indicated in the following figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3695370",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Time-in-Final-Cut-Pro",
+          "level": 3,
+          "text": "Time in Final Cut Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Final Cut Pro, projects can start at any timecode set by the user, and their timeline time will be continuous from that start time. Timeline time is independent of Input Time in Final Cut Pro, so ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides two convenience methods to convert between them: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineTime(_:fromInputTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/inputTime(_:fromTimelineTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following figure shows various times in the FxTiming API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3695369",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Although the timeline’s start time is set by the user, the timecode of the timeline will not necessarily correspond to the rational time your plug-in uses. This difference may be due to drop-frame timecode, or because the timecode resets to ",
+                  "type": "text"
+                },
+                {
+                  "code": "00:00:00:00",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For example, if the user sets the project start timecode to ",
+                  "type": "text"
+                },
+                {
+                  "code": "23:59:50:00",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the rational start time of the timeline when converted to seconds may be ",
+                  "type": "text"
+                },
+                {
+                  "code": "86476.39",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " seconds, but will NOT reset to ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " seconds when the timeline’s timecode reaches ",
+                  "type": "text"
+                },
+                {
+                  "code": "00:00:00:00",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Motion-effect-templates",
+          "level": 3,
+          "text": "Motion effect templates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/motion/intro-to-final-cut-pro-templates-motn17691fe6/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use it in a Final Cut Pro project. You may notice significant differences in how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTime(forEffect:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/durationTime(forEffect:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTimeOfInput(toFilter:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " return time values. To understand these differences, imagine that an effect template added to a clip in Final Cut Pro is equivalent to a complete timeline in Motion. For example, in Motion, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTime(forEffect:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will return the plug-in effect’s start time relative to the Motion timeline. In Final Cut Pro, the same method will return the start time of the plug-in effect, relative to the native start time of the clip to which the user applies the template, regardless of the how much of the clip’s head has been trimmed by the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retiming-and-frame-duration",
+          "level": 3,
+          "text": "Retiming and frame duration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Effect templates that you apply to clips or other objects in Final Cut Pro may stretch to match the duration of the clip. When clips with effect templates are retimed by the user in Final Cut Pro, the effect template will adjust proportionally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike in Motion, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/frameDuration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/sampleDuration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " always return the native frame or sample durations of the clip, regardless of how fast or slow you retime it. If your plug-in attempts to determine the frame duration or frames per second of the timeline, then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsNumerator(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsDenominator(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make that calculation, as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let timingAPI = _apiManager!.api(for: FxTimingAPI_v4.self) as! FxTimingAPI_v4",
+                    "var timelineFrameDuration = CMTimeMake(value: Int64(timingAPI.timelineFpsDenominator(for: self)),",
+                    "                                           timescale: Int32(timingAPI.timelineFpsNumerator(for: self)))"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id<FxTimingAPI_v4> timingAPI = [_apiManager apiForProtocol:@protocol(FxTimingAPI_v4)];",
+                    "CMTime timelineFrameDuration = kCMTimeZero;",
+                    "timelineFrameDuration = CMTimeMake( [timingAPI timelineFpsDenominatorForEffect:self],",
+                    "                                    (int)[timingAPI timelineFpsNumeratorForEffect:self] );"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media": {
+      "abstract": [
+        {
+          "text": "Use the FxPlug analysis API to analyze frames of source media before rendering them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/analyzing-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Use the scheduling APIs in FxPlug to retrieve frames from different times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Scheduling media in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer": {
+      "abstract": [
+        {
+          "text": "A protocol you implement in your plug-in to analyze frames that the plug-in is applied to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalyzer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4": {
+      "abstract": [
+        {
+          "text": "Defines the methods the host application provides to support a custom parameter view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterActionAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterActionAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCustomParameterActionAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current time, expressed as a rational time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "currentTime()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4/currenttime()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3": {
+      "abstract": [
+        {
+          "text": "A collection of methods for manipulating the keyframes of your FxPlug 4 plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxKeyframeAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxkeyframeapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods provided by the host, so that a plug-in can query the timing properties of its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTimingAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/durationTime(forEffect:)": {
+      "abstract": [
+        {
+          "text": "Provides the duration time for the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "durationTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forEffect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/durationTime(forEffect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "durationTimeForEffect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "durationTime(forEffect:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/durationtime(foreffect:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/frameDuration(_:)": {
+      "abstract": [
+        {
+          "text": "Provides the native frame duration of the object to which the effect is applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameDuration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/frameDuration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameDuration:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "frameDuration(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/frameduration(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/inputTime(_:fromTimelineTime:)": {
+      "abstract": [
+        {
+          "text": "Converts from timeline time to time of the filter’s image input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromTimelineTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/inputTime(_:fromTimelineTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputTime:fromTimelineTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputTime(_:fromTimelineTime:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/inputtime(_:fromtimelinetime:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/sampleDuration(_:)": {
+      "abstract": [
+        {
+          "text": "Provides the native sample duration of the object to which the effect is applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleDuration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/sampleDuration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleDuration:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sampleDuration(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/sampleduration(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTime(forEffect:)": {
+      "abstract": [
+        {
+          "text": "Provides the start time for the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forEffect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTime(forEffect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startTimeForEffect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "startTime(forEffect:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/starttime(foreffect:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTimeOfInput(toFilter:)": {
+      "abstract": [
+        {
+          "text": "Provides the start time of the filter’s image input clip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTimeOfInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/startTimeOfInput(toFilter:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startTimeOfInputToFilter:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "startTimeOfInput(toFilter:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/starttimeofinput(tofilter:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsDenominator(for:)": {
+      "abstract": [
+        {
+          "text": "The denominator of the timeline’s frame rate where the user applies the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timelineFpsDenominator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)FxTileableEffect",
+          "text": "FxTileableEffect"
+        },
+        {
+          "kind": "text",
+          "text": ")!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsDenominator(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timelineFpsDenominatorForEffect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "timelineFpsDenominator(for:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/timelinefpsdenominator(for:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsNumerator(for:)": {
+      "abstract": [
+        {
+          "text": "The numerator of the timeline’s frame rate where the user applies the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timelineFpsNumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)FxTileableEffect",
+          "text": "FxTileableEffect"
+        },
+        {
+          "kind": "text",
+          "text": ")!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineFpsNumerator(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timelineFpsNumeratorForEffect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "timelineFpsNumerator(for:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/timelinefpsnumerator(for:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineTime(_:fromInputTime:)": {
+      "abstract": [
+        {
+          "text": "Converts from input time of the filter’s image input to timeline time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timelineTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromInputTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4/timelineTime(_:fromInputTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timelineTime:fromInputTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "timelineTime(_:fromInputTime:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4/timelinetime(_:frominputtime:)"
+    },
+    "https://support.apple.com/guide/motion/intro-to-final-cut-pro-templates-motn17691fe6/mac": {
+      "identifier": "https://support.apple.com/guide/motion/intro-to-final-cut-pro-templates-motn17691fe6/mac",
+      "title": "apply FxPlug plug-ins to a Motion template",
+      "titleInlineContent": [
+        {
+          "text": "apply FxPlug plug-ins to a Motion template",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/motion/intro-to-final-cut-pro-templates-motn17691fe6/mac"
+    },
+    "media-3695369": {
+      "alt": "Screenshot showing the Final Cut Pro timeline with a variety of times labeled, from Timeline Start Set by User on the left to Current Input Time on the right.",
+      "identifier": "media-3695369",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/587a3225ae1d845d2b2d25997bd516c2/media-3695369@2x.png"
+        }
+      ]
+    },
+    "media-3695370": {
+      "alt": "Screenshot of a Motion timeline showing a variety of times, ranging from Zero Timeline time on the left to Maximum Timline Time on the right.",
+      "identifier": "media-3695370",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5dd50f414fdb4d389aef6bf06e9ca64/media-3695370@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-and-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+      ],
+      "title": "Time and analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-and-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+              ],
+              "title": "Time and analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/title",
+          "value": "FxKeyframeAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/title",
+          "value": "FxCustomParameterActionAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterActionAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterActionAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineTime(_:fromInputTime:)/title",
+          "value": "timelineTime:fromInputTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineTime(_:fromInputTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "timelineTime:fromInputTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1sampleDuration(_:)/title",
+          "value": "sampleDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1sampleDuration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineFpsDenominator(for:)/title",
+          "value": "timelineFpsDenominatorForEffect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineFpsDenominator(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "timelineFpsDenominatorForEffect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1currentTime()/title",
+          "value": "currentTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1currentTime()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1durationTime(forEffect:)/title",
+          "value": "durationTimeForEffect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1durationTime(forEffect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "durationTimeForEffect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1startTime(forEffect:)/title",
+          "value": "startTimeForEffect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1startTime(forEffect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startTimeForEffect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1frameDuration(_:)/title",
+          "value": "frameDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1frameDuration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "frameDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1startTimeOfInput(toFilter:)/title",
+          "value": "startTimeOfInputToFilter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1startTimeOfInput(toFilter:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startTimeOfInputToFilter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/title",
+          "value": "FxTimingAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1inputTime(_:fromTimelineTime:)/title",
+          "value": "inputTime:fromTimelineTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1inputTime(_:fromTimelineTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputTime:fromTimelineTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/title",
+          "value": "FxAnalysisAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineFpsNumerator(for:)/title",
+          "value": "timelineFpsNumeratorForEffect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4~1timelineFpsNumerator(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "timelineFpsNumeratorForEffect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/title",
+          "value": "FxAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/title",
+          "value": "FxAnalysisAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/understanding-time-in-fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/understanding-time-in-fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,837 @@
+{
+  "abstract": [
+    {
+      "text": "Provide voice and text communication on a local network isolated from Apple Push Notification service by adopting Local Push Connectivity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Receiving Voice and Text Communications on a Local Network"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app shows how to implement and use Local Push Connectivity within a messaging app. The sample workspace contains two app components:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SimplePush",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — An iOS app that uses Local Push Connectivity to provide text messaging and VoIP services.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SimplePushServer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — A lightweight Swift server that simulates the functions of a messaging server by routing messages and calls between clients.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SimplePush",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app maintains two connections to the server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification Channel — A TCP connection the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "overridingTitle": "NEAppPushProvider",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NEAppPushProvider",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " maintains that provides functionality similar to Apple Push Notification service (APNs) when on a local Wi-Fi or private LTE network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control Channel — A TCP connection the iOS app maintains and uses to send app control data to the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample, you need a Mac to operate as the server, and two iOS devices (such as an iPhone and an iPad, or an iPod touch and an iPhone) that can connect to the server to communicate with each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that use Local Push Connectivity require the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/local-push-connectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you receive the entitlement, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimplePush.xcworkspace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and set the development team in the build settings of all five targets across the three projects. After you’ve set the team, Xcode automatically creates unique bundle identifiers that you use in the following steps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign into your account on the Apple Developer website and register a new App Group and two App IDs: one for the SimplePush app and one for the SimplePushProvider extension. Configure each App ID with the App Groups and Network Extensions capabilities. After you register the IDs, create two provisioning profiles (one for each identifier) that include the App Push Provider entitlement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import the newly created provisioning profiles into Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the SimplePush project, configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimplePush",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimplePushProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets with the imported provisioning profiles, deselect the existing App Group, and select the new App Group identifier you created in step 2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pushProviderBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PushConfigurationManager.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the bundle identifier set on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimplePushProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Build-and-Run-the-Sample-Server",
+          "level": 3,
+          "text": "Build and Run the Sample Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the ",
+              "type": "text"
+            },
+            {
+              "code": "SimplePushServer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build scheme and your Mac as the run destination, then run the project to start the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-Run-and-Configure-the-Sample-App",
+          "level": 3,
+          "text": "Build, Run, and Configure the Sample App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the server running, select the ",
+              "type": "text"
+            },
+            {
+              "code": "SimplePush",
+              "type": "codeVoice"
+            },
+            {
+              "text": " iOS build scheme and run the project on your iOS device. When ",
+              "type": "text"
+            },
+            {
+              "code": "SimplePush",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts, update the app’s settings to connect to the server. Tap the Settings button and enter the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the Server Address, which is the IP address or hostname of the Mac where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimplePushServer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter one or more of the following network configurations:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Wi-Fi—Enter the SSID of your local Wi-Fi network. The ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "NEAppPushProvider",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " runs when your device joins the Wi-Fi network with the SSID you’ve specified.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Cellular—Enter the Mobile Country Code and Mobile Network Code of your cellular provider (tapping Use Current Carrier autofills this information). If the device is connected to a Band 48 CBRS cellular network, manually enter the Tracking Area Code for the network.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All cellular networks other than Band 48 CBRS require the device to be supervised for ",
+                  "type": "text"
+                },
+                {
+                  "code": "NEAppPushProvider",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to run. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/guide/deployment-reference-ios/enabling-device-supervision-ior7ba06c270/web",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring the settings above, the Local Push Connectivity - Active setting displays “Yes” when ",
+              "type": "text"
+            },
+            {
+              "code": "NEAppPushProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is running. You must perform the steps above on at least two iOS devices so you can test and observe message exchanges between clients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "39dea25e04ed/ReceivingVoiceAndTextCommunicationsOnALocalNetwork.zip": {
+      "checksum": "39dea25e04ed861d6816fc955f6eff96a07d7cc89e2e9fdcf7c09ab2f387013b858c7a6728e8a38ec2f02aefa832389b94b927317c1b68990b6f28ecf03eab85",
+      "identifier": "39dea25e04ed/ReceivingVoiceAndTextCommunicationsOnALocalNetwork.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/39dea25e04ed/ReceivingVoiceAndTextCommunicationsOnALocalNetwork.zip"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension/NEAppPushProvider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager": {
+      "abstract": [
+        {
+          "text": "An object that configures a push provider and manages its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity": {
+      "abstract": [
+        {
+          "text": "Provide functionality similar to Apple Push Notification Service when access to the wider internet is unavailable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local push connectivity",
+      "type": "topic",
+      "url": "/documentation/networkextension/local-push-connectivity"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection": {
+      "abstract": [
+        {
+          "text": "Implement your Local Push Connectivity app to ensure delivery of notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining a Reliable Network Connection",
+      "type": "topic",
+      "url": "/documentation/networkextension/maintaining-a-reliable-network-connection"
+    },
+    "https://developer.apple.com/contact/request/local-push-connectivity": {
+      "identifier": "https://developer.apple.com/contact/request/local-push-connectivity",
+      "title": "App Push Provider entitlement",
+      "titleInlineContent": [
+        {
+          "text": "App Push Provider entitlement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/local-push-connectivity"
+    },
+    "https://support.apple.com/guide/deployment-reference-ios/enabling-device-supervision-ior7ba06c270/web": {
+      "identifier": "https://support.apple.com/guide/deployment-reference-ios/enabling-device-supervision-ior7ba06c270/web",
+      "title": "Supervision of Apple devices",
+      "titleInlineContent": [
+        {
+          "text": "Supervision of Apple devices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/deployment-reference-ios/enabling-device-supervision-ior7ba06c270/web"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "39dea25e04ed/ReceivingVoiceAndTextCommunicationsOnALocalNetwork.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NEProvider",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/title",
+          "value": "NEAppPushProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/title",
+          "value": "NEAppPushManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/receiving-voice-and-text-communications-on-a-local-network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

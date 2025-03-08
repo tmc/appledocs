@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "A convenience factory variable to use as a base for custom date interval format styles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/date",
+        "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3796299,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation11FormatStylePA2A4DateV08IntervalbC0VRszrlE8intervalAGvpZ::SYNTHESIZED::s:10Foundation4DateV19IntervalFormatStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static var "
+      },
+      {
+        "kind": "identifier",
+        "text": "interval"
+      },
+      {
+        "kind": "text",
+        "text": ": Date.IntervalFormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Date.IntervalFormatStyle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "interval"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "interval"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV19IntervalFormatStyleV",
+              "text": "IntervalFormatStyle"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the date interval format style using modifier syntax to apply specific date and time formats, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let today = Date.now",
+            "if let sevenDaysBeforeToday = Calendar.current.date(byAdding: .day, value: -7, to: today) {",
+            "",
+            "    // Create a Range<Date>.",
+            "    let weekBefore = sevenDaysBeforeToday..<today",
+            "",
+            "    let localeArray = [\"en_US\", \"sv_SE\", \"en_GB\", \"th_TH\", \"fr_BE\"]",
+            "    for localeID in localeArray {",
+            "        // Call the .formatted method on a Range<Date> and pass in an instance of Date.IntervalFormatStyle.",
+            "        print(weekBefore.formatted(.interval",
+            "                 .day()",
+            "                 .month(.wide)",
+            "                 .weekday(.short)",
+            "                 .hour(.conversationalTwoDigits(amPM: .wide))",
+            "                 .locale(Locale(identifier: localeID))))",
+            "    }",
+            "}",
+            "// We, February 3, 3 PM – We, February 10, 3 PM",
+            "// on 3 februari 15 – on 10 februari 15",
+            "// We 3 February, 15 – We 10 February, 15",
+            "// พ. 3 กุมภาพันธ์ 15 – พ. 10 กุมภาพันธ์ 15",
+            "// me 3 février, 15 h – me 10 février, 15 h"
+          ],
+          "metadata": {
+            "anchor": "3860780",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default format styles are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle/3766159-numeric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " date format and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle/3766392-shortened",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " time format, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let today = Date.now",
+            "if let sevenDaysBeforeToday = Calendar.current.date(byAdding: .day, value: -7, to: today) {",
+            "    // Create a Range<Date>.",
+            "    let weekBefore = sevenDaysBeforeToday..<today",
+            "    print(weekBefore.formatted(.interval))",
+            "}",
+            "// 2/25/21, 12:58 PM – 3/4/21, 12:58 PM"
+          ],
+          "metadata": {
+            "anchor": "3860779",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle/3766159-numeric": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle/3766159-numeric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numeric",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/datestyle/3766159-numeric"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle/3766392-shortened": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle/3766392-shortened",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shortened",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/timestyle/3766392-shortened"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.IntervalFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/intervalformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3766522-init": {
+      "abstract": [
+        {
+          "text": "Creates an instance using the provided date, time, locale, calendar, time zone, and capitalization context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.IntervalFormatStyle.DateStyle?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.IntervalFormatStyle.TimeStyle?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale, "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3766522-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(date:time:locale:calendar:timeZone:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/intervalformatstyle/3766522-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval": {
+      "abstract": [
+        {
+          "text": "A convenience factory variable to use as a base for custom date interval format styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.IntervalFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interval",
+      "type": "topic",
+      "url": "/documentation/foundation/date/intervalformatstyle/3796299-interval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval#3860779": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval#3860779",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/date/intervalformatstyle/3796299-interval#3860779"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval#3860780": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3796299-interval#3860780",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/date/intervalformatstyle/3796299-interval#3860780"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle/3766522-init"
+      ],
+      "title": "Creating a Date Interval Format Style"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/date/intervalformatstyle/3796299-interval"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

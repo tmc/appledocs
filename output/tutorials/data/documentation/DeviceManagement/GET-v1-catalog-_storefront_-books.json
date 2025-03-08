@@ -1,0 +1,976 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch metadata for books from the catalog by using their identifiers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:get:v1-catalog-{}-books#ids",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/catalog/{storefront}/books"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Metadata for Multiple Catalog Books"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.ent.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/books#ids"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory that you specify with an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefrontobjects",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appletv",
+                "ipad",
+                "iphone",
+                "mac",
+                "realityDevice",
+                "web"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional platforms the app supports that you want to get metadata for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "additionalPlatforms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifiers for the catalog books. The maximum fetch limit is 150.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ids",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of relationship names to include for resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Classifier (optional): A resource type to apply the parameter to, ",
+                  "type": "text"
+                },
+                {
+                  "code": "apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "books",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, which you specify with a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object that ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " specifies. Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appletv",
+                "ipad",
+                "iphone",
+                "mac",
+                "realityDevice",
+                "web"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The platform the user-facing app is running on. You use this to get metadata for the specified platform.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "platform",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of relationship names to relate for resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Classifier (optional): A resource type to apply the parameter to, ",
+                  "type": "text"
+                },
+                {
+                  "code": "apps",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "books",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "relate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/BooksResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:BooksResponse",
+              "text": "BooksResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "?ids=510907372,1378977317&platform=iphone"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": [",
+                    "    {",
+                    "      \"id\": \"510907372\",",
+                    "      \"type\": \"books\",",
+                    "      \"href\": \"/v1/catalog/us/books/510907372\",",
+                    "      \"attributes\": {",
+                    "        \"offers\": [",
+                    "          {",
+                    "            \"buyParams\": \"productType=PUB&price=0&salableAdamId=510907372&pricingParameters=PLUS&pg=default&marketType=EDU\",",
+                    "            \"type\": \"get\",",
+                    "            \"priceFormatted\": \"$0.00\",",
+                    "            \"price\": 0,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"plusPublication\",",
+                    "                \"size\": 52007",
+                    "              }",
+                    "            ]",
+                    "          }",
+                    "        ],",
+                    "        \"genreNames\": [",
+                    "          \"Poetry\",",
+                    "          \"Books\",",
+                    "          \"Fiction & Literature\"",
+                    "        ],",
+                    "        \"name\": \"book\",",
+                    "        \"artistName\": \"author\",",
+                    "        \"artwork\": {",
+                    "          \"width\": 665,",
+                    "          \"height\": 982,",
+                    "          \"url\": \"https://isq11.mzstatic.com/image/thumb/Publication7/v4/75/e6/59/75e65967-4481-f194-6ce8-fe0ee69bc5bf/coverArt.9e3ac1.jpg/{w}x{h}bb.{f}\",",
+                    "          \"bgColor\": \"aa0500\",",
+                    "          \"textColor1\": \"fff8fa\",",
+                    "          \"textColor2\": \"efab9d\",",
+                    "          \"textColor3\": \"edc7c8\",",
+                    "          \"textColor4\": \"e18a7e\"",
+                    "        },",
+                    "        \"url\": \"https://books.apple.com/us/book/name/id510907372\",",
+                    "        \"userRating\": {",
+                    "          \"value\": 0,",
+                    "          \"ratingCount\": 0",
+                    "        }",
+                    "      },",
+                    "      \"relationships\": {",
+                    "        \"genres\": {",
+                    "          \"href\": \"/v1/catalog/us/books/510907372/genres\",",
+                    "          \"data\": [",
+                    "            {",
+                    "              \"id\": \"10093\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/10093\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"Fiction & Literature\",",
+                    "                \"name\": \"Poetry\",",
+                    "                \"parentId\": \"9031\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id10093\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"38\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/38\",",
+                    "              \"attributes\": {",
+                    "                \"name\": \"Books\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id38\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"9031\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/9031\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"Books\",",
+                    "                \"name\": \"Fiction & Literature\",",
+                    "                \"parentId\": \"38\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id9031\"",
+                    "              }",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"id\": \"1378977317\",",
+                    "      \"type\": \"books\",",
+                    "      \"href\": \"/v1/catalog/us/books/1378977317\",",
+                    "      \"attributes\": {",
+                    "        \"offers\": [",
+                    "          {",
+                    "            \"buyParams\": \"productType=PUB&price=33990&salableAdamId=1378977317&pricingParameters=STDQ&pg=default&marketType=EDU\",",
+                    "            \"type\": \"buy\",",
+                    "            \"priceFormatted\": \"$33.99\",",
+                    "            \"price\": 33.99,",
+                    "            \"currencyCode\": \"USD\",",
+                    "            \"assets\": [",
+                    "              {",
+                    "                \"flavor\": \"publication\",",
+                    "                \"size\": 4569258",
+                    "              }",
+                    "            ]",
+                    "          }",
+                    "        ],",
+                    "        \"genreNames\": [",
+                    "          \"Biographies & Memoirs\",",
+                    "          \"Books\"",
+                    "        ],",
+                    "        \"isbn\": \"9788233801021\",",
+                    "        \"name\": \"bob\",",
+                    "        \"artistName\": \"artistname\",",
+                    "        \"artwork\": {",
+                    "          \"width\": 1600,",
+                    "          \"height\": 2414,",
+                    "          \"url\": \"https://isq11.mzstatic.com/image/thumb/Publication128/v4/49/b2/0e/49b20e3a-43f6-6a06-d351-8eed123ff336/9788233801021_H2_Harry_En_biografi_om_prinsen_Cover.jpg/{w}x{h}bb.{f}\",",
+                    "          \"bgColor\": \"eaedf2\",",
+                    "          \"textColor1\": \"0d0d11\",",
+                    "          \"textColor2\": \"3d312b\",",
+                    "          \"textColor3\": \"393a3e\",",
+                    "          \"textColor4\": \"605752\"",
+                    "        },",
+                    "        \"url\": \"https://books.apple.com/us/book/harry/id1378977317\",",
+                    "        \"userRating\": {",
+                    "          \"value\": 0,",
+                    "          \"ratingCount\": 0",
+                    "        }",
+                    "      },",
+                    "      \"relationships\": {",
+                    "        \"genres\": {",
+                    "          \"href\": \"/v1/catalog/us/books/1378977317/genres\",",
+                    "          \"data\": [",
+                    "            {",
+                    "              \"id\": \"9008\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/9008\",",
+                    "              \"attributes\": {",
+                    "                \"parentName\": \"Books\",",
+                    "                \"name\": \"Biographies & Memoirs\",",
+                    "                \"parentId\": \"38\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id9008\"",
+                    "              }",
+                    "            },",
+                    "            {",
+                    "              \"id\": \"38\",",
+                    "              \"type\": \"genres\",",
+                    "              \"href\": \"/v1/catalog/us/genres/38\",",
+                    "              \"attributes\": {",
+                    "                \"name\": \"Books\",",
+                    "                \"url\": \"https://itunes.apple.com/us/genre/id38\"",
+                    "              }",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      }",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/BooksResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BooksResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/BooksResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BooksResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "BooksResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/booksresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "The collection of errors that occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for apps from the catalog by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Multiple Catalog Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-apps"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for an app from the catalog by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/apps/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for a Catalog App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-apps-_id_"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for books from the catalog by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/books"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Multiple Catalog Books",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-books"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for a book from the catalog by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/catalog/{storefront}/books/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for a Catalog Book",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-v1-catalog-_storefront_-books-_id_"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for apps and books from the catalog by using a search term.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Catalog Search Results"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Catalog Search Results",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-catalog-search-results"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for your apps by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Your Apps Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Your Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-your-apps-metadata"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata": {
+      "abstract": [
+        {
+          "text": "Fetch metadata for your books by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Your Books Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Metadata for Your Books",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-your-books-metadata"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates an incorrect authorization header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/unauthorizedresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-and-book-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Apps-Metadata",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Your-Books-Metadata",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps-_id_",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-apps",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GET-v1-catalog-_storefront_-books-_id_",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Catalog-Search-Results"
+      ],
+      "title": "App and book metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/BooksResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/UnauthorizedResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorsResponse"
+      ],
+      "title": "Responses"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-v1-catalog-_storefront_-books"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

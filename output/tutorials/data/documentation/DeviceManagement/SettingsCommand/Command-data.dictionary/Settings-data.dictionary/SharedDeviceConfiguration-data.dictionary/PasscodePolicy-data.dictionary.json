@@ -1,0 +1,523 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary that contains passcode policies.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/PasscodePolicy-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-commands:SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Command",
+    "symbolKind": "dictionary",
+    "title": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of seconds before a device goes to sleep after being idle. The minimum value for this setting is ",
+                  "type": "text"
+                },
+                {
+                  "code": "120",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " seconds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "5.0.0",
+          "name": "AutoLockTime",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "60",
+                "300",
+                "900",
+                "3600",
+                "14400"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of seconds before a locked screen requires the user to enter the device passcode to unlock it. The minimum value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " seconds and the maximum value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "14400",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " seconds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If a device has a passcode, a change to a larger value doesn’t take effect until the user logs out or removes the passcode. For this reason, it’s better to set this value before the user sets a passcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This setting won’t take effect if ",
+                  "type": "text"
+                },
+                {
+                  "code": "TemporarySessionOnly",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " because there’s no passcode for a temporary session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "5.0.0",
+          "name": "PasscodeLockGracePeriod",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This setting is only available on Shared iPad on iPadOS 17 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand": {
+      "abstract": [
+        {
+          "text": "The command to configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The request dictionary to configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand.Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand/command-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries that contains the settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand.Command.Settings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand/command-data.dictionary/settings-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains shared device configuration settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand.Command.Settings.SharedDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand/command-data.dictionary/settings-data.dictionary/shareddeviceconfiguration-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/AwaitUserConfiguration-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Enables the user configuration Setup Assistant workflow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.AwaitUserConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/AwaitUserConfiguration-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.AwaitUserConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.AwaitUserConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand/command-data.dictionary/settings-data.dictionary/shareddeviceconfiguration-data.dictionary/awaituserconfiguration-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/PasscodePolicy-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains passcode policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/PasscodePolicy-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand.Command.Settings.SharedDeviceConfiguration.PasscodePolicy",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand/command-data.dictionary/settings-data.dictionary/shareddeviceconfiguration-data.dictionary/passcodepolicy-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand/Command-data.dictionary/Settings-data.dictionary/SharedDeviceConfiguration-data.dictionary/AwaitUserConfiguration-data.dictionary"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/settingscommand/command-data.dictionary/settings-data.dictionary/shareddeviceconfiguration-data.dictionary/passcodepolicy-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3117 @@
+{
+  "abstract": [
+    {
+      "text": "An object that confers to a specified array of dynamic items the ability to engage in collisions with each other and with the behavior’s specified boundaries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollisionBehavior",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollisionBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollisionBehavior"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollisionBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A collision behavior also specifies some characteristics of its items’ collisions, with other characteristics optionally specified by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItemBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dynamic item",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is any iOS or custom object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes implement this protocol starting in iOS 7.0. You can use a custom object as a dynamic item for such purposes as reacting to rotation or position changes computed by a dynamic animator—an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a collision behavior with a dynamic item, perform these two steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associate the item with the behavior using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addItem(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, or initialize a new collision behavior with an array of items using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/init(items:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the behavior by adding it to an animator using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coordinate system that pertains to a collision behavior, and the types of dynamic items you can use with the behavior, depend on how you initialized the associated animator. For details, read the Overview of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add multiple collision behaviors to a dynamic animator. A dynamic item can be part of any number of collision behaviors, provided those behaviors belong to the same animator. For example, you can specify a collision behavior for a set of say, blue, items and another for, say, pink items. When you add both behaviors to a dynamic animator, blue items can collide with each other and pink items can collide with each other, but a blue item and a pink item would not collide—they would ignore each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a collision behavior’s items can collide with each other ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "and",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with any boundaries you’ve specified for the behavior. If you want to specify that a behavior’s items collide only with each other, or only with boundaries, explicitly set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define a collision boundary with a bezier path (see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method) or with a line segment (see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:from:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method). When you use a collision behavior with a dynamic animator you’ve initialized with a reference view or a collection view layout, you can also specify a collision boundary according to the bounds of the dynamic animator’s coordinate system (see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/setTranslatesReferenceBoundsIntoBoundary(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When setting the initial position for a dynamic item, you must ensure that its bounds do not intersect any collision boundaries. The animation behavior for such a misplaced item is undefined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to collisions, implement a delegate object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Add the delegate to the behavior using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include a collision behavior in a custom, composite behavior by starting with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and adding a collision behavior with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/addChildBehavior(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.  If you want to influence a collision behavior at each step of a dynamic animation, implement the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/action",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior": {
+      "abstract": [
+        {
+          "text": "A relationship between two dynamic items, or between a dynamic item and an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAttachmentBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAttachmentBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAttachmentBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes": {
+      "abstract": [
+        {
+          "text": "A layout object that manages the layout-related attributes for a given item in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayoutAttributes",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior": {
+      "abstract": [
+        {
+          "text": "An object that confers to a specified array of dynamic items the ability to engage in collisions with each other and with the behavior’s specified boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollisionBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/Mode": {
+      "abstract": [
+        {
+          "text": "The types of edges that participate in collisions for a collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/Mode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollisionBehavior.Mode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/mode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:for:)": {
+      "abstract": [
+        {
+          "text": "Adds a collision boundary, specified as a Bezier path, to the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBoundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addBoundaryWithIdentifier:forPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addBoundary(withIdentifier:for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/addboundary(withidentifier:for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:from:to:)": {
+      "abstract": [
+        {
+          "text": "Adds a collision boundary, specified as a line segment, to the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBoundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addBoundaryWithIdentifier:fromPoint:toPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addBoundary(withIdentifier:from:to:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/addboundary(withidentifier:from:to:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addItem(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a dynamic item to the collision behavior’s item array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addItem"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addItem(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/additem(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundary(withIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a specified Bezier-path boundary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundary(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundaryWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundary(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/boundary(withidentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundaryIdentifiers": {
+      "abstract": [
+        {
+          "text": "The set of boundary identifiers that you’ve added to the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundaryIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundaryIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundaryIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundaryIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/boundaryidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate object that you want to respond to collisions for the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collisionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UICollisionBehaviorDelegate",
+          "text": "UICollisionBehaviorDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collisionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "collisionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/collisiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionMode": {
+      "abstract": [
+        {
+          "text": "The type of edges that participate in collisions for the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collisionMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollisionBehavior",
+          "text": "UICollisionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICollisionBehaviorMode",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collisionMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "collisionMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/collisionmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/init(items:)": {
+      "abstract": [
+        {
+          "text": "Initializes a collision behavior with an array of dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/init(items:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(items:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/init(items:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/items": {
+      "abstract": [
+        {
+          "text": "Returns the set of dynamic items you’ve added to the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/items",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "items"
+        }
+      ],
+      "role": "symbol",
+      "title": "items",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/items"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeAllBoundaries()": {
+      "abstract": [
+        {
+          "text": "Removes all previously-specified collision boundaries from the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllBoundaries"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeAllBoundaries()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllBoundaries"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllBoundaries()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/removeallboundaries()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeBoundary(withIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Removes a specific collision boundary from the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeBoundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeBoundary(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeBoundaryWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeBoundary(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/removeboundary(withidentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeItem(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specific dynamic item from the collision behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeItem"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeItem(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/removeitem(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/setTranslatesReferenceBoundsIntoBoundary(with:)": {
+      "abstract": [
+        {
+          "text": "Specifies a collision boundary based on the bounds of the animation reference system, with optional insets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTranslatesReferenceBoundsIntoBoundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/setTranslatesReferenceBoundsIntoBoundary(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTranslatesReferenceBoundsIntoBoundaryWithInsets:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTranslatesReferenceBoundsIntoBoundary(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/settranslatesreferenceboundsintoboundary(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/translatesReferenceBoundsIntoBoundary": {
+      "abstract": [
+        {
+          "text": "Specifies whether a boundary based on the reference system is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translatesReferenceBoundsIntoBoundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/translatesReferenceBoundsIntoBoundary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "translatesReferenceBoundsIntoBoundary"
+        }
+      ],
+      "role": "symbol",
+      "title": "translatesReferenceBoundsIntoBoundary",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior/translatesreferenceboundsintoboundary"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate": {
+      "abstract": [
+        {
+          "text": "To respond to UIKit dynamic item collisions, configure a custom class to adopt the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol. Then, in a collision behavior (an instance of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class), set the delegate to be an instance of your custom class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehaviorDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehaviorDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollisionBehaviorDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehaviordelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator": {
+      "abstract": [
+        {
+          "text": "An object that provides physics-related capabilities and animations for its dynamic items, and provides the context for those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicAnimator",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicanimator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a dynamic behavior to a dynamic animator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+          "text": "UIDynamicBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addBehavior:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicanimator/addbehavior(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior": {
+      "abstract": [
+        {
+          "text": "An object that confers a behavioral configuration on one or more dynamic items, for their participation in 2D animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/action": {
+      "abstract": [
+        {
+          "text": "The block you want to execute during dynamic animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicbehavior/action"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/addChildBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a dynamic behavior, as a child, to a custom dynamic behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChildBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+          "text": "UIDynamicBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior/addChildBehavior(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChildBehavior:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChildBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicItemBehavior": {
+      "abstract": [
+        {
+          "text": "A base dynamic animation configuration for one or more dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItemBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItemBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItemBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicItemBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicitembehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior": {
+      "abstract": [
+        {
+          "text": "An object that applies field-based physics to dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFieldBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFieldBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFieldBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uifieldbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior": {
+      "abstract": [
+        {
+          "text": "An object that applies a gravity-like force to all of its associated dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGravityBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGravityBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGravityBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uigravitybehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior": {
+      "abstract": [
+        {
+          "text": "A behavior that applies a continuous or instantaneous force to one or more dynamic items, causing those items to change position accordingly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPushBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPushBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPushBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uipushbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior": {
+      "abstract": [
+        {
+          "text": "A spring-like behavior whose initial motion is damped over time so that the object settles at a specific point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISnapBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISnapBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISnapBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uisnapbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior"
+      ],
+      "title": "Behaviors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-and-managing-a-collision-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addItem(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/init(items:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeItem(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/items"
+      ],
+      "title": "Initializing and managing a collision behavior"
+    },
+    {
+      "anchor": "Customizing-the-collision-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate"
+      ],
+      "title": "Customizing the collision behavior"
+    },
+    {
+      "anchor": "Configuring-a-collision-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:from:to:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundaryIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundary(withIdentifier:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionMode",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeAllBoundaries()",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeBoundary(withIdentifier:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/setTranslatesReferenceBoundsIntoBoundary(with:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/translatesReferenceBoundsIntoBoundary"
+      ],
+      "title": "Configuring a collision behavior"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/Mode"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICollisionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-and-managing-a-collision-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addItem(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/init(items:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeItem(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/items"
+              ],
+              "title": "Initializing and managing a collision behavior"
+            },
+            {
+              "anchor": "Customizing-the-collision-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate"
+              ],
+              "title": "Customizing the collision behavior"
+            },
+            {
+              "anchor": "Configuring-a-collision-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:for:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/addBoundary(withIdentifier:from:to:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundaryIdentifiers",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/boundary(withIdentifier:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/collisionMode",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeAllBoundaries()",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/removeBoundary(withIdentifier:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/setTranslatesReferenceBoundsIntoBoundary(with:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/translatesReferenceBoundsIntoBoundary"
+              ],
+              "title": "Configuring a collision behavior"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior/Mode"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Behaviors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior"
+              ],
+              "title": "Behaviors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICollisionBehavior"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+                    "text": "UIDynamicBehavior"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1collisionDelegate/title",
+          "value": "collisionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1collisionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collisionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/title",
+          "value": "UICollisionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/title",
+          "value": "UIDynamicItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeItem(_:)/title",
+          "value": "removeItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addItem(_:)/title",
+          "value": "addItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/title",
+          "value": "UIFieldBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFieldBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFieldBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeBoundary(withIdentifier:)/title",
+          "value": "removeBoundaryWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeBoundary(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeBoundaryWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1Mode/title",
+          "value": "UICollisionBehaviorMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1Mode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehaviorMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1Mode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehaviorMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/title",
+          "value": "UIPushBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPushBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPushBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1boundaryIdentifiers/title",
+          "value": "boundaryIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1boundaryIdentifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boundaryIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/title",
+          "value": "UIAttachmentBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeAllBoundaries()/title",
+          "value": "removeAllBoundaries"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1removeAllBoundaries()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllBoundaries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addBoundary(withIdentifier:from:to:)/title",
+          "value": "addBoundaryWithIdentifier:fromPoint:toPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addBoundary(withIdentifier:from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addBoundaryWithIdentifier:fromPoint:toPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/title",
+          "value": "UISnapBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISnapBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISnapBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1boundary(withIdentifier:)/title",
+          "value": "boundaryWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1boundary(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundaryWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/title",
+          "value": "UIDynamicBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/title",
+          "value": "UIGravityBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGravityBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGravityBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator~1addBehavior(_:)/title",
+          "value": "addBehavior:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator~1addBehavior(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addBehavior:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItemBehavior/title",
+          "value": "UIDynamicItemBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItemBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItemBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItemBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItemBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior~1addChildBehavior(_:)/title",
+          "value": "addChildBehavior:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior~1addChildBehavior(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChildBehavior:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehaviorDelegate/title",
+          "value": "UICollisionBehaviorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehaviorDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehaviorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehaviorDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehaviorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1collisionMode/title",
+          "value": "collisionMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1collisionMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collisionMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1setTranslatesReferenceBoundsIntoBoundary(with:)/title",
+          "value": "setTranslatesReferenceBoundsIntoBoundaryWithInsets:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1setTranslatesReferenceBoundsIntoBoundary(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTranslatesReferenceBoundsIntoBoundaryWithInsets:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/title",
+          "value": "UIDynamicAnimator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addBoundary(withIdentifier:for:)/title",
+          "value": "addBoundaryWithIdentifier:forPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1addBoundary(withIdentifier:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addBoundaryWithIdentifier:forPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1translatesReferenceBoundsIntoBoundary/title",
+          "value": "translatesReferenceBoundsIntoBoundary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1translatesReferenceBoundsIntoBoundary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "translatesReferenceBoundsIntoBoundary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/title",
+          "value": "UICollectionViewLayoutAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1init(items:)/title",
+          "value": "initWithItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1init(items:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1items/title",
+          "value": "items"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior~1items/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "items"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollisionbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollisionbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

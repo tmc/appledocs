@@ -1,0 +1,1052 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure the Home screen layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:HomeScreenLayout",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "HomeScreenLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HomeScreenLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "HomeScreenLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "HomeScreenLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of dictionaries, each of which must conform to the icon dictionary format. If this key isn’t present, the user’s dock is empty.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "9.3.0",
+          "name": "Dock",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout/IconItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:HomeScreenLayout.IconItem",
+              "text": "HomeScreenLayout.IconItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of arrays of dictionaries, each of which must conform to the icon dictionary format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "9.3.0",
+          "name": "Pages",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout/IconItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:HomeScreenLayout.IconItem",
+              "text": "HomeScreenLayout.IconItem"
+            },
+            {
+              "kind": "text",
+              "text": "]]"
+            }
+          ],
+          "typeDetails": []
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.homescreenlayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This payload defines a layout of apps, folders, and web clips for the Home screen. On iOS, this layout is locked and can’t be modified by the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a home screen layout puts more than four items in the iPhone or iPod touch dock the location of the fifth and succeeding items may be undefined but they will not be omitted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disable deletion of apps, set ",
+              "type": "text"
+            },
+            {
+              "code": "allowAppRemoval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, Shared iPad, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>Dock</key>",
+            "            <array>",
+            "                <dict>",
+            "                    <key>Type</key>",
+            "                    <string>Application</string>",
+            "                    <key>BundleID</key>",
+            "                    <string>com.apple.mobilesafari</string>",
+            "                </dict>",
+            "                <dict>",
+            "                    <key>Type</key>",
+            "                    <string>Application</string>",
+            "                    <key>BundleID</key>",
+            "                    <string>com.apple.Preferences</string>",
+            "                </dict>",
+            "                <dict>",
+            "                    <key>Type</key>",
+            "                    <string>Folder</string>",
+            "                    <key>DisplayName</key>",
+            "                    <string>Example</string>",
+            "                    <key>Pages</key>",
+            "                    <array>",
+            "                        <array>",
+            "                            <dict>",
+            "                                <key>Type</key>",
+            "                                <string>WebClip</string>",
+            "                                <key>DisplayName</key>",
+            "                                <string>Example</string>",
+            "                                <key>URL</key>",
+            "                                <string>companyname.com</string>",
+            "                            </dict>",
+            "                        </array>",
+            "                        <array>",
+            "                            <dict>",
+            "                                <key>Type</key>",
+            "                                <string>Application</string>",
+            "                                <key>BundleID</key>",
+            "                                <string>com.apple.News</string>",
+            "                            </dict>",
+            "                        </array>",
+            "                    </array>",
+            "                </dict>",
+            "            </array>",
+            "            <key>Pages</key>",
+            "            <array>",
+            "                <array>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Application</string>",
+            "                        <key>BundleID</key>",
+            "                        <string>com.apple.MobileSMS</string>",
+            "                    </dict>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Application</string>",
+            "                        <key>BundleID</key>",
+            "                        <string>com.apple.camera</string>",
+            "                    </dict>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Folder</string>",
+            "                        <key>DisplayName</key>",
+            "                        <string>Display Name exampler</string>",
+            "                        <key>Pages</key>",
+            "                        <array>",
+            "                            <array>",
+            "                                <dict>",
+            "                                    <key>Type</key>",
+            "                                    <string>Application</string>",
+            "                                    <key>BundleID</key>",
+            "                                    <string>com.apple.podcasts</string>",
+            "                                </dict>",
+            "                            </array>",
+            "                        </array>",
+            "                    </dict>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>WebClip</string>",
+            "                        <key>URL</key>",
+            "                        <string>https://www.apple.com</string>",
+            "                        <key>DisplayName</key>",
+            "                        <string>Custom Home Screen Layout</string>",
+            "                    </dict>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Application</string>",
+            "                        <key>BundleID</key>",
+            "                        <string>com.apple.AppStore</string>",
+            "                    </dict>",
+            "                </array>",
+            "                <array>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Folder</string>",
+            "                        <key>DisplayName</key>",
+            "                        <string>Important Folder</string>",
+            "                    </dict>",
+            "                    <dict>",
+            "                        <key>Type</key>",
+            "                        <string>Application</string>",
+            "                        <key>BundleID</key>",
+            "                        <string>com.apple.Bridge</string>",
+            "                    </dict>",
+            "                </array>",
+            "            </array>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.myhomescreenlayoutpayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.homescreenlayout</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>f0b2d13e-a985-4264-9901-707feabddfcd</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>Home Screen Layout</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>24c41ae0-f8a9-4d9f-a007-d67b0dc15af4</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the accessibility features of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Accessibility"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Accessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accessibility"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the desktop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Desktop"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Desktop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/desktop"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the dock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dock"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dock"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dock",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dock"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Finder settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Finder"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Finder"
+        }
+      ],
+      "role": "symbol",
+      "title": "Finder",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/finder"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the Home screen layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "HomeScreenLayout",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/homescreenlayout"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout/IconItem": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries that conform to the icon dictionary format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout.IconItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout/IconItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HomeScreenLayout.IconItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "HomeScreenLayout.IconItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/homescreenlayout/iconitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure menu extras.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedMenuExtras"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedMenuExtras"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedMenuExtras",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managedmenuextras"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notifications"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/notifications"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure restrictions on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Restrictions"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Restrictions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Restrictions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/restrictions"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a user’s screen-saver settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreensaverUser"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreensaverUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreensaverUser",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/screensaveruser"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure setup-assistant settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetupAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetupAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetupAssistant",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setupassistant"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Time Machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeMachine",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/timemachine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Accessibility",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Desktop",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Dock",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Finder",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagedMenuExtras",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Notifications",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ScreensaverUser",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SetupAssistant",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/TimeMachine"
+      ],
+      "title": "User Experience"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/HomeScreenLayout/IconItem"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/homescreenlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

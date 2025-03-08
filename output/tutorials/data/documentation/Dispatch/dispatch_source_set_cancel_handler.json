@@ -1,0 +1,590 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the cancellation handler block for the given dispatch source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_source_set_cancel_handler",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_source_set_cancel_handler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_source_set_cancel_handler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_source_set_cancel_handler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_source_set_cancel_handler"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_source_t",
+              "text": "dispatch_source_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "source"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_block_t",
+              "text": "dispatch_block_t"
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dispatch source to modify. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The cancellation handler block to submit to the source’s target queue. This function performs a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_copy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on behalf of the caller, and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_release",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on the previous handler (if any).  This parameter can be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cancellation handler (if specified) is submitted to the source’s target queue in response to a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_cancel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the system has released all references to the source’s underlying handle and the source’s event handler block has returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To safely close a file descriptor or destroy a Mach port, a cancellation handler is required for the source for that descriptor or port. Closing the descriptor or port before the cancellation handler runs can result in a race condition. If a new descriptor is allocated with the same value as the recently closed descriptor while the source’s event handler is still running, the event handler may read/write data using the wrong descriptor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t": {
+      "abstract": [
+        {
+          "text": "The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_cancel": {
+      "abstract": [
+        {
+          "text": "Asynchronously cancels the dispatch source, preventing any further invocation of its event handler block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_cancel",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_cancel"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler": {
+      "abstract": [
+        {
+          "text": "Sets the cancellation handler block for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_cancel_handler"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_cancel_handler",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_cancel_handler"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler_f": {
+      "abstract": [
+        {
+          "text": "Sets the cancellation handler function for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_cancel_handler_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_cancel_handler_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_cancel_handler_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler": {
+      "abstract": [
+        {
+          "text": "Sets the event handler block for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_event_handler"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_event_handler",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_event_handler"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler_f": {
+      "abstract": [
+        {
+          "text": "Sets the event handler function for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_event_handler_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_event_handler_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_event_handler_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler": {
+      "abstract": [
+        {
+          "text": "Sets the registration handler block for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_registration_handler"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_registration_handler",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_registration_handler"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler_f": {
+      "abstract": [
+        {
+          "text": "Sets the registration handler function for the given dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_set_registration_handler_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_source_set_registration_handler_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_set_registration_handler_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_source_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Event-Handlers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler_f",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_registration_handler",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler_f",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_event_handler",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_set_cancel_handler_f"
+      ],
+      "title": "Managing Event Handlers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/title",
+          "value": "dispatch_source_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_source_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_source_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_source_set_cancel_handler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

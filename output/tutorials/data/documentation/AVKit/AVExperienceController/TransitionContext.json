@@ -1,0 +1,943 @@
+{
+  "abstract": [
+    {
+      "text": "The state of the transition provided to the delegate object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AVKit",
+    "externalID": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TransitionContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TransitionContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AVExperienceController.TransitionContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TransitionContext"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "AVExperienceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " transitions its ",
+              "type": "text"
+            },
+            {
+              "code": "experience",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "code": "fromExperience",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "toExperience",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", delegate callbacks provide instances of ",
+              "type": "text"
+            },
+            {
+              "code": "TransitionContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to allow clients to respond as the transition progresses or reverts. The normal ",
+              "type": "text"
+            },
+            {
+              "code": "Status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sequence is ",
+              "type": "text"
+            },
+            {
+              "code": ".preparing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " -> ",
+              "type": "text"
+            },
+            {
+              "code": ".transitioning",
+              "type": "codeVoice"
+            },
+            {
+              "text": " -> ",
+              "type": "text"
+            },
+            {
+              "code": ".completed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Once ",
+              "type": "text"
+            },
+            {
+              "code": ".completed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "AVExperienceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "code": "experience",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is now the ",
+              "type": "text"
+            },
+            {
+              "code": "toExperience",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all transitions are ",
+              "type": "text"
+            },
+            {
+              "code": ".completed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", instead they are ",
+              "type": "text"
+            },
+            {
+              "code": ".reversed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " back to the ",
+              "type": "text"
+            },
+            {
+              "code": "fromExperience",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Reversed transitions can happen after ",
+              "type": "text"
+            },
+            {
+              "code": ".preparing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or after ",
+              "type": "text"
+            },
+            {
+              "code": ".transitioning",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but it will not happen after ",
+              "type": "text"
+            },
+            {
+              "code": ".completed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or before ",
+              "type": "text"
+            },
+            {
+              "code": ".preparing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When a transition is reversed a reason is provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController": {
+      "abstract": [
+        {
+          "text": "An object that controls video experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeAvailableExperiences:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the available experiences change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeAvailableExperiences"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC11ExperiencesV",
+          "text": "Experiences"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeAvailableExperiences:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "experienceController(_:didChangeAvailableExperiences:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol/experiencecontroller(_:didchangeavailableexperiences:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the transition context changes during a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeTransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "experienceController(_:didChangeTransitionContext:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol/experiencecontroller(_:didchangetransitioncontext:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system is preparing for a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepareForTransitionUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "experienceController(_:prepareForTransitionUsing:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol/experiencecontroller(_:preparefortransitionusing:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext": {
+      "abstract": [
+        {
+          "text": "The state of the transition provided to the delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController.TransitionContext",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/ReversedReason": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReversedReason"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/ReversedReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReversedReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController.TransitionContext.ReversedReason",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/reversedreason"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/Status-swift.enum": {
+      "abstract": [
+        {
+          "text": "Describes the status of a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/Status-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController.TransitionContext.Status",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/status-swift.enum"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/TransitionResult": {
+      "abstract": [
+        {
+          "text": "Describes the result of a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/TransitionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController.TransitionContext.TransitionResult",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/transitionresult"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/fromExperience": {
+      "abstract": [
+        {
+          "text": "The experience of the ",
+          "type": "text"
+        },
+        {
+          "code": "AVExperienceController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " before the transition was initiated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromExperience"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC10ExperienceO",
+          "text": "Experience"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/fromExperience",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fromExperience",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/fromexperience"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/status-swift.property": {
+      "abstract": [
+        {
+          "text": "The status of the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV6StatusO",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/status-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/status-swift.property"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/toExperience": {
+      "abstract": [
+        {
+          "text": "The experience to which the ",
+          "type": "text"
+        },
+        {
+          "code": "AVExperienceController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " has been requested to transition to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toExperience"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC10ExperienceO",
+          "text": "Experience"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/toExperience",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toExperience",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transitioncontext/toexperience"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-experience-changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeAvailableExperiences:)",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)"
+      ],
+      "title": "Responding to experience changes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/fromExperience",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/status-swift.property",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/toExperience"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/ReversedReason",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/Status-swift.enum",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/TransitionContext/TransitionResult"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/avexperiencecontroller/transitioncontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

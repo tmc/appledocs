@@ -1,0 +1,486 @@
+{
+  "abstract": [
+    {
+      "text": "Conditionally archives a given object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408143,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSArchiver(im)encodeConditionalObject:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "encodeConditionalObject"
+      },
+      {
+        "kind": "text",
+        "text": "(Any?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSArchiver"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.13",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "encodeConditionalObject(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeConditionalObject"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "object"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object to archive.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "object"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method overrides the superclass implementation to allow ",
+              "type": "text"
+            },
+            {
+              "code": "object",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to be encoded only if it is also encoded unconditionally by another object in the object graph. Conditional encoding lets you encode one part of a graph detached from the rest. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695370",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method should be invoked only from within an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If ",
+              "type": "text"
+            },
+            {
+              "code": "object",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "NSArchiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object encodes it unconditionally as ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This method raises an ",
+              "type": "text"
+            },
+            {
+              "code": "NSInvalidArgumentException",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if no root object has been encoded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695370": {
+      "identifier": "devLink-1695370",
+      "title": "Archives and Serializations Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver": {
+      "abstract": [
+        {
+          "text": "A coder that stores an object's data to an archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject": {
+      "abstract": [
+        {
+          "text": "Conditionally archives a given object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeConditionalObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeConditionalObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject": {
+      "abstract": [
+        {
+          "text": "Creates a temporary instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSArchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "archiveRootObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archiveRootObject(_:toFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1414941-archiverootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata": {
+      "abstract": [
+        {
+          "text": "Returns a data object containing the encoded form of the object graph whose root object is given.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "archivedData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withRootObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archivedData(withRootObject:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1416109-archiveddata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject": {
+      "abstract": [
+        {
+          "text": "Archives a given object along with all the objects to which it is connected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRootObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRootObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1416342-encoderootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding/1413933-encode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject"
+      ],
+      "title": "Archiving data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+  "abstract": [
+    {
+      "text": "Configure settings on a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:mdm#SettingsCommand",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Settings Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Configure Settings"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "mdm#SettingsCommand"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:SettingsCommand",
+          "text": "SettingsCommand"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The command to configure settings on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response from the device after it processes the command to configure settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:SettingsResponse",
+              "text": "SettingsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users may be able to change the settings later if a profile isn’t set to restrict such changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to the following sections to determine supported channels and requirements, and to see an example request and response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Command-Availability",
+          "level": 3,
+          "text": "Command Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required Access Right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AllowSettings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Request-and-Response-DeviceName",
+          "level": 3,
+          "text": "Example Request and Response (DeviceName)",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>RequestType</key>",
+                    "        <string>Settings</string>",
+                    "        <key>Settings</key>",
+                    "        <array>",
+                    "            <dict>",
+                    "                <key>DeviceName</key>",
+                    "                <string>NewName</string>",
+                    "                <key>Item</key>",
+                    "                <string>DeviceName</string>",
+                    "            </dict>",
+                    "        </array>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_Settings</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_Settings</string>",
+                    "    <key>Settings</key>",
+                    "    <array>",
+                    "        <dict>",
+                    "            <key>Item</key>",
+                    "            <string>DeviceName</string>",
+                    "            <key>Status</key>",
+                    "            <string>Acknowledged</string>",
+                    "        </dict>",
+                    "    </array>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>00008020-000915083C80012E</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command": {
+      "abstract": [
+        {
+          "text": "Disable Remote Desktop on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disable Remote Desktop Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disable Remote Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disable-remote-desktop-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command": {
+      "abstract": [
+        {
+          "text": "Enable Remote Desktop on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Enable Remote Desktop Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Enable Remote Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/enable-remote-desktop-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command": {
+      "abstract": [
+        {
+          "text": "Configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Settings Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Configure Settings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settings-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand": {
+      "abstract": [
+        {
+          "text": "The command to configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingscommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settingsresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managed-Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command"
+      ],
+      "title": "Managed Settings"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Command-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SettingsResponse"
+      ],
+      "title": "Command and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/settings-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

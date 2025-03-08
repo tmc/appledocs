@@ -1,0 +1,1364 @@
+{
+  "abstract": [
+    {
+      "text": "Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/filehandle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415913,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSFileHandleDataAvailableNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFileHandleDataAvailable"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSNotification.Name"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "NSFileHandleDataAvailable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileHandleDataAvailable"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The observers can then issue the appropriate messages to begin reading the data. To cause the posting of this notification, you must send either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "NSFileHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the ",
+              "type": "text"
+            },
+            {
+              "code": "NSFileHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that sent the notification. This notification doesn’t contain a ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange": {
+      "abstract": [
+        {
+          "text": "A notification posted when the time zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSystemTimeZoneDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSystemTimeZoneDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange": {
+      "abstract": [
+        {
+          "text": "Sent after the iCloud (“ubiquity”) identity has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquityIdentityDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquityIdentityDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408041-nsmetadataquerygatheringprogress": {
+      "abstract": [
+        {
+          "text": "Posted as the receiver is collecting results during the initial result-gathering phase of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMetadataQueryGatheringProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408041-nsmetadataquerygatheringprogress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMetadataQueryGatheringProgress",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408041-nsmetadataquerygatheringprogress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408062-nscalendardaychanged": {
+      "abstract": [
+        {
+          "text": "A notification that is posted whenever the calendar day of the system changes, as determined by the system calendar, locale, and time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCalendarDayChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408062-nscalendardaychanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendarDayChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408062-nscalendardaychanged"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object posts this notification when it receives the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " message, before the thread exits. Observer methods invoked to receive this notification execute in the exiting thread, before it exits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSThreadWillExit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSThreadWillExit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408817-nsundomanagerdidcloseundogroup": {
+      "abstract": [
+        {
+          "text": "Posted after an undo manager closes an undo group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerDidCloseUndoGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408817-nsundomanagerdidcloseundogroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerDidCloseUndoGroup",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408817-nsundomanagerdidcloseundogroup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange": {
+      "abstract": [
+        {
+          "text": "A notification posted when the cookies stored in the cookie storage have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHTTPCookieManagerCookiesChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieManagerCookiesChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1410142-nsundomanagerdidundochange": {
+      "abstract": [
+        {
+          "text": "Posted just after an undo manager performs an undo operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerDidUndoChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1410142-nsundomanagerdidundochange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerDidUndoChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1410142-nsundomanagerdidundochange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1411493-nsundomanagerwillcloseundogroup": {
+      "abstract": [
+        {
+          "text": "Posted before an undo manager closes an undo group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerWillCloseUndoGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1411493-nsundomanagerwillcloseundogroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerWillCloseUndoGroup",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1411493-nsundomanagerwillcloseundogroup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded": {
+      "abstract": [
+        {
+          "text": "Not implemented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDidBecomeSingleThreaded"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDidBecomeSingleThreaded",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412720-nsappleeventmanagerwillprocessfi": {
+      "abstract": [
+        {
+          "text": "Posted by ",
+          "type": "text"
+        },
+        {
+          "code": "NSAppleEventManager",
+          "type": "codeVoice"
+        },
+        {
+          "text": " before it first dispatches an Apple event. Your application can use this notification to avoid registering any Apple event handlers until the first time at which they may be needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventManagerWillProcessFirstEvent"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412720-nsappleeventmanagerwillprocessfi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventManagerWillProcessFirstEvent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1412720-nsappleeventmanagerwillprocessfi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412767-nsurlcredentialstoragechanged": {
+      "abstract": [
+        {
+          "text": "A notification posted when the set of stored credentials changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLCredentialStorageChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412767-nsurlcredentialstoragechanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLCredentialStorageChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1412767-nsurlcredentialstoragechanged"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412921-nsundomanagerwillundochange": {
+      "abstract": [
+        {
+          "text": "Posted just before an undo manager performs an undo operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerWillUndoChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412921-nsundomanagerwillundochange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerWillUndoChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1412921-nsundomanagerwillundochange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413406-nsmetadataquerydidupdate": {
+      "abstract": [
+        {
+          "text": "Posted when the receiver’s results have changed during the live-update phase of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMetadataQueryDidUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413406-nsmetadataquerydidupdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMetadataQueryDidUpdate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1413406-nsmetadataquerydidupdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413579-nsundomanagerdidredochange": {
+      "abstract": [
+        {
+          "text": "Posted just after an undo manager performs a redo operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerDidRedoChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413579-nsundomanagerdidredochange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerDidRedoChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1413579-nsundomanagerdidredochange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange": {
+      "abstract": [
+        {
+          "text": "A notification posted whenever the system clock is changed. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSystemClockDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSystemClockDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414740-nsmetadataquerydidfinishgatherin": {
+      "abstract": [
+        {
+          "text": "Posted when the receiver has finished with the initial result-gathering phase of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMetadataQueryDidFinishGathering"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414740-nsmetadataquerydidfinishgatherin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMetadataQueryDidFinishGathering",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1414740-nsmetadataquerydidfinishgatherin"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc": {
+      "abstract": [
+        {
+          "text": "A notification posted when the acceptance policy of the cookie storage has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHTTPCookieManagerAcceptPolicyChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieManagerAcceptPolicyChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415906-nsundomanagerdidopenundogroup": {
+      "abstract": [
+        {
+          "text": "Posted whenever an undo manager opens an undo group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerDidOpenUndoGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415906-nsundomanagerdidopenundogroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerDidOpenUndoGroup",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415906-nsundomanagerdidopenundogroup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleDataAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleDataAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416239-nsundomanagerwillredochange": {
+      "abstract": [
+        {
+          "text": "Posted just before an undo manager performs a redo operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerWillRedoChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416239-nsundomanagerwillredochange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerWillRedoChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1416239-nsundomanagerwillredochange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416717-nsmetadataquerydidstartgathering": {
+      "abstract": [
+        {
+          "text": "Posted when the receiver begins with the initial result-gathering phase of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMetadataQueryDidStartGathering"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416717-nsmetadataquerydidstartgathering",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMetadataQueryDidStartGathering",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1416717-nsmetadataquerydidstartgathering"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle reads all data in the file or, in a communications channel, until the other process signals the end of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleReadToEndOfFileCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleReadToEndOfFileCompletion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted": {
+      "abstract": [
+        {
+          "text": "Posted when a file handle object establishes a socket connection between two processes, creates a file handle object for one end of the connection, and makes this object available to observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleConnectionAccepted"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleConnectionAccepted",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417262-nsundomanagercheckpoint": {
+      "abstract": [
+        {
+          "text": "Posted whenever an undo manager opens or closes an undo group (except when it opens a top-level group) and when checking the redo stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUndoManagerCheckpoint"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417262-nsundomanagercheckpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUndoManagerCheckpoint",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417262-nsundomanagercheckpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded": {
+      "abstract": [
+        {
+          "text": "Posted when the first thread is detached from the current thread. The ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class posts this notification at most once—the first time a thread is detached using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418166-start",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method. Subsequent invocations of those methods do not post this notification. Observers of this notification have their notification method invoked in the main thread, not the new thread. The observer notification methods always execute before the new thread begins executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWillBecomeMultiThreaded"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWillBecomeMultiThreaded",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp": {
+      "abstract": [
+        {
+          "text": "Posted after the system detects that the amount of available disk space is getting low. The notification is posted to the default notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleResourceRequestLowDiskSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleResourceRequestLowDiskSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616212-nsextensionhostdidenterbackgroun": {
+      "abstract": [
+        {
+          "text": "Posted when the extension’s host app begins running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionHostDidEnterBackground"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616212-nsextensionhostdidenterbackgroun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionHostDidEnterBackground",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1616212-nsextensionhostdidenterbackgroun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616429-nsextensionhostdidbecomeactive": {
+      "abstract": [
+        {
+          "text": "Posted when the extension’s host app moves from the inactive to the active state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionHostDidBecomeActive"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616429-nsextensionhostdidbecomeactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionHostDidBecomeActive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1616429-nsextensionhostdidbecomeactive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616519-nsextensionhostwillresignactive": {
+      "abstract": [
+        {
+          "text": "Posted when the extension’s host app moves from the active to the inactive state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionHostWillResignActive"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616519-nsextensionhostwillresignactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionHostWillResignActive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1616519-nsextensionhostwillresignactive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616748-nsextensionhostwillenterforegrou": {
+      "abstract": [
+        {
+          "text": "Posted when the extension’s host app begins running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionHostWillEnterForeground"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616748-nsextensionhostwillenterforegrou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionHostWillEnterForeground",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1616748-nsextensionhostwillenterforegrou"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617322-nsprocessinfopowerstatedidchange": {
+      "abstract": [
+        {
+          "text": "Posts when the power state of a device changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProcessInfoPowerStateDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617322-nsprocessinfopowerstatedidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProcessInfoPowerStateDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1617322-nsprocessinfopowerstatedidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exit()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409404-exit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachNewThreadSelector(_:toTarget:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1415633-detachnewthreadselector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1418166-start": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418166-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1418166-start"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412720-nsappleeventmanagerwillprocessfi",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417262-nsundomanagercheckpoint",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408817-nsundomanagerdidcloseundogroup",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415906-nsundomanagerdidopenundogroup",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413579-nsundomanagerdidredochange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1410142-nsundomanagerdidundochange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1411493-nsundomanagerwillcloseundogroup",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416239-nsundomanagerwillredochange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412921-nsundomanagerwillundochange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408062-nscalendardaychanged",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616429-nsextensionhostdidbecomeactive",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616212-nsextensionhostdidenterbackgroun",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616748-nsextensionhostwillenterforegrou",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1616519-nsextensionhostwillresignactive",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414740-nsmetadataquerydidfinishgatherin",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416717-nsmetadataquerydidstartgathering",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413406-nsmetadataquerydidupdate",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408041-nsmetadataquerygatheringprogress",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617322-nsprocessinfopowerstatedidchange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412767-nsurlcredentialstoragechanged"
+      ],
+      "title": "Foundation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilehandledataavailablenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,1059 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"kind":"symbol","identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent"},"abstract":[{"type":"text","text":"A component that changes how RealityKit renders its entity to help with"},{"type":"text","text":" "},{"type":"text","text":"debugging."}],"topicSections":[{"title":"Creating model debug options components","anchor":"Creating-model-debug-options-components","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)"]},{"title":"Setting the visualization mode","anchor":"Setting-the-visualization-mode","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property","doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum"]},{"title":"Registering the component","anchor":"Registering-the-component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()"]},{"generated":true,"title":"Default Implementations","anchor":"Default-Implementations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations"]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelDebugOptionsComponent","kind":"identifier"}],"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"]}]},{"kind":"content","content":[{"level":2,"anchor":"overview","text":"Overview","type":"heading"},{"type":"paragraph","inlineContent":[{"text":"Attaching a ","type":"text"},{"type":"codeVoice","code":"ModelDebugOptionsComponent"},{"text":" to a ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity","isActive":true,"type":"reference"},{"text":" tells","type":"text"},{"text":" ","type":"text"},{"text":"RealityKit to change the way it renders that entity based on a specified","type":"text"},{"text":" ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property","isActive":true,"type":"reference"},{"text":". This","type":"text"},{"text":" ","type":"text"},{"text":"component isolates individual parts of the rendering process, such as the","type":"text"},{"text":" ","type":"text"},{"text":"entity’s transparency or roughness, and displays surface color to help","type":"text"},{"text":" ","type":"text"},{"text":"identify visual anomalies.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"To use this component, create a ","type":"text"},{"type":"codeVoice","code":"ModelDebugOptionsComponent"},{"text":" and set its","type":"text"},{"text":" ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property","type":"reference","isActive":true},{"text":" to the","type":"text"},{"text":" ","type":"text"},{"text":"desired value. Then, set the component as the entity’s","type":"text"},{"text":" ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions","type":"reference","isActive":true},{"text":" property:","type":"text"}]},{"type":"codeListing","code":["if let robot = anchor.findEntity(named: \"Robot\") as? ModelEntity {","    let component = ModelDebugOptionsComponent(visualizationMode: .normal)","    robot.modelDebugOptions = component","}"],"syntax":"swift"},{"type":"paragraph","inlineContent":[{"text":"For more information on the visualization modes supported by","type":"text"},{"text":" ","type":"text"},{"code":"ModelDebugOptionsComponent","type":"codeVoice"},{"text":", see","type":"text"},{"text":" ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum"},{"text":".","type":"text"}]},{"level":3,"anchor":"Attach-a-debug-component-to-an-entity","text":"Attach a debug component to an entity","type":"heading"},{"type":"paragraph","inlineContent":[{"text":"To attach a debug component to a particular entity, traverse the entity tree","type":"text"},{"text":" ","type":"text"},{"text":"while passing the component to each child:","type":"text"}]},{"type":"codeListing","code":["// Traverse the entity tree to attach a certain debug mode through components.","func attachDebug(entity: Entity, debug: ModelDebugOptionsComponent) {","    entity.components.set(debug)","    for child in entity.children {","        attachDebug(entity: child, debug: debug)","    }","}","// Respond to a button or UI element.","func debugLightingDiffuseButtonCallback() {","    let debugComponent = ModelDebugOptionsComponent(","        visualizationMode: .lightingDiffuse","    )","    attachDebug(entity: model, debug: debugComponent)","}"],"syntax":"swift"},{"level":3,"anchor":"Attach-a-debug-component-to-a-trait","text":"Attach a debug component to a trait","type":"heading"},{"type":"paragraph","inlineContent":[{"type":"text","text":"To attach a debug component based on a trait, traverse the entity tree while"},{"type":"text","text":" "},{"type":"text","text":"checking for "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/HasModel","isActive":true,"type":"reference"},{"type":"text","text":" adoption:"}]},{"type":"codeListing","code":["func attachDebug(entity: Entity, debug: ModelDebugOptionsComponent) {","    if let model = entity as? ModelEntity {","        model.visualizationMode = debug","    }","    for child in entity.children {","        attachDebug(entity: child, debug: debug)","    }","}","// Respond to a button or UI element.","func debugLightingDiffuseButtonCallback() {","    let debugComponent = ModelDebugOptionsComponent(","        visualizationMode: .lightingDiffuse","    )","    attachDebug(entity: model, debug: debugComponent)","}"],"syntax":"swift"}]}],"sections":[],"relationshipsSections":[{"type":"conformsTo","kind":"relationships","title":"Conforms To","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component"]}],"variants":[{"paths":["/documentation/realitykit/modeldebugoptionscomponent"],"traits":[{"interfaceLanguage":"swift"}]}],"metadata":{"role":"symbol","roleHeading":"Structure","modules":[{"name":"RealityKit"}],"platforms":[{"name":"iOS","deprecated":false,"beta":false,"introducedAt":"14.0","unavailable":false},{"name":"iPadOS","deprecated":false,"beta":false,"introducedAt":"14.0","unavailable":false},{"name":"Mac Catalyst","deprecated":false,"beta":false,"introducedAt":"14.0","unavailable":false},{"name":"macOS","deprecated":false,"beta":false,"introducedAt":"11.0","unavailable":false},{"name":"visionOS","deprecated":false,"beta":false,"unavailable":false}],"title":"ModelDebugOptionsComponent","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelDebugOptionsComponent","kind":"identifier"}],"navigatorTitle":[{"text":"ModelDebugOptionsComponent","kind":"identifier"}],"externalID":"s:17RealityFoundation26ModelDebugOptionsComponentV","symbolKind":"struct"},"seeAlsoSections":[{"generated":true,"title":"Render configuration","anchor":"Render-configuration","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent","doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup","doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent","doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"references":{"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)":{"abstract":[{"type":"text","text":"Creates a component that isolates a portion of the rendering process and"},{"type":"text","text":" "},{"type":"text","text":"displays it as the entity’s surface texture."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)","kind":"symbol","role":"symbol","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"visualizationMode","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"ModelDebugOptionsComponent","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26ModelDebugOptionsComponentV"},{"text":".","kind":"text"},{"text":"VisualizationMode","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26ModelDebugOptionsComponentV17VisualizationModeO"},{"text":")","kind":"text"}],"type":"topic","url":"/documentation/realitykit/modeldebugoptionscomponent/init(visualizationmode:)","title":"init(visualizationMode:)"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup":{"title":"ModelSortGroup","role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelSortGroup","kind":"identifier"}],"navigatorTitle":[{"text":"ModelSortGroup","kind":"identifier"}],"abstract":[{"type":"text","text":"A group that you assign to multiple entities to tell the renderer what"},{"type":"text","text":" "},{"type":"text","text":"order and how to render the entities in the group."}],"kind":"symbol","url":"/documentation/realitykit/modelsortgroup","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup"},"doc://com.apple.RealityKit/documentation/RealityKit/HasModel":{"type":"topic","navigatorTitle":[{"kind":"identifier","text":"HasModel"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/HasModel","url":"/documentation/realitykit/hasmodel","title":"HasModel","role":"symbol","kind":"symbol","abstract":[{"type":"text","text":"An interface that provides meshes and materials to define the visual"},{"type":"text","text":" "},{"type":"text","text":"appearance of an entity."}],"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"HasModel"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent":{"title":"ModelDebugOptionsComponent","role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelDebugOptionsComponent","kind":"identifier"}],"navigatorTitle":[{"text":"ModelDebugOptionsComponent","kind":"identifier"}],"abstract":[{"type":"text","text":"A component that changes how RealityKit renders its entity to help with"},{"type":"text","text":" "},{"type":"text","text":"debugging."}],"kind":"symbol","url":"/documentation/realitykit/modeldebugoptionscomponent","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent"},"doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent":{"url":"/documentation/realitykit/opacitycomponent","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent","abstract":[{"type":"text","text":"A component that controls the opacity of an entity and its descendants."}],"navigatorTitle":[{"kind":"identifier","text":"OpacityComponent"}],"type":"topic","title":"OpacityComponent","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"OpacityComponent"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity":{"role":"symbol","navigatorTitle":[{"text":"ModelEntity","kind":"identifier"}],"abstract":[{"type":"text","text":"A representation of a physical object that RealityKit renders and optionally"},{"type":"text","text":" "},{"type":"text","text":"simulates."}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity","kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelEntity","kind":"identifier"}],"title":"ModelEntity","url":"/documentation/realitykit/modelentity"},"doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent":{"type":"topic","navigatorTitle":[{"text":"AdaptiveResolutionComponent","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent","url":"/documentation/realitykit/adaptiveresolutioncomponent","title":"AdaptiveResolutionComponent","role":"symbol","kind":"symbol","abstract":[{"text":"A component that provides the suggested pixels per meter necessary to render an object.","type":"text"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AdaptiveResolutionComponent","kind":"identifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum":{"role":"symbol","kind":"symbol","abstract":[{"text":"A mode that specifies the portion of the rendering process to isolate","type":"text"},{"text":" ","type":"text"},{"text":"and display for debugging.","type":"text"}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"VisualizationMode","kind":"identifier"}],"url":"/documentation/realitykit/modeldebugoptionscomponent/visualizationmode-swift.enum","type":"topic","title":"ModelDebugOptionsComponent.VisualizationMode","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum","navigatorTitle":[{"text":"VisualizationMode","kind":"identifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent":{"role":"symbol","navigatorTitle":[{"text":"ModelSortGroupComponent","kind":"identifier"}],"type":"topic","title":"ModelSortGroupComponent","kind":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ModelSortGroupComponent","kind":"identifier"}],"abstract":[{"text":"A component that configures the rendering order for an entity’s model.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent","url":"/documentation/realitykit/modelsortgroupcomponent"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()":{"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"registerComponent"},{"kind":"text","text":"()"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()","abstract":[{"type":"text","text":"Registers a new component type."}],"title":"registerComponent()","url":"/documentation/realitykit/modeldebugoptionscomponent/registercomponent()","role":"symbol","type":"topic","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations":{"abstract":[],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations","kind":"article","role":"collectionGroup","type":"topic","url":"/documentation/realitykit/modeldebugoptionscomponent/component-implementations","title":"Component Implementations"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property":{"type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"visualizationMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26ModelDebugOptionsComponentV","text":"ModelDebugOptionsComponent"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation26ModelDebugOptionsComponentV17VisualizationModeO","text":"VisualizationMode"}],"title":"visualizationMode","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property","kind":"symbol","role":"symbol","abstract":[{"type":"text","text":"The part of the rendering process to display as the entity’s surface"},{"type":"text","text":" "},{"type":"text","text":"texture."}],"url":"/documentation/realitykit/modeldebugoptionscomponent/visualizationmode-swift.property"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions":{"role":"symbol","abstract":[{"type":"text","text":"Configures the debug visualization of this model."}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions","kind":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"modelDebugOptions","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation26ModelDebugOptionsComponentV","text":"ModelDebugOptionsComponent","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"title":"modelDebugOptions","url":"/documentation/realitykit/modelentity/modeldebugoptions"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that changes how RealityKit renders its entity to help with",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "debugging.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation26ModelDebugOptionsComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ModelDebugOptionsComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ModelDebugOptionsComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ModelDebugOptionsComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ModelDebugOptionsComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attaching a ",
+              "type": "text"
+            },
+            {
+              "code": "ModelDebugOptionsComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tells",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit to change the way it renders that entity based on a specified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "component isolates individual parts of the rendering process, such as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity’s transparency or roughness, and displays surface color to help",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify visual anomalies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this component, create a ",
+              "type": "text"
+            },
+            {
+              "code": "ModelDebugOptionsComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and set its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "desired value. Then, set the component as the entity’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let robot = anchor.findEntity(named: \"Robot\") as? ModelEntity {",
+            "    let component = ModelDebugOptionsComponent(visualizationMode: .normal)",
+            "    robot.modelDebugOptions = component",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the visualization modes supported by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ModelDebugOptionsComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attach-a-debug-component-to-an-entity",
+          "level": 3,
+          "text": "Attach a debug component to an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attach a debug component to a particular entity, traverse the entity tree",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while passing the component to each child:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Traverse the entity tree to attach a certain debug mode through components.",
+            "func attachDebug(entity: Entity, debug: ModelDebugOptionsComponent) {",
+            "    entity.components.set(debug)",
+            "    for child in entity.children {",
+            "        attachDebug(entity: child, debug: debug)",
+            "    }",
+            "}",
+            "// Respond to a button or UI element.",
+            "func debugLightingDiffuseButtonCallback() {",
+            "    let debugComponent = ModelDebugOptionsComponent(",
+            "        visualizationMode: .lightingDiffuse",
+            "    )",
+            "    attachDebug(entity: model, debug: debugComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attach-a-debug-component-to-a-trait",
+          "level": 3,
+          "text": "Attach a debug component to a trait",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attach a debug component based on a trait, traverse the entity tree while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "checking for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adoption:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func attachDebug(entity: Entity, debug: ModelDebugOptionsComponent) {",
+            "    if let model = entity as? ModelEntity {",
+            "        model.visualizationMode = debug",
+            "    }",
+            "    for child in entity.children {",
+            "        attachDebug(entity: child, debug: debug)",
+            "    }",
+            "}",
+            "// Respond to a button or UI element.",
+            "func debugLightingDiffuseButtonCallback() {",
+            "    let debugComponent = ModelDebugOptionsComponent(",
+            "        visualizationMode: .lightingDiffuse",
+            "    )",
+            "    attachDebug(entity: model, debug: debugComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides the suggested pixels per meter necessary to render an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdaptiveResolutionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/adaptiveresolutioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasModel": {
+      "abstract": [
+        {
+          "text": "An interface that provides meshes and materials to define the visual",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasModel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasModel",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasmodel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent": {
+      "abstract": [
+        {
+          "text": "A component that changes how RealityKit renders its entity to help with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDebugOptionsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "A mode that specifies the portion of the rendering process to isolate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and display for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisualizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisualizationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDebugOptionsComponent.VisualizationMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent/visualizationmode-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)": {
+      "abstract": [
+        {
+          "text": "Creates a component that isolates a portion of the rendering process and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "displays it as the entity’s surface texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "visualizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26ModelDebugOptionsComponentV",
+          "text": "ModelDebugOptionsComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26ModelDebugOptionsComponentV17VisualizationModeO",
+          "text": "VisualizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(visualizationMode:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent/init(visualizationmode:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()": {
+      "abstract": [
+        {
+          "text": "Registers a new component type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerComponent()",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent/registercomponent()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The part of the rendering process to display as the entity’s surface",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26ModelDebugOptionsComponentV",
+          "text": "ModelDebugOptionsComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26ModelDebugOptionsComponentV17VisualizationModeO",
+          "text": "VisualizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualizationMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent/visualizationmode-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions": {
+      "abstract": [
+        {
+          "text": "Configures the debug visualization of this model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelDebugOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation26ModelDebugOptionsComponentV",
+          "text": "ModelDebugOptionsComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/modelDebugOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelDebugOptions",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity/modeldebugoptions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup": {
+      "abstract": [
+        {
+          "text": "A group that you assign to multiple entities to tell the renderer what",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "order and how to render the entities in the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the rendering order for an entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroupComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the opacity of an entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpacityComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/opacitycomponent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent"
+      ],
+      "title": "Render configuration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-model-debug-options-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/init(visualizationMode:)"
+      ],
+      "title": "Creating model debug options components"
+    },
+    {
+      "anchor": "Setting-the-visualization-mode",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/visualizationMode-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/VisualizationMode-swift.enum"
+      ],
+      "title": "Setting the visualization mode"
+    },
+    {
+      "anchor": "Registering-the-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/registerComponent()"
+      ],
+      "title": "Registering the component"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/modeldebugoptionscomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

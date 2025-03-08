@@ -1,0 +1,476 @@
+{
+  "abstract": [
+    {
+      "text": "Create a service configuration entry point to your MDM server to access to frequently used information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Simplifying MDM Server Administration for iOS Devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an unauthenticated HTTPS request entry point to your server to make it easier to access useful information about your MDM server. Create the entry point using the endpoint ",
+              "type": "text"
+            },
+            {
+              "code": "/MDMServiceConfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; for example, ",
+              "type": "text"
+            },
+            {
+              "code": "https://mdm.example.com/MDMServiceConfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The server code should return a UTF-8 JSON-encoded hash (",
+              "type": "text"
+            },
+            {
+              "code": "Content-Type: application/json; charset=UTF8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with the following values in the body of its response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The URL a device uses to obtain the certificates required to trust the URL specified by the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "dep_enrollment_url",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key. This value has the same format as the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "anchor_certs",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " value in the DEP profile, except the body needs to be UTF-8 JSON-encoded for transfer. The decoded body of the response from this URL should be usable in a Device Enrollment Program (DEP) profile under the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "anchor_certs",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key without any modification.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "dep_anchor_certs_url",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide this URL even if the MDM server doesn’t require additional certificates because it’s using a trusted SSL certificate. However, provide either an empty body (",
+              "type": "text"
+            },
+            {
+              "code": "Content-Length: 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or an empty array JSON string (",
+              "type": "text"
+            },
+            {
+              "code": "'[]'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The URL a device uses to begin MDM enrollment with the MDM server. This is also the URL to use for the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "url",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key when defining a DEP profile using ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "https://mdmenrollment.apple.com/profile",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "dep_enrollment_url",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The URL a device uses to obtain a Trust Profile for the MDM server, as a fully-formed ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".mobileconfig",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " profile with only payloads of type ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.apple.security.root",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "trust_profile_url",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Omit this key if the MDM server doesn’t require a Trust Profile because it’s using a trusted SSL certificate. Don’t return a URL that would generate an empty profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Provide a value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "dep_anchor_certs_url",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you provide a value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "dep_enrollment_url",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Example-of-an-MDMServiceConfig-Request",
+          "level": 3,
+          "text": "Example of an MDMServiceConfig Request",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "// Format",
+            "GET https://mdm.example.com/MDMServiceConfig",
+            "",
+            "// Response body",
+            "{    \"dep_enrollment_url\": \"https://mdm.example.com/devicemanagement/mdm/dep_mdm_enroll\",",
+            "    \"dep_anchor_certs_url\": \"https://mdm.example.com/devicemanagement/mdm/dep_anchor_certs\",",
+            "    \"trust_profile_url\": \"https://certs.example.com/mdm/trust_profile\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Example-of-the-depanchorcertsurl-Key",
+          "level": 3,
+          "text": "Example of the dep_anchor_certs_url Key",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "// Format",
+            "GET https://mdm.example.com/devicemanagement/mdm/dep_anchor_certs",
+            "",
+            "// Response body (truncated)",
+            "[\"MIIEKDCCAxCgAwIBAgIEOjznoTALBgkqhkiG9w0BAQswfjEkMCIGA1UEAwwbU3ly \\nYWggQ2VydGlmaWNhd...SVVTo9ll1Lv3OJGqBkxPl9TCC\\nfYYnArwzlk4qm1tP\\n\"]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Example-of-the-trustprofileurl-Key",
+          "level": 3,
+          "text": "Example of the trust_profile_url Key",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "// Format",
+            "GET https://certs.example.com/mdm/trust_profile",
+            "",
+            "// Response body",
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>PayloadContent</key>",
+            "            <data>",
+            "            MIIEKDCCAxCgAwIBAgIEOjznoTALBgkqhkiG9w0BAQswfjEkMCIG",
+            "            ...",
+            "            9TCCfYYnArwzlk4qm1tP",
+            "            </data>",
+            "            <key>PayloadDescription</key>",
+            "            <string>Installs the Root certificate for Example Corp.</string>",
+            "            <key>PayloadDisplayName</key>",
+            "            <string>Root certificate for Example Corp</string>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.apple.ssl.certificate</string>",
+            "            <key>PayloadOrganization</key>",
+            "            <string>Example Corp</string> ",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.security.root</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>B90FA650-5A7D-496A-8C84-0D81C9EBCE6E</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "<key>PayloadDescription</key>",
+            "<string>Configures your device to trust the MDM server.</string>",
+            "<key>PayloadDisplayName</key>",
+            "<string>Trust Profile for Example Corp</string>",
+            "<key>PayloadIdentifier</key>",
+            "<string>com.apple.config.mdm.example.com.ssl</string>",
+            "<key>PayloadScope</key>",
+            "<string>System</string>",
+            "<key>PayloadType</key>",
+            "<string>Configuration</string>",
+            "<key>PayloadUUID</key>",
+            "<string>94cdf5c0-bde0-0131-1ed5-005056831d08</string>",
+            "<key>PayloadVersion</key>",
+            "<integer>1</integer> ",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-connections": {
+      "abstract": [
+        {
+          "text": "Establish or remove a connection between a device and an MDM server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-connections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing MDM Connections",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-mdm-connections"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-connections"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/simplifying-mdm-server-administration-for-ios-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

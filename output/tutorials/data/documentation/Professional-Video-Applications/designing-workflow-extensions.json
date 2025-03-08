@@ -1,0 +1,469 @@
+{
+  "abstract": [
+    {
+      "text": "Follow these design guidelines to provide a unique experience to workflow extension users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/designing-workflow-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Designing Workflow Extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Workflow extensions share many similarities with app extensions. Both are packaged inside your app and use similar design infrastructure for bridging communication and exchanging data with the host app and container app. The key difference is that the extension view remains in a floating window until a user closes it. In contrast, certain app extensions, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Share.html#//apple_ref/doc/uid/TP40014214-CH12-SW1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", usually run as a modal session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you create a workflow extension, you may need to take into account some design scenarios that are unique to workflow extensions. Take the following guidelines into account when designing a workflow extension for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Drag-and-Drop-Functionality",
+          "level": 3,
+          "text": "Add Drag and Drop Functionality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the frequent exchange of small batches of data back and forth between your extension and Final Cut Pro, add drag and drop functionality. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-Rendered-Media-Through-the-Containing-App",
+          "level": 3,
+          "text": "Receive Rendered Media Through the Containing App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have workflows that require your extension to receive rendered media from Final Cut Pro for further processing, receive the rendered sequence in the container app and have the workflow extension access it from there. Unlike an app, a workflow extension cannot receive rendered media directly from Final Cut Pro. You can set up a shared container to access data that is available in the container app. If your extension or container app communicates with a backend server, uploading the data to the backend server allows data sharing between the extension and the container app. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-Custom-Code-with-the-Containing-App",
+          "level": 3,
+          "text": "Share Custom Code with the Containing App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have custom code that is common to both your app and your workflow extension, you can share the code between them. Place the shared code in a framework and embed the framework in both targets. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-the-Workflow-Extension-State",
+          "level": 3,
+          "text": "Save the Workflow Extension State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro terminates a workflow extension soon after a user closes the extension window. When they reopen it, they are likely to expect the state of the extension to be preserved. To maintain the state of your extension, automatically save the state to persistent storage, like an encrypted file or a remote server. You can also set up a shared container with the containing app and save relevant state information in the shared container. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6",
+              "isActive": true,
+              "overridingTitle": "Sharing Data with Your Containing App",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Sharing Data with Your Containing App",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Logo-and-an-Icon",
+          "level": 3,
+          "text": "Add a Logo and an Icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deliver a seamless experience when users switch between Final Cut Pro and the extension interface, give the extension interface a look and feel that’s consistent with that of the Final Cut Pro interface. For example, choose Dark Mode for your extension interface to match the  appearance of the Final Cut Pro interface. To help users recognize that the extension view is not part of Final Cut Pro,  add your company logo to the extension view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users identify your extension by its icon and name. Creating your extension from the Xcode template adds an asset catalog with empty entries for an icon. Follow the steps outlined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add an icon for your extension. If you don’t provide an icon, Final Cut Pro automatically adds the container app’s icon for the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-Minimum-Floating-Window-Size",
+          "level": 3,
+          "text": "Set a Minimum Floating Window Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The floating window in which Final Cut Pro hosts the workflow extension view is resizable. Often, the UI design of the workflow extension requires a specific window size to properly display the contents of an extension view. You can restrict a user from resizing the floating window smaller than a specific size by specifying a minimum required size for the floating window in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension#Add-Keys-to-the-Info-Property-List-Template",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension": {
+      "abstract": [
+        {
+          "text": "Create a workflow extension in Xcode by using the Final Cut Pro Workflow Extension template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Workflow Extension",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-a-workflow-extension"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension#Add-Keys-to-the-Info-Property-List-Template": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension#Add-Keys-to-the-Info-Property-List-Template",
+      "kind": "section",
+      "title": "Add Keys to the Info Property List Template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-a-workflow-extension#Add-Keys-to-the-Info-Property-List-Template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Add drag and drop support so your users can drag media assets and timeline sequences from your app directly into Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Drag and Drop for Data Sent to Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-drag-and-drop-for-data-sent-to-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data": {
+      "abstract": [
+        {
+          "text": "Add drag and drop support in your app to give users an intuitive way to receive clips, projects, and other items from Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Drag and Drop to Receive Final Cut Pro Data",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-drag-and-drop-to-receive-final-cut-pro-data"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions": {
+      "abstract": [
+        {
+          "text": "Integrate your app’s workflow within the Final Cut Pro interface to streamline data exchange.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/workflow-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW5": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW5",
+      "title": "Using an Embedded Framework to Share Code",
+      "titleInlineContent": [
+        {
+          "text": "Using an Embedded Framework to Share Code",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW5"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6",
+      "title": "Sharing Data with Your Containing App",
+      "titleInlineContent": [
+        {
+          "text": "Sharing Data with Your Containing App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Share.html#//apple_ref/doc/uid/TP40014214-CH12-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Share.html#//apple_ref/doc/uid/TP40014214-CH12-SW1",
+      "title": "Share extension",
+      "titleInlineContent": [
+        {
+          "text": "Share extension",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Share.html#//apple_ref/doc/uid/TP40014214-CH12-SW1"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev10510b1f7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7",
+      "title": "Create asset catalog and sets",
+      "titleInlineContent": [
+        {
+          "text": "Create asset catalog and sets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/designing-workflow-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/designing-workflow-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

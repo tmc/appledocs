@@ -1,0 +1,1111 @@
+{
+  "abstract": [
+    {
+      "text": "Manage network users on macOS devices bound to an Open Directory server, and mobile users on shared iPads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/enabling-network-and-mobile-user-logins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling Network and Mobile User Logins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MDM protocol extensions enable network users to log in to a macOS device that’s bound to an Open Directory server. Upon login, these users also become managed by the MDM server with their user profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A network login begins when a network user logs in; the server then issues a challenge to the device and it responds with a digest, and then the server validates the digest and issues an auth token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "A-Network-User-Logs-In",
+          "level": 3,
+          "text": "A Network User Logs In",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At login time, if the user is a network user or has a mobile home, the device issues a ",
+              "type": "text"
+            },
+            {
+              "code": "UserAuthenticate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the server to authenticate the current user to the MDM server and obtain an ",
+              "type": "text"
+            },
+            {
+              "code": "AuthToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. The device uses this token in subsequent requests made by this user to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authentication transaction is an HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "PUT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the ",
+              "type": "text"
+            },
+            {
+              "code": "CheckInURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " address specified in the MDM enrollment-profile payload. The message body contains a property list with the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "MessageType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UserAuthenticate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UDID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UDID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to use for all MDM requests for the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UserID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The local user’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or the network user’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the Open Directory record.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "The-Server-Issues-a-Challenge",
+          "level": 3,
+          "text": "The Server Issues a Challenge",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server response contains a dictionary with a ",
+              "type": "text"
+            },
+            {
+              "code": "DigestChallenge",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that contains the standard HTTP digest. The server provides a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response, but a zero-length (empty) ",
+              "type": "text"
+            },
+            {
+              "code": "DigestChallenge",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value if it doesn’t require an ",
+              "type": "text"
+            },
+            {
+              "code": "AuthToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this user. Otherwise, the server provides a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response and a non-empty ",
+              "type": "text"
+            },
+            {
+              "code": "DigestChallenge",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, and the client generates a digest from the userʼs shortname, their clear-text password, and the ",
+              "type": "text"
+            },
+            {
+              "code": "DigestChallenge",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-Device-Sends-a-Digest-Response",
+          "level": 3,
+          "text": "The Device Sends a Digest Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device sends this digest in a second request to the server. This request is also sent to the ",
+              "type": "text"
+            },
+            {
+              "code": "CheckInURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specified in the MDM enrollment profile payload, and it includes the same identity used for all other MDM requests. The message body contains these values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DigestResponse",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The digest that the device generates from the user’s shortname, password, and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DigestChallenge",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "MessageType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UserAuthenticate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UDID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UDID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to use for all MDM requests for the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UserID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The local user’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or the network user’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the Open Directory record.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "The-Server-Validates-the-Digest-to-Issue-an-Auth-Token",
+          "level": 3,
+          "text": "The Server Validates the Digest to Issue an Auth Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the server rejects the ",
+              "type": "text"
+            },
+            {
+              "code": "DigestResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, for example if the password is invalid, it returns a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response and an empty ",
+              "type": "text"
+            },
+            {
+              "code": "AuthToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. Otherwise, the server returns an ",
+              "type": "text"
+            },
+            {
+              "code": "AuthToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for use by the device on subsequent requests to the server. This token remains valid until the next time the device sends a ",
+              "type": "text"
+            },
+            {
+              "code": "UserAuthenticate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handshake request, which it does each time a network user logs in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a server rejects a ",
+              "type": "text"
+            },
+            {
+              "code": "DigestResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, that server returns a ",
+              "type": "text"
+            },
+            {
+              "code": "410",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status code to indicate it won’t manage this user. The device won’t make additional requests to the server on behalf of this user for the duration of the login session. However, the next time the user logs in, the device again sends a ",
+              "type": "text"
+            },
+            {
+              "code": "UserAuthenticate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request. The server can optionally return ",
+              "type": "text"
+            },
+            {
+              "code": "410",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again to indicate it still won’t manage that user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For push notifications, the device uses different push tokens for device and user connections. The device sends each token to the server using the ",
+              "type": "text"
+            },
+            {
+              "code": "TokenUpdate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request. The server determines whether the token is for the device or a user based on the ",
+              "type": "text"
+            },
+            {
+              "code": "UDID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UserID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values in the request. If the user is a network or mobile user, the server includes the ",
+              "type": "text"
+            },
+            {
+              "code": "AuthToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Push notification tokens and ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " are separate values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-a-Complete-Login",
+          "level": 3,
+          "text": "Review a Complete Login",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a ",
+              "type": "text"
+            },
+            {
+              "code": "UserAuthenticate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " transaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The client sends a UserAuthenticate request to the server.",
+            "<dict>",
+            "    <key>MessageType</key>",
+            "    <string>UserAuthenticate</string>",
+            "    <key>UDID</key>",
+            "    <string>23EB7CD8-5567-5E97-827F-06E4E4C456B2</string>",
+            "    <key>UserID</key>",
+            "    <string>16C0477E-EB2F-4B5E-AAFD-92B2B91C4B16</string> ",
+            "</dict>",
+            "",
+            "// The server sends a challenge.",
+            "<dict>",
+            "    <key>DigestChallenge</key>",
+            "    <string>Digest nonce=\"8BrAkk4GZgrG2XaDLMSSSo89VenjV5E8Se73z98RvSW7Rs\",realm=\"fusion.home\"<string>",
+            "</dict>",
+            "",
+            "// The client sends a digest response.",
+            "<dict>",
+            "    <key>DigestResponse</key>",
+            "    <string>Digest username=\"net1\",realm=\"fusion.home\",nonce=\"8BrAkk4GZgrG2XaDLMSSSo89VenjV5E8Se73z98RvSW7Rs\", uri=\"/\",response=\"84db40bbaf5e0d49cabb0ef7d8cac369\"</string>",
+            "    <key>MessageType</key>",
+            "    <string>UserAuthenticate</string>",
+            "    <key>UDID</key>",
+            "    <string>23EB7CD8-5567-5E97-827F-06E4E4C456B2</string>",
+            "    <key>UserID</key>",
+            "    <string>16C0477E-EB2F-4B5E-AAFD-92B2B91C4B16</string> ",
+            "</dict>",
+            "",
+            "// The server validates the digest response and responds with AuthToken for client session.",
+            "<key>AuthToken</key>",
+            "<string>uEOcQRJrXGbMJUDAkDZSCny5e90=</string>",
+            "",
+            "// From the duration of the client login session, all requests from the network user must include the AuthToken.",
+            "<dict>",
+            "    <key>AuthToken</key>",
+            "    <string>uEOcQRJrXGbMJUDAkDZSCny5e90=</string>",
+            "    <key>Status</key>",
+            "    <string>Idle</string>",
+            "    <key>UDID</key>",
+            "    <string>23EB7CD8-5567-5E97-827F-06E4E4C456B2</string>",
+            "    <key>UserID</key>",
+            "    <string>16C0477E-EB2F-4B5E-AAFD-92B2B91C4B16</string>",
+            "    <key>UserLongName</key>",
+            "    <string>Net One</string>",
+            "    <key>UserShortName</key>",
+            "    <string>net1</string>",
+            "</dict>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Supporting-Multiple-Mobile-User-Logins",
+          "level": 3,
+          "text": "Supporting Multiple Mobile User Logins",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MDM manages a shared iPad device and its users, using a similar technique to the process described above for enabling network users in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An MDM server indicates that it supports both device and user connections through Shared iPad when it includes the string ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.mdm.per-user-connections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "ServerCapabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of the MDM enrollment-profile payload. Then, when a user logs in the device sends a ",
+              "type": "text"
+            },
+            {
+              "code": "TokenUpdate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request on the user channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device and its users each use different push tokens. The server determines from each token it receives from a device or user whether the device or user contacts the server with an ",
+              "type": "text"
+            },
+            {
+              "code": "Idle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User requests contain additional values to help the server distinguish them from device requests. For more information on managing independent devices, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, the value for ",
+              "type": "text"
+            },
+            {
+              "code": "UserID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is always set to ",
+              "type": "text"
+            },
+            {
+              "code": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for devices, to indicate that no user authentication occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage a user, the server stores the user push token and returns a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status code response. At this point, the device polls the server for a command on the user channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that it won’t manage the user, a server returns a ",
+              "type": "text"
+            },
+            {
+              "code": "410",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status code. The device won’t make additional requests to the server on behalf of this user for the duration of the login session. However, the next time the user logs in, the device again sends a ",
+              "type": "text"
+            },
+            {
+              "code": "UserAuthenticate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request. The server can optionally return ",
+              "type": "text"
+            },
+            {
+              "code": "410",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again to indicate it still won’t manage that user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens": {
+      "abstract": [
+        {
+          "text": "Handle when devices become unmanageable due to inactivity or invalid push tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Dealing with Inactive MDM Devices and Invalid Push Tokens",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos": {
+      "abstract": [
+        {
+          "text": "Manage devices and users as separate entities in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing MDM Devices and Users in macOS",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-mdm-devices-and-users-in-macos"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes": {
+      "abstract": [
+        {
+          "text": "Ensure data security by managing device passcodes and compliance with policies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Passcodes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-passcodes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Devices-and-Users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens"
+      ],
+      "title": "Devices and Users"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/enabling-network-and-mobile-user-logins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "abstract": [
+    {
+      "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using FxPlug APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your plug-in needs to access a host’s capabilities, use the associated FxPlug API that corresponds to the capability you need to access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in can instantiate host API objects that let you communicate and interact with the host application to extend your plug-in’s functionality. A host API implements methods that your plug-in can call to get a specific functionality—such as requesting information about a video stream, or reading a parameter value from the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A host API is analogous to a callback suite in other plug-in architectures, but is implemented as a protocol in FxPlug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug defines host protocols for common tasks, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requesting layer information",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Converting between canvas and object coordinate spaces",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Building a list of plug-in parameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Getting and setting parameter values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluating input images at arbitrary times",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Not all host applications support all of the host API protocols in FxPlug. Make sure your plug-in requests the host API object before invoking its methods.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Get-the-most-recent-versions-for-host-APIs",
+          "level": 3,
+          "text": "Get the most recent versions for host APIs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In FxPlug, you may see similar APIs, differing by only a version number appended at the end. You should always use the latest version available for your plug-in. FxPlug 4 only supports the latest versions. FxPlug includes older versions of the host APIs so previous plug-ins continue to work, unless otherwise marked as deprecated. However, improved and expanded functionality is only available in the latest versions. For example, choose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as earlier versions aren’t accessible in FxPlug 4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-a-host-API",
+          "level": 3,
+          "text": "Use a host API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, you find a slider’s value at a particular render time. In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you use the latest version of the parameter retrieval host API (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to retrieve a brightness value created in your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Then add the value to pluginState NSData object for later retrieval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func pluginState(_ pluginState: AutoreleasingUnsafeMutablePointer<NSData>?, at renderTime: CMTime, quality qualityLevel: UInt) throws {",
+                    "        let paramAPI = _apiManager!.api(for: FxParameterRetrievalAPI_v6.self) as! FxParameterRetrievalAPI_v6",
+                    "        ",
+                    "        var brightness = 1.0",
+                    "        paramAPI.getFloatValue(UnsafeMutablePointer<Double>(&brightness), fromParameter: 1, at: renderTime)",
+                    "        ",
+                    "        pluginState?.pointee = NSData.init(bytes: &brightness, length: MemoryLayout.size(ofValue: brightness))",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)pluginState:(NSData * _Nonnull *)pluginState",
+                    "             atTime:(CMTime)renderTime",
+                    "            quality:(FxQuality)qualityLevel",
+                    "              error:(NSError * _Nullable *)error",
+                    "{",
+                    "    BOOL    succeeded = NO;",
+                    "    id<FxParameterRetrievalAPI_v6>  paramGetAPI = [_apiManager apiForProtocol:@protocol(FxParameterRetrievalAPI_v6)];",
+                    "    if (paramGetAPI != nil)",
+                    "    {",
+                    "        double  brightness  = 1.0;",
+                    "        [paramGetAPI getFloatValue:&brightness",
+                    "                     fromParameter:1",
+                    "                            atTime:renderTime];",
+                    "        ",
+                    "        *pluginState = [NSData dataWithBytes:&brightness",
+                    "                                      length:sizeof(brightness)];",
+                    "        ",
+                    "        if (*pluginState != nil)",
+                    "        {",
+                    "            succeeded = YES;",
+                    "        }",
+                    "    }",
+                    "    else",
+                    "    {",
+                    "        *error = [NSError errorWithDomain:FxPlugErrorDomain",
+                    "                                     code:kFxError_ThirdPartyDeveloperStart + 20",
+                    "                                 userInfo:@{",
+                    "                                            NSLocalizedDescriptionKey :",
+                    "                                                @\"Unable to retrieve FxParameterRetrievalAPI_v6 in \\",
+                    "                                                [-TileableRemoteBrightness pluginStateAtTime:]\" }];",
+                    "    }",
+                    "    ",
+                    "    return succeeded;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template": {
+      "abstract": [
+        {
+          "text": "Create a plug-in in Xcode with the FxPlug template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in from an Xcode template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5": {
+      "abstract": [
+        {
+          "text": "Defines the methods provided by the host application to create parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterCreationAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametercreationapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to retrieve parameter values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterRetrievalAPI_v6",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v6"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()": {
+      "abstract": [
+        {
+          "text": "Tells the host application what parameters your plug-in requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addParameters"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addParametersWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addParameters()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/addparameters()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the plug-in’s parameter values, performs any calculations it needs to from those values, and packages up the result to be used later with rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSData",
+          "text": "NSData"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxQuality",
+          "text": "FxQuality"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pluginState:atTime:quality:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pluginState(_:at:quality:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/pluginstate(_:at:quality:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Plug-in-fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Plug-in-fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/title",
+          "value": "addParametersWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addParametersWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/title",
+          "value": "FxParameterRetrievalAPI_v6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/title",
+          "value": "pluginState:atTime:quality:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pluginState:atTime:quality:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/title",
+          "value": "FxParameterCreationAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/using-fxplug-apis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/using-fxplug-apis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,714 @@
+{
+  "abstract": [
+    {
+      "text": "Version plug-ins to add new capabilities, or obsolete them to remove them from the Motion Library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Versioning and obsoleting old plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developers commonly add new functionalities or rendering abilities to plug-ins over time. Versioning a plug-in allows for older instances of a plug-in that are already applied to a project to maintain the old rendering behavior and new instances to use a new rendering behavior. Obsoleting a plug-in prevents the plug-in from appearing in the Motion Library, and therefore prevents new instances from being applied. However, old instances of the plug-in continue to function as long as Motion and Final Cut Pro support it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Versioning-a-plug-in",
+          "level": 3,
+          "text": "Versioning a plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To version a plug-in, add a version key to your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and set a version number as a string or number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>version</key>",
+            "<string>1</string>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a plug-in has a version number, when it is applied to an object in a project, the version number at the time it is applied is saved. That instance of the plug-in retains that version number, even if the version number of the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is later updated. This strategy works well for users because it ensures backward compatibility of renders that are created with earlier versions of your plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reading-a-plug-ins-version-number",
+          "level": 3,
+          "text": "Reading a plug-in’s version number",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for reading the version number of a plug-in instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you release version 1 of your plug-in and a few months later you change the way it outputs pixel values, you can increase the version number to 2. You can then add the new render path to your plug-in and use it only if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Updating-the-version-of-a-plug-in-instance",
+          "level": 3,
+          "text": "Updating the version of a plug-in instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes a plug-in may require an update to the version of the current plug-in instance applied in a Motion project. This version update might be most convenient to make when the user changes a parameter and therefore purges the previous render. For example, your plug-in can update the plug-in instance’s version number in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/updateVersion(atCreation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to set a new version number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obsoleting-a-plug-in",
+          "level": 3,
+          "text": "Obsoleting a plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you release a newer plug-in, you may not want your older plug-in to appear in the host’s list of available plug-ins and instead choose to replace it with a new version with a different UUID. You could make this choice, for example, because you’ve updated from FxPlug 3 to FxPlug 4, your new plug-in requires a new license from your customers, or you’ve combined the functionality of several plug-ins into a single plug-in. In all these cases, simply versioning may not be a suitable option for your plug-in, but you still want instances of older versions to continue to function as long as the host supports them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The solution is to use the obsolete key. When you add it to your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the obsolete key tells the host application not to display its name in the list of available plug-ins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>obsolete</key>",
+            "<string>YES</string>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user opens an existing project, the plug-in’s user interface is still available, and they can copy and paste instances of the plug-in but can’t create a new instance of the plug-in from scratch. So you can use the same name for the new plug-in and ensure that only new instances are created going forward.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Likewise, when Final Cut Pro loads a project that contains a Motion Template with an obsolete plug-in, the obsolete plug-in will work properly. Usually, developers ship only the new template with the new plug-in, and only users who installed the old plug-in with the old template can use the old version. As a result, however, the new template must have a different name from the old one or be put into a different category. Developers often avoid this issue by adding a version number to the template name, such as “My Cool Plugin v1.moef.” You can also deprecate a Motion Template. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro#Deprecate-a-Motion-template",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4": {
+      "abstract": [
+        {
+          "text": "Update existing FxPlug 3 plug-ins to out-of-process FxPlug 4 plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating FxPlug 3 plug-ins to FxPlug 4",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro#Deprecate-a-Motion-template": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro#Deprecate-a-Motion-template",
+      "kind": "section",
+      "title": "Deprecate a Motion template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/preparing-plug-ins-for-use-in-final-cut-pro#Deprecate-a-Motion-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)": {
+      "abstract": [
+        {
+          "text": "Executes when the host detects that a parameter has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterChanged:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterChanged(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/parameterchanged(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a host application implements to identify the plug-in version used by a project when it was first created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxVersioningAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/updateVersion(atCreation:)": {
+      "abstract": [
+        {
+          "text": "Updates the version of the plug-in that was stored when the plug-in was added to the clip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateVersion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atCreation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/updateVersion(atCreation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateVersionAtCreation:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateVersion(atCreation:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi/updateversion(atcreation:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()": {
+      "abstract": [
+        {
+          "text": "Provides the version number of a plug-in that a project uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "versionAtCreation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "versionAtCreation"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "versionAtCreation()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi/versionatcreation()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Legacy-plug-ins",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+      ],
+      "title": "Legacy plug-ins"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Legacy-plug-ins",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+              ],
+              "title": "Legacy plug-ins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/title",
+          "value": "parameterChanged:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterChanged:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/title",
+          "value": "FxVersioningAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1versionAtCreation()/title",
+          "value": "versionAtCreation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1versionAtCreation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "versionAtCreation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1updateVersion(atCreation:)/title",
+          "value": "updateVersionAtCreation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1updateVersion(atCreation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateVersionAtCreation:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/versioning-and-obsoleting-old-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/versioning-and-obsoleting-old-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

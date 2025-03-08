@@ -1,0 +1,1424 @@
+{
+  "abstract": [
+    {
+      "text": "Extend your workflows beyond media exchange by enabling a workflow extension to interact with the Final Cut Pro timeline.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/interacting-with-the-final-cut-pro-timeline"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Interacting with the Final Cut Pro Timeline"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to extend your workflows to allow users to interact with the Final Cut Pro timeline, use the interface provided by the Workflow Extension SDK. This interface enables a workflow extension to access a limited set of information about a sequence currently opened in the Final Cut Pro timeline. The APIs implement methods that a workflow extension can call to access proxy instances of the Final Cut Pro timeline objects, such as current sequence or playhead position. By enabling an extension to interact with the Final Cut Pro timeline, you can receive updates to a project opened in the Final Cut Pro timeline and use this information to make necessary edits in a workflow extension project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-the-Host-Proxy-Object",
+          "level": 3,
+          "text": "Access the Host Proxy Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can access the Final Cut Pro timeline proxy objects, you need to get a proxy instance of the host object. The host object is an initial access point for the extension to access the Final Cut Pro timeline proxy objects. The ",
+              "type": "text"
+            },
+            {
+              "code": "ProExtensionHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which returns the singleton proxy instance of the host object. Once you have the proxy host object, validate that the object conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost/timeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "FCPXHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to access the Final Cut Pro timeline objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let timeline = host.timeline"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "FCPXTimeline* timeline = self.host.timeline; "
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Observe-Changes-in-the-Final-Cut-Pro-Timeline",
+          "level": 3,
+          "text": "Observe Changes in the Final Cut Pro Timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common use case for observing changes in the Final Cut Pro timeline is for a workflow that requires an extension to update its interface based on changes in the Final Cut Pro timeline. For example, workflows like the review and approval process might require you to sync the extension timeline with the Final Cut Pro timeline to provide real-time feedback to users about Final Cut Pro timeline state changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ProExtensionHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework defines a timeline proxy object that has methods you can call to observe and get notified about changes to timeline object properties, such as sequence or playhead position. After Final Cut Pro notifies an extension about changes in its timeline, you can access the new values for timeline object properties through their associated accessor methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To observe for changes in the Final Cut Pro timeline, register an observer object in your workflow extension using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/add(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The observer must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and it plays an important role in letting your extension communicate with the Final Cut Pro timeline. In your extension code, choose the class that you use to sync the Final Cut Pro timeline with your internal data structures, and make that class act as an observer. A common choice is to use your extension view controller, but you can choose any other class in your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "host.timeline?.add(self)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[host.timeline addTimelineObserver(NSObject<FCPXTimelineObserver>*)self];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you register an observer, an extension can observe for changes in the timeline sequence, the selected time range within the sequence, and the current playhead position in the timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows an example of a sequence that is playing in the Final Cut Pro timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570244",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next image shows a selected time range in the Final Cut Pro timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570245",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the playhead position that marks the current position in the timeline or the browser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570246",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods implemented in your observer object, Final Cut Pro notifies an observer about state changes to the timeline object properties. For example, if you implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/activeSequenceChanged()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the observer object, Final Cut Pro notifies the observer when a sequence changes in its timeline. In the method implementation, get details about the new sequence using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/activeSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func activeSequenceChanged() {",
+                    "    let sequence = host.timeline?.activeSequence",
+                    "",
+                    "    // do something with the sequence returned above",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) activeSequenceChanged",
+                    "{",
+                    "   FCPXSequence* sequence = host.timeline.activeSequence;",
+                    "",
+                    "   // do something with the sequence returned above",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By observing for changes in the Final Cut Pro playhead position, you can support workflows that sync playback between the extension and the Final Cut Pro timeline. To sync playback, in your observer’s  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/playheadTimeChanged()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/playheadTime()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get the new Final Cut Pro playhead time, and then update the workflow extension playhead position to the new time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func playheadTimeChanged() {",
+                    "   if let time = host.timeline?.playheadTime() {",
+                    "        currentTime = time",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) playheadTimeChanged",
+                    "{",
+                    "   CMTime time = [self.host.timeline playheadTime];",
+                    "",
+                    "   [self setCurrentTime:time]",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Move-the-Playhead-Position",
+          "level": 3,
+          "text": "Move the Playhead Position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can support workflows that allow users to locate a specific playhead position in the Final Cut Pro timeline by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/movePlayhead(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Calling this method in your extension allows you to manage the Final Cut Pro playhead by moving it to a position based on user input. For example, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "movePlayheadTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to allow users to locate a specific playhead position in the Final Cut Pro timeline that a reviewer has referred to in a project opened in the workflow extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move the Final Cut Pro playhead position based on user input, add a UI element in the extension interface to receive user action. Then, in the action method of the UI element, invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/movePlayhead(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to move the Final Cut Pro playhead to a time the user specifies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func someMethodRespondingToUIElement(withNewTime newTime: CMTime) {    ",
+                    "    let resultTime = host.timeline?.movePlayhead(to: newTime)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) someMethodRespondingToUIElement:(CMTime)newTime",
+                    "{",
+                    "   CMTime resultTime = [host.timeline movePlayheadTo:newTime]",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the ",
+              "type": "text"
+            },
+            {
+              "code": "movePlayheadTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to sync playback between sequences opened in the extension and the Final Cut Pro timeline, by moving the Final Cut Pro playhead position to match the workflow extension playhead time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Do not move the Final Cut Pro timeline playhead when your workflow extension object gets notified of the change in the Final Cut Pro timeline playhead time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions": {
+      "abstract": [
+        {
+          "text": "Integrate your app’s workflow within the Final Cut Pro interface to streamline data exchange.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/workflow-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost": {
+      "abstract": [
+        {
+          "text": "A protocol that provides an interface to retrieve the Final Cut Pro timeline proxy objects and details of the host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXHost"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXHost"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXHost",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxhost"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost/timeline": {
+      "abstract": [
+        {
+          "text": "A pointer to the Final Cut Pro timeline proxy object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FCPXTimeline",
+          "text": "FCPXTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost/timeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeline"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "timeline",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxhost/timeline"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline": {
+      "abstract": [
+        {
+          "text": "An interface that has methods and properties to communicate and interact with the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXTimeline"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXTimeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXTimeline",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/activeSequence": {
+      "abstract": [
+        {
+          "text": "The sequence played in the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FCPXSequence",
+          "text": "FCPXSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/activeSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeSequence",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline/activesequence"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/add(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a workflow extension object as an observer for Final Cut Pro timeline changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)FCPXTimelineObserver",
+          "text": "FCPXTimelineObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTimelineObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline/add(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/movePlayhead(to:)": {
+      "abstract": [
+        {
+          "text": "Sets the Final Cut Pro timeline playhead to a specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "movePlayhead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/movePlayhead(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movePlayheadTo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "movePlayhead(to:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline/moveplayhead(to:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/playheadTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current playhead position in the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playheadTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline/playheadTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playheadTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "playheadTime()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline/playheadtime()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver": {
+      "abstract": [
+        {
+          "text": "An interface with optional methods implemented by observers of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXTimelineObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXTimelineObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXTimelineObserver",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimelineobserver"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/activeSequenceChanged()": {
+      "abstract": [
+        {
+          "text": "A callback method that gets invoked when there is a change in the current timeline sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeSequenceChanged"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/activeSequenceChanged()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeSequenceChanged"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "activeSequenceChanged()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimelineobserver/activesequencechanged()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/playheadTimeChanged()": {
+      "abstract": [
+        {
+          "text": "A callback method that gets invoked when the playhead position changes in the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playheadTimeChanged"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver/playheadTimeChanged()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playheadTimeChanged"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "playheadTimeChanged()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimelineobserver/playheadtimechanged()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()": {
+      "abstract": [
+        {
+          "text": "Returns the singleton proxy instance of the host object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProExtensionHostSingleton"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProExtensionHostSingleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProExtensionHostSingleton()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/proextensionhostsingleton()"
+    },
+    "media-3570244": {
+      "alt": "Image showing an active timeline sequence.",
+      "identifier": "media-3570244",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0c42074d54a7edfcf60dc9e9881d690/media-3570244@2x.png"
+        }
+      ]
+    },
+    "media-3570245": {
+      "alt": "Screenshot showing a time range selection within a sequence.",
+      "identifier": "media-3570245",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9591178967e48c2b833fb85331e2af41/media-3570245@2x.png"
+        }
+      ]
+    },
+    "media-3570246": {
+      "alt": "Screenshot showing the playhead position within a sequence.",
+      "identifier": "media-3570246",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/07a331f50cf953ad65195b3b54f50389/media-3570246@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "FCPX-Interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver"
+      ],
+      "title": "FCPX Interactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "FCPX-Interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver"
+              ],
+              "title": "FCPX Interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1playheadTime()/title",
+          "value": "playheadTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1playheadTime()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playheadTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/title",
+          "value": "FCPXTimeline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1ProExtensionHostSingleton()/title",
+          "value": "ProExtensionHostSingleton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1ProExtensionHostSingleton()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ProExtensionHostSingleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost~1timeline/title",
+          "value": "timeline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost~1timeline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver~1activeSequenceChanged()/title",
+          "value": "activeSequenceChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver~1activeSequenceChanged()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activeSequenceChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1movePlayhead(to:)/title",
+          "value": "movePlayheadTo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1movePlayhead(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "movePlayheadTo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1add(_:)/title",
+          "value": "addTimelineObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTimelineObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver~1playheadTimeChanged()/title",
+          "value": "playheadTimeChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver~1playheadTimeChanged()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playheadTimeChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/title",
+          "value": "FCPXHost"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1activeSequence/title",
+          "value": "activeSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline~1activeSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/title",
+          "value": "FCPXTimelineObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimelineObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimelineObserver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/interacting-with-the-final-cut-pro-timeline"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/interacting-with-the-final-cut-pro-timeline"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

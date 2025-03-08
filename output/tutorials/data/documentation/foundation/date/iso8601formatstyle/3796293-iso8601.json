@@ -1,0 +1,399 @@
+{
+  "abstract": [
+    {
+      "text": "A convenience factory variable that provides a base format for customizing ISO 8601 date format styles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/date",
+        "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3796293-iso8601"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3796293,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation11FormatStylePA2A4DateV07ISO8601bC0VRszrlE7iso8601AGvpZ::SYNTHESIZED::s:10Foundation4DateV18ISO8601FormatStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static var "
+      },
+      {
+        "kind": "identifier",
+        "text": "iso8601"
+      },
+      {
+        "kind": "text",
+        "text": ": Date.ISO8601FormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Date.ISO8601FormatStyle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "iso8601"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "iso8601"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV18ISO8601FormatStyleV",
+              "text": "ISO8601FormatStyle"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the base date format style using modifier methods to apply specific date and time formats, as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let meetingDate = Date() // Jun 24, 2021 at 7:27 AM",
+            "meetingDate.formatted(.iso8601.dateSeparator(.dash).dateTimeSeparator(.space))",
+            "// 2021-06-24 122744Z",
+            "",
+            "meetingDate.formatted(.iso8601",
+            "    .month()",
+            "    .day()",
+            "    .dateSeparator(.omitted)",
+            "    .time(includingFractionalSeconds: false)",
+            "    .timeSeparator(.colon)",
+            "    .dateTimeSeparator(.standard)",
+            ")",
+            "// 0624T12:27:44"
+          ],
+          "metadata": {
+            "anchor": "3855569",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.ISO8601FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/iso8601formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3766496-init": {
+      "abstract": [
+        {
+          "text": "Creates an instance using the provided date separator, date and time components separator, and time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dateSeparator"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.ISO8601FormatStyle.DateSeparator, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateTimeSeparator"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.ISO8601FormatStyle.DateTimeSeparator, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3766496-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dateSeparator:dateTimeSeparator:timeZone:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/iso8601formatstyle/3766496-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3796293-iso8601": {
+      "abstract": [
+        {
+          "text": "A convenience factory variable that provides a base format for customizing ISO 8601 date format styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "iso8601"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.ISO8601FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3796293-iso8601",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iso8601",
+      "type": "topic",
+      "url": "/documentation/foundation/date/iso8601formatstyle/3796293-iso8601"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3796293-iso8601#3855569": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3796293-iso8601#3855569",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/date/iso8601formatstyle/3796293-iso8601#3855569"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle/3766496-init"
+      ],
+      "title": "Creating an ISO 8601 Format Style"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/date/iso8601formatstyle/3796293-iso8601"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1035 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieves a peer certificate and its certificate chain.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "To get peer certificates, call ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to obtain the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for the peer certificate chain, then use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCertificateCount(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCertificateAtIndex(_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " functions to retrieve individual certificates in the chain (see the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/trust",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " section of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SSLCopyPeerCertificates",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SSLCopyPeerCertificates"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SSLCopyPeerCertificates"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SSLCopyPeerCertificates"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SSLCopyPeerCertificates"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SSLContextRef",
+              "text": "SSLContextRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFArrayRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "certs"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An SSL session context reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to an array of values of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecCertificateRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " representing the peer certificate and the certificate chain used to validate it. The certificate at index 0 of the returned array is the peer certificate (the subject of the function call—the end certificate in the chain); the root certificate (or the closest certificate to it) is at the end of the returned array. The entire array is created by the Secure Transport library; you must call the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFRelease",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function for this array when you are finished with it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "certs"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is valid any time after a handshake attempt. You can use it to examine a peer certificate, to examine a certificate chain to determine why a handshake attempt failed, or to retrieve the certificate chain in order to validate the certificate yourself. (To disable validation so that you can validate the certificate yourself, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to set the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SSLContext": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an SSL session context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLContext",
+      "type": "topic",
+      "url": "/documentation/security/sslcontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates": {
+      "abstract": [
+        {
+          "text": "Retrieves a peer certificate and its certificate chain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerCertificates"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLCopyPeerCertificates",
+      "type": "topic",
+      "url": "/documentation/security/sslcopypeercertificates"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a trust management object for the certificate used by a session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerTrust"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyPeerTrust(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopypeertrust(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLHandshake(_:)": {
+      "abstract": [
+        {
+          "text": "Performs the SSL handshake.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLHandshake(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslhandshake(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth": {
+      "abstract": [
+        {
+          "text": "Enables returning from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " (with a result of ",
+          "type": "text"
+        },
+        {
+          "code": "errSSLServerAuthCompleted",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") when the server authentication portion of the handshake is complete to allow your application to perform its own certificate verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakOnServerAuth"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSSLSessionOptionBreakOnServerAuth"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSessionOption.breakOnServerAuth",
+      "type": "topic",
+      "url": "/documentation/security/sslsessionoption/breakonserverauth"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies options for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionOption",
+          "text": "SSLSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionOption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionoption(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetCertificateAtIndex(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a specific certificate from the certificate chain used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetCertificateAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCertificateAtIndex(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetCertificateAtIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustGetCertificateAtIndex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgetcertificateatindex(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetCertificateCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of certificates in an evaluated certificate chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetCertificateCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCertificateCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetCertificateCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustGetCertificateCount(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgetcertificatecount(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/secure-transport-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the secure transport API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Transport Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-transport-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFArrayRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable array object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFArray"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFArrayRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/title",
+          "value": "kSSLSessionOptionBreakOnServerAuth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSSLSessionOptionBreakOnServerAuth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyPeerTrust(_:_:)/title",
+          "value": "SSLCopyPeerTrust"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyPeerTrust(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyPeerTrust"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetCertificateAtIndex(_:_:)/title",
+          "value": "SecTrustGetCertificateAtIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetCertificateAtIndex(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustGetCertificateAtIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/title",
+          "value": "SSLContextRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/title",
+          "value": "SSLSetSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFArrayRef/title",
+          "value": "CFArrayRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/title",
+          "value": "SSLHandshake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLHandshake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetCertificateCount(_:)/title",
+          "value": "SecTrustGetCertificateCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetCertificateCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustGetCertificateCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sslcopypeercertificates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

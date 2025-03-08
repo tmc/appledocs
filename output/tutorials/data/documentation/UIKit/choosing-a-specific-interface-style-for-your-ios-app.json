@@ -1,0 +1,730 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt a specific interface style for your views, view controllers, or app when it is inappropriate to support both light and dark variants.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/choosing-a-specific-interface-style-for-your-ios-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a Specific Interface Style for Your iOS App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supporting both light and dark appearances is a good practice, but you might have good reasons to opt out of appearance changes wholly or partially in your app. Views containing user-created content should always reflect the user’s choices. Similarly, you might choose a specific appearance for print-related views so that they reflect what the user sees on the printed page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system assumes that apps linked against the iOS 13 or later SDK support both light and dark appearances. In iOS, you specify the specific appearance you want by assigning a specific interface style to your window, view, or view controller. You can also disable support for Dark Mode entirely using an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about how to support Dark Mode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Override-the-Interface-Style-for-a-Window-View-or-View-Controller",
+          "level": 3,
+          "text": "Override the Interface Style for a Window, View, or View Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your interface must always appear in a light or dark style, regardless of the system setting, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/overrideUserInterfaceStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the appropriate window, view, or view controller to that style. Overriding the interface style affects other objects in your interface as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View controllers—The view controller’s views and child view controllers adopt the style.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Views—The view and all of its subviews adopt the style.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Windows—Everything in the window adopts the style, including the root view controller and all presentation controllers that display content in that window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example enables a light appearance for a view controller and all of its views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    override func viewDidLoad() {",
+            "        super.viewDidLoad()",
+            "",
+            "        // Always adopt a light interface style.    ",
+            "        overrideUserInterfaceStyle = .light",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Override-the-Interface-Style-for-Child-View-Controllers",
+          "level": 3,
+          "text": "Override the Interface Style for Child View Controllers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Parent view controllers control the appearance of their contained child view controllers. To override the interface style for a child view controller, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to assign new traits to that view controller. For custom presentations, you can similarly override the interface style of the presented view controller by assigning new traits to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController/overrideTraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Opt-Out-of-Dark-Mode-Entirely",
+          "level": 3,
+          "text": "Opt Out of Dark Mode Entirely",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically opts in any app linked against the iOS 13.0 or later SDK to both light and dark appearances. If you need extra time to work on your app’s Dark Mode support, you can temporarily opt out by including the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key (with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "Light",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Setting this key to ",
+              "type": "text"
+            },
+            {
+              "code": "Light",
+              "type": "codeVoice"
+            },
+            {
+              "text": " causes the system to ignore the user’s preference and always apply a light appearance to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Supporting Dark Mode is strongly encouraged. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key to opt out only temporarily while you work on improvements to your app’s Dark Mode support.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/choosing-a-specific-appearance-for-your-macos-app": {
+      "abstract": [
+        {
+          "text": "Adopt a specific appearance for your windows, views, or app when it is inappropriate to support both light and dark variants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/choosing-a-specific-appearance-for-your-macos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Specific Appearance for Your macOS App",
+      "type": "topic",
+      "url": "/documentation/AppKit/choosing-a-specific-appearance-for-your-macos-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle": {
+      "abstract": [
+        {
+          "text": "The user interface style for the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIUserInterfaceStyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPresentationController": {
+      "abstract": [
+        {
+          "text": "An object that manages the transition animations and the presentation of view controllers onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPresentationController/overrideTraitCollection": {
+      "abstract": [
+        {
+          "text": "Interface traits for the presented view controller, to use in place of traits from the iOS environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overrideTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController/overrideTraitCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overrideTraitCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "overrideTraitCollection",
+      "type": "topic",
+      "url": "/documentation/uikit/uipresentationcontroller/overridetraitcollection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/overrideUserInterfaceStyle": {
+      "abstract": [
+        {
+          "text": "The user interface style adopted by the view and all of its subviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overrideUserInterfaceStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceStyle",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/overrideUserInterfaceStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overrideUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "overrideUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/overrideuserinterfacestyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)": {
+      "abstract": [
+        {
+          "text": "Changes the traits assigned to the specified child view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection:forChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOverrideTraitCollection(_:forChild:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/setoverridetraitcollection(_:forchild:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface": {
+      "abstract": [
+        {
+          "text": "Update colors, images, and behaviors so that your app adapts automatically when Dark Mode is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Dark Mode in Your Interface",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-dark-mode-in-your-interface"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Appearance-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AppKit/choosing-a-specific-appearance-for-your-macos-app"
+      ],
+      "title": "Appearance Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Appearance-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AppKit/choosing-a-specific-appearance-for-your-macos-app"
+              ],
+              "title": "Appearance Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/title",
+          "value": "setOverrideTraitCollection:forChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOverrideTraitCollection:forChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/title",
+          "value": "UIPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1overrideUserInterfaceStyle/title",
+          "value": "overrideUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1overrideUserInterfaceStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "overrideUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController~1overrideTraitCollection/title",
+          "value": "overrideTraitCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController~1overrideTraitCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "overrideTraitCollection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/choosing-a-specific-interface-style-for-your-ios-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/choosing-a-specific-interface-style-for-your-ios-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

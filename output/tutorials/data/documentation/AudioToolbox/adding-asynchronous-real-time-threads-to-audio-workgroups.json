@@ -1,0 +1,413 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize system performance by adding real-time audio threads that run asynchronously to the I/O thread to custom audio workgroups.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Asynchronous Real-Time Threads to Audio Workgroups"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app creates auxiliary real-time threads that run asynchronously to the audio server’s I/O thread, add them to a custom audio workgroup. Doing so informs the system of these threads and their deadlines, which helps it optimize performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Workgroups",
+          "level": 3,
+          "text": "Create Workgroups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your auxiliary real-time threads run asynchronously to the I/O thread, you don’t add them to the audio device workgroup, but instead create a new audio workgroup. For each thread that has a unique work interval, create a new audio workgroup for it by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your workgroup may contain multiple threads, but only one is the primary thread and is responsible for controlling the others. In this thread, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/3548458-os_workgroup_interval_start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in each work cycle. The start time that you pass to this function can be the present, or a time in the past if you know exactly when the system scheduled your work cycle to begin. The function’s deadline argument has to be a timestamp value greater than the start time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <mach/mach_time.h>",
+            "#import <AudioToolbox/AudioToolbox.h>",
+            "",
+            "// This workgroup attribute isn't currently used. Set it to NULL.",
+            "os_workgroup_attr_t _Nullable attr = nullptr;",
+            "",
+            "// One nanosecond in seconds.",
+            "constexpr static double kOneNanosecond = 1.0e9;",
+            "",
+            "// The I/O interval time in seconds.",
+            "constexpr static double kIOIntervalTime = 0.020;",
+            "",
+            "// The clock identifier that specifies interval timestamps.",
+            "os_clockid_t clockId = OS_CLOCK_MACH_ABSOLUTE_TIME;",
+            "",
+            "// Create a workgroup interval.",
+            "os_workgroup_interval_t _Nullable workgroup =",
+            "    AudioWorkIntervalCreate(\"My Work Interval\", clockId, attr);",
+            "",
+            "void realtimeThreadFunction() {",
+            "",
+            "    // Join this thread to the workgroup.",
+            "    if (!joinThisThreadToWorkgroup(workgroup)) {",
+            "        // Early return, unable to add this thread to the workgroup",
+            "        return;",
+            "    }",
+            "",
+            "    // Get the mach time info.",
+            "    struct mach_timebase_info timeBaseInfo;",
+            "    mach_timebase_info(&timeBaseInfo);",
+            "",
+            "    // The frequency of the clock is: (timeBaseInfo.denom / timeBaseInfo.numer) * kOneNanosecond",
+            "    const auto nanoSecFrequency = static_cast<double>(timeBaseInfo.denom) / static_cast<double>(timeBaseInfo.numer);",
+            "    const auto frequency = nanoSecFrequency * kOneNanosecond;",
+            "",
+            "    // Convert the interval time in seconds to mach time length.",
+            "    const auto intervalMachLength = static_cast<int64_t>(kIOIntervalTime * frequency);",
+            "    while (true) {",
+            "        // Get the current host time.",
+            "        const auto currentTime = mach_absolute_time();",
+            "        const auto deadline = currentTime + intervalMachLength;",
+            "",
+            "        // Call os_workgroup_interval_start each time the thread begins a work cycle",
+            "        int result = os_workgroup_interval_start(workgroup, currentTime, deadline, nullptr);",
+            "",
+            "        if (result != 0) {",
+            "            // Something went wrong.",
+            "        }",
+            "",
+            "        // Perform some custom DSP processing.",
+            "        customAudioDSP();",
+            "",
+            "        // Call os_workgroup_interval_finish on completion of each a work cycle.",
+            "        result = os_workgroup_interval_finish(workgroup, nullptr);",
+            "    }",
+            "}",
+            "",
+            "// Return true if the method joined the thread to the workgroup.",
+            "bool joinThisThreadToWorkgroup(os_workgroup_t workgroup) {",
+            "    // Join this thread to the workgroup.",
+            "    const int result = os_workgroup_join(workgroup, &joinToken);",
+            "    if (result == 0) {",
+            "        // Success.",
+            "    } else if (result == EALREADY) {",
+            "        // The thread is already part of a workgroup that can't be",
+            "        // nested in the the specified workgroup.",
+            "        return false;",
+            "    } else if (result == EINVAL) {",
+            "        // The workgroup has been canceled.",
+            "        return false;",
+            "    }",
+            "    return true;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has other real-time threads that render to this audio workgroup’s deadline, you can join them to the audio workgroup as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import <AudioToolbox/AudioToolbox.h>",
+            " ",
+            "#import <AudioToolbox/AudioToolbox.h>",
+            "",
+            "// The workgroup interval created in the previous example.",
+            "os_workgroup_interval_t workgroup = ...",
+            "",
+            "void realtimeThreadFunction(os_workgroup_t workgroup) {",
+            "",
+            "    // Join this thread to the workgroup.",
+            "    if (!joinThisThreadToWorkgroup(workgroup)) {",
+            "        // Early return, unable to add this thread to the workgroup",
+            "        return;",
+            "    }",
+            "",
+            "    // Work cycle.",
+            "    while (threadShouldRun) {",
+            "        // Typically, wait on a semaphore.",
+            "        waitForWork();",
+            "        // The controlling thread signaled this thread to stop.",
+            "        if (threadShouldRun) {",
+            "            performCustomAudioDSPWorkUnit();",
+            "            // Typically, signal a semaphore.",
+            "            signalWorkComplete();",
+            "        }",
+            "    }",
+            "",
+            "    // Before exiting the thread, leave the workgroup.",
+            "    os_workgroup_leave(workgroup, &joinToken);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate": {
+      "abstract": [
+        {
+          "text": "Creates a new interval workgroup for managing real-time audio threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioWorkIntervalCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioWorkIntervalCreate",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioworkintervalcreate"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "If your Audio Unit plug-in creates auxiliary real-time rendering threads, add them to the host app’s audio workgroup so the system can schedule them appropriately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Audio Unit Auxiliary Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize the performance of real-time audio threads that run in sync with the I/O thread by adding them to the audio device workgroup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Parallel Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Learn how to optimize real-time rendering performance with the Audio Workgroups API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/understanding-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/os/3548458-os_workgroup_interval_start": {
+      "abstract": [
+        {
+          "text": "Starts the regular execution of the workgroup’s threads at the specified time. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/3548458-os_workgroup_interval_start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_start",
+      "type": "topic",
+      "url": "/documentation/os/3548458-os_workgroup_interval_start"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

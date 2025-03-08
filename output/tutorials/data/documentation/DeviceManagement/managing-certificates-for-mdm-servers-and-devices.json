@@ -1,0 +1,395 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure secure MDM connectivity with valid certificates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing Certificates for MDM Servers and Devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In MDM, devices can only connect to servers that have valid SSL certificates. If your MDM serverʼs SSL certificate roots to your organizationʼs root certificate, a device must trust the root certificate before it can connect to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the root certificate and any intermediate certificates in the same profile that contains the MDM payload. Certificate payloads install before the MDM payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s possible to install a trust profile before installing the enrollment profile that contains the MDM payload. If your MDM server uses separate trust profiles for SSL trust, set the ",
+              "type": "text"
+            },
+            {
+              "code": "trust_profile_url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace the profile that contains your MDM payload before any of the certificates in that profile expire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If any certificate in the SSL trust chain expires, the device can’t connect to the MDM server to receive its commands. When this occurs, you lose the ability to manage that device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An MDM server identifies a connecting device by examining the deviceʼs identity certificate. The server then cross-checks the ",
+              "type": "text"
+            },
+            {
+              "code": "UDID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the message to ensure there’s an association between the ",
+              "type": "text"
+            },
+            {
+              "code": "UDID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses the deviceʼs identity certificate to establish the SSL/TLS connection to the MDM server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Deliver-Identity-Certificates-to-Devices",
+          "level": 3,
+          "text": "Deliver Identity Certificates to Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each device must have a unique identity certificate. Deliver these certificates as PKCS#12 containers or by using the Simple Certificate Enrollment Protocol (SCEP). Using SCEP is advantageous because the protocol ensures that the private key for the identity exists on the device only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consult your organizationʼs public key infrastructure policy to determine which method is appropriate for your installation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-an-Identity-Certificate-Through-a-Proxy",
+          "level": 3,
+          "text": "Pass an Identity Certificate Through a Proxy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your MDM server sits behind a proxy that strips away or doesn’t ask for an identity certificate, you can pass the device’s identity through a proxy. If the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "SignMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the MDM payload is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", each message that comes from the device carries an additional HTTP header named ",
+              "type": "text"
+            },
+            {
+              "code": "Mdm-Signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This header contains a Base64-encoded CMS detached signature of the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server validates the body of the message with the detached signature in the ",
+              "type": "text"
+            },
+            {
+              "code": "SignMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header. If the validation is successful, the message is from the signer of the certificate in the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only use this option if necessary because it adds approximately 2 kilobytes of data to each message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles": {
+      "abstract": [
+        {
+          "text": "Choose the technique to deploy MDM enrollment profiles for your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying MDM Enrollment Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deploying-mdm-enrollment-profiles"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices": {
+      "abstract": [
+        {
+          "text": "Optimize deployment of profiles and provisioning profiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Profiles on Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installing-profiles-on-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers": {
+      "abstract": [
+        {
+          "text": "Create and sign a certificate signing request (CSR) to enable push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Push Notifications for Your MDM Customers",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setting-up-push-notifications-for-your-mdm-customers"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices": {
+      "abstract": [
+        {
+          "text": "Create a service configuration entry point to your MDM server to access to frequently used information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying MDM Server Administration for iOS Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/simplifying-mdm-server-administration-for-ios-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Certificates-and-Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers"
+      ],
+      "title": "Certificates and Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/managing-certificates-for-mdm-servers-and-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

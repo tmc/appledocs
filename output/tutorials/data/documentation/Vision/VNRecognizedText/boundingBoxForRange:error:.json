@@ -1,0 +1,781 @@
+{
+  "abstract": [
+    {
+      "text": "Calculates the bounding box around the characters in the range of a string.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedText"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.vision/documentation/Vision/VNRecognizedText/boundingBoxForRange:error:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VNRecognizedText(im)boundingBoxForRange:error:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "boundingBoxForRange:error:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "boundingBoxForRange:error:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "boundingBoxForRange:error:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRectangleObservation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VNRectangleObservation",
+              "text": "VNRectangleObservation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingBoxForRange:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@_NSRange",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@_NSRange",
+              "text": "NSRange"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "range"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The range of the characters in the text string to draw a bounding box around.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "range"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error that contains information about failed computation of the bounding box, or ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if no error occurred.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bounding boxes aren’t always an exact fit around the characters. Use them to display in user interfaces to provide general guidance, but avoid using their contents for image processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bounding box that returns from this method differs based on the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bounding box has character precision. When you specify a range from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the value that returns is the first character’s bounding box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/accurate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bounding box has word precision. When you specify a range from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the value that returns is the bounding box of the whole word containing the first character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel": {
+      "abstract": [
+        {
+          "text": "A value that determines whether the request prioritizes accuracy or speed in text recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognitionLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VNRequestTextRecognitionLevel",
+          "text": "VNRequestTextRecognitionLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recognitionLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "recognitionLevel",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest/recognitionlevel"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedText": {
+      "abstract": [
+        {
+          "text": "Text recognized in an image through a text recognition request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedText"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedText"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedText",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedtext"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedText/boundingBoxForRange:error:": {
+      "abstract": [
+        {
+          "text": "Calculates the bounding box around the characters in the range of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBoxForRange:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedText/boundingBoxForRange:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundingBoxForRange:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundingBoxForRange:error:",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedtext/boundingboxforrange:error:"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRectangleObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents the four vertices of a detected rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRectangleObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRectangleObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRectangleObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRectangleObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrectangleobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/accurate": {
+      "abstract": [
+        {
+          "text": "Accurate text recognition takes more time to produce a more comprehensive result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accurate"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/accurate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRequestTextRecognitionLevelAccurate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRequestTextRecognitionLevel.accurate",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequesttextrecognitionlevel/accurate"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast": {
+      "abstract": [
+        {
+          "text": "Fast text recognition returns results more quickly at the expense of accuracy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fast"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRequestTextRecognitionLevelFast"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRequestTextRecognitionLevel.fast",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequesttextrecognitionlevel/fast"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@_NSRange": {
+      "abstract": [
+        {
+          "text": "A Swift-only concrete structure that backs the range type alias.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "_NSRange"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@_NSRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "_NSRange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrange-jio"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRectangleObservation/title",
+          "value": "VNRectangleObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRectangleObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRectangleObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRectangleObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRectangleObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1fast/title",
+          "value": "VNRequestTextRecognitionLevelFast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1fast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequestTextRecognitionLevelFast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLevel/title",
+          "value": "recognitionLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recognitionLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedText/title",
+          "value": "VNRecognizedText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1accurate/title",
+          "value": "VNRequestTextRecognitionLevelAccurate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1accurate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequestTextRecognitionLevelAccurate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/vnrecognizedtext/boundingboxforrange:error:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

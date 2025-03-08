@@ -1,0 +1,933 @@
+{
+  "abstract": [
+    {
+      "text": "Identifiers for the various reasons that an audio route can change while your app is running.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618380-audio-route-change-reasons"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Route Change Reasons"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You encounter these identifiers as values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object passed to your property listener callback function when it is listening for audio route changes. See the description for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key": {
+      "abstract": [
+        {
+          "text": "An alternate key for obtaining information about the reason for an audio route change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Audio Route Change Reason Dictionary Key",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/alternative-audio-route-change-reason-dictionary-key"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes": {
+      "abstract": [
+        {
+          "text": "Strings that identify the various audio input sources for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Input Routes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-input-routes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes": {
+      "abstract": [
+        {
+          "text": "The various audio output destinations available for an iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Output Routes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-output-routes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for obtaining information about an audio hardware route change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Change Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-change-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Description Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-description-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key": {
+      "abstract": [
+        {
+          "text": "The one key for an audio route input or output dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Type Key",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-type-key"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support": {
+      "abstract": [
+        {
+          "text": "Describe the properties that you associate with audio sessions and audio routes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Support",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-session-support"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteChange": {
+      "abstract": [
+        {
+          "text": "The reason the audio route changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_AudioRouteChange",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_audioroutechange"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription": {
+      "abstract": [
+        {
+          "text": "Information about an audio route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_AudioRouteDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_audioroutedescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_CategoryChange": {
+      "abstract": [
+        {
+          "text": "The audio session category has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_CategoryChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_CategoryChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_CategoryChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_CategoryChange",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_categorychange"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NewDeviceAvailable": {
+      "abstract": [
+        {
+          "text": "A new audio hardware device became available; for example, a headset was plugged in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_NewDeviceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NewDeviceAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_NewDeviceAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_NewDeviceAvailable",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_newdeviceavailable"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NoSuitableRouteForCategory": {
+      "abstract": [
+        {
+          "text": "There is no audio hardware route for the audio session category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_NoSuitableRouteForCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NoSuitableRouteForCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_NoSuitableRouteForCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_NoSuitableRouteForCategory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_nosuitablerouteforcategory"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_OldDeviceUnavailable": {
+      "abstract": [
+        {
+          "text": "The previously-used audio hardware device is now unavailable; for example, a headset was unplugged.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_OldDeviceUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_OldDeviceUnavailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_OldDeviceUnavailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_OldDeviceUnavailable",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_olddeviceunavailable"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Override": {
+      "abstract": [
+        {
+          "text": "The audio route has been overridden.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_Override"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Override",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_Override"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_Override",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_override"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_RouteConfigurationChange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_RouteConfigurationChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_RouteConfigurationChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_RouteConfigurationChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_RouteConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_routeconfigurationchange"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Unknown": {
+      "abstract": [
+        {
+          "text": "The audio route changed but the reason is not known.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_Unknown"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Unknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_Unknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_Unknown",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_unknown"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_WakeFromSleep": {
+      "abstract": [
+        {
+          "text": "The device woke from sleep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_WakeFromSleep"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_WakeFromSleep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionRouteChangeReason_WakeFromSleep"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionRouteChangeReason_WakeFromSleep",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionroutechangereason_wakefromsleep"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Routes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key"
+      ],
+      "title": "Audio Routes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Unknown",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NewDeviceAvailable",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_OldDeviceUnavailable",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_CategoryChange",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Override",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_WakeFromSleep",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NoSuitableRouteForCategory",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_RouteConfigurationChange"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Unknown",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NewDeviceAvailable",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_OldDeviceUnavailable",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_CategoryChange",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_Override",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_WakeFromSleep",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_NoSuitableRouteForCategory",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionRouteChangeReason_RouteConfigurationChange"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Routes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key"
+              ],
+              "title": "Audio Routes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_Override/title",
+          "value": "kAudioSessionRouteChangeReason_Override"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_Override/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_Override"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_Unknown/title",
+          "value": "kAudioSessionRouteChangeReason_Unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_Unknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_Unknown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_OldDeviceUnavailable/title",
+          "value": "kAudioSessionRouteChangeReason_OldDeviceUnavailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_OldDeviceUnavailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_OldDeviceUnavailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_CategoryChange/title",
+          "value": "kAudioSessionRouteChangeReason_CategoryChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_CategoryChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_CategoryChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdictionary/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteChange/title",
+          "value": "kAudioSessionProperty_AudioRouteChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_AudioRouteChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteDescription/title",
+          "value": "kAudioSessionProperty_AudioRouteDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_AudioRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_NoSuitableRouteForCategory/title",
+          "value": "kAudioSessionRouteChangeReason_NoSuitableRouteForCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_NoSuitableRouteForCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_NoSuitableRouteForCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_RouteConfigurationChange/title",
+          "value": "kAudioSessionRouteChangeReason_RouteConfigurationChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_RouteConfigurationChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_RouteConfigurationChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_WakeFromSleep/title",
+          "value": "kAudioSessionRouteChangeReason_WakeFromSleep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_WakeFromSleep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_WakeFromSleep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_NewDeviceAvailable/title",
+          "value": "kAudioSessionRouteChangeReason_NewDeviceAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionRouteChangeReason_NewDeviceAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionRouteChangeReason_NewDeviceAvailable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1618380-audio-route-change-reasons"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1618380-audio-route-change-reasons"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

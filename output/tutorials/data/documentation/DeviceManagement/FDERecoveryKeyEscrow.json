@@ -1,0 +1,837 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure FileVault recovery key escrow.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:FDERecoveryKeyEscrow",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "FDERecoveryKeyEscrow"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FDERecoveryKeyEscrow"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "FDERecoveryKeyEscrow"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "FDERecoveryKeyEscrow"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The string that’s included in help text if the user appears to have forgotten the password. Site admins can use this key to look up the escrowed key for the particular computer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This key replaces the ",
+                  "type": "text"
+                },
+                {
+                  "code": "RecordNumber",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key used in the previous escrow mechanism. If the key is missing, the system uses the device serial number instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.0",
+          "name": "DeviceKey",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of a payload within the same profile that contains the certificate that the system uses to encrypt the recovery key. The referenced payload must be of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.pkcs1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.0",
+          "name": "EncryptCertPayloadUUID",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The description of the location where the system escrows the recovery key. The system inserts this text into the message the user sees when it enables FileVault.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.0",
+          "name": "Location",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.FDERecoveryKeyEscrow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FileVault Full Disk Encryption (FDE) recovery keys are, by default, sent to Apple if the user requests them. Only one payload of this type is allowed per system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If FileVault is enabled after the system installs this payload, the system encrypts the FileVault PRK with the specified certificate, wrapped with a CMS envelope and stored at ",
+              "type": "text"
+            },
+            {
+              "code": "/var/db/FileVaultPRK.dat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "SecurityInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command makes this encrypted data available to the MDM server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if a site uses its own administration software, it can extract the PRK from the foregoing location at any time. Because the PRK is encrypted using the certificate provided in the profile, only the author of the profile can extract the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note these cautions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The payload needs to exist in a system-scoped profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Installing more than one payload of this type per computer results in an error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The previous payload (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.FDERecoveryRedirect",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") is no longer supported. You can still install the previous payload but the system ignores it, so servers can send out the same profile to old and new clients.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If only an old-style redirection payload is installed at the time FileVault is turned on through the Security Preferences pane, the system displays an error and doesn’t enable FileVault.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system doesn’t provide a warning or error if FileVault is already enabled and an old-style payload is installed. In this case, it’s assumed that the recovery key has already been escrowed with the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the system no longer supports the previous FDE Recovery payload in macOS 10.13 and later, it’s still supported in macOS 10.9 through 10.12. Designate that payload by specifying ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.FDERecoveryRedirect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>Password</key>",
+            "            <string>Password123</string>",
+            "            <key>PayloadContent</key>",
+            "            <data>",
+            "            MIIDHjCCAgagAwIBAgIEeRGqmzANBgkqhkiG9w0BAQsFADBAMR8w",
+            "            HQYDVQQDDBZGaWxlVmF1bHQgUmVjb3ZlcnkgS2V5MR0wGwYDVQQN",
+            "            DBRpb3MtdGFyZGlzLmFwcGxlLmNvbTAeFw0xODA2MTkyMTA2Mzla",
+            "            Fw0xOTA2MTkyMTA2MzlaMEAxHzAdBgNVBAMMFkZpbGVWYXVsdCBS",
+            "            ZWNvdmVyeSBLZXkxHTAbBgNVBA0MFGlvcy10YXJkaXMuYXBwbGUu",
+            "            Y29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtOPt",
+            "            QOZ38VJMyMHWcWcs5S8D1xXVZ9OjQ7+8s7q+xNeGUZZXlHXehBHA",
+            "            iV8o7F9LvkOuJuwiWuw+9xj+ye7G4EnAtDA0p3bqZNoBIc3HIqDE",
+            "            BKTCPufqHEZfX6AH05mnYqr6fz8FbICQpx+1x6hO9f8ZSNrBJUxe",
+            "            viPCkYTvRFel9VvBS06Jijn3THFBZ9UAJjxTjU8PGQYHNRpa4pVh",
+            "            y1yIXjRwSKrmCv6NyF7vz9BQ8X4ExanGBG3P20tl5JhUTZlI+qo2",
+            "            B/ZYlQDvR+DMhrdaKtbJphdi4GNK8B87+bG7EmPCpiwLzVtkzSUK",
+            "            Y4WNbYCwUhJTjOclQsZFQKvT4QIBAQABoyAwHjALBgNVHQ8EBAMC",
+            "            ArQwDwYDVR0TAQH/BAUwAwEBADANBgkqhkiG9w0BAQsFAAOCAQEA",
+            "            rPLq0RFfAJO0Hq/Z+NLZp/EI3mBXD8a5Gq5VUepB4AYgxbmtS5Dr",
+            "            XJMlzi1ctYGj3+QN+9XbgNv/p3cphHvSBmvFmjL8gJ6AuqNG9/hV",
+            "            TYEsoS5i9pGIlWozTziS+EPbdHt76g4xOOPoQ3SDur+qpc3Hfi1A",
+            "            imCaRB2Ga/eIITDqQUi1Sfgz0r0Md0jIEpXnW8RSvAQm9tlt35os",
+            "            onzTvHiKjXkOxBrXGg84YSK9/MsvwcPUM/XZ9HmZMTVYnPRacZlX",
+            "            9m4yKJligP7vmSjpbQ6u5zngsilhLUezX9stOyduAKLxk354yW85",
+            "            CQEgrRbwQQzGSWlf8KV0sbubwz4H8w==",
+            "            </data>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.mypkcs1payload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.security.pkcs1</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>5ddd0439-620a-4939-8bbc-838ae490b12f</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "        <dict>",
+            "            <key>Defer</key>",
+            "            <true/>",
+            "            <key>DeferDontAskAtUserLogout</key>",
+            "            <false/>",
+            "            <key>DeferForceAtUserLoginMaxBypassAttempts</key>",
+            "            <integer>-1</integer>",
+            "            <key>Enable</key>",
+            "            <string>On</string>",
+            "            <key>PayloadCertificateUUID</key>",
+            "            <string>5ddd0439-620a-4939-8bbc-838ae490b12f</string>",
+            "            <key>ShowRecoveryKey</key>",
+            "            <true/>",
+            "            <key>UseKeychain</key>",
+            "            <true/>",
+            "            <key>UseRecoveryKey</key>",
+            "            <true/>",
+            "            <key>UserEntersMissingInfo</key>",
+            "            <false/>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.myfv2payload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.MCX.FileVault2</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>8d5d8dfb-688a-436d-b827-b81e550702b3</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "        <dict>",
+            "            <key>EncryptCertPayloadUUID</key>",
+            "            <string>5ddd0439-620a-4939-8bbc-838ae490b12f</string>",
+            "            <key>Location</key>",
+            "            <string>Your Information is now escrowed</string>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.myfderecoverykeyescrowpayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.security.FDERecoveryKeyEscrow</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>202ffa93-e1ae-43b5-b9de-e656ac0c2045</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>FDE Recovery Key Escrow</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>bf625ece-5e99-489b-b197-6f1d7c52a601</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVault": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure FileVault.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FDEFileVault"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVault",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FDEFileVault"
+        }
+      ],
+      "role": "symbol",
+      "title": "FDEFileVault",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fdefilevault"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVaultOptions": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure FileVault options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FDEFileVaultOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVaultOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FDEFileVaultOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "FDEFileVaultOptions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fdefilevaultoptions"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure FileVault recovery key escrow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FDERecoveryKeyEscrow"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDERecoveryKeyEscrow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FDERecoveryKeyEscrow"
+        }
+      ],
+      "role": "symbol",
+      "title": "FDERecoveryKeyEscrow",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fderecoverykeyescrow"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Full-Disk-Encryption",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVault",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/FDEFileVaultOptions"
+      ],
+      "title": "Full Disk Encryption"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/fderecoverykeyescrow"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

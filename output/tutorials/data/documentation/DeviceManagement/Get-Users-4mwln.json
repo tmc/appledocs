@@ -1,0 +1,644 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about a set of users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:get:v2-users",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Users"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Users"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/users"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for only the active users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "activeOnly",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the unique identifier of a user in your organization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "clientUserId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The requested page index.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageIndex",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filters for only the retired users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "retiredOnly",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for modified assignments since the specified version identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sinceVersionId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetUsersResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:GetUsersResponse",
+              "text": "GetUsersResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided token is invalid. It may either be missing or expired.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An internal server error occurred. Try again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "?activeOnly=true"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"currentPageIndex\": 0,",
+                    "    \"size\": 3,",
+                    "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+                    "    \"totalPages\": 1,",
+                    "    \"uId\": \"2049025000431439\",",
+                    "    \"users\": [",
+                    "        {",
+                    "            \"clientUserId\": \"client-101\",",
+                    "            \"email\": \"client-101@apple.com\",",
+                    "            \"inviteCode\": \"46bc93ea3acd41e0a4919c02db0d7d3a\",",
+                    "            \"status\": \"Registered\"",
+                    "        },",
+                    "        {",
+                    "            \"clientUserId\": \"client-102\",",
+                    "            \"email\": \"client-102@apple.com\",",
+                    "            \"inviteCode\": \"d2ab1319ff6448f89bb1b0e010cf68e0\",",
+                    "            \"status\": \"Registered\"",
+                    "        },",
+                    "        {",
+                    "            \"clientUserId\": \"client-103\",",
+                    "            \"email\": \"client-1031@apple.com\",",
+                    "            \"status\": \"Retired\"",
+                    "        }",
+                    "    ],",
+                    "    \"versionId\": \"021f10a0-7035-11eb-9f67-bd1df52e1e13\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Create-Users": {
+      "abstract": [
+        {
+          "text": "Create users to assign apps and books to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Create-Users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/create-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the error that occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln": {
+      "abstract": [
+        {
+          "text": "Get information about a set of users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-users-4mwln"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetUsersResponse": {
+      "abstract": [
+        {
+          "text": "The paginated response that contains the requested users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetUsersResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetUsersResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetUsersResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetUsersResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getusersresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-Users": {
+      "abstract": [
+        {
+          "text": "Retire users by client user IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-Users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retire Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retire Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retire-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Update-Users": {
+      "abstract": [
+        {
+          "text": "Update details for existing users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Update-Users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/update-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services": {
+      "abstract": [
+        {
+          "text": "Associate app and book purchases with users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage users across an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across your organization using the new API version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to the new App and Book Management API",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints": {
+      "abstract": [
+        {
+          "text": "Manage paginated endpoints to efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Paginated Endpoints",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/using-paginated-endpoints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Create-Users",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Update-Users",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-Users"
+      ],
+      "title": "User Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetUsersResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse"
+      ],
+      "title": "Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-users-4mwln"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,412 @@
-{"schemaVersion":{"major":0,"minor":3,"patch":0},"identifier":{"url":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile","interfaceLanguage":"data"},"sections":[],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.devicemanagement/documentation/DeviceManagement"]]},"primaryContentSections":[{"kind":"restEndpoint","tokens":[{"text":"GET","kind":"method"},{"text":" ","kind":"text"},{"text":"https://mdmenrollment.apple.com/","kind":"baseURL"},{"text":"profile","kind":"path"}],"title":"URL"},{"kind":"restParameters","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The unique identifier for a profile."}]}],"type":[{"text":"string","kind":"text"}],"name":"profile_uuid","required":true,"attributes":[]}],"title":"Query Parameters","source":"query"},{"kind":"restResponses","items":[{"type":[{"preciseIdentifier":"mdm-services:dep:Profile","text":"Profile","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile","kind":"typeIdentifier"}],"mimeType":"application/json","reason":"OK","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":""}]}],"status":200},{"type":[],"reason":"Bad Request","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":""}]},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"codeVoice","code":"PROFILE_UUID_REQUIRED"},{"type":"text","text":": The request did not contain a profile UUID."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"codeVoice","code":"NOT_FOUND"},{"type":"text","text":": The requested profile UUID doesn’t match a known profile."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"codeVoice","code":"USER_AGENT_INVALID:"},{"type":"text","text":"  The "},{"type":"codeVoice","code":"User-Agent"},{"type":"text","text":" header is invalid."}]}]},{"content":[{"inlineContent":[{"type":"codeVoice","code":"USER_AGENT_MISSING:"},{"text":"  The ","type":"text"},{"type":"codeVoice","code":"User-Agent"},{"text":" header is missing or has no assigned value.","type":"text"}],"type":"paragraph"}]}]}],"status":400}],"title":"Response Codes"}],"variants":[{"traits":[{"interfaceLanguage":"data"}],"paths":["/documentation/devicemanagement/fetch-profile"]}],"metadata":{"title":"Get a Profile","roleHeading":"Web Service Endpoint","platforms":[{"name":"Device Assignment Services","beta":false},{"name":"VPP License Management","beta":false}],"symbolKind":"httpRequest","externalID":"rest:dep:get:profile","navigatorTitle":[{"kind":"identifier","text":"Fetch Profile"}],"modules":[{"name":"Device Management"}],"role":"symbol"},"abstract":[{"text":"Get details about a profile.","type":"text"}],"kind":"symbol","seeAlsoSections":[{"generated":true,"anchor":"Profile-Management","identifiers":["doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile","doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile","doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile"],"title":"Profile Management"}],"references":{"doc://com.apple.devicemanagement/documentation/DeviceManagement":{"role":"collection","title":"Device Management","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"Manage your organization’s devices remotely."}],"url":"/documentation/devicemanagement","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile":{"role":"symbol","title":"Profile","navigatorTitle":[{"text":"Profile","kind":"identifier"}],"url":"/documentation/devicemanagement/profile","abstract":[{"text":"A profile’s properties and their values.","type":"text"}],"type":"topic","fragments":[{"text":"object ","kind":"text"},{"text":"Profile","kind":"identifier"}],"identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile","kind":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile":{"url":"/documentation/devicemanagement/define-profile","role":"symbol","navigatorTitle":[{"text":"Define Profile","kind":"identifier"}],"title":"Define a Profile","type":"topic","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile","abstract":[{"text":"Define a profile that can be distributed to the devices in your organization.","type":"text"}],"kind":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile":{"abstract":[{"type":"text","text":"Get details about a profile."}],"url":"/documentation/devicemanagement/fetch-profile","type":"topic","navigatorTitle":[{"text":"Fetch Profile","kind":"identifier"}],"title":"Get a Profile","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile","kind":"symbol","role":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile":{"title":"Assign a Profile","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile","abstract":[{"type":"text","text":"Assign a profile to a list of devices."}],"navigatorTitle":[{"text":"Assign Profile","kind":"identifier"}],"type":"topic","kind":"symbol","url":"/documentation/devicemanagement/assign-profile","role":"symbol"},"doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile":{"url":"/documentation/devicemanagement/clear-device-profile","role":"symbol","navigatorTitle":[{"text":"Clear Device Profile","kind":"identifier"}],"title":"Remove a Profile","type":"topic","identifier":"doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile","abstract":[{"text":"Remove a profile from a list of devices.","type":"text"}],"kind":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","url":"/documentation/technologies","title":"Technologies","abstract":[{"type":"text","text":""}],"kind":"technologies","identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Get details about a profile.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:dep:get:profile",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Fetch Profile"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Profile"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://mdmenrollment.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "profile"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for a profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "profile_uuid",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-services:dep:Profile",
+              "text": "Profile"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "PROFILE_UUID_REQUIRED",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": The request did not contain a profile UUID.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "NOT_FOUND",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": The requested profile UUID doesn’t match a known profile.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "USER_AGENT_INVALID:",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": "  The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "User-Agent",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " header is invalid.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "USER_AGENT_MISSING:",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": "  The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "User-Agent",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " header is missing or has no assigned value.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile": {
+      "abstract": [
+        {
+          "text": "Assign a profile to a list of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Assign Profile"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assign a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/assign-profile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile": {
+      "abstract": [
+        {
+          "text": "Remove a profile from a list of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clear Device Profile"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clear-device-profile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile": {
+      "abstract": [
+        {
+          "text": "Define a profile that can be distributed to the devices in your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Define Profile"
+        }
+      ],
+      "role": "symbol",
+      "title": "Define a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/define-profile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile": {
+      "abstract": [
+        {
+          "text": "Get details about a profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Profile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Profile"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-profile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile": {
+      "abstract": [
+        {
+          "text": "A profile’s properties and their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Profile"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Profile"
+        }
+      ],
+      "role": "symbol",
+      "title": "Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/profile"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Profile-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Define-Profile",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Assign-Profile",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Device-Profile"
+      ],
+      "title": "Profile Management"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/fetch-profile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

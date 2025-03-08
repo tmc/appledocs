@@ -1,0 +1,859 @@
+{
+  "abstract": [
+    {
+      "text": "Give users confidence in your FxPlug plug-in by enabling notarization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Notarizing your FxPlug plug-in"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.apple.com/support/code-signing/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " your plug-in assures users that it’s from a known source and that modifications haven’t occurred since its certification. You must sign your plug-in with a certificate from Apple before you can integrate app services, install it on a device, or submit it to the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can give users even more confidence in the Apple-certified software that you distribute by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Notarization is not the same as app review. The Apple notary service is an automated system that scans your software for malicious content, checks for code-signing issues, and returns the results to you quickly. If there are no issues, the notary service generates a ticket for you to staple to your software. The notary service also publishes that ticket online where ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/developer-id/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can find it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user first installs or runs your plug-in, the presence of a ticket (either online or as an attachment to the executable) tells Gatekeeper that Apple notarized the software. Gatekeeper then places descriptive information in the initial launch dialog so the user can make an informed choice about whether to launch the plug-in’s wrapper application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-for-code-signing-your-plug-in",
+          "level": 3,
+          "text": "Set up for code signing your plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you haven’t already, enroll in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then follow the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instructions and generate a Developer ID certificate for macOS distribution. Apple recommends ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev80cc24546",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-your-plug-ins-code-signing-team-and-signing-certificate",
+          "level": 3,
+          "text": "Set your plug-in’s code signing team and signing certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FxPlug template and FxPlug Example projects are set to Sign to Run Locally, but you need to change this to your own signing certificate for your targets to enable code signing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Wrapper Application and XPC Service targets, select your Team (if applicable) and the signing certificate you prepared in the previous step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-your-XPC-services-code-signing-inject-base-entitlements",
+          "level": 3,
+          "text": "Set your XPC service’s code signing inject base entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must set your XPC Service target’s Code Signing Inject Base Entitlements to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure your plug-in loads correctly in Final Cut Pro and Motion. Select your XPC Service target, then select the Build Settings tab, and find Code Signing Inject Base Entitlements in the Signing section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Code-sign-embedded-frameworks",
+          "level": 3,
+          "text": "Code sign embedded frameworks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must copy the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlug.framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the XPC Service target of FxPlug plug-ins and turn on Code Sign On Copy to automatically code sign the framework when it copies to the bundle. Add other frameworks as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Occasionally, frameworks like ",
+                  "type": "text"
+                },
+                {
+                  "code": "PluginManager.framework",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " may not be compatible with the Code Sign On Copy feature in Xcode, and you must force code sign them with a script. To force code sign a framework, use the following command in your script: ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign --force --timestamp --options runtime --sign “${CODE_SIGN_IDENTITY}” “${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/FrameworkName.framework”.",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4193577",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Deselect the “Based on dependency analysis” checkbox in the “Run script” options, and set “User Script Sandboxing” to No in Build Settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-Hardened-Runtime",
+          "level": 3,
+          "text": "Enable Hardened Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides security protection for your plug-ins and is a requirement for notarizing a macOS plug-in. You must enable the hardened runtime capability and declare entitlements for the functions your plug-in requires.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Xcode Project, then select the Wrapper Application target and click Signing & Capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If Hardened Runtime isn’t already visible, click Capability and then double-click Hardened Runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select any Runtime Exceptions or Resource Access options your plug-in requires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4193576",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can check for errors by building and running your plug-in, and then launching Console and searching for the process name of your plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-notarized-distributable-version",
+          "level": 3,
+          "text": "Generate a notarized distributable version",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before distributing your plug-in directly to customers, you must sign it with your Developer ID. Xcode’s Organizer window includes a workflow for generating a distributable version of your app. In Xcode 10 and later, this workflow includes an option to notarize your FxPlug plug-in automatically. Notarize your app using the following workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an archive of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Xcode’s Organizer window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Archives tab, select the archive you created.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Distribute App to view the distribution options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Developer ID for your method of distribution, and then click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Upload to send your archive to the Apple notary service, and then click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3915698",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode uploads your archive to the notary service. When the upload is complete, the notary service begins the scanning process, which usually takes less than an hour. While the notary service scans your software, you can continue preparing your archive for distribution. For example, you can export the archive and perform any final testing prior to making your software available to customers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the notarization process finishes, Xcode downloads the ticket and staples it to your archive. Export your archive again to receive a distributable version of your plug-in that includes the notary ticket.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev88332a81e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about this process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues": {
+      "abstract": [
+        {
+          "text": "Handle common problems reported in the notarization log file, or that arise during ticket stapling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving common notarization issues",
+      "type": "topic",
+      "url": "/documentation/Security/resolving-common-notarization-issues"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Add a plug-in to a Motion effect template to use in Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing plug-ins for use in Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/preparing-plug-ins-for-use-in-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Test and debug FxPlug plug-ins using a variety of methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/testing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/developer-id/": {
+      "identifier": "https://developer.apple.com/developer-id/",
+      "title": "Gatekeeper",
+      "titleInlineContent": [
+        {
+          "text": "Gatekeeper",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/developer-id/"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/support/code-signing/": {
+      "identifier": "https://developer.apple.com/support/code-signing/",
+      "title": "Code signing",
+      "titleInlineContent": [
+        {
+          "text": "Code signing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/code-signing/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7",
+      "title": "Signing & Capabilities workflow",
+      "titleInlineContent": [
+        {
+          "text": "Signing & Capabilities workflow",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev80cc24546": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev80cc24546",
+      "title": "automatic signing",
+      "titleInlineContent": [
+        {
+          "text": "automatic signing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev80cc24546"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev88332a81e": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev88332a81e",
+      "title": "Upload a macOS app to be notarized",
+      "titleInlineContent": [
+        {
+          "text": "Upload a macOS app to be notarized",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev88332a81e"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f",
+      "title": "Hardened runtime",
+      "titleInlineContent": [
+        {
+          "text": "Hardened runtime",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f"
+    },
+    "media-3915698": {
+      "alt": "A screenshot showing the upload option for sending your archive to the Apple Notary Service.",
+      "identifier": "media-3915698",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da6b81797a398531ff1c2f09d62d6634/media-3915698@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/874a4a2ab3a4b00a50a4cb8afd5b6697/media-3915698~dark@2x.png"
+        }
+      ]
+    },
+    "media-4193576": {
+      "alt": "A screenshot showing the Hardened runtime option for the Wrapper Application.",
+      "identifier": "media-4193576",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4d5d93121452ea61a3bf3f229acb92b/media-4193576@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a8d83fcf993f90d7c3e58dbe44f6f38/media-4193576~dark@2x.png"
+        }
+      ]
+    },
+    "media-4193577": {
+      "alt": "A screenshot showing the script for copying and force code signing the PluginManager.framework.",
+      "identifier": "media-4193577",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a687a10a0270eaf5e2bff613ac9d008/media-4193577@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3e50035b79de5dd5c9a2d0df3b0daf3/media-4193577~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing-and-deployment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro"
+      ],
+      "title": "Testing and deployment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Testing-and-deployment",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro"
+              ],
+              "title": "Testing and deployment"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/notarizing-your-fxplug-plug-in"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/notarizing-your-fxplug-plug-in"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

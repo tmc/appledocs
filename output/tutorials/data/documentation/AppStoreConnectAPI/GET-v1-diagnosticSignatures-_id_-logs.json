@@ -1,0 +1,809 @@
+{
+  "abstract": [
+    {
+      "text": "Get the anonymized backtrace logs associated with a specific diagnostic signature.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-diagnosticSignatures-{}-logs",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/diagnosticSignatures/{id}/logs"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Download Logs for a Diagnostic Signature"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/diagnosticSignatures/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/logs"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The resource ID that uniquely identifies a diagnostic signature. Obtain the diagnostic signature resource ID from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "maximum",
+              "value": "200"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum number of diagnostic logs to return.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/vnd.apple.diagnostic-logs+json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/diagnosticLogs",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:diagnosticLogs",
+              "text": "diagnosticLogs"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below requests a single disk write diagnostic log for a specific signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.appstoreconnect.apple.com/v1/diagnosticSignatures/012a219872fe2aa3ca056df08dc9161007a26879a1c1475ca2e2712f7d0aefd7b4/logs?limit=1"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"productData\": [",
+                    "    {",
+                    "      \"signatureId\": \"012a219872fe2aa3ca056df08dc9161007a26879a1c1475ca2e2712f7d0aefd7b4\",",
+                    "      \"diagnosticInsights\": [",
+                    "        {",
+                    "          \"insightsURL\": \"doc://com.apple.documentation/documentation/xcode/reducing-disk-writes#Use-Appropriate-Indices\",",
+                    "          \"insightsCategory\": \"SQLiteSpill\",",
+                    "          \"insightsString\": \"SQLite spill file detected. Add appropriate index to improve performance.\"",
+                    "        }",
+                    "      ],",
+                    "      \"diagnosticLogs\": [",
+                    "        {",
+                    "          \"diagnosticMetaData\": {",
+                    "            \"event\": \"disk writes\",",
+                    "            \"osVersion\": \"iPhone OS 14.6 (18F72)\",",
+                    "            \"appVersion\": \"6.10.1\",",
+                    "            \"writesCaused\": \"1073.76 MB\",",
+                    "            \"deviceType\": \"iPhone13_3\",",
+                    "            \"platformArchitecture\": \"arm64\",",
+                    "            \"eventDetail\": \"Total of 1073.76 MB of disk writes\"",
+                    "          },",
+                    "          \"callStackTree\": [",
+                    "            {",
+                    "              \"callStacks\": [",
+                    "                {",
+                    "                  \"callStackRootFrames\": [",
+                    "                    {",
+                    "                      \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                      \"offsetIntoSymbol\": \"32\",",
+                    "                      \"symbolName\": \"_dispatch_call_block_and_release\",",
+                    "                      \"address\": \"0x19f7cda84\",",
+                    "                      \"binaryUUID\": \"DAF30062-4C85-3B92-B159-50602A0C9D96\",",
+                    "                      \"isBlameFrame\": false,",
+                    "                      \"binaryName\": \"libdispatch.dylib\",",
+                    "                      \"lineNumber\": \"1466\",",
+                    "                      \"sampleCount\": 51,",
+                    "                      \"fileName\": \"init.c\",",
+                    "                      \"rawFrame\": \"44 _dispatch_call_block_and_release (in libdispatch.dylib) + 32 (init.c:1466) [0x19f7cda84]\",",
+                    "                      \"subFrames\": [",
+                    "                        {",
+                    "                          \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                          \"offsetIntoSymbol\": \"112\",",
+                    "                          \"symbolName\": \"+[TaskHandler updateNames]\",",
+                    "                          \"address\": \"0x102f48b78\",",
+                    "                          \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                          \"isBlameFrame\": true,",
+                    "                          \"binaryName\": \"ExampleApp\",",
+                    "                          \"lineNumber\": \"2381\",",
+                    "                          \"sampleCount\": 51,",
+                    "                          \"fileName\": \"TaskHandler.m\",",
+                    "                          \"rawFrame\": \"44 +[TaskHandler updateNames] (in ExampleApp) + 112 (TaskHandler.m:2092) [0x102f48b74]\",",
+                    "                          \"subFrames\": [",
+                    "                            {",
+                    "                              \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                              \"offsetIntoSymbol\": \"208\",",
+                    "                              \"symbolName\": \"+[TaskHandler getAllItemsFromDB]\",",
+                    "                              \"address\": \"0x102f3ca74\",",
+                    "                              \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                              \"isBlameFrame\": true,",
+                    "                              \"binaryName\": \"ExampleApp\",",
+                    "                              \"lineNumber\": \"1369\",",
+                    "                              \"sampleCount\": 51,",
+                    "                              \"fileName\": \"TaskHandler.m\",",
+                    "                              \"rawFrame\": \"44 +[TaskHandler getAllItemsFromDB] (in ExampleApp) + 208 (TaskHandler.m:1369) [0x102f3ca74]\",",
+                    "                              \"subFrames\": [",
+                    "                                {",
+                    "                                  \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                  \"offsetIntoSymbol\": \"144\",",
+                    "                                  \"symbolName\": \"-[DatabaseQueue inDatabase:]\",",
+                    "                                  \"address\": \"0x1034dbf04\",",
+                    "                                  \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                                  \"isBlameFrame\": true,",
+                    "                                  \"binaryName\": \"ExampleApp\",",
+                    "                                  \"lineNumber\": \"157\",",
+                    "                                  \"sampleCount\": 51,",
+                    "                                  \"fileName\": \"DatabaseQueue.m\",",
+                    "                                  \"rawFrame\": \"44 -[DatabaseQueue inDatabase:] (in ExampleApp) + 144 (DatabaseQueue.m:157) [0x1034dbf04]\",",
+                    "                                  \"subFrames\": [",
+                    "                                    {",
+                    "                                      \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                      \"offsetIntoSymbol\": \"176\",",
+                    "                                      \"symbolName\": \"_dispatch_sync_f_slow\",",
+                    "                                      \"address\": \"0x19f7de7b4\",",
+                    "                                      \"binaryUUID\": \"DAF30062-4C85-3B92-B159-50602A0C9D96\",",
+                    "                                      \"isBlameFrame\": false,",
+                    "                                      \"binaryName\": \"libdispatch.dylib\",",
+                    "                                      \"lineNumber\": \"1749\",",
+                    "                                      \"sampleCount\": 48,",
+                    "                                      \"fileName\": \"queue.c\",",
+                    "                                      \"rawFrame\": \"44 _dispatch_sync_f_slow (in libdispatch.dylib) + 176 (queue.c:1749) [0x19f7de7b4]\",",
+                    "                                      \"subFrames\": [",
+                    "                                        {",
+                    "                                          \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                          \"offsetIntoSymbol\": \"68\",",
+                    "                                          \"symbolName\": \"_dispatch_sync_invoke_and_complete_recurse\",",
+                    "                                          \"address\": \"0x19f7ded5c\",",
+                    "                                          \"binaryUUID\": \"DAF30062-4C85-3B92-B159-50602A0C9D96\",",
+                    "                                          \"isBlameFrame\": false,",
+                    "                                          \"binaryName\": \"libdispatch.dylib\",",
+                    "                                          \"lineNumber\": \"998\",",
+                    "                                          \"sampleCount\": 48,",
+                    "                                          \"fileName\": \"queue.c\",",
+                    "                                          \"rawFrame\": \"44 _dispatch_sync_invoke_and_complete_recurse (in libdispatch.dylib) + 68 (queue.c:998) [0x19f7ded5c]\",",
+                    "                                          \"subFrames\": [",
+                    "                                            {",
+                    "                                              \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                              \"offsetIntoSymbol\": \"20\",",
+                    "                                              \"symbolName\": \"_dispatch_client_callout\",",
+                    "                                              \"address\": \"0x19f7cf81c\",",
+                    "                                              \"binaryUUID\": \"DAF30062-4C85-3B92-B159-50602A0C9D96\",",
+                    "                                              \"isBlameFrame\": false,",
+                    "                                              \"binaryName\": \"libdispatch.dylib\",",
+                    "                                              \"lineNumber\": \"559\",",
+                    "                                              \"sampleCount\": 48,",
+                    "                                              \"fileName\": \"object.m\",",
+                    "                                              \"rawFrame\": \"44 _dispatch_client_callout (in libdispatch.dylib) + 20 (object.m:559) [0x19f7cf81c]\",",
+                    "                                              \"subFrames\": [",
+                    "                                                {",
+                    "                                                  \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                  \"offsetIntoSymbol\": \"60\",",
+                    "                                                  \"symbolName\": \"__30-[DatabaseQueue inDatabase:]_block_invoke\",",
+                    "                                                  \"address\": \"0x1034dbf70\",",
+                    "                                                  \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                                                  \"isBlameFrame\": true,",
+                    "                                                  \"binaryName\": \"ExampleApp\",",
+                    "                                                  \"lineNumber\": \"160\",",
+                    "                                                  \"sampleCount\": 48,",
+                    "                                                  \"fileName\": \"DatabaseQueue.m\",",
+                    "                                                  \"rawFrame\": \"44 __30-[DatabaseQueue inDatabase:]_block_invoke (in ExampleApp) + 60 (DatabaseQueue.m:160) [0x1034dbf70]\",",
+                    "                                                  \"subFrames\": [",
+                    "                                                    {",
+                    "                                                      \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                      \"offsetIntoSymbol\": \"180\",",
+                    "                                                      \"symbolName\": \"__39+[TaskHandler getAllItemsFromDB]_block_invoke\",",
+                    "                                                      \"address\": \"0x102f3cb8c\",",
+                    "                                                      \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                                                      \"isBlameFrame\": true,",
+                    "                                                      \"binaryName\": \"ExampleApp\",",
+                    "                                                      \"lineNumber\": \"1378\",",
+                    "                                                      \"sampleCount\": 48,",
+                    "                                                      \"fileName\": \"TaskHandler.m\",",
+                    "                                                      \"rawFrame\": \"44 __39+[TaskHandler getAllItemsFromDB]_block_invoke (in ExampleApp) + 180 (TaskHandler.m:1378) [0x102f3cb8c]\",",
+                    "                                                      \"subFrames\": [",
+                    "                                                        {",
+                    "                                                          \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                          \"offsetIntoSymbol\": \"48\",",
+                    "                                                          \"symbolName\": \"-[ResultSet nextWithError:]\",",
+                    "                                                          \"address\": \"0x1034dcc00\",",
+                    "                                                          \"binaryUUID\": \"2BE5B0BD-0977-3220-B5CB-EBDB66DC3200\",",
+                    "                                                          \"isBlameFrame\": true,",
+                    "                                                          \"binaryName\": \"ExampleApp\",",
+                    "                                                          \"lineNumber\": \"161\",",
+                    "                                                          \"sampleCount\": 48,",
+                    "                                                          \"fileName\": \"ResultSet.m\",",
+                    "                                                          \"rawFrame\": \"44 -[ResultSet nextWithError:] (in ExampleApp) + 48 (ResultSet.m:161) [0x1034dcc00]\",",
+                    "                                                          \"subFrames\": [",
+                    "                                                            {",
+                    "                                                              \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                              \"offsetIntoSymbol\": \"300\",",
+                    "                                                              \"symbolName\": \"sqlite3_step\",",
+                    "                                                              \"address\": \"0x1b9980e9c\",",
+                    "                                                              \"binaryUUID\": \"BFD2376F-2E6E-33FD-A5C2-413484CD6D51\",",
+                    "                                                              \"isBlameFrame\": false,",
+                    "                                                              \"binaryName\": \"libsqlite3.dylib\",",
+                    "                                                              \"lineNumber\": \"90617\",",
+                    "                                                              \"sampleCount\": 48,",
+                    "                                                              \"fileName\": \"sqlite3.c\",",
+                    "                                                              \"rawFrame\": \"44 sqlite3_step (in libsqlite3.dylib) + 300 (sqlite3.c:90617) [0x1b9980e9c]\",",
+                    "                                                              \"subFrames\": [",
+                    "                                                                {",
+                    "                                                                  \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                                  \"offsetIntoSymbol\": \"40188\",",
+                    "                                                                  \"symbolName\": \"sqlite3VdbeExec\",",
+                    "                                                                  \"address\": \"0x1b998c240\",",
+                    "                                                                  \"binaryUUID\": \"BFD2376F-2E6E-33FD-A5C2-413484CD6D51\",",
+                    "                                                                  \"isBlameFrame\": false,",
+                    "                                                                  \"binaryName\": \"libsqlite3.dylib\",",
+                    "                                                                  \"lineNumber\": \"102825\",",
+                    "                                                                  \"sampleCount\": 48,",
+                    "                                                                  \"fileName\": \"sqlite3.c\",",
+                    "                                                                  \"rawFrame\": \"44 sqlite3VdbeExec (in libsqlite3.dylib) + 40188 (sqlite3.c:102825) [0x1b998c240]\",",
+                    "                                                                  \"subFrames\": [",
+                    "                                                                    {",
+                    "                                                                      \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                                      \"offsetIntoSymbol\": \"196\",",
+                    "                                                                      \"symbolName\": \"vdbeSorterListToPMA\",",
+                    "                                                                      \"address\": \"0x1b9a08d3c\",",
+                    "                                                                      \"insightsCategory\": \"SQLiteSpill\",",
+                    "                                                                      \"binaryUUID\": \"BFD2376F-2E6E-33FD-A5C2-413484CD6D51\",",
+                    "                                                                      \"isBlameFrame\": false,",
+                    "                                                                      \"binaryName\": \"libsqlite3.dylib\",",
+                    "                                                                      \"lineNumber\": \"23794\",",
+                    "                                                                      \"sampleCount\": 48,",
+                    "                                                                      \"fileName\": \"sqlite3.c\",",
+                    "                                                                      \"rawFrame\": \"44 vdbeSorterListToPMA (in libsqlite3.dylib) + 196 (sqlite3.c:23794) [0x1b9a08d3c]\",",
+                    "                                                                      \"subFrames\": [",
+                    "                                                                        {",
+                    "                                                                          \"offsetIntoBinaryTextSegment\": \"\",",
+                    "                                                                          \"offsetIntoSymbol\": \"1832\",",
+                    "                                                                          \"symbolName\": \"unixFileControl\",",
+                    "                                                                          \"address\": \"0x1b99c3860\",",
+                    "                                                                          \"binaryUUID\": \"BFD2376F-2E6E-33FD-A5C2-413484CD6D51\",",
+                    "                                                                          \"isBlameFrame\": false,",
+                    "                                                                          \"binaryName\": \"libsqlite3.dylib\",",
+                    "                                                                          \"lineNumber\": \"40185\",",
+                    "                                                                          \"sampleCount\": 48,",
+                    "                                                                          \"fileName\": \"sqlite3.c\",",
+                    "                                                                          \"rawFrame\": \"44 unixFileControl (in libsqlite3.dylib) + 1832 (sqlite3.c:40185) [0x1b99c3860]\",",
+                    "                                                                          \"subFrames\": []",
+                    "                                                                        }",
+                    "                                                                      ]",
+                    "                                                                    }",
+                    "                                                                  ]",
+                    "                                                                }",
+                    "                                                              ]",
+                    "                                                            }",
+                    "                                                          ]",
+                    "                                                        }",
+                    "                                                      ]",
+                    "                                                    }",
+                    "                                                  ]",
+                    "                                                }",
+                    "                                              ]",
+                    "                                            }",
+                    "                                          ]",
+                    "                                        }",
+                    "                                      ]",
+                    "                                    }",
+                    "                                  ]",
+                    "                                }",
+                    "                              ]",
+                    "                            }",
+                    "                          ]",
+                    "                        }",
+                    "                      ]",
+                    "                    }",
+                    "                  ]",
+                    "                }",
+                    "              ],",
+                    "              \"callStackPerThread\": false",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      ]",
+                    "    }",
+                    "  ],",
+                    "  \"version\": \"1.0.0\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for the most recent version of an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures": {
+      "abstract": [
+        {
+          "text": "List the aggregate backtrace signatures captured for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/diagnosticSignatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Diagnostic Signatures for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-diagnosticsignatures"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs": {
+      "abstract": [
+        {
+          "text": "Get the anonymized backtrace logs associated with a specific diagnostic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/diagnosticSignatures/{id}/logs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Download Logs for a Diagnostic Signature",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-diagnosticsignatures-_id_-logs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/diagnosticLogs": {
+      "abstract": [
+        {
+          "text": "A response containing log data for a diagnostic signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "diagnosticLogs"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/diagnosticLogs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "diagnosticLogs"
+        }
+      ],
+      "role": "symbol",
+      "title": "diagnosticLogs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/diagnosticlogs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights": {
+      "abstract": [
+        {
+          "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieve Power and Performance Metrics and Log Insights",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/retrieve-power-and-performance-metrics-and-log-insights"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Metrics-and-Diagnostic-Logs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures"
+      ],
+      "title": "Getting Metrics and Diagnostic Logs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-diagnosticsignatures-_id_-logs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

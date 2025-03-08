@@ -1,0 +1,954 @@
+{
+  "abstract": [
+    {
+      "text": "Specify values to change adjustment attributes and effects parameters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjustment Attributes and Effect Parameters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each adjustment element has attributes that affect the adjustment you make. You specify the values of certain adjustment attributes and effect parameters and change them for the entire duration of the parent element. You can also create animated adjustments by varying attribute values over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Parameter-Element",
+          "level": 3,
+          "text": "Parameter Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a parameter (",
+              "type": "text"
+            },
+            {
+              "code": "param",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") element for each adjustment attribute or effect parameter you want to change. You can also use the ",
+              "type": "text"
+            },
+            {
+              "code": "param",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to create keyframe animations by changing adjustment attributes and effect parameters over time. For more information on how to create keyframe animations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following elements may contain ",
+              "type": "text"
+            },
+            {
+              "code": "param",
+              "type": "codeVoice"
+            },
+            {
+              "text": " child elements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adjustment elements — ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-blend",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-corners",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-EQ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-panner",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-stabilization",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-transform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adjust-volume",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "crop-rect",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "trim-rect",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Effect elements — ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "filter-audio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "filter-video",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Story elements — ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "video",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "param",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element has the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "name",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For adjustments, this case-sensitive string identifies the parent attribute to override. For an effect parameter, this is for informational purposes only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "key",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies a parameter in the effect implementation. Final Cut Pro ignores this attribute when you specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "param",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " element for an adjustment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "value",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new value to apply to the adjustment attribute (optional) or the effect parameter. This value overrides the value specified by the parent adjustment attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following XML adjusts the audio volume of a clip by –3dB:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<audio>",
+            "   <adjust-volume>",
+            "      <param name=\"amount\" value=\"-3dB\" />",
+            "   </adjust-volume>",
+            "</audio>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some effect parameters allow structured data. Represent the structured data with a series of nested ",
+              "type": "text"
+            },
+            {
+              "code": "param",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements as children of the effect parameter you want to override. See the ",
+              "type": "text"
+            },
+            {
+              "code": "Lighting",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the 3D text XML snippet in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/text-style",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " element for an example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Starting in FCPXML 1.5, use structured parameter data to describe the three-dimensional text and other effects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "data-Element",
+          "level": 3,
+          "text": "data Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some adjustments and effects, such as ",
+              "type": "text"
+            },
+            {
+              "code": "filter-audio",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "mask-isolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", allow preserving parameter information in an internal binary format. Final Cut Pro uses the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to preserve parameter information of these adjustment and effects elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data Element",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preserves parameter data in binary format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data Element Attributes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indicates whether the data element describes the parameters or the configuration.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The value can be: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "effectData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Specifies that the data element is describing parameters.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "effectConfig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Specifies that the data element is describing configuration.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "effectState",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Specifies that the data element is describing an Audio Units (AU) effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements": {
+      "abstract": [
+        {
+          "text": "Alter the audio and video output of story elements by using adjustment elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adjustment Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adjustment-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation": {
+      "abstract": [
+        {
+          "text": "Create animations by changing specific adjustment attributes and effect parameters over time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/animation"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption": {
+      "abstract": [
+        {
+          "text": "Represents a closed-caption or subtitle with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+      "kind": "article",
+      "role": "article",
+      "title": "caption",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/caption"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio": {
+      "abstract": [
+        {
+          "text": "A filter element that references an audio effect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "filter-audio",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/filter-audio"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video": {
+      "abstract": [
+        {
+          "text": "A filter element that references a video effect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+      "kind": "article",
+      "role": "article",
+      "title": "filter-video",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/filter-video"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters": {
+      "abstract": [
+        {
+          "text": "Designate a region to which you apply video filter by using a collection of masks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Masked Filters",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/masked-filters"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements": {
+      "abstract": [
+        {
+          "text": "Describe Final Cut Pro events and project data and their associated effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Story Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/story-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/text-style": {
+      "abstract": [
+        {
+          "text": "Describes text style for a segment of text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/text-style",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "text-style",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/text-style"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title": {
+      "abstract": [
+        {
+          "text": "Represents a title with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/title"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition": {
+      "abstract": [
+        {
+          "text": "Applies transition effects that either stand by itself (no neighboring elements), combine two neighboring elements, or apply to a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+      "kind": "article",
+      "role": "article",
+      "title": "transition",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/transition"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adjustment-and-Effects-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+      ],
+      "title": "Adjustment and Effects Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adjustment-and-Effects-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+              ],
+              "title": "Adjustment and Effects Elements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adjustment-attributes-and-effect-parameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adjustment-attributes-and-effect-parameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,647 @@
+{
+  "abstract": [
+    {
+      "text": "A list of domain strings that determine which DNS queries use the DNS server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:DNSSettings.OnDemandRulesElement",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "DNSSettings.OnDemandRulesElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DNSSettings.OnDemandRulesElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "DNSSettings.OnDemandRulesElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "DNSSettings.OnDemandRulesElement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Connect",
+                "Disconnect",
+                "EvaluateConnection"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The action to take if this dictionary matches the current network. Allowed values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Connect",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Apply DNS Settings when the dictionary matches.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Disconnect",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Don’t apply DNS Settings when the dictionary matches.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "EvaluateConnection",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Apply DNS Settings with per-domain exceptions when the dictionary matches.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "Action",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of dictionaries that provide per-connection rules. The system uses this array only for settings where the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Action",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value is",
+                  "type": "text"
+                },
+                {
+                  "code": "EvaluateConnection",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "ActionParameters",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement/ActionParameter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:DNSSettings.OnDemandRulesElement.ActionParameter",
+              "text": "DNSSettings.OnDemandRulesElement.ActionParameter"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of domain names. This rule matches if any of the domain names in the specified list matches any domain in the device’s search domains list.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system supports a single wildcard (",
+                  "type": "text"
+                },
+                {
+                  "code": "*",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") prefix, but it’s not required. For example, both ",
+                  "type": "text"
+                },
+                {
+                  "code": "*.example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " match against ",
+                  "type": "text"
+                },
+                {
+                  "code": "mydomain.example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "your.domain.example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", but don’t match against ",
+                  "type": "text"
+                },
+                {
+                  "code": "mydomain-example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "DNSDomainMatch",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of IP addresses. This rule matches if any of the network’s specified DNS servers match any entry in the array.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system supports matching with a single wildcard. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "17.*",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " matches any DNS server in the 17.0.0.0/8 subnet.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "DNSServerAddressMatch",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Ethernet",
+                "WiFi",
+                "Cellular"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An interface type. If specified, this rule matches only if the primary network interface hardware matches the specified type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "InterfaceTypeMatch",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of SSIDs to match against the current network. If the network isn’t a Wi-Fi network or if the SSID doesn’t appear in this array, the match fails. Omit this key and the corresponding array to match against any SSID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "SSIDMatch",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A URL to probe. This rule matches if this URL is successfully fetched and returns a 200 HTTP status code without redirection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "URLStringProbe",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure encrypted DNS settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines a configuration for an encrypted DNS server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.DNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.DNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings.DNSSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings/dnssettings-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement": {
+      "abstract": [
+        {
+          "text": "A list of domain strings that determine which DNS queries use the DNS server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings.OnDemandRulesElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings/ondemandruleselement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement/ActionParameter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement.ActionParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement/ActionParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement.ActionParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings.OnDemandRulesElement.ActionParameter",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings/ondemandruleselement/actionparameter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Profiles",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement/ActionParameter"
+      ],
+      "title": "Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/dnssettings/ondemandruleselement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

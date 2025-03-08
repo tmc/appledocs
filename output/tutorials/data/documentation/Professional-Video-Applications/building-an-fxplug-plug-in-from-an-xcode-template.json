@@ -1,0 +1,614 @@
+{
+  "abstract": [
+    {
+      "text": "Create a plug-in in Xcode with the FxPlug template.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building an FxPlug plug-in from an Xcode template"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run the FxPlug installation bundle, it makes an FxPlug Xcode template available in Xcode. The template’s application bundle contains preconfigured interfaces, source code files, and a Metal renderer that you can use to create a basic filter plug-in for adjusting brightness with Swift or Objective-C. Once you have the brightness plug-in working, you can modify it to make your own plug-in that serves your specific needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To set up your Mac to develop for FxPlug, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-basic-plug-in-from-the-Xcode-template",
+          "level": 3,
+          "text": "Create a basic plug-in from the Xcode template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by launching Xcode and choosing “Create a new Xcode project,” then select the FxPlug 4 template.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the template window, select the macOS category, then find and select the FxPlug 4 template, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4295739",
+              "type": "image"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2. Enter a Product Name (for example, MyPlug-in) for your plug-in, choose None for Team, and set any other options like your organization ID, for example ",
+              "type": "text"
+            },
+            {
+              "code": "com.mycompany",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Choose Objective-C or Swift, and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4295737",
+              "type": "image"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3. Specify a location for your project and click Create. The template creates a brightness filter FxPlug plug-in project. If the option to create a Git repository on your Mac is not available, click Show Options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3917573",
+              "type": "image"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "4. In the Xcode Editor toolbar, check that “Wrapper Application” is the selected scheme, then click the build and run button (►).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4295738",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This step ensures that your development environment is set up for FxPlug development, and that macOS can find and register your plug-in for use with Motion and Final Cut Pro. Once Xcode successfully completes the build, it launches the plug-in’s wrapper application. Confirm that the name you gave to your plug-in in step 2 appears in the app’s title bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Quit the app you just created. Your plug-in app doesn’t need to be active for it to be discovered by the host application. You only need to launch it once to be registered by macOS as an available FxPlug plug-in.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Try-out-your-plug-in-with-Motion",
+          "level": 3,
+          "text": "Try out your plug-in with Motion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve successfully built and run the template plug-in, apply it to a Motion project to see it in effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Motion and create a new project in the Project Browser, or select File > New.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add content to your Motion project. The template plug-in is a filter, so you need to apply it to some content. In the Library pane, click Generators, and then choose Checkerboard. Drag the Checkerboard generator to Motion’s canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With your Checkerboard generator from step 2 still selected, apply your newly created plug-in. To do this, go to Motion’s Library, choose Filters, search for the name of the filter you built with Xcode, select it, and then click Apply.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test the plug-in’s parameters. In the Inspector pane you’ll see your filter in the Filters pane and its available parameters. Adjust the Brightness parameter to see the effect on the image in the canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3915699",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize your plug-in, modify the Xcode project as you wish, and recompile. You’ll need to relaunch any host apps to ensure any changes to your plug-in are loaded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development": {
+      "abstract": [
+        {
+          "text": "Download and install the required software to develop FxPlug plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up for FxPlug development",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/setting-up-for-fxplug-development"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis": {
+      "abstract": [
+        {
+          "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Using FxPlug APIs",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-fxplug-apis"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "media-3915699": {
+      "alt": "A Motion app screenshot showing a template plug-in applied to a checkerboard generator. The Filters tab is selected in the Inspector pane.",
+      "identifier": "media-3915699",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89ce43cadf0dbb5ca52189aad6af1dca/media-3915699@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89ce43cadf0dbb5ca52189aad6af1dca/media-3915699~dark@2x.png"
+        }
+      ]
+    },
+    "media-3917573": {
+      "alt": "A screenshot showing the Create screen with the option to create a Git repository on your Mac.",
+      "identifier": "media-3917573",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ceecf11e605510c5fcadc229b48fca3/media-3917573@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c134acacb2548b6aefe0d19793232ad/media-3917573~dark@2x.png"
+        }
+      ]
+    },
+    "media-4295737": {
+      "alt": "A screenshot showing the FxPlug plug-in options for the new project.",
+      "identifier": "media-4295737",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43fd995a0593615672413e4f0f8427df/media-4295737@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5470dca73203f8f4103990840d8fbfd/media-4295737~dark@2x.png"
+        }
+      ]
+    },
+    "media-4295738": {
+      "alt": "A screenshot showing the build and run button and the scheme selection pop-up.",
+      "identifier": "media-4295738",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9af58ab81b8de12385cc9756013b3df/media-4295738@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48fe51ce2facd5b55107aee594479dd2/media-4295738~dark@2x.png"
+        }
+      ]
+    },
+    "media-4295739": {
+      "alt": "A screenshot showing the FxPlug 4 template icon location in the Xcode template window.",
+      "identifier": "media-4295739",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9fa3d1f67396403d955cbb7ffec85ba/media-4295739@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/302cc55e1b76ce4db6a72e4707361e5d/media-4295739~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Plug-in-fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Plug-in-fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1412 @@
+{
+  "abstract": [
+    {
+      "text": "Manage user interactions and present custom information when taking pictures by adding an overlay view to your image picker.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Customizing an image picker controller"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample applies an overlay view to display a custom view hierarchy on top of the default image picker interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses an overlay view to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an interface to respond to user input.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display custom information (such as images to enhance the interface).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement a number of unique camera functions such as single picture capture, timed picture capture, and repeated pictures like a camera with a fast shutter speed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the camera isn’t available in Simulator, you’ll need to build and run this sample on a device with iOS 10 or later installed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you first launch the sample app on device, you’ll need to grant the app permission to use the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Setup-the-overlay-view",
+          "level": 3,
+          "text": "Setup the overlay view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to provide an overlay view that contains the custom view hierarchy. The image picker places the custom overlay view on top of the other image picker views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "Apply the overlay view. This view contains a toolbar with custom",
+            "controls for capturing still images in various ways.",
+            "*/",
+            "overlayView?.frame = (imagePickerController.cameraOverlayView?.frame)!",
+            "imagePickerController.cameraOverlayView = overlayView"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property only when the source type of the image picker is set to ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController.SourceType.camera",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user interacts with interface elements in the custom view, the app calls an image picker method, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to capture a photo, and implement other features. This sample’s custom image picker controller interface provides the following features:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take a Picture",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take a Delayed Picture",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take Repeated Pictures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browse Media in the Photo Library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property indicates whether the image picker displays the default camera controls. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is only accessible when the source type of the image picker is ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController.SourceType.camera",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This sample sets ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to hide the default controls and provide a custom overlay view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if sourceType == UIImagePickerController.SourceType.camera {",
+            "\t/*",
+            "\t The user tapped the camera button in the app's interface which",
+            "\t specifies the device’s built-in camera as the source for the image",
+            "\t picker controller.",
+            "\t*/",
+            "",
+            "\t/*",
+            "\t Hide the default controls.",
+            "\t This sample provides its own custom controls for still image",
+            "\t capture in an overlay view.",
+            "\t*/",
+            "\timagePickerController.showsCameraControls = false",
+            "",
+            "\t/*",
+            "\t Apply the overlay view. This view contains a toolbar with custom",
+            "\t controls for capturing still images in various ways.",
+            "\t*/",
+            "\toverlayView?.frame = (imagePickerController.cameraOverlayView?.frame)!",
+            "\timagePickerController.cameraOverlayView = overlayView",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Take-a-picture",
+          "level": 3,
+          "text": "Take a picture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take a picture with the Snap button. Its action method calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to actually take a picture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func takePhoto(_ sender: UIBarButtonItem) {",
+            "imagePickerController.takePicture()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Take-a-delayed-picture",
+          "level": 3,
+          "text": "Take a delayed picture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take a picture after a short delay with the Delayed button. Its action method calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to take a picture when the timer expires.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func delayedTakePhoto(_ sender: UIBarButtonItem) {",
+            "\t/*",
+            "\t Disable the photo controls during the delay time period.",
+            "\t The code in the timer completion block below captures a still image",
+            "\t when the delay period expires and re-enables the controls.",
+            "\t*/",
+            "\tdoneButton?.isEnabled = false",
+            "\ttakePictureButton?.isEnabled = false",
+            "\tdelayedPhotoButton?.isEnabled = false",
+            "\tstartStopButton?.isEnabled = false",
+            "\t",
+            "\tlet fireDate = Date(timeIntervalSinceNow: 5)",
+            "\tcameraTimer = Timer(fire: fireDate, interval: 1.0, repeats: false, block: { timer in",
+            "\t\t// The time interval expired. Capture a still image.",
+            "\t\tself.imagePickerController.takePicture()",
+            "",
+            "\t\t// Enable the delayed photos controls.",
+            "\t\tself.doneButton?.isEnabled = true",
+            "\t\tself.takePictureButton?.isEnabled = true",
+            "\t\tself.delayedPhotoButton?.isEnabled = true",
+            "\t\tself.startStopButton?.isEnabled = true",
+            "\t})",
+            "\tRunLoop.main.add(cameraTimer, forMode: RunLoop.Mode.default)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Take-repeated-pictures",
+          "level": 3,
+          "text": "Take repeated pictures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take repeated pictures at a certain interval with the Start button; for example, one photo every five seconds. Its action method creates a timer to take pictures at certain intervals using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample takes pictures indefinitely, causing it to run out of memory quickly. You must decide upon a proper threshold of the number of captured photos for your own app (for simplicity, this app does not enforce a limit). To avoid memory constraints, save each taken photo to disk rather than keeping all of the pictures in memory. The system may invoke your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  method in low memory situations so the app can recover some memory and continue taking photos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func startTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {",
+            "\t// Start the timer to take a photo every 5 seconds.",
+            "",
+            "\tstartStopButton?.title = NSLocalizedString(\"Stop\", comment: \"Title for overlay view controller start/stop button\")",
+            "\tstartStopButton?.action = #selector(stopTakingPicturesAtIntervals)",
+            "\t",
+            "\t// Enable these buttons while capturing photos.",
+            "\tdoneButton?.isEnabled = false",
+            "\tdelayedPhotoButton?.isEnabled = false",
+            "\ttakePictureButton?.isEnabled = false",
+            "",
+            "\t// Start taking pictures.",
+            "\tcameraTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in",
+            "\t\tself.imagePickerController.takePicture()",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The camera starts taking pictures as soon as the user taps the Start button (which changes to a Stop button). The camera continues to capture photos until the user taps Stop. Captured images appear in the order taken within the app’s image view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func stopTakingPicturesAtIntervals(_ sender: UIBarButtonItem) {",
+            "\t// Stop and reset the timer.",
+            "\tcameraTimer.invalidate()",
+            "",
+            "\tfinishAndUpdate()",
+            "\t",
+            "\t// Make these buttons available again.",
+            "\tself.doneButton?.isEnabled = true",
+            "\tself.takePictureButton?.isEnabled = true",
+            "\tself.delayedPhotoButton?.isEnabled = true",
+            "\t",
+            "\t// Reset the button to start taking pictures again.",
+            "\tstartStopButton?.title = NSLocalizedString(\"Start\", comment: \"Title for overlay view controller start/stop button\")",
+            "\tstartStopButton?.action = #selector(startTakingPicturesAtIntervals)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Browse-media-in-the-Photo-Library",
+          "level": 3,
+          "text": "Browse media in the Photo Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To browse images saved in the photo albums on the device, add a button the user can press to go to their Photo Library. The button’s action method configures the picker for browsing saved media by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController.SourceType.photoLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", before presenting the picker’s media browser user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func showImagePickerForPhotoPicker(_ sender: UIBarButtonItem) {",
+            "showImagePicker(sourceType: UIImagePickerController.SourceType.photoLibrary, button: sender)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting a photo invokes the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method which saves the selected image to an array and displays it in the app’s image view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tapping the Cancel button invokes the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method which calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to dismiss the picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8a225e1270c0/CustomizingAnImagePickerController.zip": {
+      "checksum": "8a225e1270c0239ad82fc56cc3a3900efa2ccf642e868cfd4ba128fd086e9840742bbdfb6fce86ff64ab316e88779ba1e1b74d5ae40030e5b10bbacb277866e0",
+      "identifier": "8a225e1270c0/CustomizingAnImagePickerController.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8a225e1270c0/CustomizingAnImagePickerController.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView": {
+      "abstract": [
+        {
+          "text": "The view to display on top of the default image picker interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraOverlayView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraoverlayview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform": {
+      "abstract": [
+        {
+          "text": "The transform to apply to the camera’s preview image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraViewTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraViewTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraViewTransform",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraviewtransform"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the image picker displays the default camera controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsCameraControls"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsCameraControls"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsCameraControls",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/showscameracontrols"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of picker interface to be displayed by the controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerSourceType",
+          "text": "SourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()": {
+      "abstract": [
+        {
+          "text": "Captures a still image using the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takePicture"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "takePicture"
+        }
+      ],
+      "role": "symbol",
+      "title": "takePicture()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/takepicture()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user picked a still image or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishPickingMediaWithInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIImagePickerControllerInfoKey",
+          "text": "InfoKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePickerController:didFinishPickingMediaWithInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller(_:didfinishpickingmediawithinfo:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user canceled the pick operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePickerControllerDidCancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePickerControllerDidCancel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePickerControllerDidCancel(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontrollerdidcancel(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()": {
+      "abstract": [
+        {
+          "text": "Sent to the view controller when the app receives a memory warning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarning"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceiveMemoryWarning()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/didreceivememorywarning()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissViewControllerAnimated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8a225e1270c0/CustomizingAnImagePickerController.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-the-camera-controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform"
+      ],
+      "title": "Customizing the camera controls"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/title",
+          "value": "UIImagePickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1takePicture()/title",
+          "value": "takePicture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1takePicture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "takePicture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraOverlayView/title",
+          "value": "cameraOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1showsCameraControls/title",
+          "value": "showsCameraControls"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1showsCameraControls/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsCameraControls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1sourceType-swift.property/title",
+          "value": "sourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1sourceType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerControllerDidCancel(_:)/title",
+          "value": "imagePickerControllerDidCancel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerControllerDidCancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imagePickerControllerDidCancel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/title",
+          "value": "didReceiveMemoryWarning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveMemoryWarning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerController(_:didFinishPickingMediaWithInfo:)/title",
+          "value": "imagePickerController:didFinishPickingMediaWithInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerController(_:didFinishPickingMediaWithInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imagePickerController:didFinishPickingMediaWithInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraViewTransform/title",
+          "value": "cameraViewTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraViewTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraViewTransform"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/customizing-an-image-picker-controller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

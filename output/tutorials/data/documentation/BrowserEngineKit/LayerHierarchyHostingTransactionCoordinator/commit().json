@@ -1,0 +1,997 @@
+{
+  "abstract": [
+    {
+      "code": "commit",
+      "type": "codeVoice"
+    },
+    {
+      "text": " must be called on ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "every",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": " instance and it must be the last call to each instance.",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "note that it does not commit ",
+      "type": "text"
+    },
+    {
+      "code": "CATransaction",
+      "type": "codeVoice"
+    },
+    {
+      "text": "s but rather commits the coordination of transactions in the render server.",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "note that coordinators should have as constrained a lifespan as possible and will timeout if held open too long.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)BELayerHierarchyHostingTransactionCoordinator(im)commit",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "commit"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "commit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "commit()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notifies the render server to coordinate transactions for the added views and layer hierarchies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to add all relevant views and layer hierarchies to the transaction coordinator, share the coordinator between processes, and make all necessary transactions before you call this method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you call ",
+              "type": "text"
+            },
+            {
+              "code": "commit()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can no longer use the transaction coordinator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to call ",
+              "type": "text"
+            },
+            {
+              "code": "commit()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the last action on the transaction coordinator in all processes that use the same transaction coordinator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Committing a transaction coordinator synchronizes changes committed in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects that affect the added views and layer hierarchies, it doesn’t commit the transactions.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction/commit()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on each relevant transaction.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator": {
+      "abstract": [
+        {
+          "text": "Synchronizes updates to views and layers in different processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingTransactionCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingTransactionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchyHostingTransactionCoordinator",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-7day0": {
+      "abstract": [
+        {
+          "text": "Notifies the transaction coordinator to start coordinating transactions for the given view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BELayerHierarchyHostingView",
+          "text": "LayerHierarchyHostingView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-7day0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addLayerHierarchyHostingView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/add(_:)-7day0"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-i66q": {
+      "abstract": [
+        {
+          "text": "a signal to coordinate transactions involving ",
+          "type": "text"
+        },
+        {
+          "code": "layerHierarchy",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from now until ",
+          "type": "text"
+        },
+        {
+          "code": "commit",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is called",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BELayerHierarchy",
+          "text": "LayerHierarchy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-i66q",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addLayerHierarchy:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/add(_:)-i66q"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()": {
+      "abstract": [
+        {
+          "code": "commit",
+          "type": "codeVoice"
+        },
+        {
+          "text": " must be called on ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "every",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " instance and it must be the last call to each instance.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "note that it does not commit ",
+          "type": "text"
+        },
+        {
+          "code": "CATransaction",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s but rather commits the coordination of transactions in the render server.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "note that coordinators should have as constrained a lifespan as possible and will timeout if held open too long.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/commit()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension": {
+      "abstract": [
+        {
+          "text": "Coordinate view-hierarchy and layer-hierarchy changes between processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Hosting browser view layers in the rendering extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/hosting-browser-view-layers-in-the-rendering-extension"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CATransaction": {
+      "abstract": [
+        {
+          "text": "A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CATransaction",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CATransaction"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CATransaction/commit()": {
+      "abstract": [
+        {
+          "text": "Commit all changes made during the current transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction/commit()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CATransaction/commit()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Synchronize-transactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-7day0",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-i66q"
+      ],
+      "title": "Synchronize transactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Synchronize-transactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-7day0",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/add(_:)-i66q"
+              ],
+              "title": "Synchronize transactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "commit"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/title",
+          "value": "BELayerHierarchyHostingTransactionCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingTransactionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingTransactionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1add(_:)-i66q/title",
+          "value": "addLayerHierarchy:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1add(_:)-i66q/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addLayerHierarchy:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CATransaction~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CATransaction~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CATransaction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1add(_:)-7day0/title",
+          "value": "addLayerHierarchyHostingView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1add(_:)-7day0/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addLayerHierarchyHostingView:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/commit()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/commit()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

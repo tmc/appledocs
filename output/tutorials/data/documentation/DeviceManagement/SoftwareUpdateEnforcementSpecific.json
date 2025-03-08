@@ -1,0 +1,1080 @@
+{
+  "abstract": [
+    {
+      "text": "A software update enforcement policy for a specific OS release.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SoftwareUpdateEnforcementSpecific"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rmdm-declarations:SoftwareUpdateEnforcementSpecific",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "SoftwareUpdateEnforcementSpecific"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SoftwareUpdateEnforcementSpecific"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "SoftwareUpdateEnforcementSpecific"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "SoftwareUpdateEnforcementSpecific"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL of a web page that shows details that the organization provides about the enforced update.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "17.0.0",
+          "name": "DetailsURL",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The target build version to update the device to by the appropriate time, for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "20A242",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The system uses the build version for testing during seeding periods. The build version can include a supplemental version identifier, for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "20A242a",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If the build version isn’t consistent with the target OS version specified in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TargetOSVersion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key, the target OS version takes precedence.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "17.0.0",
+          "name": "TargetBuildVersion",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The local date time value that specifies when to force install the software update. Use the format ",
+                  "type": "text"
+                },
+                {
+                  "code": "yyyy-mm-ddThh:mm:ss",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which is derived from RFC3339 but doesn’t include a time zone offset. If the user doesn’t trigger the software update before this time, the device force installs it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "17.0.0",
+          "name": "TargetLocalDateTime",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The target OS version to update the device to by the appropriate time. This is the OS version number, for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "16.1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". It may also include a supplemental version identifier, for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "16.1.1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "17.0.0",
+          "name": "TargetOSVersion",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.configuration.softwareupdate.enforcement.specific",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the declaration type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "TargetVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an OS version that includes both a minor and patch version, then the system installs that specific version, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "16.1.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the minor version doesn’t include a patch version, the system installs the latest available patch version. For example, if the ",
+              "type": "text"
+            },
+            {
+              "code": "TargetVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "16.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": ".1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " patch is available, the system installs ",
+              "type": "text"
+            },
+            {
+              "code": "16.1.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can only install a supplemental software update on a device that already has the base OS version installed. For example, the system can only install a ",
+              "type": "text"
+            },
+            {
+              "code": "16.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "(a) update on a device that currently has ",
+              "type": "text"
+            },
+            {
+              "code": "16.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " installed, but it can’t install that update on a device that only has ",
+              "type": "text"
+            },
+            {
+              "code": "16.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " installed. To update to a supplemental version from an older base version, use two configurations. Use the first configuration to update to the new base version, and the second configuration to update the new base version to its supplemental version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device isn’t running at the target date-time, the system enforces the update one hour after restarting, or when the device meets all required conditions, such as minimum battery level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuration-Availability",
+          "level": 3,
+          "text": "Configuration Availability",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in Device Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in Local Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in System Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Calendar account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountCalDAV"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountCalDAV"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountCalDAV",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountcaldav"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an address book account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountCardDAV"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountCardDAV"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountCardDAV",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountcarddav"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an Exchange account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountExchange"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountExchange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountExchange",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountexchange"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Google account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountGoogle"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountGoogle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountGoogle",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountgoogle"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Lightweight Directory Access Protocol (LDAP) account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountLDAP"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountLDAP"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountLDAP",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountldap"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Mail account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountMail"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountMail"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountMail",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountmail"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a Calendar subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountSubscribedCalendar"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountSubscribedCalendar"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountSubscribedCalendar",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountsubscribedcalendar"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a managed app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppManaged"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppManaged",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/appmanaged"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure disk management settings on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiskManagementSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DiskManagementSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DiskManagementSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/diskmanagementsettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile": {
+      "abstract": [
+        {
+          "text": "The declaration to configure an interactive, legacy profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LegacyInteractiveProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LegacyInteractiveProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "LegacyInteractiveProfile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/legacyinteractiveprofile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a legacy profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LegacyProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LegacyProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "LegacyProfile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/legacyprofile"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions": {
+      "abstract": [
+        {
+          "text": "The declaration to configure status subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementStatusSubscriptions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementstatussubscriptions"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest": {
+      "abstract": [
+        {
+          "text": "The declaration to test the MDM system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementTest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementTest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementTest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementtest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure the math and calculator apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MathSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MathSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "MathSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/mathsettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings": {
+      "abstract": [
+        {
+          "text": "The declaration to configure passcode policy settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasscodeSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/passcodesettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SoftwareUpdateEnforcementSpecific": {
+      "abstract": [
+        {
+          "text": "A software update enforcement policy for a specific OS release.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SoftwareUpdateEnforcementSpecific"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SoftwareUpdateEnforcementSpecific",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SoftwareUpdateEnforcementSpecific"
+        }
+      ],
+      "role": "symbol",
+      "title": "SoftwareUpdateEnforcementSpecific",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/softwareupdateenforcementspecific"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configurations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCalDAV",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountCardDAV",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountExchange",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountGoogle",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountLDAP",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountMail",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountSubscribedCalendar",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AppManaged",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DiskManagementSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyInteractiveProfile",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LegacyProfile",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementTest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/MathSettings",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasscodeSettings"
+      ],
+      "title": "Configurations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/softwareupdateenforcementspecific"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

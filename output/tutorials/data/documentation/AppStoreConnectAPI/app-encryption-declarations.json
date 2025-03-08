@@ -1,0 +1,854 @@
+{
+  "abstract": [
+    {
+      "text": "View, and assign to builds, the declarations about types of encryption used in your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-encryption-declarations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "App Encryption Declarations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To comply with regulatory requirements, you sometimes need to provide information and supporting documentation in the form of declarations about the types of encryption used by your app. The app encryption declarations resource represents this information, and enables you to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View information about the declaration, and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign the declaration to a build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create app encryption declarations in App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upload app encryption declaration documents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Builds that have the ",
+                  "type": "text"
+                },
+                {
+                  "code": "usesNonExemptEncryption",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " flag set to true in the app’s property list must link to an app encryption declaration before the app can be submitted for beta app review.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclaration": {
+      "abstract": [
+        {
+          "text": "The data structure that represents an App Encryption Declarations resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclaration"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclaration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclaration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclaration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclaration"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationBuildsLinkagesRequest": {
+      "abstract": [
+        {
+          "text": "A request body you use to add builds to an app encryption declaration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationBuildsLinkagesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationBuildsLinkagesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationBuildsLinkagesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationBuildsLinkagesRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationCreateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to create an app encryption declaration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationcreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocument": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationDocument",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationdocument"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentCreateRequest": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationDocumentCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationdocumentcreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationDocumentResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationdocumentresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentUpdateRequest": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentUpdateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentUpdateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationDocumentUpdateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationDocumentUpdateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationdocumentupdaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single App Encryption Declarations resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationState": {
+      "abstract": [
+        {
+          "text": "Strings that represent the review or acceptance status of an app encryption declaration submitted to Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationState"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationState"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationState",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationstate"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationWithoutIncludesResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationWithoutIncludesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationWithoutIncludesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationWithoutIncludesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationWithoutIncludesResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationwithoutincludesresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of App Encryption Declaration resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEncryptionDeclarationsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEncryptionDeclarationsResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appencryptiondeclarationsresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarationDocuments-_id_": {
+      "abstract": [
+        {
+          "text": "Get detailed information about a specified App Encryption Declaration document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarationDocuments-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appEncryptionDeclarationDocuments/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read a specific App Encryption Declaration Document",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appencryptiondeclarationdocuments-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations": {
+      "abstract": [
+        {
+          "text": "Find and list all available app encryption declarations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appEncryptionDeclarations"
+        }
+      ],
+      "role": "symbol",
+      "title": "List App Encryption Declarations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appencryptiondeclarations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific app encryption declaration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appEncryptionDeclarations/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read App Encryption Declaration Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appencryptiondeclarations-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-app": {
+      "abstract": [
+        {
+          "text": "Get the app information from a specific app encryption declaration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-app",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appEncryptionDeclarations/{id}/app"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the App Information of an App Encryption Declaration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appencryptiondeclarations-_id_-app"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-appEncryptionDeclarationDocument": {
+      "abstract": [
+        {
+          "text": "Read the associate document for a specific App Encryption Declaration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-appEncryptionDeclarationDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the Declaration Document for an App Encryption Declaration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appencryptiondeclarations-_id_-appencryptiondeclarationdocument"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appEncryptionDeclarationDocuments-_id_": {
+      "abstract": [
+        {
+          "text": "Commit an App Encryption Declaration Document after uploading it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appEncryptionDeclarationDocuments-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appEncryptionDeclarationDocuments/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify an App Encryption Declaration Document",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appencryptiondeclarationdocuments-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarationDocuments": {
+      "abstract": [
+        {
+          "text": "Add an App Encryption Declaration Document to an existing App Encryption Declaration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarationDocuments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appEncryptionDeclarationDocuments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Upload an App Encryption Declaration Document",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appencryptiondeclarationdocuments"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations": {
+      "abstract": [
+        {
+          "text": "Add an app encryption delcaration for a specific app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appEncryptionDeclarations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an app encryption declarations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appencryptiondeclarations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations-_id_-relationships-builds": {
+      "abstract": [
+        {
+          "text": "Assign one or more builds to an app encryption declaration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations-_id_-relationships-builds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appEncryptionDeclarations/{id}/relationships/builds"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assign Builds to an App Encryption Declaration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appencryptiondeclarations-_id_-relationships-builds"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-bundles": {
+      "abstract": [
+        {
+          "text": "Read metadata for app and App Clip binaries included in a build you upload to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-bundles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Bundles",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-bundles"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-icons": {
+      "abstract": [
+        {
+          "text": "Get icons from your app’s binary that are uploaded to App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-icons",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Icons",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-icons"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/builds": {
+      "abstract": [
+        {
+          "text": "Manage builds for testers and submit builds for review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/builds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Builds",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/builds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance",
+      "title": "Overview of export compliance",
+      "titleInlineContent": [
+        {
+          "text": "Overview of export compliance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Builds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/builds",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-bundles",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-icons"
+      ],
+      "title": "Builds"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-App-Encryption-Declarations",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-app",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarationDocuments-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appEncryptionDeclarations-_id_-appEncryptionDeclarationDocument"
+      ],
+      "title": "Getting App Encryption Declarations"
+    },
+    {
+      "anchor": "Assigning-App-Encryption-Declarations",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarations-_id_-relationships-builds"
+      ],
+      "title": "Assigning App Encryption Declarations"
+    },
+    {
+      "anchor": "Uploading-App-Encryption-Declaration-Documents",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appEncryptionDeclarationDocuments",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appEncryptionDeclarationDocuments-_id_"
+      ],
+      "title": "Uploading App Encryption Declaration Documents"
+    },
+    {
+      "anchor": "Objects-and-Data-Types",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationCreateRequest",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocument",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentCreateRequest",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationDocumentUpdateRequest",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclaration",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationBuildsLinkagesRequest",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationWithoutIncludesResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationsResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppEncryptionDeclarationState"
+      ],
+      "title": "Objects and Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/app-encryption-declarations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

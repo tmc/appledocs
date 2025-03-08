@@ -1,0 +1,855 @@
+{
+  "abstract": [
+    {
+      "text": "Attempts to refresh the carrier token.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coretelephony/documentation/CoreTelephony",
+        "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/refreshCarrierToken()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CTSubscriber(im)refreshCarrierToken",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "refreshCarrierToken"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Telephony"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "refreshCarrierToken"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "refreshCarrierToken()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "refreshCarrierToken"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the system performs a token refresh in response to this call; otherwise, ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method to update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/carrierToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the token exists but the server rejects it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Retrieve and attempt to use ",
+                  "type": "text"
+                },
+                {
+                  "code": "carrierToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " first. Only call this method when you know the token is invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inspect the return value to determine whether this call results in an actual refresh. If the return value is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system attempts the refresh and calls the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberDelegate/subscriberTokenRefreshed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A return value of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates an invalid argument (such as bad carrier descriptors or service descriptor) or that the subscriber doesn’t support the authentication action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coretelephony/documentation/CoreTelephony": {
+      "abstract": [
+        {
+          "text": "Access information about a user’s cellular service provider, such as its unique identifier and whether the carrier allows VoIP.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Telephony",
+      "type": "topic",
+      "url": "/documentation/coretelephony"
+    },
+    "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber": {
+      "abstract": [
+        {
+          "text": "A cellular network subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTSubscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTSubscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTSubscriber",
+      "type": "topic",
+      "url": "/documentation/coretelephony/ctsubscriber"
+    },
+    "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/carrierToken": {
+      "abstract": [
+        {
+          "text": "A data object containing authorization information about the subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "carrierToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/carrierToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "carrierToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "carrierToken",
+      "type": "topic",
+      "url": "/documentation/coretelephony/ctsubscriber/carriertoken"
+    },
+    "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/refreshCarrierToken()": {
+      "abstract": [
+        {
+          "text": "Attempts to refresh the carrier token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refreshCarrierToken"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/refreshCarrierToken()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "refreshCarrierToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "refreshCarrierToken()",
+      "type": "topic",
+      "url": "/documentation/coretelephony/ctsubscriber/refreshcarriertoken()"
+    },
+    "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberDelegate/subscriberTokenRefreshed(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the subscriber’s token refreshed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriberTokenRefreshed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CTSubscriber",
+          "text": "CTSubscriber"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberDelegate/subscriberTokenRefreshed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subscriberTokenRefreshed:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "subscriberTokenRefreshed(_:)",
+      "type": "topic",
+      "url": "/documentation/coretelephony/ctsubscriberdelegate/subscribertokenrefreshed(_:)"
+    },
+    "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberTokenRefreshed": {
+      "abstract": [
+        {
+          "text": "The name of the notification indicating that the carrier token is available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTSubscriberTokenRefreshed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberTokenRefreshed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTSubscriberTokenRefreshed"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTSubscriberTokenRefreshed",
+      "type": "topic",
+      "url": "/documentation/coretelephony/ctsubscribertokenrefreshed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-carrier-token",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/carrierToken",
+        "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberTokenRefreshed"
+      ],
+      "title": "Managing the carrier token"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "refreshCarrierToken"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "refreshCarrierToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coretelephony/documentation/CoreTelephony",
+                "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-carrier-token",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriber/carrierToken",
+                "doc://com.apple.coretelephony/documentation/CoreTelephony/CTSubscriberTokenRefreshed"
+              ],
+              "title": "Managing the carrier token"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "refreshCarrierToken"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "",
+                    "type": "text"
+                  },
+                  {
+                    "code": "true",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if the system performs a token refresh in response to this call; otherwise, ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "false",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriberDelegate~1subscriberTokenRefreshed(_:)/title",
+          "value": "subscriberTokenRefreshed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriberDelegate~1subscriberTokenRefreshed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "subscriberTokenRefreshed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber/title",
+          "value": "CTSubscriber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTSubscriber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTSubscriber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber~1carrierToken/title",
+          "value": "carrierToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber~1carrierToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "carrierToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber~1refreshCarrierToken()/title",
+          "value": "refreshCarrierToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriber~1refreshCarrierToken()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "refreshCarrierToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriberTokenRefreshed/title",
+          "value": "CTSubscriberTokenRefreshed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretelephony~1documentation~1CoreTelephony~1CTSubscriberTokenRefreshed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTSubscriberTokenRefreshed"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coretelephony/ctsubscriber/refreshcarriertoken()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coretelephony/ctsubscriber/refreshcarriertoken()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

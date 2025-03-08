@@ -1,0 +1,656 @@
+{
+  "abstract": [
+    {
+      "text": "Removes the cached resource value identified by a given key from the URL object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url",
+        "doc://com.apple.documentation/documentation/foundation/nsurl"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurl/1410758-removecachedresourcevalue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410758,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURL(im)removeCachedResourceValueForKey:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "removeCachedResourceValue"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "forKey"
+      },
+      {
+        "kind": "text",
+        "text": ": URLResourceKey)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "removeCachedResourceValue(forKey:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeCachedResourceValue"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forKey"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "key"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSURLResourceKey",
+              "text": "URLResourceKey"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The resource value key whose cached values you want to remove.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "key"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Removing a cached resource value may remove other cached resource values because some resource values are cached as a set of values, and because some resource values depend on other resource values. (Temporary resource values have no dependencies.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is currently applicable only to URLs for file system resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The caching behavior of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " APIs differ. For ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", all cached values (not temporary values) are automatically removed after each pass through the run loop. You only need to call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410758-removecachedresourcevalue",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " method when you want to clear the cache within a single execution of the run loop. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " functions, on the other hand, do not automatically clear cached resource values. The client has complete control over the cache lifetimes, and you must use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to clear cached resource values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLClearResourcePropertyCache(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541959-cfurlclearresourcepropertycache"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLClearResourcePropertyCacheForKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1408208-setresourcevalues": {
+      "abstract": [
+        {
+          "text": "Sets the URL’s resource properties for a given set of keys to a given set of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "([URLResourceKey : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1408208-setresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResourceValues(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1408208-setresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue": {
+      "abstract": [
+        {
+          "text": "Returns the value of the resource property for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<AnyObject?>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1408874-getresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1410758-removecachedresourcevalue": {
+      "abstract": [
+        {
+          "text": "Removes the cached resource value identified by a given key from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410758-removecachedresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResourceValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1410758-removecachedresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1411094-settemporaryresourcevalue": {
+      "abstract": [
+        {
+          "text": "Sets a temporary resource value on the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTemporaryResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "((any Sendable)?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1411094-settemporaryresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTemporaryResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1411094-settemporaryresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue": {
+      "abstract": [
+        {
+          "text": "Sets the URL’s resource property for a given key to a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413819-setresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417078-removeallcachedresourcevalues": {
+      "abstract": [
+        {
+          "text": "Removes all cached resource values and temporary resource values from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllCachedResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417078-removeallcachedresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllCachedResourceValues()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417078-removeallcachedresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevalues": {
+      "abstract": [
+        {
+          "text": "Returns the resource values for the properties identified by specified array of keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey]) -> [URLResourceKey : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceValues(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417657-resourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcekey": {
+      "abstract": [
+        {
+          "text": "Keys that apply to file system URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResourceKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceKey",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcekey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1408208-setresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1417078-removeallcachedresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/1411094-settemporaryresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcekey"
+      ],
+      "title": "Accessing Resource Values"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurl/1410758-removecachedresourcevalueforkey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurl/1410758-removecachedresourcevalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,830 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure the second wired, active Ethernet interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondActiveEthernet"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:8021XSecondActiveEthernet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "8021XSecondActiveEthernet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "8021XSecondActiveEthernet"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "typealias",
+    "title": "8021XSecondActiveEthernet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi/EAPClientConfiguration-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:WiFi.EAPClientConfiguration",
+              "text": "WiFi.EAPClientConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "8021XSecondActiveEthernet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.secondactiveethernet.managed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This payload’s contents contain these profile-specific keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This payload uses the value ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SecondActiveEthernet",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Interface (String)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The dictionary that defines the enterprise profile for the network.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "EAPClientConfiguration (",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi/EAPClientConfiguration-data.dictionary",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of connection mode, which is either “System” or “Loginwindow.” “System” is the default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "SetupModes (String)",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Payloads with ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in their name apply to Ethernet interfaces that are working at the time of profile installation. If there’s no active Ethernet interface working, this payload configures the interface with the highest service-order priority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>AuthenticationMethod</key>",
+            "            <string></string>",
+            "            <key>AutoJoin</key>",
+            "            <true/>",
+            "            <key>CaptiveBypass</key>",
+            "            <false/>",
+            "            <key>EAPClientConfiguration</key>",
+            "            <dict>",
+            "                <key>AcceptEAPTypes</key>",
+            "                <array>",
+            "                    <integer>25</integer>",
+            "                </array>",
+            "                <key>UserName</key>",
+            "                <string>user</string>",
+            "                <key>UserPassword</key>",
+            "                <string>password</string>",
+            "            </dict>",
+            "            <key>EncryptionType</key>",
+            "            <string>WPA2</string>",
+            "            <key>HIDDEN_NETWORK</key>",
+            "            <false/>",
+            "            <key>Interface</key>",
+            "            <string>SecondActiveEthernet</string>",
+            "            <key>Password</key>",
+            "            <string>password</string>",
+            "            <key>ProxyType</key>",
+            "            <string>None</string>",
+            "            <key>SetupModes</key>",
+            "            <array>",
+            "                <string>System</string>",
+            "            </array>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.my8021Xsecaepayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.secondactiveethernet.managed</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>38791a67-90ca-40e5-bddd-fc3dc85a447e</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>802.1x Second Active Ethernet</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>50939eda-ff93-4e0c-907b-159d8d5c1a1a</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstActiveEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the first wired, active Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XFirstActiveEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstActiveEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XFirstActiveEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XFirstActiveEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xfirstactiveethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the first wired Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XFirstEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XFirstEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XFirstEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xfirstethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XGlobalEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the default fallback global Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XGlobalEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XGlobalEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XGlobalEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XGlobalEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xglobalethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondActiveEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the second wired, active Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XSecondActiveEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondActiveEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XSecondActiveEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XSecondActiveEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xsecondactiveethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the second wired Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XSecondEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XSecondEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XSecondEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xsecondethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdActiveEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the third wired, active Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XThirdActiveEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdActiveEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XThirdActiveEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XThirdActiveEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xthirdactiveethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdEthernet": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the third wired Ethernet interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "8021XThirdEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdEthernet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "8021XThirdEthernet"
+        }
+      ],
+      "role": "symbol",
+      "title": "8021XThirdEthernet",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/8021xthirdethernet"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi/EAPClientConfiguration-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that configures an enterprise network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFi.EAPClientConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi/EAPClientConfiguration-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFi.EAPClientConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiFi.EAPClientConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/wifi/eapclientconfiguration-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ethernet",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XGlobalEthernet",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstActiveEthernet",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XFirstEthernet",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XSecondEthernet",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdActiveEthernet",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/8021XThirdEthernet"
+      ],
+      "title": "Ethernet"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/8021xsecondactiveethernet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

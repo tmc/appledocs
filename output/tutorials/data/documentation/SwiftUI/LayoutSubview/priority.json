@@ -1,1 +1,744 @@
-{"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority"},"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"paths":["/documentation/swiftui/layoutsubview/priority"],"traits":[{"interfaceLanguage":"swift"}]}],"sections":[],"metadata":{"modules":[{"name":"SwiftUI"}],"symbolKind":"property","platforms":[{"introducedAt":"16.0","name":"iOS","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"16.0","name":"iPadOS","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"16.0","name":"Mac Catalyst","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"13.0","name":"macOS","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"16.0","name":"tvOS","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"1.0","name":"visionOS","deprecated":false,"beta":false,"unavailable":false},{"introducedAt":"9.0","name":"watchOS","deprecated":false,"beta":false,"unavailable":false}],"roleHeading":"Instance Property","title":"priority","externalID":"s:7SwiftUI13LayoutSubviewV8prioritySdvp","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"priority","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sd","text":"Double","kind":"typeIdentifier"}],"role":"symbol"},"abstract":[{"type":"text","text":"The layout priority of the subview."}],"seeAlsoSections":[{"identifiers":["doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)","doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)","doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing"],"title":"Getting subview characteristics","generated":true,"anchor":"Getting-subview-characteristics"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.SwiftUI/documentation/SwiftUI","doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview"]]},"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["swift"],"tokens":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"priority","kind":"identifier"},{"text":": ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/s:Sd","text":"Double","kind":"typeIdentifier","preciseIdentifier":"s:Sd"},{"text":" { ","kind":"text"},{"text":"get","kind":"keyword"},{"kind":"text","text":" }"}]}]},{"kind":"content","content":[{"text":"Discussion","level":2,"type":"heading","anchor":"discussion"},{"inlineContent":[{"text":"If you define a custom layout type using the ","type":"text"},{"type":"reference","identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/Layout","isActive":true},{"text":" ","type":"text"},{"text":"protocol, you can read this value from subviews and use the value","type":"text"},{"text":" ","type":"text"},{"text":"when deciding how to assign space to subviews. For example, you","type":"text"},{"text":" ","type":"text"},{"text":"can read all of the subview priorities into an array before","type":"text"},{"text":" ","type":"text"},{"text":"placing the subviews in a custom layout type called ","type":"text"},{"type":"codeVoice","code":"BasicVStack"},{"text":":","type":"text"}],"type":"paragraph"},{"syntax":"swift","code":["extension BasicVStack {","    func placeSubviews(","        in bounds: CGRect,","        proposal: ProposedViewSize,","        subviews: Subviews,","        cache: inout ()","    ) {","        let priorities = subviews.map { subview in","            subview.priority","        }","","        // Place views, based on priorities.","    }","}"],"type":"codeListing"},{"inlineContent":[{"text":"Set the layout priority for a view that appears in your layout by","type":"text"},{"text":" ","type":"text"},{"text":"applying the ","type":"text"},{"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)","isActive":true,"type":"reference"},{"text":" view modifier. For example,","type":"text"},{"text":" ","type":"text"},{"text":"you can assign two different priorities to views that you arrange","type":"text"},{"text":" ","type":"text"},{"text":"with ","type":"text"},{"code":"BasicVStack","type":"codeVoice"},{"text":":","type":"text"}],"type":"paragraph"},{"syntax":"swift","code":["BasicVStack {","    Text(\"High priority\")","        .layoutPriority(10)","    Text(\"Low priority\")","        .layoutPriority(1)","}"],"type":"codeListing"}]}],"kind":"symbol","references":{"doc://com.apple.SwiftUI/documentation/SwiftUI/Layout":{"url":"/documentation/swiftui/layout","abstract":[{"text":"A type that defines the geometry of a collection of views.","type":"text"}],"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/Layout","navigatorTitle":[{"text":"Layout","kind":"identifier"}],"role":"symbol","type":"topic","kind":"symbol","title":"Layout","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Layout","kind":"identifier"}]},"doc://com.apple.SwiftUI/documentation/SwiftUI":{"title":"SwiftUI","role":"collection","abstract":[{"text":"Declare the user interface and behavior for your app on every platform.","type":"text"}],"kind":"symbol","type":"topic","url":"/documentation/swiftui","images":[{"identifier":"SwiftUI-PageImage-card.png","type":"card"}],"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI"},"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview":{"url":"/documentation/swiftui/layoutsubview","type":"topic","kind":"symbol","navigatorTitle":[{"text":"LayoutSubview","kind":"identifier"}],"role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"LayoutSubview","kind":"identifier"}],"abstract":[{"type":"text","text":"A proxy that represents one subview of a layout."}],"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview","title":"LayoutSubview"},"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority":{"abstract":[{"type":"text","text":"The layout priority of the subview."}],"kind":"symbol","fragments":[{"kind":"keyword","text":"var"},{"text":" ","kind":"text"},{"text":"priority","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Double","kind":"typeIdentifier","preciseIdentifier":"s:Sd"}],"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority","url":"/documentation/swiftui/layoutsubview/priority","title":"priority","type":"topic","role":"symbol"},"doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)":{"identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)","type":"topic","kind":"symbol","role":"symbol","url":"/documentation/swiftui/view/layoutpriority(_:)","title":"layoutPriority(_:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"layoutPriority","kind":"identifier"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"s:Sd","text":"Double"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"some"},{"text":" ","kind":"text"},{"text":"View","preciseIdentifier":"s:7SwiftUI4ViewP","kind":"typeIdentifier"}],"abstract":[{"type":"text","text":"Sets the priority by which a parent layout should apportion space to"},{"type":"text","text":" "},{"text":"this child.","type":"text"}]},"SwiftUI-PageImage-card.png":{"identifier":"SwiftUI-PageImage-card.png","variants":[{"traits":["2x","light"],"url":"https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"},{"traits":["2x","dark"],"url":"https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"}],"type":"image","alt":"A black Swift logo on a swirly blue and purple background."},"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)":{"type":"topic","role":"symbol","title":"sizeThatFits(_:)","url":"/documentation/swiftui/layoutsubview/sizethatfits(_:)","abstract":[{"type":"text","text":"Asks the subview for its size."}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"sizeThatFits"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"ProposedViewSize","preciseIdentifier":"s:7SwiftUI16ProposedViewSizeV"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"CGSize","preciseIdentifier":"c:@S@CGSize"}],"kind":"symbol","identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)"},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","role":"overview","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","url":"/documentation/technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.externally.resolved.symbol/s:Sd":{"abstract":[{"type":"text","text":"A double-precision, floating-point value type."}],"title":"Double","type":"topic","fragments":[{"kind":"attribute","text":"@frozen"},{"kind":"text","text":" "},{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"text":"Double","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/s:Sd","url":"/documentation/Swift/Double","role":"symbol","kind":"symbol"},"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)":{"abstract":[{"type":"text","text":"Asks the subview for its dimensions and alignment guides."}],"fragments":[{"text":"func","kind":"keyword"},{"kind":"text","text":" "},{"text":"dimensions","kind":"identifier"},{"kind":"text","text":"("},{"text":"in","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"ProposedViewSize","kind":"typeIdentifier","preciseIdentifier":"s:7SwiftUI16ProposedViewSizeV"},{"text":") -> ","kind":"text"},{"text":"ViewDimensions","kind":"typeIdentifier","preciseIdentifier":"s:7SwiftUI14ViewDimensionsV"}],"title":"dimensions(in:)","identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)","kind":"symbol","type":"topic","role":"symbol","url":"/documentation/swiftui/layoutsubview/dimensions(in:)"},"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing":{"abstract":[{"text":"The subviews’s preferred spacing values.","type":"text"}],"kind":"symbol","url":"/documentation/swiftui/layoutsubview/spacing","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"spacing","kind":"identifier"},{"text":": ","kind":"text"},{"text":"ViewSpacing","kind":"typeIdentifier","preciseIdentifier":"s:7SwiftUI11ViewSpacingV"}],"role":"symbol","type":"topic","identifier":"doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing","title":"spacing"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "The layout priority of the subview.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI13LayoutSubviewV8prioritySdvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "priority"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sd",
+        "text": "Double"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "priority"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "priority"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sd",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sd",
+              "text": "Double"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you define a custom layout type using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol, you can read this value from subviews and use the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when deciding how to assign space to subviews. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can read all of the subview priorities into an array before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "placing the subviews in a custom layout type called ",
+              "type": "text"
+            },
+            {
+              "code": "BasicVStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension BasicVStack {",
+            "    func placeSubviews(",
+            "        in bounds: CGRect,",
+            "        proposal: ProposedViewSize,",
+            "        subviews: Subviews,",
+            "        cache: inout ()",
+            "    ) {",
+            "        let priorities = subviews.map { subview in",
+            "            subview.priority",
+            "        }",
+            "",
+            "        // Place views, based on priorities.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the layout priority for a view that appears in your layout by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can assign two different priorities to views that you arrange",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "code": "BasicVStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "BasicVStack {",
+            "    Text(\"High priority\")",
+            "        .layoutPriority(10)",
+            "    Text(\"Low priority\")",
+            "        .layoutPriority(1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout": {
+      "abstract": [
+        {
+          "text": "A type that defines the geometry of a collection of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview": {
+      "abstract": [
+        {
+          "text": "A proxy that represents one subview of a layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayoutSubview"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayoutSubview"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayoutSubview",
+      "type": "topic",
+      "url": "/documentation/swiftui/layoutsubview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)": {
+      "abstract": [
+        {
+          "text": "Asks the subview for its dimensions and alignment guides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dimensions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ProposedViewSizeV",
+          "text": "ProposedViewSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ViewDimensionsV",
+          "text": "ViewDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dimensions(in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/layoutsubview/dimensions(in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority": {
+      "abstract": [
+        {
+          "text": "The layout priority of the subview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/priority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "priority",
+      "type": "topic",
+      "url": "/documentation/swiftui/layoutsubview/priority"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the subview for its size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeThatFits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ProposedViewSizeV",
+          "text": "ProposedViewSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeThatFits(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/layoutsubview/sizethatfits(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing": {
+      "abstract": [
+        {
+          "text": "The subviews’s preferred spacing values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ViewSpacingV",
+          "text": "ViewSpacing"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spacing",
+      "type": "topic",
+      "url": "/documentation/swiftui/layoutsubview/spacing"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the priority by which a parent layout should apportion space to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this child.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutPriority(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/layoutpriority(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sd": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-subview-characteristics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/dimensions(in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/sizeThatFits(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LayoutSubview/spacing"
+      ],
+      "title": "Getting subview characteristics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/layoutsubview/priority"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

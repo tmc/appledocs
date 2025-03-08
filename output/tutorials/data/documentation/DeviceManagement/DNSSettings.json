@@ -1,0 +1,940 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure encrypted DNS settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:DNSSettings",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "DNSSettings"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DNSSettings"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "DNSSettings"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "DNSSettings"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that defines a configuration for an encrypted DNS server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "DNSSettings",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:DNSSettings.DNSSettings",
+              "text": "DNSSettings.DNSSettings"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of rules that define the DNS settings. If not set, the system always applies the DNS settings. These rules are identical to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "OnDemandRules",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array in VPN payloads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "OnDemandRules",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:DNSSettings.OnDemandRulesElement",
+              "text": "DNSSettings.OnDemandRulesElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID that points to an identity certificate payload. The system uses this identity to authenticate the user to the DNS resolver.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "PayloadCertificateUUID",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system prohibits users from disabling DNS settings. This key is only available on supervised devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "ProhibitDisablement",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.dnsSettings.managed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When installed from an MDM, the setting only applies to managed wifi networks",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When installed manually, this setting also applies to cellular.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User-Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure cellular settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cellular"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cellular"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cellular",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/cellular"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork": {
+      "abstract": [
+        {
+          "text": "The payload to provide device info on private network deployments, including geographical location, preference over Wi-Fi, and network deployment type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CellularPrivateNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CellularPrivateNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "CellularPrivateNetwork",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/cellularprivatenetwork"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the content-caching service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentCaching"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentCaching"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentCaching",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/contentcaching"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure encrypted DNS settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines a configuration for an encrypted DNS server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.DNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.DNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings.DNSSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings/dnssettings-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement": {
+      "abstract": [
+        {
+          "text": "A list of domain strings that determine which DNS queries use the DNS server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSSettings.OnDemandRulesElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSSettings.OnDemandRulesElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/dnssettings/ondemandruleselement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the domains under an organization’s management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Domains"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Domains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Domains",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/domains"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the firewall.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Firewall"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Firewall"
+        }
+      ],
+      "role": "symbol",
+      "title": "Firewall",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/firewall"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure network-usage rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkUsageRules"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkUsageRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkUsageRules",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/networkusagerules"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure relay settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Relay"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Relay"
+        }
+      ],
+      "role": "symbol",
+      "title": "Relay",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/relay"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Wi-Fi settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFi"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFi"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiFi",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/wifi"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure managed Wi-Fi settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFiManagedSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFiManagedSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiFiManagedSettings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/wifimanagedsettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Networking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Cellular",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CellularPrivateNetwork",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ContentCaching",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Domains",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Firewall",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/NetworkUsageRules",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Relay",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFi",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/WiFiManagedSettings"
+      ],
+      "title": "Networking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/DNSSettings-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DNSSettings/OnDemandRulesElement"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/dnssettings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

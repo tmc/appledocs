@@ -1,1 +1,448 @@
-{"abstract":[{"type":"text","text":"Terminates the current thread."}],"documentVersion":0,"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.documentation/documentation/foundation","doc://com.apple.documentation/documentation/foundation/processes_and_threads","doc://com.apple.documentation/documentation/foundation/thread"]]},"identifier":{"url":"doc://com.apple.documentation/documentation/foundation/thread/1409404-exit","interfaceLanguage":"swift"},"legacy_identifier":1409404,"kind":"symbol","metadata":{"title":"exit()","role":"symbol","roleHeading":"Type Method","modules":[{"name":"Foundation"}],"platforms":[{"name":"iOS","introducedAt":"2.0","current":"18.4"},{"name":"iPadOS","introducedAt":"2.0","current":"18.4"},{"name":"Mac Catalyst","introducedAt":"13.0","current":"18.4"},{"name":"macOS","introducedAt":"10.0","current":"15.4"},{"name":"tvOS","introducedAt":"9.0","current":"18.4"},{"name":"visionOS","introducedAt":"1.0","current":"2.4"},{"name":"watchOS","introducedAt":"2.0","current":"11.4"}],"externalID":"c:objc(cs)NSThread(cm)exit","parent":{"title":"Thread"},"symbolKind":"clm","fragments":[{"kind":"text","text":"class func "},{"kind":"identifier","text":"exit"},{"kind":"text","text":"()"}]},"schemaVersion":{"major":0,"minor":3,"patch":0},"sections":[],"variants":[{"traits":[{"interfaceLanguage":"occ"}],"paths":["documentation/foundation/nsthread/1409404-exit"]},{"traits":[{"interfaceLanguage":"swift"}],"paths":["documentation/foundation/thread/1409404-exit"]}],"references":{"doc://com.apple.documentation/documentation/foundation":{"title":"Foundation","identifier":"doc://com.apple.documentation/documentation/foundation","url":"/documentation/foundation","type":"topic","kind":"symbol","role":"collection"},"doc://com.apple.documentation/documentation/foundation/processes_and_threads":{"title":"Processes and Threads","identifier":"doc://com.apple.documentation/documentation/foundation/processes_and_threads","url":"/documentation/foundation/processes_and_threads","type":"topic","kind":"article","role":"collectionGroup"},"doc://com.apple.documentation/documentation/foundation/thread":{"title":"Thread","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread","abstract":[{"type":"text","text":"A thread of execution."}]},"doc://com.apple.documentation/documentation/foundation/thread/1410679-current":{"title":"current","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread/1410679-current","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread/1410679-current","abstract":[{"type":"text","text":"Returns the thread object representing the current thread of execution."}],"fragments":[{"kind":"text","text":"class var "},{"kind":"identifier","text":"current"},{"kind":"text","text":": Thread"}]},"doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit":{"title":"NSThreadWillExit","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit","kind":"symbol","role":"symbol","url":"/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"},"doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep":{"title":"sleep(until:)","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread/1415959-sleep","abstract":[{"type":"text","text":"Blocks the current thread until the time specified."}],"fragments":[{"kind":"text","text":"class func "},{"kind":"identifier","text":"sleep"},{"kind":"text","text":"("},{"kind":"identifier","text":"until"},{"kind":"text","text":": Date)"}]},"doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep":{"title":"sleep(forTimeInterval:)","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread/1413673-sleep","abstract":[{"type":"text","text":"Sleeps the thread for a given time interval."}],"fragments":[{"kind":"text","text":"class func "},{"kind":"identifier","text":"sleep"},{"kind":"text","text":"("},{"kind":"identifier","text":"forTimeInterval"},{"kind":"text","text":": TimeInterval)"}]},"doc://com.apple.documentation/documentation/foundation/thread/1409404-exit":{"title":"exit()","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread/1409404-exit","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread/1409404-exit","abstract":[{"type":"text","text":"Terminates the current thread."}],"fragments":[{"kind":"text","text":"class func "},{"kind":"identifier","text":"exit"},{"kind":"text","text":"()"}]},"doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel":{"title":"cancel()","type":"topic","identifier":"doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel","kind":"symbol","role":"symbol","url":"/documentation/foundation/thread/1411303-cancel","abstract":[{"type":"text","text":"Changes the cancelled state of the receiver to indicate that it should exit."}],"fragments":[{"kind":"text","text":"func "},{"kind":"identifier","text":"cancel"},{"kind":"text","text":"()"}]},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies","title":"Technologies"}},"seeAlsoSections":[{"identifiers":["doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep","doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep","doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel"],"title":"Stopping a Thread","generated":true},{"title":"Related Documentation","generated":false,"identifiers":["doc://com.apple.documentation/documentation/foundation/thread/1410679-current"]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"tokens":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"exit"},{"kind":"text","text":"()"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"]}]},{"kind":"content","content":[{"anchor":"discussion","level":2,"text":"Discussion","type":"heading"},{"type":"paragraph","inlineContent":[{"type":"text","text":"This method uses the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/foundation/thread/1410679-current"},{"type":"text","text":" class method to access the current thread. Before exiting the thread, this method posts the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"},{"type":"text","text":" with the thread being exited to the default notification center. Because notifications are delivered synchronously, all observers of "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"},{"type":"text","text":" are guaranteed to receive the notification before the thread exits."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Invoking this method should be avoided as it does not give your thread a chance to clean up any resources it allocated during its execution. "}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Terminates the current thread.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/thread"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409404,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSThread(cm)exit",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "exit"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Thread"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "exit()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "exit"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1410679-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method to access the current thread. Before exiting the thread, this method posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the thread being exited to the default notification center. Because notifications are delivered synchronously, all observers of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are guaranteed to receive the notification before the thread exits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Invoking this method should be avoided as it does not give your thread a chance to clean up any resources it allocated during its execution. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSThreadWillExit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread": {
+      "abstract": [
+        {
+          "text": "A thread of execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Thread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit": {
+      "abstract": [
+        {
+          "text": "Terminates the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "exit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exit()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409404-exit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1410679-current": {
+      "abstract": [
+        {
+          "text": "Returns the thread object representing the current thread of execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1410679-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1410679-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel": {
+      "abstract": [
+        {
+          "text": "Changes the cancelled state of the receiver to indicate that it should exit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1411303-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep": {
+      "abstract": [
+        {
+          "text": "Sleeps the thread for a given time interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleep(forTimeInterval:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1413673-sleep"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the time specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleep(until:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1415959-sleep"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep",
+        "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep",
+        "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel"
+      ],
+      "title": "Stopping a Thread"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1410679-current"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsthread/1409404-exit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/thread/1409404-exit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

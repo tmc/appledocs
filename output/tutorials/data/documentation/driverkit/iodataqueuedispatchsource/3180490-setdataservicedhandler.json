@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Installs the handler block to execute when data is removed from the queue.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180490-setdataservicedhandler"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180490,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IODataQueueDispatchSource@F@SetDataServicedHandler#*$@S@OSAction#",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "parent": {
+      "title": "IODataQueueDispatchSource"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "SetDataServicedHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "virtual"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetDataServicedHandler"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSAction",
+              "text": "OSAction"
+            },
+            {
+              "kind": "text",
+              "text": " *action);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains the callback method to execute. The data queue retains your action object until you install a new handler or cancel the dispatch source. The system executes your callback on the dispatch queue you designated in your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "action"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your code produces data for the queue, use this method to install a handler so you can add more data to the queue. When space becomes available in the queue, the system executes your handler.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientenqueueentryblock": {
+      "abstract": [
+        {
+          "text": "The handler block you use to add data to a queue. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientenqueueentryblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueClientEnqueueEntryBlock",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueueclientenqueueentryblock"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that manages a shared-memory data queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180479-dataserviced": {
+      "abstract": [
+        {
+          "text": "Responds to the removal of data from the queue.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataServiced"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180479-dataserviced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataServiced",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource/3180479-dataserviced"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180490-setdataservicedhandler": {
+      "abstract": [
+        {
+          "text": "Installs the handler block to execute when data is removed from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetDataServicedHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180490-setdataservicedhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetDataServicedHandler",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource/3180490-setdataservicedhandler"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438180-enqueue": {
+      "abstract": [
+        {
+          "text": "Adds a single entry to the shared data queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438180-enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438180-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438181-enqueuewithcoalesce": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the queue, but doesn't automatically send a data-available notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnqueueWithCoalesce"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438181-enqueuewithcoalesce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnqueueWithCoalesce",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438181-enqueuewithcoalesce"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438184-senddataavailable": {
+      "abstract": [
+        {
+          "text": "Sends a notification to observers that indicates more data is available for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendDataAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438184-senddataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SendDataAvailable",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438184-senddataavailable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180479-dataserviced",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438180-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438181-enqueuewithcoalesce",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438184-senddataavailable",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientenqueueentryblock"
+      ],
+      "title": "Adding Work to the Queue"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/iodataqueuedispatchsource/3180490-setdataservicedhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

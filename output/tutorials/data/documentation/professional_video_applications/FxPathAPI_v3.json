@@ -1,0 +1,2878 @@
+{
+  "abstract": [
+    {
+      "text": "An API that defines the methods to retrieve information about paths, shapes, and masks the user has drawn on an object.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)FxPathAPI_v3",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FxPathAPI_v3"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FxPathAPI_v3"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "FxPlug"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "FxPathAPI_v3"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Unsupported OS: FxPlug"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API is used to get information about a path that the user has drawn on an object in the canvas. You can get the number of paths applied to the object, and then enumerate through them, or pick a specific one. You can use this API to retrieve the control points along the path and use that information to guide the rendering of your plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This API does not inherit from the ",
+                  "type": "text"
+                },
+                {
+                  "code": "FxPathAPI",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". It is a new API for FxPlug 4 that uses ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+                  "type": "text"
+                },
+                {
+                  "text": " and handles ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSErrors",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " consistently with other familiar APIs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Simplify user interaction by using onscreen controls for your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding onscreen controls to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-onscreen-controls-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI": {
+      "abstract": [
+        {
+          "text": "Commands that you can tell the host to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2": {
+      "abstract": [
+        {
+          "text": "Adds functionality to move the playhead to a specific timeline time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods to retrieve information about paths, shapes, and masks the user has drawn on an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/blendMode(_:ofPath:)": {
+      "abstract": [
+        {
+          "text": "Gets the blending mode for a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathBlendMode",
+          "text": "FxPathBlendMode"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/blendMode(_:ofPath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendMode:ofPath:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "blendMode(_:ofPath:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/blendmode(_:ofpath:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:inverted:at:)": {
+      "abstract": [
+        {
+          "text": "Tells whether the path is inverted or not.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inverted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:inverted:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPath:inverted:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isPath(_:inverted:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/ispath(_:inverted:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:open:at:)": {
+      "abstract": [
+        {
+          "text": "Tells whether the path is opened or closed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:open:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPath:open:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isPath(_:open:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/ispath(_:open:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides you the length of the entire path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "length:ofPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "length(_:ofPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/length(_:ofpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofSegment:ofPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides the length of one segment of the entire path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofSegment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofSegment:ofPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "length:ofSegment:ofPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "length(_:ofSegment:ofPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/length(_:ofsegment:ofpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/name(_:ofPath:)": {
+      "abstract": [
+        {
+          "text": "Provides the name the user has entered for the path with the given ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/name(_:ofPath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name:ofPath:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "name(_:ofPath:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/name(_:ofpath:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/number(ofVertices:inPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides the number of vertices in the given path at the given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofVertices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/number(ofVertices:inPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfVertices:inPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "number(ofVertices:inPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/number(ofvertices:inpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/numberOfPaths(at:)": {
+      "abstract": [
+        {
+          "text": "Provides the number of paths on the object to which your filter is applied, or on your generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfPaths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/numberOfPaths(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfPathsAtTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "numberOfPaths(at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/numberofpaths(at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathGeometryInfo(_:forPath:at:)": {
+      "abstract": [
+        {
+          "text": "Gets geometry information about a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathGeometryInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxPathGeometryInfo",
+          "text": "FxPathGeometryInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathGeometryInfo(_:forPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pathGeometryInfo:forPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pathGeometryInfo(_:forPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/pathgeometryinfo(_:forpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathID(_:for:)": {
+      "abstract": [
+        {
+          "text": "Gets the unique ID of the path at the index requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathID(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pathID:forIndex:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pathID(_:for:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/pathid(_:for:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfDistance:alongPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides a 2D point that contains the location of the point on the path, at a distance along the path’s length  equal to the value of ",
+          "type": "text"
+        },
+        {
+          "code": "percentDist",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPoint2D",
+          "text": "FxPoint2D"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPercentageOfDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alongPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfDistance:alongPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "point:atPercentageOfDistance:alongPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "point(_:atPercentageOfDistance:alongPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/point(_:atpercentageofdistance:alongpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfParameter:alongPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides a 2D point that contains the location of the point on the path, at a distance along the path’s parametric distance equal to the percent value of ",
+          "type": "text"
+        },
+        {
+          "code": "percentParameter",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPoint2D",
+          "text": "FxPoint2D"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPercentageOfParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alongPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfParameter:alongPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "point:atPercentageOfParameter:alongPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "point(_:atPercentageOfParameter:alongPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/point(_:atpercentageofparameter:alongpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/setPath(_:toColor:)": {
+      "abstract": [
+        {
+          "text": "Sets the color the host app uses to draw the path with the given ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathColor",
+          "text": "FxPathColor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/setPath(_:toColor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPath:toColor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setPath(_:toColor:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/setpath(_:tocolor:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/style(_:ofPath:)": {
+      "abstract": [
+        {
+          "text": "Provides the style of the path — linear, bezier, or b-spline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathStyle",
+          "text": "FxPathStyle"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/style(_:ofPath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "style:ofPath:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "style(_:ofPath:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/style(_:ofpath:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/vertex(_:at:ofPath:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information about a single vertex on the path at the given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxVertex",
+          "text": "FxVertex"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxPathID",
+          "text": "FxPathID"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/vertex(_:at:ofPath:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vertex:atIndex:ofPath:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "vertex(_:at:ofPath:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3/vertex(_:at:ofpath:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathBlendMode": {
+      "abstract": [
+        {
+          "text": "The type of blending the user selects for the mask that a particular path describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathBlendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathBlendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathBlendMode",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathblendmode"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathColor": {
+      "abstract": [
+        {
+          "text": "The colors that the host app uses to display a path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathColor"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathColor",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathcolor"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathGeometryInfo": {
+      "abstract": [
+        {
+          "text": "A structure that defines the geometry information of the path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathGeometryInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathGeometryInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathGeometryInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathGeometryInfo",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathgeometryinfo"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathID": {
+      "abstract": [
+        {
+          "text": "The unique identifier for a path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathID"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathID"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathID",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathid"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathStyle": {
+      "abstract": [
+        {
+          "text": "The style of the path, which is linear, bezier, or b-spline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathStyle",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathstyle"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window with a defined minimum and maximum size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods that the host app implements to handle plug-in management of the host app’s undo queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxUndoAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxundoapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVertex": {
+      "abstract": [
+        {
+          "text": "The properties of one vertex in a path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxVertex"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVertex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxVertex"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxVertex",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxvertex"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Path-Information",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/numberOfPaths(at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathID(_:for:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/name(_:ofPath:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:open:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:inverted:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/style(_:ofPath:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofSegment:ofPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/number(ofVertices:inPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/vertex(_:at:ofPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfDistance:alongPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfParameter:alongPath:at:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/blendMode(_:ofPath:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathGeometryInfo(_:forPath:at:)"
+      ],
+      "title": "Getting Path Information"
+    },
+    {
+      "anchor": "Setting-Path-Information",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/setPath(_:toColor:)"
+      ],
+      "title": "Setting Path Information"
+    },
+    {
+      "anchor": "Structuring-Path-Information",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathGeometryInfo",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVertex"
+      ],
+      "title": "Structuring Path Information"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathBlendMode",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathColor",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathID",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathStyle"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "FxPathAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-Path-Information",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/numberOfPaths(at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathID(_:for:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/name(_:ofPath:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:open:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/isPath(_:inverted:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/style(_:ofPath:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/length(_:ofSegment:ofPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/number(ofVertices:inPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/vertex(_:at:ofPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfDistance:alongPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/point(_:atPercentageOfParameter:alongPath:at:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/blendMode(_:ofPath:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/pathGeometryInfo(_:forPath:at:)"
+              ],
+              "title": "Getting Path Information"
+            },
+            {
+              "anchor": "Setting-Path-Information",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3/setPath(_:toColor:)"
+              ],
+              "title": "Setting Path Information"
+            },
+            {
+              "anchor": "Structuring-Path-Information",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathGeometryInfo",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVertex"
+              ],
+              "title": "Structuring Path Information"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathBlendMode",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathColor",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathID",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathStyle"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Unsupported OS: FxPlug"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "FxPathAPI_v3"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1name(_:ofPath:)/title",
+          "value": "name:ofPath:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1name(_:ofPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "name:ofPath:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1length(_:ofSegment:ofPath:at:)/title",
+          "value": "length:ofSegment:ofPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1length(_:ofSegment:ofPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "length:ofSegment:ofPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1vertex(_:at:ofPath:at:)/title",
+          "value": "vertex:atIndex:ofPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1vertex(_:at:ofPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "vertex:atIndex:ofPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathColor/title",
+          "value": "FxPathColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/title",
+          "value": "FxRemoteWindowAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1numberOfPaths(at:)/title",
+          "value": "numberOfPathsAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1numberOfPaths(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfPathsAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/title",
+          "value": "FxCommandAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1isPath(_:open:at:)/title",
+          "value": "isPath:open:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1isPath(_:open:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPath:open:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1style(_:ofPath:)/title",
+          "value": "style:ofPath:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1style(_:ofPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "style:ofPath:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1pathID(_:for:)/title",
+          "value": "pathID:forIndex:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1pathID(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pathID:forIndex:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1point(_:atPercentageOfParameter:alongPath:at:)/title",
+          "value": "point:atPercentageOfParameter:alongPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1point(_:atPercentageOfParameter:alongPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "point:atPercentageOfParameter:alongPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/title",
+          "value": "FxUndoAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathStyle/title",
+          "value": "FxPathStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1isPath(_:inverted:at:)/title",
+          "value": "isPath:inverted:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1isPath(_:inverted:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPath:inverted:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/title",
+          "value": "FxPathAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathGeometryInfo/title",
+          "value": "FxPathGeometryInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathGeometryInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathGeometryInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathGeometryInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathGeometryInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1length(_:ofPath:at:)/title",
+          "value": "length:ofPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1length(_:ofPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "length:ofPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1blendMode(_:ofPath:)/title",
+          "value": "blendMode:ofPath:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1blendMode(_:ofPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "blendMode:ofPath:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/title",
+          "value": "FxCommandAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVertex/title",
+          "value": "FxVertex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVertex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVertex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVertex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVertex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathID/title",
+          "value": "FxPathID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathBlendMode/title",
+          "value": "FxPathBlendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathBlendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathBlendMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/title",
+          "value": "FxRemoteWindowAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1setPath(_:toColor:)/title",
+          "value": "setPath:toColor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1setPath(_:toColor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPath:toColor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1number(ofVertices:inPath:at:)/title",
+          "value": "numberOfVertices:inPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1number(ofVertices:inPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfVertices:inPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1pathGeometryInfo(_:forPath:at:)/title",
+          "value": "pathGeometryInfo:forPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1pathGeometryInfo(_:forPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pathGeometryInfo:forPath:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1point(_:atPercentageOfDistance:alongPath:at:)/title",
+          "value": "point:atPercentageOfDistance:alongPath:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3~1point(_:atPercentageOfDistance:alongPath:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "point:atPercentageOfDistance:alongPath:atTime:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fxpathapi_v3"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fxpathapi_v3"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

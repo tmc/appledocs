@@ -1,0 +1,2437 @@
+{
+  "abstract": [
+    {
+      "text": "Support professional photography workflows by enabling minimally processed image capture in your camera app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-in-raw-and-apple-proraw-formats"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Capturing Photos in RAW and Apple ProRAW Formats"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the image-capture pipeline uses advanced computational photography techniques to achieve the highest quality images, and delivers the processed result to your app in a compressed format for efficient storage and display. Processed formats are a great choice in many cases, but RAW formats contain minimally processed image data from the camera sensor, which gives your app users more creative control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capturing images in RAW formats results in much larger files than compressed formats, but greatly expands editing capabilities in post-production. One drawback to shooting in standard RAW formats is that it bypasses the advanced processing that the image-capture pipeline provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beginning in iOS 14.3, and available on iPhone 12 Pro and Pro Max, you can use the Apple ProRAW format. The Apple ProRAW format provides the benefits of RAW capture, and applies many of the multi-image fusion techniques previously unavailable to RAW workflows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can use Core Image to display and edit RAW and Apple ProRAW files. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter/3801630-init",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " initializer for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-Apple-ProRAW-Support",
+          "level": 3,
+          "text": "Enable Apple ProRAW Support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether your app’s photo output supports the Apple ProRAW format in the current environment, add the output to a capture session that has a connected video source, and query its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If the current environment supports the Apple ProRAW format, you can enable the photo output to use it by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let captureSession = AVCaptureSession()",
+            "private let photoOutput = AVCapturePhotoOutput()",
+            "",
+            "private func setupSession() throws {",
+            "    ",
+            "    // Start the capture session configuration.",
+            "    captureSession.beginConfiguration()",
+            "    ",
+            "    // Configure the session for photo capture.",
+            "    captureSession.sessionPreset = .photo",
+            "    ",
+            "    // Connect the default video device.",
+            "    let videoInput = try AVCaptureDeviceInput(device: defaultVideoDevice)",
+            "    if captureSession.canAddInput(videoInput) {",
+            "        captureSession.addInput(videoInput)",
+            "        currentVideoInput = videoInput",
+            "    } else {",
+            "        throw CameraError.setupFailed",
+            "    }",
+            "    ",
+            "    // Connect and configure the capture output.",
+            "    if captureSession.canAddOutput(photoOutput) {",
+            "        captureSession.addOutput(photoOutput)",
+            "        ",
+            "        // Use the Apple ProRAW format when the environment supports it.",
+            "        photoOutput.isAppleProRAWEnabled = photoOutput.isAppleProRAWSupported",
+            "    } else {",
+            "        throw CameraError.setupFailed",
+            "    }",
+            "    ",
+            "    // Session configuration is complete. Commit the configuration.",
+            "    captureSession.commitConfiguration()",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling use of the Apple ProRAW format adds an entry to the photo output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/availableRawPhotoPixelFormatTypes-5fatm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. You can determine whether a particular format in the array is an Apple ProRAW or a Bayer RAW format by querying the output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWPixelFormat(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isBayerRAWPixelFormat(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To avoid a lengthy reconfiguration of the capture pipeline, enable Apple ProRAW capture before starting the capture session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Capture-RAW-and-Apple-ProRAW-Photos",
+          "level": 3,
+          "text": "Capture RAW and Apple ProRAW Photos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capturing photos in RAW and Apple ProRAW formats requires only minor changes to the basic photography workflow in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Begin by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that specifies the RAW format to capture, and optionally, a processed format to capture if your app supports creating RAW+JPEG files. The capture pipeline only supports the RAW formats in the photo output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/availableRawPhotoPixelFormatTypes-5fatm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below finds the appropriate RAW format, choosing the Apple ProRAW format when it’s in an enabled state, and the Bayer RAW format when it’s not. It creates a photo settings object that specifies the RAW and processed formats, and a delegate object to monitor the capture progress. Finally, it calls the photo output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing it the photo settings and delegate objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let query = photoOutput.isAppleProRAWEnabled ?",
+            "    { AVCapturePhotoOutput.isAppleProRAWPixelFormat($0) } :",
+            "    { AVCapturePhotoOutput.isBayerRAWPixelFormat($0) }",
+            "",
+            "// Retrieve the RAW format, favoring the Apple ProRAW format when it's in an enabled state.",
+            "guard let rawFormat =",
+            "        photoOutput.availableRawPhotoPixelFormatTypes.first(where: query) else {",
+            "    fatalError(\"No RAW format found.\")",
+            "}",
+            "",
+            "// Capture a RAW format photo, along with a processed format photo.",
+            "let processedFormat = [AVVideoCodecKey: AVVideoCodecType.hevc]",
+            "let photoSettings = AVCapturePhotoSettings(rawPixelFormatType: rawFormat,",
+            "                                           processedFormat: processedFormat)",
+            "",
+            "// Create a delegate to monitor the capture process.",
+            "let delegate = RAWCaptureDelegate()",
+            "captureDelegates[photoSettings.uniqueID] = delegate",
+            "",
+            "// Remove the delegate reference when it finishes its processing.",
+            "delegate.didFinish = {",
+            "    self.captureDelegates[photoSettings.uniqueID] = nil",
+            "}",
+            "",
+            "// Tell the output to capture the photo.",
+            "photoOutput.capturePhoto(with: photoSettings, delegate: delegate)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple ProRAW format supports capturing up to a full-resolution JPEG image to use as a thumbnail photo. Set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/rawEmbeddedThumbnailPhotoFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your photo settings object as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Select the first available codec type, which is JPEG.",
+            "guard let thumbnailPhotoCodecType =",
+            "    photoSettings.availableRawEmbeddedThumbnailPhotoCodecTypes.first else {",
+            "    // Handle the failure to find an available thumbnail photo codec type.",
+            "}",
+            "",
+            "// Select the maximum photo dimensions as thumbnail dimensions if a full-size thumbnail is desired.",
+            "// The system clamps these dimensions to the photo dimensions if the capture produces a photo with smaller than maximum dimensions.",
+            "let dimensions = photoSettings.maxPhotoDimensions",
+            "",
+            "photoSettings.rawEmbeddedThumbnailPhotoFormat = [",
+            "    AVVideoCodecKey: thumbnailPhotoCodecType,",
+            "    AVVideoWidthKey: dimensions.width,",
+            "    AVVideoHeightKey: dimensions.height",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-the-Captured-Photos",
+          "level": 3,
+          "text": "Handle the Captured Photos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The photo output calls its delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method at least once for each format you request, and possibly additional times, depending on your capture settings. Using the capture settings in the previous section results in the photo output calling this delegate method twice: once for the RAW or Apple ProRAW image, and again for the processed image. In each invocation, get the photo’s file data by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and store it as necessary. If you call this method on a RAW or Apple ProRAW photo, it returns the data in the industry-standard DNG file format. If you call it on processed images, it returns the compressed bitmap image data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. It writes the RAW file to disk and stores a reference to the processed photo’s compressed bitmap data for later use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class RAWCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {",
+            "    ",
+            "    private var rawFileURL: URL?",
+            "    private var compressedData: Data?",
+            "    ",
+            "    var didFinish: (() -> Void)?",
+            "    ",
+            "    // Store the RAW file and compressed photo data until the capture finishes.",
+            "    func photoOutput(_ output: AVCapturePhotoOutput,",
+            "                     didFinishProcessingPhoto photo: AVCapturePhoto,",
+            "                     error: Error?) {",
+            "        ",
+            "        guard error == nil else {",
+            "            print(\"Error capturing photo: \\(error!)\")",
+            "            return",
+            "        }",
+            "        ",
+            "        // Access the file data representation of this photo.",
+            "        guard let photoData = photo.fileDataRepresentation() else {",
+            "            print(\"No photo data to write.\")",
+            "            return",
+            "        }",
+            "        ",
+            "        if photo.isRawPhoto {",
+            "            // Generate a unique URL to write the RAW file.",
+            "            rawFileURL = makeUniqueDNGFileURL()",
+            "            do {",
+            "                // Write the RAW (DNG) file data to a URL.",
+            "                try photoData.write(to: rawFileURL!)",
+            "            } catch {",
+            "                fatalError(\"Couldn't write DNG file to the URL.\")",
+            "            }",
+            "        } else {",
+            "            // Store compressed bitmap data.",
+            "            compressedData = photoData",
+            "        }",
+            "    }",
+            "    ",
+            "    private func makeUniqueDNGFileURL() -> URL {",
+            "        let tempDir = FileManager.default.temporaryDirectory",
+            "        let fileName = ProcessInfo.processInfo.globallyUniqueString",
+            "        return tempDir.appendingPathComponent(fileName).appendingPathExtension(\"dng\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-the-Apple-ProRAW-Output",
+          "level": 3,
+          "text": "Customize the Apple ProRAW Output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when you ask for the file data representation of an Apple ProRAW photo, you get the data in full lossless quality. If you’re willing to accept some lossy compression to achieve smaller file sizes, you can customize the compression settings by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passing it a custom object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The following code shows an example implementation of this protocol that applies minimal compression to the output image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class AppleProRAWCustomizer: NSObject, AVCapturePhotoFileDataRepresentationCustomizer {",
+            "    ",
+            "    // Customize the compression settings.",
+            "    func replacementAppleProRAWCompressionSettings(for photo: AVCapturePhoto, ",
+            "                                                   defaultSettings: [String : Any], ",
+            "                                                   maximumBitDepth: Int) -> [String : Any] {",
+            "        ",
+            "        // Reduce the bit depth and quality of the final file.",
+            "        return [AVVideoAppleProRAWBitDepthKey: maximumBitDepth - 2, ",
+            "                AVVideoQualityKey: 0.95]",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this customizer when retrieving the file data representation of a ProRAW photo, create a new instance of your customizer and pass it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get a minimally compressed representation of the file data.",
+            "let customizer = AppleProRAWCustomizer()",
+            "let photoData = photo.fileDataRepresentation(with: customizer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Save-the-Photos-to-the-Photos-Library",
+          "level": 3,
+          "text": "Save the Photos to the Photos Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The photo output indicates when it finishes the capture request by calling the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishCaptureFor:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This callback provides an opportunity to save the captured photos to the user’s Photos library. For more information about configuring your app to access the user’s Photos library, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To save the captured photos to the user’s Photos library, create a single Photos asset that associates the RAW or Apple ProRAW data with the processed data. Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then specify the DNG version as the asset’s main ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/photo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource, and the processed image as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/alternatePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource. Perform the request inside a change block as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// After both RAW and compressed versions are complete, add them to the Photos library.",
+            "func photoOutput(_ output: AVCapturePhotoOutput,",
+            "                 didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings,",
+            "                 error: Error?) {",
+            "    ",
+            "    // Call the \"finished\" closure, if you set it.",
+            "    defer { didFinish?() }",
+            "    ",
+            "    guard error == nil else {",
+            "        print(\"Error capturing photo: \\(error!)\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Ensure the RAW and processed photo data exists.",
+            "    guard let rawFileURL = rawFileURL,",
+            "          let compressedData = compressedData else {",
+            "        print(\"The expected photo data isn't available.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Request add-only access to the user's Photos library (if the user hasn't already granted that access).",
+            "    PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in",
+            "        ",
+            "        // Don't continue unless the user granted access.",
+            "        guard status == .authorized else { return }",
+            "        ",
+            "        PHPhotoLibrary.shared().performChanges {",
+            "            ",
+            "            let creationRequest = PHAssetCreationRequest.forAsset()",
+            "            ",
+            "            // Save the RAW (DNG) file as the main resource for the Photos asset.",
+            "            let options = PHAssetResourceCreationOptions()",
+            "            options.shouldMoveFile = true",
+            "            creationRequest.addResource(with: .photo,",
+            "                                        fileURL: rawFileURL,",
+            "                                        options: options)",
+            "            ",
+            "            ",
+            "            // Add the compressed (HEIF) data as an alternative resource.",
+            "            creationRequest.addResource(with: .alternatePhoto,",
+            "                                        data: compressedData,",
+            "                                        options: nil)",
+            "            ",
+            "        } completionHandler: { success, error in",
+            "            // Process the Photos library error.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy": {
+      "abstract": [
+        {
+          "text": "A lightly-processed photo with data that the system may use to process and fetch a higher-resolution asset at a later time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeferredPhotoProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeferredPhotoProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDeferredPhotoProxy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedeferredphotoproxy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()": {
+      "abstract": [
+        {
+          "text": "Generates and returns a flat data representation of the photo and its attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)": {
+      "abstract": [
+        {
+          "text": "Gets a customized representation of the photo data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoFileDataRepresentationCustomizer",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentationWithCustomizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for monitoring progress and receiving results from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoCaptureDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoCaptureDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoCaptureDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishCaptureFor:error:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate that the capture process is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishCaptureFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureResolvedPhotoSettings",
+          "text": "AVCaptureResolvedPhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishCaptureFor:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:didFinishCaptureForResolvedSettings:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishCaptureFor:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishcapturefor:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with the captured image and associated metadata resulting from a photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishProcessingPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+          "text": "AVCapturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:didFinishProcessingPhoto:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishProcessingPhoto:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to customize the packaging of photo data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoFileDataRepresentationCustomizer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotofiledatarepresentationcustomizer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/availableRawPhotoPixelFormatTypes-5fatm": {
+      "abstract": [
+        {
+          "text": "The pixel formats the capture output supports for RAW photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "availableRawPhotoPixelFormatTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/availableRawPhotoPixelFormatTypes-5fatm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableRawPhotoPixelFormatTypes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/availablerawphotopixelformattypes-5fatm"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)": {
+      "abstract": [
+        {
+          "text": "Initiates a photo capture using the specified settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoSettings",
+          "text": "AVCapturePhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoCaptureDelegate",
+          "text": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturePhotoWithSettings:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturePhoto(with:delegate:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you’ve configured the photo output to deliver Apple ProRAW formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAppleProRAWEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appleProRAWEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAppleProRAWEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/isappleprorawenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWPixelFormat(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the pixel format is an Apple ProRAW format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAppleProRAWPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWPixelFormat(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isAppleProRAWPixelFormat:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAppleProRAWPixelFormat(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/isappleprorawpixelformat(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current device and configuration supports Apple ProRAW pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAppleProRAWSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appleProRAWSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAppleProRAWSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/isappleprorawsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isBayerRAWPixelFormat(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the pixel format is a Bayer RAW format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBayerRAWPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isBayerRAWPixelFormat(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isBayerRAWPixelFormat:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBayerRAWPixelFormat(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/isbayerrawpixelformat(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that monitors changes to a photo output’s capture readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutputReadinessCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutputreadinesscoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol to receive updates about a photo output’s capture readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutputReadinessCoordinatorDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutputreadinesscoordinatordelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/rawEmbeddedThumbnailPhotoFormat": {
+      "abstract": [
+        {
+          "text": "A dictionary describing the format for delivery of raw thumbnail images embedded in photo file output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawEmbeddedThumbnailPhotoFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/rawEmbeddedThumbnailPhotoFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rawEmbeddedThumbnailPhotoFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "rawEmbeddedThumbnailPhotoFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/rawembeddedthumbnailphotoformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for capturing still photos.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureStillImageOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureStillImageOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureStillImageOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturestillimageoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images": {
+      "abstract": [
+        {
+          "text": "Add the power of a photography studio and lighting rig to your app with the new Constant Color API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing consistent color images",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-consistent-color-images"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos": {
+      "abstract": [
+        {
+          "text": "Configure and capture single or multiple still images, Live Photos, and other forms of photography.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capturing Still and Live Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-still-and-live-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture": {
+      "abstract": [
+        {
+          "text": "Capture high-quality still images, Live Photos, and supporting photo data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Photo capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/photo-capture"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos": {
+      "abstract": [
+        {
+          "text": "Add an image and other data from a photo capture to the photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving Captured Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/saving-captured-photos"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Incorporate scanned documents and pictures from a user’s iPhone, iPad, or iPod touch into your Mac app using Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Continuity Camera in Your Mac App",
+      "type": "topic",
+      "url": "/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest": {
+      "abstract": [
+        {
+          "text": "A request to create a new Photos asset from underlying data resources, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCreationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAssetCreationRequest",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetCreationRequest"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/alternatePhoto": {
+      "abstract": [
+        {
+          "text": "Provides photo data that isn’t the primary form of its asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternatePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/alternatePhoto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAssetResourceType.alternatePhoto",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetResourceType/alternatePhoto"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/photo": {
+      "abstract": [
+        {
+          "text": "Provides the original photo data for its asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetResourceType/photo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAssetResourceType.photo",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetResourceType/photo"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirawfilter": {
+      "abstract": [
+        {
+          "text": "A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRAWFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRAWFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirawfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirawfilter/3801630-init": {
+      "abstract": [
+        {
+          "text": "Creates a RAW filter from the image at the URL location that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "imageURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter/3801630-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(imageURL:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirawfilter/3801630-init"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Photo-capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+        "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput"
+      ],
+      "title": "Photo capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Photo-capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+                "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput"
+              ],
+              "title": "Photo capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/title",
+          "value": "AVCapturePhotoOutputReadinessCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/title",
+          "value": "captureOutput:didFinishProcessingPhoto:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:didFinishProcessingPhoto:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWPixelFormat(_:)/title",
+          "value": "isAppleProRAWPixelFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWPixelFormat(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isAppleProRAWPixelFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/title",
+          "value": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoCaptureDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoCaptureDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/title",
+          "value": "AVCaptureStillImageOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureStillImageOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureStillImageOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetResourceType~1photo/title",
+          "value": "PHAssetResourceTypePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetResourceType~1photo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetResourceTypePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWEnabled/title",
+          "value": "appleProRAWEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appleProRAWEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetCreationRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHAssetCreationRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHAssetChangeRequest",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isBayerRAWPixelFormat(_:)/title",
+          "value": "isBayerRAWPixelFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isBayerRAWPixelFormat(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isBayerRAWPixelFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/title",
+          "value": "AVCaptureDeferredPhotoProxy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeferredPhotoProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeferredPhotoProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetResourceType~1alternatePhoto/title",
+          "value": "PHAssetResourceTypeAlternatePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetResourceType~1alternatePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetResourceTypeAlternatePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(with:)/title",
+          "value": "fileDataRepresentationWithCustomizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentationWithCustomizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1cirawfilter~13801630-init/title",
+          "value": "filterWithImageURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/title",
+          "value": "AVCapturePhotoFileDataRepresentationCustomizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWSupported/title",
+          "value": "appleProRAWSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isAppleProRAWSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appleProRAWSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/title",
+          "value": "capturePhotoWithSettings:delegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capturePhotoWithSettings:delegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/title",
+          "value": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/title",
+          "value": "fileDataRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1rawEmbeddedThumbnailPhotoFormat/title",
+          "value": "rawEmbeddedThumbnailPhotoFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1rawEmbeddedThumbnailPhotoFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rawEmbeddedThumbnailPhotoFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishCaptureFor:error:)/title",
+          "value": "captureOutput:didFinishCaptureForResolvedSettings:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishCaptureFor:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:didFinishCaptureForResolvedSettings:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-photos-in-raw-and-apple-proraw-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-photos-in-raw-and-apple-proraw-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

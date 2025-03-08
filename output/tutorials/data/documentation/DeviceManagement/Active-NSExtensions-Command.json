@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "Get a list of active extensions for a user on a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:mdm#ActiveNSExtensionsCommand",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Active NSExtensions Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "List Active NSExtensions"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "mdm#ActiveNSExtensionsCommand"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsCommand",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:ActiveNSExtensionsCommand",
+          "text": "ActiveNSExtensionsCommand"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The command to get a list of active extensions for a user on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response from the device after it processes the command to get a list of active extensions for a user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:ActiveNSExtensionsResponse",
+              "text": "ActiveNSExtensionsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command returns information about the active extensions for a user. Extensions exist for each user, not for the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensions restricted from executing by Application Launch Restrictions or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtensionManagement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configuration profile won’t appear in the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to the following sections to determine supported channels and requirements, and to see an example request and response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Query-Availability",
+          "level": 3,
+          "text": "Query Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required Access Right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "QueryInstalledApps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>FilterExtensionPoints</key>",
+                    "        <array>",
+                    "            <string>com.apple.share-services</string>",
+                    "        </array>",
+                    "        <key>RequestType</key>",
+                    "        <string>ActiveNSExtensions</string>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_ActiveNSExtensions</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>ActiveNSExtensions</key>",
+                    "    <array>",
+                    "        <dict>",
+                    "            <key>ContainerDisplayName</key>",
+                    "            <string>Messages.app</string>",
+                    "            <key>ContainerIdentifier</key>",
+                    "            <string>com.apple.iChat</string>",
+                    "            <key>DisplayName</key>",
+                    "            <string>Messages</string>",
+                    "            <key>ExtensionPoint</key>",
+                    "            <string>com.apple.share-services</string>",
+                    "            <key>Identifier</key>",
+                    "            <string>com.apple.messages.ShareExtension</string>",
+                    "            <key>Path</key>",
+                    "            <string>/System/Applications/Messages.app/Contents/PlugIns/Messages Share Extension.appex</string>",
+                    "            <key>UserElection</key>",
+                    "            <string>Use</string>",
+                    "            <key>Version</key>",
+                    "            <string>1.0</string>",
+                    "        </dict>",
+                    "        <dict>",
+                    "            <key>DisplayName</key>",
+                    "            <string>Set Background Image</string>",
+                    "            <key>ExtensionPoint</key>",
+                    "            <string>com.apple.share-services</string>",
+                    "            <key>Identifier</key>",
+                    "            <string>com.apple.share.System.set-desktop-image</string>",
+                    "            <key>Path</key>",
+                    "            <string>/System/Library/PrivateFrameworks/ShareKit.framework/Versions/A/PlugIns/SystemSetDesktopImage.appex</string>",
+                    "            <key>UserElection</key>",
+                    "            <string>Use</string>",
+                    "            <key>Version</key>",
+                    "            <string>639</string>",
+                    "        </dict>",
+                    "        <dict>",
+                    "            <key>DisplayName</key>",
+                    "            <string>Add to Reading List</string>",
+                    "            <key>ExtensionPoint</key>",
+                    "            <string>com.apple.share-services</string>",
+                    "            <key>Identifier</key>",
+                    "            <string>com.apple.share.System.add-to-safari-reading-list</string>",
+                    "            <key>Path</key>",
+                    "            <string>/System/Library/PrivateFrameworks/ShareKit.framework/Versions/A/PlugIns/SystemAddToReadingList.appex</string>",
+                    "            <key>UserElection</key>",
+                    "            <string>Use</string>",
+                    "            <key>Version</key>",
+                    "            <string>639</string>",
+                    "        </dict>",
+                    "    </array>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_ActiveNSExtensions</string>",
+                    "    <key>NotOnConsole</key>",
+                    "    <false/>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>E84CD517-CB37-52F7-988C-DB5137B604B8</string>",
+                    "    <key>UserID</key>",
+                    "    <string>03EBB586-53E7-48CE-8E6E-C54A374F6FA6</string>",
+                    "    <key>UserLongName</key>",
+                    "    <string>admin</string>",
+                    "    <key>UserShortName</key>",
+                    "    <string>admin</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of active extensions for a user on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Active NSExtensions Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Active NSExtensions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/active-nsextensions-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsCommand": {
+      "abstract": [
+        {
+          "text": "The command to get a list of active extensions for a user on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActiveNSExtensionsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActiveNSExtensionsCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActiveNSExtensionsCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activensextensionscommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to get a list of active extensions for a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActiveNSExtensionsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActiveNSExtensionsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActiveNSExtensionsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activensextensionsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of the installed extensions for a user on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExtension Mappings Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the NSExtensions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/nsextension-mappings-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtensionManagement": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the extensions that the system allows or disallows to run on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtensionManagement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExtensionManagement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExtensionManagement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/nsextensionmanagement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extensions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command"
+      ],
+      "title": "Extensions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Command-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveNSExtensionsResponse"
+      ],
+      "title": "Command and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/active-nsextensions-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

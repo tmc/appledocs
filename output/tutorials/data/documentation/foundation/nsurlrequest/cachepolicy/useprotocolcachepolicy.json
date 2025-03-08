@@ -1,0 +1,658 @@
+{
+  "abstract": [
+    {
+      "text": "Use the caching logic defined in the protocol implementation, if any, for a particular URL load request. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411223,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@NSURLRequestCachePolicy@NSURLRequestUseProtocolCachePolicy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "case "
+      },
+      {
+        "kind": "identifier",
+        "text": "useProtocolCachePolicy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLRequest.CachePolicy"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "enumelt",
+    "title": "NSURLRequest.CachePolicy.useProtocolCachePolicy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "useProtocolCachePolicy"
+            },
+            {
+              "kind": "text",
+              "text": " = "
+            },
+            {
+              "kind": "number",
+              "text": "0"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is the default policy for URL load requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2994181",
+          "level": 3,
+          "text": "HTTP caching behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the HTTP and HTTPS protocols, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " performs the following behavior:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a cached response does not exist for the request, the URL loading system fetches the data from the originating source.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, if the cached response does not indicate that it must be revalidated every time, and if the cached response is not stale (past its expiration date), the URL loading system returns the cached response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the cached response is stale or requires revalidation, the URL loading system makes a HEAD request to the originating source to see if the resource has changed. If so, the URL loading system fetches the data from the originating source. Otherwise, it returns the cached response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This behavior is illustrated in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-media-2994170",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2994170",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "NSURLRequestUseProtocolCachePolicy decision tree for HTTP and HTTPS",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2994170",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For the formal definition of these semantics, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-2994177",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you are making HTTP or HTTPS byte-range requests, always use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " policy instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy": {
+      "abstract": [
+        {
+          "text": "The constants used to specify interaction with the cached responses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/1417522-reloadignoringcachedata": {
+      "abstract": [
+        {
+          "text": "Replaced by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadIgnoringCacheData"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURLRequest.CachePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/1417522-reloadignoringcachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadIgnoringCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/1417522-reloadignoringcachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata": {
+      "abstract": [
+        {
+          "text": "Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadIgnoringLocalAndRemoteCacheData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata": {
+      "abstract": [
+        {
+          "text": "The URL load should be loaded only from the originating source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadIgnoringLocalCacheData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata": {
+      "abstract": [
+        {
+          "text": "Use cache data if the origin source can validate it; otherwise, load from the origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadRevalidatingCacheData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.reloadRevalidatingCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedatadontload": {
+      "abstract": [
+        {
+          "text": "Use existing cache data, regardless or age or expiration date, and fail if no cached data is available. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnCacheDataDontLoad"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedatadontload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.returnCacheDataDontLoad",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/returncachedatadontload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedataelseload": {
+      "abstract": [
+        {
+          "text": "Use existing cache data, regardless or age or expiration date, loading from originating source only if there is no cached data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnCacheDataElseLoad"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedataelseload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.returnCacheDataElseLoad",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/returncachedataelseload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy": {
+      "abstract": [
+        {
+          "text": "Use the caching logic defined in the protocol implementation, if any, for a particular URL load request. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "useProtocolCachePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.useProtocolCachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2994177": {
+      "identifier": "link-2994177",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 2616",
+      "type": "section",
+      "url": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13"
+    },
+    "link-media-2994170": {
+      "identifier": "link-media-2994170",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy#2994170"
+    },
+    "media-2994170": {
+      "abstract": [
+        {
+          "text": "NSURLRequestUseProtocolCachePolicy decision tree for HTTP and HTTPS",
+          "type": "text"
+        }
+      ],
+      "alt": "Flow chart starting with “need to determine whether to return a cached response”, and then considering various factors to determine whether to return a cached response or to fetch it anew.",
+      "identifier": "media-2994170",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4a7d0cbf4/46788d50-fb95-48f2-8360-b8c2a4bf1648.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalcachedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/1417522-reloadignoringcachedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedataelseload",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/returncachedatadontload",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata"
+      ],
+      "title": "Policies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlrequestcachepolicy/nsurlrequestuseprotocolcachepolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

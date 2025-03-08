@@ -1,0 +1,707 @@
+{
+  "abstract": [
+    {
+      "text": "Create and sign a certificate signing request (CSR) to enable push notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up Push Notifications for Your MDM Customers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an MDM vendor, you can use the Apple Push Notification Service (APNs) to create a push certificate and start push notification service for your customers. The process involves creating and then signing a CSR for each customer. This certificate based process is the only way to send push notifications through MDM - MDM doesn’t support the token based push process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a separate push certificate for each customer. This enables independent management of each customer’s certificate and prevents customers from being able to see each other’s device tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-CSR",
+          "level": 3,
+          "text": "Create a CSR",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the setup process for your service, create an operation that generates a CSR for your customer. Execute this process within the instance of your MDM service that your customer has access to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The private key for this CSR must remain within the instance of your MDM service that the customer has access to. You use this private key to sign the MDM push certificate. Be certain that the MDM service instance doesn’t make this private key available to you (the vendor).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upload the CSR to your internal infrastructure and then perform the signing process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-the-CSR",
+          "level": 3,
+          "text": "Sign the CSR",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download an MDM signing certificate and its trust certificates from the iOS provisioning portal. Then create a script to sign the customer’s CSR by following these instructions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the CSR is in PEM format, convert it to a Distinguished Encoding Rules (DER) file, which has a binary format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign the binary-formatted CSR with the private key from the MDM signing certificate using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SHA256WithRSA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signing algorithm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode the signature from the previous step as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode the binary-formatted CSR as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a Push Certificate Request ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and encode it as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t share the private key from your MDM signing certificate with anyone, including your customers or resellers of your solution. Ensure that the process of signing the CSR takes place within your internal infrastructure and isn’t accessible to customers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure that the ",
+              "type": "text"
+            },
+            {
+              "code": "PushCertCertificateChain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value contains a complete certificate chain all the way back to a recognized root certificate, including the root certificate. This means it contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your MDM signing certificate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The WWDR intermediate certificate, which is available from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Apple root certificate, which is available from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://www.apple.com/appleca/AppleIncRootCertificate.cer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, ensure that each of the above certificates complies with PEM-formatting standards, which includes that each line except the last contains exactly 64 printable characters, and the last line contains 64 or fewer printable characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Save the certificate and its chain as a file that ends in ",
+              "type": "text"
+            },
+            {
+              "code": ".pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then verify your certificate chain using either of the following command-line tools:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "certtool -e < filename.pem",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "openssl verify filename.pem",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about certificates and chains of trust, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you deliver the signed CSR back to the customer, the customer must log in to ",
+              "type": "text"
+            },
+            {
+              "code": "https://identity.apple.com/pushcert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using a verified Apple ID and upload the CSR to the Apple Push Certificates Portal. The portal creates a certificate titled ",
+              "type": "text"
+            },
+            {
+              "code": "MDM__Certificate.pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The customer then returns to your setup process to upload the APNs certificate for MDM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the sample code references below for additional information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Java-Sample-Code",
+          "level": 3,
+          "text": "Java Sample Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "/**",
+            "* Sign the CSR in DER format with the signing private key.",
+            "* Use SHA256withRSA for signing, SHA1 for message digest, and RSA to encrypt the message digest.",
+            "*/",
+            "byte[] signedData = signCSR(signingCertPrivateKey, csr);",
+            "",
+            "String certChain = \"-----BEGIN CERTIFICATE\"----;",
+            "",
+            "/**",
+            "* Create the Request plist. The CSR and signature are Base64-encoded.",
+            "*/",
+            "byte[] reqPlist = createPlist(new String(Base64.encodeBase64(csr)),certChain, new String(Base64.encodeBase64(signedData)));",
+            "",
+            "/**",
+            "*  The signature uses two algorithms: one to calculate a message digest and one to encrypt the message digest.",
+            "*  The message digest is calculated using SHA1 and encrypted using RSA.",
+            "*  Initialize the signature with the signer's private key using initSign().",
+            "*  Use update() to add the data of the message into the signature.",
+            "**  @param privateKey Private key used to sign the data.",
+            "*  @param data Data to be signed.",
+            "*  @return Signature as a byte array.",
+            "*  @throws Exception",
+            "*/private byte[] signCSR( PrivateKey privateKey, byte[] data ) throws Exception{",
+            "    Signature sig = Signature.getInstance(\"SHA256withRSA\"); ",
+            "    sig.initSign(privateKey);",
+            "    sig.update(data);",
+            "    byte[] signatureBytes = sig.sign();",
+            "    return signatureBytes;",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Net-Sample-Code",
+          "level": 3,
+          "text": ".Net Sample Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "var privateKey = new PrivateKey(PrivateKey.KeySpecification.AtKeyExchange, 2048, false, true);",
+            "var caCertificateRequest = new CaCertificateRequest();",
+            "string csr = caCertificateRequest.GenerateRequest(\"cn=test\", privateKey);",
+            "",
+            "// Load-signing certificate from MDM_pfx.pfx. This is generated using signingCertificatePrivate.pem and SigningCert.pem.pem using openssl.",
+            "var cert = new X509Certificate2(MY_MDM_PFX, PASSWORD, X509KeyStorageFlags.Exportable);",
+            "",
+            "// Use RSA provider to generate SHA256WithRSA.",
+            "var crypt = (RSACryptoServiceProvider)cert.PrivateKey;",
+            "var sha256 = new SHA256CryptoServiceProvider();",
+            "byte[] data = Convert.FromBase64String(csr);",
+            "byte[] hash = sha256.ComputeHash(data);",
+            "",
+            "// Sign the hash.",
+            "byte[] signedHash = crypt.SignHash(hash, CryptoConfig.MapNameToOID(\"SHA256\"));",
+            "var signedHashBytesBase64 = Convert.ToBase64String(signedHash);"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Property-List-Sample-Code",
+          "level": 3,
+          "text": "Property List Sample Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PushCertRequestCSR</key>",
+            "    <string> MIIDjzCCAncCAQAwDzENMAsGA1UEAwwEdGVzdDCCASIwDQYJKoZIhvcNAQEBBQAD</string>",
+            "    <key>PushCertCertificateChain</key>",
+            "    <string>",
+            "-----BEGIN CERTIFICATE-----",
+            "MIIDkzCCAnugAwIBAgIIQcQgtHQb9wwwDQYJKoZIhvcNAQEFBQAwUjEaMBgGA1UEAwwRU0FDSSBUZXN0IFJvb3QgQ0ExEjAQBgNVBAsMCUFwcGxlIElTVDETMBEGA1UE",
+            "-----END CERTIFICATE-----",
+            "-----BEGIN CERTIFICATE-----",
+            "MIIDlTCCAn2gAwIBAgIIBInl9fQbaAkwDQYJKoZIhvcNAQEFBQAwXDEkMCIGA1UEAwwbU0FDSSBUZXN0IEludGVybWVkaWF0ZSBDQSAxMRIwEAYDVQQLDAlBcHBsZSBJ",
+            "-----END CERTIFICATE-----",
+            "-----BEGIN CERTIFICATE-----",
+            "MIIDpjCCAo6gAwIBAgIIKRyFYgyyFPgwDQYJKoZIhvcNAQEFBQAwXDEkMCIGA1UEAwwbU0FDSSBUZXN0IEludGVybWVkaWF0ZSBDQSAxMRIwEAYDVQQLDAlBcHBsZSBJ",
+            "-----END CERTIFICATE-----",
+            "-----BEGIN CERTIFICATE-----",
+            "MIIDiTCCAnGgAwIBAgIIdv/cjbnBgEgwDQYJKoZIhvcNAQEFBQAwUjEaMBgGA1UEAwwRU0FDSSBUZXN0IFJvb3QgQ0ExEjAQBgNVBAsMCUFwcGxlIElTVDETMBEGA1UE",
+            "-----END CERTIFICATE-----",
+            "</string>",
+            "    <key>PushCertSignature</key>",
+            "    <string>CGt6QWuixaO0PIBc9dr2kJpFBE1BZx2D8L0XH0Mtc/DePGJOjrM2W/IBFY0AVhhEx</string>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles": {
+      "abstract": [
+        {
+          "text": "Choose the technique to deploy MDM enrollment profiles for your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying MDM Enrollment Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deploying-mdm-enrollment-profiles"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices": {
+      "abstract": [
+        {
+          "text": "Optimize deployment of profiles and provisioning profiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Profiles on Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installing-profiles-on-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices": {
+      "abstract": [
+        {
+          "text": "Ensure secure MDM connectivity with valid certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Certificates for MDM Servers and Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-certificates-for-mdm-servers-and-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://www.apple.com/appleca/AppleIncRootCertificate.cer": {
+      "identifier": "http://www.apple.com/appleca/AppleIncRootCertificate.cer",
+      "title": "http://www.apple.com/appleca/AppleIncRootCertificate.cer",
+      "titleInlineContent": [
+        {
+          "text": "http://www.apple.com/appleca/AppleIncRootCertificate.cer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.apple.com/appleca/AppleIncRootCertificate.cer"
+    },
+    "https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html": {
+      "identifier": "https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html",
+      "title": "Security Overview",
+      "titleInlineContent": [
+        {
+          "text": "Security Overview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html"
+    },
+    "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer": {
+      "identifier": "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer",
+      "title": "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer",
+      "titleInlineContent": [
+        {
+          "text": "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Certificates-and-Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices"
+      ],
+      "title": "Certificates and Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/setting-up-push-notifications-for-your-mdm-customers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

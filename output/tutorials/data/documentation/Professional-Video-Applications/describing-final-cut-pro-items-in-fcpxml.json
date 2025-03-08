@@ -1,0 +1,1259 @@
+{
+  "abstract": [
+    {
+      "text": "Describe clips, projects, and other items in FCPXML to exchange data with Final Cut Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Describing Final Cut Pro Items in FCPXML"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app uses FCPXML to describe media, projects, and other information when it sends data to or receives data from Final Cut Pro. Whether the FCPXML is created by your app for Final Cut Pro or by Final Cut Pro for your app, the descriptions in FCPXML are essentially the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples show two FCPXML documents that describe media assets and Final Cut Pro objects. An explanation of what Final Cut Pro does when it receives the document follows each example. These examples, along with the tips in the following section, help you understand what your app needs to do when it receives FCPXML documents from Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML describes various aspects of a Final Cut Pro library and the items it contains in a way that is useful to other apps. FCPXML doesn’t describe all possible data, and it’s not a substitute for the native Final Cut Pro project and event data organized in a library bundle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information on resources that represents media assets, possibly with custom metadata, see  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information on Final Cut Pro clips that contain ratings and keywords, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information on Final Cut Pro projects that each represent a sequence of clips, possibly with project markers, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-a-Project-Markers-and-Assets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information on Final Cut Pro events that contain clips and projects, possibly with keyword collections or smart collections. see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Receive-FCPXML-in-Your-App",
+          "level": 3,
+          "text": "Receive FCPXML in Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The purpose and goals of your app determine how it uses data from Final Cut Pro. Use these tips to get the most from the FCPXML documents that your app receives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Organize the clips in a way that makes sense for your app and your users. For example, put clips in folders that correspond to Final Cut Pro events or based on when you created the clips; use metadata to sort clips into folders by scene, take, camera name, and so on; group projects, clips, and related resources into a single folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preserve the editing decisions in a project, along with any project markers. Use that information to identify which special effects you used on which clips, to track assets for rights management, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To preserve how your users have organized their data in Final Cut Pro, use the keywords and ratings that they associated with clips to categorize data in your app. Consider creating equivalents for keyword collections and smart collections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Describe-a-Project-Markers-and-Assets",
+          "level": 3,
+          "text": "Describe a Project, Markers, and Assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example FCPXML document describes a project with three different clips in its timeline sequence. One of the clips, ",
+              "type": "text"
+            },
+            {
+              "code": "MyMovie1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", appears three times. The order of the clips in the project ",
+              "type": "text"
+            },
+            {
+              "code": "spine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines their order in the project. The document also describes the three media assets used in the project, along with URLs to the location of the files on a local file system. The example includes the three clips again at the end of the document, so they can appear in the Final Cut Pro browser in addition to the project to use in further editing. The explanation following this example describes how Final Cut Pro interprets this FCPXML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fcpxml version=\"1.10\">",
+            "    <import-options>",
+            "        <option key=\"library location\" value=\"file:///Volumes/FCPXLibraries/MyLibrary.fcpbundle\"/>",
+            "    </import-options>",
+            "    <!-- Resources -->",
+            "    <resources>",
+            "        <format id=\"r1\" name=\"FFVideoFormat1080p30\"/>",
+            "        <asset id=\"r2\" start=\"0s\" duration=\"10s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "            <media-rep kind=\"original-media\" src=\"file:///Volumes/Media/MyMovie1.mov\"/>",
+            "        </asset>",
+            "        <asset id=\"r3\" start=\"0s\" duration=\"20s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "            <media-rep kind=\"original-media\" src=\"file:///Volumes/Media/MyMovie2.mov\"/>",
+            "        </asset>",
+            "        <asset id=\"r4\" start=\"10s\" duration=\"40s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "            <media-rep kind=\"original-media\"  src=\"file:///Volumes/Media/MyMovie3.mov\"/>",
+            "        </asset>",
+            "    </resources>",
+            "    <project name=\"MyProjectWithMarkers\">",
+            "        <!-- Project Story Elements -->",
+            "        <sequence format=\"r1\">",
+            "            <spine>",
+            "                <asset-clip name=\"MyMovie1\" ref=\"r2\" start=\"0s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "                    <marker start=\"2s\" duration=\"1000/30000s\" value=\"My Marker 1\"/>",
+            "                </asset-clip>",
+            "                <asset-clip name=\"MyMovie3\" ref=\"r4\" offset=\"5s\" start=\"15s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "                    <chapter-marker start=\"18s\" duration=\"1000/30000s\" value=\"Chapter 2\" posterOffset=\"19s\"/>",
+            "                </asset-clip>",
+            "                <asset-clip name=\"MyMovie1\" ref=\"r2\" offset=\"10s\" start=\"5s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "                    <marker start=\"8s\" duration=\"1000/30000s\" value=\"My Marker 2\"/>",
+            "                </asset-clip>",
+            "                <asset-clip name=\"MyMovie2\" ref=\"r3\" offset=\"15s\" start=\"5s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "                    <marker start=\"6s\" duration=\"1000/30000s\" value=\"My To Do 1\" completed=\"0\"/>",
+            "                    <marker start=\"8s\" duration=\"1000/30000s\" value=\"My To Do 2\" completed=\"1\"/>",
+            "                </asset-clip>",
+            "                <asset-clip name=\"MyMovie1\" ref=\"r2\" offset=\"20s\" start=\"0s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "                    <marker start=\"4s\" duration=\"1000/30000s\" value=\"My Marker 3\"/>",
+            "                </asset-clip>",
+            "            </spine>",
+            "        </sequence>",
+            "    </project>",
+            "    <!-- Clips -->",
+            "    <asset-clip name=\"MyMovie1\" ref=\"r2\" format=\"r1\" start=\"0s\" duration=\"10s\" audioRole=\"dialogue\"/>",
+            "    <asset-clip name=\"MyMovie2\" ref=\"r3\" format=\"r1\" start=\"0s\" duration=\"20s\" audioRole=\"dialogue\"/>",
+            "    <asset-clip name=\"MyMovie3\" ref=\"r4\" format=\"r1\" start=\"10s\" duration=\"40s\" audioRole=\"dialogue\"/>",
+            "</fcpxml>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example tells Final Cut Pro to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new event in the library specified by the import option: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "file://Volumes/FCPXLibraries/MyLibrary.fcpbundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Name the new event with today’s date, as in 11",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-14-20",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (If an event with that name already exists, add a numeric suffix to the event name to create a unique name, as in 11",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-14-20 1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import and copy (or link to) the media files (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie2.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie3.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") on the local file system at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Volumes/Media/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Users set the preference for copying or linking files in the Import pane of the Final Cut Pro Preferences window. For more information on prefrences for importing media, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/import-preferences-verb8e6085b/10.4.7/mac/10.14",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in Final Cut Pro User Guide.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each media asset, create a clip, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the new event using the first video format (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FFVideoFormat1080p30",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") specified in the FCPXML document. If a clip with the same name already exists in the event, ask the user whether to replace the existing clip or keep both clips. If the user decides to keep both, add a numerical suffix to keep the names unique, as in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1 1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The choice your user makes — to replace an item or to keep both — applies to all naming conflicts involving clips and projects during that same operation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a project called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyProjectWithMarkers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that contains five clips in this order: the first 5 seconds of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; starting 15 seconds in, the next 5 seconds of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; the last 5 seconds of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; the last 5 seconds of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; and the first 5 seconds of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " again. (If a project with the same name already exists, ask the user whether to replace the existing project or keep both. If the user decides to keep both, add a numerical suffix, as in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyProjectWithMarkers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyProjectWithMarkers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", add a marker (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMarker1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to the first clip (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") at 2 seconds into the clip. Add a chapter marker (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Chapter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") at 3 seconds into ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Add another marker (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMarker2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to the third clip (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") at 3 seconds into the clip. Add two “to do” markers (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyToDo1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyToDo2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") at 1 second and 3 seconds into ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; notice that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyToDo2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is marked as complete. Add yet another marker (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMarker3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to the last clip (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyMovie1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") at 4 seconds into the clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can choose to make the clips used in a project available to users for future editing. In addition to describing clips in the project timeline, add them to the FCPXML document at the same level as the project, as shown in the previous example. When Final Cut Pro processes the document, your users see the clips in the project as well as in the Final Cut Pro browser (inside an event named with today’s date).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Describe-Ratings-Keywords-Collections-and-Custom-Metadata",
+          "level": 3,
+          "text": "Describe Ratings, Keywords, Collections, and Custom Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example FCPXML document describes two clips for the media assets (",
+              "type": "text"
+            },
+            {
+              "code": "Evening.mov",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Morning.mov).",
+              "type": "codeVoice"
+            },
+            {
+              "text": " The clips (",
+              "type": "text"
+            },
+            {
+              "code": "Evening",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Morning",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") are organized into an event named ",
+              "type": "text"
+            },
+            {
+              "code": "MyBigEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "Evening",
+              "type": "codeVoice"
+            },
+            {
+              "text": " clip contains a keyword (",
+              "type": "text"
+            },
+            {
+              "code": "Ocean",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and the ",
+              "type": "text"
+            },
+            {
+              "code": "Morning",
+              "type": "codeVoice"
+            },
+            {
+              "text": " clip contains two Final Cut Pro ratings. The document also describes the media assets used in the event, along with URLs to the location of the files; the ",
+              "type": "text"
+            },
+            {
+              "code": "Evening.mov",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asset contains two pieces of custom metadata. The explanation following this example describes how Final Cut Pro interprets this FCPXML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fcpxml version=\"1.10\">",
+            "    <!-- Resources -->",
+            "    <resources>",
+            "        <format id=\"r1\" name=\"FFVideoFormat1080p30\"/>",
+            "        <asset id=\"r2\" start=\"0s\" duration=\"10s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "            <media-rep kind=\"original-media\" src=\"file:///Volumes/Media/Evening.mov\"/>",
+            "            <metadata>",
+            "                <md key=\"com.myCompany.myApp.myCustomMetadata\" value=\"This media belongs to me.\" type=\"string\" editable=\"1\" displayName=\"My custom metadata\" source=\"custom\"/>",
+            "                <md key=\"com.myCompany.myApp.anotherCustomMetadata\" value=\"Another piece of metadata that is read only.\" type=\"string\" displayName=\"Another custom metadata\" source=\"custom\"/>",
+            "            </metadata>",
+            "        </asset>",
+            "        <asset id=\"r3\" start=\"0s\" duration=\"10s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "            <media-rep kind=\"original-media\" src=\"file:///Volumes/Media/Morning.mov\"/>",
+            "        </asset>",
+            "    </resources>",
+            "    <!-- Events -->",
+            "    <event name=\"MyBigEvent\">",
+            "        <!-- Clips -->",
+            "        <asset-clip name=\"Evening\" ref=\"r2\" format=\"r1\" start=\"0s\" duration=\"10s\" audioRole=\"dialogue\">",
+            "            <keyword start=\"2s\" duration=\"2s\" value=\"Ocean\"/>",
+            "        </asset-clip>",
+            "        <asset-clip name=\"Morning\" ref=\"r3\" format=\"r1\" start=\"0s\" duration=\"10s\" audioRole=\"dialogue\">",
+            "            <rating start=\"2s\" duration=\"1s\" value=\"favorite\"/>",
+            "            <rating start=\"4s\" duration=\"1s\" value=\"reject\"/>",
+            "        </asset-clip>",
+            "        <keyword-collection name=\"Ocean\"/>",
+            "    </event>",
+            "</fcpxml>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example tells Final Cut Pro to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import and copy (or link to) two media assets (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Evening.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Morning.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach two pieces of custom metadata to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Evening.mov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " asset: The first piece of metadata (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyCustomMetadata",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") is editable and has the value “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "This media belongs to me.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "” The second piece of custom metadata is read-only (not editable), so Final Cut Pro ignores its value. Note that to make custom metadata visible to your users in Final Cut Pro, you must provide a definition of the custom metadata and a metadata view in your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " bundle. For more information on providing custom metadata and metadata view, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a clip for each of the media assets imported (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Evening",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Morning",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and put them in the event called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyBigEvent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (If an event named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyBigEvent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t exist, create it and put the clips in it. Events must contain at least one clip or project; they cannot be empty.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a keyword (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ocean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Evening",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " clip starting 2 seconds into the clip and lasting 1 second.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a Favorite rating for a duration of 1-second to the the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Morning",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " clip at 2 seconds into the clip, and add a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Reject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " rating for a duratiom of 1-second at 4 seconds in.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a keyword collection called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ocean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to organize clips that contain the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ocean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata",
+      "kind": "section",
+      "title": "Add Custom Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder": {
+      "abstract": [
+        {
+          "text": "Contain keyword and smart collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder",
+      "kind": "article",
+      "role": "article",
+      "title": "collection-folder",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/collection-folder"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata",
+      "kind": "section",
+      "title": "Describe Ratings, Keywords, Collections, and Custom Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml#Describe-Ratings-Keywords-Collections-and-Custom-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-a-Project-Markers-and-Assets": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml#Describe-a-Project-Markers-and-Assets",
+      "kind": "section",
+      "title": "Describe a Project, Markers, and Assets",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml#Describe-a-Project-Markers-and-Assets"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection": {
+      "abstract": [
+        {
+          "text": "Group clips and projects based on matching keywords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+      "kind": "article",
+      "role": "article",
+      "title": "keyword-collection",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/keyword-collection"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection": {
+      "abstract": [
+        {
+          "text": "Describe smart collection filters that group clips and projects that match the criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+      "kind": "article",
+      "role": "article",
+      "title": "smart-collection",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/smart-collection"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://support.apple.com/guide/final-cut-pro/import-preferences-verb8e6085b/10.4.7/mac/10.14": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/import-preferences-verb8e6085b/10.4.7/mac/10.14",
+      "title": "Import preferences",
+      "titleInlineContent": [
+        {
+          "text": "Import preferences",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/import-preferences-verb8e6085b/10.4.7/mac/10.14"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Clips-and-Project-Collections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder"
+      ],
+      "title": "Clips and Project Collections"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Clips-and-Project-Collections",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder"
+              ],
+              "title": "Clips and Project Collections"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

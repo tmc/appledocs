@@ -1,0 +1,849 @@
+{
+  "abstract": [
+    {
+      "text": "Use the scheduling APIs in FxPlug to retrieve frames from different times.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Scheduling media in plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FxPlug SDK provides several timing and scheduling methods that give plug-ins a way to get the current time and to schedule media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-current-time",
+          "level": 3,
+          "text": "Get the current time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an onscreen control or an event in a custom parameter view requires the current time, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxCustomParameterAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to get the rational time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "All FxPlug 4 APIs represent time using ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+                  "type": "text"
+                },
+                {
+                  "text": ". If you’re familiar with previous versions of FxPlug, note the move away from ",
+                  "type": "text"
+                },
+                {
+                  "code": "FxTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+                  "type": "text"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Schedule-media",
+          "level": 3,
+          "text": "Schedule media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scheduling API lets the host applications schedule the media contained in image wells. Consider this method, new to FxPlug 4:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "optional func scheduleInputs(_ inputImageRequests: AutoreleasingUnsafeMutablePointer<NSArray?>?, withPluginState pluginState: Data?, at renderTime: CMTime) throws"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)scheduleInputs:(NSArray<FxImageTileRequest*>* _Nullable *_Nullable)inputImageRequests",
+                    "       withPluginState:(NSData* _Nullable)pluginState",
+                    "                atTime:(CMTime)renderTime",
+                    "                 error:(NSError**)error;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method tells the host application how many frames from the given input sources your plug-in will require in order to render at the given render time. See ",
+              "type": "text"
+            },
+            {
+              "code": "PictureInPicturePlugIn.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPictureInPicture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " project for an example of how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can be used with an image well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media": {
+      "abstract": [
+        {
+          "text": "Use the FxPlug analysis API to analyze frames of source media before rendering them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/analyzing-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Learn about time handling in host apps and plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding time in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/understanding-time-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer": {
+      "abstract": [
+        {
+          "text": "A protocol you implement in your plug-in to analyze frames that the plug-in is applied to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalyzer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current time, expressed as a rational time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/currentTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "currentTime()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4/currenttime()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3": {
+      "abstract": [
+        {
+          "text": "A collection of methods for manipulating the keyframes of your FxPlug 4 plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxKeyframeAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxkeyframeapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Tells the host application how many frames from the given input sources your plug-in requires in order to render at the given render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSArray",
+          "text": "NSArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/scheduleInputs(_:withPluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleInputs:withPluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "scheduleInputs(_:withPluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/scheduleinputs(_:withpluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods provided by the host, so that a plug-in can query the timing properties of its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTimingAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-and-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+      ],
+      "title": "Time and analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-and-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+              ],
+              "title": "Time and analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/title",
+          "value": "scheduleInputs:withPluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1scheduleInputs(_:withPluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleInputs:withPluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/title",
+          "value": "FxTimingAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/title",
+          "value": "FxAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/title",
+          "value": "FxAnalysisAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1currentTime()/title",
+          "value": "currentTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1currentTime()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/title",
+          "value": "FxAnalysisAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/title",
+          "value": "FxKeyframeAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

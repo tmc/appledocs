@@ -1,0 +1,715 @@
+{
+  "abstract": [
+    {
+      "text": "Assemble angles from a multi-camera shooting as a unit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Multicam Media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A multicam media describes a collection of angles shot at the same time from multiple angles. Assemble footages synchronized in time from multiple cameras, or angles, using the ",
+              "type": "text"
+            },
+            {
+              "code": "multicam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element. The ",
+              "type": "text"
+            },
+            {
+              "code": "mc-angle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element describes the construction of each angle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multicam Media Elements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attributes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "multicam",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A root container for angles of related media, organized as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mc-angle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mc-angle",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A container of story elements organized sequentially in time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML 1.1 added support for multicam editing to manage media from multiple cameras or other synchronized footage.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "multicam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element appears as a child element under a ",
+              "type": "text"
+            },
+            {
+              "code": "media",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element (as a resource reference). A ",
+              "type": "text"
+            },
+            {
+              "code": "multicam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element contains one or more ",
+              "type": "text"
+            },
+            {
+              "code": "mc-angle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements that each manage a series of other story elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code listing below shows a multicam definition with two angle definitions, ",
+              "type": "text"
+            },
+            {
+              "code": "a1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "a2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<resources>",
+            "   <media id=\"r1\" name=\"MyMulticamClip\">",
+            "      <multicam format=\"r2\">",
+            "         <mc-angle name=\"MyMovie1\" angleID=\"a1\">",
+            "            <asset-clip name=\"MyMovie1\" offset=\"0s\" ref=\"r3\" duration=\"10s\" audioRole=\"dialogue\" />",
+            "         </mc-angle>",
+            "         <mc-angle name=\"MyMovie2\" angleID=\"a2\">",
+            "            <asset-clip name=\"MyMovie2\" offset=\"0s\" ref=\"r4\" duration=\"20s\" audioRole=\"dialogue\" />",
+            "         </mc-angle>",
+            "      </multicam>",
+            "   </media>",
+            "   <format id=\"r2\" name=\"FFVideoFormat1080p30\" />",
+            "   <asset id=\"r3\" name=\"MyMovie1\" src=\"file:///Volumes/Media/MyMovie1.mov\" start=\"0s\" duration=\"10s\" hasVideo=\"1\" format=\"r2\" hasAudio=\"1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\" />",
+            "   <asset id=\"r4\" name=\"MyMovie2\" src=\"file:///Volumes/Media/MyMovie2.mov\" start=\"0s\" duration=\"20s\" hasVideo=\"1\" format=\"r2\" hasAudio=\"1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\" />",
+            "</resources> "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Starting in FCPXML 1.4, specify visual adjustments on a multicam clip on individual angles instead of the entire clip.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Using-Multicam-Media",
+          "level": 3,
+          "text": "Using Multicam Media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the multicam media as a clip, add an ",
+              "type": "text"
+            },
+            {
+              "code": "mc-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element that references the media in the timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "mc-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element can use audio and video from the same angle, or combine the audio and video from separate angles from the same ",
+              "type": "text"
+            },
+            {
+              "code": "multicam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " container. Use ",
+              "type": "text"
+            },
+            {
+              "code": "mc-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements to specify the angle from which the audio, video, or both come from.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "mc-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element has the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "angleID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the angle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "srcEnable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indicates which source to use, if any, from the angle; use one of the following: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "audio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "video",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "all",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code listing below refers to the multicam media defined in the earlier code listing on this page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<mc-clip ref=\"r4\" name=\"MC Clip\" duration=\"10s\">",
+            "   <mc-source angleID=\"a1\" srcEnable=\"all\" />",
+            "</mc-clip>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": " In FCPXML 1.1, you specified the angle using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "videoAngleID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "audioAngleID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "mc-clip",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element. In FCPXML 1.2, you used the ",
+                  "type": "text"
+                },
+                {
+                  "code": "mc-source",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "angleID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-and-multicam": {
+      "abstract": [
+        {
+          "text": "Specify configuration of audio components using the ",
+          "type": "text"
+        },
+        {
+          "code": "mc-clip",
+          "type": "codeVoice"
+        },
+        {
+          "text": " element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-and-multicam",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Components and Multicam",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/audio-components-and-multicam"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multicam-Media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-and-multicam"
+      ],
+      "title": "Multicam Media"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multicam-Media",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-and-multicam"
+              ],
+              "title": "Multicam Media"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/multicam-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/multicam-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

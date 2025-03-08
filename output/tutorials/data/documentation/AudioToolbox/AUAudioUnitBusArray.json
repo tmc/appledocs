@@ -1,0 +1,2435 @@
+{
+  "abstract": [
+    {
+      "text": "A class that defines a container for an audio unit’s input or output busses.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AUAudioUnitBusArray",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AUAudioUnitBusArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AUAudioUnitBusArray"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AUAudioUnitBusArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hosts can observe a bus property across all busses by using KVO on a bus array object, without having to observe it on each individual bus. Some audio units (e.g. mixers) support variable numbers of busses, via subclassing. When the bus count changes, a KVO notification is sent on the audio unit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/inputBusses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/outputBusses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This version 3 class is bridged to the version 2 ",
+              "type": "text"
+            },
+            {
+              "code": "kAudioUnitProperty_ElementCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You could add listeners to individual busses, but that means you have to observe bus count changes and add or remove listeners in response. Furthermore, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method is problematic; it does not let the individual objects override the observation request, and so a bus which is proxying a bus in an extension process does not get the message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/inputBusses": {
+      "abstract": [
+        {
+          "text": "An array containing the audio unit’s input connection points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputBusses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnitBusArray",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/inputBusses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputBusses"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputBusses",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/inputbusses"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/outputBusses": {
+      "abstract": [
+        {
+          "text": "An array containing the audio unit’s output connection points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputBusses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnitBusArray",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/outputBusses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputBusses"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputBusses",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/outputbusses"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus": {
+      "abstract": [
+        {
+          "text": "A class that defines an input or output connection point on an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitBus",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbus"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray": {
+      "abstract": [
+        {
+          "text": "A class that defines a container for an audio unit’s input or output busses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitBusArray",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)": {
+      "abstract": [
+        {
+          "text": "Adds a KVO observer for a given property on all busses in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toAllBusses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSKeyValueObservingOptions",
+          "text": "NSKeyValueObservingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addObserverToAllBusses:forKeyPath:options:context:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addObserver(toAllBusses:forKeyPath:options:context:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/addobserver(toallbusses:forkeypath:options:context:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/busType": {
+      "abstract": [
+        {
+          "text": "Determines whether the bus array is for input or output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "busType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AUAudioUnitBusType",
+          "text": "AUAudioUnitBusType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/busType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "busType"
+        }
+      ],
+      "role": "symbol",
+      "title": "busType",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/bustype"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/count": {
+      "abstract": [
+        {
+          "text": "The number of busses in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/count",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "count"
+        }
+      ],
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/count"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)": {
+      "abstract": [
+        {
+          "text": "Initializes an empty bus array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "audioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnit",
+          "text": "AUAudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "busType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AUAudioUnitBusType",
+          "text": "AUAudioUnitBusType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAudioUnit:busType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(audioUnit:busType:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/init(audiounit:bustype:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)": {
+      "abstract": [
+        {
+          "text": "Initializes a bus array by making a copy of the supplied busses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "audioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnit",
+          "text": "AUAudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "busType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AUAudioUnitBusType",
+          "text": "AUAudioUnitBusType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "busses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnitBus",
+          "text": "AUAudioUnitBus"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAudioUnit:busType:busses:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(audioUnit:busType:busses:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/init(audiounit:bustype:busses:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/isCountChangeable": {
+      "abstract": [
+        {
+          "text": "Determines whether the array can have a variable number of busses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCountChangeable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/isCountChangeable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "countChangeable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCountChangeable",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit": {
+      "abstract": [
+        {
+          "text": "The audio unit that owns the bus array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ownerAudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnit",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ownerAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "ownerAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/owneraudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)": {
+      "abstract": [
+        {
+          "text": "Removes a KVO observer for a given property on all busses in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromAllBusses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeObserverFromAllBusses:forKeyPath:context:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeObserver(fromAllBusses:forKeyPath:context:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/removeobserver(fromallbusses:forkeypath:context:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)": {
+      "abstract": [
+        {
+          "text": "Replaces the current bus array with a copy of the supplied bus array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceBusses"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnitBus",
+          "text": "AUAudioUnitBus"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replaceBusses:"
+        }
+      ],
+      "role": "symbol",
+      "title": "replaceBusses(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/replacebusses(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/setBusCount(_:)": {
+      "abstract": [
+        {
+          "text": "Changes the number of busses in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/setBusCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBusCount:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBusCount(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/setbuscount(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the bus at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnitBus",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectAtIndexedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray/subscript(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory": {
+      "abstract": [
+        {
+          "text": "An object that creates a version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitFactory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitfactory"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset": {
+      "abstract": [
+        {
+          "text": "A class that describes an interface for custom parameter settings provided by the audio unit developer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitPreset",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitpreset"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge": {
+      "abstract": [
+        {
+          "text": "A class that wraps a version 2 audio unit as version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitV2Bridge"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitV2Bridge"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitV2Bridge",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitv2bridge"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the component registrations for a given audio unit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionCopyComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionCopyComponentList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitExtensionCopyComponentList(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows the implementor of an audio unit extension to dynamically modify the list of component registrations for the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionSetComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionSetComponentList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitExtensionSetComponentList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Connect to out-of-process audio units using the Xcode debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging Out-of-Process Audio Units on Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/debugging-out-of-process-audio-units-on-apple-silicon"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments": {
+      "abstract": [
+        {
+          "text": "Add custom audio processing and MIDI instruments to your app by hosting Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating Audio Effects and Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/incorporating-audio-effects-and-instruments"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension": {
+      "abstract": [
+        {
+          "text": "Build an extension by using an Xcode template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an audio unit extension",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/creating-an-audio-unit-extension"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects": {
+      "abstract": [
+        {
+          "text": "Add custom audio-effect processing to apps like Logic Pro X and GarageBand by creating Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Custom Audio Effects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver": {
+      "abstract": [
+        {
+          "text": "Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toObjectsAt"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:toObjectsAt:forKeyPath:options:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411404-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to support fast enumeration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFastEnumeration"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Units",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+        "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory"
+      ],
+      "title": "Audio Units"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initialization",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)"
+      ],
+      "title": "Initialization"
+    },
+    {
+      "anchor": "Bus-Array-Methods-and-Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/count",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/isCountChangeable",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/busType",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/setBusCount(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)"
+      ],
+      "title": "Bus Array Methods and Properties"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This method is only of interest to audio unit subclasses.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Audio-Unit-Implementations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)"
+      ],
+      "title": "Audio Unit Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AUAudioUnitBusArray"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initialization",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)"
+              ],
+              "title": "Initialization"
+            },
+            {
+              "anchor": "Bus-Array-Methods-and-Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/count",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/isCountChangeable",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/busType",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/setBusCount(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)"
+              ],
+              "title": "Bus Array Methods and Properties"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This method is only of interest to audio unit subclasses.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Audio-Unit-Implementations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)"
+              ],
+              "title": "Audio Unit Implementations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Units",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+                "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory"
+              ],
+              "title": "Audio Units"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AUAudioUnitBusArray"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/title",
+          "value": "AUAudioUnitV2Bridge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitV2Bridge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitV2Bridge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1outputBusses/title",
+          "value": "outputBusses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1outputBusses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputBusses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1addObserver(toAllBusses:forKeyPath:options:context:)/title",
+          "value": "addObserverToAllBusses:forKeyPath:options:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1addObserver(toAllBusses:forKeyPath:options:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addObserverToAllBusses:forKeyPath:options:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1ownerAudioUnit/title",
+          "value": "ownerAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1ownerAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ownerAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1busType/title",
+          "value": "busType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1busType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "busType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/title",
+          "value": "AUAudioUnitBus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1subscript(_:)/title",
+          "value": "objectAtIndexedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1subscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectAtIndexedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/title",
+          "value": "AUAudioUnitPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1isCountChangeable/title",
+          "value": "countChangeable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1isCountChangeable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "countChangeable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1init(audioUnit:busType:busses:)/title",
+          "value": "initWithAudioUnit:busType:busses:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1init(audioUnit:busType:busses:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAudioUnit:busType:busses:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1count/title",
+          "value": "count"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1count/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "count"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/title",
+          "value": "AUAudioUnitBusArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1init(audioUnit:busType:)/title",
+          "value": "initWithAudioUnit:busType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1init(audioUnit:busType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAudioUnit:busType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1inputBusses/title",
+          "value": "inputBusses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1inputBusses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputBusses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1removeObserver(fromAllBusses:forKeyPath:context:)/title",
+          "value": "removeObserverFromAllBusses:forKeyPath:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1removeObserver(fromAllBusses:forKeyPath:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObserverFromAllBusses:forKeyPath:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1setBusCount(_:)/title",
+          "value": "setBusCount:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1setBusCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBusCount:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray~11411404-addobserver/title",
+          "value": "addObserver:toObjectsAtIndexes:forKeyPath:options:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/title",
+          "value": "AUAudioUnitFactory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1replaceBusses(_:)/title",
+          "value": "replaceBusses:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray~1replaceBusses(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceBusses:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionCopyComponentList(_:)/title",
+          "value": "AudioUnitExtensionCopyComponentList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionCopyComponentList(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitExtensionCopyComponentList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionSetComponentList(_:_:)/title",
+          "value": "AudioUnitExtensionSetComponentList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionSetComponentList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitExtensionSetComponentList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/auaudiounitbusarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/auaudiounitbusarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

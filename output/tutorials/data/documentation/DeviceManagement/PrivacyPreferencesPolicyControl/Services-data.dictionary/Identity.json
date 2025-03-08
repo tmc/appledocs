@@ -1,0 +1,773 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary listing apps and the privacy policy to apply to them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary/Identity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:PrivacyPreferencesPolicyControl.Services.Identity",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "PrivacyPreferencesPolicyControl.Services.Identity"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PrivacyPreferencesPolicyControl.Services.Identity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "PrivacyPreferencesPolicyControl.Services.Identity"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "PrivacyPreferencesPolicyControl.Services.Identity"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The code requirement for the receiving binary. This code requirement is required for AppleEvents service; not valid for other services.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "AEReceiverCodeRequirement",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier of the process receiving an AppleEvent sent by the Identifier process. This identifier is required for AppleEvents service; not valid for other services.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "AEReceiverIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "bundleID",
+                "path"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of AEReceiverIdentifier value, either ",
+                  "type": "text"
+                },
+                {
+                  "code": "bundleID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "path",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This setting is required for AppleEvents service; not valid for other services.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "AEReceiverIdentifierType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", access is granted; otherwise, the process doesn’t have access. The user isn’t prompted and can’t change this value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Every payload needs to include either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Authorization",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Allowed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but not both.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Note",
+              "style": "note",
+              "type": "aside"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "Allowed",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Allow",
+                "Deny",
+                "AllowStandardUserToSetSystemService"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key is an optional replacement for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Allowed",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key, which has one of the following possible values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Equivalent to a ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "true",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " value for the ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "Allowed",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " key",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "Allow",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Equivalent to a f",
+                            "type": "text"
+                          },
+                          {
+                            "code": "alse",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " value for the ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "Allowed",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " key",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "Deny",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Allows a standard (non-admin) user to configure the permissions for the specified app in the Privacy preferences for services that otherwise require admin authorization; only valid for the ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "ListenEvent",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " and ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "ScreenCapture",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " services",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "AllowStandardUserToSetSystemService",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Every payload needs to include either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Authorization",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Allowed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but not both.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Note",
+              "style": "note",
+              "type": "aside"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "Authorization",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Obtained via the command “",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign -display -r -",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "”.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "CodeRequirement",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Not used.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "Comment",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bundle ID or installation path of the binary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "Identifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "bundleID",
+                "path"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of identifier value. Application bundles must be identified by bundle ID. Nonbundled binaries must be identified by installation path. Helper tools embedded within an application bundle automatically inherit the permissions of their enclosing app bundle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "IdentifierType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", statically validate the code requirement. Used only if the process invalidates its dynamic code signature.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.14.0",
+          "name": "StaticCode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure privacy preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PrivacyPreferencesPolicyControl",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/privacypreferencespolicycontrol"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The privacy policy control services dictionary that controls access on a per app basis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl.Services"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl.Services"
+        }
+      ],
+      "role": "symbol",
+      "title": "PrivacyPreferencesPolicyControl.Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/privacypreferencespolicycontrol/services-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary/Identity": {
+      "abstract": [
+        {
+          "text": "A dictionary listing apps and the privacy policy to apply to them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl.Services.Identity"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PrivacyPreferencesPolicyControl/Services-data.dictionary/Identity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrivacyPreferencesPolicyControl.Services.Identity"
+        }
+      ],
+      "role": "symbol",
+      "title": "PrivacyPreferencesPolicyControl.Services.Identity",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/privacypreferencespolicycontrol/services-data.dictionary/identity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/privacypreferencespolicycontrol/services-data.dictionary/identity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

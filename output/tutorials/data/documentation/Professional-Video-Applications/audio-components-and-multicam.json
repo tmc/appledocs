@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Specify configuration of audio components using the ",
+      "type": "text"
+    },
+    {
+      "code": "mc-clip",
+      "type": "codeVoice"
+    },
+    {
+      "text": " element.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/audio-components-and-multicam"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Audio Components and Multicam"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the following audio components using the ",
+              "type": "text"
+            },
+            {
+              "code": "mc-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabling or disabling the component",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mute ranges",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Volume and other audio adjustments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio filters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code listing below is a multicam project example based on the first code listing in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page, with two multicam clips that have reconfigured audio components. The first clip has its audio trimmed at both ends as a JL cut. The second angle in the second clip has its audio muted for 5 seconds in its middle section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<project name=\"MyProject\">   ",
+            "  <sequence duration=\"40s\" format=\"r2\">",
+            "      <spine>",
+            "         <mc-clip name=\"MyMulticamClip\" offset=\"0s\" ref=\"r1\" duration=\"20s\">",
+            "            <mc-source angleID=\"a1\" srcEnable=\"all\">",
+            "               <audio-role-source role=\"dialogue.dialogue-1\" start=\"1s\" duration=\"18s\" />",
+            "            </mc-source>",
+            "         </mc-clip>",
+            "         <mc-clip name=\"MyMulticamClip\" offset=\"20s\" ref=\"r1\" duration=\"20s\">",
+            "            <mc-source angleID=\"a1\" srcEnable=\"video\" />",
+            "            <mc-source angleID=\"a2\" srcEnable=\"audio\">",
+            "               <audio-role-source role=\"dialogue.dialogue-1\">",
+            "                  <mute start=\"5s\" duration=\"10s\" />",
+            "               </audio-role-source>",
+            "            </mc-source>",
+            "         </mc-clip>",
+            "      </spine>",
+            "   </sequence>",
+            "</project>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As of FCPXML 1.2, ",
+              "type": "text"
+            },
+            {
+              "code": "mc-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements no longer support audio filters. Instead, you apply audio filters to an ",
+              "type": "text"
+            },
+            {
+              "code": "mc-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, which applies the effect to all active audio source angles, or to an ",
+              "type": "text"
+            },
+            {
+              "code": "audio-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, which only applies the effect to the individual audio source, if active. Existing FCPXML 1.1 projects with audio angles on an ",
+              "type": "text"
+            },
+            {
+              "code": "mc-clip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element are converted to 1.2 and later format on import.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In FCPXML 1.6, use the ",
+              "type": "text"
+            },
+            {
+              "code": "audio-role-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element  to apply audible adjustments and audio filters to an audio component identified by its role.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media": {
+      "abstract": [
+        {
+          "text": "Assemble angles from a multi-camera shooting as a unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Multicam Media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/multicam-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multicam-Media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media"
+      ],
+      "title": "Multicam Media"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multicam-Media",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/multicam-media"
+              ],
+              "title": "Multicam Media"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/audio-components-and-multicam"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/audio-components-and-multicam"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

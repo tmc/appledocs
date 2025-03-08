@@ -1,0 +1,1035 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a graphics coordinate transformation that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/affinetransform",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/affinetransform"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410247,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAffineTransform",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSAffineTransform"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSAffineTransform"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAffineTransform"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transformation specifies how points in one coordinate system are transformed to points in another coordinate system. An affine transformation is a special type of transformation that preserves parallel lines in a path but does not necessarily preserve lengths or angles. Scaling, rotation, and translation are the most commonly used manipulations supported by affine transforms, but shearing is also possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In OS X 10.3 and earlier the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class was declared and implemented entirely in the Application Kit framework. As of macOS 10.4 the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class has been split across the Foundation and Application Kit frameworks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Methods for applying affine transformations to the current graphics context and a method for applying an affine transformation to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBezierPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object are described in NSAffineTransform Additions Reference in the Application Kit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/affinetransform",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBezierPath": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBezierPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBezierPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbezierpath"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462131-transform": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBezierPath",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object with each point in the given path transformed by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": "(NSBezierPath) -> NSBezierPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462131-transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaffinetransform/1462131-transform"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462133-set": {
+      "abstract": [
+        {
+          "text": "Sets the current transformation matrix to the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462133-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaffinetransform/1462133-set"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462135-concat": {
+      "abstract": [
+        {
+          "text": "Appends the receiver’s matrix to the current transformation matrix stored in the current graphics context, replacing the current transformation matrix with the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "concat"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462135-concat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "concat()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaffinetransform/1462135-concat"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/affinetransform": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/affinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AffineTransform",
+      "type": "topic",
+      "url": "/documentation/foundation/affinetransform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/affinetransform/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AffineTransform.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/affinetransform/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AffineTransform.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/affinetransform/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform": {
+      "abstract": [
+        {
+          "text": "An object representing a graphics coordinate transformation that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/affinetransform",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAffineTransform",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1407401-rotate": {
+      "abstract": [
+        {
+          "text": "Applies a rotation factor (measured in degrees) to the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "byDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1407401-rotate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotate(byDegrees:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1407401-rotate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1408404-append": {
+      "abstract": [
+        {
+          "text": "Appends the specified matrix to the receiver’s matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAffineTransform)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1408404-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1408404-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1409793-prepend": {
+      "abstract": [
+        {
+          "text": "Prepends the specified matrix to the receiver’s matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepend"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAffineTransform)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1409793-prepend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepend(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1409793-prepend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411353-rotate": {
+      "abstract": [
+        {
+          "text": "Applies a rotation factor (measured in radians) to the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "byRadians"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411353-rotate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotate(byRadians:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1411353-rotate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411498-init": {
+      "abstract": [
+        {
+          "text": "Initializes an affine transform matrix to the identity matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411498-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1411498-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411619-transform": {
+      "abstract": [
+        {
+          "text": "Applies the receiver’s transform to the specified point and returns the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": "(NSPoint) -> NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411619-transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1411619-transform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411806-scalex": {
+      "abstract": [
+        {
+          "text": "Applies scaling factors to each axis of the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleX"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "yBy"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411806-scalex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleX(by:yBy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1411806-scalex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1412434-invert": {
+      "abstract": [
+        {
+          "text": "Replaces the receiver’s matrix with its inverse matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invert"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1412434-invert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invert()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1412434-invert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413399-init": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver’s matrix using another transform object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAffineTransform)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413399-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(transform:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1413399-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413649-scale": {
+      "abstract": [
+        {
+          "text": "Applies the specified scaling factor along both x and y axes to the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413649-scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale(by:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1413649-scale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1414485-transformstruct": {
+      "abstract": [
+        {
+          "text": "The matrix coefficients stored as the transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformStruct"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAffineTransformStruct"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1414485-transformstruct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformStruct",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1414485-transformstruct"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1416692-transform": {
+      "abstract": [
+        {
+          "text": "Applies the receiver’s transform to the specified size and returns the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": "(NSSize) -> NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1416692-transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1416692-transform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1417196-translatex": {
+      "abstract": [
+        {
+          "text": "Applies the specified translation factors to the receiver’s transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "translateX"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "yBy"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1417196-translatex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translateX(by:yBy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransform/1417196-translatex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsaffinetransformstruct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the three-by-three matrix that performs an affine transform between two coordinate systems.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAffineTransformStruct"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsaffinetransformstruct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAffineTransformStruct",
+      "type": "topic",
+      "url": "/documentation/foundation/nsaffinetransformstruct"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/affinetransform/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651647",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411498-init",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413399-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Affine Transform"
+    },
+    {
+      "anchor": "1651680",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1407401-rotate",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411353-rotate",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1413649-scale",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411806-scalex",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1417196-translatex",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1408404-append",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1409793-prepend",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1412434-invert"
+      ],
+      "kind": "taskGroup",
+      "title": "Accumulating Transformations"
+    },
+    {
+      "anchor": "1651765",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1411619-transform",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1416692-transform",
+        "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462131-transform"
+      ],
+      "kind": "taskGroup",
+      "title": "Transforming Data and Objects"
+    },
+    {
+      "anchor": "1651798",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransform/1414485-transformstruct",
+        "doc://com.apple.documentation/documentation/foundation/nsaffinetransformstruct"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Transformation Matrix"
+    },
+    {
+      "anchor": "2902133",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462133-set",
+        "doc://com.apple.documentation/documentation/appkit/nsaffinetransform/1462135-concat"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting and Building the Current Transformation Matrix"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsaffinetransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsaffinetransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

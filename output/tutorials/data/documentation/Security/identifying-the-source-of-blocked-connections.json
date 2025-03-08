@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Figure out why App Transport Security denies a network connection.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/identifying-the-source-of-blocked-connections"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying the Source of Blocked Connections"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app experiences connectivity problems that you think might be related to App Transport Security (ATS), be sure that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re using high-level network frameworks and secure URLs, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Prefer-High-Level-Frameworks-in-Your-App",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server is properly configured. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nscurl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line tool on your Mac to check how the server’s configuration affects ATS behavior.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Check-Combinations-of-ATS-Exceptions",
+          "level": 3,
+          "text": "Check Combinations of ATS Exceptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "nscurl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command accepts the ",
+              "type": "text"
+            },
+            {
+              "code": "--ats-diagnostics",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag that asks it to check how a particular server responds to combinations of ATS exceptions. For example, you can test the canonical example web site:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ /usr/bin/nscurl --ats-diagnostics --verbose https://example.com"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to running with no exceptions at all, the tool tests the global exception key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as well as a variety of combinations of the exception domain keys ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "nscurl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " outputs the results of all these tests to the terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Starting ATS Diagnostics",
+            "",
+            "Configuring ATS Info.plist keys and displaying the result of HTTPS loads to https://example.com.",
+            "A test will \"PASS\" if URLSession:task:didCompleteWithError: returns a nil error.",
+            "================================================================================",
+            "",
+            "Default ATS Secure Connection",
+            "---",
+            "ATS Default Connection",
+            "ATS Dictionary:",
+            "{",
+            "}",
+            "Result : PASS",
+            "---",
+            "",
+            "================================================================================",
+            "",
+            "Allowing Arbitrary Loads",
+            "",
+            "---",
+            "Allow All Loads",
+            "ATS Dictionary:",
+            "{",
+            "    NSAllowsArbitraryLoads = true;",
+            "}",
+            "Result : PASS",
+            "---",
+            "",
+            "..."
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Look-for-Basic-Security-Failures",
+          "level": 3,
+          "text": "Look for Basic Security Failures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If globally allowing arbitrary loads fails, the problem isn’t related to ATS. For example, if the server’s certificate doesn’t match the DNS name of the server, the connection fails default server trust evaluation before ATS has a chance to impose its extended security checks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...",
+            "",
+            "Allowing Arbitrary Loads",
+            "",
+            "---",
+            "Allow All Loads",
+            "ATS Dictionary:",
+            "{",
+            "    NSAllowsArbitraryLoads = true;",
+            "}",
+            "Result : FAIL",
+            "Error : Error Domain=NSURLErrorDomain Code=-1202 \"The certificate for this server is invalid...",
+            "",
+            "..."
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you see this failure, check that your certificate meets the default server trust evaluation requirements described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Ensure-the-Network-Server-Meets-Minimum-Requirements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, make sure the certificate matches the DNS name of the server and that the certificate isn’t expired.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-Specific-ATS-Exceptions",
+          "level": 3,
+          "text": "Consider Specific ATS Exceptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ATS default test fails but the arbitrary loads test passes, you might need to reconfigure your server. Use the remaining tests to help pinpoint the problem. For example, consider the test with the following exceptions dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    NSExceptionDomains =     {",
+            "        \"example.com\" =         {",
+            "            NSExceptionRequiresForwardSecrecy = false;",
+            "        };",
+            "    };",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If simply disabling forward secrecy results in a passing test, you need to reconfigure your server to support perfect forward secrecy (PFS) through Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) key exchange. If you can’t do that, you might need to add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " exception to your app instead, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Configure-Exceptions-Only-When-Needed-Prefer-Server-Fixes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether App Transport Security restrictions are disabled for all network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAllowsArbitraryLoads",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to allow insecure HTTP loads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExceptionAllowsInsecureHTTPLoads",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum Transport Layer Security (TLS) version for network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExceptionMinimumTLSVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to override the perfect forward secrecy requirement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExceptionRequiresForwardSecrecy",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections": {
+      "abstract": [
+        {
+          "text": "Enforce secure network links in your app by relying on App Transport Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preventing Insecure Network Connections",
+      "type": "topic",
+      "url": "/documentation/security/preventing-insecure-network-connections"
+    },
+    "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Configure-Exceptions-Only-When-Needed-Prefer-Server-Fixes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Configure-Exceptions-Only-When-Needed-Prefer-Server-Fixes",
+      "kind": "section",
+      "title": "Configure Exceptions Only When Needed; Prefer Server Fixes",
+      "type": "topic",
+      "url": "/documentation/security/preventing-insecure-network-connections#Configure-Exceptions-Only-When-Needed-Prefer-Server-Fixes"
+    },
+    "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Ensure-the-Network-Server-Meets-Minimum-Requirements": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Ensure-the-Network-Server-Meets-Minimum-Requirements",
+      "kind": "section",
+      "title": "Ensure the Network Server Meets Minimum Requirements",
+      "type": "topic",
+      "url": "/documentation/security/preventing-insecure-network-connections#Ensure-the-Network-Server-Meets-Minimum-Requirements"
+    },
+    "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Prefer-High-Level-Frameworks-in-Your-App": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections#Prefer-High-Level-Frameworks-in-Your-App",
+      "kind": "section",
+      "title": "Prefer High-Level Frameworks in Your App",
+      "type": "topic",
+      "url": "/documentation/security/preventing-insecure-network-connections#Prefer-High-Level-Frameworks-in-Your-App"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/identifying-the-source-of-blocked-connections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/identifying-the-source-of-blocked-connections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,794 @@
+{
+  "abstract": [
+    {
+      "text": "A unit of measure for energy.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsunitenergy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1690749,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitEnergy",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUnitEnergy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUnitEnergy"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDimension",
+              "text": "NSDimension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitEnergy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent specific quantities of energy using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1867910",
+          "level": 3,
+          "text": "Energy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Energy is a fundamental property of matter than can be transferred and converted into different forms, such as kinetic, electric, and thermal. The SI unit for energy is the joule (J), which is derived as the work of one meter of displacement in the direction of a force of one newton (1J = 1N ∙ 1m). It can also be derived as the work required to displace an electric charge of one coulomb through an electrical potential difference of one volt (1J = 1C ∙ 1V), or the work required to produce one watt of power for one second (1J = 1W ∙ 1s). Energy is also commonly expressed in terms of the calorie (cal), or the energy needed to raise the temperature of one gram of water by one degree Celsius at a pressure of one atmosphere (1cal ≡ 4.184J).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitEnergy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines its base unit as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and provides the following units, which are initialized using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " converters with the specified coefficients:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2556966",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kilojoules",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856113-kilojoules",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kJ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Joules",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "J",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kilocalories",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856028-kilocalories",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kCal",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "4184.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calories",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855990-calories",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "cal",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "4.184",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kilowatt Hours",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856092-kilowatthours",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kWh",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3600000.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdimension": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDimension",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdimension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmeasurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMeasurement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmeasurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitconverterlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitConverterLinear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitconverterlinear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy": {
+      "abstract": [
+        {
+          "text": "A unit of measure for energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitEnergy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy#2556966": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy#2556966",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsunitenergy#2556966"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules": {
+      "abstract": [
+        {
+          "text": "The joules unit of energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "joules",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1855987-joules"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855990-calories": {
+      "abstract": [
+        {
+          "text": "The calories unit of energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855990-calories",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calories",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1855990-calories"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856028-kilocalories": {
+      "abstract": [
+        {
+          "text": "The kilocalories unit of energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856028-kilocalories",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilocalories",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1856028-kilocalories"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856092-kilowatthours": {
+      "abstract": [
+        {
+          "text": "The kilowatt hours unit of energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856092-kilowatthours",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilowattHours",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1856092-kilowatthours"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856113-kilojoules": {
+      "abstract": [
+        {
+          "text": "The kilojoules unit of energy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856113-kilojoules",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilojoules",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1856113-kilojoules"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1888756-baseunit": {
+      "abstract": [
+        {
+          "text": "Returns the base unit of energy. Equal to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1888756-baseunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "baseUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitenergy/1888756-baseunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitilluminance": {
+      "abstract": [
+        {
+          "text": "A unit of measure for illuminance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitilluminance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitIlluminance",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitilluminance"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitpower": {
+      "abstract": [
+        {
+          "text": "A unit of measure for power.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitpower",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitPower",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitpower"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunittemperature": {
+      "abstract": [
+        {
+          "text": "A unit of measure for temperature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunittemperature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitTemperature",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunittemperature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdimension"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitpower",
+        "doc://com.apple.documentation/documentation/foundation/nsunittemperature",
+        "doc://com.apple.documentation/documentation/foundation/nsunitilluminance"
+      ],
+      "title": "Energy, Heat, and Light"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1867912",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1888756-baseunit"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Base Unit"
+    },
+    {
+      "anchor": "1867913",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856113-kilojoules",
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855987-joules",
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856028-kilocalories",
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1855990-calories",
+        "doc://com.apple.documentation/documentation/foundation/nsunitenergy/1856092-kilowatthours"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitenergy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitenergy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

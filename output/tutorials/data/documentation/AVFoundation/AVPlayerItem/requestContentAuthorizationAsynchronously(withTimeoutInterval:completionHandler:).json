@@ -1,1 +1,1278 @@
-{"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)"]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.avfoundation/documentation/AVFoundation","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem"]]},"abstract":[{"text":"Presents the user the opportunity to authorize the content for playback.","type":"text"}],"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["macOS"],"languages":["swift"],"tokens":[{"kind":"attribute","text":"@"},{"kind":"attribute","text":"MainActor","identifier":"doc://com.externally.resolved.symbol/s:ScM","preciseIdentifier":"s:ScM"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"text":"requestContentAuthorizationAsynchronously","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withTimeoutInterval","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"timeoutInterval","kind":"internalParam"},{"text":": ","kind":"text"},{"text":"TimeInterval","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval"},{"text":", ","kind":"text"},{"text":"completionHandler","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"handler","kind":"internalParam"},{"text":": ","kind":"text"},{"text":"@escaping","kind":"keyword"},{"text":" () -> ","kind":"text"},{"text":"Void","identifier":"doc://com.externally.resolved.symbol/s:s4Voida","kind":"typeIdentifier","preciseIdentifier":"s:s4Voida"},{"text":")","kind":"text"}]},{"platforms":["macOS"],"languages":["swift"],"tokens":[{"kind":"attribute","text":"@"},{"preciseIdentifier":"s:ScM","identifier":"doc://com.externally.resolved.symbol/s:ScM","kind":"attribute","text":"MainActor"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"requestContentAuthorization"},{"kind":"text","text":"("},{"kind":"externalParam","text":"withTimeoutInterval"},{"kind":"text","text":" "},{"kind":"internalParam","text":"timeoutInterval"},{"kind":"text","text":": "},{"preciseIdentifier":"c:@T@NSTimeInterval","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval","kind":"typeIdentifier","text":"TimeInterval"},{"kind":"text","text":") "},{"kind":"keyword","text":"async"}]}]},{"kind":"parameters","parameters":[{"name":"timeoutInterval","content":[{"inlineContent":[{"text":"The maximum amount of time in seconds to wait for the user to authorize the content before calling the handler block with a timeout result.","type":"text"}],"type":"paragraph"}]},{"name":"handler","content":[{"type":"paragraph","inlineContent":[{"text":"The block to be called upon completion.","type":"text"}]}]}]},{"content":[{"level":2,"type":"heading","anchor":"Discussion","text":"Discussion"},{"inlineContent":[{"type":"text","text":"Calling this method will present the user with the opportunity to authorize the content (for example, by launching iTunes and prompting the user to enter their Apple ID and password)."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"When the user has taken action (or the timeout has elapsed), the completion handler is invoked. You determine the status of the authorization attempt by checking the value of the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus"},{"type":"text","text":" property."}],"type":"paragraph"},{"inlineContent":[{"text":"Even if the status indicates a completed authorization, the content may still not be authorized (for example, if the user authorizes an Apple ID other than that associated with the content).  You should re-check the value of ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus"},{"text":" to verify whether the content has actually been authorized before continuing.  It is not necessary to call this method if the value of ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus"},{"text":" is already true.","type":"text"}],"type":"paragraph"}],"kind":"content"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"identifiers":["doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus","doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()"],"anchor":"Managing-Playback-Authorization-in-macOS","title":"Managing Playback Authorization in macOS","generated":true}],"identifier":{"url":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)","interfaceLanguage":"swift"},"metadata":{"role":"symbol","title":"requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)","extendedModule":"AVFoundation","platforms":[{"deprecated":false,"name":"macOS","introducedAt":"10.7","beta":false,"unavailable":false}],"externalID":"c:objc(cs)AVPlayerItem(im)requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:","navigatorTitle":[{"kind":"identifier","text":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"}],"roleHeading":"Instance Method","symbolKind":"method","modules":[{"name":"AVFoundation"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"requestContentAuthorizationAsynchronously"},{"kind":"text","text":"("},{"kind":"externalParam","text":"withTimeoutInterval"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": () -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:s4Voida","text":"Void"},{"kind":"text","text":")"}]},"sections":[],"kind":"symbol","references":{"doc://com.apple.avfoundation/documentation/AVFoundation":{"role":"collection","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation","abstract":[{"type":"text","text":"Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions."}],"type":"topic","title":"AVFoundation","url":"/documentation/avfoundation","kind":"symbol"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem":{"url":"/documentation/avfoundation/avplayeritem","title":"AVPlayerItem","abstract":[{"text":"An object that models the timing and presentation state of an asset during playback.","type":"text"}],"kind":"symbol","navigatorTitle":[{"text":"AVPlayerItem","kind":"identifier"}],"type":"topic","role":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVPlayerItem","kind":"identifier"}],"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus":{"abstract":[{"text":"A value representing the status of a content authorization request.","type":"text"}],"kind":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVContentAuthorizationStatus","kind":"identifier"}],"title":"AVContentAuthorizationStatus","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus","type":"topic","url":"/documentation/avfoundation/avcontentauthorizationstatus","role":"symbol","navigatorTitle":[{"text":"AVContentAuthorizationStatus","kind":"identifier"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback":{"title":"isContentAuthorizedForPlayback","abstract":[{"type":"text","text":"A Boolean value that indicates whether the content has been authorized by the user."}],"role":"symbol","navigatorTitle":[{"text":"contentAuthorizedForPlayback","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isContentAuthorizedForPlayback","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"}],"url":"/documentation/avfoundation/avplayeritem/iscontentauthorizedforplayback","kind":"symbol"},"doc://com.externally.resolved.symbol/s:ScM":{"role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:ScM","fragments":[{"kind":"attribute","text":"@globalActor"},{"kind":"text","text":" "},{"kind":"keyword","text":"final"},{"kind":"text","text":" "},{"kind":"keyword","text":"actor"},{"kind":"text","text":" "},{"kind":"identifier","text":"MainActor"}],"abstract":[{"type":"text","text":"A singleton actor whose executor is equivalent to the main dispatch queue."}],"type":"topic","title":"MainActor","url":"/documentation/Swift/MainActor","kind":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"type":"text","text":""}],"type":"topic","title":"Technologies","url":"/documentation/technologies","kind":"technologies"},"doc://com.externally.resolved.symbol/s:s4Voida":{"role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:s4Voida","type":"topic","title":"Void","kind":"symbol","fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Void","kind":"identifier"},{"text":" = ()","kind":"text"}],"abstract":[{"text":"The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.","type":"text"}],"url":"/documentation/Swift/Void"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)":{"url":"/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)","type":"topic","navigatorTitle":[{"kind":"identifier","text":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"}],"role":"symbol","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"requestContentAuthorizationAsynchronously","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withTimeoutInterval","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier","text":"TimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": () -> "},{"preciseIdentifier":"s:s4Voida","kind":"typeIdentifier","text":"Void"},{"kind":"text","text":")"}],"abstract":[{"type":"text","text":"Presents the user the opportunity to authorize the content for playback."}],"title":"requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)"},"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval":{"type":"topic","kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval","abstract":[{"type":"text","text":"A number of seconds."}],"url":"/documentation/foundation/timeinterval","title":"TimeInterval","role":"symbol","fragments":[{"text":"typealias ","kind":"text"},{"text":"TimeInterval","kind":"identifier"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()":{"abstract":[{"text":"Cancels the currently outstanding content authorization request.","type":"text"}],"kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"cancelContentAuthorizationRequest"},{"kind":"text","text":"()"}],"title":"cancelContentAuthorizationRequest()","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()","type":"topic","url":"/documentation/avfoundation/avplayeritem/cancelcontentauthorizationrequest()","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"cancelContentAuthorizationRequest"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback":{"type":"topic","role":"symbol","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isApplicationAuthorizedForPlayback","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"title":"isApplicationAuthorizedForPlayback","navigatorTitle":[{"text":"applicationAuthorizedForPlayback","kind":"identifier"}],"url":"/documentation/avfoundation/avplayeritem/isapplicationauthorizedforplayback","kind":"symbol","abstract":[{"text":"A Boolean value that indicates whether the application can be used to play the content.","type":"text"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback":{"abstract":[{"text":"A Boolean value that indicates whether authorization is required to play the content.","type":"text"}],"kind":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"isAuthorizationRequiredForPlayback"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"}],"title":"isAuthorizationRequiredForPlayback","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback","type":"topic","url":"/documentation/avfoundation/avplayeritem/isauthorizationrequiredforplayback","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"authorizationRequiredForPlayback"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus":{"title":"contentAuthorizationRequestStatus","abstract":[{"type":"text","text":"The status of the most recent content authorization request."}],"role":"symbol","navigatorTitle":[{"text":"contentAuthorizationRequestStatus","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"contentAuthorizationRequestStatus","kind":"identifier"},{"text":": ","kind":"text"},{"text":"AVContentAuthorizationStatus","preciseIdentifier":"c:@E@AVContentAuthorizationStatus","kind":"typeIdentifier"}],"url":"/documentation/avfoundation/avplayeritem/contentauthorizationrequeststatus","kind":"symbol"}},"variantOverrides":[{"patch":[{"value":"occ","path":"/identifier/interfaceLanguage","op":"replace"},{"value":[{"deprecated":false,"name":"macOS","introducedAt":"10.7","beta":false,"unavailable":false}],"path":"/metadata/platforms","op":"replace"},{"value":"Instance Method","path":"/metadata/roleHeading","op":"replace"},{"value":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:","path":"/metadata/title","op":"replace"},{"value":"method","path":"/metadata/symbolKind","op":"replace"},{"value":[{"text":"- ","kind":"text"},{"text":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:","kind":"identifier"}],"path":"/metadata/fragments","op":"replace"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.avfoundation/documentation/AVFoundation","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem"]]},"path":"/hierarchy","op":"replace"},{"value":null,"path":"/topicSections","op":"add"},{"value":null,"path":"/relationshipsSections","op":"add"},{"path":"/seeAlsoSections","op":"replace","value":[{"title":"Managing Playback Authorization in macOS","anchor":"Managing-Playback-Authorization-in-macOS","generated":true,"identifiers":["doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus","doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus","doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()"]}]},{"path":"/primaryContentSections/0","op":"replace","value":{"kind":"declarations","declarations":[{"platforms":["macOS"],"languages":["occ"],"tokens":[{"kind":"text","text":"- ("},{"kind":"typeIdentifier","preciseIdentifier":"c:v","text":"void"},{"kind":"text","text":") "},{"kind":"identifier","text":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","text":"NSTimeInterval"},{"kind":"text","text":") "},{"kind":"internalParam","text":"timeoutInterval"},{"text":" ","kind":"text"},{"text":"completionHandler:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"void","kind":"typeIdentifier","preciseIdentifier":"c:v"},{"text":" (^)()) ","kind":"text"},{"text":"handler","kind":"internalParam"},{"text":";","kind":"text"}]}]}},{"op":"replace","path":"/primaryContentSections/1","value":{"parameters":[{"name":"timeoutInterval","content":[{"inlineContent":[{"type":"text","text":"The maximum amount of time in seconds to wait for the user to authorize the content before calling the handler block with a timeout result."}],"type":"paragraph"}]},{"name":"handler","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The block to be called upon completion."}]}]}],"kind":"parameters"}},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title","op":"replace","value":"AVPlayerItem"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments","op":"replace","value":[{"text":"AVPlayerItem","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle","op":"replace","value":[{"kind":"identifier","text":"AVPlayerItem"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/title","op":"replace","value":"AVContentAuthorizationStatus"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/fragments","op":"replace","value":[{"text":"AVContentAuthorizationStatus","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/navigatorTitle","op":"replace","value":[{"text":"AVContentAuthorizationStatus","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isContentAuthorizedForPlayback/title","op":"replace","value":"contentAuthorizedForPlayback"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isContentAuthorizedForPlayback/fragments","op":"replace","value":[{"kind":"identifier","text":"contentAuthorizedForPlayback"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)/title","op":"replace","value":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)/fragments","op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"}]},{"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSTimeInterval/title","op":"replace","value":"NSTimeInterval"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1cancelContentAuthorizationRequest()/title","op":"replace","value":"cancelContentAuthorizationRequest"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1cancelContentAuthorizationRequest()/fragments","op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"cancelContentAuthorizationRequest"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isApplicationAuthorizedForPlayback/title","op":"replace","value":"applicationAuthorizedForPlayback"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isApplicationAuthorizedForPlayback/fragments","op":"replace","value":[{"kind":"identifier","text":"applicationAuthorizedForPlayback"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isAuthorizationRequiredForPlayback/title","op":"replace","value":"authorizationRequiredForPlayback"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isAuthorizationRequiredForPlayback/fragments","op":"replace","value":[{"kind":"identifier","text":"authorizationRequiredForPlayback"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1contentAuthorizationRequestStatus/title","op":"replace","value":"contentAuthorizationRequestStatus"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1contentAuthorizationRequestStatus/fragments","op":"replace","value":[{"kind":"identifier","text":"contentAuthorizationRequestStatus"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Presents the user the opportunity to authorize the content for playback.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AVFoundation",
+    "externalID": "c:objc(cs)AVPlayerItem(im)requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestContentAuthorizationAsynchronously"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "withTimeoutInterval"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSTimeInterval",
+        "text": "TimeInterval"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "completionHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": () -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestContentAuthorizationAsynchronously"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "withTimeoutInterval"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeoutInterval"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "TimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " () -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestContentAuthorization"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "withTimeoutInterval"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeoutInterval"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "TimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum amount of time in seconds to wait for the user to authorize the content before calling the handler block with a timeout result.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "timeoutInterval"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block to be called upon completion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method will present the user with the opportunity to authorize the content (for example, by launching iTunes and prompting the user to enter their Apple ID and password).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user has taken action (or the timeout has elapsed), the completion handler is invoked. You determine the status of the authorization attempt by checking the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if the status indicates a completed authorization, the content may still not be authorized (for example, if the user authorizes an Apple ID other than that associated with the content).  You should re-check the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to verify whether the content has actually been authorized before continuing.  It is not necessary to call this method if the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is already true.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "A value representing the status of a content authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContentAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContentAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContentAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcontentauthorizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()": {
+      "abstract": [
+        {
+          "text": "Cancels the currently outstanding content authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelContentAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelContentAuthorizationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelContentAuthorizationRequest()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/cancelcontentauthorizationrequest()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus": {
+      "abstract": [
+        {
+          "text": "The status of the most recent content authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentAuthorizationRequestStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVContentAuthorizationStatus",
+          "text": "AVContentAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentAuthorizationRequestStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentAuthorizationRequestStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/contentauthorizationrequeststatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the application can be used to play the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isApplicationAuthorizedForPlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationAuthorizedForPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "isApplicationAuthorizedForPlayback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/isapplicationauthorizedforplayback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether authorization is required to play the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAuthorizationRequiredForPlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationRequiredForPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAuthorizationRequiredForPlayback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/isauthorizationrequiredforplayback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the content has been authorized by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isContentAuthorizedForPlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentAuthorizedForPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "isContentAuthorizedForPlayback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/iscontentauthorizedforplayback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents the user the opportunity to authorize the content for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestContentAuthorizationAsynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTimeoutInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval": {
+      "abstract": [
+        {
+          "text": "A number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/timeinterval"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Playback-Authorization-in-macOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()"
+      ],
+      "title": "Managing Playback Authorization in macOS"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Playback-Authorization-in-macOS",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVContentAuthorizationStatus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()"
+              ],
+              "title": "Managing Playback Authorization in macOS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSTimeInterval",
+                    "text": "NSTimeInterval"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "timeoutInterval"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "completionHandler:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^)()) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "handler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The maximum amount of time in seconds to wait for the user to authorize the content before calling the handler block with a timeout result.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "timeoutInterval"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The block to be called upon completion.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "handler"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/title",
+          "value": "AVContentAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContentAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isContentAuthorizedForPlayback/title",
+          "value": "contentAuthorizedForPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isContentAuthorizedForPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentAuthorizedForPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)/title",
+          "value": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSTimeInterval/title",
+          "value": "NSTimeInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1cancelContentAuthorizationRequest()/title",
+          "value": "cancelContentAuthorizationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1cancelContentAuthorizationRequest()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelContentAuthorizationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isApplicationAuthorizedForPlayback/title",
+          "value": "applicationAuthorizedForPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isApplicationAuthorizedForPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicationAuthorizedForPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isAuthorizationRequiredForPlayback/title",
+          "value": "authorizationRequiredForPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1isAuthorizationRequiredForPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationRequiredForPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1contentAuthorizationRequestStatus/title",
+          "value": "contentAuthorizationRequestStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1contentAuthorizationRequestStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentAuthorizationRequestStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayeritem/requestcontentauthorizationasynchronously(withtimeoutinterval:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

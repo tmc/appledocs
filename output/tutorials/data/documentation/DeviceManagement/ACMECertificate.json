@@ -1,0 +1,1751 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure Automated Certificate Management Environment (ACME) Certificate settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:ACMECertificate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ACMECertificate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ACMECertificate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "ACMECertificate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ACMECertificate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", all apps have access to the private key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "AllowAllAppsAccess",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device provides attestations that describe the device and the generated key to the ACME server. The server can use the attestations as strong evidence that the key is bound to the device, and that the device has properties listed in the attestation. The server can use that as part of a trust score to decide whether to issue the requested certificate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "When ",
+                  "type": "text"
+                },
+                {
+                  "code": "Attest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "HardwareBound",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " also needs to be ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Setting this key to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is supported as of macOS 14 on Apple Silicon and Intel devices that have a T2 chip. Older macOS versions or other Mac devices require this key but it must have a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "Attest",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique string identifying a specific device. The server may use this as a nonce to prevent issuing multiple certificates. This identifier also indicates to the ACME server that the device has access to a valid client identifier issued by the enterprise infrastructure. This can help the ACME server determine whether to trust the device. Though this is a relatively weak indication because of the risk that an attacker can intercept the client identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "ClientIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The directory URL of the ACME server. The URL must use the https scheme.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "DirectoryURL",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value is an array of strings. Each string is an OID in dotted notation. For instance, ",
+                  "type": "text"
+                },
+                {
+                  "code": "[\"1.3.6.1.5.5.7.3.2\", \"1.3.6.1.5.5.7.3.4\"]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates client authentication and email protection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The device requests this field for the certificate that the ACME server issues. The ACME server may override or ignore this field in the certificate it issues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "ExtendedKeyUsage",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the private key isn’t bound to the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the private key is bound to the device. The Secure Enclave generates the key pair, and the private key is cryptographically entangled with a system key. This prevents the system from exporting the private key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "KeyType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be ",
+                  "type": "text"
+                },
+                {
+                  "code": "ECSECPrimeRandom",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "KeySize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be 256 or 384.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Setting this key to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is supported as of macOS 14 on Apple Silicon and Intel devices that have a T2 chip. Older macOS versions or other Mac devices require this key but it must have a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "HardwareBound",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The valid values for ",
+                  "type": "text"
+                },
+                {
+                  "code": "KeySize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " depend on the values of ",
+                  "type": "text"
+                },
+                {
+                  "code": "KeyType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "HardwareBound",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". See those keys for specific requirements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "KeySize",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "true"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the private key of the identity obtained through Simple Certificate Enrollment Protocol (SCEP) needs to be tagged as “non-extractable” in the keychain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "KeyIsExtractable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "RSA",
+                "ECSECPrimeRandom"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of key pair to generate. Allowed values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "RSA",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Specifies an RSA key pair. RSA key pairs need to have a ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "KeySize",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " that’s a multiple of 8 in the range of 1024 through 4096 (inclusive), and ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "HardwareBound",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " needs to be ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "false",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "ECSECPrimeRandom",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Specifies a key pair on the P-192, P-256, P-384, or P-521 curves as defined in FIPS Pub 186-4. ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "KeySize",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " defines the particular curve, which needs to be ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "192",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "256",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "384",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", or ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "521",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Hardware bound keys only support values of ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "256",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " and ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "384",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Note that the key size is ",
+                  "type": "text"
+                },
+                {
+                  "code": "521",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", not ",
+                  "type": "text"
+                },
+                {
+                  "code": "512",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", even though the other key sizes are multiples of 64.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "KeyType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The device requests this subject for the certificate that the ACME server issues. The ACME server may override or ignore this field in the certificate it issues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The representation of a X.500 name represented as an array of OID and value. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "/C=US/O=Apple Inc./CN=foo/1.2.5.3=bar",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " corresponds to:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "[ [ [\"C\", \"US\"] ], [ [\"O\", \"Apple Inc.\"] ], ..., [ [ \"1.2.5.3\", \"bar\" ] ] ]",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Dotted numbers can represent OIDs , with shortcuts for country (C), locality (L), state (ST), organization (O), organizational unit (OU), and common name (CN).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "Subject",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[[[string]]]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Subject Alt Name that the device requests for the certificate that the ACME server issues. The ACME server may override or ignore this field in the certificate it issues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "SubjectAltName",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate/SubjectAltName-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:ACMECertificate.SubjectAltName",
+              "text": "ACMECertificate.SubjectAltName"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This value is a bit field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Bit ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "0x01",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " indicates digital signature.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Bit ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "0x04",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " indicates encryption.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The device requests this key for the certificate that the ACME server issues. The ACME server may override or ignore this field in the certificate it issues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "16.0.0",
+          "name": "UsageFlags",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.acme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this payload to specify settings that allow the device to request a client certificate from an Automated Certificate Management Environment (ACME) server. The device generates an asymmetric key pair based upon the ",
+              "type": "text"
+            },
+            {
+              "code": "KeyType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "KeySize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "HardwareBound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields. If attest is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " it requests an attestation of the key and device properties. Then it communicates with the ACME server to authenticate the device, provide the attestation, and request a matching certificate based upon the ",
+              "type": "text"
+            },
+            {
+              "code": "ClientIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Subject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "SubjectAltName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UsageFlags",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "ExtendedKeyUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields. The ACME server issues a certificate and the device installs it in the keychain. Other payloads can reference the resulting client identity by the payload’s ",
+              "type": "text"
+            },
+            {
+              "code": "PayloadUUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device issues a new order request using the ",
+              "type": "text"
+            },
+            {
+              "code": "ClientIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "permanent-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For compatibility, the ACME server needs to respond with a challenge type of ",
+              "type": "text"
+            },
+            {
+              "code": "device-attest-01",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then the client replies with a WebAuthn attestation statement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad, tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Profile",
+          "level": 3,
+          "text": "Example Profile",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>ClientIdentifier</key>",
+            "            <string>this is an identifier</string>",
+            "            <key>ExtendedKeyUsage</key>",
+            "            <array>",
+            "                <string>1.3.6.1.5.5.7.3.2</string>",
+            "            </array>",
+            "            <key>HardwareBound</key>",
+            "            <true/>",
+            "            <key>KeySize</key>",
+            "            <integer>384</integer>",
+            "            <key>KeyType</key>",
+            "            <string>ECSECPrimeRandom</string>",
+            "            <key>UsageFlags</key>",
+            "            <integer>5</integer>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.myacmepayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.security.acme</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>cbdc6238-feec-4171-878d-34e576bbb813</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "            <key>Subject</key>",
+            "            <array>",
+            "                <array>",
+            "                    <array>",
+            "                        <string>C</string>",
+            "                        <string>US</string>",
+            "                    </array>",
+            "                </array>",
+            "                <array>",
+            "                    <array>",
+            "                        <string>O</string>",
+            "                        <string>Example Inc.</string>",
+            "                    </array>",
+            "                </array>",
+            "                <array>",
+            "                    <array>",
+            "                        <string>1.2.840.113635.100.6.99999.99999</string>",
+            "                        <string>test custom OID value</string>",
+            "                    </array>",
+            "                </array>",
+            "            </array>",
+            "            <key>SubjectAltName</key>",
+            "            <dict>",
+            "                <key>dNSName</key>",
+            "                <string>site.example.com</string>",
+            "            </dict>",
+            "            <key>DirectoryURL</key>",
+            "            <string>https://acme.example.com/acme</string>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>ACME</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>ce876f81-abf0-46f9-9e68-9b3a7ede8097</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Automated Certificate Management Environment (ACME) Certificate settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ACMECertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ACMECertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ACMECertificate",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/acmecertificate"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate/SubjectAltName-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The subject’s alternative name details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ACMECertificate.SubjectAltName"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate/SubjectAltName-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ACMECertificate.SubjectAltName"
+        }
+      ],
+      "role": "symbol",
+      "title": "ACMECertificate.SubjectAltName",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/acmecertificate/subjectaltname-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveDirectoryCertificate": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Active Directory Certificate settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActiveDirectoryCertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveDirectoryCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActiveDirectoryCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActiveDirectoryCertificate",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activedirectorycertificate"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePEM": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a PEM-formatted certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificatePEM"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePEM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificatePEM"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificatePEM",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificatepem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS1": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a PKCS #1-formatted certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificatePKCS1"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificatePKCS1"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificatePKCS1",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificatepkcs1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS12": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a PKCS #12-formatted certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificatePKCS12"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS12",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificatePKCS12"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificatePKCS12",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificatepkcs12"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePreference": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a certificate preference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificatePreference"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificatePreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificatePreference",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificatepreference"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRevocation": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure certificate revocation checking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificateRevocation"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRevocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificateRevocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificateRevocation",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificaterevocation"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRoot": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a root certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificateRoot"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRoot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificateRoot"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificateRoot",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificateroot"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateTransparency": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure certificate transparency enforcement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CertificateTransparency"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateTransparency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CertificateTransparency"
+        }
+      ],
+      "role": "symbol",
+      "title": "CertificateTransparency",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificatetransparency"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure Simple Certificate Enrollment Protocol (SCEP).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCEP"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCEP"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCEP",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/scep"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Certificates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ActiveDirectoryCertificate",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePEM",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS1",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePKCS12",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRoot",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificatePreference",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateRevocation",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CertificateTransparency",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP"
+      ],
+      "title": "Certificates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Profiles",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ACMECertificate/SubjectAltName-data.dictionary"
+      ],
+      "title": "Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/acmecertificate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

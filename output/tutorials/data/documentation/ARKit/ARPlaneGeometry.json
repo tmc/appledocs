@@ -1,0 +1,1551 @@
+{
+  "abstract": [
+    {
+      "text": "A 3D mesh describing the shape of a detected plane in world-tracking AR sessions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARPlaneGeometry",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARPlaneGeometry"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARPlaneGeometry"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARPlaneGeometry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARPlaneGeometry"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides the estimated general shape of a detected plane, in the form of a detailed 3D mesh appropriate for use with various rendering technologies or for exporting 3D assets. (For a quick way to visualize a plane geometry using SceneKit, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties, which estimate only a rectangular area for a detected plane, a plane anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides a more detailed estimate of  the 2D area covered by that plane. For example, if ARKit detects a circular tabletop, the resulting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects roughly match the general shape of the table. As the session continues to run, ARKit provides updated plane anchors whose associated geometry refines the estimated shape of the plane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this model to more precisely place 3D content that should appear only on a detected flat surface. For example, to ensure that virtual objects don’t fall off the edge of a table. You can also use this model to create occlusion geometry, which hides other virtual content behind the detected surface in the camera image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shape of a plane geometry is always convex. That is, the boundary polygon for a plane geometry is a minimal convex hull enclosing all points that ARKit recognizes or estimates are part of the plane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a 2D planar surface that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPlaneAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center": {
+      "abstract": [
+        {
+          "text": "The center point of the plane relative to its anchor position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "center"
+        }
+      ],
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/center"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent": {
+      "abstract": [
+        {
+          "text": "The estimated width and length of the detected plane.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extent"
+        }
+      ],
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/extent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry": {
+      "abstract": [
+        {
+          "text": "A coarse triangle mesh representing the general shape of the detected plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARPlaneGeometry",
+          "text": "ARPlaneGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/geometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry": {
+      "abstract": [
+        {
+          "text": "A 3D mesh describing the shape of a detected plane in world-tracking AR sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPlaneGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPlaneGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertexCount": {
+      "abstract": [
+        {
+          "text": "The number of elements in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-6nbee",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "boundaryVertexCount"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertexCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundaryVertexCount",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/boundaryvertexcount"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-3h98l": {
+      "abstract": [
+        {
+          "text": "An array of vertex positions for each point along the plane’s boundary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundaryVertices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-3h98l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundaryVertices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/boundaryvertices-3h98l"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-6nbee": {
+      "abstract": [
+        {
+          "text": "A buffer of vertex positions for each point along the plane’s boundary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "boundaryVertices"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-6nbee",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundaryVertices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/boundaryvertices-6nbee"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinateCount": {
+      "abstract": [
+        {
+          "text": "The number of elements in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-91pbc",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "textureCoordinateCount"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinateCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureCoordinateCount",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/texturecoordinatecount"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-91pbc": {
+      "abstract": [
+        {
+          "text": "A buffer of texture coordinate values for each point in the plane mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "textureCoordinates"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-91pbc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureCoordinates",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/texturecoordinates-91pbc"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-p801": {
+      "abstract": [
+        {
+          "text": "An array of texture coordinate values for each point in the plane mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float2",
+          "text": "vector_float2"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-p801",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureCoordinates",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/texturecoordinates-p801"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleCount": {
+      "abstract": [
+        {
+          "text": "The number of triangles described by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-1azi3",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "triangleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "triangleCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "triangleCount",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/trianglecount"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-1azi3": {
+      "abstract": [
+        {
+          "text": "A buffer of indices describing the triangle mesh formed by the plane geometry’s vertex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "triangleIndices"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-1azi3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "triangleIndices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/triangleindices-1azi3"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-64epx": {
+      "abstract": [
+        {
+          "text": "An array of indices describing the triangle mesh formed by the plane geometry’s vertex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "triangleIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-64epx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "triangleIndices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/triangleindices-64epx"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertexCount": {
+      "abstract": [
+        {
+          "text": "The number of elements in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-3kgkm",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vertexCount"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertexCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vertexCount",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/vertexcount"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-3kgkm": {
+      "abstract": [
+        {
+          "text": "A buffer of vertex positions for each point in the plane mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vertices"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-3kgkm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vertices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/vertices-3kgkm"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-43kle": {
+      "abstract": [
+        {
+          "text": "An array of vertex positions for each point in the plane mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-43kle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vertices",
+      "type": "topic",
+      "url": "/documentation/arkit/arplanegeometry/vertices-43kle"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry": {
+      "abstract": [
+        {
+          "text": "A SceneKit representation of the 2D shape of a plane, for use with plane detection results in an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNPlaneGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNPlaneGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNPlaneGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnplanegeometry"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geometry",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry"
+      ],
+      "title": "Geometry"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Mesh-Data",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-43kle",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-p801",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleCount",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-64epx"
+      ],
+      "title": "Accessing Mesh Data"
+    },
+    {
+      "anchor": "Finding-Boundary-Points",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-3h98l"
+      ],
+      "title": "Finding Boundary Points"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARPlaneGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Mesh-Data",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertices-3kgkm",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/vertexCount",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinates-91pbc",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/textureCoordinateCount",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleIndices-1azi3",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/triangleCount"
+              ],
+              "title": "Accessing Mesh Data"
+            },
+            {
+              "anchor": "Finding-Boundary-Points",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertices-6nbee",
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneGeometry/boundaryVertexCount"
+              ],
+              "title": "Finding Boundary Points"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geometry",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry"
+              ],
+              "title": "Geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARPlaneGeometry"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1geometry/title",
+          "value": "geometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1geometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/title",
+          "value": "ARPlaneAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/title",
+          "value": "ARSCNPlaneGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneGeometry/title",
+          "value": "ARPlaneGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1center/title",
+          "value": "center"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1center/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "center"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1extent/title",
+          "value": "extent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1extent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneGeometry~1triangleCount/title",
+          "value": "triangleCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneGeometry~1triangleCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "triangleCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arplanegeometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arplanegeometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "abstract": [
+    {
+      "text": "Allocates an OSSerialization object from the serialized data of a previous serialization.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/osserialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/osserialization/3180958-createfrombytes"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180958,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSSerialization@F@createFromBytes#*1v#l#BFv(#S0_#l)#S",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "parent": {
+      "title": "OSSerialization"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "createFromBytes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osserializationptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSSerializationPtr",
+              "text": "OSSerializationPtr"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "createFromBytes"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *bytes, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " length, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osserializationfreebufferhandler",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSSerializationFreeBufferHandler",
+              "text": "OSSerializationFreeBufferHandler"
+            },
+            {
+              "kind": "text",
+              "text": " freeBuffer);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The serialized data from a previous call to OSSerialization::finalizeBuffer().",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bytes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length of the serialized data from a previous call to OSSerialization::finalizeBuffer().",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "length"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A required block to be called when the OSSerialization is freed and the serialized data will no longer be accessed. Note that unserialized objects may retain the OSSerialization they were created from, so the OSSerialization will retain the data until they have been freed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "freeBuffer"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "NULL on failure, otherwise the allocated OSSerialization with reference count 1 to be released by the caller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allocates an OSSerialization object from the serialized data of a previous serialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization": {
+      "abstract": [
+        {
+          "text": "A container for one or more objects, serialized in a binary data format that is suitable for messaging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerialization",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization/3180958-createfrombytes": {
+      "abstract": [
+        {
+          "text": "Allocates an OSSerialization object from the serialized data of a previous serialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createFromBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization/3180958-createfrombytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createFromBytes",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization/3180958-createfrombytes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization/3180959-createfromobject": {
+      "abstract": [
+        {
+          "text": "Allocates an OSSerialization object with the serialized data of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createFromObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization/3180959-createfromobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createFromObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization/3180959-createfromobject"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization/3180960-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization/3180960-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization/3180960-free"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserializationfreebufferhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserializationfreebufferhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerializationFreeBufferHandler",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserializationfreebufferhandler"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserializationptr": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserializationptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerializationPtr",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserializationptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osserialization/3180959-createfromobject",
+        "doc://com.apple.documentation/documentation/driverkit/osserialization/3180960-free",
+        "doc://com.apple.documentation/documentation/driverkit/osserializationfreebufferhandler",
+        "doc://com.apple.documentation/documentation/driverkit/osserializationptr"
+      ],
+      "title": "Creating a Serialization Object"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/osserialization/3180958-createfrombytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

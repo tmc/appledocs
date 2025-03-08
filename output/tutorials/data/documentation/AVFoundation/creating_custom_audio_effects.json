@@ -1,0 +1,1730 @@
+{
+  "abstract": [
+    {
+      "text": "Add custom audio-effect processing to apps like Logic Pro X and GarageBand by creating Audio Unit (AU) plug-ins.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/audiotoolbox",
+        "doc://com.apple.documentation/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfaudio",
+        "doc://com.apple.documentation/documentation/avfaudio/audio-engine"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation",
+        "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing",
+        "doc://com.apple.documentation/documentation/avfaudio/audio-engine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects"
+  },
+  "kind": "article",
+  "legacy_identifier": 3148618,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating Custom Audio Effects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app shows you how to create a custom audio effect plug-in using the latest Audio Unit standard (AUv3). The AUv3 standard builds on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3189426",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " model, which means you deliver your plug-in as an extension that’s contained in an app distributed through the App Store or your own store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample Audio Unit is a low-pass filter that allows frequencies at or below the cutoff frequency to pass through to the output. It attenuates frequencies above this point. It also lets you change the filter’s resonance, which boosts or attenuates a narrow band of frequencies around the cutoff point. You set these values by moving the draggable point around the plug-in’s user interface, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4302082",
+              "metadata": {
+                "anchor": "4302082",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project has targets for both iOS and macOS. Each platform’s main app target has two supporting targets: ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains the plug-in packaged as an Audio Unit extension, and ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which bundles the plug-in’s code and resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details on how you can use this Audio Unit extension in a host app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4302104",
+          "level": 3,
+          "text": "Create a Custom Audio Effect Plug-In",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension itself contains two primary pieces: an Audio Unit proper and a factory object that creates it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app’s Audio Unit is ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterDemo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is a Swift class that subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and defines the plug-in’s interface, including key features like its parameters, presets, and I/O busses. A class called ",
+              "type": "text"
+            },
+            {
+              "code": "FilterDSPKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides the plug-in’s digital signal processing (DSP) logic, and is written in C++ to ensure real-time safety. Because Swift can’t talk directly to C++, the sample project also includes an Objective-C++ adapter class called ",
+              "type": "text"
+            },
+            {
+              "code": "FilterDSPKernelAdapter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to act as an intermediary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AUv3FilterDemoViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the Audio Unit’s main view controller. It adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and is responsible for creating new instances of your plug-in. You implement the protocol’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory/createAudioUnit(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory method to return a new instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterDemo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when a host app requests it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension AUv3FilterDemoViewController: AUAudioUnitFactory {",
+            "    public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {",
+            "        audioUnit = try AUv3FilterDemo(componentDescription: componentDescription, options: [])",
+            "        return audioUnit!",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302084",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To ensure glitch-free performance, your plug-in’s audio processing must occur in a real-time safe context. Don’t allocate memory, perform file I/O, take locks, or interact with the Swift or Objective-C runtimes when rendering audio.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "4302105",
+          "level": 3,
+          "text": "Add Custom Parameters to Your Audio Unit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most Audio Units, you’ll provide one or more parameters to configure the audio processing. Your Audio Unit arranges its parameters into a tree structure, provided by an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterTree",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This object represents the root node of the plug-in’s tree of parameters and parameter groupings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AUv3FilterDemo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has parameters to control the filter’s cutoff frequency and resonance. You create its parameters using a factory method on ",
+              "type": "text"
+            },
+            {
+              "code": "AUParameterTree",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private enum AUv3FilterParam: AUParameterAddress {",
+            "    case cutoff, resonance",
+            "}",
+            "",
+            "/// The parameter to control the cutoff frequency (12 Hz - 20 kHz).",
+            "var cutoffParam: AUParameter = {",
+            "    let parameter =",
+            "        AUParameterTree.createParameter(withIdentifier: \"cutoff\",",
+            "                                        name: \"Cutoff\",",
+            "                                        address: AUv3FilterParam.cutoff.rawValue,",
+            "                                        min: 12.0,",
+            "                                        max: 20_000.0,",
+            "                                        unit: .hertz,",
+            "                                        unitName: nil,",
+            "                                        flags: [.flag_IsReadable,",
+            "                                                .flag_IsWritable,",
+            "                                                .flag_CanRamp],",
+            "                                        valueStrings: nil,",
+            "                                        dependentParameters: nil)",
+            "    // Set default value",
+            "    parameter.value = 0.0",
+            "",
+            "    return parameter",
+            "}()",
+            "",
+            "/// The parameter to control the cutoff frequency's resonance (+/-20 dB).",
+            "var resonanceParam: AUParameter = {",
+            "    let parameter =",
+            "        AUParameterTree.createParameter(withIdentifier: \"resonance\",",
+            "                                        name: \"Resonance\",",
+            "                                        address: AUv3FilterParam.resonance.rawValue,",
+            "                                        min: -20.0,",
+            "                                        max: 20.0,",
+            "                                        unit: .decibels,",
+            "                                        unitName: nil,",
+            "                                        flags: [.flag_IsReadable,",
+            "                                                .flag_IsWritable,",
+            "                                                .flag_CanRamp],",
+            "                                        valueStrings: nil,",
+            "                                        dependentParameters: nil)",
+            "    // Set the default value.",
+            "    parameter.value = 20_000.0",
+            "",
+            "    return parameter",
+            "}()"
+          ],
+          "metadata": {
+            "anchor": "4302086",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cutoff parameter defines a frequency range between 12 Hz and 20 kHz, and the resonance parameter defines a decibel range between -20 dB and 20 dB. Each parameter is readable and writeable, and also supports ramping, which means you can modify its value over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You arrange the parameters into a tree by creating an ",
+              "type": "text"
+            },
+            {
+              "code": "AUParameterTree",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance and setting them as the tree’s children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the audio unit's tree of parameters.",
+            "parameterTree = AUParameterTree.createTree(withChildren: [cutoffParam,",
+            "                                                          resonanceParam])"
+          ],
+          "metadata": {
+            "anchor": "4302087",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you bind handlers to the parameter tree’s readable and writeable values by installing closures for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorStringFromValueCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. These closures delegate to the filter adapter instance, which in turn communicates with the underlying DSP logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A closure for observing all externally generated parameter value changes.",
+            "parameterTree.implementorValueObserver = { param, value in",
+            "    kernelAdapter.setParameter(param, value: value)",
+            "}",
+            "",
+            "// A closure for returning state of the requested parameter.",
+            "parameterTree.implementorValueProvider = { param in",
+            "    return kernelAdapter.value(for: param)",
+            "}",
+            "",
+            "// A closure for returning the string representation of the requested parameter value.",
+            "parameterTree.implementorStringFromValueCallback = { param, value in",
+            "    switch param.address {",
+            "    case AUv3FilterParam.cutoff.rawValue:",
+            "        return String(format: \"%.f\", value ?? param.value)",
+            "    case AUv3FilterParam.resonance.rawValue:",
+            "        return String(format: \"%.2f\", value ?? param.value)",
+            "    default:",
+            "        return \"?\"",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302088",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4302106",
+          "level": 3,
+          "text": "Connect the Parameters to Your User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app’s iOS and macOS targets each provide a platform-specific user interface. You use a shared view controller called ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterDemoViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to coordinate the communication between the user interface and the Audio Unit. Connect your user interface to the Audio Unit’s parameters in the ",
+              "type": "text"
+            },
+            {
+              "code": "connectViewToAU()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func connectViewToAU() {",
+            "    guard needsConnection, let paramTree = audioUnit?.parameterTree else { return }",
+            "",
+            "    // Find the cutoff and resonance parameters in the parameter tree.",
+            "    guard let cutoff = paramTree.value(forKey: \"cutoff\") as? AUParameter,",
+            "        let resonance = paramTree.value(forKey: \"resonance\") as? AUParameter else {",
+            "            fatalError(\"Required AU parameters not found.\")",
+            "    }",
+            "",
+            "    // Set the instance variables.",
+            "    cutoffParameter = cutoff",
+            "    resonanceParameter = resonance",
+            "",
+            "    // Observe major state changes like a user selecting a user preset.",
+            "    observer = audioUnit?.observe(\\.allParameterValues) { object, change in",
+            "        DispatchQueue.main.async {",
+            "            self.updateUI()",
+            "        }",
+            "    }",
+            "",
+            "    // Observe value changes to the cutoff and resonance parameters.",
+            "    parameterObserverToken =",
+            "        paramTree.token(byAddingParameterObserver: { [weak self] address, value in",
+            "            guard let self = self else { return }",
+            "",
+            "            // An arbitrary queue is calling this closure. Ensure",
+            "            // all UI updates dispatch back to the main thread.",
+            "            if [cutoff.address, resonance.address].contains(address) {",
+            "                DispatchQueue.main.async {",
+            "                    self.updateUI()",
+            "                }",
+            "            }",
+            "        })",
+            "",
+            "    // Indicate the view and the audio unit have a connection.",
+            "    needsConnection = false",
+            "",
+            "    // Sync the UI with the parameter state.",
+            "    updateUI()",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302090",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown above, in the ",
+              "type": "text"
+            },
+            {
+              "code": "connectViewToAU()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, you find the Audio Unit’s parameter tree and retrieve its cutoff and resonance parameters. You also add an observer closure to update the user interface as the plug-in’s parameter values change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4302107",
+          "level": 3,
+          "text": "Add Factory Presets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most audio plug-ins provide a collection of preset values known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "factory presets",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A factory preset is a preconfigured arrangement of the plug-in’s parameter values that provide a useful starting point for further customization. A host app presents these presets in its user interface so the user can select them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to define the factory presets and their associated values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public override var factoryPresets: [AUAudioUnitPreset] {",
+            "    return [",
+            "        AUAudioUnitPreset(number: 0, name: \"Prominent\"),",
+            "        AUAudioUnitPreset(number: 1, name: \"Bright\"),",
+            "        AUAudioUnitPreset(number: 2, name: \"Warm\")",
+            "    ]",
+            "}",
+            "",
+            "private let factoryPresetValues:[(cutoff: AUValue, resonance: AUValue)] = [",
+            "    (2500.0, 5.0),    // \"Prominent\"",
+            "    (14_000.0, 12.0), // \"Bright\"",
+            "    (384.0, -3.0)     // \"Warm\"",
+            "]"
+          ],
+          "metadata": {
+            "anchor": "4302092",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4302108",
+          "level": 3,
+          "text": "Support User Presets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Factory presets provide a useful starting point for further user customization, but users also want the ability to save their changes and create their own custom presets. ",
+              "type": "text"
+            },
+            {
+              "code": "AUAudioUnit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides built-in support for user presets. To enable this support in your Audio Unit, override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/supportsUserPresets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Indicates that this audio unit supports persisting user presets.",
+            "public override var supportsUserPresets: Bool {",
+            "    return true",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302094",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Opting in to support for user presets automatically enables your Audio Unit to load, save, and delete user presets. The default implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/userPresets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/saveUserPreset(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deleteUserPreset(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API reads from and writes to an internal store, but you’re free to override this property and methods if you want to directly manage the persistence behavior. For example, you can override the default behavior to persist user presets to an iCloud container or some other remote location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4302109",
+          "level": 3,
+          "text": "Select Factory and User Presets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A host app selects a factory or user preset by setting the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "currentPreset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. You override this property and take the appropriate action depending on the preset type selected. If the user selected a factory preset (a preset ",
+              "type": "text"
+            },
+            {
+              "code": "number",
+              "type": "codeVoice"
+            },
+            {
+              "text": " greater than ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), look up its associated values and set the parameter values accordingly. If the user selected a user preset (a preset ",
+              "type": "text"
+            },
+            {
+              "code": "number",
+              "type": "codeVoice"
+            },
+            {
+              "text": " less than ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), restore the preset’s parameter state by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/presetState(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and setting the returned data as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var _currentPreset: AUAudioUnitPreset?",
+            "",
+            "/// The currently selected preset.",
+            "public override var currentPreset: AUAudioUnitPreset? {",
+            "    get { return _currentPreset }",
+            "    set {",
+            "        // If the newValue is nil, return.",
+            "        guard let preset = newValue else {",
+            "            _currentPreset = nil",
+            "            return",
+            "        }",
+            "        ",
+            "        // Factory presets need to always have a number >= 0.",
+            "        if preset.number >= 0 {",
+            "            let values = factoryPresetValues[preset.number]",
+            "            parameters!.setParameterValues(cutoff: values.cutoff, resonance: values.resonance)",
+            "            _currentPreset = preset",
+            "        }",
+            "        // User presets are always negative.",
+            "        else {",
+            "            // Attempt to restore the archived state for this user preset.",
+            "            do {",
+            "                fullStateForDocument = try presetState(for: preset)",
+            "                // Set the currentPreset after successfully restoring the state.",
+            "                _currentPreset = preset",
+            "            } catch {",
+            "                print(\"Unable to restore set for preset \\(preset.name)\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302096",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4302110",
+          "level": 3,
+          "text": "Package Your Plug-In to Run In-Process",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like all App Extensions, AUv3 plug-ins run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "out-of-process",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by default, which means the extension runs in a separate process from the host app, and all communication between the two occurs over interprocess communication (IPC). This model provides increased security and stability for the host app. For example, if an AUv3 plug-in crashes, the host app won’t crash. However, the IPC communication adds a small amount of overhead to each render cycle, which may be unacceptable depending on the needs of a given application. In macOS only, you can package your plug-in to run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "in-process",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which eliminates the IPC communication as your Audio Unit runs as part of the host’s process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running an in-process plug-in requires an agreement between the host and the Audio Unit. The host requests in-process instantiation by passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option during the plug-in’s creation, and you need to package your Audio Unit as described and shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your extension’s main binary can’t be dynamically loaded into another app, which means all executable code needs to reside in a separate framework bundle. However, the extension target still needs to contain at least one source file for the extension binary to be created, properly loaded, and linked with the framework bundle. To ensure the extension is created, add some unused placeholder code in your extension target, like that found in ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterExtension.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import AUv3FilterFramework",
+            "",
+            "func placeholder() {",
+            "    // This placeholder function ensures the extension loads correctly.",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302098",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS sample packages all of the Audio Unit’s code into the ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target. You indicate that the extension’s code exists in a separate bundle by adding an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioComponentBundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension attribute to the target’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtension</key>",
+            "<dict>",
+            "    <key>NSExtensionAttributes</key>",
+            "    <dict>",
+            "        <key>AudioComponentBundle</key>",
+            "        <string>com.example.apple-samplecode.AUv3FilterFramework</string>",
+            "        ...",
+            "    </dict>",
+            "    ...",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "4302099",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using a xib or Storyboard for your user interface, override your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer and pass the framework bundle to the superclass initializer. This ensures your user interface properly loads when the system requests your Audio Unit extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public override init(nibName: NSNib.Name?, bundle: Bundle?) {",
+            "    // Pass a reference to the owning framework bundle.",
+            "    super.init(nibName: nibName, bundle: Bundle(for: type(of: self)))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4302100",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, set the Audio Unit’s factory object, ",
+              "type": "text"
+            },
+            {
+              "code": "AUv3FilterDemoViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as the extension’s principal class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtension</key>",
+            "<dict>",
+            "    <key>NSExtensionPrincipalClass</key>",
+            "    <string>AUv3FilterFramework.AUv3FilterDemoViewController</string>",
+            "    ...",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "4302101",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a host app you can use to load your plug-in both in-process and out-of-process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(nibName:bundle:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/init(nibname:bundle:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deleteUserPreset(_:)": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/deleteUserPreset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteUserPreset(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/deleteuserpreset(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fullStateForDocument",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/fullstatefordocument"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/presetState(for:)": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/presetState(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presetState(for:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/presetstate(for:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/saveUserPreset(_:)": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/saveUserPreset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saveUserPreset(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/saveuserpreset(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/supportsUserPresets": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/supportsUserPresets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsUserPresets",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/supportsuserpresets"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/userPresets": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/userPresets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userPresets",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/userpresets"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitFactory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitfactory"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory/createAudioUnit(with:)": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory/createAudioUnit(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createAudioUnit(with:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitfactory/createaudiounit(with:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorStringFromValueCallback": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorStringFromValueCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "implementorStringFromValueCallback",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auparameternode/implementorstringfromvaluecallback"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueObserver": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "implementorValueObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auparameternode/implementorvalueobserver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueProvider": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterNode/implementorValueProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "implementorValueProvider",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auparameternode/implementorvalueprovider"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterTree": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUParameterTree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUParameterTree",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auparametertree"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess": {
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadInProcess",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstantiationoptions/loadinprocess"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Connect to out-of-process audio units using the Xcode debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging Out-of-Process Audio Units on Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/debugging-out-of-process-audio-units-on-apple-silicon"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments": {
+      "abstract": [
+        {
+          "text": "Add custom audio processing and MIDI instruments to your app by hosting Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating Audio Effects and Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/incorporating-audio-effects-and-instruments"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox": {
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbus": {
+      "abstract": [
+        {
+          "text": "A class that defines an input or output connection point on an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitBus",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbus"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbusarray": {
+      "abstract": [
+        {
+          "text": "A class that defines a container for an audio unit’s input or output busses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbusarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitBusArray",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitfactory": {
+      "abstract": [
+        {
+          "text": "An object that creates a version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitfactory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitFactory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitfactory"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitpreset": {
+      "abstract": [
+        {
+          "text": "A class that describes an interface for custom parameter settings provided by the audio unit developer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitpreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitPreset",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitpreset"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitv2bridge": {
+      "abstract": [
+        {
+          "text": "A class that wraps a version 2 audio unit as version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitV2Bridge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitv2bridge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnitV2Bridge",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitv2bridge"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/audio-unit-v3-plug-ins": {
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the component registrations for a given audio unit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionCopyComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString) -> Unmanaged<CFArray>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitExtensionCopyComponentList(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)"
+    },
+    "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows the implementor of an audio unit extension to dynamically modify the list of component registrations for the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionSetComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFArray?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitExtensionSetComponentList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/audio-engine": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/audio-engine",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Engine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-engine"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio playback, recording, and processing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-playback-recording-and-processing"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects": {
+      "abstract": [
+        {
+          "text": "Add custom audio-effect processing to apps like Logic Pro X and GarageBand by creating Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Custom Audio Effects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302084": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302084",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302084"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302086": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302086",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302086"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302087": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302087",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302087"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302088": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302088",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302088"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302090": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302090",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302090"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302092": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302092",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302092"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302094": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302094",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302094"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302096": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302096",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302096"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302098": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302098",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302098"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302099": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302099",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302099"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302100": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302100",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302100"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302101": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects#4302101",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302101"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/394e41a5b0/CreatingCustomAudioEffects.zip": {
+      "checksum": "b92c4b9879b249283f3068855c6b1eb769d1a8056912eeeb813acde96c098ba5b08d3ea8fe0bdd627434d802c497916320a30cba12afd48385de85271a0c1fa1",
+      "identifier": "https://docs-assets.developer.apple.com/published/394e41a5b0/CreatingCustomAudioEffects.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/394e41a5b0/CreatingCustomAudioEffects.zip"
+    },
+    "link-3189426": {
+      "identifier": "link-3189426",
+      "kind": "article",
+      "role": "link",
+      "title": "App Extensions",
+      "type": "topic",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG"
+    },
+    "link-media-4302082": {
+      "identifier": "link-media-4302082",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects#4302082"
+    },
+    "media-4302082": {
+      "alt": "plug-in User Interface",
+      "identifier": "media-4302082",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0b3a0f264/5f1b515e-3e60-4473-af71-1eb19016de36.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/394e41a5b0/CreatingCustomAudioEffects.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounit",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbus",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitbusarray",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitpreset",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitv2bridge",
+        "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)",
+        "doc://com.apple.documentation/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)",
+        "doc://com.apple.documentation/documentation/audiotoolbox/auaudiounitfactory"
+      ],
+      "title": "Audio Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/avfoundation/creating_custom_audio_effects",
+        "documentation/avfaudio/audio_engine/creating_custom_audio_effects",
+        "documentation/audiotoolbox/audio_unit_v3_plug-ins/creating_custom_audio_effects",
+        "documentation/avfoundation/audio_playback_recording_and_processing/audio_engine/creating_custom_audio_effects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/avfoundation/creating_custom_audio_effects",
+        "documentation/avfaudio/audio_engine/creating_custom_audio_effects",
+        "documentation/audiotoolbox/audio_unit_v3_plug-ins/creating_custom_audio_effects",
+        "documentation/avfoundation/audio_playback_recording_and_processing/audio_engine/creating_custom_audio_effects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

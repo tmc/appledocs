@@ -1,0 +1,771 @@
+{
+  "abstract": [
+    {
+      "text": "A constant to determine which hardware codecs can be used.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/deprecated-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1620452-hardware-codec-capabilities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Hardware Codec Capabilities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property to determine whether a desired set of codecs can be simultaneously instantiated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hardware-based codecs can be used only when playing or recording using Audio Queue Services or using interfaces, such as AVFoundation, which use Audio Queue Services. In particular, you cannot use hardware-based audio codecs with OpenAL or when using the I/O audio unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When describing the presence of a hardware codec, the system does not consider the current audio session category. Some categories disallow the use of hardware codecs. A set of hardware codecs is considered available, by this constant, based only on whether the hardware supports the specified combination of codecs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some codecs may be available in both hardware and software implementations. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constants to determine whether a given codec is present, and whether it is hardware or software-based.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Software-based codecs can always be instantiated, so there is no need to use this constant when using software encoding or decoding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example illustrates how to check whether or not a hardware AAC encoder and a hardware AAC decoder are available, in that order of priority:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AudioClassDescription requestedCodecs[2] = {",
+            "    {",
+            "        kAudioEncoderComponentType,",
+            "        kAudioFormatAAC,",
+            "        kAppleHardwareAudioCodecManufacturer",
+            "    },",
+            "    {",
+            "        kAudioDecoderComponentType,",
+            "        kAudioFormatAAC,",
+            "        kAppleHardwareAudioCodecManufacturer",
+            "    }",
+            "};",
+            " ",
+            "UInt32 successfulCodecs = 0;",
+            "size = sizeof (successfulCodecs);",
+            "OSStatus result =   AudioFormatGetProperty (",
+            "                        kAudioFormatProperty_HardwareCodecCapabilities,",
+            "                        requestedCodecs,",
+            "                        sizeof (requestedCodecs),",
+            "                        &size,",
+            "                        &successfulCodecs",
+            "                    );",
+            "switch (successfulCodecs) {",
+            "    case 0:",
+            "        // aac hardware encoder is unavailable. aac hardware decoder availability",
+            "        // is unknown; could ask again for only aac hardware decoding",
+            "    case 1:",
+            "        // aac hardware encoder is available but, while using it, no hardware",
+            "        // decoder is available.",
+            "    case 2:",
+            "        // hardware encoder and decoder are available simultaneously",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494086-audio-codec-component-constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1620448-audio-codec-manufacturer-and-imp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494086-audio-codec-component-constants": {
+      "abstract": [
+        {
+          "text": "Audio codec component types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494086-audio-codec-component-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Component Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494086-audio-codec-component-constants"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533960-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533960-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1533960-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534019-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534019-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534019-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534063-3d_mixer_audio_unit_properties": {
+      "abstract": [
+        {
+          "text": "Properties for the Apple 3D Mixer audio unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534063-3d_mixer_audio_unit_properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "3D Mixer Audio Unit Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534063-3d_mixer_audio_unit_properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534074-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534074-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534074-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534089-music-device-properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534089-music-device-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Music Device Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534089-music-device-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534112-audio-unit-attenuation-propertie": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534112-audio-unit-attenuation-propertie",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Attenuation Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534112-audio-unit-attenuation-propertie"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534225-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534225-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534225-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1537630-audio-graph-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1537630-audio-graph-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Graph Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1537630-audio-graph-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584141-audio-unit-instrument-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584141-audio-unit-instrument-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Instrument Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1584141-audio-unit-instrument-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618426-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618426-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618426-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618742-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618742-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618742-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619479-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619479-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1619479-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619504-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619504-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1619504-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1620448-audio-codec-manufacturer-and-imp": {
+      "abstract": [
+        {
+          "text": "Identifiers for audio codec manufacturers and implementation types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1620448-audio-codec-manufacturer-and-imp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Manufacturer and Implementation Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1620448-audio-codec-manufacturer-and-imp"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621044-anonymous": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621044-anonymous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anonymous",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1621044-anonymous"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1624333-audio-converter-property-id": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1624333-audio-converter-property-id",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Property ID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1624333-audio-converter-property-id"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/deprecated-symbols"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures for all installed decoders for the specified audio format. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to the format that you are interested in, for instance, ",
+          "type": "text"
+        },
+        {
+          "code": "'aac'",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Decoders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Decoders"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_Decoders",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_decoders"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures for all installed encoders for the specified audio format. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to the format that you are interested in, for instance, ",
+          "type": "text"
+        },
+        {
+          "code": "'aac'",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Encoders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Encoders"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_Encoders",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_encoders"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "UInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value indicating the number of codecs from the specified list that can be used, if the application were to begin using them in the specified order. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to an array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures that describes a set of one or more audio codecs. If the property value is the same as the size of the array in the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter, all of the specified codecs can be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_HardwareCodecCapabilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_hardwarecodeccapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534112-audio-unit-attenuation-propertie",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584141-audio-unit-instrument-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534019-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534074-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1537630-audio-graph-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1624333-audio-converter-property-id",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621044-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618426-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618742-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619479-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619504-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533960-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534225-anonymous",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534089-music-device-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534063-3d_mixer_audio_unit_properties"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534112-audio-unit-attenuation-propertie",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584141-audio-unit-instrument-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534019-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534074-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1537630-audio-graph-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1624333-audio-converter-property-id",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621044-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618426-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618742-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619479-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619504-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533960-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534225-anonymous",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534089-music-device-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534063-3d_mixer_audio_unit_properties"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Encoders/title",
+          "value": "kAudioFormatProperty_Encoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Encoders/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_Encoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_HardwareCodecCapabilities/title",
+          "value": "kAudioFormatProperty_HardwareCodecCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_HardwareCodecCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Decoders/title",
+          "value": "kAudioFormatProperty_Decoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Decoders/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_Decoders"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1620452-hardware-codec-capabilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1620452-hardware-codec-capabilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

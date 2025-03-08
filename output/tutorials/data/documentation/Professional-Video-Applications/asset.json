@@ -1,0 +1,1268 @@
+{
+  "abstract": [
+    {
+      "text": "Define file-based media managed in a Final Cut Pro library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "asset"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to define a file-based media. A file-based media can have an original media representation and a proxy media representation. Describe those using the ",
+              "type": "text"
+            },
+            {
+              "code": "media-rep",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element along with file URLs for the media files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Asset-Element-Attributes",
+          "level": 3,
+          "text": "Asset Element Attributes",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier of a media. By default, Final Cut Pro assigns a unique value. Third-party tools may assign their unique identifiers for media managed by their tool when importing the media into a Final Cut Pro library. Use a UUID or a string with a reverse DNS prefix to ensure uniqueness. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Note",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Final Cut Pro reserves strings that contain only uppercase hexadecimal characters for internal identifiers. A third-party tool must not use these strings when assigning its own asset identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML 1.7 added support for asset identifiers assigned by third parties.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "uid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to reference the same asset in a subsequent XML import, even if the media representation is in a different location. Final Cut Pro locates the asset using the ",
+              "type": "text"
+            },
+            {
+              "code": "uid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute value and relinks the media to the media file at the new location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "uid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute enables a workflow where the media initially imports as offline with its media file missing, and subsequently relinks to the media file when it becomes available. Start by importing XML with the original media with missing media file and the proxy media with a file existing at the specified location. This allows an editor to start working without waiting for the original media file to become available. When the high-resolution media file becomes available for the original media, you can perform a second XML import, that includes the high-resolution media file location, to replace the original media that was initially offline. The proxy and the original high-resolution media must be compatible, meaning their frame rates match, and the high-resolution media covers the time range of the proxy media. You can switch which media representation to view in the Final Cut viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible that an importing XML may include a media asset with its unique identifier assigned by a third-party tool, but the media asset has already been imported manually into Final Cut Pro by the user. In such situations, Final Cut Pro finds the asset through the URL specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "src",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute of the ",
+              "type": "text"
+            },
+            {
+              "code": "media-rep",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element and assigns the unique identifier from the importing XML to the asset, overriding the unique identifier generated by Final Cut Pro. This is only possible when the media asset imported has a unique identifier assigned by Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In FCPXML 1.8 or earlier the ",
+                  "type": "text"
+                },
+                {
+                  "code": "asset",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element directly specifies the original media file URL through its ",
+                  "type": "text"
+                },
+                {
+                  "code": "src",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implied-Asset-Attributes",
+          "level": 3,
+          "text": "Implied Asset Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some ",
+              "type": "text"
+            },
+            {
+              "code": "asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element attributes are optional (or implied), because Final Cut Pro derives their values from the respective media file. However, the asset file may be offline when Final Cut Pro tries to access it; therefore, it is recommended that you specify the attributes listed below for all assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hasVideo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies whether the asset has video.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hasAudio",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies whether the asset has audio.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "audioSources",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of audio sources, or tracks, in the asset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "audioChannels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of audio channels in an audio source, or track.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "audioRate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The asset’s audio rate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "videoSources",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of video sources in the asset. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " This attribute captures the number of PSD layers, especially when you import the media offline. Final Cut Pro needs to establish the respective number of media components. You can omit the attribute for a normal video where there is only one video source.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "auxVideoFlags",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the asset’s auxiliary video flags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Override-Attributes",
+          "level": 3,
+          "text": "Override Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the asset element override attributes to override the information in the media file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "customLUTOverride",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies a combination of color primaries and transfer functions that are unique for a specific camera manufacturer. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The override value can be one of the following: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A built-in custom camera Log or processing mode. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "64 (Panasonic_VLog_VGamut)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A custom LUT. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LUT:f9814a42eb75c58d9d9dc2a5344bd423 (FilmConvert-Justine-3D-LUT)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "colorSpaceOverride",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the color space to use. Describe color space in terms of its three components shown under ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Well-Known-Color-Space-Triplets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For still images, the value can be sRGB IEC61966-2.1 or Adobe RGB (1998), in addition to those described in terms of components.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "projectionOverride",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the projection type for the asset. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Valid values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none, equirectangular, cubic, fisheye, and back-to-back fisheye.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "stereoscopicOverride",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the stereoscopic mode for the asset.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Valid values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mono",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "side by side",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "over under",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Well-Known-Color-Space-Triplets",
+          "level": 3,
+          "text": "Well-Known Color Space Triplets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FCPXML 1.7 and later use the following triplets for well-known color spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Triplet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1-1-1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 709",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6-1-6",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 601 NTSC",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5-1-6",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 601 PAL",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9-1-9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 2020",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9-16-9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 2020 PQ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9-18-9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rec. 2020 HLG",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Well-Known-Color-Space-Triplets": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset#Well-Known-Color-Space-Triplets",
+      "kind": "section",
+      "title": "Well-Known Color Space Triplets",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/asset#Well-Known-Color-Space-Triplets"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect": {
+      "abstract": [
+        {
+          "text": "Reference visual, audio, or custom effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "effect",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/effect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format": {
+      "abstract": [
+        {
+          "text": "Reference a video-format definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/format"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/id": {
+      "abstract": [
+        {
+          "text": "Specifies a local identifier to use within the FCPXML document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/id",
+      "kind": "article",
+      "role": "article",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/id"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator": {
+      "abstract": [
+        {
+          "text": "Describe a URL-based resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+      "kind": "article",
+      "role": "article",
+      "title": "locator",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/locator"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media-rep": {
+      "abstract": [
+        {
+          "text": "References a media representation, that is either the original or a proxy media managed by Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media-rep",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media-rep",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media-rep"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name": {
+      "abstract": [
+        {
+          "text": "Specifies the name of the resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name",
+      "kind": "article",
+      "role": "article",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/name"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker": {
+      "abstract": [
+        {
+          "text": "Describe a tracked object such as a face or other moving object in a video clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+      "kind": "article",
+      "role": "article",
+      "title": "object-tracker",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/object-tracker"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape": {
+      "abstract": [
+        {
+          "text": "Define a shape that the object-tracker uses to match the movement of an object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape",
+      "kind": "article",
+      "role": "article",
+      "title": "tracking-shape",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/tracking-shape"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    },
+    "spacer.png": {
+      "alt": null,
+      "identifier": "spacer.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shared-Resources-and-Reference-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape"
+      ],
+      "title": "Shared Resources and Reference Elements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Media-Representation",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media-rep"
+      ],
+      "title": "Media Representation"
+    },
+    {
+      "anchor": "Resource-Element-Attributes",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/id",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name"
+      ],
+      "title": "Resource Element Attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Media-Representation",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media-rep"
+              ],
+              "title": "Media Representation"
+            },
+            {
+              "anchor": "Resource-Element-Attributes",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/id",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/name"
+              ],
+              "title": "Resource Element Attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shared-Resources-and-Reference-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape"
+              ],
+              "title": "Shared Resources and Reference Elements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/asset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/asset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,777 @@
+{
+  "abstract": [
+    {
+      "text": "Register and render FxPlug plug-ins with Motion and Final Cut Pro.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using out-of-process FxPlug plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4 plug-ins run out-of-process, which means they run in a dedicated process outside the host app, and communication with the plug-in is done over an interprocess communication (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xpc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is suitable for sharing textures across process boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-plug-ins",
+          "level": 3,
+          "text": "Register plug-ins",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS includes a technology called ",
+              "type": "text"
+            },
+            {
+              "code": "PlugInKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to discover and register plug-ins on a system. After a host application launches, ",
+              "type": "text"
+            },
+            {
+              "code": "PlugInKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " reports a list of plug-ins available to that type of host. When a plug-in is instantiated, the out-of-process XPC service is activated, establishes a connection with the host application, and mediates the transfer of information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "XPCs allow interprocess communication between your plug-in and host apps like Final Cut Pro and Motion. They run as their own process and can become invalid at any point without affecting the application. For this reason, XPCs ideally should remain stateless at any given time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Render-plug-ins",
+          "level": 3,
+          "text": "Render plug-ins",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At render time, the host application passes the plug-in state to the XPC service and asks for a render. During this step, your plug-in receives parameter values; for more detailed information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After completing its render, your plug-in then hands the image back to the host application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "-backed image type, provides all image data to your plug-in. For more information on FxImageTile, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you’re familiar with FxPlug 3.x, it’s important to note that the host application no longer passes ",
+              "type": "text"
+            },
+            {
+              "code": "FxTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FxBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3397536",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Best-practices-using-XPCs-with-FxPlug",
+          "level": 3,
+          "text": "Best practices using XPCs with FxPlug",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid long-running tasks upon plug-in startup and anything that blocks your plug-in’s response to your host app during a restart.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Consider pushing some tasks to the background threads. For example, enumerating all the fonts instead of doing so every time your plug-in starts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you need your plug-in to connect to a server on the internet, do it in the background, and do some other tasks (rendering, state gathering, etc.) until it connects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your plug-in uses dynamic registration, load all the plug-in classes you need on restart because the host won’t do it for you.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Try not to display any dialog upon plug-in startup because it causes host playback to stop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t initialize all of your resources unless the user requires them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/IOSurface": {
+      "abstract": [
+        {
+          "text": "Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOSurface",
+      "type": "topic",
+      "url": "/documentation/IOSurface"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xpc": {
+      "abstract": [
+        {
+          "text": "Manage secure interprocess communication. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xpc",
+      "kind": "article",
+      "role": "article",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/foundation/xpc"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development": {
+      "abstract": [
+        {
+          "text": "Download and install the required software to develop FxPlug plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up for FxPlug development",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/setting-up-for-fxplug-development"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile": {
+      "abstract": [
+        {
+          "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTile",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal": {
+      "abstract": [
+        {
+          "text": "Singleton object that starts your XPC service running and can return the embedded (in-process) component of your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPrincipal"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPrincipal"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPrincipal",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprincipal"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that provides an interface that the host application implements to retrieve an XPC proxy object for communicating with its XPC.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPrincipalAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPrincipalAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPrincipalAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprincipalapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that provides information about the host application that launched your XPC service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPrincipalDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPrincipalDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPrincipalDelegate",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprincipaldelegate"
+    },
+    "media-3397536": {
+      "alt": "A diagram of the communication between an FxPlug plug-in and a host application via PluginKit and IOSurface.",
+      "identifier": "media-3397536",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3391c4f5b109c75b0ff8c6275bf40aa/media-3397536@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c0ae3a754f5b62006559b93dd0bde51d/media-3397536~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Services",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalDelegate"
+      ],
+      "title": "Services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipalDelegate"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalDelegate/title",
+          "value": "FxPrincipalDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipalDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipalDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalAPI/title",
+          "value": "FxPrincipalAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipalAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipalAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipalAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/title",
+          "value": "FxPrincipal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipal"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/using-out-of-process-fxplug-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/using-out-of-process-fxplug-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

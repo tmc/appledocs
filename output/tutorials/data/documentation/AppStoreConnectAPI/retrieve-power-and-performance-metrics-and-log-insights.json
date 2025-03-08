@@ -1,0 +1,635 @@
+{
+  "abstract": [
+    {
+      "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Retrieve Power and Performance Metrics and Log Insights"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code includes a number of scripts that demonstrate the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a JSON Web Token for accessing the API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving an App’s aggregated power and performance metrics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving an App’s diagnostic logs and corresponding insights.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parsing JSON files retrieved from the API that contain metrics or logs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allow a few days after releasing your app for Apple to collect and organize logs into reports. The system behind the API requires significant usage of your app before it makes metrics available, and each metric has different usage thresholds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Project",
+          "level": 3,
+          "text": "Configure the Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install the Python libraries ",
+              "type": "text"
+            },
+            {
+              "code": "pyjwt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and docopt to run the sample code. Use Terminal to run the following command to install the libraries locally:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pip3 install pyjwt[crypto] docopt --user"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-JSON-Web-Token-to-Access-the-App-Store-Connect-API",
+          "level": 3,
+          "text": "Create a JSON Web Token to Access the App Store Connect API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the API, you need to generate and provide a JSON Web Token (JWT), signed using an App Store Connect API key. First, generate and retrieve a private key as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". While retrieving your API key, take note of the issuer ID and the key ID, generating a JWT requires them. After retrieving your API key, use the ",
+              "type": "text"
+            },
+            {
+              "code": "generate-token.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": " script to generate a JWT to authenticate requests you send to the App Store Connect API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a JWT, run the ",
+              "type": "text"
+            },
+            {
+              "code": "generate-token.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": " script, providing the issuer ID, key ID, and the path to the private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "python3 generate-token.py {issuer id} {key id} {private key path}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about generating tokens, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Your-App-ID-and-Build-ID",
+          "level": 3,
+          "text": "Identify Your App ID and Build ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve power and performance metrics for your app, you need to know its App ID. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to get a list of your apps and metadata about them, including App IDs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create a JWT, then use that token with curl to request a list of your apps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TOKEN=$(python3 generate-token.py $ISSUER_ID $KEY_ID $KEY_FILE_PATH)",
+            "curl -H \"Authorization: Bearer ${TOKEN}\" \"https://api.appstoreconnect.apple.com/v1/apps\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Retrieving diagnostic logs, or build-specific metrics, requires a build ID. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-builds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get a list of the builds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the following curl command to request a list of builds for an App:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "APP_ID=YourAppId",
+            "curl -H \"Authorization: Bearer ${TOKEN}\" \"https://api.appstoreconnect.apple.com/v1/apps/{$APP_ID}/builds\" "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Retrieve-Metric-Insights-for-Your-App",
+          "level": 3,
+          "text": "Retrieve Metric Insights for Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "get-metrics-insights.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": " script to download power and performance metrics, and to print metric hotspot data identified by insights:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "python3 get-metrics-insights.py $APP_ID"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Retrieve-Diagnostic-Logs-for-a-Build-of-Your-App",
+          "level": 3,
+          "text": "Retrieve Diagnostic Logs for a Build of Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "get-diagnostics-logs.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": " script to download disk writes, diagnostic logs, and print the callbacks resulting from the top disk write I/O exception:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "python3 get-diagnostics-logs.py $BUILD_ID"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Parse-JSON-Files-Retrieved-from-App-Store-Connect",
+          "level": 3,
+          "text": "Parse JSON Files Retrieved from App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in ",
+              "type": "text"
+            },
+            {
+              "code": "ppparser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides an example of how to parse the JSON performance metrics and diagnostic log data retrieved from App Store Connect API. With JSON files stored locally, use the following command to invoke the parser directly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "python3 ppparser -h",
+            "",
+            "PowerPerformanceParser (PPParser)",
+            "Parse metrics & diagnostics JSON responses.",
+            "",
+            "Usage:",
+            "    ppparser metrics --input=INPUT_FILE [--metric=METRIC_NAME] [--auto_insights]",
+            "    ppparser diagnostics --input=INPUT_FILE [--limit=LIMIT] [--callstack]",
+            "    ppparser -v",
+            "    ppparser -h",
+            "",
+            "    metrics                               Parse metrics report JSON",
+            "                                            from /v1/apps/{id}/perfPowerMetrics",
+            "    diagnostics                           Parse diagnostics report JSON",
+            "                                            from /v1/diagnosticSignatures/{id}/logs",
+            "    -i INPUT_FILE, --input INPUT_FILE     Input JSON file",
+            "    -m METRIC_NAME, --metric METRIC_NAME  Filter by metric",
+            "    -d DEVICE_TYPE, --device DEVICE_TYPE  Filter by device",
+            "    -p PLATFORM, --platform PLATFORM      Filter by platform",
+            "    -l LIMIT, --limit LIMIT               Limit the number of diagnostics logs to print",
+            "    -a, --auto_insights                   Pretty-print auto-generated insights",
+            "    -c, --callstack                       Pretty-print callstack",
+            "    -v, --version                         Show version",
+            "    -h, --help                            Show this help screen"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps": {
+      "abstract": [
+        {
+          "text": "Find and list apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-builds": {
+      "abstract": [
+        {
+          "text": "Get a list of builds associated with a specific app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-builds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/builds"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Builds of an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-builds"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for the most recent version of an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures": {
+      "abstract": [
+        {
+          "text": "List the aggregate backtrace signatures captured for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/diagnosticSignatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Diagnostic Signatures for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-diagnosticsignatures"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs": {
+      "abstract": [
+        {
+          "text": "Get the anonymized backtrace logs associated with a specific diagnostic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/diagnosticSignatures/{id}/logs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Download Logs for a Diagnostic Signature",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-diagnosticsignatures-_id_-logs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api": {
+      "abstract": [
+        {
+          "text": "Create API keys to sign JSON Web Tokens (JWTs) and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API Keys for App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-api-keys-for-app-store-connect-api"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) signed with your private key to authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Tokens for API Requests",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/generating-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs": {
+      "abstract": [
+        {
+          "text": "Get power and performance metrics, logs, and signatures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Power and Performance Metrics and Logs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/power-and-performance-metrics-and-logs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Metrics-and-Diagnostic-Logs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs"
+      ],
+      "title": "Getting Metrics and Diagnostic Logs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/retrieve-power-and-performance-metrics-and-log-insights"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

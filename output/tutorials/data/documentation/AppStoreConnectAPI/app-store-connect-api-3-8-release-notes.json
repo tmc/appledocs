@@ -1,1 +1,926 @@
-{"sections":[],"seeAlsoSections":[{"identifiers":["doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes"],"generated":true,"title":"Versions","anchor":"Versions"}],"primaryContentSections":[{"kind":"content","content":[{"type":"heading","text":"Overview","level":2,"anchor":"overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"App Store Connect API version 3.8 provides resources that enable you to automate actions you take in App Store Connect."}]},{"type":"heading","text":"New Features","level":3,"anchor":"New-Features"},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The "},{"type":"reference","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids","isActive":true},{"type":"text","text":" resource is now available to automate tasks related to Apple Pay and Apple Wallet. Apple Pay certificates now have enum values on the "},{"type":"codeVoice","code":"certificates"},{"type":"text","text":" resource."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"isActive":true,"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_","type":"reference"},{"type":"text","text":" is now available. Use this endpoint to modify the activation status of your Payment Processing certificate. To learn more, see "},{"isActive":true,"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates","type":"reference"},{"type":"text","text":"."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Create public links that accept testers with specific device and OS combinations using the ","type":"text"},{"code":"betaRecruitmentCriteria","type":"codeVoice"},{"text":" resource. To learn more, see ","type":"text"},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria","isActive":true,"type":"reference"},{"text":".","type":"text"}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Use the new "},{"type":"codeVoice","code":"nominations"},{"type":"text","text":" resource to share your new content, app enhancement, or app launch with Apple. To learn more see, "},{"type":"reference","isActive":true,"identifier":"https://developer.apple.com/app-store/getting-featured/"},{"type":"text","text":"."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Three new content statuses, "},{"type":"codeVoice","code":"TRADER_STATUS_NOT_PROVIDED"},{"type":"text","text":", "},{"type":"codeVoice","code":"TRADER_STATUS_VERIFICATION_FAILED"},{"type":"text","text":", and "},{"type":"codeVoice","code":"TRADER_STATUS_VERIFICATION_STATUS_MISSING"},{"type":"text","text":" are available for "},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary","type":"reference","isActive":true},{"type":"text","text":". To learn more, see "},{"identifier":"https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements","type":"reference","isActive":true},{"type":"text","text":"."}]}]}]},{"type":"heading","text":"Improvements","level":3,"anchor":"Improvements"},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The field "},{"type":"codeVoice","code":"iosBuildsAvailableForAppleVision"},{"type":"text","text":" is now in the "},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups","type":"reference","isActive":true},{"type":"text","text":" resource."}]}]}]},{"type":"heading","text":"Deprecations","level":3,"anchor":"Deprecations"},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The attribute "},{"code":"brazilAgeRatings","type":"codeVoice"},{"type":"text","text":" for "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary"},{"type":"text","text":" is deprecated. Use "},{"code":"brazilAgeRatingV2","type":"codeVoice"},{"type":"text","text":" instead."}]}]}]},{"type":"heading","text":"Removals","level":3,"anchor":"Removals"},{"type":"unorderedList","items":[{"content":[{"inlineContent":[{"text":"The ","type":"text"},{"code":"PromotedPurchaseImages","type":"codeVoice"},{"text":" resources is now removed and replaced with ","type":"text"},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images","type":"reference","isActive":true},{"text":" and ","type":"text"},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images","type":"reference","isActive":true},{"text":".","type":"text"}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"text":"The enum ","type":"text"},{"code":"ELAPSED_TIME_MILLISECOND","type":"codeVoice"},{"text":" is now removed from ","type":"text"},{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter","type":"reference","isActive":true},{"text":".","type":"text"}],"type":"paragraph"}]}]}]}],"variants":[{"paths":["/documentation/appstoreconnectapi/app-store-connect-api-3-8-release-notes"],"traits":[{"interfaceLanguage":"data"}]}],"abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"metadata":{"role":"article","modules":[{"name":"App Store Connect API"}],"title":"App Store Connect API 3.8 release notes","roleHeading":"Article"},"schemaVersion":{"major":0,"minor":3,"patch":0},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI","doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes"]]},"identifier":{"interfaceLanguage":"data","url":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-8-release-notes"},"kind":"article","references":{"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary":{"role":"symbol","title":"AppInfo.Attributes","kind":"symbol","fragments":[{"kind":"text","text":"object "},{"kind":"identifier","text":"AppInfo.Attributes"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary","navigatorTitle":[{"kind":"identifier","text":"AppInfo.Attributes"}],"type":"topic","abstract":[{"type":"text","text":"Attributes that describe an App Infos resource."}],"url":"/documentation/appstoreconnectapi/appinfo/attributes-data.dictionary"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes":{"abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-3-1-release-notes","type":"topic","role":"article","kind":"article","title":"App Store Connect API 3.1 release notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes":{"url":"/documentation/appstoreconnectapi/app-store-connect-api-2-3-release-notes","type":"topic","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes","role":"article","title":"App Store Connect API 2.3 release notes","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"kind":"article"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images":{"title":"Subscription images","role":"collectionGroup","url":"/documentation/appstoreconnectapi/subscription-images","abstract":[{"type":"text","text":"Create, modify, and delete promotion images for your auto-renewalable subscription."}],"type":"topic","kind":"article","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images":{"type":"topic","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images","title":"In-app purchase images","abstract":[{"type":"text","text":"Create, modify, and delete promotion images for your in-app purchases."}],"role":"collectionGroup","url":"/documentation/appstoreconnectapi/in-app-purchase-images","kind":"article"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria":{"role":"collectionGroup","title":"Beta recruitment criteria","abstract":[{"text":"Create public links that accept testers with specific device and OS combinations.","type":"text"}],"type":"topic","kind":"article","url":"/documentation/appstoreconnectapi/beta-recruitment-criteria","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes":{"abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-3-4-release-notes","type":"topic","role":"article","kind":"article","title":"App Store Connect API 3.4 release notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes":{"title":"App Store Connect API 2.4 release notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-2-4-release-notes","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes","kind":"article","type":"topic","role":"article","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}]},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes":{"title":"App Store Connect API 1.8 release notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-1-8-release-notes","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes","kind":"article","type":"topic","role":"article","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}]},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids":{"type":"topic","kind":"article","role":"collectionGroup","title":"Merchant ID","abstract":[{"type":"text","text":"Manage your merchant ID for Apple Pay."}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids","url":"/documentation/appstoreconnectapi/merchantids"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes":{"title":"App Store Connect API 2.1 release notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-2-1-release-notes","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes","kind":"article","type":"topic","role":"article","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}]},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary":{"type":"topic","fragments":[{"text":"object ","kind":"text"},{"text":"TerritoryAvailability.Attributes","kind":"identifier"}],"title":"TerritoryAvailability.Attributes","navigatorTitle":[{"text":"TerritoryAvailability.Attributes","kind":"identifier"}],"role":"symbol","kind":"symbol","url":"/documentation/appstoreconnectapi/territoryavailability/attributes-data.dictionary","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary","abstract":[{"text":"The attributes that describe a territory availability resource.","type":"text"}]},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes":{"role":"article","title":"App Store Connect API 3.0 release notes","kind":"article","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes","type":"topic","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"url":"/documentation/appstoreconnectapi/app-store-connect-api-3-0-release-notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes":{"role":"article","title":"App Store Connect API 2.2 release notes","kind":"article","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes","type":"topic","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"url":"/documentation/appstoreconnectapi/app-store-connect-api-2-2-release-notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter":{"abstract":[{"text":"The values you can select to describe the format of a leaderboard.","type":"text"}],"url":"/documentation/appstoreconnectapi/gamecenterleaderboardformatter","role":"symbol","fragments":[{"text":"type ","kind":"text"},{"text":"GameCenterLeaderboardFormatter","kind":"identifier"}],"kind":"symbol","title":"GameCenterLeaderboardFormatter","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter","navigatorTitle":[{"text":"GameCenterLeaderboardFormatter","kind":"identifier"}],"type":"topic"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI":{"abstract":[{"text":"Automate the tasks you perform on the Apple Developer website and in App Store Connect.","type":"text"}],"type":"topic","role":"collection","url":"/documentation/appstoreconnectapi","title":"App Store Connect API","kind":"symbol","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes":{"title":"App Store Connect API 3.2 release notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-3-2-release-notes","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes","kind":"article","type":"topic","role":"article","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}]},"doc://com.apple.documentation/documentation/technologies":{"kind":"technologies","type":"topic","role":"overview","title":"Technologies","url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes":{"url":"/documentation/appstoreconnectapi/app-store-connect-api-3-6-release-notes","type":"topic","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes","role":"article","title":"App Store Connect API 3.6 release notes","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"kind":"article"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_":{"role":"symbol","kind":"symbol","abstract":[{"text":"Update the activation status for a specific certificate.","type":"text"}],"url":"/documentation/appstoreconnectapi/patch-v1-certificates-_id_","type":"topic","title":"Modify a certificate","navigatorTitle":[{"text":"PATCH /v1/certificates/{id}","kind":"identifier"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates":{"title":"Managing merchant IDs and Payment Processing certificates","kind":"article","type":"topic","role":"article","abstract":[{"text":"Create and update certificates so your app uses Apple Pay and Wallet.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates","url":"/documentation/appstoreconnectapi/managing-payment-processing-certificates"},"https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements":{"titleInlineContent":[{"type":"text","text":"Manage European Union Digital Services Act trader requirements"}],"title":"Manage European Union Digital Services Act trader requirements","type":"link","url":"https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements","identifier":"https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes":{"abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-2-0-release-notes","type":"topic","role":"article","kind":"article","title":"App Store Connect API 2.0 release notes"},"https://developer.apple.com/app-store/getting-featured/":{"title":"Getting featured on the App Store","identifier":"https://developer.apple.com/app-store/getting-featured/","type":"link","url":"https://developer.apple.com/app-store/getting-featured/","titleInlineContent":[{"type":"text","text":"Getting featured on the App Store"}]},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes":{"url":"/documentation/appstoreconnectapi/app-store-connect-api-1-7-release-notes","title":"App Store Connect API 1.7 release notes","abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes","type":"topic","kind":"article","role":"article"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes":{"abstract":[{"text":"Learn about new features and updates in the App Store Connect API.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-release-notes","type":"topic","role":"collectionGroup","kind":"article","title":"App Store Connect API Release Notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes":{"role":"article","title":"App Store Connect API 3.3 release notes","kind":"article","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes","type":"topic","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"url":"/documentation/appstoreconnectapi/app-store-connect-api-3-3-release-notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups":{"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups","type":"topic","abstract":[{"type":"text","text":"Groups of beta testers that have access to one or more builds."}],"kind":"article","title":"Beta Groups","url":"/documentation/appstoreconnectapi/beta-groups","role":"collectionGroup"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes":{"abstract":[{"text":"Update your server-side code to use new features, and test your code against API changes.","type":"text"}],"identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes","url":"/documentation/appstoreconnectapi/app-store-connect-api-3-5-release-notes","type":"topic","role":"article","kind":"article","title":"App Store Connect API 3.5 release notes"},"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes":{"role":"article","title":"App Store Connect API 3.7 release notes","kind":"article","identifier":"doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes","type":"topic","abstract":[{"type":"text","text":"Update your server-side code to use new features, and test your code against API changes."}],"url":"/documentation/appstoreconnectapi/app-store-connect-api-3-7-release-notes"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Update your server-side code to use new features, and test your code against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-8-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "App Store Connect API 3.8 release notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect API version 3.8 provides resources that enable you to automate actions you take in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 3,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resource is now available to automate tasks related to Apple Pay and Apple Wallet. Apple Pay certificates now have enum values on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "certificates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is now available. Use this endpoint to modify the activation status of your Payment Processing certificate. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create public links that accept testers with specific device and OS combinations using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "betaRecruitmentCriteria",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nominations",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource to share your new content, app enhancement, or app launch with Apple. To learn more see, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/app-store/getting-featured/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Three new content statuses, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TRADER_STATUS_NOT_PROVIDED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TRADER_STATUS_VERIFICATION_FAILED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TRADER_STATUS_VERIFICATION_STATUS_MISSING",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are available for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Improvements",
+          "level": 3,
+          "text": "Improvements",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The field ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iosBuildsAvailableForAppleVision",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 3,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The attribute ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "brazilAgeRatings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is deprecated. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "brazilAgeRatingV2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Removals",
+          "level": 3,
+          "text": "Removals",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PromotedPurchaseImages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resources is now removed and replaced with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The enum ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ELAPSED_TIME_MILLISECOND",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now removed from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Attributes that describe an App Infos resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppInfo.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppInfo/Attributes-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppInfo.Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppInfo.Attributes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appinfo/attributes-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter": {
+      "abstract": [
+        {
+          "text": "The values you can select to describe the format of a leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterLeaderboardFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GameCenterLeaderboardFormatter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GameCenterLeaderboardFormatter"
+        }
+      ],
+      "role": "symbol",
+      "title": "GameCenterLeaderboardFormatter",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/gamecenterleaderboardformatter"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_": {
+      "abstract": [
+        {
+          "text": "Update the activation status for a specific certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/certificates/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a certificate",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-certificates-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The attributes that describe a territory availability resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TerritoryAvailability.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/TerritoryAvailability/Attributes-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TerritoryAvailability.Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "TerritoryAvailability.Attributes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/territoryavailability/attributes-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 1.7 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-1-7-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 1.8 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-1-8-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.0 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-0-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.1 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-1-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.2 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-2-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.3 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-3-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.4 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-4-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.0 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-0-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.1 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-1-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.2 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-2-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.3 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-3-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.4 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-4-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.5 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-5-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.6 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-6-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.7 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-7-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Connect API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store Connect API Release Notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups": {
+      "abstract": [
+        {
+          "text": "Groups of beta testers that have access to one or more builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-groups",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Beta Groups",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/beta-groups"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria": {
+      "abstract": [
+        {
+          "text": "Create public links that accept testers with specific device and OS combinations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-recruitment-criteria",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Beta recruitment criteria",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/beta-recruitment-criteria"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete promotion images for your in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-app purchase images",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase-images"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates": {
+      "abstract": [
+        {
+          "text": "Create and update certificates so your app uses Apple Pay and Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing merchant IDs and Payment Processing certificates",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/managing-payment-processing-certificates"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids": {
+      "abstract": [
+        {
+          "text": "Manage your merchant ID for Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/merchantids"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete promotion images for your auto-renewalable subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscription images",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/subscription-images"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/getting-featured/": {
+      "identifier": "https://developer.apple.com/app-store/getting-featured/",
+      "title": "Getting featured on the App Store",
+      "titleInlineContent": [
+        {
+          "text": "Getting featured on the App Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/getting-featured/"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements",
+      "title": "Manage European Union Digital Services Act trader requirements",
+      "titleInlineContent": [
+        {
+          "text": "Manage European Union Digital Services Act trader requirements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Versions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes"
+      ],
+      "title": "Versions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/app-store-connect-api-3-8-release-notes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2797 @@
+{
+  "abstract": [
+    {
+      "text": "Help users navigate between interface controllers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support",
+        "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/navigating-between-scenes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Navigating Between Scenes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WatchKit supports three styles for navigating between scenes in watchOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A paged interface contains two or more independent interface controllers, displaying one at any given time. By default, the user swipes left or right to navigate between the scenes. A Page Control at the bottom of the screen shows the user’s current position among the pages. To switch to vertical paging, set the interface controller’s Page Direction attribute in the Attributes inspector.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Paged navigation",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A push interface starts with a single root interface controller. Controls from the current interface ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "push",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " a new scene onto the screen. Similarly, you can ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "pop",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " back to a previous controller. Push navigations are particularly useful for displaying hierarchical information; for example, when the user selects an item from a list, you can push the detailed view for that item.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Push navigation",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use a modal presentation to interrupt the user’s workflow to request input or display additional information.  The modal presentation itself can consist of a single screen or a paged layout containing multiple screens.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Modal Presentations",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WatchKit also supports several standard interfaces for gathering input or displaying specific types of information. To present these interfaces, use the methods listed below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAlert(withTitle:message:preferredStyle:actions:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method to display alerts and request user input using a standard interface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Alert and action sheets",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentTextInputController(withSuggestions:allowedInputMode:completion:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method to receive text input from the user. This method presents a controller with relevant input options, which may include predefined phrases, dictation, and Scribble.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Text input",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentMediaPlayerController(with:options:completion:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method to play audio and video.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Video and audio playback",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAudioRecorderController(withOutputURL:preset:options:completion:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method to display the standard audio recording interface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Audio recording",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAddPassesController(withPasses:completion:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method to display an interface for adding passes to the user’s Apple Watch.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "PassKit passes",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard interfaces have built-in buttons so users can dismiss them at any time. Many of the interfaces also have a dismiss method that you can use to close the interface programmatically. While an interface is active, your app doesn’t have direct control over the interactions with that interface. Use actions or a completion handler for tasks related to the interface itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-Page-Navigation",
+          "level": 3,
+          "text": "Implement Page Navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up page navigation, connect two or more interface controllers in your storyboard with next-page segues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by adding an interface controller for each page to the storyboard:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148631",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Control-click the first interface controller and drag to the second interface controller. The second controller should highlights to indicate that a segue is possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148625",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Release the mouse button and select “next page” from the Relationship Segue pop-up menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148642",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continue to control-click and drag to connect the rest of your pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order in which you create your segues defines the order of the pages in your interface. When the system launches your app, it creates and initializes all of the interface controllers connected by next page segues. By default, the system displays the first interface controller in the sequence. You can specify a different starting point by calling the interface controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/becomeCurrentPage()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/awake(withContext:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also change the set of pages to display. Call your interface controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and pass an array of identifiers for interface controllers defined in your storyboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user navigates from page to page, watchOS activates and deactivates the interface controllers. Use the controllers’ ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willActivate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/didAppear()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willDisappear()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView/didDeactivate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to track these transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-Push-Navigation",
+          "level": 3,
+          "text": "Implement Push Navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using push navigation, you can define the push segues either in the storyboard, or programmatically in code. To add a push segue to the storyboard, Control-drag from a button, group, or table row to the desired control in the new interface controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148626",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, select Push from the Action Segue pop-up menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148629",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can programmatically initiate the push transition by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pushController(withName:context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func pushNextScene() {",
+            "    // Do something before triggering the segue here.",
+            "    pushController(withName: \"nextSegue\", context: nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When pushing a new interface controller onto the screen, use the segue’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "context",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to pass data to the new interface controller:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For segues defined in the Storyboard, override the interface controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/contextForSegue(withIdentifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method (or one of the related methods) to provide the context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For programatically triggered segues, pass the data as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "context",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pushController(withName:context:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the context to pass state data to the new interface controller before it appears onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pushed interface controller displays a back button in the upper-left corner of the screen to indicate that the user can navigate backward. When the user taps the back button or performs a left-edge swipe, watchOS automatically dismisses the top-most interface controller. You can also dismiss the interface controller programmatically by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method; however, you can’t dismiss your app’s main interface controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tables support item pagination. When enabled, users can easily scroll through a series of detail views. The user selects an item from the table, and the app displays a detailed view for that item. The user can scroll up and down to navigate between an item’s siblings. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable#Support-Item-Pagination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Class Reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-Modal-Interfaces",
+          "level": 3,
+          "text": "Present Modal Interfaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A modal interface temporarily interrupts the current navigation flow to prompt the user or display additional information. You can present a modal interface from any interface controller, regardless of the primary navigation style used by your app. To display an interface controller modally, do one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a modal segue in your storyboard file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withName:context:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to present a single interface controller modally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNames:contexts:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNamesAndContexts:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to present two or more interface controllers modally using a page-based layout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a modal segue in your storyboard file, Control-drag from a button, group, or table row (just like adding a Push segue). Select the Modal segue from the Action Segue pop-up menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148643",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present multiple scenes in a page-based layout, connect all of the modal scenes together using next page segues (just as you would for Page navigation). Then create a modal segue to the first interface controller in that group. If you connect a modal segue to the middle of the group, the system won’t display the interface controllers that precede it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A modal interface displays its title in the top-left corner. When the user taps the title, watchOS dismisses the modal interface. Set the interface controller’s title to reflect the meaning of dismissing the modal interface. For example, you could set it to Done or Close. If you don’t specify a title for the modal interface controller, watchOS displays Cancel by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView/didDeactivate()": {
+      "abstract": [
+        {
+          "text": "Tells the authorization plug-in that its user interface has been deactivated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didDeactivate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView/didDeactivate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didDeactivate()",
+      "type": "topic",
+      "url": "/documentation/SecurityInterface/SFAuthorizationPluginView/didDeactivate()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/awake(withContext:)": {
+      "abstract": [
+        {
+          "text": "Initializes the interface controller with the specified context data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "awake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/awake(withContext:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "awakeWithContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "awake(withContext:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/awake(withcontext:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/becomeCurrentPage()": {
+      "abstract": [
+        {
+          "text": "Displays the interface controller in the page-based interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "becomeCurrentPage"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/becomeCurrentPage()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "becomeCurrentPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "becomeCurrentPage()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/becomecurrentpage()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/contextForSegue(withIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns the context object to pass to the specified interface controller when a button is tapped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextForSegue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/contextForSegue(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contextForSegueWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "contextForSegue(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/contextforsegue(withidentifier:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/didAppear()": {
+      "abstract": [
+        {
+          "text": "Tells the interface controller that its view is now onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didAppear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/didAppear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didAppear"
+        }
+      ],
+      "role": "symbol",
+      "title": "didAppear()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/didappear()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/init()": {
+      "abstract": [
+        {
+          "text": "Returns an initialized interface controller object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/init()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pop()": {
+      "abstract": [
+        {
+          "text": "Pops the current interface controller from the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pop()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popController"
+        }
+      ],
+      "role": "symbol",
+      "title": "pop()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/pop()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAddPassesController(withPasses:completion:)": {
+      "abstract": [
+        {
+          "text": "Displays a modal interface for presenting passes to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAddPassesController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPasses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPass",
+          "text": "PKPass"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAddPassesController(withPasses:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentAddPassesControllerWithPasses:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentAddPassesController(withPasses:completion:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentaddpassescontroller(withpasses:completion:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAlert(withTitle:message:preferredStyle:actions:)": {
+      "abstract": [
+        {
+          "text": "Presents an alert or action sheet over the current interface controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAlert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKAlertControllerStyle",
+          "text": "WKAlertControllerStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKAlertAction",
+          "text": "WKAlertAction"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAlert(withTitle:message:preferredStyle:actions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentAlertControllerWithTitle:message:preferredStyle:actions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentAlert(withTitle:message:preferredStyle:actions:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentalert(withtitle:message:preferredstyle:actions:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAudioRecorderController(withOutputURL:preset:options:completion:)": {
+      "abstract": [
+        {
+          "text": "Display a standard interface for recording audio from the user’s Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAudioRecorderController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withOutputURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKAudioRecorderPreset",
+          "text": "WKAudioRecorderPreset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentAudioRecorderController(withOutputURL:preset:options:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentAudioRecorderControllerWithOutputURL:preset:options:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentAudioRecorderController(withOutputURL:preset:options:completion:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentaudiorecordercontroller(withoutputurl:preset:options:completion:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withName:context:)": {
+      "abstract": [
+        {
+          "text": "Presents a single interface controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withName:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentControllerWithName:context:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentController(withName:context:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentcontroller(withname:context:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNames:contexts:)": {
+      "abstract": [
+        {
+          "text": "Presents a page-based interface modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contexts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNames:contexts:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentControllerWithNames:contexts:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentController(withNames:contexts:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentcontroller(withnames:contexts:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNamesAndContexts:)": {
+      "abstract": [
+        {
+          "text": "Presents a page-based interface modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNamesAndContexts"
+        },
+        {
+          "kind": "text",
+          "text": ": [(name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ")])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentController(withNamesAndContexts:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentController(withNamesAndContexts:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentcontroller(withnamesandcontexts:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentMediaPlayerController(with:options:completion:)": {
+      "abstract": [
+        {
+          "text": "Displays a modal interface for playing the specified media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentMediaPlayerController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentMediaPlayerController(with:options:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentMediaPlayerControllerWithURL:options:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentMediaPlayerController(with:options:completion:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presentmediaplayercontroller(with:options:completion:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentTextInputController(withSuggestions:allowedInputMode:completion:)": {
+      "abstract": [
+        {
+          "text": "Displays a modal interface for gathering text input from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentTextInputController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowedInputMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKTextInputMode",
+          "text": "WKTextInputMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/presentTextInputController(withSuggestions:allowedInputMode:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentTextInputControllerWithSuggestions:allowedInputMode:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentTextInputController(withSuggestions:allowedInputMode:completion:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/presenttextinputcontroller(withsuggestions:allowedinputmode:completion:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pushController(withName:context:)": {
+      "abstract": [
+        {
+          "text": "Pushes a new interface controller onto the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/pushController(withName:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushControllerWithName:context:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pushController(withName:context:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/pushcontroller(withname:context:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)": {
+      "abstract": [
+        {
+          "text": "Loads the specified interface controllers and rebuilds the app’s page-based interface for the given scrolling orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadRootPageControllers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contexts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKPageOrientation",
+          "text": "WKPageOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadRootPageControllersWithNames:contexts:orientation:pageIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/reloadrootpagecontrollers(withnames:contexts:orientation:pageindex:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willActivate()": {
+      "abstract": [
+        {
+          "text": "Tells the interface controller that the system is about to activate its view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willActivate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willActivate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willActivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "willActivate()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/willactivate()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willDisappear()": {
+      "abstract": [
+        {
+          "text": "Tells the interface controller that its view is now offscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willDisappear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willDisappear"
+        }
+      ],
+      "role": "symbol",
+      "title": "willDisappear()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/willdisappear()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable": {
+      "abstract": [
+        {
+          "text": "An object that creates and manages the contents of a single-column table interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTable"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTable",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetable"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable#Support-Item-Pagination": {
+      "abstract": [],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable#Support-Item-Pagination",
+      "kind": "section",
+      "title": "Support Item Pagination",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetable#Support-Item-Pagination"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard": {
+      "abstract": [
+        {
+          "text": "Create the user interface for your watchOS app by nesting stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Building watchOS app Interfaces Using the Storyboard",
+      "type": "topic",
+      "url": "/documentation/watchkit/building-watchos-app-interfaces-using-the-storyboard"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support": {
+      "abstract": [
+        {
+          "text": "Connect your code to storyboard elements using interface controllers, interface objects, and event handlers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storyboard support",
+      "type": "topic",
+      "url": "/documentation/watchkit/storyboard-support"
+    },
+    "media-3148625": {
+      "alt": "A screenshot showing the control-drag operation between two interface controllers.",
+      "identifier": "media-3148625",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5710b12bad08cc03deb098b7d5ddec59/media-3148625@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5710b12bad08cc03deb098b7d5ddec59/media-3148625~dark@2x.png"
+        }
+      ]
+    },
+    "media-3148626": {
+      "alt": "A screenshot showing the control-drag operation between a button and the next interface controller.",
+      "identifier": "media-3148626",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf452039013a276d5e7c855fedab15bb/media-3148626@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf452039013a276d5e7c855fedab15bb/media-3148626~dark@2x.png"
+        }
+      ]
+    },
+    "media-3148629": {
+      "alt": "A screenshot showing the Push menu item in the Action Segue pop-up menu.",
+      "identifier": "media-3148629",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f01ae5f10276d919685246b7f63a21d/media-3148629@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f01ae5f10276d919685246b7f63a21d/media-3148629~dark@2x.png"
+        }
+      ]
+    },
+    "media-3148631": {
+      "alt": "A screenshot showing two interface controllers in the storyboard.",
+      "identifier": "media-3148631",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00f70e8e3361b6e0aafa221c556e4989/media-3148631@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00f70e8e3361b6e0aafa221c556e4989/media-3148631~dark@2x.png"
+        }
+      ]
+    },
+    "media-3148642": {
+      "alt": "A screenshot showing the next page menu item in the Relationship Segue pop-up menu.",
+      "identifier": "media-3148642",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e92c0a118e2efeaf8e4cf3b3652420a1/media-3148642@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e92c0a118e2efeaf8e4cf3b3652420a1/media-3148642~dark@2x.png"
+        }
+      ]
+    },
+    "media-3148643": {
+      "alt": "A screenshot showing the Modal menu item in the Action Segue pop-up menu.",
+      "identifier": "media-3148643",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/092713a809313bb60cc07759d2a7c1b7/media-3148643@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/092713a809313bb60cc07759d2a7c1b7/media-3148643~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SecurityInterface~1SFAuthorizationPluginView~1didDeactivate()/title",
+          "value": "didDeactivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SecurityInterface~1SFAuthorizationPluginView~1didDeactivate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didDeactivate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1willDisappear()/title",
+          "value": "willDisappear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1willDisappear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willDisappear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1contextForSegue(withIdentifier:)/title",
+          "value": "contextForSegueWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1contextForSegue(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contextForSegueWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1becomeCurrentPage()/title",
+          "value": "becomeCurrentPage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1becomeCurrentPage()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "becomeCurrentPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentController(withName:context:)/title",
+          "value": "presentControllerWithName:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentController(withName:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentControllerWithName:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAudioRecorderController(withOutputURL:preset:options:completion:)/title",
+          "value": "presentAudioRecorderControllerWithOutputURL:preset:options:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAudioRecorderController(withOutputURL:preset:options:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentAudioRecorderControllerWithOutputURL:preset:options:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentMediaPlayerController(with:options:completion:)/title",
+          "value": "presentMediaPlayerControllerWithURL:options:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentMediaPlayerController(with:options:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentMediaPlayerControllerWithURL:options:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentController(withNames:contexts:)/title",
+          "value": "presentControllerWithNames:contexts:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentController(withNames:contexts:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentControllerWithNames:contexts:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentTextInputController(withSuggestions:allowedInputMode:completion:)/title",
+          "value": "presentTextInputControllerWithSuggestions:allowedInputMode:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentTextInputController(withSuggestions:allowedInputMode:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentTextInputControllerWithSuggestions:allowedInputMode:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAlert(withTitle:message:preferredStyle:actions:)/title",
+          "value": "presentAlertControllerWithTitle:message:preferredStyle:actions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAlert(withTitle:message:preferredStyle:actions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentAlertControllerWithTitle:message:preferredStyle:actions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1didAppear()/title",
+          "value": "didAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1didAppear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didAppear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1pop()/title",
+          "value": "popController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1pop()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "popController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAddPassesController(withPasses:completion:)/title",
+          "value": "presentAddPassesControllerWithPasses:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1presentAddPassesController(withPasses:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentAddPassesControllerWithPasses:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)/title",
+          "value": "reloadRootPageControllersWithNames:contexts:orientation:pageIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1reloadRootPageControllers(withNames:contexts:orientation:pageIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadRootPageControllersWithNames:contexts:orientation:pageIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1awake(withContext:)/title",
+          "value": "awakeWithContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1awake(withContext:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "awakeWithContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1willActivate()/title",
+          "value": "willActivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1willActivate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willActivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1pushController(withName:context:)/title",
+          "value": "pushControllerWithName:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1pushController(withName:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushControllerWithName:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/title",
+          "value": "WKInterfaceTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/navigating-between-scenes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/navigating-between-scenes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

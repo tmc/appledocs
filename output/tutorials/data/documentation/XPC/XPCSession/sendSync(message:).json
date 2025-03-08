@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "Sends a dictionary message over the session to the destination service, blocking the caller until receiving a reply.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(message:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:3XPC10XPCSessionC8sendSync7messageAA13XPCDictionaryVAG_tKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "sendSync"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "message"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+        "text": "XPCDictionary"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+        "text": "XPCDictionary"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "sendSync(message:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendSync"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "message"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCDictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+              "text": "XPCDictionary"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCDictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+              "text": "XPCDictionary"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary object that contains the message to send.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "message"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the response to the message; otherwise this method throws an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method supports priority inversion avoidance. Use this method instead of calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:replyHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and using a semaphore.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be judicious about your use of this API. It can block indefinitely. Calling this method while the session’s target queue is blocked may lead to deadlocks in certain scenarios. For that reason, invoking this method from the session’s target queue results in a crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you provide an API that uses this method, consider allowing callers to specify a queue and callback handler to let you provide results asynchronously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sessions send messages serially in a first-in, first-out (FIFO) order. This method is safe to call from multiple dispatch queues. The session can’t indicate whether the message ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "delivery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is successful or not. While the session may successfully enqueue the message at the remote end of the connection, there’s no guarantee about when the destination dequeues the message and invokes the receiving session’s handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you create an inactive session, you must activate it before sending messages. Calling this method with an inactive session crashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCDictionary": {
+      "abstract": [
+        {
+          "text": "A type that contains key-value pairs, notably used as the container of messages between a client and listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCDictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCDictionary",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcdictionary"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession": {
+      "abstract": [
+        {
+          "text": "A type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCSession",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:)": {
+      "abstract": [
+        {
+          "text": "Sends an encodable message over the session to the destination service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-3wjln": {
+      "abstract": [
+        {
+          "text": "Sends an encodable message over the session to the destination service, using the closure you specify to handle a reply and rich error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC18XPCReceivedMessageV",
+          "text": "XPCReceivedMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC12XPCRichErrorV",
+          "text": "XPCRichError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-3wjln",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(_:replyhandler:)-3wjln"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-9an0u": {
+      "abstract": [
+        {
+          "text": "Sends an encodable message over the session to the destination service, using the closure you specify to handle a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Reply"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Reply"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-9an0u",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(_:replyhandler:)-9an0u"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)": {
+      "abstract": [
+        {
+          "text": "Sends a dictionary message over the session to the destination service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(message:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(message:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:replyHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends a message asynchronously over the session to the destination service, calling a closure after receiving a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC12XPCRichErrorV",
+          "text": "XPCRichError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:replyHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(message:replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(message:replyhandler:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-88u0s": {
+      "abstract": [
+        {
+          "text": "Sends an encodable message over the session to the destination service, blocking the caller until receiving an encodable reply message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendSync"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Reply"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Reply"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-88u0s",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendSync(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/sendsync(_:)-88u0s"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-8a284": {
+      "abstract": [
+        {
+          "text": "Sends an encodable message over the session to the destination service, blocking the caller until receiving a reply message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendSync"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC18XPCReceivedMessageV",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-8a284",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendSync(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/sendsync(_:)-8a284"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(message:)": {
+      "abstract": [
+        {
+          "text": "Sends a dictionary message over the session to the destination service, blocking the caller until receiving a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendSync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(message:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendSync(message:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/sendsync(message:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sending-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:)",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-3wjln",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/send(_:replyHandler:)-9an0u",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:replyHandler:)",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-8a284",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession/sendSync(_:)-88u0s"
+      ],
+      "title": "Sending messages"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpcsession/sendsync(message:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

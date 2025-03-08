@@ -1,0 +1,784 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a persistent audio driver that will route audio data to/from the specified device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothAddSCOAudioDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@IOBluetoothAddSCOAudioDevice",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothAddSCOAudioDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOBluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothAddSCOAudioDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "IOBluetoothAddSCOAudioDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@IOReturn",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOReturn",
+              "text": "IOReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothAddSCOAudioDevice"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOBluetoothDeviceRef",
+              "text": "IOBluetoothDeviceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "device"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "configDict"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A paired Bluetooth audio device",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "device"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Configuration dictionary containing a description of the audio controls to be attached to the driver. Passing NULL will result in default controls",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "configDict"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns kIOReturnSuccess if the audio driver was successfully created, error if hardware does not support SCO or device is not paired.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Bluetooth device must be paired before it can be added. The Bluetooth hardware must also support SCO connections for devices to be added.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a client attempts to use the audio driver, it will automatically open the baseband connection and the SCO connection if necessary. Once they are open, it will route audio data to/from the audio system. The audio driver will continue to exist (even through reboots) until IOBluetoothRemoveAudioDevice is called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Currently, the only recognized entry in the configDict is “IOAudioControls”. That entry will be an NSArray of NSDictionary objects where each dictionary represents a single audio control. Following is a description of the mandatory and optional entries in each control dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mandatory entries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOAudioControlTypeKey = Four-char-code representing the control type (see IOAudioTypes.h) Possible values: kIOAudioControlTypeLevel kIOAudioControlTypeToggle kIOAudioControlTypeSelector kIOAudioControlSubTypeKey = Four-char-code representing the control subtype. The value is dependent on the control type. Following are common subtypes for each control type: kIOAudioControlTypeLevel: kIOAudioLevelControlSubTypeVolume kIOAudioControlTypeToggle: kIOAudioToggleControlSubTypeMute kIOAudioControlTypeSelector: kIOAudioSelectorControlSubTypeOutput kIOAudioSelectorControlSubTypeInput kIOAudioControlUsageKey = Four-char-code representing the usage of the control (i.e. what part of the I/O chain the control affects - input, output, pass-thru, …) (see IOAudioTypes.h) Possible values: kIOAudioControlUsageOutput kIOAudioControlUsageInput kIOAudioControlUsagePassThru kIOAudioControlChannelIDKey = channel ID for the channel(s) the control acts on (see IOAudioControl.h and IOAudioTypes.h for more info) kIOAudioControlChannelNameKey = name for the channel (see IOAudioControl.h and IOAudioDefines.h for more info) kIOAudioControlValueKey = Initial value of the control - as an NSNumber",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optional entries: kIOAudioControlIDKey = Optional developer-defined ID field used to uniquely identify each control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Level control-specific entries (see IOAudioDefines.h) kIOAudioLevelControlMinValueKey = Min value for the range for the level control kIOAudioLevelControlMaxValueKey = Max value for the range for the level control kIOAudioLevelControlMinDBKey = Min value in db for the range for the level control. Value is a fixed-point 16.16 number represented as an integer in an NSNumber. kIOAudioLevelControlMaxDBKey = Max value in db for the range for the level control. Value is a fixed-point 16.16 number represented as an integer in an NSNumber.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more detailed description of these attributes and how IOAudioControls work, see the headerdoc for IOAudioControl, IOAudioLevelControl, IOAudioToggleControl and IOAudioSelectorControl in the Kernel.framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth": {
+      "abstract": [
+        {
+          "text": "Gain user-space access to Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOBluetooth",
+      "type": "topic",
+      "url": "/documentation/iobluetooth"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothAddSCOAudioDevice": {
+      "abstract": [
+        {
+          "text": "Creates a persistent audio driver that will route audio data to/from the specified device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothAddSCOAudioDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothAddSCOAudioDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothAddSCOAudioDevice",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothaddscoaudiodevice"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef": {
+      "abstract": [
+        {
+          "text": "An object that represents a Bluetooth I/O device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothDeviceRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdeviceref"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIgnoreHIDDevice(_:)": {
+      "abstract": [
+        {
+          "text": "Hints that the macOS Bluetooth software should ignore a HID device that connects up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothIgnoreHIDDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothDeviceRef",
+          "text": "IOBluetoothDeviceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIgnoreHIDDevice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothIgnoreHIDDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothIgnoreHIDDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothignorehiddevice(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows a client to register for a channel close notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothL2CAPChannelRef",
+          "text": "IOBluetoothL2CAPChannelRef"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothUserNotificationCallback",
+          "text": "IOBluetoothUserNotificationCallback"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothUserNotificationRef",
+          "text": "IOBluetoothUserNotificationRef"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothl2capchannelregisterforchannelclosenotification(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveIgnoredHIDDevice(_:)": {
+      "abstract": [
+        {
+          "text": "The counterpart to the above IOBluetoothIgnoreHIDDevice() API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRemoveIgnoredHIDDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothDeviceRef",
+          "text": "IOBluetoothDeviceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveIgnoredHIDDevice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRemoveIgnoredHIDDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothRemoveIgnoredHIDDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothremoveignoredhiddevice(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveSCOAudioDevice": {
+      "abstract": [
+        {
+          "text": "Removes a persistent audio driver for a device that had already been added using IOBluetoothAddAudioDevice().",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRemoveSCOAudioDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveSCOAudioDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothRemoveSCOAudioDevice",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothremovescoaudiodevice"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUserNotificationUnregister(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters the target notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothUserNotificationUnregister"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothUserNotificationRef",
+          "text": "IOBluetoothUserNotificationRef"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUserNotificationUnregister(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothUserNotificationUnregister"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothUserNotificationUnregister(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothusernotificationunregister(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@IOReturn": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOReturn"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@IOReturn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReturn",
+      "type": "topic",
+      "url": "/documentation/iokit/ioreturn"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Miscellaneous",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIgnoreHIDDevice(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveIgnoredHIDDevice(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRemoveSCOAudioDevice",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUserNotificationUnregister(_:)"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothUserNotificationUnregister(_:)/title",
+          "value": "IOBluetoothUserNotificationUnregister"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothUserNotificationUnregister(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothUserNotificationUnregister"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)/title",
+          "value": "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothIgnoreHIDDevice(_:)/title",
+          "value": "IOBluetoothIgnoreHIDDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothIgnoreHIDDevice(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothIgnoreHIDDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/title",
+          "value": "IOBluetoothDeviceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRemoveIgnoredHIDDevice(_:)/title",
+          "value": "IOBluetoothRemoveIgnoredHIDDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRemoveIgnoredHIDDevice(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothRemoveIgnoredHIDDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDictionaryRef/title",
+          "value": "CFDictionaryRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothaddscoaudiodevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "abstract": [
+    {
+      "text": "Designate a region to which you apply video filter by using a collection of masks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/masked-filters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Masked Filters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video-mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to apply video filters to a portion of the image described as a mask, or apply two different filters, one inside the mask and one outside. Together, the  Mask Elements define a single region to which the effect applies. The actual video filter is described with a ",
+              "type": "text"
+            },
+            {
+              "code": "video-filter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element as a child of the ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video-mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML 1.5 added support to apply video filters to a region defined by a collection of masks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A mask may consist of multiple shapes or color isolations. For a color correction filter, in addition to the correction you apply inside the mask, there may be another set of correction parameters to apply outside the mask. The code below represents a masked video filter with a single shape mask.\u2028",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " <filter-video-mask>",
+            "    <mask-shape name=\"Shape Mask\" blendMode=\"add\">",
+            "       <param name=\"Radius\" key=\"160\" value=\"750 150\"/>",
+            "       <param name=\"Curvature\" key=\"159\" value=\"0.7\"/>",
+            "       <param name=\"Feather\" key=\"102\" value=\"170\"/>",
+            "       <param name=\"Transforms\" key=\"200\">",
+            "          <param name=\"Position\" key=\"201\" value=\"10 110\"/>",
+            "          <param name=\"Rotation\" key=\"202\" value=\"14\"/>",
+            "       </param>",
+            "     </mask-shape>",
+            "     <filter-video ref=\"100\"/>",
+            "</filter-video-mask>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next code example represents a color-correction filter with a single shape mask and different correction parameters that the example applies inside and outside of the mask. The first ",
+              "type": "text"
+            },
+            {
+              "code": "filter-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element represents the inner correction and the second corresponds to the outer correction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<filter-video-mask>",
+            "     <mask-shape name=\"Shape Mask\" blendMode=\"add\">",
+            "        <param name=\"Curvature\" key=\"159\" value=\"0.7\"/>",
+            "         <param name=\"Transforms\" key=\"200\">",
+            "            <param name=\"Position\" key=\"201\" value=\"260 -30\"/>",
+            "          </param>",
+            "      </mask-shape>",
+            "      <filter-video ref=\"1000\">",
+            "           <param name=\"color_global\" value=\"0.2 0.8\"/>",
+            "      </filter-video>",
+            "      <filter-video ref=\"1000\"/>",
+            "           <param name=\"color_highlight\" value=\"0.3 0.6\"/>",
+            "       </filter-video>",
+            " </filter-video-mask>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters": {
+      "abstract": [
+        {
+          "text": "Specify values to change adjustment attributes and effects parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjustment Attributes and Effect Parameters",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adjustment-attributes-and-effect-parameters"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements": {
+      "abstract": [
+        {
+          "text": "Alter the audio and video output of story elements by using adjustment elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adjustment Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adjustment-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation": {
+      "abstract": [
+        {
+          "text": "Create animations by changing specific adjustment attributes and effect parameters over time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/animation"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption": {
+      "abstract": [
+        {
+          "text": "Represents a closed-caption or subtitle with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+      "kind": "article",
+      "role": "article",
+      "title": "caption",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/caption"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio": {
+      "abstract": [
+        {
+          "text": "A filter element that references an audio effect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "filter-audio",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/filter-audio"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video": {
+      "abstract": [
+        {
+          "text": "A filter element that references a video effect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+      "kind": "article",
+      "role": "article",
+      "title": "filter-video",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/filter-video"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-isolation": {
+      "abstract": [
+        {
+          "text": "Describes a color isolation mask.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-isolation",
+      "kind": "article",
+      "role": "article",
+      "title": "mask-isolation",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/mask-isolation"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-shape": {
+      "abstract": [
+        {
+          "text": "Describes a shape that serves as a mask.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-shape",
+      "kind": "article",
+      "role": "article",
+      "title": "mask-shape",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/mask-shape"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements": {
+      "abstract": [
+        {
+          "text": "Describe Final Cut Pro events and project data and their associated effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Story Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/story-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title": {
+      "abstract": [
+        {
+          "text": "Represents a title with one or more text blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/title"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition": {
+      "abstract": [
+        {
+          "text": "Applies transition effects that either stand by itself (no neighboring elements), combine two neighboring elements, or apply to a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+      "kind": "article",
+      "role": "article",
+      "title": "transition",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/transition"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adjustment-and-Effects-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+      ],
+      "title": "Adjustment and Effects Elements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Mask-Elements",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-isolation",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-shape"
+      ],
+      "title": "Mask Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Mask-Elements",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-isolation",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/mask-shape"
+              ],
+              "title": "Mask Elements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adjustment-and-Effects-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-elements",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/transition",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/title",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/caption",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-audio",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/filter-video",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adjustment-attributes-and-effect-parameters",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/animation"
+              ],
+              "title": "Adjustment and Effects Elements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/masked-filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/masked-filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

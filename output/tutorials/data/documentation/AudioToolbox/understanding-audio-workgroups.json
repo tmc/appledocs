@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to optimize real-time rendering performance with the Audio Workgroups API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding Audio Workgroups"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Audio Workgroups API is a new feature available in macOS 11, iOS 14.0, watchOS 7.0 and tvOS 14.0. An audio workgroup helps the OS optimize performance by providing additional information about active real-time threads, including auxiliary ones created by apps and Audio Unit plug-ins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio workgroup is a collection of real-time threads that work together to produce audio by a common deadline while spanning multiple processes, including the audio server and client apps and plug-ins. The system uses the audio workgroups to observe CPU usage of real-time threads so that it can better balance the competing interests of power consumption and performance. Apps and plug-ins that create their own real-time threads for audio synthesis or signal processing should adopt this new API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only real-time threads can join an audio workgroup; nonreal-time threads cannot.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Learn-About-Audio-Workgroups",
+          "level": 3,
+          "text": "Learn About Audio Workgroups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The diagram below shows how Core Audio runs an I/O thread in the audio server as part of the audio device’s workgroup. The thread wakes up at regular intervals and calls its associated client app to retrieve its audio output. When the client finishes rendering its audio, the system writes it to the output hardware, and the I/O thread sleeps. If a client takes too long to produce audio, the thread misses its deadline, which results in an audio overload and an interruption in audio playback. The I/O thread is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "primary",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " thread of an audio device workgroup, and it informs the kernel of the beginning and end of each work cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3627695",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every audio server I/O thread, its associated app also has its own real-time render thread. The audio server wakes and waits for the app to produce its output on each I/O cycle. The system automatically joins the client app’s real-time thread to the audio device’s workgroup. By doing so, the system tells the kernel that both threads are working together with a common deadline and can better optimize performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app or plug-in requires no additional work if the only real-time thread it uses is the one that the audio frameworks provide. The audio system automatically joins its real-time threads to an audio device workgroup.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app or Audio Unit plug-in creates and manages its own audio real-time threads, learn more about how to use the Audio Workgroup API in following articles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app creates auxiliary real-time threads that run in sync with the I/O thread, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app creates real-time threads that run asynchronously with the I/O thread, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your Audio Unit plug-in creates auxiliary audio-rendering threads, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize system performance by adding real-time audio threads that run asynchronously to the I/O thread to custom audio workgroups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Asynchronous Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "If your Audio Unit plug-in creates auxiliary real-time rendering threads, add them to the host app’s audio workgroup so the system can schedule them appropriately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Audio Unit Auxiliary Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize the performance of real-time audio threads that run in sync with the I/O thread by adding them to the audio device workgroup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Parallel Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3627695": {
+      "alt": "A diagram that shows how Core Audio runs an I/O thread in the audio server.",
+      "identifier": "media-3627695",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85a6bf9ee0a0e8dfb0e606817d65cbab/media-3627695@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87bb74fa679d48d5c8f03197ab1ade83/media-3627695~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/understanding-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/understanding-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

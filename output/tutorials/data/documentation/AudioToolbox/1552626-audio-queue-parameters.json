@@ -1,0 +1,875 @@
+{
+  "abstract": [
+    {
+      "text": "Identifiers for audio queue parameters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1552626-audio-queue-parameters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Queue Parameters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These parameters apply only to playback audio queues. You can set a playback audio queue parameter in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value to take effect immediately using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueSetParameter(_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedule a value to take effect when a particular audio queue buffer plays. You supply the parameter when you enqueue the buffer. The new value is applied to the audio queue that owns the buffer when that buffer is rendered.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueGetParameter(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function always returns the current value of the parameter for an audio queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618724-hardware-codec-policy-keys": {
+      "abstract": [
+        {
+          "text": "Indicates how an audio queue should choose between hardware and software implementations of a codec.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618724-hardware-codec-policy-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Codec Policy Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618724-hardware-codec-policy-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueGetParameter(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets an audio queue parameter value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueueGetParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueRef",
+          "text": "AudioQueueRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterValue",
+          "text": "AudioQueueParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueGetParameter(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueueGetParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueueGetParameter(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueuegetparameter(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID": {
+      "abstract": [
+        {
+          "text": "Identifiers for audio queue properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueuePropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueuepropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueSetParameter(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a playback audio queue parameter value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueueSetParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueRef",
+          "text": "AudioQueueRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterValue",
+          "text": "AudioQueueParameterValue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueSetParameter(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueueSetParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueueSetParameter(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueuesetparameter(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services": {
+      "abstract": [
+        {
+          "text": "Connect to audio hardware and manage the recording or playback process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Queue Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-queue-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pan": {
+      "abstract": [
+        {
+          "text": "The stereo panning position of a source. For a monophonic source, panning is determined as follows:",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Pan"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Pan"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueParam_Pan",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueparam_pan"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pitch": {
+      "abstract": [
+        {
+          "text": "The number of cents to pitch-shift the audio queue’s playback, in the range ",
+          "type": "text"
+        },
+        {
+          "code": "-2400",
+          "type": "codeVoice"
+        },
+        {
+          "text": " through ",
+          "type": "text"
+        },
+        {
+          "code": "2400",
+          "type": "codeVoice"
+        },
+        {
+          "text": " cents (where 1200 cents corresponds to one musical octave.)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Pitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Pitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueParam_Pitch",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueparam_pitch"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_PlayRate": {
+      "abstract": [
+        {
+          "text": "The playback rate for the audio queue, in the range ",
+          "type": "text"
+        },
+        {
+          "code": "0.5",
+          "type": "codeVoice"
+        },
+        {
+          "text": " through ",
+          "type": "text"
+        },
+        {
+          "code": "2.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". A value of ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (the default) specifies that the audio queue should play at its normal rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_PlayRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_PlayRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_PlayRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueParam_PlayRate",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueparam_playrate"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Volume": {
+      "abstract": [
+        {
+          "text": "The playback volume for the audio queue, ranging from ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " through ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on a linear scale. A value of ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " indicates silence; a value of ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (the default) indicates full volume for the audio queue instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Volume"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Volume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_Volume"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueParam_Volume",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueparam_volume"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_VolumeRampTime": {
+      "abstract": [
+        {
+          "text": "The number of seconds over which a volume change is ramped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_VolumeRampTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueParameterID",
+          "text": "AudioQueueParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_VolumeRampTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueParam_VolumeRampTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueParam_VolumeRampTime",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueparam_volumeramptime"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618724-hardware-codec-policy-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Volume",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_PlayRate",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pitch",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_VolumeRampTime",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pan"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Volume",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_PlayRate",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pitch",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_VolumeRampTime",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueParam_Pan"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618724-hardware-codec-policy-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_PlayRate/title",
+          "value": "kAudioQueueParam_PlayRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_PlayRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueParam_PlayRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueSetParameter(_:_:_:)/title",
+          "value": "AudioQueueSetParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueSetParameter(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueueSetParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Pan/title",
+          "value": "kAudioQueueParam_Pan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Pan/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueParam_Pan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/title",
+          "value": "AudioQueuePropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueuePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueuePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueGetParameter(_:_:_:)/title",
+          "value": "AudioQueueGetParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueGetParameter(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueueGetParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_VolumeRampTime/title",
+          "value": "kAudioQueueParam_VolumeRampTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_VolumeRampTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueParam_VolumeRampTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Pitch/title",
+          "value": "kAudioQueueParam_Pitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Pitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueParam_Pitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Volume/title",
+          "value": "kAudioQueueParam_Volume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueParam_Volume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueParam_Volume"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1552626-audio-queue-parameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1552626-audio-queue-parameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

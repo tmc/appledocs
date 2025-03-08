@@ -1,0 +1,576 @@
+{
+  "abstract": [
+    {
+      "text": "Use a system-supported method to authenticate with an identity provider.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Authentication process"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platform SSO supports several methods to authenticate with an identity provider (IdP) that stores and verfies user identities. Each method includes specific steps to complete the authentication process. At a high level, authentication begins with the system requesting a server nonce, which includes an anti-replay value. Next, the system creates a login request per requirements of the authentication method, sends the request, receives a response, and processes it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This flowchart provides a high-level overview of authentication using password, secure enclave key, SmartCard, and encrypted password:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4302344",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For password and encrypted password authentication, the IdP uses the local account password and keeps it in sync, including password updates from the login window and screensaver unlock. The secure enclave key authenticates with the IdP without a password and without changing the local password, and high-security customers can use a SmartCard to authenticate with the IdP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platform SSO also facilitates federated authentication with WS-Trust. Federation enables authentication between security domains, such as from a local IdP to a cloud IdP. In WS-Trust authentication, a federated IdP uses the local account password for authentication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This flowchart provides a high-level overview of WS-Trust authentication, which includes preauthentication (for dynamic WS-Trust), obtaining federation metadata, authenticating with a federated IdP, and logging in with the IdP:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4302341",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-TLS-and-system-CA-requirements",
+          "level": 3,
+          "text": "Support TLS and system CA requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the login process can happen on any network, the system sends all HTTP requests using Transport Layer Security (TLS) and uses the current App Transport Security settings. The requests explicitly require that the system-provided root certificate authorities (CAs) include the issuer of the TLS certificate. The system doesn’t trust user-trusted or MDM-provided CAs for these requests. It limits these CAs to ensure the TLS tunnel to the identity provider doesn’t include any third-party products with security vulnerabilities or intentionally malicious code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping": {
+      "abstract": [
+        {
+          "text": "A set of Kerberos mappings that the system login process uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKerberosMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKerberosMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionKerberosMapping",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionkerberosmapping"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-json-web-encryption-jwe-login-response": {
+      "abstract": [
+        {
+          "text": "Create an encrypted login response and configure the concatenation key derivation function (Concat KDF).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-json-web-encryption-jwe-login-response",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a JSON Web Encryption (JWE) login response",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-a-json-web-encryption-jwe-login-response"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request": {
+      "abstract": [
+        {
+          "text": "Refresh a non-expired token instead of sending a new login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a refresh request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-a-refresh-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion": {
+      "abstract": [
+        {
+          "text": "Request an embedded assertion for login types that require a digital signature for authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an embedded assertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-an-embedded-assertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion": {
+      "abstract": [
+        {
+          "text": "Request an encrypted embedded assertion for login types that require password encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an encrypted embedded assertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-an-encrypted-embedded-assertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request": {
+      "abstract": [
+        {
+          "text": "Create a signed JOSE login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and validating a login request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-and-validating-a-login-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce": {
+      "abstract": [
+        {
+          "text": "Request and process a server nonce to verify communication and detect replays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+      "kind": "article",
+      "role": "article",
+      "title": "Obtaining a server nonce",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/obtaining-a-server-nonce"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request": {
+      "abstract": [
+        {
+          "text": "Request and process a preauthentication for dynamic WS-Trust authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a preauthentication request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-a-preauthentication-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request": {
+      "abstract": [
+        {
+          "text": "Create a WS-Trust login request using the metadata exchange data (MEX) response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a WS-Trust login request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-a-ws-trust-login-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-metadata-exchange-data-mex-request": {
+      "abstract": [
+        {
+          "text": "Send and process a WS-Trust MEX request to determine the version and URLs for authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-metadata-exchange-data-mex-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a WS-Trust metadata exchange data (MEX) request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification": {
+      "abstract": [
+        {
+          "text": "Verify the login request and create a JSON Web Encryption (JWE) response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing encryption verification",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-encryption-verification"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response": {
+      "abstract": [
+        {
+          "text": "Validate the encrypted response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing the JSON Web Encryption (JWE) login response",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/processing-the-json-web-encryption-jwe-login-response"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests": {
+      "abstract": [
+        {
+          "text": "Support the platform SSO 2.0 protocol for encryption and decryption operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting key requests and key exchange requests",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-key-requests-and-key-exchange-requests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4302341": {
+      "alt": "A flowchart that shows a Device icon, Identity provider icon, and Federated identity provider (IdP) icon at the top of a looping process that starts with requesting and receiving a server nonce value, followed by optionally requesting and receiving a preauthentication from the IdP. The next steps include requesting and receiving federation metadata from a federated IdP, performing WS-Trust authentication, receiving and validating the Security Assertion Markup Language (SAML) response, sending the SAML bearer login JOSE to the IdP, receiving the login response JWE, and decrypting and validating the login response and saving the tokens.",
+      "identifier": "media-4302341",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c832d71d633649c7c7bcfbf874c63f9/media-4302341@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0e60d03cedca0f7cdf0cd06da751d54/media-4302341~dark@2x.png"
+        }
+      ]
+    },
+    "media-4302344": {
+      "alt": "A flowchart that shows a Device icon and Identity provider icon at the top of a looping process that starts with requesting and receiving a server nonce value, followed by sending a JSON Object Signing and Encryption (JOSE) login request and receiving the JSON Web Encryption (JWE) response. For secure enclave key, SmartCard, and encrypted password authentication, the next step involves sending an embedded assertion login JOSE and receiving the JWE response. The last step involves decrypting and validating the login response and saving the tokens.” ",
+      "identifier": "media-4302344",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c4881540f1ee32aca3a8fee366e6c75/media-4302344@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d398297da8f1370d8fd3df1de0c606f0/media-4302344~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authentication",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping"
+      ],
+      "title": "Authentication"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Pre-login",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+      ],
+      "title": "Pre-login"
+    },
+    {
+      "anchor": "Login-request",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+      ],
+      "title": "Login request"
+    },
+    {
+      "anchor": "Login-response",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-json-web-encryption-jwe-login-response",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification"
+      ],
+      "title": "Login response"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Pre-login",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+              ],
+              "title": "Pre-login"
+            },
+            {
+              "anchor": "Login-request",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+              ],
+              "title": "Login request"
+            },
+            {
+              "anchor": "Login-response",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-json-web-encryption-jwe-login-response",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification"
+              ],
+              "title": "Login response"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Authentication",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping"
+              ],
+              "title": "Authentication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/title",
+          "value": "ASAuthorizationProviderExtensionKerberosMapping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKerberosMapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKerberosMapping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/authentication-process"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/authentication-process"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

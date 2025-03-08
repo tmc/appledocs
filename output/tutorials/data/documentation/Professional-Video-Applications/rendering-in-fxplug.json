@@ -1,0 +1,908 @@
+{
+  "abstract": [
+    {
+      "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Rendering in FxPlug"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a new class for FxPlug 4 that combines and improves the frame information previously found in ",
+              "type": "text"
+            },
+            {
+              "code": "FxRenderInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "FxImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", including bounds, pixel transforms, field and field order, and the image’s origin. Incoming images are now presented as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is one of the biggest changes to FxPlug 4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering always involves these four steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gather the state your plug-in needs to render by checking parameter values and making calculations. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " explains how to prepare required information for you plug-in to render.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tell the host application what the output area will be, given the input area. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images#Set-the-destination-rectangle-bounds",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each tile of the output the host requests, tell it which tile of the inputs you need to render. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " explains how to set input and output bounds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draw each output tile. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When rendering, your plug-in will be given an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for output. Use this to return a texture to the host application when your plug-in has finished rendering. The ",
+              "type": "text"
+            },
+            {
+              "code": "outputImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which identifies what graphics card the texture is on. This is a read-only property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of how to work with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", see the ",
+              "type": "text"
+            },
+            {
+              "code": "FxDynamicRegistration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example. Specifically, look at ",
+              "type": "text"
+            },
+            {
+              "code": "PAEMTLBrightnessRenderer.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in ",
+              "type": "text"
+            },
+            {
+              "code": "renderWithBrightness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " where the ",
+              "type": "text"
+            },
+            {
+              "code": "OutputTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the ",
+              "type": "text"
+            },
+            {
+              "code": "OutputImag",
+              "type": "codeVoice"
+            },
+            {
+              "text": "e’s ",
+              "type": "text"
+            },
+            {
+              "code": "deviceRegistryID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to create Metal state, and Input and Output textures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your plug-in may suffer from a performance hit if you set ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/IOSurface/kIOSurfacePixelSizeCastingAllowed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on your IOSurface, so its use is generally ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " recommended. You set this flag to ensure that pixel locations are kept in order in VRAM, and then you can use custom pixel packing in your plug-in. If you do need this flag, when converting from 4:4:4 to 4:2:2 formats for example, the host app will provide a copy of the input and output IOSurface, so you can unpack your specific pixel format in the plug-in, and likewise pack your specific pixel format into the output ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/IOSurface": {
+      "abstract": [
+        {
+          "text": "Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOSurface",
+      "type": "topic",
+      "url": "/documentation/IOSurface"
+    },
+    "doc://com.apple.documentation/documentation/IOSurface/kIOSurfacePixelSizeCastingAllowed": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIOSurfacePixelSizeCastingAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface/kIOSurfacePixelSizeCastingAllowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOSurfacePixelSizeCastingAllowed",
+      "type": "topic",
+      "url": "/documentation/IOSurface/kIOSurfacePixelSizeCastingAllowed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Maintain consistent rendering at all resolutions and aspect ratios by using pixel transforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/optimizing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images": {
+      "abstract": [
+        {
+          "text": "Render only the necessary tiles of an image in your FxPlug plug-in to improve efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with tiled images",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/working-with-tiled-images"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images#Set-the-destination-rectangle-bounds": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images#Set-the-destination-rectangle-bounds",
+      "kind": "section",
+      "title": "Set the destination rectangle bounds",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/working-with-tiled-images#Set-the-destination-rectangle-bounds"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile": {
+      "abstract": [
+        {
+          "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTile",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID": {
+      "abstract": [
+        {
+          "text": "The registryID of the Metal device or OpenGL renderer used to create this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceRegistryID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceRegistryID"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceRegistryID",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/deviceregistryid"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Sends a request that the host wants your plug-in to do its rendering for a given output image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/renderdestinationimage(_:sourceimages:pluginstate:at:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rendering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+      ],
+      "title": "Rendering"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rendering",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+              ],
+              "title": "Rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/title",
+          "value": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1deviceRegistryID/title",
+          "value": "deviceRegistryID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1deviceRegistryID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceRegistryID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1IOSurface~1kIOSurfacePixelSizeCastingAllowed/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIOSurfacePixelSizeCastingAllowed"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/rendering-in-fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/rendering-in-fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

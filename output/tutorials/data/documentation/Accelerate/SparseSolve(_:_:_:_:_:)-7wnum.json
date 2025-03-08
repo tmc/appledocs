@@ -1,0 +1,2817 @@
+{
+  "abstract": [
+    {
+      "text": "Solves the equation ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "Ax = b",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": " for vectors of single-precision values, treating ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "A",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": " as an operator and using the specified iterative method and preconditioner.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-7wnum"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SparseSolve#$@SA@SparseIterativeMethod#BFv(#b#$@E@CBLAS_TRANSPOSE#$@SA@DenseVector_Float#S4_)#S4_#S4_#$@SA@SparseOpaquePreconditioner_Float#",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SparseSolve"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+        "text": "SparseIterativeMethod"
+      },
+      {
+        "kind": "text",
+        "text": ", ("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+        "text": "CBLAS_TRANSPOSE"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseVector_Float",
+        "text": "DenseVector_Float"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseVector_Float",
+        "text": "DenseVector_Float"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseVector_Float",
+        "text": "DenseVector_Float"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseVector_Float",
+        "text": "DenseVector_Float"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Float",
+        "text": "SparseOpaquePreconditioner_Float"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+        "text": "SparseIterativeStatus_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SparseSolve"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SparseSolve(_:_:_:_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "method"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+              "text": "SparseIterativeMethod"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ApplyOperator"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/CBLAS_TRANSPOSE",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+              "text": "CBLAS_TRANSPOSE"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseVector_Float",
+              "text": "DenseVector_Float"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseVector_Float",
+              "text": "DenseVector_Float"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "b"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseVector_Float",
+              "text": "DenseVector_Float"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "x"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseVector_Float",
+              "text": "DenseVector_Float"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "Preconditioner"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaquePreconditioner_Float",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Float",
+              "text": "SparseOpaquePreconditioner_Float"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+              "text": "SparseIterativeStatus_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The iterative method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "method"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The apply operator block to run. The block takes the following parameters:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Indicates whether to perform ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "y",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "+= op(A)x",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " (if ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "true",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": "), or ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "y",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "= op(A)x",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " (if ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "false",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": ").",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "accumulate",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Indicates whether ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "op(A)",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " is the application of ",
+                            "type": "text"
+                          },
+                          {
+                            "inlineContent": [
+                              {
+                                "text": "A",
+                                "type": "text"
+                              }
+                            ],
+                            "type": "emphasis"
+                          },
+                          {
+                            "text": " if ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "CblasNoTrans",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": ", or ",
+                            "type": "text"
+                          },
+                          {
+                            "inlineContent": [
+                              {
+                                "text": "Aᵀ",
+                                "type": "text"
+                              }
+                            ],
+                            "type": "emphasis"
+                          },
+                          {
+                            "text": " if ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "CblasTrans",
+                            "type": "codeVoice"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "trans",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "The vector to multiply.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "x",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "The vector for accumulating or storing the result.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "y",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            }
+          ],
+          "name": "ApplyOperator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "b",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "b"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The matrix ",
+                  "type": "text"
+                },
+                {
+                  "code": "x",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The preconditioner to apply.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Preconditioner"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration that represents the status of the iterative solve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to solve a system of linear equations using a factored coefficient matrix. Preconditioning the coefficient matrix can reduce the number of iterations the function requires to converge the system. In cases where the matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " isn’t explicitly available or you need control over the multiplication, this function allows you to provide an apply block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows two systems of equations where the coefficient matrix is sparse:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3703934",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code solves this system by applying a diagonal scaling preconditioner and using the least squares minimum residual method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Create the coefficient matrix _A_.",
+            "let rowIndices: [Int32] =    [ 0,  1, 1,  2]",
+            "let columnIndices: [Int32] = [ 2,  0, 2,  1]",
+            "let aValues: [Float] =       [10, 20, 5, 50]",
+            "",
+            "let A = SparseConvertFromCoordinate(3, 3,",
+            "                                    4, 1,",
+            "                                    SparseAttributes_t(),",
+            "                                    rowIndices, columnIndices,",
+            "                                    aValues)",
+            "let preconditioner = SparseCreatePreconditioner(SparsePreconditionerDiagScaling,",
+            "                                                A)",
+            "",
+            "defer {",
+            "    SparseCleanup(A)",
+            "    SparseCleanup(preconditioner)",
+            "}",
+            "",
+            "/// Create the right-hand-side vector, _b_.",
+            "var bValues: [Float] = [30, 35, 100]",
+            "var xValues = [Float](repeating: .nan, count: bValues.count)",
+            "",
+            "/// Create the apply operator block.",
+            "func applyOperator(accumulate: Bool,",
+            "                   trans: CBLAS_TRANSPOSE,",
+            "                   x: DenseVector_Float,",
+            "                   y: DenseVector_Float) {",
+            "",
+            "    switch(accumulate, trans == CblasTrans) {",
+            "        case (false, false):",
+            "            SparseMultiply(A, x, y)",
+            "        case (false, true):",
+            "            SparseMultiply(SparseGetTranspose(A), x, y)",
+            "        case (true, false):",
+            "            SparseMultiplyAdd(A, x, y)",
+            "        case (true, true):",
+            "            SparseMultiplyAdd(SparseGetTranspose(A), x, y)",
+            "    }",
+            "}",
+            "",
+            "bValues.withUnsafeMutableBufferPointer { bPtr in",
+            "    xValues.withUnsafeMutableBufferPointer { xPtr in",
+            "        ",
+            "        let b = DenseVector_Float(count: 3,",
+            "                                  data: bPtr.baseAddress!)",
+            "        ",
+            "        let x = DenseVector_Float(count: 3,",
+            "                                  data: xPtr.baseAddress!)",
+            "      ",
+            "        SparseSolve(SparseLSMR(),",
+            "                    applyOperator,",
+            "                    b, x,",
+            "                    preconditioner)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, x",
+              "type": "text"
+            },
+            {
+              "code": "Values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[1.0, 2.0, 3.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/CBLAS_TRANSPOSE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBLAS_TRANSPOSE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/CBLAS_TRANSPOSE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBLAS_TRANSPOSE"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBLAS_TRANSPOSE",
+      "type": "topic",
+      "url": "/documentation/accelerate/cblas_transpose"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense vector of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseVector_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/densevector_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod": {
+      "abstract": [
+        {
+          "text": "The base type for all iterative methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseIterativeMethod",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseiterativemethod"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t": {
+      "abstract": [
+        {
+          "text": "Constants that define the status of the iterative solve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseIterativeStatus_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseiterativestatus_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaquePreconditioner_Float": {
+      "abstract": [
+        {
+          "text": "A structure that represents a single-precision preconditioner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaquePreconditioner_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaquePreconditioner_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaquePreconditioner_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaquePreconditioner_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquepreconditioner_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-1qwax": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of double-precision values using the specified iterative method and opaque preconditioner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Double",
+          "text": "SparseMatrix_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Double",
+          "text": "SparseOpaquePreconditioner_Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-1qwax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-1qwax"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-3aphv": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of single-precision values using the specified iterative method and opaque preconditioner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Float",
+          "text": "SparseMatrix_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Float",
+          "text": "SparseOpaquePreconditioner_Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-3aphv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-3aphv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-5vs11": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of double-precision values using the specified iterative method and preconditioner type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Double",
+          "text": "SparseMatrix_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparsePreconditioner_t",
+          "text": "SparsePreconditioner_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-5vs11",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-5vs11"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-6i1nx": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of double-precision values, treating ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " as an operator and using the specified iterative method and preconditioner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Double",
+          "text": "DenseVector_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Double",
+          "text": "SparseOpaquePreconditioner_Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-6i1nx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-6i1nx"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-7wnum": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of single-precision values, treating ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " as an operator and using the specified iterative method and preconditioner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Float",
+          "text": "SparseOpaquePreconditioner_Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-7wnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-7wnum"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-9nzvm": {
+      "abstract": [
+        {
+          "text": "Solves the equation ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ax = b",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " for vectors of single-precision values using the specified iterative method and preconditioner type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Float",
+          "text": "SparseMatrix_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseVector_Float",
+          "text": "DenseVector_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparsePreconditioner_t",
+          "text": "SparsePreconditioner_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+          "text": "SparseIterativeStatus_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-9nzvm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-9nzvm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    },
+    "media-3703934": {
+      "alt": "A mathematical equation that has one set of three simultaneous equations on the left. Each equation has three unknowns. The same set of simultaneous equations appears on the right as a single matrix equation, A x equals B. The single matrix equation consists of a three-by-three matrix multiplied by a three-element column matrix that equals a three-element column matrix.",
+      "identifier": "media-3703934",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0974a26754c699cdf34196f2c95365c3/media-3703934@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Iterative-Sparse-Solve-Functions-with-Preconditioner",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-1qwax",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-3aphv",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-5vs11",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-9nzvm",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-6i1nx"
+      ],
+      "title": "Iterative Sparse Solve Functions with Preconditioner"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Iterative-Sparse-Solve-Functions-with-Preconditioner",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-1qwax",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-3aphv",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-5vs11",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-9nzvm",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:_:)-6i1nx"
+              ],
+              "title": "Iterative Sparse Solve Functions with Preconditioner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@EA@SparseIterativeStatus_t",
+                    "text": "SparseIterativeStatus_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SparseSolve"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+                    "text": "SparseIterativeMethod"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "method"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^"
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "ApplyOperator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:b",
+                    "text": "bool"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "accumulate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/CBLAS_TRANSPOSE",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+                    "text": "CBLAS_TRANSPOSE"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "trans"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseVector_Float",
+                    "text": "DenseVector_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "x"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseVector_Float",
+                    "text": "DenseVector_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "y"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "), "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseVector_Float",
+                    "text": "DenseVector_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "B"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseVector_Float",
+                    "text": "DenseVector_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "X"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaquePreconditioner_Float",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@SparseOpaquePreconditioner_Float",
+                    "text": "SparseOpaquePreconditioner_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "Preconditioner"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The iterative method.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "method"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The apply operator block to run. The block takes the following parameters:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "items": [
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Indicates whether to perform ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "y",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": " ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "+= op(A)x",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": " (if ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "true",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": "), or ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "y",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": " ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "= op(A)x",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": " (if ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "false",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": ").",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "accumulate",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Indicates whether ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "op(A)",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": " is the application of ",
+                                  "type": "text"
+                                },
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "A",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "emphasis"
+                                },
+                                {
+                                  "text": " if ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "CblasNoTrans",
+                                  "type": "codeVoice"
+                                },
+                                {
+                                  "text": ", or ",
+                                  "type": "text"
+                                },
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Aᵀ",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "emphasis"
+                                },
+                                {
+                                  "text": " if ",
+                                  "type": "text"
+                                },
+                                {
+                                  "code": "CblasTrans",
+                                  "type": "codeVoice"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "trans",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "The vector to multiply.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "x",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "The vector for accumulating or storing the result.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "y",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "type": "termList"
+                  }
+                ],
+                "name": "ApplyOperator"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The vector ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "b",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "B"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The matrix ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "x",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "X"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The preconditioner to apply.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "Preconditioner"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeStatus_t",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " enumeration that represents the status of the iterative solve.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeStatus_t/title",
+          "value": "SparseIterativeStatus_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeStatus_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeStatus_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeStatus_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeStatus_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-5vs11/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-5vs11/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-9nzvm/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-9nzvm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-1qwax/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-1qwax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-3aphv/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-3aphv/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/title",
+          "value": "DenseVector_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-6i1nx/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-6i1nx/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaquePreconditioner_Float/title",
+          "value": "SparseOpaquePreconditioner_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaquePreconditioner_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaquePreconditioner_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaquePreconditioner_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaquePreconditioner_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1CBLAS_TRANSPOSE/title",
+          "value": "CBLAS_TRANSPOSE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1CBLAS_TRANSPOSE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBLAS_TRANSPOSE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1CBLAS_TRANSPOSE/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBLAS_TRANSPOSE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-7wnum/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:_:)-7wnum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/title",
+          "value": "SparseIterativeMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeMethod"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-7wnum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesolve(_:_:_:_:_:)-7wnum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

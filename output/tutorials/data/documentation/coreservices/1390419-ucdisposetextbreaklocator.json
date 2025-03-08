@@ -1,0 +1,357 @@
+{
+  "abstract": [
+    {
+      "text": "Disposes a text-break locator object.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use CFStringTokenizer (for locale-sensitive word, line, paragraph, and sentence breaks) and CFStringGetRangeOfComposedCharactersAtIndex (for cluster breaks) instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390419,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@UCDisposeTextBreakLocator",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "UCDisposeTextBreakLocator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UCDisposeTextBreakLocator"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextBreakLocatorRef",
+              "text": "TextBreakLocatorRef"
+            },
+            {
+              "kind": "text",
+              "text": " *breakRef);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference to a valid text-break locator object. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "UCDisposeTextBreakLocator",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function sets ",
+                  "type": "text"
+                },
+                {
+                  "code": "*breakRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "breakRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code.  This function can return ",
+              "type": "text"
+            },
+            {
+              "code": "paramErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for example, if the ",
+              "type": "text"
+            },
+            {
+              "code": "breakRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find boundaries in Unicode text, you must supply locale and text-break specifications to the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You provide this information by means of a text-break locator object, created via the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When finished with the text-break locator object, you should dispose of it using the function ",
+              "type": "text"
+            },
+            {
+              "code": "UCDisposeTextBreakLocator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator": {
+      "abstract": [
+        {
+          "text": "Creates an object encapsulating locale and text-break information, for the purpose of finding boundaries in Unicode text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCCreateTextBreakLocator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390362-uccreatetextbreaklocator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator": {
+      "abstract": [
+        {
+          "text": "Disposes a text-break locator object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390419-ucdisposetextbreaklocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCDisposeTextBreakLocator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390419-ucdisposetextbreaklocator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak": {
+      "abstract": [
+        {
+          "text": "Uses locale-specific text-break information to find boundaries in Unicode text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCFindTextBreak",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390429-ucfindtextbreak"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textbreaklocatorref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextBreakLocatorRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/textbreaklocatorref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1390362-uccreatetextbreaklocator",
+        "doc://com.apple.documentation/documentation/coreservices/1390429-ucfindtextbreak"
+      ],
+      "title": "Identifying Unicode Text Boundaries"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1390419-ucdisposetextbreaklocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

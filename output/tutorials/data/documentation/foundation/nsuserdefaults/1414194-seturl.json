@@ -1,0 +1,598 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the value of the specified default key to the specified URL.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/preferences",
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414194-seturl"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414194,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUserDefaults(im)setURL:forKey:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSUserDefaults"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "setURL:forKey:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "setURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forKey:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "defaultName"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL to store in the defaults database.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "url"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The key with which to associate the value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "defaultName"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a file URL, this method takes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1414266-absoluteurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", determines whether its path can be made relative to the user’s home directory, and if so, abbreviates it using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1407943-stringbyabbreviatingwithtildeinp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t a file URL, a data object is created by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver/1413189-archiveddatawithrootobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and passing ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the root object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver/1413189-archiveddatawithrootobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "archivedDataWithRootObject:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver/1413189-archiveddatawithrootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archivedDataWithRootObject:",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver/1413189-archiveddatawithrootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1407943-stringbyabbreviatingwithtildeinp": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1407943-stringbyabbreviatingwithtildeinp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringByAbbreviatingWithTildeInPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1407943-stringbyabbreviatingwithtildeinp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1414266-absoluteurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1414266-absoluteurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absoluteURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1414266-absoluteurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408646-setdouble": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the double value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDouble:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408646-setdouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDouble:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1408646-setdouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408648-urlforkey": {
+      "abstract": [
+        {
+          "text": "Returns the URL associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLForKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408648-urlforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLForKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1408648-urlforkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408905-setbool": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBool:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408905-setbool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBool:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1408905-setbool"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413320-setfloat": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified float value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFloat:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413320-setfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFloat:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1413320-setfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413614-setinteger": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInteger:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413614-setinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInteger:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1413614-setinteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414067-setobject": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414067-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1414067-setobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414194-seturl": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setURL:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414194-seturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setURL:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuserdefaults/1414194-seturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1414067-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413320-setfloat",
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408646-setdouble",
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1413614-setinteger",
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408905-setbool"
+      ],
+      "title": "Setting Default Values"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsuserdefaults/1408648-urlforkey"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsuserdefaults/1414194-seturl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/userdefaults/1414194-set"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

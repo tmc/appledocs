@@ -1,1 +1,1483 @@
-{"abstract":[{"text":"A sensor that streams sample ECG sensor data.","type":"text"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"sections":[],"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"electrocardiogram","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@SRSensor","text":"SRSensor","kind":"typeIdentifier","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor"}],"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst"]}]},{"kind":"content","content":[{"anchor":"Discussion","level":2,"type":"heading","text":"Discussion"},{"inlineContent":[{"type":"text","text":"The sample for this sensor is an array of "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample"},{"type":"text","text":" objects."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"You need to provide a reason to record electrocardiogram (ECG) data by adding the "},{"code":"SRSensorUsageECG","type":"codeVoice"},{"type":"text","text":" dictionary to the "},{"identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail","type":"reference","isActive":true},{"type":"text","text":" key in the information property list."}],"type":"paragraph"},{"inlineContent":[{"text":"You also need to add the ","type":"text"},{"code":"ecg","type":"codeVoice"},{"text":" key to the ","type":"text"},{"code":"com.apple.developer.sensorkit.reader.allow","type":"codeVoice"},{"text":" entitlement, as in:","type":"text"}],"type":"paragraph"},{"code":["<plist version=\"1.0\">","<dict>","        <key>com.apple.developer.sensorkit.reader.allow</key>","        <array>","                <string>ecg</string>","        </array>","</dict>","</plist>"],"syntax":"plist","type":"codeListing"}]}],"seeAlsoSections":[{"anchor":"Reading-user-activity-sensors","generated":true,"identifiers":["doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram"],"title":"Reading user activity sensors"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.sensorkit/documentation/SensorKit","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor"]]},"kind":"symbol","identifier":{"url":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram","interfaceLanguage":"swift"},"variants":[{"paths":["/documentation/sensorkit/srsensor/electrocardiogram"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/sensorkit/srsensor/electrocardiogram"],"traits":[{"interfaceLanguage":"occ"}]}],"metadata":{"fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"electrocardiogram","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","preciseIdentifier":"c:@T@SRSensor","kind":"typeIdentifier"}],"platforms":[{"introducedAt":"17.4","name":"iOS","beta":false,"unavailable":false,"deprecated":false},{"introducedAt":"17.4","name":"iPadOS","beta":false,"unavailable":false,"deprecated":false},{"introducedAt":"17.4","deprecated":false,"name":"Mac Catalyst","beta":false,"unavailable":false}],"symbolKind":"property","title":"electrocardiogram","externalID":"c:@SRSensorElectrocardiogram","navigatorTitle":[{"text":"SRSensorElectrocardiogram","kind":"identifier"}],"extendedModule":"SensorKit","role":"symbol","roleHeading":"Type Property","modules":[{"name":"SensorKit"}]},"references":{"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData":{"abstract":[{"type":"text","text":"A sensor that provides information about the user’s steps."}],"fragments":[{"kind":"keyword","text":"static"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"pedometerData","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","preciseIdentifier":"c:@T@SRSensor","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"SRSensorPedometerData","kind":"identifier"}],"type":"topic","url":"/documentation/sensorkit/srsensor/pedometerdata","role":"symbol","kind":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData","title":"pedometerData"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics":{"abstract":[{"type":"text","text":"A sensor that provides data describing a user’s speech to Siri."}],"fragments":[{"kind":"keyword","text":"static"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"siriSpeechMetrics","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","preciseIdentifier":"c:@T@SRSensor","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"SRSensorSiriSpeechMetrics","kind":"identifier"}],"type":"topic","url":"/documentation/sensorkit/srsensor/sirispeechmetrics","role":"symbol","kind":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics","title":"siriSpeechMetrics"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics":{"abstract":[{"type":"text","text":"A sensor that provides data describing speech during phone calls."}],"fragments":[{"kind":"keyword","text":"static"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"telephonySpeechMetrics","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","preciseIdentifier":"c:@T@SRSensor","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"SRSensorTelephonySpeechMetrics","kind":"identifier"}],"type":"topic","url":"/documentation/sensorkit/srsensor/telephonyspeechmetrics","role":"symbol","kind":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics","title":"telephonySpeechMetrics"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate":{"abstract":[{"text":"A sensor that provides rotation motion data.","type":"text"}],"title":"rotationRate","kind":"symbol","url":"/documentation/sensorkit/srsensor/rotationrate","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"text":" ","kind":"text"},{"text":"rotationRate","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","kind":"typeIdentifier","preciseIdentifier":"c:@T@SRSensor"}],"navigatorTitle":[{"text":"SRSensorRotationRate","kind":"identifier"}],"role":"symbol","type":"topic","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate":{"abstract":[{"type":"text","text":"A sensor that provides the user’s heart rate data."}],"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"text":" ","kind":"text"},{"text":"heartRate","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","text":"SRSensor","preciseIdentifier":"c:@T@SRSensor"}],"navigatorTitle":[{"kind":"identifier","text":"SRSensorHeartRate"}],"type":"topic","url":"/documentation/sensorkit/srsensor/heartrate","role":"symbol","kind":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate","title":"heartRate"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer":{"abstract":[{"type":"text","text":"A sensor that provides information about speed and slope."}],"kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"SRSensorOdometer"}],"url":"/documentation/sensorkit/srsensor/odometer","type":"topic","role":"symbol","title":"odometer","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"odometer"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"SRSensor","preciseIdentifier":"c:@T@SRSensor"}],"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram":{"url":"/documentation/sensorkit/srsensor/photoplethysmogram","title":"photoplethysmogram","abstract":[{"type":"text","text":"A sensor that streams sample PPG sensor data."}],"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram","kind":"symbol","role":"symbol","navigatorTitle":[{"text":"SRSensorPhotoplethysmogram","kind":"identifier"}],"fragments":[{"kind":"keyword","text":"static"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"photoplethysmogram","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SRSensor","kind":"typeIdentifier","preciseIdentifier":"c:@T@SRSensor"}],"type":"topic"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer":{"role":"symbol","abstract":[{"text":"A sensor that provides acceleration motion data.","type":"text"}],"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"text":" ","kind":"text"},{"text":"accelerometer","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","text":"SRSensor","preciseIdentifier":"c:@T@SRSensor"}],"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer","title":"accelerometer","url":"/documentation/sensorkit/srsensor/accelerometer","navigatorTitle":[{"kind":"identifier","text":"SRSensorAccelerometer"}],"kind":"symbol","type":"topic"},"doc://com.apple.sensorkit/documentation/SensorKit":{"type":"topic","title":"SensorKit","abstract":[{"type":"text","text":"Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch."}],"url":"/documentation/sensorkit","role":"collection","identifier":"doc://com.apple.sensorkit/documentation/SensorKit","kind":"symbol"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature":{"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature","title":"wristTemperature","abstract":[{"text":"A sensor that provides wrist temperature while the user sleeps.","type":"text"}],"url":"/documentation/sensorkit/srsensor/wristtemperature","kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"wristTemperature","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@SRSensor","text":"SRSensor","kind":"typeIdentifier"}],"role":"symbol","type":"topic","navigatorTitle":[{"text":"SRSensorWristTemperature","kind":"identifier"}]},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram":{"abstract":[{"type":"text","text":"A sensor that streams sample ECG sensor data."}],"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"electrocardiogram"},{"kind":"text","text":": "},{"text":"SRSensor","kind":"typeIdentifier","preciseIdentifier":"c:@T@SRSensor"}],"navigatorTitle":[{"text":"SRSensorElectrocardiogram","kind":"identifier"}],"type":"topic","url":"/documentation/sensorkit/srsensor/electrocardiogram","role":"symbol","kind":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram","title":"electrocardiogram"},"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail":{"abstract":[{"type":"text","text":"A dictionary that includes keys for the specific information your app collects."}],"type":"topic","url":"/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail","role":"symbol","kind":"symbol","identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail","title":"NSSensorKitUsageDetail"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor":{"abstract":[{"text":"The sensors an app can read.","type":"text"}],"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor","url":"/documentation/sensorkit/srsensor","title":"SRSensor","kind":"symbol","role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SRSensor","kind":"identifier"}],"navigatorTitle":[{"text":"SRSensor","kind":"identifier"}],"type":"topic"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents":{"role":"symbol","abstract":[{"text":"A sensor that provides information about interactions with media, such as images and videos, in messaging apps.","type":"text"}],"fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"mediaEvents"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"SRSensor","preciseIdentifier":"c:@T@SRSensor"}],"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents","title":"mediaEvents","url":"/documentation/sensorkit/srsensor/mediaevents","navigatorTitle":[{"kind":"identifier","text":"SRSensorMediaEvents"}],"kind":"symbol","type":"topic"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits":{"kind":"symbol","title":"visits","role":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits","abstract":[{"text":"A sensor that provides information about frequently visited locations.","type":"text"}],"navigatorTitle":[{"text":"SRSensorVisits","kind":"identifier"}],"type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"visits"},{"kind":"text","text":": "},{"text":"SRSensor","kind":"typeIdentifier","preciseIdentifier":"c:@T@SRSensor"}],"url":"/documentation/sensorkit/srsensor/visits"},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","title":"Technologies","abstract":[{"type":"text","text":""}],"url":"/documentation/technologies","role":"overview","identifier":"doc://com.apple.documentation/documentation/technologies","kind":"technologies"},"doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample":{"kind":"symbol","title":"SRElectrocardiogramSample","role":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample","abstract":[{"text":"The sample electrocardiogram sensor data.","type":"text"}],"navigatorTitle":[{"text":"SRElectrocardiogramSample","kind":"identifier"}],"type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SRElectrocardiogramSample","kind":"identifier"}],"url":"/documentation/sensorkit/srelectrocardiogramsample"},"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics":{"kind":"symbol","title":"faceMetrics","role":"symbol","identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics","abstract":[{"type":"text","text":"A sensor that provides data describing a user’s face."}],"navigatorTitle":[{"text":"SRSensorFaceMetrics","kind":"identifier"}],"type":"topic","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"faceMetrics"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@SRSensor","text":"SRSensor","kind":"typeIdentifier"}],"url":"/documentation/sensorkit/srsensor/facemetrics"}},"variantOverrides":[{"patch":[{"value":"occ","op":"replace","path":"/identifier/interfaceLanguage"},{"value":[{"unavailable":false,"deprecated":false,"introducedAt":"17.4","name":"iOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"17.4","name":"iPadOS","beta":false},{"name":"Mac Catalyst","unavailable":false,"introducedAt":"17.4","deprecated":false,"beta":false}],"op":"replace","path":"/metadata/platforms"},{"value":"Global Variable","op":"replace","path":"/metadata/roleHeading"},{"value":"SRSensorElectrocardiogram","op":"replace","path":"/metadata/title"},{"value":"var","op":"replace","path":"/metadata/symbolKind"},{"value":[{"kind":"identifier","text":"SRSensorElectrocardiogram"}],"op":"replace","path":"/metadata/fragments"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.sensorkit/documentation/SensorKit"]]},"op":"replace","path":"/hierarchy"},{"value":null,"op":"add","path":"/topicSections"},{"value":null,"op":"add","path":"/relationshipsSections"},{"value":[{"generated":true,"title":"Reading user activity sensors","identifiers":["doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature","doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram"],"anchor":"Reading-user-activity-sensors"}],"op":"replace","path":"/seeAlsoSections"},{"value":{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS"],"languages":["occ"],"tokens":[{"text":"extern","kind":"keyword"},{"text":" ","kind":"text"},{"identifier":"doc://com.apple.sensorkit/documentation/SensorKit/SRSensor","text":"SRSensor","kind":"typeIdentifier","preciseIdentifier":"c:@T@SRSensor"},{"text":" ","kind":"text"},{"text":"const","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SRSensorElectrocardiogram","kind":"identifier"},{"text":";","kind":"text"}]}]},"op":"replace","path":"/primaryContentSections/0"},{"value":"SRSensorPedometerData","op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1pedometerData/title"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1pedometerData/fragments","value":[{"text":"SRSensorPedometerData","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1siriSpeechMetrics/title","value":"SRSensorSiriSpeechMetrics"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1siriSpeechMetrics/fragments","value":[{"kind":"identifier","text":"SRSensorSiriSpeechMetrics"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1telephonySpeechMetrics/title","value":"SRSensorTelephonySpeechMetrics"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1telephonySpeechMetrics/fragments","value":[{"text":"SRSensorTelephonySpeechMetrics","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1rotationRate/title","value":"SRSensorRotationRate"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1rotationRate/fragments","value":[{"kind":"identifier","text":"SRSensorRotationRate"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1heartRate/title","value":"SRSensorHeartRate"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1heartRate/fragments","value":[{"text":"SRSensorHeartRate","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1odometer/title","value":"SRSensorOdometer"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1odometer/fragments","value":[{"text":"SRSensorOdometer","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1photoplethysmogram/title","value":"SRSensorPhotoplethysmogram"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1photoplethysmogram/fragments","value":[{"kind":"identifier","text":"SRSensorPhotoplethysmogram"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/title","value":"SRSensorAccelerometer"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/fragments","value":[{"text":"SRSensorAccelerometer","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1wristTemperature/title","value":"SRSensorWristTemperature"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1wristTemperature/fragments","value":[{"text":"SRSensorWristTemperature","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1electrocardiogram/title","value":"SRSensorElectrocardiogram"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1electrocardiogram/fragments","value":[{"text":"SRSensorElectrocardiogram","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/title","value":"SRSensor"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/fragments","value":[{"kind":"identifier","text":"SRSensor"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/navigatorTitle","value":[{"kind":"identifier","text":"SRSensor"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1mediaEvents/title","value":"SRSensorMediaEvents"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1mediaEvents/fragments","value":[{"kind":"identifier","text":"SRSensorMediaEvents"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1visits/title","value":"SRSensorVisits"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1visits/fragments","value":[{"text":"SRSensorVisits","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/title","value":"SRElectrocardiogramSample"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/fragments","value":[{"text":"SRElectrocardiogramSample","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/navigatorTitle","value":[{"text":"SRElectrocardiogramSample","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1faceMetrics/title","value":"SRSensorFaceMetrics"},{"op":"replace","path":"/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1faceMetrics/fragments","value":[{"kind":"identifier","text":"SRSensorFaceMetrics"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A sensor that streams sample ECG sensor data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sensorkit/documentation/SensorKit",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SensorKit",
+    "externalID": "c:@SRSensorElectrocardiogram",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "electrocardiogram"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@SRSensor",
+        "text": "SRSensor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SensorKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SRSensorElectrocardiogram"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "electrocardiogram"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "electrocardiogram"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SRSensor",
+              "text": "SRSensor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample for this sensor is an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to provide a reason to record electrocardiogram (ECG) data by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "SRSensorUsageECG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in the information property list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also need to add the ",
+              "type": "text"
+            },
+            {
+              "code": "ecg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.sensorkit.reader.allow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement, as in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "        <key>com.apple.developer.sensorkit.reader.allow</key>",
+            "        <array>",
+            "                <string>ecg</string>",
+            "        </array>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail": {
+      "abstract": [
+        {
+          "text": "A dictionary that includes keys for the specific information your app collects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSensorKitUsageDetail",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/sensorkit"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample": {
+      "abstract": [
+        {
+          "text": "The sample electrocardiogram sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRElectrocardiogramSample"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRElectrocardiogramSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRElectrocardiogramSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRElectrocardiogramSample",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srelectrocardiogramsample"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor": {
+      "abstract": [
+        {
+          "text": "The sensors an app can read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensor",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer": {
+      "abstract": [
+        {
+          "text": "A sensor that provides acceleration motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accelerometer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorAccelerometer"
+        }
+      ],
+      "role": "symbol",
+      "title": "accelerometer",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/accelerometer"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram": {
+      "abstract": [
+        {
+          "text": "A sensor that streams sample ECG sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "electrocardiogram"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/electrocardiogram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorElectrocardiogram"
+        }
+      ],
+      "role": "symbol",
+      "title": "electrocardiogram",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/electrocardiogram"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics": {
+      "abstract": [
+        {
+          "text": "A sensor that provides data describing a user’s face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "faceMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorFaceMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "faceMetrics",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/facemetrics"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate": {
+      "abstract": [
+        {
+          "text": "A sensor that provides the user’s heart rate data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "heartRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorHeartRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "heartRate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/heartrate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents": {
+      "abstract": [
+        {
+          "text": "A sensor that provides information about interactions with media, such as images and videos, in messaging apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorMediaEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaEvents",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/mediaevents"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer": {
+      "abstract": [
+        {
+          "text": "A sensor that provides information about speed and slope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "odometer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorOdometer"
+        }
+      ],
+      "role": "symbol",
+      "title": "odometer",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/odometer"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData": {
+      "abstract": [
+        {
+          "text": "A sensor that provides information about the user’s steps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pedometerData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorPedometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "pedometerData",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/pedometerdata"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram": {
+      "abstract": [
+        {
+          "text": "A sensor that streams sample PPG sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoplethysmogram"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorPhotoplethysmogram"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoplethysmogram",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/photoplethysmogram"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate": {
+      "abstract": [
+        {
+          "text": "A sensor that provides rotation motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorRotationRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotationRate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/rotationrate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics": {
+      "abstract": [
+        {
+          "text": "A sensor that provides data describing a user’s speech to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "siriSpeechMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorSiriSpeechMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "siriSpeechMetrics",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/sirispeechmetrics"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics": {
+      "abstract": [
+        {
+          "text": "A sensor that provides data describing speech during phone calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "telephonySpeechMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorTelephonySpeechMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "telephonySpeechMetrics",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/telephonyspeechmetrics"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits": {
+      "abstract": [
+        {
+          "text": "A sensor that provides information about frequently visited locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorVisits"
+        }
+      ],
+      "role": "symbol",
+      "title": "visits",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/visits"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature": {
+      "abstract": [
+        {
+          "text": "A sensor that provides wrist temperature while the user sleeps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wristTemperature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorWristTemperature"
+        }
+      ],
+      "role": "symbol",
+      "title": "wristTemperature",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/wristtemperature"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reading-user-activity-sensors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram"
+      ],
+      "title": "Reading user activity sensors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SRSensorElectrocardiogram"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sensorkit/documentation/SensorKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reading-user-activity-sensors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/faceMetrics",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/heartRate",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/mediaEvents",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/odometer",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/pedometerData",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/rotationRate",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/siriSpeechMetrics",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/telephonySpeechMetrics",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/visits",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/wristTemperature",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/photoplethysmogram"
+              ],
+              "title": "Reading user activity sensors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@SRSensor",
+                    "text": "SRSensor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SRSensorElectrocardiogram"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1pedometerData/title",
+          "value": "SRSensorPedometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1pedometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorPedometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1siriSpeechMetrics/title",
+          "value": "SRSensorSiriSpeechMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1siriSpeechMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorSiriSpeechMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1telephonySpeechMetrics/title",
+          "value": "SRSensorTelephonySpeechMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1telephonySpeechMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorTelephonySpeechMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1rotationRate/title",
+          "value": "SRSensorRotationRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1rotationRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorRotationRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1heartRate/title",
+          "value": "SRSensorHeartRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1heartRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorHeartRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1odometer/title",
+          "value": "SRSensorOdometer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1odometer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorOdometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1photoplethysmogram/title",
+          "value": "SRSensorPhotoplethysmogram"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1photoplethysmogram/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorPhotoplethysmogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/title",
+          "value": "SRSensorAccelerometer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorAccelerometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1wristTemperature/title",
+          "value": "SRSensorWristTemperature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1wristTemperature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorWristTemperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1electrocardiogram/title",
+          "value": "SRSensorElectrocardiogram"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1electrocardiogram/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/title",
+          "value": "SRSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1mediaEvents/title",
+          "value": "SRSensorMediaEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1mediaEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorMediaEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1visits/title",
+          "value": "SRSensorVisits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1visits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorVisits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/title",
+          "value": "SRElectrocardiogramSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRElectrocardiogramSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRElectrocardiogramSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRElectrocardiogramSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1faceMetrics/title",
+          "value": "SRSensorFaceMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1faceMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorFaceMetrics"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensorkit/srsensor/electrocardiogram"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensorkit/srsensor/electrocardiogram"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,707 @@
+{
+  "abstract": [
+    {
+      "text": "Returns an audio player (creating one if necessary) to play a simple audio source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithSource:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNAudioPlayer(cm)audioPlayerWithSource:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "+ "
+      },
+      {
+        "kind": "identifier",
+        "text": "audioPlayerWithSource:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "audioPlayerWithSource:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "audioPlayerWithSource:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "audioPlayerWithSource:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioSource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SCNAudioSource",
+              "text": "SCNAudioSource"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "source"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An audio source object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A positional audio player object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents a distinct source of audio (for example, a sound file) that can be reused and shared by many player objects. Use this method to create an audio player from such a source. When you use this method, SceneKit creates an audio player for the specified ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object or, if an audio player for that source already exists and is not in use, SceneKit reuses the existing player object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If instead you want to attach a more complex audio setup to a position in your scene—such as a mixer that varies several audio inputs in response to user input—build that setup using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and create a player for it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithAVAudioNode:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioNode": {
+      "abstract": [
+        {
+          "text": "An object you use for audio generation, processing, or an I/O block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioNode",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioNode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer": {
+      "abstract": [
+        {
+          "text": "A controller for playback of a positional audio source in a SceneKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAudioPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAudioPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAudioPlayer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudioplayer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithAVAudioNode:": {
+      "abstract": [
+        {
+          "text": "Returns an audio player (creating one if necessary) to play an audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioPlayerWithAVAudioNode:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithAVAudioNode:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioPlayerWithAVAudioNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioPlayerWithAVAudioNode:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudioplayer/audioplayerwithavaudionode:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithSource:": {
+      "abstract": [
+        {
+          "text": "Returns an audio player (creating one if necessary) to play a simple audio source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioPlayerWithSource:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithSource:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioPlayerWithSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioPlayerWithSource:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudioplayer/audioplayerwithsource:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(avAudioNode:)": {
+      "abstract": [
+        {
+          "text": "Initializes an audio player for playing the specified AVFoundation audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "avAudioNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioNode",
+          "text": "AVAudioNode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(avAudioNode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAVAudioNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(avAudioNode:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudioplayer/init(avaudionode:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(source:)": {
+      "abstract": [
+        {
+          "text": "Initializes an audio player for playing the specified simple audio source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNAudioSource",
+          "text": "SCNAudioSource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(source:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(source:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudioplayer/init(source:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioSource": {
+      "abstract": [
+        {
+          "text": "A simple, reusable audio source—music or sound effects loaded from a file—for use in positional audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAudioSource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAudioSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAudioSource",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaudiosource"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-an-Audio-Player",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(source:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/init(avAudioNode:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAudioPlayer/audioPlayerWithAVAudioNode:"
+      ],
+      "title": "Creating an Audio Player"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer/title",
+          "value": "SCNAudioPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAudioPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAudioPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer~1init(source:)/title",
+          "value": "initWithSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer~1init(source:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer~1init(avAudioNode:)/title",
+          "value": "initWithAVAudioNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioPlayer~1init(avAudioNode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAVAudioNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioSource/title",
+          "value": "SCNAudioSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAudioSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAudioSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAudioSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnaudioplayer/audioplayerwithsource:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,933 @@
+{
+  "abstract": [
+    {
+      "text": "Install a third-party app on a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:mdm#InstallApplicationCommand",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Install Application Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.2",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Install an App"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "mdm#InstallApplicationCommand"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:InstallApplicationCommand",
+          "text": "InstallApplicationCommand"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The command to install an app on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response from the device after it processes the command to install a third-party app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:InstallApplicationResponse",
+              "text": "InstallApplicationResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is a managed app, this command updates it. The request must contain only one of these keys: ",
+              "type": "text"
+            },
+            {
+              "code": "iTunesStoreID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "ManifestURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Installation prompts the user to approve or cancel the update. If the device is supervised, the device only prompts when the app to install is in the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the organization name that appears in this prompt in the ",
+              "type": "text"
+            },
+            {
+              "code": "OrganizationInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary using the ",
+              "type": "text"
+            },
+            {
+              "code": "Settings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the device returns an ",
+              "type": "text"
+            },
+            {
+              "code": "Acknowledged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response after validating the parameters, but before downloading and installing the app. However, it doesn’t notify the MDM server about errors that occur during the installation process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS VPP app installations, if the app is device licensed, the system must receive the ",
+              "type": "text"
+            },
+            {
+              "code": "InstallApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command on the device channel. If the app is user licensed, the system must receive the ",
+              "type": "text"
+            },
+            {
+              "code": "InstallApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command on the user channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to iOS 16.0 and tvOS 16.0, this command would return ",
+              "type": "text"
+            },
+            {
+              "code": "NotNow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when Setup Assistant was running. Starting in iOS 16.0 and tvOS 16.0, the command may be sent to supervised devices during Setup Assistant. However, you should only attempt to install device-based VPP apps or enterprise apps while in the awaiting configuration state, as it is unlikely the device would have an App Store account configured, and thus commands that depend on one will fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to the following sections to determine supported channels and requirements, and to see an example request and response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Command-Availability",
+          "level": 3,
+          "text": "Command Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required Access Right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AllowAppInstallation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Request-and-Response-Enterprise-App",
+          "level": 3,
+          "text": "Example Request and Response (Enterprise App)",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>ManagementFlags</key>",
+                    "        <integer>0</integer>",
+                    "        <key>ManifestURL</key>",
+                    "        <string>https://yourmdmhost.example.com/files/myenterpriseapp.plist</string>",
+                    "        <key>RequestType</key>",
+                    "        <string>InstallApplication</string>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_InstallApplication</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_InstallApplication</string>",
+                    "    <key>Identifier</key>",
+                    "    <string>com.acme.myenterpriseapp</string>",
+                    "    <key>State</key>",
+                    "    <string>Installing</string>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>00008020-000915083C80012E</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Example-Request-and-Response-VPP-App",
+          "level": 3,
+          "text": "Example Request and Response (VPP App)",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>ManagementFlags</key>",
+                    "        <integer>0</integer>",
+                    "        <key>Options</key>",
+                    "        <dict>",
+                    "            <key>PurchaseMethod</key>",
+                    "            <integer>1</integer>",
+                    "        </dict>",
+                    "        <key>RequestType</key>",
+                    "        <string>InstallApplication</string>",
+                    "        <key>iTunesStoreID</key>",
+                    "        <integer>1096834193</integer>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_InstallApplication</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_InstallApplication</string>",
+                    "    <key>Identifier</key>",
+                    "    <string>com.apple.TVRemote</string>",
+                    "    <key>State</key>",
+                    "    <string>Installing</string>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>00008020-000915083C80012E</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command": {
+      "abstract": [
+        {
+          "text": "Complete the installation of an app using a redemption code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Apply Redemption Code Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Apply a Redemption Code",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apply-redemption-code-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install a third-party app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install an enterprise app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Enterprise Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an Enterprise App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-enterprise-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand": {
+      "abstract": [
+        {
+          "text": "The command to install an app on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallApplicationCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installapplicationcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to install a third-party app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallApplicationResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installapplicationresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command": {
+      "abstract": [
+        {
+          "text": "Query attributes in managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Attributes Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query App Attributes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-attributes-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command": {
+      "abstract": [
+        {
+          "text": "Get app configurations from managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Configuration Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-configuration-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command": {
+      "abstract": [
+        {
+          "text": "Get app feedback from a managed app on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Feedback Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Feedback",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-feedback-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command": {
+      "abstract": [
+        {
+          "text": "Get the status of all managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Managed Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command": {
+      "abstract": [
+        {
+          "text": "Remove an installed managed app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command": {
+      "abstract": [
+        {
+          "text": "Force validation of developer and universal provisioning profiles for enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Validate Applications Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Validate Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/validate-applications-command"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managed-Apps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command"
+      ],
+      "title": "Managed Apps"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Command-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationResponse"
+      ],
+      "title": "Command and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/install-application-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

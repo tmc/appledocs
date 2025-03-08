@@ -1,0 +1,609 @@
+{
+  "abstract": [
+    {
+      "text": "Makes the calling thread the proxy for a specified guest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecHostSelectGuest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecHostSelectGuest",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecHostSelectGuest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecHostSelectGuest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecHostSelectGuest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecHostSelectGuest"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecGuestRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecGuestRef",
+              "text": "SecGuestRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "guestRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecCSFlags",
+              "text": "SecCSFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A guest code object identifying the code on whose behalf the calling thread is to act. To indicate that the calling thread will act on its own behalf, rather than for any guest, pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/kSecNoGuest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "guestRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Optional flags; see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for possible values. Pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags/kSecCSDefaultFlags",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for standard behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The specified guest must be dynamically valid. This function works both for hosts acting in proxy mode and those acting in dynamic mode. The selected guest setting remains in effect until it is changed or the thread terminates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function tells the system that your application is acting on behalf of the selected guest (or on its own behalf if you specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecNoGuest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "guestRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter). This function acts on a per-thread basis; that is, each of your application’s threads can call this function to select a guest for that thread. Thereafter, the system assumes that any action taken by your application on that thread is on behalf of the selected guest. For example, if your application attempts to access the keychain, the system assumes that the selected guest is the application that is attempting to access the keychain and acts accordingly. You can call this function as often as necessary to act on behalf of as many guests as you wish.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that if you are using blocks to implement concurrency, you can’t tell which thread your code will be running on. Therefore, you must make this function call at the beginning of each block to be sure that the guest selection is set correctly for the thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecCSFlags": {
+      "abstract": [
+        {
+          "text": "Values that can be used in the ",
+          "type": "text"
+        },
+        {
+          "code": "flags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to most code signing functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCSFlags",
+      "type": "topic",
+      "url": "/documentation/security/seccsflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecCSFlags/kSecCSDefaultFlags": {
+      "abstract": [
+        {
+          "text": "No flags (use the default behavior).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kSecCSDefaultFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags/kSecCSDefaultFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecCSDefaultFlags",
+      "type": "topic",
+      "url": "/documentation/security/seccsflags/kseccsdefaultflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecGuestRef": {
+      "abstract": [
+        {
+          "text": "A reference to a guest object, which identifies a particular block of guest code in the context of its code signing host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecGuestRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecGuestRef",
+      "type": "topic",
+      "url": "/documentation/security/secguestref"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostCreateGuest": {
+      "abstract": [
+        {
+          "text": "Creates a new guest and describes its initial properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostCreateGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostCreateGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostcreateguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSelectGuest": {
+      "abstract": [
+        {
+          "text": "Makes the calling thread the proxy for a specified guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSelectGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSelectGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSelectGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostselectguest"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the code signing services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/kSecNoGuest": {
+      "abstract": [
+        {
+          "text": "Not a valid ",
+          "type": "text"
+        },
+        {
+          "code": "SecGuestRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecNoGuest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecGuestRef",
+          "text": "SecGuestRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecNoGuest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecNoGuest"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecNoGuest",
+      "type": "topic",
+      "url": "/documentation/security/ksecnoguest"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecHostCreateGuest"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/title",
+          "value": "SecGuestRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/title",
+          "value": "SecCSFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecNoGuest/title",
+          "value": "kSecNoGuest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecNoGuest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecNoGuest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sechostselectguest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

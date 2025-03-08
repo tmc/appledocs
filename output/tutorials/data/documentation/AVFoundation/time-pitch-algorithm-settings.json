@@ -1,0 +1,779 @@
+{
+  "abstract": [
+    {
+      "text": "The constants that define the values for the time pitch algorithms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/audio-settings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/time-pitch-algorithm-settings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Time Pitch Algorithm Settings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and macOS, the default algorithm for playback for apps linked on or after iOS 15 or macOS 12 is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/timeDomain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For iOS versions prior to iOS 15, the default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/lowQualityZeroLatency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and for macOS versions prior to macOS 12, the default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value for export and other offline processing is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For scaled audio edits, such as when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment/timeMapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is between ",
+              "type": "text"
+            },
+            {
+              "code": "timeRanges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of unequal duration, it’s important to choose an algorithm that supports the full range of edit rates present in the source media. The pitch algorithm ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is often the best choice due to the highly inclusive range of rates it supports, assuming that it’s desirable to maintain a constant pitch regardless of the edit rate. If it’s desirable to allow the pitch to vary with the edit rate, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/varispeed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the best choice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment": {
+      "abstract": [
+        {
+          "text": "An object that represents a time range segment of an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetTrackSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetTrackSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetTrackSegment",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassettracksegment"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment/timeMapping": {
+      "abstract": [
+        {
+          "text": "The time range of the track that this segment presents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeMapping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeMapping",
+          "text": "CMTimeMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrackSegment/timeMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeMapping",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassettracksegment/timemapping"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/lowQualityZeroLatency": {
+      "abstract": [
+        {
+          "text": "A low-quality and very low computationally intensive pitch algorithm.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowQualityZeroLatency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioTimePitchAlgorithm",
+          "text": "AVAudioTimePitchAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/lowQualityZeroLatency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTimePitchAlgorithmLowQualityZeroLatency"
+        }
+      ],
+      "role": "symbol",
+      "title": "lowQualityZeroLatency",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiotimepitchalgorithm/lowqualityzerolatency"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral": {
+      "abstract": [
+        {
+          "text": "A highest-quality time pitch algorithm that’s suitable for music.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spectral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioTimePitchAlgorithm",
+          "text": "AVAudioTimePitchAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTimePitchAlgorithmSpectral"
+        }
+      ],
+      "role": "symbol",
+      "title": "spectral",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiotimepitchalgorithm/spectral"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/timeDomain": {
+      "abstract": [
+        {
+          "text": "A modest quality time pitch algorithm that’s suitable for voice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioTimePitchAlgorithm",
+          "text": "AVAudioTimePitchAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/timeDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTimePitchAlgorithmTimeDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeDomain",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiotimepitchalgorithm/timedomain"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/varispeed": {
+      "abstract": [
+        {
+          "text": "A high-quality time pitch algorithm that doesn’t perform pitch correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "varispeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioTimePitchAlgorithm",
+          "text": "AVAudioTimePitchAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/varispeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTimePitchAlgorithmVarispeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "varispeed",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiotimepitchalgorithm/varispeed"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/audio-settings": {
+      "abstract": [
+        {
+          "text": "Configure audio processing settings using standard key and value constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/audio-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio settings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-settings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/encoder-settings": {
+      "abstract": [
+        {
+          "text": "The constants that define the audio encoder settings for the audio recorder class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/encoder-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encoder Settings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/encoder-settings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/sample-rate-conversion-settings": {
+      "abstract": [
+        {
+          "text": "The constants that define sample rate converter audio quality settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/sample-rate-conversion-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample Rate Conversion Settings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/sample-rate-conversion-settings"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioQuality": {
+      "abstract": [
+        {
+          "text": "The values that specify the sample rate audio quality for encoding and conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioQuality",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioQuality",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioQuality"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/sample-rate-conversion-settings",
+        "doc://com.apple.documentation/documentation/AVFAudio/AVAudioQuality",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/encoder-settings"
+      ],
+      "title": "Settings"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/timeDomain",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/varispeed",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/lowQualityZeroLatency"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/timeDomain",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/varispeed",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/spectral",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioTimePitchAlgorithm/lowQualityZeroLatency"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/sample-rate-conversion-settings",
+                "doc://com.apple.documentation/documentation/AVFAudio/AVAudioQuality",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/encoder-settings"
+              ],
+              "title": "Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1spectral/title",
+          "value": "AVAudioTimePitchAlgorithmSpectral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1spectral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTimePitchAlgorithmSpectral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioQuality/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioQuality"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1varispeed/title",
+          "value": "AVAudioTimePitchAlgorithmVarispeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1varispeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTimePitchAlgorithmVarispeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1timeDomain/title",
+          "value": "AVAudioTimePitchAlgorithmTimeDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1timeDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTimePitchAlgorithmTimeDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1lowQualityZeroLatency/title",
+          "value": "AVAudioTimePitchAlgorithmLowQualityZeroLatency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAudioTimePitchAlgorithm~1lowQualityZeroLatency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTimePitchAlgorithmLowQualityZeroLatency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrackSegment/title",
+          "value": "AVAssetTrackSegment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrackSegment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetTrackSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrackSegment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetTrackSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrackSegment~1timeMapping/title",
+          "value": "timeMapping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrackSegment~1timeMapping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeMapping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/time-pitch-algorithm-settings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/time-pitch-algorithm-settings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "abstract": [
+    {
+      "text": "Releases a reference to an object, freeing it immediately if the reference count drops below the specified threshold.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osobject/1941153-release"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1941153,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "OSObject"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "release(int)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual void release("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " intfreeWhen) const; "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If decrementing the reference count makes it >= ",
+                  "type": "text"
+                },
+                {
+                  "code": "freeWhen",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the object is immediately freed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "freeWhen"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the receiver has ",
+              "type": "text"
+            },
+            {
+              "code": "freeWhen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or fewer references after its reference count is decremented, it is immediately freed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This version of ",
+              "type": "text"
+            },
+            {
+              "code": "release",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be used to break certain retain cycles in object graphs. In general, however, it should be avoided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941146-free": {
+      "abstract": [
+        {
+          "text": "Deallocates/releases resources held by the object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941146-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941146-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941147-getretaincount": {
+      "abstract": [
+        {
+          "text": "Returns the reference count of the object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941147-getretaincount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRetainCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941147-getretaincount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941148-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly-allocated object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941148-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941148-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941149-operator_delete": {
+      "abstract": [
+        {
+          "text": "Frees the memory of the object itself.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941149-operator_delete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "operator delete",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941149-operator_delete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941150-operator_new": {
+      "abstract": [
+        {
+          "text": "Allocates memory for an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941150-operator_new",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "operator new",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941150-operator_new"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941151-release": {
+      "abstract": [
+        {
+          "text": "Releases a reference to the object, freeing it immediately if the reference count drops to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941151-release",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "release()",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941151-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941153-release": {
+      "abstract": [
+        {
+          "text": "Releases a reference to an object, freeing it immediately if the reference count drops below the specified threshold.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941153-release",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "release(int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941153-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941154-retain": {
+      "abstract": [
+        {
+          "text": "Retains a reference to the object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941154-retain",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "retain",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941154-retain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941155-serialize": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to archive the receiver into the provided OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941155-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941155-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941156-taggedrelease": {
+      "abstract": [
+        {
+          "text": "Releases a tagged reference to an object, freeing it immediately if the reference count drops to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941156-taggedrelease",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "taggedRelease(const void *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941156-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941157-taggedrelease": {
+      "abstract": [
+        {
+          "text": "Releases a tagged reference to an object, freeing it immediately if the reference count drops below the specified threshold.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941157-taggedrelease",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "taggedRelease(const void *, const int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941157-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject/1941158-taggedretain": {
+      "abstract": [
+        {
+          "text": "Retains a reference to the object with an optional tag used for reference-tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject/1941158-taggedretain",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "taggedRetain",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject/1941158-taggedretain"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941146-free",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941147-getretaincount",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941148-init",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941149-operator_delete",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941150-operator_new",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941151-release",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941154-retain",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941155-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941156-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941157-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/osobject/1941158-taggedretain"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osobject/1941153-release"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

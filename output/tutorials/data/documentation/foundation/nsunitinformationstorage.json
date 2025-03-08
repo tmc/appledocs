@@ -1,0 +1,1765 @@
+{
+  "abstract": [
+    {
+      "text": "A unit of measure for quantities of information.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3172543,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitInformationStorage",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUnitInformationStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUnitInformationStorage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDimension",
+              "text": "NSDimension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to represent quantities of information using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The base unit of measure for information is the bit, with a nibble representing four bits and a byte representing eight bits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Larger units of information expand on bits and bytes by orders of magnitude in both decimal and binary forms. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3848646",
+          "level": 3,
+          "text": "Information Transfer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Units of bits commonly represent the amount of transferred information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "none",
+          "metadata": {
+            "anchor": "3848650",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decimal Bits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Binary Bits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172556-kilobits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172554-kibibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172560-megabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e2",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172558-mebibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e2",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172552-gigabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172550-gibibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172569-terabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172567-tebibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172565-petabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172563-pebibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172546-exabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172548-exbibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172577-zettabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e7",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172575-zebibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e7",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172573-yottabits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172571-yobibits",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3853966",
+          "level": 3,
+          "text": "Information Storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Units of bytes commonly represent the amount of stored information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "none",
+          "metadata": {
+            "anchor": "3853965",
+            "title": "Table 2"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decimal Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Binary Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coefficient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172557-kilobytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172555-kibibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172561-megabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e2",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172559-mebibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e2",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172553-gigabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172551-gibibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172570-terabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172568-tebibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172566-petabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172564-pebibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172547-exabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172549-exbibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172578-zettabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e7",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172576-zebibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e7",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172574-yottabytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000e8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172572-yobibytes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1024e8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdimension": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDimension",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdimension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmeasurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMeasurement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmeasurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage": {
+      "abstract": [
+        {
+          "text": "A unit of measure for quantities of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnitInformationStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage#3848650": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage#3848650",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsunitinformationstorage#3848650"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage#3853965": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage#3853965",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsunitinformationstorage#3853965"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172544-bits": {
+      "abstract": [
+        {
+          "text": "The bits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172544-bits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172544-bits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172545-bytes": {
+      "abstract": [
+        {
+          "text": "The bytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172545-bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172545-bytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172546-exabits": {
+      "abstract": [
+        {
+          "text": "The exabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172546-exabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172546-exabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172547-exabytes": {
+      "abstract": [
+        {
+          "text": "The exabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172547-exabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172547-exabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172548-exbibits": {
+      "abstract": [
+        {
+          "text": "The exbibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172548-exbibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exbibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172548-exbibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172549-exbibytes": {
+      "abstract": [
+        {
+          "text": "The exbibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172549-exbibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exbibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172549-exbibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172550-gibibits": {
+      "abstract": [
+        {
+          "text": "The gibibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172550-gibibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gibibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172550-gibibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172551-gibibytes": {
+      "abstract": [
+        {
+          "text": "The gibibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172551-gibibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gibibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172551-gibibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172552-gigabits": {
+      "abstract": [
+        {
+          "text": "The gigabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172552-gigabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gigabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172552-gigabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172553-gigabytes": {
+      "abstract": [
+        {
+          "text": "The gigabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172553-gigabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gigabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172553-gigabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172554-kibibits": {
+      "abstract": [
+        {
+          "text": "The kibibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172554-kibibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kibibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172554-kibibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172555-kibibytes": {
+      "abstract": [
+        {
+          "text": "The kibibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172555-kibibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kibibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172555-kibibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172556-kilobits": {
+      "abstract": [
+        {
+          "text": "The kilobits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172556-kilobits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilobits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172556-kilobits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172557-kilobytes": {
+      "abstract": [
+        {
+          "text": "The kilobytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172557-kilobytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilobytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172557-kilobytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172558-mebibits": {
+      "abstract": [
+        {
+          "text": "The mebibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172558-mebibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mebibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172558-mebibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172559-mebibytes": {
+      "abstract": [
+        {
+          "text": "The mebibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172559-mebibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mebibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172559-mebibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172560-megabits": {
+      "abstract": [
+        {
+          "text": "The megabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172560-megabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "megabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172560-megabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172561-megabytes": {
+      "abstract": [
+        {
+          "text": "The megabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172561-megabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "megabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172561-megabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172562-nibbles": {
+      "abstract": [
+        {
+          "text": "The nibbles unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172562-nibbles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nibbles",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172562-nibbles"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172563-pebibits": {
+      "abstract": [
+        {
+          "text": "The pebibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172563-pebibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pebibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172563-pebibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172564-pebibytes": {
+      "abstract": [
+        {
+          "text": "The pebibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172564-pebibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pebibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172564-pebibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172565-petabits": {
+      "abstract": [
+        {
+          "text": "The petabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172565-petabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "petabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172565-petabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172566-petabytes": {
+      "abstract": [
+        {
+          "text": "The petabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172566-petabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "petabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172566-petabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172567-tebibits": {
+      "abstract": [
+        {
+          "text": "The tebibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172567-tebibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tebibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172567-tebibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172568-tebibytes": {
+      "abstract": [
+        {
+          "text": "The tebibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172568-tebibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tebibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172568-tebibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172569-terabits": {
+      "abstract": [
+        {
+          "text": "The terabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172569-terabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172569-terabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172570-terabytes": {
+      "abstract": [
+        {
+          "text": "The terrabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172570-terabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172570-terabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172571-yobibits": {
+      "abstract": [
+        {
+          "text": "The yobibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172571-yobibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yobibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172571-yobibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172572-yobibytes": {
+      "abstract": [
+        {
+          "text": "The yobibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172572-yobibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yobibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172572-yobibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172573-yottabits": {
+      "abstract": [
+        {
+          "text": "The yottabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172573-yottabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yottabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172573-yottabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172574-yottabytes": {
+      "abstract": [
+        {
+          "text": "The yottabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172574-yottabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yottabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172574-yottabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172575-zebibits": {
+      "abstract": [
+        {
+          "text": "The zebibits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172575-zebibits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zebibits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172575-zebibits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172576-zebibytes": {
+      "abstract": [
+        {
+          "text": "The zebibytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172576-zebibytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zebibytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172576-zebibytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172577-zettabits": {
+      "abstract": [
+        {
+          "text": "The zettabits unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172577-zettabits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zettabits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172577-zettabits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172578-zettabytes": {
+      "abstract": [
+        {
+          "text": "The zettabytes unit of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172578-zettabytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zettabytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunitinformationstorage/3172578-zettabytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdimension"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "3848649",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172544-bits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172562-nibbles",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172545-bytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Common Units"
+    },
+    {
+      "anchor": "3848647",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172554-kibibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172555-kibibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172558-mebibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172559-mebibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172550-gibibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172551-gibibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172567-tebibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172568-tebibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172563-pebibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172564-pebibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172548-exbibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172549-exbibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172575-zebibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172576-zebibytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172571-yobibits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172572-yobibytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Binary Units"
+    },
+    {
+      "anchor": "3848645",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172556-kilobits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172557-kilobytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172560-megabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172561-megabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172552-gigabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172553-gigabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172569-terabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172570-terabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172565-petabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172566-petabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172546-exabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172547-exabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172577-zettabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172578-zettabytes",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172573-yottabits",
+        "doc://com.apple.documentation/documentation/foundation/nsunitinformationstorage/3172574-yottabytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Decimal Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitinformationstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitinformationstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

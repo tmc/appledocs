@@ -1,0 +1,1743 @@
+{
+  "abstract": [
+    {
+      "text": "Gets space available for your data for a particular command response you are trying to send.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionGetAvailableCommandResponsePayloadLength"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@OBEXSessionGetAvailableCommandResponsePayloadLength",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "OBEXSessionGetAvailableCommandResponsePayloadLength"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOBluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OBEXSessionGetAvailableCommandResponsePayloadLength"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "OBEXSessionGetAvailableCommandResponsePayloadLength"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OBEXError",
+              "text": "OBEXError"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OBEXSessionGetAvailableCommandResponsePayloadLength"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OBEXSessionRef",
+              "text": "OBEXSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXOpCode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OBEXOpCode",
+              "text": "OBEXOpCode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inOpCode"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXMaxPacketLength",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OBEXMaxPacketLength",
+              "text": "OBEXMaxPacketLength"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outLength"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid session reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inSessionRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A command opcode that you are responding to. For example, if you receiving a Put command, and want to send back a “bad request” response, you should still pass in the Put command opcode for that response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inOpCode"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Space available for your header data in the payload area for a particular command.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outLength"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An error code value. 0 if successful.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format, allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting and datas requires a small bit of information that varies depending on what command or response you are sending. Thus, you should call this function to find out how much space will be left for your headers before you send the command, allowing you to properly chop up your headers before sending them. This will guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error trying to send too much information at once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "*** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth": {
+      "abstract": [
+        {
+          "text": "Gain user-space access to Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOBluetooth",
+      "type": "topic",
+      "url": "/documentation/iobluetooth"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/GET_HEADER_ID_IS_NULL_TERMINATED_UNICODE_TEXT": {
+      "abstract": [
+        {
+          "text": "Convenience Macros for working with OBEX Header Identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GET_HEADER_ID_IS_NULL_TERMINATED_UNICODE_TEXT"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/GET_HEADER_ID_IS_NULL_TERMINATED_UNICODE_TEXT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GET_HEADER_ID_IS_NULL_TERMINATED_UNICODE_TEXT",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/get_header_id_is_null_terminated_unicode_text"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddApplicationParameterHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add bytes representing an application parameter to a dictionary of OBEX headers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddApplicationParameterHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddApplicationParameterHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddApplicationParameterHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddApplicationParameterHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddapplicationparameterheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationChallengeHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add an authorization challenge header to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddAuthorizationChallengeHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationChallengeHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddAuthorizationChallengeHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddAuthorizationChallengeHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddauthorizationchallengeheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationResponseHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add an authorization Response header to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddAuthorizationResponseHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationResponseHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddAuthorizationResponseHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddAuthorizationResponseHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddauthorizationresponseheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddBodyHeader(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add bytes of data to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddBodyHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddBodyHeader(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddBodyHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddBodyHeader(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddbodyheader(_:_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddByteSequenceHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a byte sequence header to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddByteSequenceHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddByteSequenceHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddByteSequenceHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddByteSequenceHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddbytesequenceheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddConnectionIDHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add bytes representing a connection ID to a dictionary of OBEX headers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddConnectionIDHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddConnectionIDHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddConnectionIDHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddConnectionIDHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddconnectionidheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddCountHeader(_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a CFStringRef to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddCountHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddCountHeader(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddCountHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddCountHeader(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddcountheader(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddDescriptionHeader(_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a CFStringRef to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddDescriptionHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddDescriptionHeader(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddDescriptionHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddDescriptionHeader(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexadddescriptionheader(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddHTTPHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add bytes of data to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddHTTPHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddHTTPHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddHTTPHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddHTTPHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddhttpheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddLengthHeader(_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a CFStringRef to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddLengthHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddLengthHeader(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddLengthHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddLengthHeader(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddlengthheader(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddNameHeader(_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a CFStringRef to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddNameHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddNameHeader(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddNameHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddNameHeader(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddnameheader(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddObjectClassHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add an object class header to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddObjectClassHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddObjectClassHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddObjectClassHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddObjectClassHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddobjectclassheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTargetHeader(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Add bytes of data to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddTargetHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTargetHeader(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddTargetHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddTargetHeader(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddtargetheader(_:_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTime4ByteHeader(_:_:)": {
+      "abstract": [
+        {
+          "text": "Add a CFStringRef to a dictionary of OBEXheaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXAddTime4ByteHeader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFMutableDictionaryRef",
+          "text": "CFMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OBEXError",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTime4ByteHeader(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXAddTime4ByteHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXAddTime4ByteHeader(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexaddtime4byteheader(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXError": {
+      "abstract": [
+        {
+          "text": "Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting from kernel code/IOKit, and you should consult IOReturn.h for those codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXError"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXError"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXError",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexerror"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXMaxPacketLength": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXMaxPacketLength"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXMaxPacketLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXMaxPacketLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXMaxPacketLength",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexmaxpacketlength"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXOpCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXOpCode"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXOpCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXOpCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXOpCode",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexopcode"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionGetAvailableCommandResponsePayloadLength": {
+      "abstract": [
+        {
+          "text": "Gets space available for your data for a particular command response you are trying to send.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OBEXSessionGetAvailableCommandResponsePayloadLength"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionGetAvailableCommandResponsePayloadLength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OBEXSessionGetAvailableCommandResponsePayloadLength",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexsessiongetavailablecommandresponsepayloadlength"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OBEXSessionRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXSessionRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OBEXSessionRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "OBEXSessionRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/obexsessionref"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Miscellaneous",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/GET_HEADER_ID_IS_NULL_TERMINATED_UNICODE_TEXT",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddApplicationParameterHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationChallengeHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddAuthorizationResponseHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddBodyHeader(_:_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddByteSequenceHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddConnectionIDHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddCountHeader(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddDescriptionHeader(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddHTTPHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddLengthHeader(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddNameHeader(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddObjectClassHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTargetHeader(_:_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/OBEXAddTime4ByteHeader(_:_:)"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddCountHeader(_:_:)/title",
+          "value": "OBEXAddCountHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddCountHeader(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddCountHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddDescriptionHeader(_:_:)/title",
+          "value": "OBEXAddDescriptionHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddDescriptionHeader(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddDescriptionHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddTime4ByteHeader(_:_:)/title",
+          "value": "OBEXAddTime4ByteHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddTime4ByteHeader(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddTime4ByteHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddApplicationParameterHeader(_:_:_:)/title",
+          "value": "OBEXAddApplicationParameterHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddApplicationParameterHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddApplicationParameterHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXError/title",
+          "value": "OBEXError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddObjectClassHeader(_:_:_:)/title",
+          "value": "OBEXAddObjectClassHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddObjectClassHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddObjectClassHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddLengthHeader(_:_:)/title",
+          "value": "OBEXAddLengthHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddLengthHeader(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddLengthHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddBodyHeader(_:_:_:_:)/title",
+          "value": "OBEXAddBodyHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddBodyHeader(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddBodyHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddHTTPHeader(_:_:_:)/title",
+          "value": "OBEXAddHTTPHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddHTTPHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddHTTPHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddNameHeader(_:_:)/title",
+          "value": "OBEXAddNameHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddNameHeader(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddNameHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddAuthorizationResponseHeader(_:_:_:)/title",
+          "value": "OBEXAddAuthorizationResponseHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddAuthorizationResponseHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddAuthorizationResponseHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddAuthorizationChallengeHeader(_:_:_:)/title",
+          "value": "OBEXAddAuthorizationChallengeHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddAuthorizationChallengeHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddAuthorizationChallengeHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXSessionRef/title",
+          "value": "OBEXSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXSessionRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXSessionRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddConnectionIDHeader(_:_:_:)/title",
+          "value": "OBEXAddConnectionIDHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddConnectionIDHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddConnectionIDHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXOpCode/title",
+          "value": "OBEXOpCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXOpCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXOpCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXOpCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXOpCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXMaxPacketLength/title",
+          "value": "OBEXMaxPacketLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXMaxPacketLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXMaxPacketLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXMaxPacketLength/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXMaxPacketLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddByteSequenceHeader(_:_:_:)/title",
+          "value": "OBEXAddByteSequenceHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddByteSequenceHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddByteSequenceHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddTargetHeader(_:_:_:)/title",
+          "value": "OBEXAddTargetHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1OBEXAddTargetHeader(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OBEXAddTargetHeader"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iobluetooth/obexsessiongetavailablecommandresponsepayloadlength"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

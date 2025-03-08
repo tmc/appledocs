@@ -1,1 +1,2261 @@
-{"deprecationSummary":[{"inlineContent":[{"text":"This intent is no longer available. You may define a custom intent instead. For more information, see ","type":"text"},{"type":"reference","isActive":true,"identifier":"https://developer.apple.com/support/deprecated-sirikit-intent-domains"},{"text":".","type":"text"}],"type":"paragraph"}],"kind":"symbol","metadata":{"platforms":[{"deprecated":false,"message":"INSetAudioSourceInCarIntent is deprecated. There is no replacement.","unavailable":false,"deprecatedAt":"15.0","name":"iOS","introducedAt":"10.0","beta":false},{"deprecated":false,"message":"INSetAudioSourceInCarIntent is deprecated. There is no replacement.","unavailable":false,"deprecatedAt":"15.0","name":"iPadOS","introducedAt":"10.0","beta":false},{"deprecated":false,"message":"INSetAudioSourceInCarIntent is deprecated. There is no replacement.","unavailable":false,"deprecatedAt":"15.0","name":"Mac Catalyst","introducedAt":"13.1","beta":false},{"deprecated":false,"message":"INSetAudioSourceInCarIntent is deprecated. There is no replacement.","unavailable":false,"deprecatedAt":"1.0","name":"visionOS","introducedAt":"1.0","beta":false}],"role":"symbol","symbolKind":"class","modules":[{"name":"Intents"}],"title":"INSetAudioSourceInCarIntent","externalID":"c:objc(cs)INSetAudioSourceInCarIntent","roleHeading":"Class","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}],"navigatorTitle":[{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}]},"seeAlsoSections":[{"title":"CarPlay Audio Source","generated":true,"anchor":"CarPlay-Audio-Source","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling","doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse"]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.sirikit/documentation/Intents"]]},"sections":[],"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}],"platforms":["iOS","iPadOS","Mac Catalyst","visionOS"],"languages":["swift"]}]},{"content":[{"type":"heading","anchor":"overview","text":"Overview","level":2},{"type":"paragraph","inlineContent":[{"type":"text","text":"Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the audio source of the vehicle, SiriKit creates an "},{"isActive":true,"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent","type":"reference"},{"type":"text","text":" object and delivers it to your app’s Intents extension. You use the intent to identify which audio source the user wants to use and to communicate the new audio source information directly to your vehicle’s systems."}]},{"type":"paragraph","inlineContent":[{"text":"Users may select audio sources by name or by asking for the next or previous audio source that’s available. When the user asks for an audio source by name, Siri populates the ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource"},{"text":" property of this intent object with the specific requested source. When the user asks for the next or previous audio source, Siri places the appropriate value in the ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference"},{"text":" property so that you can determine which audio source to select. Only one of these properties contains usable information; Siri sets the other to a constant indicating an unknown status for the value.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"The object that handles this intent must adopt the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling","type":"reference"},{"text":" protocol. Use this intent object to resolve the audio source details and to create an ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse","type":"reference"},{"text":" object indicating the results of changing the audio source.","type":"text"}]},{"type":"heading","anchor":"Additional-Intent-Attributes","text":"Additional Intent Attributes","level":3},{"type":"paragraph","inlineContent":[{"text":"The following table lists additional attributes of this intent object:","type":"text"}]},{"type":"table","header":"row","rows":[[[{"type":"paragraph","inlineContent":[{"type":"text","text":"Attribute"}]}],[{"type":"paragraph","inlineContent":[{"text":"Description","type":"text"}]}]],[[{"inlineContent":[{"text":"Supported by","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Siri (in conjunction with CarPlay)"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"Always requires unlocked device"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Yes"}],"type":"paragraph"}]]]},{"type":"heading","anchor":"Example-Phrases","text":"Example Phrases","level":3},{"type":"paragraph","inlineContent":[{"type":"text","text":"Users can ask Siri to change the audio source in a vehicle in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases."}]},{"type":"table","header":"row","rows":[[[{"inlineContent":[{"type":"text","text":"Locale"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Example 1","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Example 2"}],"type":"paragraph"}]],[[{"type":"paragraph","inlineContent":[{"text":"en","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"Change the audio source to USB","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"Switch to the next audio source"}]}]],[[{"type":"paragraph","inlineContent":[{"text":"zh_CN","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"音源USB","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"切换音源"}]}]],[[{"type":"paragraph","inlineContent":[{"text":"zh_HK","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"音源較去USB","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"切換音源","type":"text"}]}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"zh_TW"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"切換到USB"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"切換音源"}]}]],[[{"type":"paragraph","inlineContent":[{"text":"yue_CN","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"音源较去USB"}]}],[{"type":"paragraph","inlineContent":[{"text":"切换音源","type":"text"}]}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"ar"}]}],[{"type":"paragraph","inlineContent":[{"text":"تغيير مصدر الصوت","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"تبديل إلى مصدر الصوت التالي","type":"text"}]}]],[[{"type":"paragraph","inlineContent":[{"text":"da","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"aux lydkilde","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"text":"Skift til næste lydindgang","type":"text"}]}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"de"}]}],[{"type":"paragraph","inlineContent":[{"text":"Wechsele die Audioquelle auf USB","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"Die Audioquelle auf USB wechseln"}]}]],[[{"inlineContent":[{"text":"es","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Cambia la fuente de audio al USB"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Pon la fuente de sonido al DVD"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"fi","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Aseta äänilähteeksi USB","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Vaihda seuraavaan äänilähteeseen"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"fr","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Audio sur sortie auxiliaire"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Passe à la source audio suivante"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"he"}],"type":"paragraph"}],[{"inlineContent":[{"text":"תחליפי את מקור אודיו","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"תחליפי את מקור האודיו","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"it"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Cambia la sorgente audio a USB","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Cambia alla prossima sorgente audio"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"ja","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"音源をUSBに変更"}],"type":"paragraph"}],[{"inlineContent":[{"text":"次の音源に切り替えて","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"ko"}],"type":"paragraph"}],[{"inlineContent":[{"text":"오디오 소스를 USB로 변경","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"다음 오디오 소스로 바꿔줘"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"ms"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Tukar sumber audio kepada USB"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Tukar kepada sumber audio berikutnya"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"nb"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Endre lydkilde til USB","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Bytt til neste lydkilde"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"nl"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Verander de audiobron naar USB"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Schakel naar de volgende audiobron","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"pt"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Mudar a entrada de áudio para USB","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Troque para a próxima entrada de áudio","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"ru"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Измени источник аудио на USB"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Переключи на следующий источник музыки"}],"type":"paragraph"}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"sv"}]}],[{"type":"paragraph","inlineContent":[{"text":"ändra ljudkälla till aux","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"byt ljudkälla till aux ljud"}]}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"th"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"เปลี่ยนแหล่งเสียงเป็น USB"}]}],[{"type":"paragraph","inlineContent":[{"text":"เปลี่ยนเป็นแหล่งเสียงถัดไป","type":"text"}]}]],[[{"type":"paragraph","inlineContent":[{"type":"text","text":"tr"}]}],[{"type":"paragraph","inlineContent":[{"text":"Ses kaynağı USB olsun","type":"text"}]}],[{"type":"paragraph","inlineContent":[{"type":"text","text":"Bir sonraki ses kaynağına geç"}]}]]]},{"type":"paragraph","inlineContent":[{"type":"text","text":"When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor."}]}],"kind":"content"}],"abstract":[{"type":"text","text":"A request to change the source of audio playback in a CarPlay-enabled vehicle."}],"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"paths":["/documentation/intents/insetaudiosourceincarintent"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/intents/insetaudiosourceincarintent"],"traits":[{"interfaceLanguage":"occ"}]}],"relationshipsSections":[{"title":"Inherits From","type":"inheritsFrom","kind":"relationships","identifiers":["doc://com.apple.sirikit/documentation/Intents/INIntent"]},{"title":"Conforms To","type":"conformsTo","kind":"relationships","identifiers":["doc://com.externally.resolved.symbol/s:s7CVarArgP","doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","doc://com.externally.resolved.symbol/s:SQ","doc://com.externally.resolved.symbol/s:SH","doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath","doc://com.externally.resolved.symbol/c:objc(pl)NSCoding","doc://com.externally.resolved.symbol/c:objc(pl)NSCopying","doc://com.externally.resolved.symbol/c:objc(pl)NSObject","doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"]}],"topicSections":[{"title":"Initializing the Intent Object","anchor":"Initializing-the-Intent-Object","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)"]},{"title":"Getting Details About the Audio Source to Set","anchor":"Getting-Details-About-the-Audio-Source-to-Set","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource","doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference"]}],"identifier":{"url":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent","interfaceLanguage":"swift"},"references":{"doc://com.externally.resolved.symbol/s:SQ":{"abstract":[{"type":"text","text":"A type that can be compared for value equality."}],"type":"topic","identifier":"doc://com.externally.resolved.symbol/s:SQ","kind":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Equatable"}],"role":"symbol","url":"/documentation/Swift/Equatable","title":"Equatable"},"doc://com.externally.resolved.symbol/c:objc(pl)NSCoding":{"role":"symbol","kind":"symbol","abstract":[{"type":"text","text":"A protocol that enables an object to be encoded and decoded for archiving and distribution."}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSCoding","type":"topic","title":"NSCoding","fragments":[{"kind":"text","text":"protocol "},{"kind":"identifier","text":"NSCoding"}],"url":"/documentation/foundation/nscoding"},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource":{"deprecated":true,"title":"audioSource","kind":"symbol","identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource","url":"/documentation/intents/insetaudiosourceincarintent/audiosource","navigatorTitle":[{"text":"audioSource","kind":"identifier"}],"type":"topic","abstract":[{"type":"text","text":"The audio source to select."}],"role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"audioSource"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@E@INCarAudioSource","text":"INCarAudioSource","kind":"typeIdentifier"}]},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse":{"fragments":[{"text":"class","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"INSetAudioSourceInCarIntentResponse"}],"type":"topic","deprecated":true,"url":"/documentation/intents/insetaudiosourceincarintentresponse","navigatorTitle":[{"kind":"identifier","text":"INSetAudioSourceInCarIntentResponse"}],"role":"symbol","abstract":[{"text":"Your app’s response to a set audio source in car intent.","type":"text"}],"title":"INSetAudioSourceInCarIntentResponse","identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse","kind":"symbol"},"doc://com.apple.sirikit/documentation/Intents/INIntent":{"abstract":[{"text":"A request to fulfill in your app or Intents extension.","type":"text"}],"url":"/documentation/intents/inintent","type":"topic","kind":"symbol","title":"INIntent","identifier":"doc://com.apple.sirikit/documentation/Intents/INIntent","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"INIntent","kind":"identifier"}],"navigatorTitle":[{"text":"INIntent","kind":"identifier"}],"role":"symbol"},"doc://com.externally.resolved.symbol/c:objc(pl)NSCopying":{"type":"topic","abstract":[{"text":"A protocol that objects adopt to provide functional copies of themselves.","type":"text"}],"fragments":[{"text":"protocol ","kind":"text"},{"kind":"identifier","text":"NSCopying"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSCopying","role":"symbol","url":"/documentation/foundation/nscopying","title":"NSCopying"},"doc://com.externally.resolved.symbol/s:SH":{"type":"topic","url":"/documentation/Swift/Hashable","kind":"symbol","title":"Hashable","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Hashable"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"Equatable","preciseIdentifier":"s:SQ"}],"role":"symbol","abstract":[{"type":"text","text":"A type that can be hashed into a `Hasher` to produce an integer hash value."}],"identifier":"doc://com.externally.resolved.symbol/s:SH"},"doc://com.externally.resolved.symbol/s:s7CVarArgP":{"url":"/documentation/Swift/CVarArg","role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"CVarArg"}],"title":"CVarArg","identifier":"doc://com.externally.resolved.symbol/s:s7CVarArgP","abstract":[{"type":"text","text":"A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`."}],"kind":"symbol","type":"topic"},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference":{"deprecated":true,"title":"relativeAudioSourceReference","kind":"symbol","identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference","url":"/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference","navigatorTitle":[{"text":"relativeAudioSourceReference","kind":"identifier"}],"type":"topic","abstract":[{"type":"text","text":"The relative audio source to select."}],"role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"relativeAudioSourceReference"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@E@INRelativeReference","text":"INRelativeReference","kind":"typeIdentifier"}]},"doc://com.apple.sirikit/documentation/Intents":{"role":"collection","identifier":"doc://com.apple.sirikit/documentation/Intents","url":"/documentation/intents","type":"topic","title":"Intents","abstract":[{"type":"text","text":"Empower people to customize interactions for your app on their device."}],"kind":"symbol"},"doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath":{"navigatorTitle":[{"kind":"identifier","text":"INIntentSetImageKeyPath"}],"url":"/documentation/intents/inintentsetimagekeypath","role":"symbol","kind":"symbol","abstract":[],"type":"topic","title":"INIntentSetImageKeyPath","identifier":"doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"INIntentSetImageKeyPath"}]},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent":{"kind":"symbol","identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}],"deprecated":true,"title":"INSetAudioSourceInCarIntent","url":"/documentation/intents/insetaudiosourceincarintent","role":"symbol","abstract":[{"text":"A request to change the source of audio playback in a CarPlay-enabled vehicle.","type":"text"}],"type":"topic","navigatorTitle":[{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}]},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","kind":"technologies","abstract":[{"text":"","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","title":"Technologies","url":"/documentation/technologies"},"https://developer.apple.com/support/deprecated-sirikit-intent-domains":{"titleInlineContent":[{"text":"Deprecated SiriKit Intent Domains","type":"text"}],"type":"link","identifier":"https://developer.apple.com/support/deprecated-sirikit-intent-domains","url":"https://developer.apple.com/support/deprecated-sirikit-intent-domains","title":"Deprecated SiriKit Intent Domains"},"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP":{"role":"symbol","url":"/documentation/Swift/CustomStringConvertible","identifier":"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","type":"topic","abstract":[{"type":"text","text":"A type with a customized textual representation."}],"kind":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"CustomStringConvertible"}],"title":"CustomStringConvertible"},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling":{"role":"symbol","title":"INSetAudioSourceInCarIntentHandling","abstract":[{"text":"The handler interface for changing a vehicle’s audio source.","type":"text"}],"deprecated":true,"type":"topic","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"INSetAudioSourceInCarIntentHandling"}],"kind":"symbol","identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling","navigatorTitle":[{"kind":"identifier","text":"INSetAudioSourceInCarIntentHandling"}],"url":"/documentation/intents/insetaudiosourceincarintenthandling"},"doc://com.externally.resolved.symbol/c:objc(pl)NSObject":{"role":"symbol","abstract":[{"type":"text","text":"The group of methods that are fundamental to all Objective-C objects."}],"kind":"symbol","url":"/documentation/objectivec/nsobjectprotocol","fragments":[{"kind":"text","text":"protocol "},{"kind":"identifier","text":"NSObjectProtocol"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSObject","type":"topic","title":"NSObjectProtocol"},"doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding":{"abstract":[{"text":"A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.","type":"text"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding","type":"topic","title":"NSSecureCoding","role":"symbol","fragments":[{"text":"protocol ","kind":"text"},{"text":"NSSecureCoding","kind":"identifier"}],"url":"/documentation/foundation/nssecurecoding"},"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP":{"type":"topic","identifier":"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","url":"/documentation/Swift/CustomDebugStringConvertible","title":"CustomDebugStringConvertible","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"CustomDebugStringConvertible"}],"abstract":[{"text":"A type with a customized textual representation suitable for debugging purposes.","type":"text"}],"role":"symbol","kind":"symbol"},"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)":{"deprecated":true,"abstract":[{"text":"Initializes the intent object with the specified audio source information.","type":"text"}],"identifier":"doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)","role":"symbol","title":"init(audioSource:relativeAudioSourceReference:)","navigatorTitle":[{"text":"initWithAudioSource:relativeAudioSourceReference:","kind":"identifier"}],"fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"audioSource","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"INCarAudioSource","kind":"typeIdentifier","preciseIdentifier":"c:@E@INCarAudioSource"},{"text":", ","kind":"text"},{"text":"relativeAudioSourceReference","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@E@INRelativeReference","text":"INRelativeReference","kind":"typeIdentifier"},{"text":")","kind":"text"}],"url":"/documentation/intents/insetaudiosourceincarintent/init(audiosource:relativeaudiosourcereference:)","kind":"symbol","type":"topic"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","op":"replace","path":"/identifier/interfaceLanguage"},{"value":[{"deprecatedAt":"15.0","introducedAt":"10.0","name":"iOS","beta":false,"unavailable":false,"deprecated":false},{"deprecatedAt":"15.0","introducedAt":"10.0","name":"iPadOS","beta":false,"unavailable":false,"deprecated":false},{"deprecatedAt":"15.0","introducedAt":"13.1","name":"Mac Catalyst","beta":false,"unavailable":false,"deprecated":false},{"deprecatedAt":"1.0","introducedAt":"1.0","name":"visionOS","beta":false,"unavailable":false,"deprecated":false}],"op":"replace","path":"/metadata/platforms"},{"value":"Class","op":"replace","path":"/metadata/roleHeading"},{"value":"INSetAudioSourceInCarIntent","op":"replace","path":"/metadata/title"},{"value":"class","op":"replace","path":"/metadata/symbolKind"},{"value":[{"kind":"identifier","text":"INSetAudioSourceInCarIntent"}],"op":"replace","path":"/metadata/fragments"},{"value":[{"kind":"identifier","text":"INSetAudioSourceInCarIntent"}],"op":"replace","path":"/metadata/navigatorTitle"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.sirikit/documentation/Intents"]]},"op":"replace","path":"/hierarchy"},{"value":[{"title":"Initializing the Intent Object","anchor":"Initializing-the-Intent-Object","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)"]},{"anchor":"Getting-Details-About-the-Audio-Source-to-Set","title":"Getting Details About the Audio Source to Set","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource","doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference"]}],"op":"replace","path":"/topicSections"},{"value":[{"identifiers":["doc://com.apple.sirikit/documentation/Intents/INIntent"],"title":"Inherits From","type":"inheritsFrom","kind":"relationships"}],"op":"replace","path":"/relationshipsSections"},{"value":[{"anchor":"CarPlay-Audio-Source","generated":true,"title":"CarPlay Audio Source","identifiers":["doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling","doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse"]}],"op":"replace","path":"/seeAlsoSections"},{"value":{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"tokens":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"INSetAudioSourceInCarIntent","kind":"identifier"},{"text":" : ","kind":"text"},{"identifier":"doc://com.apple.sirikit/documentation/Intents/INIntent","text":"INIntent","preciseIdentifier":"c:objc(cs)INIntent","kind":"typeIdentifier"}],"languages":["occ"]}]},"op":"replace","path":"/primaryContentSections/0"},{"op":"replace","path":"/deprecationSummary","value":[{"inlineContent":[{"text":"This intent is no longer available. You may define a custom intent instead. For more information, see ","type":"text"},{"isActive":true,"type":"reference","identifier":"https://developer.apple.com/support/deprecated-sirikit-intent-domains"},{"text":".","type":"text"}],"type":"paragraph"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1audioSource/title","value":"audioSource"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1audioSource/fragments","value":[{"kind":"identifier","text":"audioSource"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/title","value":"INSetAudioSourceInCarIntentResponse"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/fragments","value":[{"text":"INSetAudioSourceInCarIntentResponse","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/navigatorTitle","value":[{"text":"INSetAudioSourceInCarIntentResponse","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title","value":"INIntent"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments","value":[{"text":"INIntent","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle","value":[{"text":"INIntent","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1relativeAudioSourceReference/title","value":"relativeAudioSourceReference"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1relativeAudioSourceReference/fragments","value":[{"kind":"identifier","text":"relativeAudioSourceReference"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/title","value":"INSetAudioSourceInCarIntent"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/fragments","value":[{"text":"INSetAudioSourceInCarIntent","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/navigatorTitle","value":[{"kind":"identifier","text":"INSetAudioSourceInCarIntent"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/title","value":"INSetAudioSourceInCarIntentHandling"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/fragments","value":[{"text":"INSetAudioSourceInCarIntentHandling","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/navigatorTitle","value":[{"kind":"identifier","text":"INSetAudioSourceInCarIntentHandling"}]},{"op":"replace","path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title","value":"NSObject"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1init(audioSource:relativeAudioSourceReference:)/title","value":"initWithAudioSource:relativeAudioSourceReference:"},{"op":"replace","path":"/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1init(audioSource:relativeAudioSourceReference:)/fragments","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"initWithAudioSource:relativeAudioSourceReference:"}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A request to change the source of audio playback in a CarPlay-enabled vehicle.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This intent is no longer available. You may define a custom intent instead. For more information, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "https://developer.apple.com/support/deprecated-sirikit-intent-domains",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INSetAudioSourceInCarIntent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INSetAudioSourceInCarIntent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INSetAudioSourceInCarIntent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.0",
+        "introducedAt": "10.0",
+        "message": "INSetAudioSourceInCarIntent is deprecated. There is no replacement.",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.0",
+        "introducedAt": "10.0",
+        "message": "INSetAudioSourceInCarIntent is deprecated. There is no replacement.",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.0",
+        "introducedAt": "13.1",
+        "message": "INSetAudioSourceInCarIntent is deprecated. There is no replacement.",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "message": "INSetAudioSourceInCarIntent is deprecated. There is no replacement.",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INSetAudioSourceInCarIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the audio source of the vehicle, SiriKit creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and delivers it to your app’s Intents extension. You use the intent to identify which audio source the user wants to use and to communicate the new audio source information directly to your vehicle’s systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users may select audio sources by name or by asking for the next or previous audio source that’s available. When the user asks for an audio source by name, Siri populates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of this intent object with the specific requested source. When the user asks for the next or previous audio source, Siri places the appropriate value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property so that you can determine which audio source to select. Only one of these properties contains usable information; Siri sets the other to a constant indicating an unknown status for the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The object that handles this intent must adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Use this intent object to resolve the audio source details and to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object indicating the results of changing the audio source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Additional-Intent-Attributes",
+          "level": 3,
+          "text": "Additional Intent Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists additional attributes of this intent object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported by",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri (in conjunction with CarPlay)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always requires unlocked device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Phrases",
+          "level": 3,
+          "text": "Example Phrases",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can ask Siri to change the audio source in a vehicle in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locale",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example 1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example 2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "en",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the audio source to USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to the next audio source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "zh_CN",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "音源USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "切换音源",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "zh_HK",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "音源較去USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "切換音源",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "zh_TW",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "切換到USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "切換音源",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yue_CN",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "音源较去USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "切换音源",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "تغيير مصدر الصوت",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "تبديل إلى مصدر الصوت التالي",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "da",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "aux lydkilde",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Skift til næste lydindgang",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "de",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wechsele die Audioquelle auf USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Die Audioquelle auf USB wechseln",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "es",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cambia la fuente de audio al USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pon la fuente de sonido al DVD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fi",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aseta äänilähteeksi USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vaihda seuraavaan äänilähteeseen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fr",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio sur sortie auxiliaire",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Passe à la source audio suivante",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "he",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "תחליפי את מקור אודיו",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "תחליפי את מקור האודיו",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "it",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cambia la sorgente audio a USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cambia alla prossima sorgente audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ja",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "音源をUSBに変更",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "次の音源に切り替えて",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ko",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "오디오 소스를 USB로 변경",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "다음 오디오 소스로 바꿔줘",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ms",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tukar sumber audio kepada USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tukar kepada sumber audio berikutnya",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "nb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Endre lydkilde til USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bytt til neste lydkilde",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "nl",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verander de audiobron naar USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schakel naar de volgende audiobron",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "pt",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mudar a entrada de áudio para USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Troque para a próxima entrada de áudio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ru",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Измени источник аудио на USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Переключи на следующий источник музыки",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sv",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ändra ljudkälla till aux",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "byt ljudkälla till aux ljud",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "th",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "เปลี่ยนแหล่งเสียงเป็น USB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "เปลี่ยนเป็นแหล่งเสียงถัดไป",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tr",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ses kaynağı USB olsun",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bir sonraki ses kaynağına geç",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentSetImageKeyPath",
+      "type": "topic",
+      "url": "/documentation/intents/inintentsetimagekeypath"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent": {
+      "abstract": [
+        {
+          "text": "A request to change the source of audio playback in a CarPlay-enabled vehicle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetAudioSourceInCarIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource": {
+      "abstract": [
+        {
+          "text": "The audio source to select.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INCarAudioSource",
+          "text": "INCarAudioSource"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioSource",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintent/audiosource"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)": {
+      "abstract": [
+        {
+          "text": "Initializes the intent object with the specified audio source information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "audioSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INCarAudioSource",
+          "text": "INCarAudioSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeAudioSourceReference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INRelativeReference",
+          "text": "INRelativeReference"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAudioSource:relativeAudioSourceReference:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(audioSource:relativeAudioSourceReference:)",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintent/init(audiosource:relativeaudiosourcereference:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference": {
+      "abstract": [
+        {
+          "text": "The relative audio source to select.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeAudioSourceReference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INRelativeReference",
+          "text": "INRelativeReference"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relativeAudioSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "relativeAudioSourceReference",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintent/relativeaudiosourcereference"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for changing a vehicle’s audio source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetAudioSourceInCarIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a set audio source in car intent.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetAudioSourceInCarIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetAudioSourceInCarIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insetaudiosourceincarintentresponse"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/support/deprecated-sirikit-intent-domains": {
+      "identifier": "https://developer.apple.com/support/deprecated-sirikit-intent-domains",
+      "title": "Deprecated SiriKit Intent Domains",
+      "titleInlineContent": [
+        {
+          "text": "Deprecated SiriKit Intent Domains",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/deprecated-sirikit-intent-domains"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntent"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "CarPlay-Audio-Source",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse"
+      ],
+      "title": "CarPlay Audio Source"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-Intent-Object",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)"
+      ],
+      "title": "Initializing the Intent Object"
+    },
+    {
+      "anchor": "Getting-Details-About-the-Audio-Source-to-Set",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource",
+        "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference"
+      ],
+      "title": "Getting Details About the Audio Source to Set"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.0",
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.0",
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.0",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INSetAudioSourceInCarIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-the-Intent-Object",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/init(audioSource:relativeAudioSourceReference:)"
+              ],
+              "title": "Initializing the Intent Object"
+            },
+            {
+              "anchor": "Getting-Details-About-the-Audio-Source-to-Set",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/audioSource",
+                "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntent/relativeAudioSourceReference"
+              ],
+              "title": "Getting Details About the Audio Source to Set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INIntent"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "CarPlay-Audio-Source",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentHandling",
+                "doc://com.apple.sirikit/documentation/Intents/INSetAudioSourceInCarIntentResponse"
+              ],
+              "title": "CarPlay Audio Source"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INSetAudioSourceInCarIntent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)INIntent",
+                    "text": "INIntent"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This intent is no longer available. You may define a custom intent instead. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/deprecated-sirikit-intent-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1audioSource/title",
+          "value": "audioSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1audioSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/title",
+          "value": "INSetAudioSourceInCarIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title",
+          "value": "INIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1relativeAudioSourceReference/title",
+          "value": "relativeAudioSourceReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1relativeAudioSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "relativeAudioSourceReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/title",
+          "value": "INSetAudioSourceInCarIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/title",
+          "value": "INSetAudioSourceInCarIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetAudioSourceInCarIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1init(audioSource:relativeAudioSourceReference:)/title",
+          "value": "initWithAudioSource:relativeAudioSourceReference:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetAudioSourceInCarIntent~1init(audioSource:relativeAudioSourceReference:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAudioSource:relativeAudioSourceReference:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/insetaudiosourceincarintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/insetaudiosourceincarintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

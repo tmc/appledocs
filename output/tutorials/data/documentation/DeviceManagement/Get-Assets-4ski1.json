@@ -1,0 +1,855 @@
+{
+  "abstract": [
+    {
+      "text": "Get the set of assets that your organization manages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:get:v2-assets",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Assets"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/assets"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The requested page index.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageIndex",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "App",
+                "Book"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the asset product type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "productType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "STDQ",
+                "PLUS"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the asset product quality.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pricingParam",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for asset revocability.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "revocable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for asset device assignability.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deviceAssignable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the maximum inclusive assets available count.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "maxAvailableCount",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the minimum inclusive assets available count.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "minAvailableCount",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the maximum inclusive assets assigned count.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "maxAssignedCount",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the minimum inclusive assets assigned count.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "minAssignedCount",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The filter for the asset product unique identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "adamId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetAssetsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:GetAssetsResponse",
+              "text": "GetAssetsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided token is invalid. It may either be missing or expired.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An internal server error occurred. Try again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "?pageIndex=0&pricingParam=STDQ&productType=App"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"assets\": [",
+                    "        {",
+                    "            \"adamId\": \"408709785\",",
+                    "            \"assignedCount\": 5000,",
+                    "            \"availableCount\": 10000,",
+                    "            \"deviceAssignable\": true,",
+                    "            \"pricingParam\": \"STDQ\",",
+                    "            \"productType\": \"App\",",
+                    "            \"retiredCount\": 0,",
+                    "            \"revocable\": true,",
+                    "            \"supportedPlatforms\": [\"iOS\"],",
+                    "            \"totalCount\": 15000",
+                    "        },",
+                    "        {",
+                    "            \"adamId\": \"377298193\",",
+                    "            \"assignedCount\": 5000,",
+                    "            \"availableCount\": 10000,",
+                    "            \"deviceAssignable\": true,",
+                    "            \"pricingParam\": \"STDQ\",",
+                    "            \"productType\": \"App\",",
+                    "            \"retiredCount\": 0,",
+                    "            \"revocable\": true,",
+                    "            \"supportedPlatforms\": [\"iOS\"],",
+                    "            \"totalCount\": 15000",
+                    "        },",
+                    "        {",
+                    "            \"adamId\": \"361309726\",",
+                    "            \"assignedCount\": 5000,",
+                    "            \"availableCount\": 10000,",
+                    "            \"deviceAssignable\": true,",
+                    "            \"pricingParam\": \"STDQ\",",
+                    "            \"productType\": \"App\",",
+                    "            \"retiredCount\": 0,",
+                    "            \"revocable\": true,",
+                    "            \"supportedPlatforms\": [\"iOS\"],",
+                    "            \"totalCount\": 15000",
+                    "        },",
+                    "        {",
+                    "            \"adamId\": \"361304891\",",
+                    "            \"assignedCount\": 5000,",
+                    "            \"availableCount\": 10000,",
+                    "            \"deviceAssignable\": true,",
+                    "            \"pricingParam\": \"STDQ\",",
+                    "            \"productType\": \"App\",",
+                    "            \"retiredCount\": 0,",
+                    "            \"revocable\": true,",
+                    "            \"supportedPlatforms\": [\"iOS\"],",
+                    "            \"totalCount\": 15000",
+                    "        },",
+                    "        {",
+                    "            \"adamId\": \"361285480\",",
+                    "            \"assignedCount\": 5000,",
+                    "            \"availableCount\": 10000,",
+                    "            \"deviceAssignable\": true,",
+                    "            \"pricingParam\": \"STDQ\",",
+                    "            \"productType\": \"App\",",
+                    "            \"retiredCount\": 0,",
+                    "            \"revocable\": true,",
+                    "            \"supportedPlatforms\": [\"iOS\"],",
+                    "            \"totalCount\": 15000",
+                    "        }",
+                    "    ],",
+                    "    \"currentPageIndex\": 0,",
+                    "    \"size\": 5,",
+                    "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+                    "    \"totalPages\": 1,",
+                    "    \"uId\": \"2049025000431439\",",
+                    "    \"versionId\": \"70e8c740-514c-11eb-bb63-a90b882fcd52\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets": {
+      "abstract": [
+        {
+          "text": "Associate assets with client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Associate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Associate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/associate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets": {
+      "abstract": [
+        {
+          "text": "Disassociate assets from client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disassociate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disassociate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disassociate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the error that occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1": {
+      "abstract": [
+        {
+          "text": "Get the set of assets that your organization manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-4ski1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e": {
+      "abstract": [
+        {
+          "text": "Get the set of current assignments for users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-9wv1e"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetAssetsResponse": {
+      "abstract": [
+        {
+          "text": "The paginated response that contains the requested assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetAssetsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetAssetsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetAssetsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetAssetsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getassetsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets": {
+      "abstract": [
+        {
+          "text": "Revoke assets from client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revoke Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/revoke-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations": {
+      "abstract": [
+        {
+          "text": "Get details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apps and Books for Organizations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apps-and-books-for-organizations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services": {
+      "abstract": [
+        {
+          "text": "Associate app and book purchases with users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage assets across an organization’s users and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across your organization using the new API version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to the new App and Book Management API",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints": {
+      "abstract": [
+        {
+          "text": "Manage paginated endpoints to efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Paginated Endpoints",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/using-paginated-endpoints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e"
+      ],
+      "title": "Asset Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetAssetsResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse"
+      ],
+      "title": "Response"
+    },
+    {
+      "anchor": "Content-Metadata",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations"
+      ],
+      "title": "Content Metadata"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-assets-4ski1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

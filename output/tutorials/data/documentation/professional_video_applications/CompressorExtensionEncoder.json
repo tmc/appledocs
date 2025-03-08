@@ -1,0 +1,1583 @@
+{
+  "abstract": [
+    {
+      "text": "An interface an extension implements to convert source media to the output format supported in your extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CompressorExtensionEncoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CompressorExtensionEncoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CompressorExtensionEncoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ProVideo Encoder Extensions"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CompressorExtensionEncoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Unsupported OS: ProExtension"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the methods in this interface to run an encoding job, support parallel processing, and send output files to a specified destination. To run an encoding job, the Compressor app calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/runTranscode(for:start:duration:toFile:startTimeCode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. During the encoding process, the Compressor app calls the methods in the ",
+              "type": "text"
+            },
+            {
+              "code": "CompressorExtensionEncoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to get updates on the status and progress of an encoding job.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users sometimes request to pause a running encoder task to free up resources. You can choose to support resuming a job where it left off by saving the extension’s state while pausing in the implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/cancel(forPause:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Increase the encoding speed in your extension by taking advantage of distributed processing, where multiple extension instances process segments of source media concurrently. Determine individual segments of the source media to process in extension instances by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/splitPoints(forFrameStart:duration:serviceCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To combine the individual encoded segments into a single output file, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/mergeSegments(_:andAudio:toFile:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder": {
+      "abstract": [
+        {
+          "text": "An interface an extension implements to convert source media to the output format supported in your extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompressorExtensionEncoder",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/cancel(forPause:)": {
+      "abstract": [
+        {
+          "text": "Pauses or cancels an encoding job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPause"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/cancel(forPause:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelForPause:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cancel(forPause:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/cancel(forpause:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/mergeSegments(_:andAudio:toFile:)": {
+      "abstract": [
+        {
+          "text": "Merges multiple encoded video segments with an encoded audio segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeSegments"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "andAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/mergeSegments(_:andAudio:toFile:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mergeSegments:andAudio:toFile:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mergeSegments(_:andAudio:toFile:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/mergesegments(_:andaudio:tofile:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentDone()": {
+      "abstract": [
+        {
+          "text": "Returns the completion percentage of an encoding job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentDone"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentDone()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "percentDone"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "percentDone()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/percentdone()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentLostOnPause()": {
+      "abstract": [
+        {
+          "text": "Returns the percentage of the encoding job lost on pausing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentLostOnPause"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentLostOnPause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "percentLostOnPause"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "percentLostOnPause()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/percentlostonpause()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/runTranscode(for:start:duration:toFile:startTimeCode:)": {
+      "abstract": [
+        {
+          "text": "Encodes the source media files to an output format based on the encoder settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runTranscode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:ProCompressorExtensionProtocols.h@T@CompressorMediaDecoderPtr",
+          "text": "CompressorMediaDecoderPtr"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startTimeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/runTranscode(for:start:duration:toFile:startTimeCode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runTranscodeFor:start:duration:toFile:startTimeCode:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "runTranscode(for:start:duration:toFile:startTimeCode:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/runtranscode(for:start:duration:tofile:starttimecode:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setAnnotations(_:)": {
+      "abstract": [
+        {
+          "text": "Adds annotations to an encoded media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAnnotations"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setAnnotations(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAnnotations:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setAnnotations(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/setannotations(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setChapters(_:)": {
+      "abstract": [
+        {
+          "text": "Sets chapter markers of an encoded file from the contents of the input dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setChapters"
+        },
+        {
+          "kind": "text",
+          "text": "([["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setChapters(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setChapters:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setChapters(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/setchapters(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setSettings(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the current encoding settings based on the given setting values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:ProCompressorExtensionProtocols.h@T@CompressorExtensionSettingsPtr",
+          "text": "CompressorExtensionSettingsPtr"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setSettings(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSettings:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSettings(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/setsettings(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setStateFromPause(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the extension to a previously saved state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStateFromPause"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setStateFromPause(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStateFromPause:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setStateFromPause(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/setstatefrompause(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/splitPoints(forFrameStart:duration:serviceCount:)": {
+      "abstract": [
+        {
+          "text": "Determines the source media segments based on the number of available encoder services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitPoints"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFrameStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "serviceCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/splitPoints(forFrameStart:duration:serviceCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "splitPointsForFrameStart:duration:serviceCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "splitPoints(forFrameStart:duration:serviceCount:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/splitpoints(forframestart:duration:servicecount:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/statusMessage()": {
+      "abstract": [
+        {
+          "text": "Returns the status of an encoding job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusMessage"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/statusMessage()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusMessage"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "statusMessage()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/statusmessage()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/supportedPixelFormats": {
+      "abstract": [
+        {
+          "text": "The supported pixel formats in an encoder extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedPixelFormats"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/supportedPixelFormats",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedPixelFormats"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportedPixelFormats",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoder/supportedpixelformats"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoderPtr": {
+      "abstract": [
+        {
+          "text": "The type alias to use for referencing the ",
+          "type": "text"
+        },
+        {
+          "code": "CompressorExtensionEncoder",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionEncoderPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoderPtr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompressorExtensionEncoderPtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompressorExtensionEncoderPtr",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/compressorextensionencoderptr"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Determining-the-Source-Media-Segments",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/splitPoints(forFrameStart:duration:serviceCount:)"
+      ],
+      "title": "Determining the Source Media Segments"
+    },
+    {
+      "anchor": "Encoding-and-Merging-Segments",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/runTranscode(for:start:duration:toFile:startTimeCode:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/mergeSegments(_:andAudio:toFile:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoderPtr"
+      ],
+      "title": "Encoding and Merging Segments"
+    },
+    {
+      "anchor": "Providing-Updates-of-the-Encoding-Process",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/statusMessage()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentDone()"
+      ],
+      "title": "Providing Updates of the Encoding Process"
+    },
+    {
+      "anchor": "Canceling-or-Pausing-the-Encoding-Process",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/cancel(forPause:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setStateFromPause(_:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentLostOnPause()"
+      ],
+      "title": "Canceling or Pausing the Encoding Process"
+    },
+    {
+      "anchor": "Setting-Encoding-Values",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setSettings(_:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setAnnotations(_:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setChapters(_:)"
+      ],
+      "title": "Setting Encoding Values"
+    },
+    {
+      "anchor": "Supporting-Pixel-Formats",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/supportedPixelFormats"
+      ],
+      "title": "Supporting Pixel Formats"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CompressorExtensionEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Determining-the-Source-Media-Segments",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/splitPoints(forFrameStart:duration:serviceCount:)"
+              ],
+              "title": "Determining the Source Media Segments"
+            },
+            {
+              "anchor": "Encoding-and-Merging-Segments",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/runTranscode(for:start:duration:toFile:startTimeCode:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/mergeSegments(_:andAudio:toFile:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoderPtr"
+              ],
+              "title": "Encoding and Merging Segments"
+            },
+            {
+              "anchor": "Providing-Updates-of-the-Encoding-Process",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/statusMessage()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentDone()"
+              ],
+              "title": "Providing Updates of the Encoding Process"
+            },
+            {
+              "anchor": "Canceling-or-Pausing-the-Encoding-Process",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/cancel(forPause:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setStateFromPause(_:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/percentLostOnPause()"
+              ],
+              "title": "Canceling or Pausing the Encoding Process"
+            },
+            {
+              "anchor": "Setting-Encoding-Values",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setSettings(_:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setAnnotations(_:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/setChapters(_:)"
+              ],
+              "title": "Setting Encoding Values"
+            },
+            {
+              "anchor": "Supporting-Pixel-Formats",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/CompressorExtensionEncoder/supportedPixelFormats"
+              ],
+              "title": "Supporting Pixel Formats"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Unsupported OS: ProExtension"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CompressorExtensionEncoder"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1statusMessage()/title",
+          "value": "statusMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1statusMessage()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "statusMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoderPtr/title",
+          "value": "CompressorExtensionEncoderPtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoderPtr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoderPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoderPtr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoderPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1percentLostOnPause()/title",
+          "value": "percentLostOnPause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1percentLostOnPause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "percentLostOnPause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setAnnotations(_:)/title",
+          "value": "setAnnotations:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setAnnotations(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAnnotations:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1splitPoints(forFrameStart:duration:serviceCount:)/title",
+          "value": "splitPointsForFrameStart:duration:serviceCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1splitPoints(forFrameStart:duration:serviceCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "splitPointsForFrameStart:duration:serviceCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder/title",
+          "value": "CompressorExtensionEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CompressorExtensionEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setSettings(_:)/title",
+          "value": "setSettings:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setSettings(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSettings:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1runTranscode(for:start:duration:toFile:startTimeCode:)/title",
+          "value": "runTranscodeFor:start:duration:toFile:startTimeCode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1runTranscode(for:start:duration:toFile:startTimeCode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runTranscodeFor:start:duration:toFile:startTimeCode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1cancel(forPause:)/title",
+          "value": "cancelForPause:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1cancel(forPause:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelForPause:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1mergeSegments(_:andAudio:toFile:)/title",
+          "value": "mergeSegments:andAudio:toFile:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1mergeSegments(_:andAudio:toFile:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mergeSegments:andAudio:toFile:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setChapters(_:)/title",
+          "value": "setChapters:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setChapters(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setChapters:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1supportedPixelFormats/title",
+          "value": "supportedPixelFormats"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1supportedPixelFormats/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedPixelFormats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setStateFromPause(_:)/title",
+          "value": "setStateFromPause:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1setStateFromPause(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStateFromPause:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1percentDone()/title",
+          "value": "percentDone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1CompressorExtensionEncoder~1percentDone()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "percentDone"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional_video_applications/compressorextensionencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional_video_applications/compressorextensionencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

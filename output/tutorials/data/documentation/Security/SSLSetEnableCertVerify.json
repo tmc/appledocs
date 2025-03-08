@@ -1,0 +1,725 @@
+{
+  "abstract": [
+    {
+      "text": "Enables or disables peer certificate chain validation.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "To disable peer certificate chain validation, you can instead use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to set ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to true. This will disable verification and cause ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to return with an ",
+          "type": "text"
+        },
+        {
+          "code": "errSSLServerAuthCompleted",
+          "type": "codeVoice"
+        },
+        {
+          "text": " result when the peer certificates have been received. Then you can choose to evaluate peer trust yourself or simply call ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " again to proceed with the handshake.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SSLSetEnableCertVerify",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SSLSetEnableCertVerify"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SSLSetEnableCertVerify"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.2",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SSLSetEnableCertVerify"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SSLSetEnableCertVerify"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SSLContextRef",
+              "text": "SSLContextRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enableVerify"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An SSL session context reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value specifying whether peer certificate chain validation is enabled. Certificate chain validation is enabled by default. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to disable validation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "enableVerify"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Secure Transport attempts to verify the certificate chain during an exchange of peer certificates. If you disable peer certificate chain validation, it is your responsibility to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " upon successful completion of the handshake and then to validate the peer certificate chain before transferring the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to determine the current setting of the ",
+              "type": "text"
+            },
+            {
+              "code": "enableVerify",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SSLContext": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an SSL session context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLContext",
+      "type": "topic",
+      "url": "/documentation/security/sslcontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates": {
+      "abstract": [
+        {
+          "text": "Retrieves a peer certificate and its certificate chain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerCertificates"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLCopyPeerCertificates",
+      "type": "topic",
+      "url": "/documentation/security/sslcopypeercertificates"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify": {
+      "abstract": [
+        {
+          "text": "Determines whether peer certificate chain validation is currently enabled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetEnableCertVerify"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetEnableCertVerify",
+      "type": "topic",
+      "url": "/documentation/security/sslgetenablecertverify"
+    },
+    "doc://com.apple.security/documentation/Security/SSLHandshake(_:)": {
+      "abstract": [
+        {
+          "text": "Performs the SSL handshake.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLHandshake(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslhandshake(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth": {
+      "abstract": [
+        {
+          "text": "Enables returning from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " (with a result of ",
+          "type": "text"
+        },
+        {
+          "code": "errSSLServerAuthCompleted",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") when the server authentication portion of the handshake is complete to allow your application to perform its own certificate verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakOnServerAuth"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption/breakOnServerAuth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSSLSessionOptionBreakOnServerAuth"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSessionOption.breakOnServerAuth",
+      "type": "topic",
+      "url": "/documentation/security/sslsessionoption/breakonserverauth"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify": {
+      "abstract": [
+        {
+          "text": "Enables or disables peer certificate chain validation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetEnableCertVerify"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetEnableCertVerify",
+      "type": "topic",
+      "url": "/documentation/security/sslsetenablecertverify"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies options for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionOption",
+          "text": "SSLSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionOption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionoption(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/secure-transport-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the secure transport API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Transport Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-transport-result-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/title",
+          "value": "SSLHandshake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLHandshake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/title",
+          "value": "SSLSetSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/title",
+          "value": "kSSLSessionOptionBreakOnServerAuth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption~1breakOnServerAuth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSSLSessionOptionBreakOnServerAuth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/title",
+          "value": "SSLContextRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sslsetenablecertverify"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "Update your existing Audio Unit v2 host app to load and use Audio Unit extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Hosting Audio Unit Extensions Using the AUv2 API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The latest Audio Unit standard, AUv3, provides a robust plug-in model built on app extensions. This model provides several benefits to host apps, including greater security and stability, multiple view configurations, and support for shared user presets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With only minor modifications to your existing AUv2 host app, you’re able to load and interact with Audio Unit extensions. The framework provides a bridging layer that automatically translates AUv2 calls into their AUv3 equivalents, and vice versa. This bridging is largely transparent to your app, and you’re only required to make minor changes to how you instantiate components and access their user interfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3526605",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "AUv2 is in maintenance mode, and it’s recommended that you adopt the AUv3 API for new development.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Asynchronously-Instantiate-Audio-Units",
+          "level": 3,
+          "text": "Asynchronously Instantiate Audio Units",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AUv3 extensions that provide a user interface require that you instantiate them asynchronously. Attempting to instantiate them using the synchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function fails. Instead, check for the existence of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags/requiresAsyncInstantiation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " component flag. If present, asynchronously instantiate the component using the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, as shown in the following code example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AudioComponent component = ...",
+            "AudioComponentDescription componentDesc;",
+            "",
+            "// Get the component description.",
+            "AudioComponentGetDescription(component, &componentDesc);",
+            "",
+            "// Determine if async loading is required.",
+            "bool requiresAsync = (componentDesc.componentFlags &",
+            "                      kAudioComponentFlag_RequiresAsyncInstantiation) > 0;",
+            "",
+            "if (requiresAsync) {",
+            "    // Asynchronous Path",
+            "    AudioComponentInstantiate(component,",
+            "                              kAudioComponentInstantiation_LoadOutOfProcess,",
+            "                              ^(AudioComponentInstance audioUnit, OSStatus error) {",
+            "        // Initialize AudioUnit instance.",
+            "    });",
+            "} else {",
+            "    // Synchronous Path",
+            "    AudioComponentInstance audioUnit;",
+            "    if (AudioComponentInstanceNew(component, &audioUnit) == noErr) {",
+            "        // Initialize AudioUnit instance.",
+            "    }",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the component requires asynchronous instantiation, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, and pass it the component you want to instantiate, the desired instantiation option (in or out of process), and a completion block that’s called when the instantiation completes. This callback block provides the audio unit instance or any errors that might have occurred while instantiating the component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t block the main thread while waiting for the asynchronous instantiation to complete.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Present-the-Audio-Units-User-Interface",
+          "level": 3,
+          "text": "Present the Audio Unit’s User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You access an AUv2 plug-in’s user interface by retrieving its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_CocoaUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This property isn’t used with AUv3 plug-ins; you retrieve the user interface instead using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RequestViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You do so by setting a callback block that’s invoked when the framework loads the user interface. The callback provides a reference to the Audio Unit’s user interface, which you can present in your host’s interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AudioComponent component = ...",
+            "",
+            "AudioComponentDescription componentDesc;",
+            "AudioComponentGetDescription(component, &componentDesc);",
+            "",
+            "bool isAUv3 = (componentDesc.componentFlags &",
+            "               kAudioComponentFlag_IsV3AudioUnit) > 0;",
+            "",
+            "if (isAUv3) {",
+            "    __block AUViewControllerBase *viewController = nil;",
+            "    ",
+            "    auto callback = ^(AUViewControllerBase *vc) {",
+            "        viewController = vc;",
+            "        // Dispatch back to the main queue to embed the UI.",
+            "    };",
+            "    ",
+            "    // AUv3: Retrieve the UI using the kAudioUnitProperty_RequestViewController property.",
+            "    AudioUnitSetProperty(audioUnit,",
+            "                         kAudioUnitProperty_RequestViewController,",
+            "                         kAudioUnitScope_Global,",
+            "                         0,",
+            "                         &callback,",
+            "                         sizeof(callback));",
+            "} else {",
+            "    // AUv2: Retrieve the UI using the kAudioUnitProperty_CocoaUI property.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags/requiresAsyncInstantiation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresAsyncInstantiation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentFlags",
+          "text": "AudioComponentFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags/requiresAsyncInstantiation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentFlag_RequiresAsyncInstantiation"
+        }
+      ],
+      "role": "symbol",
+      "title": "requiresAsyncInstantiation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentflags/requiresasyncinstantiation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance of an audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceNew"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceNew"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstanceNew(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstancenew(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentInstantiationOptions",
+          "text": "AudioComponentInstantiationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstantiate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstantiate(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins": {
+      "abstract": [
+        {
+          "text": "Deliver custom audio effects, instruments, and other audio behaviors using an Audio Unit v3 app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_CocoaUI": {
+      "abstract": [
+        {
+          "text": "A read-only ",
+          "type": "text"
+        },
+        {
+          "code": "AudioUnitCocoaViewInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data structure valid on the audio unit global scope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_CocoaUI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_CocoaUI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_CocoaUI"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitProperty_CocoaUI",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitproperty_cocoaui"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RequestViewController": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_RequestViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RequestViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_RequestViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitProperty_RequestViewController",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitproperty_requestviewcontroller"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/migrating-your-audio-unit-host-to-the-auv3-api": {
+      "abstract": [
+        {
+          "text": "Update your Audio Unit (AU) host app to take advantage of the new features and capabilities of AUv3.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/migrating-your-audio-unit-host-to-the-auv3-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating Your Audio Unit Host to the AUv3 API",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3526605": {
+      "alt": "A component diagram that shows the bridging support provided by the framework.",
+      "identifier": "media-3526605",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/905c919679c026e3a9b37e5404a6f49c/media-3526605@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Host-App",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+      ],
+      "title": "Host App"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Host-App",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/migrating-your-audio-unit-host-to-the-auv3-api"
+              ],
+              "title": "Host App"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiate(_:_:_:)/title",
+          "value": "AudioComponentInstantiate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstantiate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_RequestViewController/title",
+          "value": "kAudioUnitProperty_RequestViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_RequestViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitProperty_RequestViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_CocoaUI/title",
+          "value": "kAudioUnitProperty_CocoaUI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_CocoaUI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitProperty_CocoaUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceNew(_:_:)/title",
+          "value": "AudioComponentInstanceNew"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceNew(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstanceNew"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFlags~1requiresAsyncInstantiation/title",
+          "value": "kAudioComponentFlag_RequiresAsyncInstantiation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFlags~1requiresAsyncInstantiation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentFlag_RequiresAsyncInstantiation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/hosting-audio-unit-extensions-using-the-auv2-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

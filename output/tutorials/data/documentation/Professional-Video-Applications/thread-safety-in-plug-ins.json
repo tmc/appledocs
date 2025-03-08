@@ -1,0 +1,1577 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Thread safety in plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In FxPlug 4, the framework handles requests from the host application on a serial queue on a background thread of the plug-in. Many requests move to a concurrent queue for processing by your plug-in. This avoids blocking incoming requests from other threads. It also allows processing of requests sent asynchronously from the same thread in the host application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This background processing means you need to be careful to not read from and write to the same objects or memory on different threads at the same time. This includes your plug-in’s instance variables and properties, and those of any other objects you access during your plug-in’s lifetime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-reentrancy-in-Final-Cut-Pro-and-Motion",
+          "level": 3,
+          "text": "Understand reentrancy in Final Cut Pro and Motion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rendering systems in Final Cut Pro and Motion generally work in two phases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generating a graph of the objects you want to render and composite",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performing the actual rendering and compositing of those objects",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These two phases happen on different threads in the host application so they can pipeline together. Depending on the number of GPUs in the user’s machine, there may be one or more of these threads running concurrently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, on a dual GPU system, the host may be building the graphs for frames ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "n+1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " while rendering the graphs from frames ",
+              "type": "text"
+            },
+            {
+              "code": "n-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "n-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This concurrent approach means the host does more work at once, fully utilizing the CPUs and GPUs when possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-best-practices-to-make-your-plug-ins-reentrant",
+          "level": 3,
+          "text": "Use best practices to make your plug-ins reentrant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 3 and earlier also called your plug-ins on multiple threads at the same time. Using  a property, you turned this functionality off and required serial processing from the host. That property does nothing in FxPlug 4, so if you need to make non-reentrant code reentrant, the following strategies may help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Immutable-Data",
+          "level": 4,
+          "text": "Use Immutable Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data structures that you canʼt modify are safe to use on multiple threads at the same time, if you don’t delete them on any thread while in use by another. Because you can’t update them, no thread receives old or partially changed data when you access it. Using the immutable forms of the standard Cocoa containers, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", instead of the mutable forms, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", is a good first step. You must also ensure that any classes you design have immutable variants that you use across threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-a-New-Copy",
+          "level": 4,
+          "text": "Use a New Copy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to mutate data in your plug-in, you can safely do so by having each thread create its own copy of the data it needs. Copy an existing immutable structure into a mutable one locally, or create all instances as you need them and then dispose of them when youʼre done. This approach ensures you never share them between threads. Making copies or creating objects as you need them may have performance implications if the objects are large or you need to perform a lot of computation to create them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Synchronization-Primitives",
+          "level": 4,
+          "text": "Use Synchronization Primitives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it’s not possible to use immutable data or to always use a copy of the data you want to work with, you can synchronize access to your data between threads using synchronization primitives like locks, mutexes, semaphores, and condition variables. Each of these objects has its own behaviors, but in general they allow only one thread to access the data at a time, or they keep track of how many times the system accesses the data before allowing processing to continue. For example, you can use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object around your calls that access shared data. In the following code from the ",
+              "type": "text"
+            },
+            {
+              "code": "FxShape",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example, ",
+              "type": "text"
+            },
+            {
+              "code": "lastPositionLock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an ",
+              "type": "text"
+            },
+            {
+              "code": "NSLock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " used in ",
+              "type": "text"
+            },
+            {
+              "code": "FxShapeOSC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that guards access to the ",
+              "type": "text"
+            },
+            {
+              "code": "lastObjectPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let lastPositionLock = NSLock()",
+                    "",
+                    "@objc(FxShapeOSC) class FxShapeOSC: NSObject, FxOnScreenControl_v4",
+                    "{",
+                    "    let apiManager: PROAPIAccessing!",
+                    "    var lastObjectPosition = (x:0.0, y:0.0)    ",
+                    "",
+                    "// ...",
+                    "",
+                    "    func mouseDown(atPositionX mousePositionX: Double, positionY mousePositionY: Double, activePart: Int, modifiers: FxModifierKeys, forceUpdate: UnsafeMutablePointer<ObjCBool>?, at time: CMTime)",
+                    "    {",
+                    "        var lastObjectPos = lastObjectPosition",
+                    "        let oscAPI = apiManager!.api(for: FxOnScreenControlAPI_v4.self) as! FxOnScreenControlAPI_v4",
+                    "        lastPositionLock.lock()",
+                    "        oscAPI.convertPoint(fromSpace: UInt(kFxDrawingCoordinates_CANVAS), fromX: mousePositionX, fromY: mousePositionY, toSpace: UInt(kFxDrawingCoordinates_OBJECT), toX: &lastObjectPos.x, toY: &lastObjectPos.y)",
+                    "        lastObjectPosition = lastObjectPos",
+                    "        lastPositionLock.unlock()",
+                    "        forceUpdate?.pointee = false",
+                    "    }",
+                    "",
+                    "// ...",
+                    "",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@implementation FxShapeOSC",
+                    "{",
+                    "    NSLock* lastPositionLock;",
+                    "}",
+                    "",
+                    "- (instancetype)initWithAPIManager:(id<PROAPIAccessing>)newAPIManager",
+                    "{",
+                    "    self = [super init];",
+                    "    ",
+                    "    if (self != nil)",
+                    "    {",
+                    "        apiManager = newAPIManager;",
+                    "        lastPositionLock = [[NSLock alloc] init];",
+                    "    }",
+                    "    ",
+                    "    return self;",
+                    "}",
+                    "",
+                    "- (void)dealloc",
+                    "{",
+                    "    [lastPositionLock release];",
+                    "    [super dealloc];",
+                    "}",
+                    "",
+                    "// ...",
+                    "",
+                    "- (void)mouseDownAtPositionX:(double)mousePositionX",
+                    "                   positionY:(double)mousePositionY",
+                    "                  activePart:(NSInteger)activePart",
+                    "                   modifiers:(FxModifierKeys)modifiers",
+                    "                 forceUpdate:(BOOL *)forceUpdate",
+                    "                      atTime:(CMTime)time",
+                    "{",
+                    "    id<FxOnScreenControlAPI_v4> oscAPI  = [apiManager apiForProtocol:@protocol(FxOnScreenControlAPI_v4)];",
+                    "    [lastPositionLock lock];",
+                    "    [oscAPI convertPointFromSpace:kFxDrawingCoordinates_CANVAS",
+                    "                            fromX:mousePositionX",
+                    "                            fromY:mousePositionY",
+                    "                          toSpace:kFxDrawingCoordinates_OBJECT",
+                    "                              toX:&lastObjectPosition.x",
+                    "                              toY:&lastObjectPosition.y];",
+                    "    [lastPositionLock unlock];",
+                    "    *forceUpdate = NO;",
+                    "}",
+                    "",
+                    "// ..."
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the code retrieves the mouse position when a user clicks the mouse, and assigns the coordinates to the instance variable ",
+              "type": "text"
+            },
+            {
+              "code": "lastObjectPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because you lock the ",
+              "type": "text"
+            },
+            {
+              "code": "NSLock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before doing that, no other thread calling this function can access ",
+              "type": "text"
+            },
+            {
+              "code": "lastObjectPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " until you unlock it. If other functions access the ",
+              "type": "text"
+            },
+            {
+              "code": "lastObjectPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), they must implement the same calls that lock the same ",
+              "type": "text"
+            },
+            {
+              "code": "NSLock",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These guidelines apply to any function that your plug-in implements. You can call the methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and most of the other plug-in-implemented protocols, from background threads, and often on multiple threads at the same time. This includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and others.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a static collection of key-value pairs, for use instead of a  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslock": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the operation of multiple threads of execution within the same application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nslock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic ordered collection, for use instead of an  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic collection of key-value pairs, for use instead of a  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template": {
+      "abstract": [
+        {
+          "text": "Create a plug-in in Xcode with the FxPlug template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in from an Xcode template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis": {
+      "abstract": [
+        {
+          "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Using FxPlug APIs",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-fxplug-apis"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the left mouse button is pressed and the pointer is moved with the mouse button still down.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mousedragged(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the left mouse button is released.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mouseup(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)": {
+      "abstract": [
+        {
+          "text": "Executes when the host detects that a parameter has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterChanged:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterChanged(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/parameterchanged(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the plug-in’s parameter values, performs any calculations it needs to from those values, and packages up the result to be used later with rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSData",
+          "text": "NSData"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxQuality",
+          "text": "FxQuality"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/pluginState(_:at:quality:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pluginState:atTime:quality:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pluginState(_:at:quality:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/pluginstate(_:at:quality:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Sends a request that the host wants your plug-in to do its rendering for a given output image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "renderDestinationImage(_:sourceImages:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/renderdestinationimage(_:sourceimages:pluginstate:at:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Plug-in-fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Plug-in-fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/title",
+          "value": "pluginState:atTime:quality:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1pluginState(_:at:quality:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pluginState:atTime:quality:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutablearray/abstract",
+          "value": [
+            {
+              "text": "A dynamic ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdictionary/abstract",
+          "value": [
+            {
+              "text": "A static collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/title",
+          "value": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1renderDestinationImage(_:sourceImages:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderDestinationImage:sourceImages:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/title",
+          "value": "parameterChanged:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterChanged:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutabledictionary/abstract",
+          "value": [
+            {
+              "text": "A dynamic collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

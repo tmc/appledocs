@@ -1,1 +1,2569 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.security/documentation/Security","doc://com.apple.security/documentation/Security/keychain-services"]]},"sections":[],"metadata":{"roleHeading":"API Collection","role":"collectionGroup","modules":[{"name":"Security"}],"title":"Access Control Lists"},"topicSections":[{"anchor":"Access-Creation","title":"Access Creation","identifiers":["doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)","doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)","doc://com.apple.security/documentation/Security/SecAccessOwnerType","doc://com.apple.security/documentation/Security/SecAccessOwnerType-values","doc://com.apple.security/documentation/Security/SecAccess","doc://com.apple.security/documentation/Security/SecAccessGetTypeID()"]},{"anchor":"Access-Query","title":"Access Query","identifiers":["doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)","doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)","doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)"]},{"anchor":"Access-Control-List-Entries","title":"Access Control List Entries","identifiers":["doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLRemove(_:)","doc://com.apple.security/documentation/Security/acl-authorization-keys","doc://com.apple.security/documentation/Security/SecKeychainPromptSelector","doc://com.apple.security/documentation/Security/SecACL","doc://com.apple.security/documentation/Security/SecACLGetTypeID()"]},{"anchor":"Access-Control-List-Configuration","title":"Access Control List Configuration","identifiers":["doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)","doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)"]},{"anchor":"Trusted-Applications","title":"Trusted Applications","identifiers":["doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplication","doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()"]},{"anchor":"Keychain-Item-Access","title":"Keychain Item Access","identifiers":["doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)","doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)"]}],"variants":[{"paths":["/documentation/security/access-control-lists"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/security/access-control-lists"],"traits":[{"interfaceLanguage":"occ"}]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"abstract":[{"type":"text","text":"Control which apps have access to keychain items in macOS."}],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.security/documentation/Security/access-control-lists"},"kind":"article","primaryContentSections":[{"kind":"content","content":[{"type":"heading","text":"Overview","level":2,"anchor":"overview"},{"type":"paragraph","inlineContent":[{"text":"In macOS, for items not stored on the iCloud keychain, each protected keychain item—like a password or private key—has an associated access instance that contains an access control list (ACL). The entries in this list in turn each contain an array of operations and an array of apps trusted to carry out those operations with the item. The collection of ACL entries govern the accessibility of the corresponding keychain item.","type":"text"}]},{"type":"paragraph","inlineContent":[{"identifier":"media-2983146","type":"image"}]},{"type":"paragraph","inlineContent":[{"text":"When an app attempts to access a keychain item for a particular purpose—like using a private key to sign a document—the system looks for an entry in the item’s ACL containing the operation. If there’s no entry that lists the operation, then the system denies access and it’s up to the calling app to try something else or to notify the user.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"If there is an entry that lists the operation, the system checks whether the calling app is among the entry’s trusted apps. If so, the system grants access. Otherwise, the system prompts the user for confirmation. The user may choose to Deny, Allow, or Always Allow the access. In the latter case, the system adds the app to the list of trusted apps for that entry, enabling the app to gain access in the future without prompting the user again."}]},{"type":"aside","content":[{"type":"paragraph","inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"ACLs are not available in iOS or in macOS apps that use the iCloud keychain. For keychain item sharing in those environments, use access groups instead. See ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps","type":"reference"},{"text":".","type":"text"}]}],"name":"Important","style":"important"}]}],"references":{"doc://com.apple.security/documentation/Security/OpaqueSecAccessRef":{"role":"symbol","url":"/documentation/security/opaquesecaccessref","type":"topic","kind":"symbol","identifier":"doc://com.apple.security/documentation/Security/OpaqueSecAccessRef","abstract":[],"fragments":[{"text":"OpaqueSecAccessRef","kind":"identifier"}],"title":"OpaqueSecAccessRef"},"doc://com.apple.security/documentation/Security":{"title":"Security","abstract":[{"text":"Secure the data your app manages, and control access to your app.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security","kind":"symbol","url":"/documentation/security","type":"topic","role":"collection"},"doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList":{"url":"/documentation/security/secaccesscopyselectedacllist","deprecated":true,"type":"topic","abstract":[{"text":"Retrieves selected access control lists from a given access object.","type":"text"}],"kind":"symbol","fragments":[{"kind":"identifier","text":"SecAccessCopySelectedACLList"}],"title":"SecAccessCopySelectedACLList","identifier":"doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList","role":"symbol"},"doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)":{"url":"/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)","abstract":[{"type":"text","text":"Retrieves the owner and the ACL entries of a given access instance."}],"kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecAccessCopyOwnerAndACL"},{"kind":"text","text":"("},{"preciseIdentifier":"c:@T@SecAccessRef","kind":"typeIdentifier","text":"SecAccess"},{"kind":"text","text":", "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"preciseIdentifier":"c:@T@uid_t","kind":"typeIdentifier","text":"uid_t"},{"kind":"text","text":">?, "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"preciseIdentifier":"c:@T@gid_t","kind":"typeIdentifier","text":"gid_t"},{"kind":"text","text":">?, "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"preciseIdentifier":"c:@T@SecAccessOwnerType","kind":"typeIdentifier","text":"SecAccessOwnerType"},{"kind":"text","text":">?, "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"preciseIdentifier":"c:@T@CFArrayRef","kind":"typeIdentifier","text":"CFArray"},{"kind":"text","text":"?>?) -> "},{"preciseIdentifier":"c:@T@OSStatus","kind":"typeIdentifier","text":"OSStatus"}],"identifier":"doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)","navigatorTitle":[{"kind":"identifier","text":"SecAccessCopyOwnerAndACL"}],"deprecated":true,"type":"topic","role":"symbol","title":"SecAccessCopyOwnerAndACL(_:_:_:_:_:)"},"doc://com.apple.security/documentation/Security/SecAccessGetTypeID()":{"navigatorTitle":[{"text":"SecAccessGetTypeID","kind":"identifier"}],"abstract":[{"type":"text","text":"Returns the unique identifier of the opaque type to which an access instance belongs."}],"identifier":"doc://com.apple.security/documentation/Security/SecAccessGetTypeID()","url":"/documentation/security/secaccessgettypeid()","kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"text":"SecAccessGetTypeID","kind":"identifier"},{"kind":"text","text":"() -> "},{"preciseIdentifier":"c:@T@CFTypeID","kind":"typeIdentifier","text":"CFTypeID"}],"type":"topic","role":"symbol","title":"SecAccessGetTypeID()","deprecated":true},"doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)":{"url":"/documentation/security/secaccesscopymatchingacllist(_:_:)","abstract":[{"text":"Retrieves selected ACL entries from a given access instance.","type":"text"}],"role":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessCopyMatchingACLList","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecAccessRef","text":"SecAccess","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@CFTypeRef","text":"CFTypeRef","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@CFArrayRef","text":"CFArray","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"kind":"symbol","deprecated":true,"identifier":"doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)","navigatorTitle":[{"text":"SecAccessCopyMatchingACLList","kind":"identifier"}],"type":"topic","title":"SecAccessCopyMatchingACLList(_:_:)"},"media-2983146":{"variants":[{"traits":["2x","light"],"url":"https://docs-assets.developer.apple.com/published/8c69c5a70381015d07af31a6c33c000a/media-2983146@2x.png"},{"traits":["2x","dark"],"url":"https://docs-assets.developer.apple.com/published/8c69c5a70381015d07af31a6c33c000a/media-2983146~dark@2x.png"}],"identifier":"media-2983146","alt":"Diagram showing the detailed contents of access attribute of a kechain item, namely an access control list composed of entries for different operations and trusted apps.","type":"image"},"doc://com.apple.security/documentation/Security/SecKeychainPromptSelector":{"role":"symbol","url":"/documentation/security/seckeychainpromptselector","kind":"symbol","title":"SecKeychainPromptSelector","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecKeychainPromptSelector"}],"identifier":"doc://com.apple.security/documentation/Security/SecKeychainPromptSelector","navigatorTitle":[{"kind":"identifier","text":"SecKeychainPromptSelector"}],"type":"topic","abstract":[{"type":"text","text":"Bits that define when a keychain should require a passphrase."}]},"doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents":{"url":"/documentation/security/secaclcreatefromsimplecontents","role":"symbol","fragments":[{"text":"SecACLCreateFromSimpleContents","kind":"identifier"}],"abstract":[{"type":"text","text":"Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item’s access object."}],"identifier":"doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents","kind":"symbol","title":"SecACLCreateFromSimpleContents","type":"topic","deprecated":true},"doc://com.apple.security/documentation/Security/SecACLCopySimpleContents":{"type":"topic","title":"SecACLCopySimpleContents","abstract":[{"type":"text","text":"Returns the application list, description, and CSSM prompt selector for a given access control list entry."}],"fragments":[{"text":"SecACLCopySimpleContents","kind":"identifier"}],"identifier":"doc://com.apple.security/documentation/Security/SecACLCopySimpleContents","kind":"symbol","url":"/documentation/security/secaclcopysimplecontents","role":"symbol","deprecated":true},"doc://com.apple.security/documentation/Security/SecACLRemove(_:)":{"title":"SecACLRemove(_:)","identifier":"doc://com.apple.security/documentation/Security/SecACLRemove(_:)","type":"topic","abstract":[{"text":"Removes the specified ACL entry from the access instance that contains it.","type":"text"}],"deprecated":true,"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLRemove","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecACLRef","text":"SecACL","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@OSStatus","text":"OSStatus","kind":"typeIdentifier"}],"url":"/documentation/security/secaclremove(_:)","role":"symbol","kind":"symbol","navigatorTitle":[{"text":"SecACLRemove","kind":"identifier"}]},"doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)":{"url":"/documentation/security/secaclsetcontents(_:_:_:_:)","role":"symbol","navigatorTitle":[{"text":"SecACLSetContents","kind":"identifier"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLSetContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecACL","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef"},{"text":", ","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"},{"text":"?, ","kind":"text"},{"text":"CFString","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFStringRef"},{"text":", ","kind":"text"},{"text":"SecKeychainPromptSelector","kind":"typeIdentifier","preciseIdentifier":"c:@E@SecKeychainPromptSelector"},{"text":") -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"abstract":[{"text":"Sets the application list, description, and prompt selector for a given ACL entry.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)","kind":"symbol","title":"SecACLSetContents(_:_:_:_:)","type":"topic","deprecated":true},"doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps":{"title":"Sharing access to keychain items among a collection of apps","type":"topic","abstract":[{"type":"text","text":"Enable apps to share keychain items with each other by adding the apps to an access group."}],"kind":"article","url":"/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps","identifier":"doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps","role":"article"},"doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)":{"identifier":"doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLCopyContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecACL","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef"},{"text":", ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"},{"text":"?>, ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"CFString","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFStringRef"},{"text":"?>, ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"SecKeychainPromptSelector","kind":"typeIdentifier","preciseIdentifier":"c:@E@SecKeychainPromptSelector"},{"text":">) -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"deprecated":true,"role":"symbol","type":"topic","url":"/documentation/security/secaclcopycontents(_:_:_:_:)","title":"SecACLCopyContents(_:_:_:_:)","kind":"symbol","navigatorTitle":[{"text":"SecACLCopyContents","kind":"identifier"}],"abstract":[{"type":"text","text":"Returns the application list, description, and prompt selector for a given ACL entry."}]},"doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)":{"url":"/documentation/security/secaccesscreate(_:_:_:)","deprecated":true,"type":"topic","navigatorTitle":[{"text":"SecAccessCreate","kind":"identifier"}],"abstract":[{"text":"Creates a new access instance associated with a given protected keychain item.","type":"text"}],"kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessCreate","kind":"identifier"},{"text":"(","kind":"text"},{"text":"CFString","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFStringRef"},{"text":", ","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"},{"text":"?, ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"SecAccess","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecAccessRef"},{"text":"?>) -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"title":"SecAccessCreate(_:_:_:)","identifier":"doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)","role":"symbol"},"doc://com.apple.security/documentation/Security/SecAccessOwnerType":{"title":"SecAccessOwnerType","type":"topic","abstract":[{"type":"text","text":"A type for flags that enable you to configure ACL ownership."}],"fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessOwnerType","kind":"identifier"}],"kind":"symbol","url":"/documentation/security/secaccessownertype","navigatorTitle":[{"text":"SecAccessOwnerType","kind":"identifier"}],"identifier":"doc://com.apple.security/documentation/Security/SecAccessOwnerType","role":"symbol"},"doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)":{"type":"topic","title":"SecKeychainItemSetAccess(_:_:)","abstract":[{"type":"text","text":"Sets the access of a given keychain item."}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecKeychainItemSetAccess"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@SecKeychainItemRef","text":"SecKeychainItem"},{"kind":"text","text":", "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@SecAccessRef","text":"SecAccess"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus","text":"OSStatus"}],"identifier":"doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)","kind":"symbol","url":"/documentation/security/seckeychainitemsetaccess(_:_:)","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"SecKeychainItemSetAccess"}],"deprecated":true},"doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)":{"kind":"symbol","type":"topic","url":"/documentation/security/secaccesscopyacllist(_:_:)","navigatorTitle":[{"text":"SecAccessCopyACLList","kind":"identifier"}],"deprecated":true,"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessCopyACLList","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecAccess","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecAccessRef"},{"text":", ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"},{"text":"?>) -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"abstract":[{"text":"Retrieves all the ACL entries of a given access instance.","type":"text"}],"title":"SecAccessCopyACLList(_:_:)","identifier":"doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)","role":"symbol"},"doc://com.apple.security/documentation/Security/SecAccessOwnerType-values":{"identifier":"doc://com.apple.security/documentation/Security/SecAccessOwnerType-values","abstract":[{"text":"Flags that enable you to configure ACL ownership.","type":"text"}],"kind":"article","title":"SecAccessOwnerType Values","type":"topic","role":"collectionGroup","url":"/documentation/security/secaccessownertype-values"},"doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)":{"url":"/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)","abstract":[{"text":"Creates a new access instance using the owner and ACL entries you provide.","type":"text"}],"navigatorTitle":[{"text":"SecAccessCreateWithOwnerAndACL","kind":"identifier"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessCreateWithOwnerAndACL","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@uid_t","text":"uid_t","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@gid_t","text":"gid_t","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@SecAccessOwnerType","text":"SecAccessOwnerType","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@CFArrayRef","text":"CFArray","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:s9UnmanagedV","text":"Unmanaged","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:@T@CFErrorRef","text":"CFError","kind":"typeIdentifier"},{"text":">?>?) -> ","kind":"text"},{"preciseIdentifier":"c:@T@SecAccessRef","text":"SecAccess","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"deprecated":true,"type":"topic","title":"SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)","identifier":"doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)","kind":"symbol","role":"symbol"},"doc://com.apple.security/documentation/Security/SecACLSetSimpleContents":{"kind":"symbol","abstract":[{"text":"Sets the application list, description, and prompt selector for a given access control list entry.","type":"text"}],"deprecated":true,"identifier":"doc://com.apple.security/documentation/Security/SecACLSetSimpleContents","type":"topic","role":"symbol","fragments":[{"kind":"identifier","text":"SecACLSetSimpleContents"}],"title":"SecACLSetSimpleContents","url":"/documentation/security/secaclsetsimplecontents"},"doc://com.apple.security/documentation/Security/SecTrustedApplication":{"identifier":"doc://com.apple.security/documentation/Security/SecTrustedApplication","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"An opaque type that contains information about a trusted app."}],"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecTrustedApplication"}],"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"SecTrustedApplication"}],"title":"SecTrustedApplication","url":"/documentation/security/sectrustedapplication"},"doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)":{"title":"SecKeychainItemCopyAccess(_:_:)","url":"/documentation/security/seckeychainitemcopyaccess(_:_:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecKeychainItemCopyAccess","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecKeychainItem","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecKeychainItemRef"},{"text":", ","kind":"text"},{"text":"UnsafeMutablePointer","kind":"typeIdentifier","preciseIdentifier":"s:Sp"},{"text":"<","kind":"text"},{"text":"SecAccess","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecAccessRef"},{"text":"?>) -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"type":"topic","deprecated":true,"role":"symbol","identifier":"doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)","abstract":[{"type":"text","text":"Retrieves the access of a given keychain item."}],"kind":"symbol","navigatorTitle":[{"text":"SecKeychainItemCopyAccess","kind":"identifier"}]},"doc://com.apple.security/documentation/Security/SecACL":{"url":"/documentation/security/secacl","type":"topic","navigatorTitle":[{"text":"SecACL","kind":"identifier"}],"abstract":[{"text":"An opaque type that represents information about an ACL entry.","type":"text"}],"kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACL","kind":"identifier"}],"title":"SecACL","identifier":"doc://com.apple.security/documentation/Security/SecACL","role":"symbol"},"doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()":{"url":"/documentation/security/sectrustedapplicationgettypeid()","role":"symbol","navigatorTitle":[{"text":"SecTrustedApplicationGetTypeID","kind":"identifier"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecTrustedApplicationGetTypeID","kind":"identifier"},{"text":"() -> ","kind":"text"},{"text":"CFTypeID","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFTypeID"}],"abstract":[{"text":"Returns the unique identifier of the opaque type to which a trusted app instance belongs.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()","kind":"symbol","title":"SecTrustedApplicationGetTypeID()","type":"topic","deprecated":true},"doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)":{"role":"symbol","identifier":"doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)","deprecated":true,"abstract":[{"text":"Sets the authorization tags for a given ACL.","type":"text"}],"type":"topic","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLUpdateAuthorizations","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecACLRef","text":"SecACL","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@CFArrayRef","text":"CFArray","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@OSStatus","text":"OSStatus","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"SecACLUpdateAuthorizations","kind":"identifier"}],"title":"SecACLUpdateAuthorizations(_:_:)","url":"/documentation/security/secaclupdateauthorizations(_:_:)"},"doc://com.apple.security/documentation/Security/SecACLGetAuthorizations":{"role":"symbol","url":"/documentation/security/secaclgetauthorizations","identifier":"doc://com.apple.security/documentation/Security/SecACLGetAuthorizations","kind":"symbol","type":"topic","deprecated":true,"abstract":[{"text":"Retrieves the CSSM authorization tags of a given access control list entry.","type":"text"}],"fragments":[{"text":"SecACLGetAuthorizations","kind":"identifier"}],"title":"SecACLGetAuthorizations"},"doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL":{"url":"/documentation/security/secaccessgetownerandacl","abstract":[{"text":"Retrieves the owner and the access control list of a given access object.","type":"text"}],"role":"symbol","fragments":[{"kind":"identifier","text":"SecAccessGetOwnerAndACL"}],"kind":"symbol","deprecated":true,"identifier":"doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL","type":"topic","title":"SecAccessGetOwnerAndACL"},"doc://com.apple.security/documentation/Security/acl-authorization-keys":{"identifier":"doc://com.apple.security/documentation/Security/acl-authorization-keys","kind":"article","type":"topic","abstract":[{"text":"The operations an access control list entry applies to.","type":"text"}],"role":"collectionGroup","title":"ACL Authorization Keys","url":"/documentation/security/acl-authorization-keys"},"doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)":{"role":"symbol","url":"/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)","navigatorTitle":[{"text":"SecACLCreateWithSimpleContents","kind":"identifier"}],"identifier":"doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)","kind":"symbol","type":"topic","deprecated":true,"abstract":[{"text":"Creates a new ACL entry with the given characteristics, and adds it to an access instance.","type":"text"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLCreateWithSimpleContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecAccess","preciseIdentifier":"c:@T@SecAccessRef","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"CFArray","preciseIdentifier":"c:@T@CFArrayRef","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"CFString","preciseIdentifier":"c:@T@CFStringRef","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"SecKeychainPromptSelector","preciseIdentifier":"c:@E@SecKeychainPromptSelector","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"UnsafeMutablePointer","preciseIdentifier":"s:Sp","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"SecACL","preciseIdentifier":"c:@T@SecACLRef","kind":"typeIdentifier"},{"text":"?>) -> ","kind":"text"},{"text":"OSStatus","preciseIdentifier":"c:@T@OSStatus","kind":"typeIdentifier"}],"title":"SecACLCreateWithSimpleContents(_:_:_:_:_:)"},"doc://com.apple.security/documentation/Security/SecACLGetTypeID()":{"title":"SecACLGetTypeID()","identifier":"doc://com.apple.security/documentation/Security/SecACLGetTypeID()","kind":"symbol","url":"/documentation/security/secaclgettypeid()","role":"symbol","deprecated":true,"type":"topic","navigatorTitle":[{"text":"SecACLGetTypeID","kind":"identifier"}],"abstract":[{"text":"Returns the unique identifier of the opaque type to which an ACL entry belongs.","type":"text"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLGetTypeID","kind":"identifier"},{"text":"() -> ","kind":"text"},{"text":"CFTypeID","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFTypeID"}]},"doc://com.apple.security/documentation/Security/SecAccess":{"title":"SecAccess","type":"topic","abstract":[{"text":"An opaque type that identifies a keychain item’s access information.","type":"text"}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccess","kind":"identifier"}],"kind":"symbol","url":"/documentation/security/secaccess","navigatorTitle":[{"text":"SecAccess","kind":"identifier"}],"identifier":"doc://com.apple.security/documentation/Security/SecAccess","role":"symbol"},"doc://com.apple.security/documentation/Security/SecACLSetAuthorizations":{"role":"symbol","identifier":"doc://com.apple.security/documentation/Security/SecACLSetAuthorizations","deprecated":true,"abstract":[{"type":"text","text":"Sets the CSSM authorization tags for a given access control list entry."}],"type":"topic","kind":"symbol","fragments":[{"kind":"identifier","text":"SecACLSetAuthorizations"}],"title":"SecACLSetAuthorizations","url":"/documentation/security/secaclsetauthorizations"},"doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL":{"identifier":"doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL","url":"/documentation/security/secaccesscreatefromownerandacl","type":"topic","deprecated":true,"abstract":[{"type":"text","text":"Creates a new access object using the owner and access control list you provide."}],"title":"SecAccessCreateFromOwnerAndACL","fragments":[{"kind":"identifier","text":"SecAccessCreateFromOwnerAndACL"}],"kind":"symbol","role":"symbol"},"doc://com.apple.security/documentation/Security/keychain-services":{"role":"collectionGroup","identifier":"doc://com.apple.security/documentation/Security/keychain-services","abstract":[{"type":"text","text":"Securely store small chunks of data on behalf of the user."}],"type":"topic","kind":"article","title":"Keychain services","url":"/documentation/security/keychain-services"},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","abstract":[{"type":"text","text":""}],"identifier":"doc://com.apple.documentation/documentation/technologies","kind":"technologies","url":"/documentation/technologies","type":"topic","role":"overview"},"doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)":{"type":"topic","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLCopyAuthorizations","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecACL","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef"},{"text":") -> ","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"}],"abstract":[{"text":"Retrieves the authorization tags of a given ACL entry.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)","url":"/documentation/security/secaclcopyauthorizations(_:)","role":"symbol","deprecated":true,"title":"SecACLCopyAuthorizations(_:)","navigatorTitle":[{"text":"SecACLCopyAuthorizations","kind":"identifier"}]},"doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)":{"role":"symbol","identifier":"doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)","deprecated":true,"abstract":[{"type":"text","text":"Retrieves the data of a trusted app instance."}],"type":"topic","kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecTrustedApplicationCopyData"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@SecTrustedApplicationRef","text":"SecTrustedApplication"},{"kind":"text","text":", "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@CFDataRef","text":"CFData"},{"kind":"text","text":"?>) -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus","text":"OSStatus"}],"navigatorTitle":[{"kind":"identifier","text":"SecTrustedApplicationCopyData"}],"title":"SecTrustedApplicationCopyData(_:_:)","url":"/documentation/security/sectrustedapplicationcopydata(_:_:)"},"doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)":{"kind":"symbol","type":"topic","url":"/documentation/security/sectrustedapplicationsetdata(_:_:)","navigatorTitle":[{"text":"SecTrustedApplicationSetData","kind":"identifier"}],"deprecated":true,"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecTrustedApplicationSetData","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecTrustedApplicationRef","text":"SecTrustedApplication","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@CFDataRef","text":"CFData","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@OSStatus","text":"OSStatus","kind":"typeIdentifier"}],"abstract":[{"type":"text","text":"Sets the data of a given trusted app instance."}],"title":"SecTrustedApplicationSetData(_:_:)","identifier":"doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)","role":"symbol"},"doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)":{"title":"SecTrustedApplicationCreateFromPath(_:_:)","identifier":"doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)","type":"topic","abstract":[{"type":"text","text":"Creates a trusted app instance based on the app at the given path in the file system."}],"deprecated":true,"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecTrustedApplicationCreateFromPath"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"s:SP","text":"UnsafePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"s:s5CChara","text":"CChar"},{"kind":"text","text":">?, "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@SecTrustedApplicationRef","text":"SecTrustedApplication"},{"kind":"text","text":"?>) -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus","text":"OSStatus"}],"url":"/documentation/security/sectrustedapplicationcreatefrompath(_:_:)","role":"symbol","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"SecTrustedApplicationCreateFromPath"}]}},"variantOverrides":[{"patch":[{"op":"replace","value":"occ","path":"/identifier/interfaceLanguage"},{"op":"replace","value":[{"title":"Access Creation","identifiers":["doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)","doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)","doc://com.apple.security/documentation/Security/SecAccessOwnerType","doc://com.apple.security/documentation/Security/SecAccessOwnerType-values","doc://com.apple.security/documentation/Security/SecAccess","doc://com.apple.security/documentation/Security/SecAccessGetTypeID()"],"anchor":"Access-Creation"},{"title":"Access Query","identifiers":["doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)","doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)","doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)"],"anchor":"Access-Query"},{"title":"Access Control List Entries","identifiers":["doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLRemove(_:)","doc://com.apple.security/documentation/Security/acl-authorization-keys","doc://com.apple.security/documentation/Security/SecKeychainPromptSelector","doc://com.apple.security/documentation/Security/SecACL","doc://com.apple.security/documentation/Security/SecACLGetTypeID()"],"anchor":"Access-Control-List-Entries"},{"title":"Access Control List Configuration","identifiers":["doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)","doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)","doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)"],"anchor":"Access-Control-List-Configuration"},{"title":"Trusted Applications","identifiers":["doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)","doc://com.apple.security/documentation/Security/SecTrustedApplication","doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()"],"anchor":"Trusted-Applications"},{"title":"Keychain Item Access","identifiers":["doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)","doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)"],"anchor":"Keychain-Item-Access"},{"title":"Legacy Access Control Operations","identifiers":["doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents","doc://com.apple.security/documentation/Security/SecACLCopySimpleContents","doc://com.apple.security/documentation/Security/SecACLSetSimpleContents","doc://com.apple.security/documentation/Security/SecACLGetAuthorizations","doc://com.apple.security/documentation/Security/SecACLSetAuthorizations","doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList","doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL","doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL","doc://com.apple.security/documentation/Security/OpaqueSecAccessRef"],"anchor":"Legacy-Access-Control-Operations"}],"path":"/topicSections"},{"op":"add","value":null,"path":"/seeAlsoSections"},{"op":"replace","value":"SecAccessCopyOwnerAndACL","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyOwnerAndACL(_:_:_:_:_:)/title"},{"op":"replace","value":[{"text":"SecAccessCopyOwnerAndACL","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyOwnerAndACL(_:_:_:_:_:)/fragments"},{"op":"replace","value":"SecAccessGetTypeID","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessGetTypeID()/title"},{"op":"replace","value":[{"text":"SecAccessGetTypeID","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessGetTypeID()/fragments"},{"op":"replace","value":"SecAccessCopyMatchingACLList","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/title"},{"op":"replace","value":[{"text":"SecAccessCopyMatchingACLList","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/fragments"},{"op":"replace","value":"SecKeychainPromptSelector","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/title"},{"op":"replace","value":[{"text":"SecKeychainPromptSelector","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/fragments"},{"op":"replace","value":[{"text":"SecKeychainPromptSelector","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/navigatorTitle"},{"op":"replace","value":"SecACLRemove","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecACLRemove"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/fragments"},{"op":"replace","value":"SecACLSetContents","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/title"},{"op":"replace","value":[{"text":"SecACLSetContents","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/fragments"},{"op":"replace","value":"SecACLCopyContents","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyContents(_:_:_:_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecACLCopyContents"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyContents(_:_:_:_:)/fragments"},{"op":"replace","value":"SecAccessCreate","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreate(_:_:_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecAccessCreate"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreate(_:_:_:)/fragments"},{"op":"replace","value":"SecAccessOwnerType","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/title"},{"op":"replace","value":[{"text":"SecAccessOwnerType","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"SecAccessOwnerType"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/navigatorTitle"},{"op":"replace","value":"SecKeychainItemSetAccess","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemSetAccess(_:_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecKeychainItemSetAccess"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemSetAccess(_:_:)/fragments"},{"op":"replace","value":"SecAccessCopyACLList","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyACLList(_:_:)/title"},{"op":"replace","value":[{"text":"SecAccessCopyACLList","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyACLList(_:_:)/fragments"},{"op":"replace","value":"SecAccessCreateWithOwnerAndACL","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)/title"},{"op":"replace","value":[{"text":"SecAccessCreateWithOwnerAndACL","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)/fragments"},{"op":"replace","value":"SecTrustedApplicationRef","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecTrustedApplicationRef"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"SecTrustedApplicationRef"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/navigatorTitle"},{"op":"replace","value":"SecKeychainItemCopyAccess","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAccess(_:_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecKeychainItemCopyAccess"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAccess(_:_:)/fragments"},{"op":"replace","value":"SecACLRef","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/title"},{"op":"replace","value":[{"text":"SecACLRef","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"SecACLRef"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/navigatorTitle"},{"op":"replace","value":"SecTrustedApplicationGetTypeID","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationGetTypeID()/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecTrustedApplicationGetTypeID"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationGetTypeID()/fragments"},{"op":"replace","value":"SecACLUpdateAuthorizations","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLUpdateAuthorizations(_:_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecACLUpdateAuthorizations"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLUpdateAuthorizations(_:_:)/fragments"},{"op":"replace","value":"SecACLCreateWithSimpleContents","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCreateWithSimpleContents(_:_:_:_:_:)/title"},{"op":"replace","value":[{"text":"SecACLCreateWithSimpleContents","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCreateWithSimpleContents(_:_:_:_:_:)/fragments"},{"op":"replace","value":"SecACLGetTypeID","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLGetTypeID()/title"},{"op":"replace","value":[{"text":"SecACLGetTypeID","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLGetTypeID()/fragments"},{"op":"replace","value":"SecAccessRef","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecAccessRef"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/fragments"},{"op":"replace","value":[{"text":"SecAccessRef","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/navigatorTitle"},{"op":"replace","value":"SecACLCopyAuthorizations","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/title"},{"op":"replace","value":[{"kind":"identifier","text":"SecACLCopyAuthorizations"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/fragments"},{"op":"replace","value":"SecTrustedApplicationCopyData","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCopyData(_:_:)/title"},{"op":"replace","value":[{"text":"SecTrustedApplicationCopyData","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCopyData(_:_:)/fragments"},{"op":"replace","value":"SecTrustedApplicationSetData","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationSetData(_:_:)/title"},{"op":"replace","value":[{"text":"SecTrustedApplicationSetData","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationSetData(_:_:)/fragments"},{"op":"replace","value":"SecTrustedApplicationCreateFromPath","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/title"},{"op":"replace","value":[{"text":"SecTrustedApplicationCreateFromPath","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/fragments"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Control which apps have access to keychain items in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/access-control-lists"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Access Control Lists"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, for items not stored on the iCloud keychain, each protected keychain item—like a password or private key—has an associated access instance that contains an access control list (ACL). The entries in this list in turn each contain an array of operations and an array of apps trusted to carry out those operations with the item. The collection of ACL entries govern the accessibility of the corresponding keychain item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983146",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app attempts to access a keychain item for a particular purpose—like using a private key to sign a document—the system looks for an entry in the item’s ACL containing the operation. If there’s no entry that lists the operation, then the system denies access and it’s up to the calling app to try something else or to notify the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there is an entry that lists the operation, the system checks whether the calling app is among the entry’s trusted apps. If so, the system grants access. Otherwise, the system prompts the user for confirmation. The user may choose to Deny, Allow, or Always Allow the access. In the latter case, the system adds the app to the list of trusted apps for that entry, enabling the app to gain access in the future without prompting the user again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ACLs are not available in iOS or in macOS apps that use the iCloud keychain. For keychain item sharing in those environments, use access groups instead. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/OpaqueSecAccessRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OpaqueSecAccessRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/OpaqueSecAccessRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpaqueSecAccessRef",
+      "type": "topic",
+      "url": "/documentation/security/opaquesecaccessref"
+    },
+    "doc://com.apple.security/documentation/Security/SecACL": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents information about an ACL entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACL",
+      "type": "topic",
+      "url": "/documentation/security/secacl"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization tags of a given ACL entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyAuthorizations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyAuthorizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLCopyAuthorizations(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclcopyauthorizations(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the application list, description, and prompt selector for a given ACL entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainPromptSelector",
+          "text": "SecKeychainPromptSelector"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLCopyContents(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclcopycontents(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents": {
+      "abstract": [
+        {
+          "text": "Returns the application list, description, and CSSM prompt selector for a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCopySimpleContents"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLCopySimpleContents",
+      "type": "topic",
+      "url": "/documentation/security/secaclcopysimplecontents"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents": {
+      "abstract": [
+        {
+          "text": "Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item’s access object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCreateFromSimpleContents"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLCreateFromSimpleContents",
+      "type": "topic",
+      "url": "/documentation/security/secaclcreatefromsimplecontents"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new ACL entry with the given characteristics, and adds it to an access instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLCreateWithSimpleContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainPromptSelector",
+          "text": "SecKeychainPromptSelector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCreateWithSimpleContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLCreateWithSimpleContents(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations": {
+      "abstract": [
+        {
+          "text": "Retrieves the CSSM authorization tags of a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLGetAuthorizations"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLGetAuthorizations",
+      "type": "topic",
+      "url": "/documentation/security/secaclgetauthorizations"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which an ACL entry belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secaclgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLRemove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified ACL entry from the access instance that contains it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLRemove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLRemove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLRemove"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLRemove(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclremove(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLSetAuthorizations": {
+      "abstract": [
+        {
+          "text": "Sets the CSSM authorization tags for a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLSetAuthorizations"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLSetAuthorizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLSetAuthorizations",
+      "type": "topic",
+      "url": "/documentation/security/secaclsetauthorizations"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the application list, description, and prompt selector for a given ACL entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLSetContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainPromptSelector",
+          "text": "SecKeychainPromptSelector"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLSetContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLSetContents(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclsetcontents(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLSetSimpleContents": {
+      "abstract": [
+        {
+          "text": "Sets the application list, description, and prompt selector for a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLSetSimpleContents"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLSetSimpleContents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLSetSimpleContents",
+      "type": "topic",
+      "url": "/documentation/security/secaclsetsimplecontents"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the authorization tags for a given ACL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLUpdateAuthorizations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLUpdateAuthorizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLUpdateAuthorizations(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclupdateauthorizations(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccess": {
+      "abstract": [
+        {
+          "text": "An opaque type that identifies a keychain item’s access information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccess"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccess",
+      "type": "topic",
+      "url": "/documentation/security/secaccess"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves all the ACL entries of a given access instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyACLList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyACLList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCopyACLList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscopyacllist(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves selected ACL entries from a given access instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyMatchingACLList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyMatchingACLList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCopyMatchingACLList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscopymatchingacllist(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the owner and the ACL entries of a given access instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyOwnerAndACL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uid_t",
+          "text": "uid_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gid_t",
+          "text": "gid_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessOwnerType",
+          "text": "SecAccessOwnerType"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyOwnerAndACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCopyOwnerAndACL(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList": {
+      "abstract": [
+        {
+          "text": "Retrieves selected access control lists from a given access object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopySelectedACLList"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAccessCopySelectedACLList",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscopyselectedacllist"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new access instance associated with a given protected keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscreate(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL": {
+      "abstract": [
+        {
+          "text": "Creates a new access object using the owner and access control list you provide.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCreateFromOwnerAndACL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAccessCreateFromOwnerAndACL",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscreatefromownerandacl"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new access instance using the owner and ACL entries you provide.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCreateWithOwnerAndACL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uid_t",
+          "text": "uid_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gid_t",
+          "text": "gid_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessOwnerType",
+          "text": "SecAccessOwnerType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCreateWithOwnerAndACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL": {
+      "abstract": [
+        {
+          "text": "Retrieves the owner and the access control list of a given access object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessGetOwnerAndACL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAccessGetOwnerAndACL",
+      "type": "topic",
+      "url": "/documentation/security/secaccessgetownerandacl"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which an access instance belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secaccessgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessOwnerType": {
+      "abstract": [
+        {
+          "text": "A type for flags that enable you to configure ACL ownership.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessOwnerType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessOwnerType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessOwnerType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessOwnerType",
+      "type": "topic",
+      "url": "/documentation/security/secaccessownertype"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessOwnerType-values": {
+      "abstract": [
+        {
+          "text": "Flags that enable you to configure ACL ownership.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessOwnerType-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SecAccessOwnerType Values",
+      "type": "topic",
+      "url": "/documentation/security/secaccessownertype-values"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the access of a given keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCopyAccess(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcopyaccess(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the access of a given keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemSetAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemSetAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemSetAccess(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemsetaccess(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainPromptSelector": {
+      "abstract": [
+        {
+          "text": "Bits that define when a keychain should require a passphrase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainPromptSelector"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainPromptSelector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainPromptSelector"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainPromptSelector",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainpromptselector"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplication": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains information about a trusted app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplication",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplication"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the data of a trusted app instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCopyData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustedApplicationRef",
+          "text": "SecTrustedApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCopyData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplicationCopyData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplicationcopydata(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a trusted app instance based on the app at the given path in the file system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCreateFromPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustedApplicationRef",
+          "text": "SecTrustedApplication"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCreateFromPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplicationCreateFromPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplicationcreatefrompath(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a trusted app instance belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplicationGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplicationgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the data of a given trusted app instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationSetData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustedApplicationRef",
+          "text": "SecTrustedApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationSetData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplicationSetData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplicationsetdata(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/acl-authorization-keys": {
+      "abstract": [
+        {
+          "text": "The operations an access control list entry applies to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/acl-authorization-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ACL Authorization Keys",
+      "type": "topic",
+      "url": "/documentation/security/acl-authorization-keys"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    },
+    "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps": {
+      "abstract": [
+        {
+          "text": "Enable apps to share keychain items with each other by adding the apps to an access group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing access to keychain items among a collection of apps",
+      "type": "topic",
+      "url": "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+    },
+    "media-2983146": {
+      "alt": "Diagram showing the detailed contents of access attribute of a kechain item, namely an access control list composed of entries for different operations and trusted apps.",
+      "identifier": "media-2983146",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c69c5a70381015d07af31a6c33c000a/media-2983146@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c69c5a70381015d07af31a6c33c000a/media-2983146~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Access-Creation",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecAccessOwnerType",
+        "doc://com.apple.security/documentation/Security/SecAccessOwnerType-values",
+        "doc://com.apple.security/documentation/Security/SecAccess",
+        "doc://com.apple.security/documentation/Security/SecAccessGetTypeID()"
+      ],
+      "title": "Access Creation"
+    },
+    {
+      "anchor": "Access-Query",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)"
+      ],
+      "title": "Access Query"
+    },
+    {
+      "anchor": "Access-Control-List-Entries",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecACLRemove(_:)",
+        "doc://com.apple.security/documentation/Security/acl-authorization-keys",
+        "doc://com.apple.security/documentation/Security/SecKeychainPromptSelector",
+        "doc://com.apple.security/documentation/Security/SecACL",
+        "doc://com.apple.security/documentation/Security/SecACLGetTypeID()"
+      ],
+      "title": "Access Control List Entries"
+    },
+    {
+      "anchor": "Access-Control-List-Configuration",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+        "doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)"
+      ],
+      "title": "Access Control List Configuration"
+    },
+    {
+      "anchor": "Trusted-Applications",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTrustedApplication",
+        "doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()"
+      ],
+      "title": "Trusted Applications"
+    },
+    {
+      "anchor": "Keychain-Item-Access",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)"
+      ],
+      "title": "Keychain Item Access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Access-Creation",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAccessCreate(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecAccessOwnerType",
+                "doc://com.apple.security/documentation/Security/SecAccessOwnerType-values",
+                "doc://com.apple.security/documentation/Security/SecAccess",
+                "doc://com.apple.security/documentation/Security/SecAccessGetTypeID()"
+              ],
+              "title": "Access Creation"
+            },
+            {
+              "anchor": "Access-Query",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAccessCopyACLList(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecAccessCopyOwnerAndACL(_:_:_:_:_:)"
+              ],
+              "title": "Access Query"
+            },
+            {
+              "anchor": "Access-Control-List-Entries",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecACLCreateWithSimpleContents(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecACLRemove(_:)",
+                "doc://com.apple.security/documentation/Security/acl-authorization-keys",
+                "doc://com.apple.security/documentation/Security/SecKeychainPromptSelector",
+                "doc://com.apple.security/documentation/Security/SecACL",
+                "doc://com.apple.security/documentation/Security/SecACLGetTypeID()"
+              ],
+              "title": "Access Control List Entries"
+            },
+            {
+              "anchor": "Access-Control-List-Configuration",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecACLCopyContents(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+                "doc://com.apple.security/documentation/Security/SecACLUpdateAuthorizations(_:_:)"
+              ],
+              "title": "Access Control List Configuration"
+            },
+            {
+              "anchor": "Trusted-Applications",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTrustedApplicationCopyData(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTrustedApplicationSetData(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTrustedApplication",
+                "doc://com.apple.security/documentation/Security/SecTrustedApplicationGetTypeID()"
+              ],
+              "title": "Trusted Applications"
+            },
+            {
+              "anchor": "Keychain-Item-Access",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainItemSetAccess(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAccess(_:_:)"
+              ],
+              "title": "Keychain Item Access"
+            },
+            {
+              "anchor": "Legacy-Access-Control-Operations",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecACLCreateFromSimpleContents",
+                "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents",
+                "doc://com.apple.security/documentation/Security/SecACLSetSimpleContents",
+                "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations",
+                "doc://com.apple.security/documentation/Security/SecACLSetAuthorizations",
+                "doc://com.apple.security/documentation/Security/SecAccessCopySelectedACLList",
+                "doc://com.apple.security/documentation/Security/SecAccessCreateFromOwnerAndACL",
+                "doc://com.apple.security/documentation/Security/SecAccessGetOwnerAndACL",
+                "doc://com.apple.security/documentation/Security/OpaqueSecAccessRef"
+              ],
+              "title": "Legacy Access Control Operations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyOwnerAndACL(_:_:_:_:_:)/title",
+          "value": "SecAccessCopyOwnerAndACL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyOwnerAndACL(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCopyOwnerAndACL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessGetTypeID()/title",
+          "value": "SecAccessGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/title",
+          "value": "SecAccessCopyMatchingACLList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCopyMatchingACLList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/title",
+          "value": "SecKeychainPromptSelector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainPromptSelector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainPromptSelector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainPromptSelector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/title",
+          "value": "SecACLRemove"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRemove"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/title",
+          "value": "SecACLSetContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLSetContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyContents(_:_:_:_:)/title",
+          "value": "SecACLCopyContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyContents(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLCopyContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreate(_:_:_:)/title",
+          "value": "SecAccessCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/title",
+          "value": "SecAccessOwnerType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessOwnerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessOwnerType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessOwnerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemSetAccess(_:_:)/title",
+          "value": "SecKeychainItemSetAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemSetAccess(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemSetAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyACLList(_:_:)/title",
+          "value": "SecAccessCopyACLList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyACLList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCopyACLList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)/title",
+          "value": "SecAccessCreateWithOwnerAndACL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCreateWithOwnerAndACL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/title",
+          "value": "SecTrustedApplicationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAccess(_:_:)/title",
+          "value": "SecKeychainItemCopyAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAccess(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCopyAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/title",
+          "value": "SecACLRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationGetTypeID()/title",
+          "value": "SecTrustedApplicationGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLUpdateAuthorizations(_:_:)/title",
+          "value": "SecACLUpdateAuthorizations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLUpdateAuthorizations(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLUpdateAuthorizations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCreateWithSimpleContents(_:_:_:_:_:)/title",
+          "value": "SecACLCreateWithSimpleContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCreateWithSimpleContents(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLCreateWithSimpleContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLGetTypeID()/title",
+          "value": "SecACLGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/title",
+          "value": "SecAccessRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/title",
+          "value": "SecACLCopyAuthorizations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLCopyAuthorizations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCopyData(_:_:)/title",
+          "value": "SecTrustedApplicationCopyData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCopyData(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationCopyData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationSetData(_:_:)/title",
+          "value": "SecTrustedApplicationSetData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationSetData(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationSetData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/title",
+          "value": "SecTrustedApplicationCreateFromPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationCreateFromPath"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/access-control-lists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/access-control-lists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

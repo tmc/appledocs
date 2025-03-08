@@ -1,1 +1,1363 @@
-{"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions"},"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","visionOS"],"tokens":[{"text":"@","kind":"attribute"},{"text":"MainActor","identifier":"doc://com.externally.resolved.symbol/s:ScM","kind":"attribute","preciseIdentifier":"s:ScM"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"availablePermissions","kind":"identifier"},{"text":": ","kind":"text"},{"text":"UICloudSharingController","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"text":".","kind":"text"},{"text":"PermissionOptions","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"},{"text":" { ","kind":"text"},{"text":"get","kind":"keyword"},{"text":" ","kind":"text"},{"text":"set","kind":"keyword"},{"text":" }","kind":"text"}],"languages":["swift"]}],"kind":"declarations"},{"kind":"content","content":[{"type":"heading","level":2,"anchor":"Discussion","text":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"},{"type":"text","text":" user interface displays permission options to the user. The user selects the options based on how the data should be shared. For instance, the user can decide to share the data publicly or privately by selecting the corresponding option."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Setting the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions"},{"type":"text","text":" property on "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"},{"type":"text","text":" to one or more "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"},{"type":"text","text":" options tells the controller which options to present to the user. If you want, for example, to let the user decide whether to share the data publicly or privately, you specify the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic"},{"type":"text","text":" and "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate"},{"type":"text","text":" options for "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions"},{"type":"text","text":". This tells the controller to display both options to the user."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Specifying no options for "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions"},{"type":"text","text":" tells "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"},{"type":"text","text":" to display all options to the user."}]},{"type":"tabNavigator","tabs":[{"content":[{"code":["// Allow only the invited participants and read/write permission options.","cloudSharingController.availablePermissions = [.allowPrivate, .allowReadWrite]"],"syntax":"swift","type":"codeListing"}],"title":"Swift"},{"content":[{"syntax":"objc","code":["// Allow only the invited participants and read/write permission options.","[cloudSharingController setAvailablePermissions:UICloudSharingPermissionAllowPrivate | UICloudSharingPermissionAllowReadWrite];"],"type":"codeListing"}],"title":"Objective-C"}]},{"type":"heading","level":3,"anchor":"Display-groupings","text":"Display groupings"},{"type":"paragraph","inlineContent":[{"text":"The ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController","type":"reference","isActive":true},{"text":" displays the permission options to the user based on the options set in the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions","type":"reference","isActive":true},{"text":" property. The user interface displays the options in two groups, access options group and permission options group. The ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic","type":"reference","isActive":true},{"text":" and ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate","type":"reference","isActive":true},{"text":" options control the display of the access options group, while the ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly"},{"text":" and ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite"},{"text":" options control the display of the permission options group.","type":"text"}]},{"type":"heading","level":3,"anchor":"Complementary-options","text":"Complementary options"},{"type":"paragraph","inlineContent":[{"text":"The ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate","type":"reference"},{"text":" and ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic","type":"reference"},{"text":" options are complementary. If you exclude one, the access options group is omitted from the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController","type":"reference"},{"text":" user interface, and the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share","type":"reference"},{"text":" access setting defaults to the included option. This prevents the user from changing the access rights to the share. For instance, to always force a private share, you include the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate","type":"reference"},{"text":" access option while excluding ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic","type":"reference"},{"text":" when setting the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions","type":"reference"},{"text":" property. The controller sets the share’s access rights to private and removes the access options group from the user interface, preventing the user from changing the setting.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"Similarly, ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly","isActive":true,"type":"reference"},{"text":" and ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite","isActive":true,"type":"reference"},{"text":" complement each other. Excluding one removes the permission options group from the user interface, and the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share","isActive":true,"type":"reference"},{"text":" permission setting defaults to the included ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions","isActive":true,"type":"reference"},{"text":" option.","type":"text"}]}]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.uikit/documentation/UIKit","doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"]]},"variants":[{"paths":["/documentation/uikit/uicloudsharingcontroller/availablepermissions"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/uikit/uicloudsharingcontroller/availablepermissions"],"traits":[{"interfaceLanguage":"occ"}]}],"metadata":{"externalID":"c:objc(cs)UICloudSharingController(py)availablePermissions","navigatorTitle":[{"text":"availablePermissions","kind":"identifier"}],"role":"symbol","roleHeading":"Instance Property","symbolKind":"property","platforms":[{"introducedAt":"10.0","deprecated":false,"unavailable":false,"name":"iOS","beta":false},{"introducedAt":"10.0","deprecated":false,"unavailable":false,"name":"iPadOS","beta":false},{"introducedAt":"13.1","deprecated":false,"unavailable":false,"name":"Mac Catalyst","beta":false},{"introducedAt":"1.0","deprecated":false,"unavailable":false,"name":"visionOS","beta":false}],"title":"availablePermissions","modules":[{"name":"UIKit"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"availablePermissions"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)UICloudSharingController","kind":"typeIdentifier","text":"UICloudSharingController"},{"kind":"text","text":"."},{"text":"PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}]},"sections":[],"seeAlsoSections":[{"generated":true,"title":"Configuring the permissions","identifiers":["doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"],"anchor":"Configuring-the-permissions"}],"abstract":[{"text":"A combination of permission and access options made available to the user when viewing screens presented by the CloudKit sharing controller.","type":"text"}],"kind":"symbol","references":{"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions":{"navigatorTitle":[{"text":"PermissionOptions","kind":"identifier"}],"role":"symbol","title":"UICloudSharingController.PermissionOptions","kind":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions","type":"topic","url":"/documentation/uikit/uicloudsharingcontroller/permissionoptions","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PermissionOptions","kind":"identifier"}],"abstract":[{"type":"text","text":"A set of options that determine the permission options available to the user when viewing the Cloud sharing controller screens."}]},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate":{"abstract":[{"type":"text","text":"The option that restricts access to people who have been invited."}],"type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate","title":"allowPrivate","role":"symbol","navigatorTitle":[{"text":"UICloudSharingPermissionAllowPrivate","kind":"identifier"}],"kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"allowPrivate","kind":"identifier"},{"text":": ","kind":"text"},{"text":"UICloudSharingController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"text":".","kind":"text"},{"text":"PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}],"url":"/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowprivate"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share":{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share","kind":"symbol","abstract":[{"type":"text","text":"A reference to the CloudKit share record used by the CloudKit sharing controller."}],"title":"share","role":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"share","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)CKShare","text":"CKShare","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"url":"/documentation/uikit/uicloudsharingcontroller/share","navigatorTitle":[{"text":"share","kind":"identifier"}],"type":"topic"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly":{"abstract":[{"type":"text","text":"The option that gives participants read-only permission to the shared data."}],"type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly","title":"allowReadOnly","role":"symbol","navigatorTitle":[{"text":"UICloudSharingPermissionAllowReadOnly","kind":"identifier"}],"kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"allowReadOnly","kind":"identifier"},{"text":": ","kind":"text"},{"text":"UICloudSharingController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"text":".","kind":"text"},{"text":"PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}],"url":"/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadonly"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic":{"abstract":[{"type":"text","text":"The option that grants access to anyone who has the share link."}],"type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic","title":"allowPublic","role":"symbol","navigatorTitle":[{"text":"UICloudSharingPermissionAllowPublic","kind":"identifier"}],"kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"allowPublic","kind":"identifier"},{"text":": ","kind":"text"},{"text":"UICloudSharingController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"text":".","kind":"text"},{"text":"PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}],"url":"/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowpublic"},"doc://com.externally.resolved.symbol/s:ScM":{"abstract":[{"text":"A singleton actor whose executor is equivalent to the main dispatch queue.","type":"text"}],"url":"/documentation/Swift/MainActor","identifier":"doc://com.externally.resolved.symbol/s:ScM","title":"MainActor","fragments":[{"text":"@globalActor","kind":"attribute"},{"text":" ","kind":"text"},{"text":"final","kind":"keyword"},{"text":" ","kind":"text"},{"text":"actor","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MainActor","kind":"identifier"}],"type":"topic","kind":"symbol","role":"symbol"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite":{"abstract":[{"type":"text","text":"The option that gives participants read/write permission to the shared data."}],"type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite","title":"allowReadWrite","role":"symbol","navigatorTitle":[{"text":"UICloudSharingPermissionAllowReadWrite","kind":"identifier"}],"kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"allowReadWrite","kind":"identifier"},{"text":": ","kind":"text"},{"text":"UICloudSharingController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"text":".","kind":"text"},{"text":"PermissionOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}],"url":"/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadwrite"},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","url":"/documentation/technologies","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic"},"doc://com.apple.uikit/documentation/UIKit":{"kind":"symbol","role":"collection","title":"UIKit","identifier":"doc://com.apple.uikit/documentation/UIKit","url":"/documentation/uikit","abstract":[{"type":"text","text":"Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app."}],"type":"topic"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions":{"fragments":[{"text":"var","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"availablePermissions"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"UICloudSharingController","preciseIdentifier":"c:objc(cs)UICloudSharingController"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"PermissionOptions","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions"}],"abstract":[{"text":"A combination of permission and access options made available to the user when viewing screens presented by the CloudKit sharing controller.","type":"text"}],"type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions","title":"availablePermissions","url":"/documentation/uikit/uicloudsharingcontroller/availablepermissions","navigatorTitle":[{"kind":"identifier","text":"availablePermissions"}],"kind":"symbol","role":"symbol"},"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController":{"identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController","role":"symbol","title":"UICloudSharingController","abstract":[{"text":"A view controller that presents standard screens for adding and removing people from a CloudKit share record.","type":"text"}],"type":"topic","url":"/documentation/uikit/uicloudsharingcontroller","navigatorTitle":[{"text":"UICloudSharingController","kind":"identifier"}],"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"UICloudSharingController"}],"kind":"symbol"}},"variantOverrides":[{"patch":[{"op":"replace","value":"occ","path":"/identifier/interfaceLanguage"},{"op":"replace","value":[{"name":"iOS","introducedAt":"10.0","unavailable":false,"deprecated":false,"beta":false},{"name":"iPadOS","introducedAt":"10.0","unavailable":false,"deprecated":false,"beta":false},{"name":"Mac Catalyst","introducedAt":"13.1","unavailable":false,"deprecated":false,"beta":false},{"unavailable":false,"deprecated":false,"name":"visionOS","introducedAt":"1.0","beta":false}],"path":"/metadata/platforms"},{"op":"replace","value":"Instance Property","path":"/metadata/roleHeading"},{"op":"replace","value":"availablePermissions","path":"/metadata/title"},{"op":"replace","value":"property","path":"/metadata/symbolKind"},{"op":"replace","value":[{"kind":"identifier","text":"availablePermissions"}],"path":"/metadata/fragments"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.uikit/documentation/UIKit","doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"]]},"path":"/hierarchy","op":"replace"},{"value":null,"path":"/topicSections","op":"add"},{"value":null,"path":"/relationshipsSections","op":"add"},{"value":[{"title":"Configuring the permissions","identifiers":["doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"],"generated":true,"anchor":"Configuring-the-permissions"}],"path":"/seeAlsoSections","op":"replace"},{"value":{"declarations":[{"tokens":[{"text":"@property","kind":"keyword"},{"text":" (","kind":"text"},{"text":"nonatomic","kind":"keyword"},{"text":") ","kind":"text"},{"text":"UICloudSharingPermissionOptions","preciseIdentifier":"c:@E@UICloudSharingPermissionOptions","kind":"typeIdentifier","identifier":"doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"},{"text":" ","kind":"text"},{"text":"availablePermissions","kind":"identifier"},{"text":";","kind":"text"}],"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","tvOS","visionOS"]}],"kind":"declarations"},"path":"/primaryContentSections/0","op":"replace"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/title","value":"UICloudSharingPermissionOptions"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/fragments","value":[{"kind":"identifier","text":"UICloudSharingPermissionOptions"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/navigatorTitle","value":[{"kind":"identifier","text":"UICloudSharingPermissionOptions"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPrivate/title","value":"UICloudSharingPermissionAllowPrivate"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPrivate/fragments","value":[{"kind":"identifier","text":"UICloudSharingPermissionAllowPrivate"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1share/title","value":"share"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1share/fragments","value":[{"text":"share","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadOnly/title","value":"UICloudSharingPermissionAllowReadOnly"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadOnly/fragments","value":[{"text":"UICloudSharingPermissionAllowReadOnly","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPublic/title","value":"UICloudSharingPermissionAllowPublic"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPublic/fragments","value":[{"kind":"identifier","text":"UICloudSharingPermissionAllowPublic"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadWrite/title","value":"UICloudSharingPermissionAllowReadWrite"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadWrite/fragments","value":[{"kind":"identifier","text":"UICloudSharingPermissionAllowReadWrite"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1availablePermissions/title","value":"availablePermissions"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1availablePermissions/fragments","value":[{"text":"availablePermissions","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/title","value":"UICloudSharingController"},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/fragments","value":[{"kind":"identifier","text":"UICloudSharingController"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/navigatorTitle","value":[{"kind":"identifier","text":"UICloudSharingController"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A combination of permission and access options made available to the user when viewing screens presented by the CloudKit sharing controller.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICloudSharingController(py)availablePermissions",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "availablePermissions"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+        "text": "UICloudSharingController"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+        "text": "PermissionOptions"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "availablePermissions"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "availablePermissions"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "availablePermissions"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+              "text": "UICloudSharingController"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+              "text": "PermissionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " user interface displays permission options to the user. The user selects the options based on how the data should be shared. For instance, the user can decide to share the data publicly or privately by selecting the corresponding option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options tells the controller which options to present to the user. If you want, for example, to let the user decide whether to share the data publicly or privately, you specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This tells the controller to display both options to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifying no options for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tells ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display all options to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Allow only the invited participants and read/write permission options.",
+                    "cloudSharingController.availablePermissions = [.allowPrivate, .allowReadWrite]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Allow only the invited participants and read/write permission options.",
+                    "[cloudSharingController setAvailablePermissions:UICloudSharingPermissionAllowPrivate | UICloudSharingPermissionAllowReadWrite];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Display-groupings",
+          "level": 3,
+          "text": "Display groupings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays the permission options to the user based on the options set in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The user interface displays the options in two groups, access options group and permission options group. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options control the display of the access options group, while the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options control the display of the permission options group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Complementary-options",
+          "level": 3,
+          "text": "Complementary options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options are complementary. If you exclude one, the access options group is omitted from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " user interface, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " access setting defaults to the included option. This prevents the user from changing the access rights to the share. For instance, to always force a private share, you include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " access option while excluding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The controller sets the share’s access rights to private and removes the access options group from the user interface, preventing the user from changing the setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " complement each other. Excluding one removes the permission options group from the user interface, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " permission setting defaults to the included ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController": {
+      "abstract": [
+        {
+          "text": "A view controller that presents standard screens for adding and removing people from a CloudKit share record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICloudSharingController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions": {
+      "abstract": [
+        {
+          "text": "A set of options that determine the permission options available to the user when viewing the Cloud sharing controller screens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PermissionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICloudSharingController.PermissionOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/permissionoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate": {
+      "abstract": [
+        {
+          "text": "The option that restricts access to people who have been invited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowPrivate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+          "text": "UICloudSharingController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPrivate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingPermissionAllowPrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowPrivate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowprivate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic": {
+      "abstract": [
+        {
+          "text": "The option that grants access to anyone who has the share link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowPublic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+          "text": "UICloudSharingController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowPublic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingPermissionAllowPublic"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowPublic",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowpublic"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly": {
+      "abstract": [
+        {
+          "text": "The option that gives participants read-only permission to the shared data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowReadOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+          "text": "UICloudSharingController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingPermissionAllowReadOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowReadOnly",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadonly"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite": {
+      "abstract": [
+        {
+          "text": "The option that gives participants read/write permission to the shared data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowReadWrite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+          "text": "UICloudSharingController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions/allowReadWrite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingPermissionAllowReadWrite"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowReadWrite",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadwrite"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions": {
+      "abstract": [
+        {
+          "text": "A combination of permission and access options made available to the user when viewing screens presented by the CloudKit sharing controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availablePermissions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICloudSharingController",
+          "text": "UICloudSharingController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+          "text": "PermissionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/availablePermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availablePermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "availablePermissions",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/availablepermissions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share": {
+      "abstract": [
+        {
+          "text": "A reference to the CloudKit share record used by the CloudKit sharing controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "share"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKShare",
+          "text": "CKShare"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/share",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "share"
+        }
+      ],
+      "role": "symbol",
+      "title": "share",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller/share"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-permissions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"
+      ],
+      "title": "Configuring the permissions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "availablePermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availablePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit",
+                "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-permissions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions"
+              ],
+              "title": "Configuring the permissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController/PermissionOptions",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@UICloudSharingPermissionOptions",
+                    "text": "UICloudSharingPermissionOptions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "availablePermissions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/title",
+          "value": "UICloudSharingPermissionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPrivate/title",
+          "value": "UICloudSharingPermissionAllowPrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPrivate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionAllowPrivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1share/title",
+          "value": "share"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1share/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "share"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadOnly/title",
+          "value": "UICloudSharingPermissionAllowReadOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionAllowReadOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPublic/title",
+          "value": "UICloudSharingPermissionAllowPublic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowPublic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionAllowPublic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadWrite/title",
+          "value": "UICloudSharingPermissionAllowReadWrite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1PermissionOptions~1allowReadWrite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingPermissionAllowReadWrite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1availablePermissions/title",
+          "value": "availablePermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController~1availablePermissions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availablePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/title",
+          "value": "UICloudSharingController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicloudsharingcontroller/availablepermissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicloudsharingcontroller/availablepermissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

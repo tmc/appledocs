@@ -1,0 +1,588 @@
+{
+  "abstract": [
+    {
+      "text": "Import data from Final Cut Pro to your app by using FCPXML.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/importing-fcpxml-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Importing FCPXML Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FCPXML is a specialized format that uses XML elements to describe data that users send from Final Cut Pro to your app. Using FCPXML documents, your app can receive data from Final Cut Pro and then further process that data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your users choose to export XML from Final Cut Pro, they can select the XML version, either Current or Previous, for the export. When a user selects the Current version (FCPXML 1.10), Final Cut Pro exports a ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxmld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle and an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " document located at the root of the bundle directory. Your app must support the ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxmld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " document types. When a user selects the Previous version (FCPXML 1.9), Final Cut Pro exports a single ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-support-for-FCPXML-documents-and-bundles",
+          "level": 3,
+          "text": "Add support for FCPXML documents and bundles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add support for FCPXML documents and bundles to your app, update your project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to include the ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxmld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " document types. For information on modifying the document type, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/developing-a-document-based-app#Declare-the-Document-Type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the sample code, Developing a Document-Based App.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3875711",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-extension-when-your-app-opens-a-file-URL",
+          "level": 3,
+          "text": "Check the extension when your app opens a file URL",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app opens a file URL, your app must check the extension to determine whether the URL points to a ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " document or a ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxmld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives a bundle, open and parse the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file at the root of the bundle directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@main",
+                    "class AppDelegate: NSObject, NSApplicationDelegate {",
+                    "",
+                    "    func application(_ application: NSApplication, open urls: [URL]) {",
+                    "        let fcpxmlFileExtension = \"fcpxml\"",
+                    "        let fcpxmlBundleExtension = \"fcpxmld\"",
+                    "        for url in urls {",
+                    "            switch url.pathExtension {",
+                    "            case fcpxmlFileExtension:",
+                    "                openFCPXMLDocument(at: url)",
+                    "            case fcpxmlBundleExtension:",
+                    "                let fcpxmlFileName = \"Info.fcpxml\"",
+                    "                let fcpxmlFileURL = url.appendingPathComponent(fcpxmlFileName)",
+                    "                openFCPXMLDocument(at: fcpxmlFileURL)",
+                    "            default:",
+                    "                continue",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "",
+                    "    func openFCPXMLDocument(at url: URL) {}",
+                    "",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@implementation AppDelegate",
+                    "",
+                    "- (void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls {",
+                    "    NSString *fcpxmlFileExtension = @\"fcpxml\";",
+                    "    NSString *fcpxmlBundleExtension = @\"fcpxmld\";",
+                    "    for (NSURL *url in urls) {",
+                    "        NSString *pathExtension = [url pathExtension];",
+                    "        if ([pathExtension isEqualToString:fcpxmlFileExtension]) {",
+                    "            [self openFCPXMLDocumentAtURL:url];",
+                    "        } else if ([pathExtension isEqualToString:fcpxmlBundleExtension]) {",
+                    "            NSString *fcpxmlFileName = @\"Info.fcpxml\";",
+                    "            NSURL *fcpxmlFileURL = [url URLByAppendingPathComponent:fcpxmlFileName];",
+                    "            [self openFCPXMLDocumentAtURL:fcpxmlFileURL];",
+                    "        } else {",
+                    "            continue;",
+                    "        }",
+                    "    }",
+                    "}",
+                    "",
+                    "- (void)openFCPXMLDocumentAtURL:(NSURL *)url {}",
+                    "",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on examples of FCPXML documents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/developing-a-document-based-app#Declare-the-Document-Type": {
+      "abstract": [
+        {
+          "text": "Write an app that creates, manages, edits, and saves text documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/developing-a-document-based-app#Declare-the-Document-Type",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Developing a Document-Based App",
+      "type": "topic",
+      "url": "/documentation/AppKit/developing-a-document-based-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents": {
+      "abstract": [
+        {
+          "text": "Describe media assets, editing decisions, metadata, and other items in FCPXML so users can send and receive data between your app and Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating FCPXML Documents",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/creating-fcpxml-documents"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml": {
+      "abstract": [
+        {
+          "text": "Describe clips, projects, and other items in FCPXML to exchange data with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing Final Cut Pro Items in FCPXML",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event": {
+      "abstract": [
+        {
+          "text": "Represent a single event in a library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+      "kind": "article",
+      "role": "article",
+      "title": "event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml": {
+      "abstract": [
+        {
+          "text": "Contain top-level elements in a document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+      "kind": "article",
+      "role": "article",
+      "title": "fcpxml",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference": {
+      "abstract": [
+        {
+          "text": "Keep an FCPXML document and any files it references together in a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "FCPXML Bundle Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-bundle-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options": {
+      "abstract": [
+        {
+          "text": "Contain options that describe how to import events and projects into Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options",
+      "kind": "article",
+      "role": "article",
+      "title": "import-options",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/import-options"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library": {
+      "abstract": [
+        {
+          "text": "Contain events, clips, projects, and smart collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+      "kind": "article",
+      "role": "article",
+      "title": "library",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/library"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project": {
+      "abstract": [
+        {
+          "text": "Represent a project timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+      "kind": "article",
+      "role": "article",
+      "title": "project",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/project"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources": {
+      "abstract": [
+        {
+          "text": "Contain shared resources on which events and projects depend.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+      "kind": "article",
+      "role": "article",
+      "title": "resources",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/resources"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "media-3875711": {
+      "alt": "The Xcode Information Property List table that shows the Key, Type, and Value columns. The Key column shows the  Information Property List first with nested Document Types. Update the Document Type Definitions to include the F C P X M L and F C P X M L D document types.",
+      "identifier": "media-3875711",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64d8364d8cfa064d82dee3936dfb0ad6/media-3875711@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Document-Structure-and-Root-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options"
+      ],
+      "title": "Document Structure and Root Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Document-Structure-and-Root-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options"
+              ],
+              "title": "Document Structure and Root Elements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/importing-fcpxml-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/importing-fcpxml-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

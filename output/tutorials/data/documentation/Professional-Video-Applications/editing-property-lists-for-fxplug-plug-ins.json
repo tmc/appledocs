@@ -1,0 +1,900 @@
+{
+  "abstract": [
+    {
+      "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Editing property lists for FxPlug plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug plug-ins typically have more than one ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file: one in the application bundle and one in the XPC service. Although the application’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t require any changes, your XPC’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires some changes to create a functioning plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the following key-value pairs to your XPC ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the associated values listed below for your plug-in. Below is an example of a complete ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3915368",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Add entries to property lists by control-clicking in the blank space below the last entry and selecting Add Row, or hovering the mouse over an existing entry and clicking the + button. After selecting the appropriate key (or typing it in manually) change the type for the type of key you require (String, Number, Dictionary, Array, etc.) To add components to a Dictionary or Array, first turn down the arrow before clicking the + button.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-PlugInKit-dictionary",
+          "level": 3,
+          "text": "Add PlugInKit dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This dictionary contains three items: A ",
+              "type": "text"
+            },
+            {
+              "code": "PrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, a ",
+              "type": "text"
+            },
+            {
+              "code": "Protocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, and an ",
+              "type": "text"
+            },
+            {
+              "code": "Attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary with the component keys ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.protocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the string value ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlug",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a version number. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "Protocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "PROXPCProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as this is what is used to identify your plug-in as an FxPlug to PlugInKit. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "PrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string here to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adding these keys, you make your XPC discoverable by PlugInKit. It’s important to update your version number when you make updates—if the host app finds more than one plug-in with the same name, it returns the plug-in with the newest version first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-ProPlugPlugInGroupList-and-ProPlugPlugInList-keys",
+          "level": 3,
+          "text": "Add ProPlugPlugInGroupList and ProPlugPlugInList keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both of these keys are arrays of values that tell the host application how to name and categorize your effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s a short description of what each one does:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ProPlugPlugInGroupList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " lists the ",
+              "type": "text"
+            },
+            {
+              "code": "groupName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the group’s UUID to which your plug-in should be added. You can provide a new ",
+              "type": "text"
+            },
+            {
+              "code": "groupName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and group UUID, or use an existing one. If multiple plug-ins list the same group UUID, they’re joined together in that group when displayed in Motion’s Library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugPlugInList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary, enter your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "className",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "displayName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "infoString",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "version",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and two different UUIDs, one for the plug-in, and one that matches the group’s UUID defined in ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugPlugInGroupList",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To avoid conflicts when the host loads plug-ins, every effect needs its own unique UUID, so generate a new one if you duplicate an example project. Note that the ",
+              "type": "text"
+            },
+            {
+              "code": "protocolNames",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry still requires either ",
+              "type": "text"
+            },
+            {
+              "code": "FxFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FxGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", even though those classes are deprecated, so that host apps know what kind of effect your plug-in is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Generate new UUIDs from the command line with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "uuidgen",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command, which you can then copy and paste into your plist.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-XPCService-entry",
+          "level": 3,
+          "text": "Add XPCService entry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are some new keys to be added to this entry:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RunLoopType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a String value of “",
+              "type": "text"
+            },
+            {
+              "code": "_NSApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "JoinExistingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a Boolean value of ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "_AdditionalSubServices",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a dictionary that contains a key “viewbridge”, and a Boolean value of ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "There are underscores within some of these key-value pairs, so add them with caution.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-ProPlugDynamicRegistration-and-ProPlugDynamicRegistrationPrincipalClass-keys",
+          "level": 3,
+          "text": "Add ProPlugDynamicRegistration and ProPlugDynamicRegistrationPrincipalClass keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in bundle may have a static list of plug-ins a host app should register, or it may leave registration to the bundle’s principal class. With a static list, plug-ins are recognized and loaded automatically; for a dynamic list, the bundle’s principal class is asked to register the plug-ins. The distinction depends on the value of the Boolean tag ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugDynamicRegistration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the property list. In the example below, the property list has listed ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this key, so the plug-in bundle will use dynamic registration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use dynamic registration, you need to add additional key/values in your XPC’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " PluginKit section. Add the key ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugDynamicRegistrationPrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and make the value the name of the registrar class. Also add a key for ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugDictionaryVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the XPC’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559529",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dynamic registration incurs a plug-in scanning performance hit. Use static registration whenever possible. You can find more information about dynamic registration in ",
+              "type": "text"
+            },
+            {
+              "code": "PROPlugInRegistering",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "<PluginManager/PROPlugInBundleRegistration.h>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template": {
+      "abstract": [
+        {
+          "text": "Create a plug-in in Xcode with the FxPlug template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in from an Xcode template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis": {
+      "abstract": [
+        {
+          "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Using FxPlug APIs",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-fxplug-apis"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal": {
+      "abstract": [
+        {
+          "text": "Singleton object that starts your XPC service running and can return the embedded (in-process) component of your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPrincipal"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPrincipal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPrincipal"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPrincipal",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprincipal"
+    },
+    "media-3559529": {
+      "alt": "The Info.plist from the FxDynamicRegistration example plug-in showing ProPlugDynamicRegistration and ProPlugDynamicRegistrationPrincipalClass keys.",
+      "identifier": "media-3559529",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74e13d933e3688f97b0fb090086b15ad/media-3559529@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97145789e638183cf97c9cda3ed0db13/media-3559529~dark@2x.png"
+        }
+      ]
+    },
+    "media-3915368": {
+      "alt": "A screen shot showing the complete Info.plist key-value pairs.",
+      "identifier": "media-3915368",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10db43444f1b81e7f9e55cd564beac34/media-3915368@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a5fa29f3b70a6beb643b3dd833a8845/media-3915368~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Plug-in-fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Plug-in-fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/title",
+          "value": "FxPrincipal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPrincipal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPrincipal"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

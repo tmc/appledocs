@@ -1,0 +1,487 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary that contains a requested action to perform on a device using lights-out management (LOM).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary/RequestListItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-commands:LOMDeviceRequestCommand.Command.RequestListItem",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "LOMDeviceRequestCommand.Command.RequestListItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LOMDeviceRequestCommand.Command.RequestListItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Command",
+    "symbolKind": "dictionary",
+    "title": "LOMDeviceRequestCommand.Command.RequestListItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "LOMDeviceRequestCommand.Command.RequestListItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The DNS name of the device. This should match the ",
+                  "type": "text"
+                },
+                {
+                  "code": "dNSName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP/PayloadContent-data.dictionary/SubjectAltName-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or an equivalent in a PKCS12 identity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "DeviceDNSName",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PowerON",
+                "PowerOFF",
+                "Reset"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The requested action to perform on the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "DeviceRequestType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier of the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "DeviceRequestUUID",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The LOM protocol version that the device supports. Provide the same value that ",
+                  "type": "text"
+                },
+                {
+                  "code": "LOMProtocolVersion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " receives in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "LOMProtocolVersion",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains the IPv6 addresses for primary LOM-compatible Ethernet interfaces for the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "PrimaryIPv6AddressList",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains the IPv6 addresses for secondary LOM-compatible Ethernet interfaces for the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "11.0.0",
+          "name": "SecondaryIPv6AddressList",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand": {
+      "abstract": [
+        {
+          "text": "The command to send requests to a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMDeviceRequestCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomdevicerequestcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The request dictionary to send requests to a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand.Command"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand.Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMDeviceRequestCommand.Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomdevicerequestcommand/command-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary/RequestListItem": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains a requested action to perform on a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand.Command.RequestListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand/Command-data.dictionary/RequestListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand.Command.RequestListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMDeviceRequestCommand.Command.RequestListItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomdevicerequestcommand/command-data.dictionary/requestlistitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to get setup information for lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMSetupRequestResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomsetuprequestresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP/PayloadContent-data.dictionary/SubjectAltName-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An optional dictionary that provides values required by the CA for issuing a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCEP.PayloadContent.SubjectAltName"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SCEP/PayloadContent-data.dictionary/SubjectAltName-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCEP.PayloadContent.SubjectAltName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCEP.PayloadContent.SubjectAltName",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/scep/payloadcontent-data.dictionary/subjectaltname-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/lomdevicerequestcommand/command-data.dictionary/requestlistitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "abstract": [
+    {
+      "text": "Choose the technique to deploy MDM enrollment profiles for your organization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Deploying MDM Enrollment Profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several ways to deploy an MDM enrollment profile. Choose the best approach according to the size of your organization and its IT policies, and whether a device management system already exists. Third-party vendors can also install the MDM configuration profile in a variety of ways that integrate with their management systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-MDM-Enrollment-Profile",
+          "level": 3,
+          "text": "Install the MDM Enrollment Profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only include payloads in your enrollment profile that are necessary to complete enrollment. At a minimum, include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any root and intermediate certificates necessary to establish SSL trust",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A client identity certificate for use by the MDM payload; either a Simple Certificate Enrollment Protocol (SCEP) payload, recommended, or a PKCS #12 container",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The MDM payload",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the device installs the enrollment profile, the server can push additional managed profiles to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, installing an MDM profile on a device in a single-user environment creates the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device becomes a managed device through the device profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user who installs the profile becomes a managed user through the user profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other local users who log in to the device don’t become managed users, other than by device profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices become managed devices when network users bound to Open Directory servers log in to them and the MDM server recognizes those devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for additional information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-Media-to-Users-Before-Enrollment",
+          "level": 3,
+          "text": "Assign Media to Users Before Enrollment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register Volume Purchase Program (VPP) users and assign apps and books to those users before sending invitations to them. This speeds up each assignment because the system doesn’t need to put the items in the user’s purchases at the time of assignment. Also, because acceptance of an invitation is likely to occur before MDM issues an ",
+              "type": "text"
+            },
+            {
+              "code": "InstallApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command, propagation of all licenses to the user’s iTunes Store purchase history on the user’s clients has ample time to complete. This step is necessary for the ",
+              "type": "text"
+            },
+            {
+              "code": "InstallApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to succeed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Invite a user to each VPP organization only once. By checking the user’s ",
+              "type": "text"
+            },
+            {
+              "code": "itsIdHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an MDM server can detect when a single Apple ID accepts multiple invitations. Attempts to assign licenses for the same item to multiple VPP users with the same ",
+              "type": "text"
+            },
+            {
+              "code": "itsidHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " result in an Already Assigned error (code 9616).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Over-the-Air-Enrollment",
+          "level": 3,
+          "text": "Use Over-the-Air Enrollment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Over-the-air (OTA) enrollment allows your server to validate a userʼs login and the deviceʼs built-in certificate, and query for more information about the device, before delivering an enrollment profile. That profile also becomes eligible for updates, even after expiration of the profile’s signing certificate. This includes the MDM enrollment profile itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To replace an installed profile, install a new profile with the same top-level ",
+              "type": "text"
+            },
+            {
+              "code": "PayloadIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the installed profile. This restarts the check-in process. Include an SCEP payload to create a new client identity. The system restores the old configuration if the update fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-Device-Enrollment-Program",
+          "level": 3,
+          "text": "Use the Device Enrollment Program",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Device Enrollment Program (DEP) enables your MDM server to automatically deploy enrollment profiles over the air to devices that you own. If you use this method at the time of purchase, devices that you enroll in this program prompt the user to begin the MDM enrollment process upon activation. This avoids the need to preconfigure each device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices that you enroll using DEP become supervised devices during activation. This allows an MDM server to send additional configuration commands and to apply additional restrictions, such as installing an always-on VPN configuration. Users can’t remove MDM profiles that you deliver using DEP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MDM vendors can take advantage of web services that DEP provides to integrate its features with their services. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Install a configuration profile on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices": {
+      "abstract": [
+        {
+          "text": "Optimize deployment of profiles and provisioning profiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Profiles on Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installing-profiles-on-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices": {
+      "abstract": [
+        {
+          "text": "Ensure secure MDM connectivity with valid certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Certificates for MDM Servers and Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-certificates-for-mdm-servers-and-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers": {
+      "abstract": [
+        {
+          "text": "Create and sign a certificate signing request (CSR) to enable push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Push Notifications for Your MDM Customers",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setting-up-push-notifications-for-your-mdm-customers"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices": {
+      "abstract": [
+        {
+          "text": "Create a service configuration entry point to your MDM server to access to frequently used information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/simplifying-mdm-server-administration-for-ios-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying MDM Server Administration for iOS Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/simplifying-mdm-server-administration-for-ios-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Certificates-and-Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers"
+      ],
+      "title": "Certificates and Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/deploying-mdm-enrollment-profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

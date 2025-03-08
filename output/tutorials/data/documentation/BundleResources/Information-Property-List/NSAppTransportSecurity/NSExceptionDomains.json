@@ -1,0 +1,1010 @@
+{
+  "abstract": [
+    {
+      "text": "Custom App Transport Security (ATS) configurations for named domains.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSAppTransportSecurity.NSExceptionDomains",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSExceptionDomains"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "dictionary",
+    "title": "NSExceptionDomains"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "ideTitle": "Exception Domains",
+        "name": "NSExceptionDomains",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "object"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value for this key is a dictionary with keys that name specific domains, IP addresses, or IP address ranges for which you want to set exceptions. The value for each domain key is another dictionary that indicates the exceptions for that domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSExceptionDomains : Dictionary {",
+            "    <domain-name-or-ip-address-string> : Dictionary {",
+            "        NSIncludesSubdomains : Boolean",
+            "        NSExceptionAllowsInsecureHTTPLoads : Boolean",
+            "        NSExceptionMinimumTLSVersion : String",
+            "        NSExceptionRequiresForwardSecrecy : Boolean",
+            "    }",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these rules when setting a domain name string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use lowercase",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", not ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXAMPLE.COM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use a DNS domain name, IP address, or range of IP addresses",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — In iOS 17, iPadOS 17, and macOS 14, you can use an IPv4 address, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "192.168.42.63",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or an IPv6 address, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2001:db8:12::34",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". You can also use a classless inter-domain routing (CIDR) range, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2001:db8:12::/48",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For information about how ATS handles IP addresses, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you exclude a DNS domain name and your app contacts a host by IP address, the ATS exclusion for the domain name doesn’t apply to the connection even if a DNS query for the domain name would resolve to the IP address. If you exclude an IP address and your app contacts a host by DNS name that resolves to that IP address, the ATS exclusion for the IP address doesn’t apply to the connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Don’t include a port number",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", not ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com:443",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Don’t include a trailing dot, unless you only want to match a domain string with a trailing dot",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (with a trailing dot) matches “example.com.” but not “example.com”. Similarly, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " matches “example.com” but not “example.com.”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Don’t use wildcard domains",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Don’t use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "*.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Instead, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values for the keys in each individual domain’s dictionary control how ATS treats connections made to that domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you specify an exception domain dictionary, ATS ignores any global configuration keys, like ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", for that domain. This is true even if you leave the domain-specific dictionary empty and rely entirely on its keys’ default values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity": {
+      "abstract": [
+        {
+          "text": "A description of changes made to the default security for HTTP connections.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Transport Security Settings",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity",
+      "kind": "symbol",
+      "name": "NSAppTransportSecurity",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppTransportSecurity"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppTransportSecurity",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether App Transport Security restrictions are disabled for all network connections.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allow Arbitrary Loads",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+      "kind": "symbol",
+      "name": "NSAllowsArbitraryLoads",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsArbitraryLoads"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsArbitraryLoads",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloads"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow local resources to load.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allows Local Networking",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking",
+      "kind": "symbol",
+      "name": "NSAllowsLocalNetworking",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsLocalNetworking"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsLocalNetworking",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowslocalnetworking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains": {
+      "abstract": [
+        {
+          "text": "Custom App Transport Security (ATS) configurations for named domains.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Exception Domains",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains",
+      "kind": "symbol",
+      "name": "NSExceptionDomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionDomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsexceptiondomains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to allow insecure HTTP loads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+      "kind": "symbol",
+      "name": "NSExceptionAllowsInsecureHTTPLoads",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionAllowsInsecureHTTPLoads"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionAllowsInsecureHTTPLoads",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionallowsinsecurehttploads"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum Transport Layer Security (TLS) version for network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+      "kind": "symbol",
+      "name": "NSExceptionMinimumTLSVersion",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionMinimumTLSVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionMinimumTLSVersion",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionminimumtlsversion"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to override the perfect forward secrecy requirement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+      "kind": "symbol",
+      "name": "NSExceptionRequiresForwardSecrecy",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionRequiresForwardSecrecy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionRequiresForwardSecrecy",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionrequiresforwardsecrecy"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to extend the configuration to subdomains of the given domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains",
+      "kind": "symbol",
+      "name": "NSIncludesSubdomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSIncludesSubdomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSIncludesSubdomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsincludessubdomains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency": {
+      "abstract": [
+        {
+          "text": "An obsolete Boolean value indicating whether to require Certificate Transparency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency",
+      "kind": "symbol",
+      "name": "NSRequiresCertificateTransparency",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRequiresCertificateTransparency"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRequiresCertificateTransparency",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsrequirescertificatetransparency"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Subdomains",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains"
+      ],
+      "title": "Subdomains"
+    },
+    {
+      "anchor": "Exceptions",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency"
+      ],
+      "title": "Exceptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSExceptionDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "dictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Subdomains",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains"
+              ],
+              "title": "Subdomains"
+            },
+            {
+              "anchor": "Exceptions",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency"
+              ],
+              "title": "Exceptions"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionMinimumTLSVersion/title",
+          "value": "NSExceptionMinimumTLSVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionMinimumTLSVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionMinimumTLSVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionRequiresForwardSecrecy/title",
+          "value": "NSExceptionRequiresForwardSecrecy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionRequiresForwardSecrecy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionRequiresForwardSecrecy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSExceptionDomains/title",
+          "value": "NSExceptionDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSExceptionDomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity/title",
+          "value": "NSAppTransportSecurity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppTransportSecurity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIncludesSubdomains/title",
+          "value": "NSIncludesSubdomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIncludesSubdomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIncludesSubdomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoads/title",
+          "value": "NSAllowsArbitraryLoads"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoads/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsArbitraryLoads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRequiresCertificateTransparency/title",
+          "value": "NSRequiresCertificateTransparency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRequiresCertificateTransparency/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRequiresCertificateTransparency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionAllowsInsecureHTTPLoads/title",
+          "value": "NSExceptionAllowsInsecureHTTPLoads"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionAllowsInsecureHTTPLoads/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionAllowsInsecureHTTPLoads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsLocalNetworking/title",
+          "value": "NSAllowsLocalNetworking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsLocalNetworking/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsLocalNetworking"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsexceptiondomains"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsexceptiondomains"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

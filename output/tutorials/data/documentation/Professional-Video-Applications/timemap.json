@@ -1,0 +1,298 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust or retime the playback speed of an element.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timemap"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "timeMap"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A time map is defined with the ",
+              "type": "text"
+            },
+            {
+              "code": "timeMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element, which contains one or more ",
+              "type": "text"
+            },
+            {
+              "code": "timept",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements that specify the new timing. FInal Cut Pro adjusts the parent element’s playback speed over a range of time using points on a curve to interpolate values. For example, if the local time range for a clip is originally 0-5s, then the time map for playing this clip at 50 percent speed, followed by playback at -50 percent speed, might look like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<timeMap>",
+            "    <timept time=\"0s\" value=\"0s\" interp=\"linear\"/>",
+            "    <timept time=\"10s\" value=\"5s\" interp=\"linear\"/>    <!-- In 0-10s, play the original 0-5s -->",
+            "    <timept time=\"20s\" value=\"0s\" interp=\"linear\"/>    <!-- In 10-20s, play the original 5-0s -->",
+            "</timeMap>",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A time map affects only an element’s own duration and the offsets of the element’s anchored items; it doesn’t modify the offsets of the element’s contained items (such as items with ",
+              "type": "text"
+            },
+            {
+              "code": "lane=0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/conform-rate": {
+      "abstract": [
+        {
+          "text": "Apply rate conforming to match media frame rate to timeline frame rate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/conform-rate",
+      "kind": "article",
+      "role": "article",
+      "title": "conform-rate",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/conform-rate"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/frame-sampling": {
+      "abstract": [
+        {
+          "text": "Adjust the clip’s frame rate to match the project’s frame rate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/frame-sampling",
+      "kind": "article",
+      "role": "article",
+      "title": "Frame Sampling",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/frame-sampling"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements": {
+      "abstract": [
+        {
+          "text": "Describe Final Cut Pro events and project data and their associated effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Story Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/story-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timeline-attributes": {
+      "abstract": [
+        {
+          "text": "Define characteristics of a timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timeline-attributes",
+      "kind": "article",
+      "role": "article",
+      "title": "Timeline Attributes",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/timeline-attributes"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timing-attributes": {
+      "abstract": [
+        {
+          "text": "Schedule the element and its contained or anchored items in a timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timing-attributes",
+      "kind": "article",
+      "role": "article",
+      "title": "Timing Attributes",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/timing-attributes"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timeline-Characteristics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timeline-attributes",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timing-attributes",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/conform-rate",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/frame-sampling"
+      ],
+      "title": "Timeline Characteristics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Timeline-Characteristics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timeline-attributes",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/timing-attributes",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/conform-rate",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/frame-sampling"
+              ],
+              "title": "Timeline Characteristics"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/timemap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/timemap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

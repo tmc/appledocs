@@ -1,0 +1,632 @@
+{
+  "abstract": [
+    {
+      "text": "Activates a session so you can send messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/xpc_session_activate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@xpc_session_activate",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_activate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_activate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "xpc_session_activate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_session_activate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_session_t",
+              "text": "xpc_session_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_rich_error_t",
+              "text": "xpc_rich_error_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error_out"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An inactive session to activate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "session"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If provided, a pointer that receives an error if activating the session fails.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error_out"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the session was activated; otherwise ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_activate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with a session that’s already active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create an inactive session using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag, you must activate it before releasing the last reference to the session. Releasing the last reference to an inactive session causes the process to crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If activation fails, the system automatically cancels the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t": {
+      "abstract": [
+        {
+          "text": "A type that describes an error, and whether you can retry the operation that experienced the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_activate": {
+      "abstract": [
+        {
+          "text": "Activates a session so you can send messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_activate"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_activate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_activate",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_activate"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel": {
+      "abstract": [
+        {
+          "text": "Cancels a session, discarding any unsent messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_cancel",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_cancel"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel_handler_t-7y2lv": {
+      "abstract": [
+        {
+          "text": "A block the session calls when it’s canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_cancel_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel_handler_t-7y2lv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_cancel_handler_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_cancel_handler_t-7y2lv"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE": {
+      "abstract": [
+        {
+          "text": "Configures a new session in an inactive state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_SESSION_CREATE_INACTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_create_flags_t-c.enum/XPC_SESSION_CREATE_INACTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_SESSION_CREATE_INACTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_create_flags_t-c.enum/xpc_session_create_inactive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_incoming_message_handler_t-3eb2a": {
+      "abstract": [
+        {
+          "text": "A closure that receives an incoming message for a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_incoming_message_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_incoming_message_handler_t-3eb2a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_incoming_message_handler_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_incoming_message_handler_t-3eb2a"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_set_cancel_handler": {
+      "abstract": [
+        {
+          "text": "Sets a handler the session calls when it’s canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_set_cancel_handler"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_set_cancel_handler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_set_cancel_handler",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_set_cancel_handler"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_set_incoming_message_handler": {
+      "abstract": [
+        {
+          "text": "Sets a handler to receive incoming messages for a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_set_incoming_message_handler"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_set_incoming_message_handler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_set_incoming_message_handler",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_set_incoming_message_handler"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0": {
+      "abstract": [
+        {
+          "text": "A C type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_session_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_t-10if0"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_set_incoming_message_handler",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_incoming_message_handler_t-3eb2a",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_set_cancel_handler",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_cancel_handler_t-7y2lv"
+      ],
+      "title": "Managing life cycle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/title",
+          "value": "xpc_session_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/title",
+          "value": "xpc_rich_error_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_session_activate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

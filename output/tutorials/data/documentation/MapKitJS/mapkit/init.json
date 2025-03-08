@@ -1,0 +1,564 @@
+{
+  "abstract": [
+    {
+      "text": "Initializes MapKit JS by providing an authorization callback function and optional language.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instm/mapkit/init",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "init"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "cl/MapKitInitOptions",
+              "text": "MapKitInitOptions"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "MapKit JS initialization options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/loading-the-latest-version-of-mapkit-js"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unless you wish to explicitly control initialization timing in JavaScript, use ",
+              "type": "text"
+            },
+            {
+              "code": "data-token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of this method. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/loading-the-latest-version-of-mapkit-js",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using this method, provide the token by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a JavaScript object as a function. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function calls ",
+              "type": "text"
+            },
+            {
+              "code": "done()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to return the token. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how to create Maps tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a server endpoint to deliver new tokens to MapKit JS, make an asynchronous request to this endpoint in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function and call ",
+              "type": "text"
+            },
+            {
+              "code": "done()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the result. The following example shows creating a callback that requests a token from a server endpoint and sets a preferred language for the map:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mapkit.init({",
+            "    authorizationCallback: function(done) {",
+            "        fetch(\"/gettoken\")",
+            "            .then(res => res.text())",
+            "            .then(done);",
+            "    },",
+            "    language: \"es\"",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t set up a server endpoint, you can alternatively set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a function that provides a pregenerated token string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mapkit.init({",
+            "    authorizationCallback: function(done) {",
+            "        done(\"your-token-string\");",
+            "    },",
+            "    language: \"es\"",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " emits a ",
+              "type": "text"
+            },
+            {
+              "code": "configuration-change",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event after MapKit JS initializes, and an ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event when initialization fails. You can learn more about both of these events in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/handling-initialization-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions": {
+      "abstract": [
+        {
+          "text": "Initialization options for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapKitInitOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkitinitoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback": {
+      "abstract": [
+        {
+          "text": "A callback function that obtains a token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions/authorizationCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationCallback",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkitinitoptions/authorizationcallback"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token": {
+      "abstract": [
+        {
+          "text": "Generate your token to access MapKit services with proper authorization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps token",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/creating-a-maps-token"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/handling-initialization-events": {
+      "abstract": [
+        {
+          "text": "Respond to events that trigger when MapKit JS initializes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/handling-initialization-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling initialization events",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/handling-initialization-events"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/loading-the-latest-version-of-mapkit-js": {
+      "abstract": [
+        {
+          "text": "Link to the most recent autoupdating version of MapKit JS, or a version of your choice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/loading-the-latest-version-of-mapkit-js",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading the latest version of MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/loading-the-latest-version-of-mapkit-js"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit": {
+      "abstract": [
+        {
+          "text": "The JavaScript API for embedding Apple Maps on your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries": {
+      "abstract": [
+        {
+          "text": "The list of available libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Libraries",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/libraries"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener": {
+      "abstract": [
+        {
+          "text": "Subscribes a listener function to an event type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addEventListener",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/addeventlistener"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init": {
+      "abstract": [
+        {
+          "text": "Initializes MapKit JS by providing an authorization callback function and optional language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/init"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load": {
+      "abstract": [
+        {
+          "text": "Tells MapKit JS which libraries to load.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/load"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries": {
+      "abstract": [
+        {
+          "text": "A string that describes the list of loaded libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadedLibraries",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/loadedlibraries"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener": {
+      "abstract": [
+        {
+          "text": "Unsubscribes a listener function from an event type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeEventListener",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/removeeventlistener"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Initialization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/handling-initialization-events",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener"
+      ],
+      "title": "Initialization"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit/init"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

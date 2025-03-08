@@ -1,0 +1,462 @@
+{
+  "abstract": [
+    {
+      "text": "An error that sends to the connection’s event handler to indicate that the connection is no longer usable.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-c.macro"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@macro@XPC_ERROR_CONNECTION_INVALID",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "XPC_ERROR_CONNECTION_INVALID"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "XPC_ERROR_CONNECTION_INVALID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Macro",
+    "symbolKind": "macro",
+    "title": "XPC_ERROR_CONNECTION_INVALID"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XPC_ERROR_CONNECTION_INVALID"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Will be delivered to the connection’s event handler if the named service provided to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_create(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " could not be found in the XPC service namespace. The connection is useless and should be disposed of.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any messages in the queue to be sent will be unwound and canceled when this error occurs, similarly to the behavior when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-swift.var",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " occurs. The only difference is that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-swift.var",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will be given to outstanding reply handlers and the connection’s event handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This error may be given to any type of connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-c.macro": {
+      "abstract": [
+        {
+          "text": "An error that sends to the connection’s event handler when the remote service exits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_ERROR_CONNECTION_INTERRUPTED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-c.macro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_ERROR_CONNECTION_INTERRUPTED",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_error_connection_interrupted-c.macro"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-swift.var": {
+      "abstract": [
+        {
+          "text": "An error that sends to the connection’s event handler when the remote service exits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPC_ERROR_CONNECTION_INTERRUPTED"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-swift.var",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_ERROR_CONNECTION_INTERRUPTED",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_error_connection_interrupted-swift.var"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-c.macro": {
+      "abstract": [
+        {
+          "text": "An error that sends to the connection’s event handler to indicate that the connection is no longer usable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_ERROR_CONNECTION_INVALID"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-c.macro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_ERROR_CONNECTION_INVALID",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_error_connection_invalid-c.macro"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-swift.var": {
+      "abstract": [
+        {
+          "text": "An error that sends to the connection’s event handler to indicate that the connection is no longer usable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPC_ERROR_CONNECTION_INVALID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INVALID-swift.var",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_ERROR_CONNECTION_INVALID",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_error_connection_invalid-swift.var"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_TERMINATION_IMMINENT-c.macro": {
+      "abstract": [
+        {
+          "text": "An error that sends to a peer connection’s event handler when the XPC runtime determines that the program needs to exit and that all outstanding transactions must wind down.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_ERROR_TERMINATION_IMMINENT"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_TERMINATION_IMMINENT-c.macro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_ERROR_TERMINATION_IMMINENT",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_error_termination_imminent-c.macro"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_connection_create(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new connection object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_create"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_connection_t",
+          "text": "xpc_connection_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_connection_create(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_create"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_connection_create(_:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_connection_create(_:_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_CONNECTION_INTERRUPTED-c.macro",
+        "doc://com.apple.xpc/documentation/XPC/XPC_ERROR_TERMINATION_IMMINENT-c.macro"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_create(_:_:)/title",
+          "value": "xpc_connection_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_connection_create(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_create"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_error_connection_invalid-c.macro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

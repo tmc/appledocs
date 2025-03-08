@@ -1,0 +1,1345 @@
+{
+  "abstract": [
+    {
+      "text": "The payload you use to configure an app extension that performs single sign-on (SSO).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:ExtensibleSingleSignOn",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ExtensibleSingleSignOn"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ExtensibleSingleSignOn"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "ExtensibleSingleSignOn"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ExtensibleSingleSignOn"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Password",
+                "UserSecureEnclaveKey"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Platform SSO authentication method the extension uses. Requires that the SSO Extension also supports the method. Available in macOS 13 and later, and deprecated in macOS 14.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "introducedVersion": "13.0.0",
+          "name": "AuthenticationMethod",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of bundle identifiers of apps that don’t use SSO provided by this extension. Available in iOS 15 and later, and macOS 12 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "DeniedBundleIdentifiers",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary of arbitrary data passed through to the app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "ExtensionData",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/ExtensionData-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:ExtensibleSingleSignOn.ExtensionData",
+              "text": "ExtensibleSingleSignOn.ExtensionData"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bundle identifier of the app extension that performs SSO for the specified URLs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "ExtensionIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of host or domain names that apps can authenticate through the app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Required for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Credential",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads. Ignored for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Redirect",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Matches host or domain names case-insensitively",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Requires that all the host and domain names of all installed Extensible SSO payloads are unique",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Host names that begin with a “.” are wildcard suffixes that match all subdomains; otherwise the host name needs be an exact match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Note",
+              "style": "note",
+              "type": "aside"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "Hosts",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dictionary to configure Platform SSO.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "PlatformSSO",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/PlatformSSO-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:ExtensibleSingleSignOn.PlatformSSO",
+              "text": "ExtensibleSingleSignOn.PlatformSSO"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The realm name for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Credential",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads. Use proper capitalization for this value. Ignored for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Redirect",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "Realm",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The token this device uses for registration with Platform SSO. Use it for silent registration with the Identity Provider. Requires that ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthenticationMethod",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " isn’t empty. Available in macOS 13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "RegistrationToken",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "Cancel"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Cancel",
+                "DoNotHandle"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "Cancel",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system cancels authentication requests when the screen is locked. If set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "DoNotHandle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the request continues without SSO instead. This doesn’t apply to requests where ",
+                  "type": "text"
+                },
+                {
+                  "code": "userInterfaceEnabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or for background ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " requests. Available in iOS 15 and later, and macOS 12 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "ScreenLockedBehavior",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The team identifier of the app extension. This key is required on macOS and ignored elsewhere.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "TeamIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Credential",
+                "Redirect"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of SSO.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "Type",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of URL prefixes of identity providers where the app extension performs SSO.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Required for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Redirect",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads. Ignored for ",
+                  "type": "text"
+                },
+                {
+                  "code": "Credential",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " payloads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The URLs need to begin with ",
+                  "type": "text"
+                },
+                {
+                  "code": "http://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Matches scheme and host name case-insensitively",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Doesn’t allow query parameters and URL fragments",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Requires that the URLs of all installed Extensible SSO payloads are unique",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "introducedVersion": "13.0.0",
+          "name": "URLs",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.extensiblesso",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the payload type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system supports user channel installation in macOS 11 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Profile-Example",
+          "level": 3,
+          "text": "Profile Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>PayloadContent</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>ExtensionData</key>",
+            "            <dict>",
+            "                <key>useSiteAutoDiscovery</key>",
+            "                <true/>",
+            "            </dict>",
+            "            <key>ExtensionIdentifier</key>",
+            "            <string>com.example.com</string>",
+            "            <key>TeamIdentifier</key>",
+            "            <string>RandomTeamID</string>",
+            "            <key>Hosts</key>",
+            "            <array>",
+            "                <string>.com.example.com</string>",
+            "            </array>",
+            "            <key>Realm</key>",
+            "            <string>COM.URL.COM</string>",
+            "            <key>Type</key>",
+            "            <string>Credential</string>",
+            "            <key>PayloadIdentifier</key>",
+            "            <string>com.example.myessopayload</string>",
+            "            <key>PayloadType</key>",
+            "            <string>com.apple.extensiblesso</string>",
+            "            <key>PayloadUUID</key>",
+            "            <string>dbed949d-39a2-440d-a84b-e0c825cdcb2e</string>",
+            "            <key>PayloadVersion</key>",
+            "            <integer>1</integer>",
+            "        </dict>",
+            "    </array>",
+            "    <key>PayloadDisplayName</key>",
+            "    <string>Extensible SSO</string>",
+            "    <key>PayloadIdentifier</key>",
+            "    <string>com.example.myprofile</string>",
+            "    <key>PayloadType</key>",
+            "    <string>Configuration</string>",
+            "    <key>PayloadUUID</key>",
+            "    <string>da3bbbec-a753-4aa7-aeae-a74b7a65c0b5</string>",
+            "    <key>PayloadVersion</key>",
+            "    <integer>1</integer>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/DirectoryService": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure an Active Directory (AD) domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectoryService"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/DirectoryService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectoryService"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectoryService",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/directoryservice"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure an app extension that performs single sign-on (SSO).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOn",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/extensiblesinglesignon"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/ExtensionData-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The additional data to pass to the app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn.ExtensionData"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/ExtensionData-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn.ExtensionData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOn.ExtensionData",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/extensiblesinglesignon/extensiondata-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/PlatformSSO-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to configure Platform SSO.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn.PlatformSSO"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/PlatformSSO-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn.PlatformSSO"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOn.PlatformSSO",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/extensiblesinglesignon/platformsso-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOnKerberos": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure an app extension that performs single sign-on with the Kerberos extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOnKerberos"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOnKerberos",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOnKerberos"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOnKerberos",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/extensiblesinglesignonkerberos"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Identification": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the names of the account user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identification"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Identification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identification"
+        }
+      ],
+      "role": "symbol",
+      "title": "Identification",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/identification"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/IdentityPreference": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure the user’s identity on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "IdentityPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/IdentityPreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IdentityPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "IdentityPreference",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/identitypreference"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SingleSignOn": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure single sign-on (SSO).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SingleSignOn"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SingleSignOn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SingleSignOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "SingleSignOn",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/singlesignon"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authentication",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/DirectoryService",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOnKerberos",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Identification",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/IdentityPreference",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SingleSignOn"
+      ],
+      "title": "Authentication"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Supporting-Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/ExtensionData-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ExtensibleSingleSignOn/PlatformSSO-data.dictionary"
+      ],
+      "title": "Supporting Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/extensiblesinglesignon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

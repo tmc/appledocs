@@ -1,0 +1,782 @@
+{
+  "abstract": [
+    {
+      "text": "Sends a message over the session to the destination service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@xpc_session_send_message",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_send_message"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "xpc_session_send_message"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "xpc_session_send_message"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_rich_error_t",
+              "text": "xpc_rich_error_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_session_send_message"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_session_t",
+              "text": "xpc_session_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_object_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_object_t",
+              "text": "xpc_object_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "message"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The session that represents the destination service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "session"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary object that contains the message to send.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "message"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the session fails to send the message, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains details about the failure; otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the message is sent successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sessions send messages serially in a first-in, first-out (FIFO) order. This method is safe to call from multiple dispatch queues. The session can’t indicate whether the message ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "delivery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is successful or not. While the session may successfully enqueue the message at the remote end of the connection, there’s no guarantee about when the destination dequeues the message and invokes the receiving session’s handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you create an inactive session, you must activate it before sending messages. Calling this method with an inactive session crashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/nil": {
+      "abstract": [
+        {
+          "text": "Defines the `id` of a null class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Nil",
+      "type": "topic",
+      "url": "/documentation/objectivec/nil"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_object_t": {
+      "abstract": [
+        {
+          "text": "A type that can describe all XPC objects, including dictionaries, arrays, strings, and numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_object_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_object_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_can_retry(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean that indicates whether you can retry the operation that experienced an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_can_retry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_rich_error_t",
+          "text": "xpc_rich_error_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_can_retry(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_can_retry"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_can_retry(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_can_retry(_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_copy_description(_:)": {
+      "abstract": [
+        {
+          "text": "Copies the string description of an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_copy_description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_rich_error_t",
+          "text": "xpc_rich_error_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_copy_description(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_copy_description"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_copy_description(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_copy_description(_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t": {
+      "abstract": [
+        {
+          "text": "A type that describes an error, and whether you can retry the operation that experienced the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_reply_handler_t-7kfe4": {
+      "abstract": [
+        {
+          "text": "A block that receives the reply to a message a session sends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_reply_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_reply_handler_t-7kfe4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_reply_handler_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_reply_handler_t-7kfe4"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message": {
+      "abstract": [
+        {
+          "text": "Sends a message over the session to the destination service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_send_message"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_send_message",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_send_message"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_async": {
+      "abstract": [
+        {
+          "text": "Sends a message asynchronously over the session to the destination service, calling a handler after receiving a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_send_message_with_reply_async"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_send_message_with_reply_async",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_send_message_with_reply_async"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_sync": {
+      "abstract": [
+        {
+          "text": "Sends a message over the session to the destination service, blocking the caller until receiving a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_send_message_with_reply_sync"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_sync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_session_send_message_with_reply_sync",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_send_message_with_reply_sync"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0": {
+      "abstract": [
+        {
+          "text": "A C type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_session_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_t-10if0"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sending-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_async",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_reply_handler_t-7kfe4",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_send_message_with_reply_sync",
+        "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+        "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_can_retry(_:)",
+        "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_copy_description(_:)"
+      ],
+      "title": "Sending messages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_can_retry(_:)/title",
+          "value": "xpc_rich_error_can_retry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_can_retry(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_can_retry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_copy_description(_:)/title",
+          "value": "xpc_rich_error_copy_description"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_copy_description(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_copy_description"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/title",
+          "value": "xpc_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/title",
+          "value": "xpc_session_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/title",
+          "value": "xpc_rich_error_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_session_send_message"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

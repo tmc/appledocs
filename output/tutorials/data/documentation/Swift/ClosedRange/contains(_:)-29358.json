@@ -1,1 +1,758 @@
-{"abstract":[{"type":"text","text":"Returns a Boolean value indicating whether the given range is contained"},{"type":"text","text":" "},{"type":"text","text":"within this closed range."}],"variants":[{"paths":["/documentation/swift/closedrange/contains(_:)-29358"],"traits":[{"interfaceLanguage":"swift"}]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.Swift/documentation/Swift","doc://com.apple.Swift/documentation/Swift/ClosedRange"]]},"identifier":{"url":"doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358","interfaceLanguage":"swift"},"sections":[],"metadata":{"role":"symbol","roleHeading":"Instance Method","modules":[{"name":"Swift"}],"extendedModule":"Swift","externalID":"s:SNsSxRzSZ6StrideRpzrlE8containsySbSnyxGF","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"contains"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"Range","preciseIdentifier":"s:Sn"},{"kind":"text","text":"<"},{"text":"Bound","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"conformance":{"constraints":[{"code":"Bound","type":"codeVoice"},{"text":" conforms to ","type":"text"},{"code":"Strideable","type":"codeVoice"},{"text":" and ","type":"text"},{"code":"Bound.Stride","type":"codeVoice"},{"text":" conforms to ","type":"text"},{"type":"codeVoice","code":"SignedInteger"},{"type":"text","text":"."}],"conformancePrefix":[{"text":"Conforms when","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}]},"symbolKind":"method","platforms":[{"unavailable":false,"deprecated":false,"introducedAt":"8.0","name":"iOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"8.0","name":"iPadOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"13.0","name":"Mac Catalyst","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"10.10","name":"macOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"9.0","name":"tvOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"1.0","name":"visionOS","beta":false},{"unavailable":false,"deprecated":false,"introducedAt":"2.0","name":"watchOS","beta":false}],"title":"contains(_:)"},"schemaVersion":{"major":0,"minor":3,"patch":0},"primaryContentSections":[{"declarations":[{"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"contains"},{"kind":"text","text":"("},{"kind":"externalParam","text":"_"},{"kind":"text","text":" "},{"kind":"internalParam","text":"other"},{"kind":"text","text":": "},{"identifier":"doc://com.apple.Swift/documentation/Swift/Range","kind":"typeIdentifier","text":"Range","preciseIdentifier":"s:Sn"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Bound"},{"kind":"text","text":">) -> "},{"identifier":"doc://com.apple.Swift/documentation/Swift/Bool","kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}],"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"]}],"kind":"declarations"},{"kind":"parameters","parameters":[{"name":"other","content":[{"inlineContent":[{"type":"text","text":"A range to check for containment within this closed"},{"type":"text","text":" "},{"type":"text","text":"range."}],"type":"paragraph"}]}]},{"content":[{"text":"Return Value","anchor":"return-value","level":2,"type":"heading"},{"type":"paragraph","inlineContent":[{"type":"text","text":""},{"code":"true","type":"codeVoice"},{"type":"text","text":" if "},{"code":"other","type":"codeVoice"},{"type":"text","text":" is empty or wholly contained within this"},{"type":"text","text":" "},{"type":"text","text":"closed range; otherwise, "},{"code":"false","type":"codeVoice"},{"text":".","type":"text"}]}],"kind":"content"},{"content":[{"anchor":"discussion","level":2,"text":"Discussion","type":"heading"},{"inlineContent":[{"text":"The given range is contained within this closed range if the elements of","type":"text"},{"text":" ","type":"text"},{"text":"the range are all contained within this closed range.","type":"text"}],"type":"paragraph"},{"code":["let range = 0...10","range.contains(5..<7)     // true","range.contains(5..<10)    // true","range.contains(5..<12)    // false","","// Note that `5..<11` contains 5, 6, 7, 8, 9, and 10.","range.contains(5..<11)    // true"],"syntax":"swift","type":"codeListing"},{"inlineContent":[{"type":"text","text":"Additionally, passing any empty range as "},{"type":"codeVoice","code":"other"},{"type":"text","text":" results in the value"},{"type":"text","text":" "},{"type":"codeVoice","code":"true"},{"type":"text","text":", even if the empty range’s bounds are outside the bounds of this"},{"type":"text","text":" "},{"type":"text","text":"closed range."}],"type":"paragraph"},{"code":["range.contains(3..<3)     // true","range.contains(20..<20)   // true"],"syntax":"swift","type":"codeListing"},{"name":"Complexity","style":"note","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"O(1)"}]}],"type":"aside"}],"kind":"content"}],"kind":"symbol","references":{"doc://com.apple.Swift/documentation/Swift/Range":{"abstract":[{"type":"text","text":"A half-open interval from a lower bound up to, but not including, an upper"},{"type":"text","text":" "},{"type":"text","text":"bound."}],"type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"Range"}],"title":"Range","identifier":"doc://com.apple.Swift/documentation/Swift/Range","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Range"}],"url":"/documentation/swift/range","kind":"symbol"},"doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358":{"title":"contains(_:)","role":"symbol","abstract":[{"type":"text","text":"Returns a Boolean value indicating whether the given range is contained"},{"type":"text","text":" "},{"type":"text","text":"within this closed range."}],"type":"topic","kind":"symbol","url":"/documentation/swift/closedrange/contains(_:)-29358","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"contains","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"s:Sn","text":"Range","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Bound","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"s:Sb","text":"Bool","kind":"typeIdentifier"}],"conformance":{"conformancePrefix":[{"text":"Conforms when","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}],"constraints":[{"code":"Bound","type":"codeVoice"},{"text":" conforms to ","type":"text"},{"code":"Strideable","type":"codeVoice"},{"text":" and ","type":"text"},{"code":"Bound.Stride","type":"codeVoice"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"SignedInteger"},{"type":"text","text":"."}]},"identifier":"doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358"},"doc://com.apple.Swift/documentation/Swift":{"abstract":[{"text":"Build apps using a powerful open language.","type":"text"}],"type":"topic","role":"collection","title":"Swift","identifier":"doc://com.apple.Swift/documentation/Swift","url":"/documentation/swift","kind":"symbol","images":[{"identifier":"Swift-PageImage-card.png","type":"card"}]},"doc://com.apple.Swift/documentation/Swift/ClosedRange":{"kind":"symbol","abstract":[{"text":"An interval from a lower bound up to, and including, an upper bound.","type":"text"}],"identifier":"doc://com.apple.Swift/documentation/Swift/ClosedRange","type":"topic","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ClosedRange"}],"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"ClosedRange"}],"url":"/documentation/swift/closedrange","title":"ClosedRange"},"doc://com.apple.Swift/documentation/Swift/Bool":{"abstract":[{"text":"A value type whose instances are either ","type":"text"},{"code":"true","type":"codeVoice"},{"text":" or ","type":"text"},{"code":"false","type":"codeVoice"},{"text":".","type":"text"}],"type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"Bool"}],"title":"Bool","identifier":"doc://com.apple.Swift/documentation/Swift/Bool","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Bool"}],"url":"/documentation/swift/bool","kind":"symbol"},"Swift-PageImage-card.png":{"type":"image","variants":[{"traits":["2x","light"],"url":"https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"},{"traits":["2x","dark"],"url":"https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"}],"identifier":"Swift-PageImage-card.png","alt":"An orange Swift logo on a gradient background."},"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Returns a Boolean value indicating whether the given range is contained",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "within this closed range.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/ClosedRange"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "conformance": {
+      "availabilityPrefix": [
+        {
+          "text": "Available when",
+          "type": "text"
+        }
+      ],
+      "conformancePrefix": [
+        {
+          "text": "Conforms when",
+          "type": "text"
+        }
+      ],
+      "constraints": [
+        {
+          "code": "Bound",
+          "type": "codeVoice"
+        },
+        {
+          "text": " conforms to ",
+          "type": "text"
+        },
+        {
+          "code": "Strideable",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "Bound.Stride",
+          "type": "codeVoice"
+        },
+        {
+          "text": " conforms to ",
+          "type": "text"
+        },
+        {
+          "code": "SignedInteger",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ]
+    },
+    "extendedModule": "Swift",
+    "externalID": "s:SNsSxRzSZ6StrideRpzrlE8containsySbSnyxGF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "contains"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sn",
+        "text": "Range"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Bound"
+      },
+      {
+        "kind": "text",
+        "text": ">) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "contains(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contains"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "other"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sn",
+              "text": "Range"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Bound"
+            },
+            {
+              "kind": "text",
+              "text": ">) -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A range to check for containment within this closed",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "range.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "other"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is empty or wholly contained within this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closed range; otherwise, ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The given range is contained within this closed range if the elements of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the range are all contained within this closed range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let range = 0...10",
+            "range.contains(5..<7)     // true",
+            "range.contains(5..<10)    // true",
+            "range.contains(5..<12)    // false",
+            "",
+            "// Note that `5..<11` contains 5, 6, 7, 8, 9, and 10.",
+            "range.contains(5..<11)    // true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, passing any empty range as ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " results in the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", even if the empty range’s bounds are outside the bounds of this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closed range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "range.contains(3..<3)     // true",
+            "range.contains(20..<20)   // true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "O(1)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Complexity",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ClosedRange": {
+      "abstract": [
+        {
+          "text": "An interval from a lower bound up to, and including, an upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClosedRange"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ClosedRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClosedRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClosedRange",
+      "type": "topic",
+      "url": "/documentation/swift/closedrange"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the given range is contained",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within this closed range.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Strideable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Bound.Stride",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "SignedInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Bound"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ClosedRange/contains(_:)-29358",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/closedrange/contains(_:)-29358"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Range": {
+      "abstract": [
+        {
+          "text": "A half-open interval from a lower bound up to, but not including, an upper",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Range"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Range"
+        }
+      ],
+      "role": "symbol",
+      "title": "Range",
+      "type": "topic",
+      "url": "/documentation/swift/range"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/closedrange/contains(_:)-29358"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

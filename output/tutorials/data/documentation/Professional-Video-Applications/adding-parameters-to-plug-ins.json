@@ -1,0 +1,2747 @@
+{
+  "abstract": [
+    {
+      "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding parameters to plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a plug-in is invoked by a host application, the host application asks for the plug-in’s parameter list by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method is declared in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxBaseEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, which is inherited by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The host application then displays the parameters in its inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-parameter",
+          "level": 3,
+          "text": "Add a parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FxPlug SDK includes methods for adding these standard types of parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Floating-point, integer, and percent sliders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Angle slider",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Toggle button (checkbox)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "RGB or RGBA color",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Point",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Popup menu",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Histogram",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gradient",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Path picker",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Font menu",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Help button",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Push button",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image Reference",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3668805",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, a plug-in first calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing/api(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "PluginManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework) to get the host API object that implements the protocol. It then adds parameters, one by one, using methods in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code shows an ",
+              "type": "text"
+            },
+            {
+              "code": "-addParametersWithError:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method from a simple opacity filter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Parameter IDs must be in the range of ",
+                  "type": "text"
+                },
+                {
+                  "code": "[1, 9998]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". IDs outside of this range are invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func addParameters() throws {",
+                    "    let paramAPI = _apiManager!.api(for: FxParameterCreationAPI_v5.self) as! FxParameterCreationAPI_v5",
+                    "        ",
+                    "    paramAPI.addFloatSlider(withName: \"Opacity\", parameterID: 1, defaultValue: 1.0, parameterMin: 0.0, parameterMax: 100.0, sliderMin: 0.0, sliderMax: 10.0, delta: 0.1, parameterFlags: FxParameterFlags(kFxParameterFlag_DEFAULT))",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "enum ",
+                    "{ ",
+                    "    kOpacityID = 1",
+                    "}; ",
+                    "",
+                    "- (BOOL)addParametersWithError:(NSError**)error",
+                    "{",
+                    "    id<FxParameterCreationAPI_v5> paramAPI = [apiManager apiForProtocol:@protocol(FxParameterCreationAPI_v5)];",
+                    "",
+                    "    BOOL success =[paramAPI addFloatSliderWithName:@\"Opacity\"",
+                    "                                       parameterId:kOpacityID",
+                    "                                      defaultValue:1.0",
+                    "                                      parameterMin:0.0",
+                    "                                      parameterMax:100.0",
+                    "                                         sliderMin:0.0",
+                    "                                         sliderMax:10.0",
+                    "                                             delta:0.1 ",
+                    "                                    parameterFlags:kFxParameterFlag_DEFAULT];",
+                    "    return success;",
+                    "} "
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A Mix slider parameter is automatically added filter plug-ins, and a Publish OSC toggle parameter is automatically added in Motion to any plug-in that contains onscreen controls. The Publish OSC toggle parameter is never visible in Final Cut Pro.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-custom-parameter",
+          "level": 3,
+          "text": "Create a custom parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the standard parameter types, you can use the following method to create a custom parameter with an opaque data type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "addCustomParameter(withName:parameterID:defaultValue:parameterFlags:)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "-addCustomParameterWithName:parameterID:defaultValue:parameterFlags"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each custom parameter must be associated with a custom parameter view, which is defined by the methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interact-with-parameters",
+          "level": 3,
+          "text": "Interact with parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user changes a parameter control for an FxPlug plug-in, the host application calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " plug-in method. This is useful for a plug-in that changes the state of other parameters. For example, if the user changes a toggle button, the plug-in can hide or reveal other parameters during ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-user-interaction-for-custom-UI-parameters",
+          "level": 3,
+          "text": "Handle user interaction for custom UI parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom UI parameters let developers draw directly to a custom UI and create their own controls in a space that the host application makes for them in the inspector. The host application handles user interaction for custom parameters in a different way than standard UI parameters. For example, when you develop custom parameters, they must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. An example of this can be found in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxSimpleColorCorrector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sample plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your plug-in, custom parameters conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "FxParameterViewHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol by implementing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2/createView(forParameterID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that provides an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass to the host app. Like any other ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass, this custom view draws itself in a window and receives notification of any user actions such as mouse, key, and tablet events. In response to user events, the custom view sets parameter values. Usually it sets the value of a custom parameter. The host application notices that a parameter value has changed and calls the plug-in to render with the new parameter values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The plug-in can create a custom view object programmatically or retrieve it from a ",
+              "type": "text"
+            },
+            {
+              "code": "XIB",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file (created in Xcode’s Interface Builder and placed in your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in’s custom view methods must call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " host API ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/startAction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method before your plug-in accesses any parameter values, and then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/endAction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method after it has finished accessing the parameter values. This lets the host application set up and restore the internal state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-versioning-for-your-plug-ins-parameters",
+          "level": 3,
+          "text": "Update versioning for your plug-in’s parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you develop plug-ins over time, you may need to deprecate, add, or update your parameters, like changing a default value or range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that projects using your older plug-ins still function correctly, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find out the version of the plug-in that’s used with a project. With this information, you can branch your parameter code, update your project, and handle special cases as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you create a version 1 brightness filter with a floating point slider and apply it to a project, the project saves the plug-in’s version number along with the slider value. On subsequent launches of the project, you can query ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and check for a version number of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you later update the brightness filter to use a second parameter, update the version of your plug-in. Then, on subsequent launches, do a version check and add a second path for a version number of ",
+                  "type": "text"
+                },
+                {
+                  "code": "2",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Simplify user interaction by using onscreen controls for your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding onscreen controls to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-onscreen-controls-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins": {
+      "abstract": [
+        {
+          "text": "Version plug-ins to add new capabilities, or obsolete them to remove them from the Motion Library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Versioning and obsoleting old plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/versioning-and-obsoleting-old-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI": {
+      "abstract": [
+        {
+          "text": "Commands that you can tell the host to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2": {
+      "abstract": [
+        {
+          "text": "Adds functionality to move the playhead to a specific timeline time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4": {
+      "abstract": [
+        {
+          "text": "Defines the methods the host application provides to support a custom parameter view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterActionAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterActionAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCustomParameterActionAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/endAction(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the host application that the plug-in is done accessing parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/endAction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endAction:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endAction(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4/endaction(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/startAction(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares the host to access parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4/startAction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAction:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "startAction(_:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameteractionapi_v4/startaction(_:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterInterpolation_v2": {
+      "abstract": [
+        {
+          "text": "Defines the methods a plug-in needs to implement to support keyframing custom parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterInterpolation_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterInterpolation_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterInterpolation_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCustomParameterInterpolation_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameterinterpolation_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2": {
+      "abstract": [
+        {
+          "text": "Defines the methods a plug-in needs to implement to associate a custom NSView with one of its parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterViewHost_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCustomParameterViewHost_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCustomParameterViewHost_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameterviewhost_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2/createView(forParameterID:)": {
+      "abstract": [
+        {
+          "text": "Provides an NSView to be associated with the given parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forParameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2/createView(forParameterID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createViewForParameterID:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "createView(forParameterID:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcustomparameterviewhost_v2/createview(forparameterid:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDynamicParameterAPI_v3": {
+      "abstract": [
+        {
+          "text": "Allows your plugin to create parameters on-the-fly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxDynamicParameterAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDynamicParameterAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxDynamicParameterAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxDynamicParameterAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxdynamicparameterapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxHistogramChannel": {
+      "abstract": [
+        {
+          "text": "Constants used to identify which channel a histogram operation should apply to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxHistogramChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxHistogramChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxHistogramChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxHistogramChannel",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxhistogramchannel"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5": {
+      "abstract": [
+        {
+          "text": "Defines the methods provided by the host application to create parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterCreationAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametercreationapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterFlags": {
+      "abstract": [
+        {
+          "text": "These constants specify the characteristics of parameters display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterFlags",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterflags"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to retrieve parameter values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterRetrievalAPI_v6",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v6"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7": {
+      "abstract": [
+        {
+          "text": "Adds a method to retrieve the image information about an image parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v7"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v7"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterRetrievalAPI_v7",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v7"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to set parameter values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterSettingAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametersettingapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v6": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to set parameter flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v6"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterSettingAPI_v6"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterSettingAPI_v6",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametersettingapi_v6"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods to retrieve information about paths, shapes, and masks the user has drawn on an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window with a defined minimum and maximum size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()": {
+      "abstract": [
+        {
+          "text": "Tells the host application what parameters your plug-in requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addParameters"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addParametersWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addParameters()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/addparameters()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)": {
+      "abstract": [
+        {
+          "text": "Executes when the host detects that a parameter has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterChanged:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterChanged(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/parameterchanged(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods that the host app implements to handle plug-in management of the host app’s undo queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxUndoAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxundoapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a host application implements to identify the plug-in version used by a project when it was first created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxVersioningAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()": {
+      "abstract": [
+        {
+          "text": "Provides the version number of a plug-in that a project uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "versionAtCreation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI/versionAtCreation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "versionAtCreation"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "versionAtCreation()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi/versionatcreation()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing/api(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "api"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)Protocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/PROAPIAccessing/api(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "apiForProtocol:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "api(for:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/proapiaccessing/api(for:)"
+    },
+    "media-3668805": {
+      "alt": "Examples of standard parameters",
+      "identifier": "media-3668805",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12afa858ee32085a99ef74f552f91fd2/media-3668805@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aee745c9288902465ff4bb50719a1d79/media-3668805~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Parameter-APIs",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v6",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDynamicParameterAPI_v3"
+      ],
+      "title": "Parameter APIs"
+    },
+    {
+      "anchor": "Custom-Parameter-APIs",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterInterpolation_v2"
+      ],
+      "title": "Custom Parameter APIs"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterFlags",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxHistogramChannel"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Parameter-APIs",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v5",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterSettingAPI_v6",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDynamicParameterAPI_v3"
+              ],
+              "title": "Parameter APIs"
+            },
+            {
+              "anchor": "Custom-Parameter-APIs",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterViewHost_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterActionAPI_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCustomParameterInterpolation_v2"
+              ],
+              "title": "Custom Parameter APIs"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterFlags",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxHistogramChannel"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/title",
+          "value": "FxParameterSettingAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1PROAPIAccessing~1api(for:)/title",
+          "value": "apiForProtocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1PROAPIAccessing~1api(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "apiForProtocol:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1endAction(_:)/title",
+          "value": "endAction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1endAction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endAction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterInterpolation_v2/title",
+          "value": "FxCustomParameterInterpolation_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterInterpolation_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterInterpolation_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterInterpolation_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterInterpolation_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/title",
+          "value": "FxCommandAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/title",
+          "value": "FxCommandAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v6/title",
+          "value": "FxParameterSettingAPI_v6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterSettingAPI_v6/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterSettingAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/title",
+          "value": "FxPathAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterViewHost_v2/title",
+          "value": "FxCustomParameterViewHost_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterViewHost_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterViewHost_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterViewHost_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterViewHost_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterFlags/title",
+          "value": "FxParameterFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/title",
+          "value": "FxVersioningAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/title",
+          "value": "FxParameterCreationAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/title",
+          "value": "parameterChanged:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterChanged:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1versionAtCreation()/title",
+          "value": "versionAtCreation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI~1versionAtCreation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "versionAtCreation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/title",
+          "value": "FxParameterRetrievalAPI_v6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/title",
+          "value": "FxUndoAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/title",
+          "value": "FxParameterRetrievalAPI_v7"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v7"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v7"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxHistogramChannel/title",
+          "value": "FxHistogramChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxHistogramChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxHistogramChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxHistogramChannel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxHistogramChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterViewHost_v2~1createView(forParameterID:)/title",
+          "value": "createViewForParameterID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterViewHost_v2~1createView(forParameterID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createViewForParameterID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDynamicParameterAPI_v3/title",
+          "value": "FxDynamicParameterAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDynamicParameterAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDynamicParameterAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDynamicParameterAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDynamicParameterAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/title",
+          "value": "addParametersWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addParametersWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/title",
+          "value": "FxRemoteWindowAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1startAction(_:)/title",
+          "value": "startAction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4~1startAction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/title",
+          "value": "FxCustomParameterActionAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterActionAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCustomParameterActionAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCustomParameterActionAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/title",
+          "value": "FxRemoteWindowAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

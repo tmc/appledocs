@@ -1,0 +1,1151 @@
+{
+  "abstract": [
+    {
+      "text": "Implement your Local Push Connectivity app to ensure delivery of notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Maintaining a Reliable Network Connection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By implementing Local Push Connectivity, your app can perform many of the tasks provided by Apple Push Notification Service (APNs), even on restricted or isolated networks where APNs is unavailable. Create push notifications by delivering messages from a server to your client, which then uses a local notification or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CallKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to alert the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you adopt Local Push Connectivity, you’re responsible for establishing and maintaining a reliable connection between your server and your client. To keep the connection viable, use the following best practices to maintain your client’s life cycle and connect over the local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-the-Push-Provider-App-Extension-Life-Cycle",
+          "level": 3,
+          "text": "Implement the Push Provider App Extension Life Cycle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement Local Push Connectivity on a local network, create both a local server and an app that receives notifications from this server. Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when your client app starts up, and set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to a set of known Wi-Fi network SSIDs",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive notifications from your server, create an app extension that extends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the user’s device joins one of the registered networks, the sytem automatically launches your push provider extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your push provider extension launches, the system calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use this callback to set up the connection to your server and call the completion handler, passing in an error if the connection failed. The following example attempts to get the host name from the push provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/providerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and calls a method to connect to the host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func start(completionHandler: @escaping (Error?) -> Void) {",
+            "    guard let host = providerConfiguration?[\"host\"] as? String else {",
+            "        let error = MyPushProviderError(\"Provider configuration is missing value for key: `host`\")",
+            "        completionHandler(error)",
+            "        return",
+            "    }",
+            "    ",
+            "    myChannel.setHost(host)",
+            "    myChannel.connect()",
+            "    ",
+            "    completionHandler(nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure that the extension can launch when the system needs it and can continue running, because both are essential for your app extension to participate in local push connectivity. Use the following guidelines when writing your extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your extension must maintain a small memory footprint, or the system may terminate it. Use the Allocations and Leaks templates in Xcode Instruments to analyze your extension’s “dirty” memory usage and identify any memory leaks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your extension continues to run as long as the device remains connected to the registered SSID. If the extension crashes, or if the system terminates it for using too much memory, iOS relaunches it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device can’t reconnect to a secure Wi-Fi network until the first unlock after it boots, because the device needs access to protected Wi-Fi credentials stored in the Keychain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the device leaves the known Wi-Fi network, the system calls your push provider’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/stop(with:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Implement this method to disconnect from the server and release any previously allocated resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation doesn’t create a retain cycle with itself. After you call the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "completionHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that the system passes to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/stop(with:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the Network Extension framework releases your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance. This instance typically deallocates from memory when released, but if the instance has a retain cycle with itself, it fails to deallocate and wastes memory. Failure to deallocate can also cause the system to have two or more instances of your push provider, leading to inconsistent behavior. Use Instruments or add a logging statement to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "deinit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to verify that your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " deinitializes when expected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Establish-and-Monitor-the-Network-Connection",
+          "level": 3,
+          "text": "Establish and Monitor the Network Connection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown in the previous section, your client extension creates its connection to your server in your implementation of the push provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to create and maintain this connection. The Network framework is an ideal choice to implement Local Push Connectivity, because it provides features like path monitors, TLS negotiation, and support for custom protocol framers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure each side of the connection monitors the health of the other side:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have your server periodically send heartbeat messages to the client. This ensures the push provider remains responsive, even when the user isn’t actively using the device. The push provider must acknowledge these messages, so the server can rapidly detect when the client disconnects unexpectedly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your push provider must implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/handleTimerEvent()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " callback method, which the framework calls every 60 seconds. Implement this method to check the status of the connection on the client end.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/handleTimerEvent()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by checking the last time the client received a heartbeat message from the server. If it exceeds the expected interval, it cancels the current connection and reconnects to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func handleTimerEvent() {",
+            "    dispatchQueue.async { [weak self] in",
+            "        guard let self = self, self.isRunning else {",
+            "            return",
+            "        }",
+            "        ",
+            "        let expirationTime = self.lastCheckinTime.advanced(by: self.interval)",
+            "        ",
+            "        if .now() >= expirationTime {",
+            "            self.logger.log(\"Heartbeat didn't check in within the interval of \\(self.interval), calling network session disconnect.\")",
+            "            self.session?.disconnect()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Optimize-the-Network-Architecture",
+          "level": 3,
+          "text": "Optimize the Network Architecture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the Wi-Fi network is under your control, configure the network to better support your app’s client-server connection. Start by ensuring limited radio frequency congestion. Measure this by determining channel utilzation, which ideally is 40% or less. One symptom of congestion is a high number of frame retransmissions; which ideally is as low as possible, typically not more than 15% of all traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider enabling roaming enhancements to reduce the network’s overall latency burden, if compatible with your network deployment. Roaming enhancements such as 802.11r Fast Transition Roaming, 802.11k Radio Resource Measurement, and 802.11v Wireless Network Management help devices roam more quickly after reaching their roam trigger threshold. For more information on these standards, see the support articles ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202628",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT203068",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you deploy virtual LANs, ensure that clients on the LAN have a route to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/CallKit"
+    },
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager": {
+      "abstract": [
+        {
+          "text": "An object that configures a push provider and manages its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs": {
+      "abstract": [
+        {
+          "text": "An array of Wi-Fi SSID strings that the system matches for local push activation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchSSIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchSSIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchSSIDs",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/matchssids"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/handleTimerEvent()": {
+      "abstract": [
+        {
+          "text": "Indicates a periodic status check from the framework to the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleTimerEvent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/handleTimerEvent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleTimerEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleTimerEvent()",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/handletimerevent()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/providerConfiguration": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains current vendor-specific configuration parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/providerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "providerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "providerConfiguration",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/providerconfiguration"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the framework has started the provider, and provides a completion handler for subclasses to signal their readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/start(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/stop(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the framework needs to stop the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NEProviderStopReason",
+          "text": "NEProviderStopReason"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/stop(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopWithReason:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/stop(with:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity": {
+      "abstract": [
+        {
+          "text": "Provide functionality similar to Apple Push Notification Service when access to the wider internet is unavailable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local push connectivity",
+      "type": "topic",
+      "url": "/documentation/networkextension/local-push-connectivity"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network": {
+      "abstract": [
+        {
+          "text": "Provide voice and text communication on a local network isolated from Apple Push Notification service by adopting Local Push Connectivity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Receiving Voice and Text Communications on a Local Network",
+      "type": "topic",
+      "url": "/documentation/networkextension/receiving-voice-and-text-communications-on-a-local-network"
+    },
+    "https://support.apple.com/en-us/HT202628": {
+      "identifier": "https://support.apple.com/en-us/HT202628",
+      "title": "Wi-Fi network roaming with 802.11k, 802.11r, and 802.11v on iOS",
+      "titleInlineContent": [
+        {
+          "text": "Wi-Fi network roaming with 802.11k, 802.11r, and 802.11v on iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT202628"
+    },
+    "https://support.apple.com/en-us/HT203068": {
+      "identifier": "https://support.apple.com/en-us/HT203068",
+      "title": "About wireless roaming for enterprise",
+      "titleInlineContent": [
+        {
+          "text": "About wireless roaming for enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT203068"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1stop(with:completionHandler:)/title",
+          "value": "stopWithReason:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1stop(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopWithReason:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1handleTimerEvent()/title",
+          "value": "handleTimerEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1handleTimerEvent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleTimerEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1start(completionHandler:)/title",
+          "value": "startWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1start(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1providerConfiguration/title",
+          "value": "providerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1providerConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "providerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/title",
+          "value": "NEAppPushProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchSSIDs/title",
+          "value": "matchSSIDs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchSSIDs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchSSIDs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/title",
+          "value": "NEAppPushManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/maintaining-a-reliable-network-connection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/maintaining-a-reliable-network-connection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

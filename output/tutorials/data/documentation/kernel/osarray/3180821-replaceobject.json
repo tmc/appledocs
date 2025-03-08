@@ -1,0 +1,569 @@
+{
+  "abstract": [
+    {
+      "text": "Removes a current member of the array and replaces it with another object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/osarray"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osarray"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osarray"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180821,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSArray@F@replaceObject#i#*1$@S@OSMetaClassBase#",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "OSArray"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "replaceObject"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceObject"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " index, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osmetaclassbase",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSMetaClassBase",
+              "text": "OSMetaClassBase"
+            },
+            {
+              "kind": "text",
+              "text": " *anObject);"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "virtual"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceObject"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "unsigned"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " index, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osmetaclassbase",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSMetaClassBase",
+              "text": "OSMetaClassBase"
+            },
+            {
+              "kind": "text",
+              "text": " *anObject);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Zero based index less than the array count to add the object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "index"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Object to be added to the array.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "anObject"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "true on success, which retains the added object and releases the current member, or false on failure which does not retain the object and leaves the current member.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray": {
+      "abstract": [
+        {
+          "text": "A container for an ordered, random-access collection of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects": {
+      "abstract": [
+        {
+          "text": "Iterates the array calling a callback block for each member.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateObjects",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray/3180818-iterateobjects"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osmetaclassbase": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osmetaclassbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSMetaClassBase",
+      "type": "topic",
+      "url": "/documentation/driverkit/osmetaclassbase"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject": {
+      "abstract": [
+        {
+          "text": "Returns the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLastObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLastObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180814-getlastobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject": {
+      "abstract": [
+        {
+          "text": "Searches the array for an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextIndexOfObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextIndexOfObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180815-getnextindexofobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject": {
+      "abstract": [
+        {
+          "text": "Returns a member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180816-getobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180820-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array and replaces it with another object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180821-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject": {
+      "abstract": [
+        {
+          "text": "Appends an object as the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180822-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject": {
+      "abstract": [
+        {
+          "text": "Sets an object as the member of the array at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3433840-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osmetaclassbase": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osmetaclassbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSMetaClassBase",
+      "type": "topic",
+      "url": "/documentation/kernel/osmetaclassbase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+        "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject"
+      ],
+      "title": "Accessing Elements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osarray/3180821-replaceobject",
+        "documentation/driverkit/osarray/3180821-replaceobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the registration handler work item for the dispatch source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(handler:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Dispatch",
+    "externalID": "s:So18OS_dispatch_sourceP8DispatchE22setRegistrationHandler7handleryAC0D8WorkItemC_tF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setRegistrationHandler"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "handler"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8Dispatch0A8WorkItemC",
+        "text": "DispatchWorkItem"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setRegistrationHandler(handler:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRegistrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8Dispatch0A8WorkItemC",
+              "text": "DispatchWorkItem"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The event handler block to submit to the source’s target queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The registration handler (if specified) is submitted to the source’s target queue as soon as the source has been fully set up and is ready to start delivering events. The set up of a dispatch source’s underlying event-delivery mechanism occurs asynchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Installing a registration handler is a way to be notified when that set up is complete and the dispatch source is ready to start delivering events. After your operation handler is executed, the dispatch source uninstalls it. As such, registration handlers are executed only once after you resume the dispatch source. If you set a registration handler on a dispatch source that is already set-up and running, the handler is invoked immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol": {
+      "abstract": [
+        {
+          "text": "Defines a common set of properties and methods that are shared with all dispatch source types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSourceProtocol",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/DispatchSourceHandler": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/DispatchSourceHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSourceProtocol.DispatchSourceHandler",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol/dispatchsourcehandler"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(handler:)": {
+      "abstract": [
+        {
+          "text": "Sets the event handler work item for the dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A8WorkItemC",
+          "text": "DispatchWorkItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setEventHandler(handler:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol/seteventhandler(handler:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(qos:flags:handler:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "qos"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A3QoSV",
+          "text": "DispatchQoS"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A13WorkItemFlagsV",
+          "text": "DispatchWorkItemFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So18OS_dispatch_sourceP8DispatchE0D13SourceHandlera",
+          "text": "DispatchSourceHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(qos:flags:handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setEventHandler(qos:flags:handler:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol/seteventhandler(qos:flags:handler:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(handler:)": {
+      "abstract": [
+        {
+          "text": "Sets the registration handler work item for the dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRegistrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A8WorkItemC",
+          "text": "DispatchWorkItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRegistrationHandler(handler:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol/setregistrationhandler(handler:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(qos:flags:handler:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRegistrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "qos"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A3QoSV",
+          "text": "DispatchQoS"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A13WorkItemFlagsV",
+          "text": "DispatchWorkItemFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So18OS_dispatch_sourceP8DispatchE0D13SourceHandlera",
+          "text": "DispatchSourceHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(qos:flags:handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRegistrationHandler(qos:flags:handler:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol/setregistrationhandler(qos:flags:handler:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem": {
+      "abstract": [
+        {
+          "text": "The work you want to perform, encapsulated in a way that lets you attach a completion handle or execution dependencies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchWorkItem",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchworkitem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Installing-Event-Handlers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(handler:)",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setEventHandler(qos:flags:handler:)",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/setRegistrationHandler(qos:flags:handler:)",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol/DispatchSourceHandler"
+      ],
+      "title": "Installing Event Handlers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/title",
+          "value": "OS_dispatch_source"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_dispatch_source"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_dispatch_source"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatchsourceprotocol/setregistrationhandler(handler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

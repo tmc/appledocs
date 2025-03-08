@@ -1,0 +1,1131 @@
+{
+  "abstract": [
+    {
+      "text": "Indicates how an audio queue should choose between hardware and software implementations of a codec.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618724-hardware-codec-policy-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Hardware Codec Policy Keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the designated codec implementation is not available, or if a hardware codec is chosen and the audio session category does not permit use of hardware codecs, your attempts to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePrime(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueStart(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions will fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to determine whether the codec you are interested in using is available in hardware form, software, or both. See the discussion for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system does not permit you to change the value associated with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueProperty_HardwareCodecPolicy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key while the audio queue is primed or running. Changing the value at other times may cause codec settings to be lost.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1552626-audio-queue-parameters": {
+      "abstract": [
+        {
+          "text": "Identifiers for audio queue parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1552626-audio-queue-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Queue Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1552626-audio-queue-parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePrime(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Decodes enqueued buffers in preparation for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePrime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueRef",
+          "text": "AudioQueueRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePrime(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePrime"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueuePrime(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueueprime(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID": {
+      "abstract": [
+        {
+          "text": "Identifiers for audio queue properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueuePropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueuePropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueuepropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueStart(_:_:)": {
+      "abstract": [
+        {
+          "text": "Begins playing or recording audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioQueueStart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueueRef",
+          "text": "AudioQueueRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioTimeStamp",
+          "text": "AudioTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueueStart(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioQueueStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioQueueStart(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioqueuestart(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services": {
+      "abstract": [
+        {
+          "text": "Connect to audio hardware and manage the recording or playback process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Queue Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-queue-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures for all installed decoders for the specified audio format. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to the format that you are interested in, for instance, ",
+          "type": "text"
+        },
+        {
+          "code": "'aac'",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Decoders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Decoders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Decoders"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_Decoders",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_decoders"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures for all installed encoders for the specified audio format. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to the format that you are interested in, for instance, ",
+          "type": "text"
+        },
+        {
+          "code": "'aac'",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Encoders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_Encoders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_Encoders"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_Encoders",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_encoders"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "UInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value indicating the number of codecs from the specified list that can be used, if the application were to begin using them in the specified order. Set the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to an array of ",
+          "type": "text"
+        },
+        {
+          "code": "AudioClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures that describes a set of one or more audio codecs. If the property value is the same as the size of the array in the ",
+          "type": "text"
+        },
+        {
+          "code": "inSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter, all of the specified codecs can be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatPropertyID",
+          "text": "AudioFormatPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFormatProperty_HardwareCodecCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFormatProperty_HardwareCodecCapabilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioformatproperty_hardwarecodeccapabilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_Default": {
+      "abstract": [
+        {
+          "text": "If the required codec is available in both hardware and software implementations, the audio queue will use a hardware codec if its audio session category permits; it will use a software codec otherwise. If the required codec is available in only one form, that codec implementation is used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_Default"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_Default",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_Default"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueHardwareCodecPolicy_Default",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueuehardwarecodecpolicy_default"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferHardware": {
+      "abstract": [
+        {
+          "text": "The audio queue will use a hardware codec if one is available and if its use permitted by the audio session category that you have set; otherwise, it will use a software codec if one is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_PreferHardware"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferHardware",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_PreferHardware"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueHardwareCodecPolicy_PreferHardware",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueuehardwarecodecpolicy_preferhardware"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferSoftware": {
+      "abstract": [
+        {
+          "text": "The audio queue will use a software codec if one is available; if not, it will use a hardware codec if one is available and if its use is permitted by the audio session category that you have set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_PreferSoftware"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferSoftware",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_PreferSoftware"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueHardwareCodecPolicy_PreferSoftware",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueuehardwarecodecpolicy_prefersoftware"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseHardwareOnly": {
+      "abstract": [
+        {
+          "text": "The audio queue will use a hardware codec if one is available and if its use is permitted by the audio session category that you have set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_UseHardwareOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseHardwareOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_UseHardwareOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueHardwareCodecPolicy_UseHardwareOnly",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueuehardwarecodecpolicy_usehardwareonly"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseSoftwareOnly": {
+      "abstract": [
+        {
+          "text": "The audio queue will use a software codec if one is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_UseSoftwareOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseSoftwareOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueHardwareCodecPolicy_UseSoftwareOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueHardwareCodecPolicy_UseSoftwareOnly",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueuehardwarecodecpolicy_usesoftwareonly"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueProperty_HardwareCodecPolicy": {
+      "abstract": [
+        {
+          "text": "The preferred codec implementation type—hardware or software—for an audio queue. Possible values for this constant are the remaining constants described in this section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueProperty_HardwareCodecPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioQueuePropertyID",
+          "text": "AudioQueuePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueProperty_HardwareCodecPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioQueueProperty_HardwareCodecPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioQueueProperty_HardwareCodecPolicy",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioqueueproperty_hardwarecodecpolicy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1552626-audio-queue-parameters"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueProperty_HardwareCodecPolicy",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_Default",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseSoftwareOnly",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseHardwareOnly",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferSoftware",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferHardware"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueProperty_HardwareCodecPolicy",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_Default",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseSoftwareOnly",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_UseHardwareOnly",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferSoftware",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioQueueHardwareCodecPolicy_PreferHardware"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioQueuePropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1552626-audio-queue-parameters"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/title",
+          "value": "AudioQueuePropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueuePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueuePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_PreferSoftware/title",
+          "value": "kAudioQueueHardwareCodecPolicy_PreferSoftware"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_PreferSoftware/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueHardwareCodecPolicy_PreferSoftware"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueProperty_HardwareCodecPolicy/title",
+          "value": "kAudioQueueProperty_HardwareCodecPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueProperty_HardwareCodecPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueProperty_HardwareCodecPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueStart(_:_:)/title",
+          "value": "AudioQueueStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueueStart(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueueStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_Default/title",
+          "value": "kAudioQueueHardwareCodecPolicy_Default"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_Default/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueHardwareCodecPolicy_Default"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_UseSoftwareOnly/title",
+          "value": "kAudioQueueHardwareCodecPolicy_UseSoftwareOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_UseSoftwareOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueHardwareCodecPolicy_UseSoftwareOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Decoders/title",
+          "value": "kAudioFormatProperty_Decoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Decoders/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_Decoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePrime(_:_:_:)/title",
+          "value": "AudioQueuePrime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioQueuePrime(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioQueuePrime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_UseHardwareOnly/title",
+          "value": "kAudioQueueHardwareCodecPolicy_UseHardwareOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_UseHardwareOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueHardwareCodecPolicy_UseHardwareOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_HardwareCodecCapabilities/title",
+          "value": "kAudioFormatProperty_HardwareCodecCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_HardwareCodecCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_HardwareCodecCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_PreferHardware/title",
+          "value": "kAudioQueueHardwareCodecPolicy_PreferHardware"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioQueueHardwareCodecPolicy_PreferHardware/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioQueueHardwareCodecPolicy_PreferHardware"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Encoders/title",
+          "value": "kAudioFormatProperty_Encoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFormatProperty_Encoders/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatProperty_Encoders"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1618724-hardware-codec-policy-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1618724-hardware-codec-policy-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

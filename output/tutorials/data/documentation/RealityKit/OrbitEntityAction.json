@@ -1,1 +1,1412 @@
-{"abstract":[{"type":"text","text":"An action which animates the transform of an entity to revolve around a specified pivot entity."}],"sections":[],"topicSections":[{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)"],"title":"Initializers","anchor":"Initializers"},{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity","doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions"],"title":"Instance Properties","anchor":"Instance-Properties"},{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)"],"title":"Instance Methods","anchor":"Instance-Methods"},{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType"],"title":"Type Aliases","anchor":"Type-Aliases"},{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations"],"title":"Default Implementations","anchor":"Default-Implementations"}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/orbitentityaction"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction","doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction","doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction","doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction","doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction","doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction","doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction","doc://com.apple.RealityKit/documentation/RealityKit/SpinAction"],"title":"Built-in actions","anchor":"Built-in-actions"}],"relationshipsSections":[{"type":"conformsTo","identifiers":["doc://com.externally.resolved.symbol/s:Se","doc://com.externally.resolved.symbol/s:SE","doc://com.apple.RealityKit/documentation/RealityKit/EntityAction"],"kind":"relationships","title":"Conforms To"}],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"kind":"symbol","primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"tokens":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrbitEntityAction","kind":"identifier"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"]}]},{"content":[{"level":2,"anchor":"overview","type":"heading","text":"Overview"},{"inlineContent":[{"type":"text","text":"This action moves an entity in a circular path by gradually adjusting its local transform."},{"type":"text","text":" "},{"type":"text","text":"The animation starts from the entity’s initial transform, and rotates around the pivot"},{"type":"text","text":" "},{"type":"text","text":"entity. The "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis"},{"type":"text","text":" specifies which cartesian axis"},{"type":"text","text":" "},{"type":"text","text":"to rotate around in world space.. The axis is resolved when the action starts to produce an axis"},{"type":"text","text":" "},{"type":"text","text":"of rotation around the pivot entity."},{"type":"text","text":" "},{"type":"text","text":"The full orbit completes after the action has ended."}],"type":"paragraph"},{"inlineContent":[{"text":"The example below creates an animation that orbits an entity","type":"text"},{"text":" ","type":"text"},{"text":"around the x-axis two times for five seconds.","type":"text"}],"type":"paragraph"},{"type":"codeListing","code":["// Create an action entity resolution to the pivot entity ","// that exists in the scene.","let pivotEntity: ActionEntityResolution = .entityNamed(\"pivotEntity\")","","// Create an action that performs an orbit around the ","// specified pivot entity.","let orbitEntityAction = OrbitEntityAction(pivotEntity: pivotEntity,","                                          revolutions: 2,","                                          orbitalAxis: [0, 1, 0],","                                          isOrientedToPath: true,","                                          isAdditive: false)","","// A five second animation that plays an animation causing the entity to","// orbit around the pivot.","let orbitAnimation = try AnimationResource","    .makeActionAnimation(for: orbitEntityAction,","                         duration: 5.0,","                         bindTarget: .transform)","","// Play the five second orbit animation.","entity.playAnimation(orbitAnimation)"],"syntax":"swift"},{"type":"aside","name":"Note","content":[{"inlineContent":[{"type":"text","text":"Use the "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis","isActive":true,"type":"reference"},{"type":"text","text":" to determine whether the entity"},{"type":"text","text":" "},{"type":"text","text":"orbits clockwise or counterclockwise."}],"type":"paragraph"}],"style":"note"},{"type":"aside","name":"Important","content":[{"inlineContent":[{"type":"text","text":"This action directly animates the "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform","type":"reference","isActive":true},{"type":"text","text":" on the bound entity."},{"type":"text","text":" "},{"type":"text","text":"Ensure a correct bind target is supplied when creating the animation."}],"type":"paragraph"}],"style":"important"},{"type":"aside","name":"Important","content":[{"type":"paragraph","inlineContent":[{"text":"For a successful orbit, ensure the translational offset between the target and pivot entity are not parallel to the orbit axis.","type":"text"}]}],"style":"important"}],"kind":"content"}],"metadata":{"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrbitEntityAction","kind":"identifier"}],"externalID":"s:17RealityFoundation17OrbitEntityActionV","platforms":[{"beta":false,"name":"iOS","unavailable":false,"introducedAt":"18.0","deprecated":false},{"beta":false,"name":"iPadOS","unavailable":false,"introducedAt":"18.0","deprecated":false},{"beta":false,"name":"Mac Catalyst","unavailable":false,"introducedAt":"18.0","deprecated":false},{"beta":false,"name":"macOS","unavailable":false,"introducedAt":"15.0","deprecated":false},{"beta":false,"name":"visionOS","unavailable":false,"introducedAt":"2.0","deprecated":false}],"symbolKind":"struct","modules":[{"name":"RealityKit"}],"role":"symbol","title":"OrbitEntityAction","roleHeading":"Structure","navigatorTitle":[{"kind":"identifier","text":"OrbitEntityAction"}]},"references":{"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath":{"type":"topic","abstract":[{"type":"text","text":"A Boolean value that indicates whether the orbiting"},{"type":"text","text":" "},{"type":"text","text":"object updates its orientation during the animation to orient itself"},{"type":"text","text":" "},{"type":"text","text":"along the rotation path."}],"title":"isOrientedToPath","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"isOrientedToPath"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}],"kind":"symbol","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath","url":"/documentation/realitykit/orbitentityaction/isorientedtopath"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType":{"title":"animatedValueType","abstract":[{"type":"text","text":"The type for the value that the action modifies over time."}],"type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"animatedValueType"},{"kind":"text","text":": (any "},{"preciseIdentifier":"s:17RealityFoundation14AnimatableDataP","kind":"typeIdentifier","text":"AnimatableData"},{"kind":"text","text":".Type)?"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType","role":"symbol","url":"/documentation/realitykit/orbitentityaction/animatedvaluetype","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction":{"type":"topic","abstract":[{"type":"text","text":"An action that applies an impulse to the physics body at its center of mass when"},{"text":" ","type":"text"},{"text":"played as an animation.","type":"text"}],"title":"ImpulseAction","navigatorTitle":[{"kind":"identifier","text":"ImpulseAction"}],"url":"/documentation/realitykit/impulseaction","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction","fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"kind":"identifier","text":"ImpulseAction"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction":{"type":"topic","abstract":[{"type":"text","text":"An action which plays an audio resource on the given target entity."}],"title":"PlayAudioAction","navigatorTitle":[{"text":"PlayAudioAction","kind":"identifier"}],"url":"/documentation/realitykit/playaudioaction","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"PlayAudioAction"}],"role":"symbol"},"doc://com.externally.resolved.symbol/s:SE":{"role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Encodable"}],"type":"topic","url":"/documentation/Swift/Encodable","identifier":"doc://com.externally.resolved.symbol/s:SE","title":"Encodable","kind":"symbol","abstract":[{"text":"A type that can encode itself to an external representation.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction":{"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"SetEntityEnabledAction"}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"SetEntityEnabledAction"}],"type":"topic","url":"/documentation/realitykit/setentityenabledaction","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction","title":"SetEntityEnabledAction","kind":"symbol","abstract":[{"type":"text","text":"An action that enables or disables the targeted entity and its descendants when played as an animation."}]},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions":{"role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"revolutions"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"kind":"symbol","type":"topic","title":"revolutions","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions","url":"/documentation/realitykit/orbitentityaction/revolutions","abstract":[{"text":"The number of rotations to complete before stopping.","type":"text"}]},"doc://com.externally.resolved.symbol/s:Se":{"role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Decodable"}],"kind":"symbol","type":"topic","identifier":"doc://com.externally.resolved.symbol/s:Se","abstract":[{"text":"A type that can decode itself from an external representation.","type":"text"}],"url":"/documentation/Swift/Decodable","title":"Decodable"},"doc://com.apple.RealityKit/documentation/RealityKit/SpinAction":{"fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"text":"SpinAction","kind":"identifier"}],"kind":"symbol","url":"/documentation/realitykit/spinaction","role":"symbol","abstract":[{"text":"An action which animates the transform of an entity to rotate around a specified local axis.","type":"text"}],"navigatorTitle":[{"text":"SpinAction","kind":"identifier"}],"title":"SpinAction","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SpinAction"},"doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform":{"role":"symbol","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"transform"}],"type":"topic","url":"/documentation/realitykit/bindtarget/transform","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform","title":"BindTarget.transform","kind":"symbol","abstract":[{"type":"text","text":"A option that specifies that the target entity’s transform animates."}]},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction":{"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"text":"FromToByAction","kind":"identifier"}],"kind":"symbol","url":"/documentation/realitykit/fromtobyaction","role":"symbol","abstract":[{"type":"text","text":"An action that starts, stops, or increments by a specific value."}],"navigatorTitle":[{"kind":"identifier","text":"FromToByAction"}],"title":"FromToByAction","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction"},"doc://com.apple.RealityKit/documentation/RealityKit/EntityAction":{"title":"EntityAction","role":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"EntityAction"}],"navigatorTitle":[{"kind":"identifier","text":"EntityAction"}],"abstract":[{"type":"text","text":"A protocol that defines an action for an entity."}],"kind":"symbol","url":"/documentation/realitykit/entityaction","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/EntityAction"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations":{"title":"EntityAction Implementations","abstract":[],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations","role":"collectionGroup","url":"/documentation/realitykit/orbitentityaction/entityaction-implementations","kind":"article"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction":{"abstract":[{"type":"text","text":"An action which animates the transform of an entity to revolve around a specified pivot entity."}],"url":"/documentation/realitykit/orbitentityaction","navigatorTitle":[{"text":"OrbitEntityAction","kind":"identifier"}],"kind":"symbol","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrbitEntityAction","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction","title":"OrbitEntityAction"},"doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction":{"abstract":[{"type":"text","text":"An action that plays an animation on the given target entity with a range of playback options."}],"navigatorTitle":[{"kind":"identifier","text":"PlayAnimationAction"}],"role":"symbol","url":"/documentation/realitykit/playanimationaction","kind":"symbol","title":"PlayAnimationAction","fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"kind":"identifier","text":"PlayAnimationAction"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)":{"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"encode"},{"kind":"text","text":"("},{"kind":"externalParam","text":"to"},{"kind":"text","text":": any "},{"kind":"typeIdentifier","text":"Encoder","preciseIdentifier":"s:s7EncoderP"},{"kind":"text","text":") "},{"kind":"keyword","text":"throws"}],"type":"topic","role":"symbol","url":"/documentation/realitykit/orbitentityaction/encode(to:)","kind":"symbol","title":"encode(to:)","abstract":[{"type":"text","text":"Encodes this value into the given encoder."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity":{"title":"pivotEntity","role":"symbol","url":"/documentation/realitykit/orbitentityaction/pivotentity","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity","type":"topic","abstract":[{"type":"text","text":"The entity that the target entity orbits around."}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"pivotEntity"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ActionEntityResolution","preciseIdentifier":"s:17RealityFoundation22ActionEntityResolutionO"}],"kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType":{"abstract":[{"type":"text","text":"The associated event parameter type."}],"type":"topic","url":"/documentation/realitykit/orbitentityaction/eventparametertype","title":"OrbitEntityAction.EventParameterType","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"EventParameterType"}],"fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"EventParameterType"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction":{"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"BillboardAction"}],"kind":"symbol","url":"/documentation/realitykit/billboardaction","role":"symbol","abstract":[{"type":"text","text":"An action that animates the blend factor of an entity’s billboard component."}],"navigatorTitle":[{"text":"BillboardAction","kind":"identifier"}],"title":"BillboardAction","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction"},"doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction":{"title":"EmphasizeAction","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"EmphasizeAction"}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"text":"EmphasizeAction","kind":"identifier"}],"url":"/documentation/realitykit/emphasizeaction","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction","abstract":[{"type":"text","text":"An action that performs an animation to call attention to an entity."}],"kind":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)":{"abstract":[{"text":"Creates a new orbit entity action.","type":"text"}],"title":"init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)","kind":"symbol","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)","url":"/documentation/realitykit/orbitentityaction/init(pivotentity:revolutions:orbitalaxis:isorientedtopath:isadditive:)","role":"symbol","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"pivotEntity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"ActionEntityResolution","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation22ActionEntityResolutionO"},{"text":", ","kind":"text"},{"text":"revolutions","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"orbitalAxis","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"SIMD3","kind":"typeIdentifier","preciseIdentifier":"s:s5SIMD3V"},{"text":"<","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":">, ","kind":"text"},{"text":"isOrientedToPath","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"},{"text":", ","kind":"text"},{"text":"isAdditive","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"},{"text":")","kind":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis":{"type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"orbitalAxis"},{"kind":"text","text":": "},{"preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier","text":"SIMD3"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":">"}],"abstract":[{"type":"text","text":"A vector that describes the axis of rotation (in world space)."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis","title":"orbitalAxis","url":"/documentation/realitykit/orbitentityaction/orbitalaxis","role":"symbol","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive","abstract":[{"type":"text","text":"A Boolean value that indicates whether the animation system additively blends the action’s output with the base value."}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"isAdditive"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"}],"role":"symbol","kind":"symbol","title":"isAdditive","url":"/documentation/realitykit/orbitentityaction/isadditive","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)":{"type":"topic","abstract":[{"text":"Creates a new instance by decoding from the given decoder.","type":"text"}],"fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"from"},{"kind":"text","text":": any "},{"kind":"typeIdentifier","text":"Decoder","preciseIdentifier":"s:s7DecoderP"},{"kind":"text","text":") "},{"kind":"keyword","text":"throws"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)","title":"init(from:)","kind":"symbol","role":"symbol","url":"/documentation/realitykit/orbitentityaction/init(from:)"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"}},"diffAvailability":{"minor":{"change":"modified","platform":"Xcode","versions":["16.2","16.3 beta 2"]},"major":{"change":"modified","platform":"Xcode","versions":["16.0","16.3 beta 2"]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "An action which animates the transform of an entity to revolve around a specified pivot entity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation17OrbitEntityActionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OrbitEntityAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OrbitEntityAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "OrbitEntityAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OrbitEntityAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This action moves an entity in a circular path by gradually adjusting its local transform.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The animation starts from the entity’s initial transform, and rotates around the pivot",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies which cartesian axis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to rotate around in world space.. The axis is resolved when the action starts to produce an axis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of rotation around the pivot entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The full orbit completes after the action has ended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates an animation that orbits an entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "around the x-axis two times for five seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an action entity resolution to the pivot entity ",
+            "// that exists in the scene.",
+            "let pivotEntity: ActionEntityResolution = .entityNamed(\"pivotEntity\")",
+            "",
+            "// Create an action that performs an orbit around the ",
+            "// specified pivot entity.",
+            "let orbitEntityAction = OrbitEntityAction(pivotEntity: pivotEntity,",
+            "                                          revolutions: 2,",
+            "                                          orbitalAxis: [0, 1, 0],",
+            "                                          isOrientedToPath: true,",
+            "                                          isAdditive: false)",
+            "",
+            "// A five second animation that plays an animation causing the entity to",
+            "// orbit around the pivot.",
+            "let orbitAnimation = try AnimationResource",
+            "    .makeActionAnimation(for: orbitEntityAction,",
+            "                         duration: 5.0,",
+            "                         bindTarget: .transform)",
+            "",
+            "// Play the five second orbit animation.",
+            "entity.playAnimation(orbitAnimation)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to determine whether the entity",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "orbits clockwise or counterclockwise.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This action directly animates the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on the bound entity.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Ensure a correct bind target is supplied when creating the animation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a successful orbit, ensure the translational offset between the target and pivot entity are not parallel to the orbit axis.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction": {
+      "abstract": [
+        {
+          "text": "An action that animates the blend factor of an entity’s billboard component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BillboardAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BillboardAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BillboardAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/billboardaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform": {
+      "abstract": [
+        {
+          "text": "A option that specifies that the target entity’s transform animates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BindTarget.transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/bindtarget/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction": {
+      "abstract": [
+        {
+          "text": "An action that performs an animation to call attention to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmphasizeAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmphasizeAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmphasizeAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/emphasizeaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an action for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/entityaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction": {
+      "abstract": [
+        {
+          "text": "An action that starts, stops, or increments by a specific value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FromToByAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FromToByAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction": {
+      "abstract": [
+        {
+          "text": "An action that applies an impulse to the physics body at its center of mass when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "played as an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImpulseAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImpulseAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImpulseAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/impulseaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction": {
+      "abstract": [
+        {
+          "text": "An action which animates the transform of an entity to revolve around a specified pivot entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrbitEntityAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrbitEntityAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrbitEntityAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "EntityAction Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/entityaction-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType": {
+      "abstract": [
+        {
+          "text": "The associated event parameter type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrbitEntityAction.EventParameterType",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/eventparametertype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType": {
+      "abstract": [
+        {
+          "text": "The type for the value that the action modifies over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedValueType"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14AnimatableDataP",
+          "text": "AnimatableData"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedValueType",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/animatedvaluetype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/encode(to:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/init(from:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new orbit entity action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pivotEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22ActionEntityResolutionO",
+          "text": "ActionEntityResolution"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "revolutions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orbitalAxis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isOrientedToPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/init(pivotentity:revolutions:orbitalaxis:isorientedtopath:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation system additively blends the action’s output with the base value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAdditive",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/isadditive"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the orbiting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "object updates its orientation during the animation to orient itself",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "along the rotation path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOrientedToPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isOrientedToPath",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/isorientedtopath"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis": {
+      "abstract": [
+        {
+          "text": "A vector that describes the axis of rotation (in world space).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orbitalAxis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orbitalAxis",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/orbitalaxis"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity": {
+      "abstract": [
+        {
+          "text": "The entity that the target entity orbits around.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pivotEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22ActionEntityResolutionO",
+          "text": "ActionEntityResolution"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pivotEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/pivotentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions": {
+      "abstract": [
+        {
+          "text": "The number of rotations to complete before stopping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revolutions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revolutions",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction/revolutions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction": {
+      "abstract": [
+        {
+          "text": "An action that plays an animation on the given target entity with a range of playback options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAnimationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAnimationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAnimationAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playanimationaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction": {
+      "abstract": [
+        {
+          "text": "An action which plays an audio resource on the given target entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAudioAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playaudioaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction": {
+      "abstract": [
+        {
+          "text": "An action that enables or disables the targeted entity and its descendants when played as an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetEntityEnabledAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetEntityEnabledAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetEntityEnabledAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/setentityenabledaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction": {
+      "abstract": [
+        {
+          "text": "An action which animates the transform of an entity to rotate around a specified local axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpinAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpinAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpinAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/spinaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Built-in-actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction"
+      ],
+      "title": "Built-in actions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(from:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/init(pivotEntity:revolutions:orbitalAxis:isOrientedToPath:isAdditive:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/animatedValueType",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isAdditive",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/isOrientedToPath",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/orbitalAxis",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/pivotEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/revolutions"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/encode(to:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EventParameterType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction/EntityAction-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/orbitentityaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

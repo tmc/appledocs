@@ -1,0 +1,998 @@
+{
+  "abstract": [
+    {
+      "text": "Connect to out-of-process audio units using the Xcode debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/debugging-out-of-process-audio-units-on-apple-silicon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging Out-of-Process Audio Units on Apple Silicon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beginning with macOS 11, the system loads audio units into a separate process that depends on the architecture or host preference. This increases stability and security by isolating audio units from their host app, and allows loading x86 audio units into an Apple silicon host app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attaching to system processes requires disabling system integrity protection in macOS before debugging. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attach-to-the-Hosting-Service",
+          "level": 3,
+          "text": "Attach to the Hosting Service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After disabling system integrity protection, follow these steps to debug an out-of-process audio unit in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run an app to install it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stop the debugging session by choosing Product > Stop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Debug > Attach to Process by Name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the process name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AUHostingServiceXPC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AUHostingServiceXPC_arrow.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Attach button to begin debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process name to use depends on the host, as well as the architectures of the host and plugin. There are currently two process names — ",
+              "type": "text"
+            },
+            {
+              "code": "AUHostingServiceXPC_arrow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Rosetta and ",
+              "type": "text"
+            },
+            {
+              "code": "AUHostingServiceXPC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for native — and they may change in future updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Leaving system integrity protection in a disabled state makes your computer vulnerable to malicious code, so enable it when you finish debugging your audio units.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Troubleshoot-Common-Issues-for-Audio-Units",
+          "level": 3,
+          "text": "Troubleshoot Common Issues for Audio Units",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Debugging is generally a seamless process, but if you encounter issues, consider the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When setting audio unit properties, don’t assume callbacks happen on the main thread. When updating the user interface, asynchronously dispatch to the main queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The differences in the way mouse-tracking APIs work can lead to processing mouse events in unexpected ways, so use event deltas for calculations that involve mouse movement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If custom, free-floating dialogs don’t work as you expect, add them as a subwindow to the main window — this includes custom tooltip and drop-down menu implementations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Because an audio unit and its host app operate within separate processes, you can’t create custom properties that share pointers to objects. The Core Audio framework must handle this, so if you have a specific need, submit a feedback request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus": {
+      "abstract": [
+        {
+          "text": "A class that defines an input or output connection point on an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitBus",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbus"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray": {
+      "abstract": [
+        {
+          "text": "A class that defines a container for an audio unit’s input or output busses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitBusArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitBusArray",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitbusarray"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory": {
+      "abstract": [
+        {
+          "text": "An object that creates a version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitFactory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitfactory"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset": {
+      "abstract": [
+        {
+          "text": "A class that describes an interface for custom parameter settings provided by the audio unit developer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitPreset",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitpreset"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge": {
+      "abstract": [
+        {
+          "text": "A class that wraps a version 2 audio unit as version 3 audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitV2Bridge"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnitV2Bridge"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnitV2Bridge",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounitv2bridge"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the component registrations for a given audio unit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionCopyComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionCopyComponentList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitExtensionCopyComponentList(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows the implementor of an audio unit extension to dynamically modify the list of component registrations for the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionSetComponentList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitExtensionSetComponentList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioUnitExtensionSetComponentList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins": {
+      "abstract": [
+        {
+          "text": "Deliver custom audio effects, instruments, and other audio behaviors using an Audio Unit v3 app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments": {
+      "abstract": [
+        {
+          "text": "Add custom audio processing and MIDI instruments to your app by hosting Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating Audio Effects and Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/incorporating-audio-effects-and-instruments"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension": {
+      "abstract": [
+        {
+          "text": "Build an extension by using an Xcode template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an audio unit extension",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/creating-an-audio-unit-extension"
+    },
+    "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection": {
+      "abstract": [
+        {
+          "text": "Disable system protections only temporarily during development to test drivers, kernel extensions, and other low-level code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection",
+      "kind": "article",
+      "role": "article",
+      "title": "Disabling and Enabling System Integrity Protection",
+      "type": "topic",
+      "url": "/documentation/Security/disabling-and-enabling-system-integrity-protection"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects": {
+      "abstract": [
+        {
+          "text": "Add custom audio-effect processing to apps like Logic Pro X and GarageBand by creating Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Custom Audio Effects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/creating_custom_audio_effects"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Units",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+        "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory"
+      ],
+      "title": "Audio Units"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Units",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFAudio/creating-an-audio-unit-extension",
+                "doc://com.apple.documentation/documentation/avfoundation/creating_custom_audio_effects",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/incorporating-audio-effects-and-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBus",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitBusArray",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitPreset",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitV2Bridge",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionCopyComponentList(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitExtensionSetComponentList(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnitFactory"
+              ],
+              "title": "Audio Units"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/title",
+          "value": "AUAudioUnitFactory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitFactory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/title",
+          "value": "AUAudioUnitPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/title",
+          "value": "AUAudioUnitBus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionSetComponentList(_:_:)/title",
+          "value": "AudioUnitExtensionSetComponentList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionSetComponentList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitExtensionSetComponentList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/title",
+          "value": "AUAudioUnitV2Bridge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitV2Bridge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitV2Bridge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitV2Bridge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionCopyComponentList(_:)/title",
+          "value": "AudioUnitExtensionCopyComponentList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioUnitExtensionCopyComponentList(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioUnitExtensionCopyComponentList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/title",
+          "value": "AUAudioUnitBusArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnitBusArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnitBusArray"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/debugging-out-of-process-audio-units-on-apple-silicon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/debugging-out-of-process-audio-units-on-apple-silicon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

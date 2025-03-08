@@ -1,0 +1,382 @@
+{
+  "abstract": [
+    {
+      "text": "An option that controls the audio signal’s spacial dynamics.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+        "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers",
+        "doc://com.apple.RealityKit/documentation/RealityKit/audioaction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/auralmode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "auralMode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is blank. Each instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AudioAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must specify an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/auralmode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Aural-Modes",
+          "level": 3,
+          "text": "Aural Modes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Plays the audio in 3D space at the position of the affected object. If the device doesn’t support spatial audio, it falls back to mono. For best results in ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "spatial",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " mode, supply audio files in mono.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "spatial",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Plays the audio without regard to the affected object’s 3D position. If the audio media contains any form of stereo or other multichannel sound, the runtime attempts to match this to the device’s output capabilities. Use this mode when an audio action doesn’t use the listener’s position to affect the music’s playback.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "nonSpatial",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Plays the audio in a spatial configuration that tracks rotation, but does not attenuate with distance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ambient",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "uniform token auralMode"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers": {
+      "abstract": [
+        {
+          "text": "Enable visual and audible responses to programmatic or environmental events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Actions and triggers",
+      "type": "topic",
+      "url": "/documentation/realitykit/actions-and-triggers"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/affectedobjects": {
+      "abstract": [
+        {
+          "text": "A list of prims that respond to the notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/affectedobjects",
+      "kind": "article",
+      "role": "article",
+      "title": "affectedObjects",
+      "type": "topic",
+      "url": "/documentation/realitykit/affectedobjects"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/audio": {
+      "abstract": [
+        {
+          "text": "The location of an audio file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/audio",
+      "kind": "article",
+      "role": "article",
+      "title": "audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/audioaction": {
+      "abstract": [
+        {
+          "text": "An action that plays audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/audioaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AudioAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/auralmode": {
+      "abstract": [
+        {
+          "text": "An option that controls the audio signal’s spacial dynamics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/auralmode",
+      "kind": "article",
+      "role": "article",
+      "title": "auralMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/auralmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/gain": {
+      "abstract": [
+        {
+          "text": "A value that controls the audio volume.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/gain",
+      "kind": "article",
+      "role": "article",
+      "title": "gain",
+      "type": "topic",
+      "url": "/documentation/realitykit/gain"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/info-id": {
+      "abstract": [
+        {
+          "text": "The action’s unique identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/info-id",
+      "kind": "article",
+      "role": "article",
+      "title": "info:id",
+      "type": "topic",
+      "url": "/documentation/realitykit/info-id"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/type": {
+      "abstract": [
+        {
+          "text": "An option that controls the order in which the actions execute.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/type",
+      "kind": "article",
+      "role": "article",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/realitykit/type"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/info-id",
+        "doc://com.apple.RealityKit/documentation/RealityKit/affectedobjects",
+        "doc://com.apple.RealityKit/documentation/RealityKit/audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/type",
+        "doc://com.apple.RealityKit/documentation/RealityKit/gain"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/auralmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

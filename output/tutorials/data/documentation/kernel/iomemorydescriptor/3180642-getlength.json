@@ -1,1 +1,349 @@
-{"abstract":[{"type":"text","text":"Returns the length of the memory block represented by this object."}],"documentVersion":0,"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.documentation/documentation/driverkit","doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor"],["doc://com.apple.documentation/documentation/technologies","doc://com.apple.documentation/documentation/kernel","doc://com.apple.documentation/documentation/kernel/iokit_fundamentals","doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory","doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"]]},"identifier":{"url":"doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength","interfaceLanguage":"occ"},"legacy_identifier":3180642,"kind":"symbol","metadata":{"title":"GetLength","role":"symbol","roleHeading":"Instance Method","modules":[{"name":"DriverKit"},{"name":"Kernel"}],"platforms":[{"name":"DriverKit","introducedAt":"19.0","current":"24.4"},{"name":"macOS","introducedAt":"10.15","current":"15.4"}],"externalID":"c:@S@IOMemoryDescriptor@F@GetLength#*k#","parent":{"title":"IOMemoryDescriptor"},"symbolKind":"instm"},"schemaVersion":{"major":0,"minor":3,"patch":0},"sections":[],"variants":[{"traits":[{"interfaceLanguage":"occ"}],"paths":["documentation/kernel/iomemorydescriptor/3180642-getlength","documentation/driverkit/iomemorydescriptor/3180642-getlength"]}],"references":{"doc://com.apple.documentation/documentation/driverkit":{"title":"DriverKit","identifier":"doc://com.apple.documentation/documentation/driverkit","url":"/documentation/driverkit","type":"topic","kind":"symbol","role":"collection"},"doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor":{"title":"IOMemoryDescriptor","type":"topic","identifier":"doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor","kind":"symbol","role":"symbol","url":"/documentation/driverkit/iomemorydescriptor","abstract":[{"type":"text","text":"The base class for describing a location in memory."}]},"doc://com.apple.documentation/documentation/kernel":{"title":"Kernel","identifier":"doc://com.apple.documentation/documentation/kernel","url":"/documentation/kernel","type":"topic","kind":"symbol","role":"collection"},"doc://com.apple.documentation/documentation/kernel/iokit_fundamentals":{"title":"IOKit Fundamentals","identifier":"doc://com.apple.documentation/documentation/kernel/iokit_fundamentals","url":"/documentation/kernel/iokit_fundamentals","type":"topic","kind":"article","role":"collectionGroup"},"doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory":{"title":"Memory","identifier":"doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory","url":"/documentation/kernel/iokit_fundamentals/memory","type":"topic","kind":"article","role":"collectionGroup"},"doc://com.apple.documentation/documentation/kernel/iomemorydescriptor":{"title":"IOMemoryDescriptor","identifier":"doc://com.apple.documentation/documentation/kernel/iomemorydescriptor","url":"/documentation/kernel/iomemorydescriptor","type":"topic","kind":"symbol","role":"symbol"},"doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess":{"title":"kIOReturnSuccess","type":"topic","identifier":"doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess","kind":"symbol","role":"symbol","url":"/documentation/driverkit/kioreturnsuccess"},"doc://com.apple.documentation/documentation/driverkit/error_codes":{"title":"Error Codes","type":"topic","identifier":"doc://com.apple.documentation/documentation/driverkit/error_codes","kind":"article","role":"collectionGroup","url":"/documentation/driverkit/error_codes"},"doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength":{"title":"SetLength","type":"topic","identifier":"doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength","kind":"symbol","role":"symbol","url":"/documentation/kernel/iobuffermemorydescriptor/3180454-setlength","abstract":[{"type":"text","text":"Changes the length of the memory buffer."}],"fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"SetLength"}]},"doc://com.apple.documentation/documentation/kernel/kern_return_t":{"title":"kern_return_t","type":"topic","identifier":"doc://com.apple.documentation/documentation/kernel/kern_return_t","kind":"symbol","role":"symbol","url":"/documentation/kernel/kern_return_t"},"doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength":{"title":"GetLength","type":"topic","identifier":"doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength","kind":"symbol","role":"symbol","url":"/documentation/kernel/iomemorydescriptor/3180642-getlength","abstract":[{"type":"text","text":"Returns the length of the memory block represented by this object."}],"fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"GetLength"}]},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies","title":"Technologies"}},"seeAlsoSections":[{"title":"Related Documentation","generated":false,"identifiers":["doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength"]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["occ"],"tokens":[{"kind":"typeIdentifier","preciseIdentifier":"c:@T@kern_return_t","identifier":"doc://com.apple.documentation/documentation/kernel/kern_return_t","text":"kern_return_t"},{"kind":"text","text":" "},{"kind":"identifier","text":"GetLength"},{"kind":"text","text":"("},{"kind":"keyword","text":"uint64_t"},{"kind":"text","text":" *returnLength);"}],"platforms":["DriverKit","macOS"]}]},{"kind":"parameters","languages":["occ"],"parameters":[{"name":"returnLength","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A variable in which to put the length of the current memory block. "}]}]}]},{"kind":"content","content":[{"anchor":"return_value","level":2,"text":"Return Value","type":"heading"},{"type":"paragraph","inlineContent":[{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess"},{"type":"text","text":" on success, or another value if an error occurs. See "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/driverkit/error_codes"},{"type":"text","text":". "}]}]},{"kind":"content","content":[{"anchor":"discussion","level":2,"text":"Discussion","type":"heading"},{"type":"paragraph","inlineContent":[{"type":"text","text":"This method returns the effective size of the memory block, which might be less than the block's total capacity.  "}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Returns the length of the memory block represented by this object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180642,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryDescriptor@F@GetLength#*k#",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOMemoryDescriptor"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "GetLength"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GetLength"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " *returnLength);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A variable in which to put the length of the current memory block. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "returnLength"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method returns the effective size of the memory block, which might be less than the block's total capacity.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The base class for describing a location in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength": {
+      "abstract": [
+        {
+          "text": "Changes the length of the memory buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180454-setlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength": {
+      "abstract": [
+        {
+          "text": "Returns the length of the memory block represented by this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3180642-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor/3180642-getlength",
+        "documentation/driverkit/iomemorydescriptor/3180642-getlength"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

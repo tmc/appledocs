@@ -1,0 +1,1568 @@
+{
+  "abstract": [
+    {
+      "text": "A specification for a named parameter with a constant value.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEMetaParameterDefinition",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEMetaParameterDefinition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEMetaParameterDefinition"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEMetaParameterDefinition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameterDefinition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of this class provide an app with dynamic control of various properies of live audio playback. This is a base class for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameterDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEStringMetaParameterDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a single instance of one of the subclasses for a specific property you want to adjust. By passing the definition subclass to the framework, you spawn one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects for discrete use across your app. For example, when you initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEBlendNodeDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a number metaparameter definition, PHASE registers a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the corresponding sound event’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Put metaparameter definitions that you wish to share across different sounds in the asset registery’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/globalMetaParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. To add global metaparameter definitions to the dictionary, call  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/registerGlobalMetaParameter(metaParameterDefinition:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then pass the definition into several sound event node defintions, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/globalMetaParameters": {
+      "abstract": [
+        {
+          "text": "A dictionary of metaparameters that all sound event assets share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "globalMetaParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMetaParameter",
+          "text": "PHASEMetaParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/globalMetaParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "globalMetaParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "globalMetaParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phaseassetregistry/globalmetaparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/registerGlobalMetaParameter(metaParameterDefinition:)": {
+      "abstract": [
+        {
+          "text": "Registers a global metaparameter with the asset registry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerGlobalMetaParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "metaParameterDefinition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMetaParameterDefinition",
+          "text": "PHASEMetaParameterDefinition"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEGlobalMetaParameterAsset",
+          "text": "PHASEGlobalMetaParameterAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry/registerGlobalMetaParameter(metaParameterDefinition:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerGlobalMetaParameter:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerGlobalMetaParameter(metaParameterDefinition:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEBlendNodeDefinition": {
+      "abstract": [
+        {
+          "text": "A node that smoothly fades between the audio of its child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEBlendNodeDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEBlendNodeDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEBlendNodeDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEBlendNodeDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phaseblendnodedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDefinition": {
+      "abstract": [
+        {
+          "text": "A base class that adds a name to framework definitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGlobalMetaParameterAsset": {
+      "abstract": [
+        {
+          "text": "A reference to a registered metaparameter that the app can share with multiple sound events or sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGlobalMetaParameterAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGlobalMetaParameterAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGlobalMetaParameterAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGlobalMetaParameterAsset",
+      "type": "topic",
+      "url": "/documentation/phase/phaseglobalmetaparameterasset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameter": {
+      "abstract": [
+        {
+          "text": "A named parameter with a value that the app can change over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMetaParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMetaParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMetaParameter",
+      "type": "topic",
+      "url": "/documentation/phase/phasemetaparameter"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition": {
+      "abstract": [
+        {
+          "text": "A specification for a named parameter with a constant value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMetaParameterDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMetaParameterDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMetaParameterDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasemetaparameterdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition/value": {
+      "abstract": [
+        {
+          "text": "A constant value for the parameter definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition/value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "value"
+        }
+      ],
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/phase/phasemetaparameterdefinition/value"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameter": {
+      "abstract": [
+        {
+          "text": "A metaparameter defined by a number that can change over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASENumberMetaParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASENumberMetaParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASENumberMetaParameter",
+      "type": "topic",
+      "url": "/documentation/phase/phasenumbermetaparameter"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameterDefinition": {
+      "abstract": [
+        {
+          "text": "A specification for a metaparameter defined by a number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASENumberMetaParameterDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameterDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASENumberMetaParameterDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASENumberMetaParameterDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasenumbermetaparameterdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition": {
+      "abstract": [
+        {
+          "text": "A node that plays complete audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESamplerNodeDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESamplerNodeDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESamplerNodeDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasesamplernodedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters": {
+      "abstract": [
+        {
+          "text": "The object’s meta parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metaParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMetaParameter",
+          "text": "PHASEMetaParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metaParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "metaParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/metaparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEStringMetaParameterDefinition": {
+      "abstract": [
+        {
+          "text": "A specification for a metaparameter defined by text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEStringMetaParameterDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEStringMetaParameterDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEStringMetaParameterDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEStringMetaParameterDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasestringmetaparameterdefinition"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameterDefinition",
+        "doc://com.apple.phase/documentation/PHASE/PHASEStringMetaParameterDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Base-Metaparameters",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameter",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGlobalMetaParameterAsset"
+      ],
+      "title": "Base Metaparameters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-a-Metaparameter",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition/value"
+      ],
+      "title": "Setting a Metaparameter"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEMetaParameterDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-a-Metaparameter",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameterDefinition/value"
+              ],
+              "title": "Setting a Metaparameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEDefinition"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASENumberMetaParameterDefinition",
+                "doc://com.apple.phase/documentation/PHASE/PHASEStringMetaParameterDefinition"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Base-Metaparameters",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEMetaParameter",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGlobalMetaParameterAsset"
+              ],
+              "title": "Base Metaparameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEMetaParameterDefinition"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDefinition",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PHASEDefinition",
+                    "text": "PHASEDefinition"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/title",
+          "value": "PHASESamplerNodeDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESamplerNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESamplerNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry~1globalMetaParameters/title",
+          "value": "globalMetaParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry~1globalMetaParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "globalMetaParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameter/title",
+          "value": "PHASEMetaParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry~1registerGlobalMetaParameter(metaParameterDefinition:)/title",
+          "value": "registerGlobalMetaParameter:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry~1registerGlobalMetaParameter(metaParameterDefinition:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerGlobalMetaParameter:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEBlendNodeDefinition/title",
+          "value": "PHASEBlendNodeDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEBlendNodeDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEBlendNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEBlendNodeDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEBlendNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameter/title",
+          "value": "PHASENumberMetaParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumberMetaParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumberMetaParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameterDefinition/title",
+          "value": "PHASEMetaParameterDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameterDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameterDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEStringMetaParameterDefinition/title",
+          "value": "PHASEStringMetaParameterDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEStringMetaParameterDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEStringMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEStringMetaParameterDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEStringMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameterDefinition~1value/title",
+          "value": "value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMetaParameterDefinition~1value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGlobalMetaParameterAsset/title",
+          "value": "PHASEGlobalMetaParameterAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGlobalMetaParameterAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGlobalMetaParameterAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGlobalMetaParameterAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGlobalMetaParameterAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameterDefinition/title",
+          "value": "PHASENumberMetaParameterDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameterDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumberMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumberMetaParameterDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumberMetaParameterDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1metaParameters/title",
+          "value": "metaParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1metaParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metaParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/title",
+          "value": "PHASEDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDefinition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phasemetaparameterdefinition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phasemetaparameterdefinition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

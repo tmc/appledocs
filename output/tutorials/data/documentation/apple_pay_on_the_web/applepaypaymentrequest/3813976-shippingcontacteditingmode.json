@@ -1,0 +1,359 @@
+{
+  "abstract": [
+    {
+      "text": "A value that indicates whether the shipping mode prevents the user from editing the shipping address.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3813976,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "structp/ApplePayPaymentRequest/shippingContactEditingMode",
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      }
+    ],
+    "parent": {
+      "title": "ApplePayPaymentRequest"
+    },
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "15.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "15.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "shippingContactEditingMode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontacteditingmode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "enum/ApplePayShippingContactEditingMode",
+              "text": "ApplePayShippingContactEditingMode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shippingContactEditingMode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the value to ",
+              "type": "text"
+            },
+            {
+              "code": "storePickup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an in-store or other pickup to prevent the user from editing the shipping address. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add ",
+              "type": "text"
+            },
+            {
+              "code": "postalAddress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "requiredShippingContactFields",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display the pickup address. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "shippingContact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the pickup address.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let applePayPaymentRequest = {",
+            "    // Set the shipping type.",
+            "    shippingType: \"storePickup\",",
+            "",
+            "    // Set the required shipping contact fields to display the pickup address.",
+            "    requiredShippingContactFields: [",
+            "        \"postalAddress\"",
+            "    ],",
+            "",
+            "    // Set the shipping contact to the pickup location.",
+            "    shippingContact: {",
+            "        addressLines: [\"123 Any Street\"],",
+            "        locality: \"Any Town\",",
+            "        administrativeArea: \"CA\",",
+            "        postalCode: \"95014\",",
+            "        countryCode: \"US\",",
+            "        familyName: \"COMPANY, INC.\"",
+            "    },",
+            "",
+            "    // Set the shipping contact information to read-only.",
+            "    shippingContactEditingMode: \"storePickup\",",
+            "",
+            "    countryCode: \"US\",",
+            "    currencyCode: \"USD\",",
+            "    merchantCapabilities: [\"supports3DS\"],",
+            "    supportedNetworks: [\"visa\", \"masterCard\"],",
+            "    total: { label: \"COMPANY, INC.\", amount: \"10.00\" }",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "3817377",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Determine whether to disable editing of the shipping contact field before displaying the payment sheet. Switching from a noneditable to an editable shipping contact field requires the user to start the payment process over again.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycontactfield": {
+      "abstract": [
+        {
+          "text": "Field names for requesting contact information in a payment request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycontactfield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayContactField",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaycontactfield"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "abstract": [
+        {
+          "text": "A request for payment, which includes information about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216120-requiredbillingcontactfields": {
+      "abstract": [
+        {
+          "text": "The fields of billing information the user must provide to process the transaction. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216120-requiredbillingcontactfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiredBillingContactFields",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216120-requiredbillingcontactfields"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields": {
+      "abstract": [
+        {
+          "text": "The fields of shipping information the user must provide to fulfill the order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiredShippingContactFields",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the shipping mode prevents the user from editing the shipping address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shippingContactEditingMode",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode#3817377": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode#3817377",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode#3817377"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontacteditingmode": {
+      "abstract": [
+        {
+          "text": "Values that indicate whether the shipping mode prevents the user from editing fields of the shipping address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontacteditingmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayShippingContactEditingMode",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingcontacteditingmode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216120-requiredbillingcontactfields",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycontactfield",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontacteditingmode"
+      ],
+      "title": "Requesting billing and shipping contact information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/applepaypaymentrequest/3813976-shippingcontacteditingmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "abstract": [
+    {
+      "text": "Set and test the ",
+      "type": "text"
+    },
+    {
+      "code": "UCCollateOptions",
+      "type": "codeVoice"
+    },
+    {
+      "text": " field that specifies a fixed ordering scheme.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390370-fixed_ordering_masks_1"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390370,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Fixed Ordering Masks 1"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use these constants to set or obtain a value that specifies a fixed ordering scheme. For a description of the available types of fixed ordering schemes, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390361-fixed_ordering_scheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to specify ",
+              "type": "text"
+            },
+            {
+              "code": "kUCCollateTypeHFSExtended",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1390513-uccomparetextnolocale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " , the ",
+              "type": "text"
+            },
+            {
+              "code": "kUCCollateTypeHFSExtended",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value must be shifted by ",
+              "type": "text"
+            },
+            {
+              "code": "kUCCollateTypeShiftBits ",
+              "type": "codeVoice"
+            },
+            {
+              "text": " :",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "options = kUCCollateTypeHFSExtended     kUCCollateTypeShiftBits; ",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You would obtain the ordering scheme value from the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fixedOrderType = ((options > > kUCCollateTypeShiftBits) &  kUCCollateTypeSourceMask);"
+          ],
+          "metadata": {
+            "anchor": "2557463",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390573-fixed_ordering_masks_2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1390513-uccomparetextnolocale": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1390513-uccomparetextnolocale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCCompareTextNoLocale(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1390513-uccomparetextnolocale"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390361-fixed_ordering_scheme": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390361-fixed_ordering_scheme",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fixed Ordering Scheme",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities/1390361-fixed_ordering_scheme"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390370-fixed_ordering_masks_1#2557463": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390370-fixed_ordering_masks_1#2557463",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities/1390370-fixed_ordering_masks_1#2557463"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390573-fixed_ordering_masks_2": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390573-fixed_ordering_masks_2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fixed Ordering Masks 2",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities/1390573-fixed_ordering_masks_2"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kuccollatetypeshiftbits": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kUCCollateTypeShiftBits"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kuccollatetypeshiftbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kUCCollateTypeShiftBits",
+      "type": "topic",
+      "url": "/documentation/coreservices/kuccollatetypeshiftbits"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kuccollatetypesourcemask": {
+      "abstract": [
+        {
+          "text": "You can use this mask, in conjunction with the ",
+          "type": "text"
+        },
+        {
+          "code": "kUCCollateTypeShiftBits",
+          "type": "codeVoice"
+        },
+        {
+          "text": " constant, to obtain a value identifying a fixed ordering scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kUCCollateTypeSourceMask"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kuccollatetypesourcemask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kUCCollateTypeSourceMask",
+      "type": "topic",
+      "url": "/documentation/coreservices/kuccollatetypesourcemask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1610196",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kuccollatetypesourcemask",
+        "doc://com.apple.documentation/documentation/coreservices/kuccollatetypeshiftbits"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1390370-fixed_ordering_masks_1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/carbon_core/unicode_utilities/1390370-fixed_ordering_masks_1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

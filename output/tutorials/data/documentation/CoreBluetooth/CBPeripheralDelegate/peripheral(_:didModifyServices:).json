@@ -1,1 +1,1085 @@
-{"abstract":[{"type":"text","text":"Tells the delegate that a peripheral’s services changed."}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.corebluetooth/documentation/CoreBluetooth","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate"]]},"sections":[],"kind":"symbol","schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"identifiers":["doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)"],"title":"Monitoring Changes to a Peripheral’s Name or Services","generated":true,"anchor":"Monitoring-Changes-to-a-Peripherals-Name-or-Services"}],"metadata":{"title":"peripheral(_:didModifyServices:)","roleHeading":"Instance Method","navigatorTitle":[{"text":"peripheral:didModifyServices:","kind":"identifier"}],"symbolKind":"method","platforms":[{"unavailable":false,"deprecated":false,"beta":false,"name":"iOS","introducedAt":"7.0"},{"unavailable":false,"deprecated":false,"beta":false,"name":"iPadOS","introducedAt":"7.0"},{"unavailable":false,"deprecated":false,"beta":false,"name":"Mac Catalyst","introducedAt":"13.1"},{"unavailable":false,"deprecated":false,"beta":false,"name":"macOS","introducedAt":"10.9"},{"introducedAt":"9.0","beta":false,"unavailable":false,"name":"tvOS","deprecated":false},{"introducedAt":"1.0","beta":false,"unavailable":false,"name":"visionOS","deprecated":false},{"introducedAt":"2.0","beta":false,"unavailable":false,"name":"watchOS","deprecated":false}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"peripheral","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)CBPeripheral","text":"CBPeripheral","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"didModifyServices","kind":"externalParam"},{"text":": [","kind":"text"},{"preciseIdentifier":"c:objc(cs)CBService","text":"CBService","kind":"typeIdentifier"},{"text":"])","kind":"text"}],"modules":[{"name":"Core Bluetooth"}],"externalID":"c:objc(pl)CBPeripheralDelegate(im)peripheral:didModifyServices:","role":"symbol"},"identifier":{"url":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)","interfaceLanguage":"swift"},"variants":[{"paths":["/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)"],"traits":[{"interfaceLanguage":"occ"}]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"tokens":[{"text":"optional","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"peripheral","kind":"identifier"},{"text":"(","kind":"text"},{"text":"_","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"peripheral","kind":"internalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)CBPeripheral","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral","text":"CBPeripheral","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"didModifyServices","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"invalidatedServices","kind":"internalParam"},{"text":": [","kind":"text"},{"preciseIdentifier":"c:objc(cs)CBService","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService","text":"CBService","kind":"typeIdentifier"},{"text":"])","kind":"text"}]}]},{"parameters":[{"name":"peripheral","content":[{"inlineContent":[{"type":"text","text":"The peripheral providing this information."}],"type":"paragraph"}]},{"name":"invalidatedServices","content":[{"type":"paragraph","inlineContent":[{"text":"A list of services invalidated by this change.","type":"text"}]}]}],"kind":"parameters"},{"kind":"content","content":[{"type":"heading","text":"Discussion","anchor":"Discussion","level":2},{"inlineContent":[{"type":"text","text":"Core Bluetooth invokes this method whenever one or more services of a peripheral change. A peripheral’s services have changed if:"}],"type":"paragraph"},{"type":"unorderedList","items":[{"content":[{"inlineContent":[{"type":"text","text":"The peripheral removes a service from its database."}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"type":"text","text":"The peripheral adds a new service to its database."}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The peripheral adds back a previously-removed service, but at a different location in the database."}]}]}]},{"inlineContent":[{"type":"text","text":"The "},{"type":"codeVoice","code":"invalidatedServices"},{"type":"text","text":" parameter includes any changed services that you previously discovered; you can no longer use these services. You can use the "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)"},{"type":"text","text":" method to discover any new services that the peripheral added to its database. Use this same method to find out whether any of the invalidated services that you were using (and want to continue using) now have a different location in the peripheral’s database."}],"type":"paragraph"}]}],"references":{"doc://com.apple.corebluetooth/documentation/CoreBluetooth":{"title":"Core Bluetooth","abstract":[{"text":"Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.","type":"text"}],"url":"/documentation/corebluetooth","kind":"symbol","type":"topic","role":"collection","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral":{"url":"/documentation/corebluetooth/cbperipheral","abstract":[{"text":"A remote peripheral device.","type":"text"}],"type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CBPeripheral","kind":"identifier"}],"kind":"symbol","role":"symbol","title":"CBPeripheral","navigatorTitle":[{"text":"CBPeripheral","kind":"identifier"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral"},"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/technologies","kind":"technologies","type":"topic","title":"Technologies","role":"overview","url":"/documentation/technologies"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)":{"kind":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"discoverServices"},{"kind":"text","text":"(["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBUUID","text":"CBUUID"},{"kind":"text","text":"]?)"}],"navigatorTitle":[{"text":"discoverServices:","kind":"identifier"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)","type":"topic","role":"symbol","abstract":[{"text":"Discovers the specified services of the peripheral.","type":"text"}],"title":"discoverServices(_:)","url":"/documentation/corebluetooth/cbperipheral/discoverservices(_:)"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)":{"role":"symbol","navigatorTitle":[{"text":"peripheral:didModifyServices:","kind":"identifier"}],"url":"/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)","title":"peripheral(_:didModifyServices:)","type":"topic","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"peripheral","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBPeripheral","text":"CBPeripheral"},{"kind":"text","text":", "},{"kind":"externalParam","text":"didModifyServices"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBService","text":"CBService"},{"text":"])","kind":"text"}],"abstract":[{"type":"text","text":"Tells the delegate that a peripheral’s services changed."}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)","kind":"symbol"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService":{"title":"CBService","abstract":[{"type":"text","text":"A collection of data and associated behaviors that accomplish a function or feature of a device."}],"url":"/documentation/corebluetooth/cbservice","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"CBService"}],"role":"symbol","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CBService"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)":{"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"peripheralDidUpdateName:"}],"url":"/documentation/corebluetooth/cbperipheraldelegate/peripheraldidupdatename(_:)","title":"peripheralDidUpdateName(_:)","type":"topic","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"peripheralDidUpdateName","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)CBPeripheral","text":"CBPeripheral"},{"kind":"text","text":")"}],"abstract":[{"type":"text","text":"Tells the delegate that a peripheral’s name changed."}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)","kind":"symbol"},"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate":{"abstract":[{"text":"A protocol that provides updates on the use of a peripheral’s services.","type":"text"}],"title":"CBPeripheralDelegate","role":"symbol","navigatorTitle":[{"text":"CBPeripheralDelegate","kind":"identifier"}],"identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate","type":"topic","kind":"symbol","url":"/documentation/corebluetooth/cbperipheraldelegate","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CBPeripheralDelegate","kind":"identifier"}]}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"path":"/identifier/interfaceLanguage","op":"replace","value":"occ"},{"path":"/metadata/platforms","op":"replace","value":[{"unavailable":false,"beta":false,"introducedAt":"7.0","name":"iOS","deprecated":false},{"unavailable":false,"beta":false,"introducedAt":"7.0","name":"iPadOS","deprecated":false},{"unavailable":false,"beta":false,"introducedAt":"13.1","name":"Mac Catalyst","deprecated":false},{"unavailable":false,"beta":false,"introducedAt":"10.9","name":"macOS","deprecated":false},{"unavailable":false,"beta":false,"introducedAt":"9.0","name":"tvOS","deprecated":false},{"unavailable":false,"name":"visionOS","introducedAt":"1.0","beta":false,"deprecated":false},{"unavailable":false,"name":"watchOS","introducedAt":"2.0","beta":false,"deprecated":false}]},{"path":"/metadata/roleHeading","op":"replace","value":"Instance Method"},{"path":"/metadata/title","op":"replace","value":"peripheral:didModifyServices:"},{"path":"/metadata/symbolKind","op":"replace","value":"method"},{"path":"/metadata/fragments","op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"peripheral:didModifyServices:"}]},{"path":"/hierarchy","op":"replace","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.corebluetooth/documentation/CoreBluetooth","doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate"]]}},{"path":"/topicSections","op":"add","value":null},{"path":"/relationshipsSections","op":"add","value":null},{"path":"/seeAlsoSections","op":"replace","value":[{"title":"Monitoring Changes to a Peripheral’s Name or Services","identifiers":["doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)"],"generated":true,"anchor":"Monitoring-Changes-to-a-Peripherals-Name-or-Services"}]},{"path":"/primaryContentSections/0","op":"replace","value":{"kind":"declarations","declarations":[{"tokens":[{"kind":"text","text":"- ("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":") "},{"kind":"identifier","text":"peripheral:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","identifier":"doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral","text":"CBPeripheral","preciseIdentifier":"c:objc(cs)CBPeripheral"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"peripheral"},{"kind":"text","text":" "},{"kind":"identifier","text":"didModifyServices:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"NSArray<CBService *>","preciseIdentifier":"c:Q$objc(cs)NSArray"},{"kind":"text","text":" *) "},{"text":"invalidatedServices","kind":"internalParam"},{"text":";","kind":"text"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["occ"]}]}},{"op":"replace","path":"/primaryContentSections/1","value":{"parameters":[{"name":"peripheral","content":[{"inlineContent":[{"text":"The peripheral providing this information.","type":"text"}],"type":"paragraph"}]},{"name":"invalidatedServices","content":[{"type":"paragraph","inlineContent":[{"text":"A list of services invalidated by this change.","type":"text"}]}]}],"kind":"parameters"}},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title","op":"replace","value":"CBPeripheral"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments","op":"replace","value":[{"kind":"identifier","text":"CBPeripheral"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle","op":"replace","value":[{"text":"CBPeripheral","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/title","op":"replace","value":"discoverServices:"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/fragments","op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"discoverServices:"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didModifyServices:)/title","op":"replace","value":"peripheral:didModifyServices:"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didModifyServices:)/fragments","op":"replace","value":[{"text":"- ","kind":"text"},{"kind":"identifier","text":"peripheral:didModifyServices:"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/title","op":"replace","value":"CBService"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/fragments","op":"replace","value":[{"kind":"identifier","text":"CBService"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/navigatorTitle","op":"replace","value":[{"text":"CBService","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheralDidUpdateName(_:)/title","op":"replace","value":"peripheralDidUpdateName:"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheralDidUpdateName(_:)/fragments","op":"replace","value":[{"text":"- ","kind":"text"},{"text":"peripheralDidUpdateName:","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/title","op":"replace","value":"CBPeripheralDelegate"},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/fragments","op":"replace","value":[{"text":"CBPeripheralDelegate","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/navigatorTitle","op":"replace","value":[{"text":"CBPeripheralDelegate","kind":"identifier"}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Tells the delegate that a peripheral’s services changed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CBPeripheralDelegate(im)peripheral:didModifyServices:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "peripheral"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CBPeripheral",
+        "text": "CBPeripheral"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "didModifyServices"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CBService",
+        "text": "CBService"
+      },
+      {
+        "kind": "text",
+        "text": "])"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Bluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "peripheral:didModifyServices:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "peripheral(_:didModifyServices:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheral",
+              "text": "CBPeripheral"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "didModifyServices"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "invalidatedServices"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBService",
+              "text": "CBService"
+            },
+            {
+              "kind": "text",
+              "text": "])"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The peripheral providing this information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "peripheral"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of services invalidated by this change.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "invalidatedServices"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Bluetooth invokes this method whenever one or more services of a peripheral change. A peripheral’s services have changed if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The peripheral removes a service from its database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The peripheral adds a new service to its database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The peripheral adds back a previously-removed service, but at a different location in the database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "invalidatedServices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter includes any changed services that you previously discovered; you can no longer use these services. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to discover any new services that the peripheral added to its database. Use this same method to find out whether any of the invalidated services that you were using (and want to continue using) now have a different location in the peripheral’s database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/corebluetooth"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral": {
+      "abstract": [
+        {
+          "text": "A remote peripheral device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheral",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)": {
+      "abstract": [
+        {
+          "text": "Discovers the specified services of the peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discoverServices"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discoverServices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "discoverServices(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral/discoverservices(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that provides updates on the use of a peripheral’s services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralDelegate",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a peripheral’s services changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didModifyServices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBService",
+          "text": "CBService"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didModifyServices:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheral:didModifyServices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheral(_:didModifyServices:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a peripheral’s name changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheralDidUpdateName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheralDidUpdateName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheralDidUpdateName(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate/peripheraldidupdatename(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService": {
+      "abstract": [
+        {
+          "text": "A collection of data and associated behaviors that accomplish a function or feature of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBService"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBService"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBService",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Monitoring-Changes-to-a-Peripherals-Name-or-Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)"
+      ],
+      "title": "Monitoring Changes to a Peripheral’s Name or Services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "peripheral:didModifyServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:didModifyServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Monitoring-Changes-to-a-Peripherals-Name-or-Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate/peripheralDidUpdateName(_:)"
+              ],
+              "title": "Monitoring Changes to a Peripheral’s Name or Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "peripheral:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CBPeripheral",
+                    "text": "CBPeripheral"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "peripheral"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "didModifyServices:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<CBService *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "invalidatedServices"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The peripheral providing this information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "peripheral"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A list of services invalidated by this change.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "invalidatedServices"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title",
+          "value": "CBPeripheral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/title",
+          "value": "discoverServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral~1discoverServices(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoverServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didModifyServices:)/title",
+          "value": "peripheral:didModifyServices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didModifyServices:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:didModifyServices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/title",
+          "value": "CBService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheralDidUpdateName(_:)/title",
+          "value": "peripheralDidUpdateName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheralDidUpdateName(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheralDidUpdateName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/title",
+          "value": "CBPeripheralDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didmodifyservices:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

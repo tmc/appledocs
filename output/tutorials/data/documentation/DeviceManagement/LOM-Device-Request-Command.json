@@ -1,0 +1,763 @@
+{
+  "abstract": [
+    {
+      "text": "Send requests to a device using lights-out management (LOM).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:mdm#LOMDeviceRequestCommand",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LOM Device Request Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "LOM Device Request Command"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "mdm#LOMDeviceRequestCommand"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:LOMDeviceRequestCommand",
+          "text": "LOMDeviceRequestCommand"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The command to send requests to a device using lights-out management (LOM).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response from the device after it processes requests it receives through lights-out management (LOM).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:LOMDeviceRequestResponse",
+              "text": "LOMDeviceRequestResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command requires the ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceLockAndRemovePasscode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " access right, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LightsOutManagementLOM",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configuration and is available in macOS 11 and later on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/deployment/lights-out-management-payload-settings-dep580cf25bc/web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DeviceDNSName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the ",
+              "type": "text"
+            },
+            {
+              "code": "CommonName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Identity issued on the client certificate from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LightsOutManagementLOM",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryIPv6AddressList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SecondaryIPv6AddressList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after a successful deployment of Lights Out management configuration payload and subsequent ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestCommand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Command-Availability",
+          "level": 3,
+          "text": "Command Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required Access Right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DeviceLockAndRemovePasscode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>Command</key>",
+                    "    <dict>",
+                    "        <key>RequestList</key>",
+                    "    <array>",
+                    "        <dict>",
+                    "            <key>DeviceDNSName</key>",
+                    "            <string>lomdevice.com</string>",
+                    "            <key>DeviceRequestType</key>",
+                    "            <string>Reset</string>",
+                    "            <key>DeviceRequestUUID</key>",
+                    "            <string>0001</string>",
+                    "            <key>PrimaryIPv6AddressList</key>",
+                    "            <array>",
+                    "                <string>fe80::94f6:d6ff:fef3:c05b</string>",
+                    "                <string>fe80::94f6:d6ff:fef3:c1a4</string>",
+                    "            </array>",
+                    "            <key>SecondaryIPv6AddressList</key>",
+                    "            <array/>",
+                    "        </dict>",
+                    "    </array>",
+                    "    </dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_LOMDeviceRequest</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+                    "<plist version=\"1.0\">",
+                    "<dict>",
+                    "    <key>CommandUUID</key>",
+                    "    <string>0001_LOMDeviceRequest</string>",
+                    "    <key>ResponseData</key>",
+                    "    <array>",
+                    "        <dict>",
+                    "            <key>DeviceRequestSucess</key>",
+                    "            <true/>",
+                    "            <key>DeviceRequestUUID</key>",
+                    "            <string>0001</string>",
+                    "        </dict>",
+                    "    </array>",
+                    "    <key>Status</key>",
+                    "    <string>Acknowledged</string>",
+                    "    <key>UDID</key>",
+                    "    <string>37CECCAB-99C1-5ADF-8A9A-2AFA3B6387B5</string>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command": {
+      "abstract": [
+        {
+          "text": "Send requests to a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOM Device Request Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOM Device Request Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lom-device-request-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command": {
+      "abstract": [
+        {
+          "text": "Get information from a device to set up lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOM Setup Request Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOM Setup Request Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lom-setup-request-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand": {
+      "abstract": [
+        {
+          "text": "The command to send requests to a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMDeviceRequestCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomdevicerequestcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes requests it receives through lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMDeviceRequestResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMDeviceRequestResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomdevicerequestresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestCommand": {
+      "abstract": [
+        {
+          "text": "The command to get information from a device to set up lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMSetupRequestCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomsetuprequestcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse": {
+      "abstract": [
+        {
+          "text": "A response from the device after it processes the command to get setup information for lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMSetupRequestResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOMSetupRequestResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOMSetupRequestResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lomsetuprequestresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LightsOutManagementLOM": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure lights-out management (LOM) settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LightsOutManagementLOM"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LightsOutManagementLOM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LightsOutManagementLOM"
+        }
+      ],
+      "role": "symbol",
+      "title": "LightsOutManagementLOM",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lightsoutmanagementlom"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/deployment/lights-out-management-payload-settings-dep580cf25bc/web": {
+      "identifier": "https://support.apple.com/guide/deployment/lights-out-management-payload-settings-dep580cf25bc/web",
+      "title": "supported macOS devices",
+      "titleInlineContent": [
+        {
+          "text": "supported macOS devices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/deployment/lights-out-management-payload-settings-dep580cf25bc/web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lights-Out-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command"
+      ],
+      "title": "Lights-Out Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Command-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestCommand",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOMDeviceRequestResponse"
+      ],
+      "title": "Command and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/lom-device-request-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

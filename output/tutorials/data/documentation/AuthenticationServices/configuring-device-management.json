@@ -1,0 +1,1005 @@
+{
+  "abstract": [
+    {
+      "text": "Configure Device Management to support device and user registration for platform SSO.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/configuring-device-management"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Device Management"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable platform SSO through the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.extensiblesso",
+              "type": "codeVoice"
+            },
+            {
+              "text": " payload in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for redirect extensions only, because these extensions are designed for modern authentication. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/devicemanagement/extensiblesinglesignon/platformsso",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary in the payload contains the options to configure platform SSO. These options include choosing which key or keys to use, assigning group membership, creating users during login, and including support for registering devices and users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The extension data and registration token is user-specific if there’s a user-scoped ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.extensiblesso",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " MDM payload for the same extension without the ",
+                  "type": "text"
+                },
+                {
+                  "code": "PlatformSSO",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-which-keys-to-use",
+          "level": 3,
+          "text": "Choose which keys to use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the only required key is ",
+              "type": "text"
+            },
+            {
+              "code": "AuthenticationMethod",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it’s recommended that you use shared device keys through ",
+              "type": "text"
+            },
+            {
+              "code": "UseSharedDeviceKeys",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use ",
+              "type": "text"
+            },
+            {
+              "code": "AuthenticationMethod",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all users on the device to authenticate, which has the possible values ",
+              "type": "text"
+            },
+            {
+              "code": "Password",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UserSecureEnclaveKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "SmartCard",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The SSO extension needs to support the requested method to start registration, or to switch methods. For example, a new user account that the system created during login with a username and password can switch to secure enclave backed key or SmartCard after the user reaches the desktop. The SSO extension can use the ",
+              "type": "text"
+            },
+            {
+              "code": "RegistrationToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for silent device registration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the recommended shared device keys, the Device Management profile needs to be a system profile because the configuration applies to all users. But, you can configure user-specific extenstion data and registration tokens for individual users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating and configuring the extension for platform SSO, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/ExtensibleSingleSignOn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-group-membership",
+          "level": 3,
+          "text": "Assign group membership",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platform SSO uses the Device Management configuration to request group membership from the identity provider (IdP). During device registration, if the Device Management profile specifies ",
+              "type": "text"
+            },
+            {
+              "code": "AdministratorGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it creates the local groups with the same name and adds them as sub groups of the admin group. If the profile specifies ",
+              "type": "text"
+            },
+            {
+              "code": "AdditionalGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then it creates a local group for them. Handle the use of additional groups separately for other services such as ",
+              "type": "text"
+            },
+            {
+              "code": "sudo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the profile specifies ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then it creates a local group and updates the associated authorization right to use that group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During authentication, the system requests the super set of the groups from the IdP and the login response contains the group membership for the user. Platform SSO adds the user to the groups the IdP returns and removes the user from the rest of the groups. You can trust these group memberships for security decisions because the IdP signed them during the login and the system didn’t make a separate request for it. The system only updates group membership after user authentication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The groups are normal local groups on the Mac and the membership other processes can modify these groups. Administrators need to ensure there are sufficient controls and auditing processes in place to handle unauthorized changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To help ensure good performance and proper use, macOS limits the number of groups to about 10. IdPs may also have limits. Each app needs to request the groups it requires. These groups are for use by macOS only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-user-during-login",
+          "level": 3,
+          "text": "Create user during login",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platform SSO can create a new user at the login window with the password the user enters, if the MDM ",
+              "type": "text"
+            },
+            {
+              "code": "EnableCreateUserAtLogin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UseSharedDeviceKeys",
+              "type": "codeVoice"
+            },
+            {
+              "text": " profile settings are both ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system checks that there isn’t an existing local account with the same login user name and unique identifier for the user before it creates a new account. The system uses the ",
+              "type": "text"
+            },
+            {
+              "code": "TokenToUserMapping",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Device Management profile when it creates the local account name and short name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IdPs need to ensure that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/uniqueIdentifierClaimName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is correctly set, to ensure the unique identifier is accurate and avoid duplicates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can create new SmartCard users in macOS when the SmartCard contains a valid attribute mapping. The mapping needs to use the ",
+              "type": "text"
+            },
+            {
+              "code": "PlatformSSO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix followed by the user’s login username for the ",
+              "type": "text"
+            },
+            {
+              "code": "AltSecurityIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the following mapping example, the RFC 822 Name is mapped to it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>AttributeMapping</key>",
+            "    <dict>",
+            "        <key>dsAttributeString</key>",
+            "        <string>dsAttrTypeStandard:AltSecurityIdentities</string>",
+            "        <key>fields</key>",
+            "        <array>",
+            "            <string>RFC 822 Name</string>",
+            "        </array>",
+            "        <key>formatString</key>",
+            "        <string>PlatformSSO:$1</string>",
+            "    </dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/deployment/advanced-smart-card-options-dep7b2ede1e3/web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-devices-and-users",
+          "level": 3,
+          "text": "Register devices and users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identity providers (IdPs) who want to support platform SSO need to implement support for device and user registration. Registration enables the IdP to configure the device and decide if it’s eligible to receive SSO tokens to sign in to any app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac needs to receive an Device Management configuration profile with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/ExtensibleSingleSignOn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " payload (",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.extensiblesso",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that contains the authentication method. The authentication method defined in the SSO extension payload needs to be compatible with the authentication method supported and configured by the IdP. For example, if the configuration profile uses authentication with a secure enclave backed key, but the IdP supports only password authentication, then device registration won’t start.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the authentication method, the SSO extension payload may optionally include a registration token. If it’s present, device registration occurs in the background by default. However, if the IdP requires a user action for registration, the SSO extension prompts the user to confirm registration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After registration with the IdP is complete, the SSO extension can work with Platform SSO when processing SSO requests. For example, the SSO extension can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the login configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update SSO tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request that the user authenticates again, such as if their credentials expire.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access the device keys to sign, encrypt, and decrypt their own additional requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restart registration if there’s an unrecoverable error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/registering-devices-and-users",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration": {
+      "abstract": [
+        {
+          "text": "An interface for configuring platform single sign-on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionLoginConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionLoginConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionLoginConfiguration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/uniqueIdentifierClaimName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifierClaimName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/uniqueIdentifierClaimName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifierClaimName"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifierClaimName",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/uniqueidentifierclaimname"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager": {
+      "abstract": [
+        {
+          "text": "An interface to maintain platform single sign-on (SSO) during authentication and registration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionLoginManager"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionLoginManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionLoginManager",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginmanager"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/configuring-authentication-with-the-identity-provider-idp": {
+      "abstract": [
+        {
+          "text": "Specify how platform SSO authenticates with the identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/configuring-authentication-with-the-identity-provider-idp",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring authentication with the identity provider (IdP)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/configuring-authentication-with-the-identity-provider-idp"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso": {
+      "abstract": [
+        {
+          "text": "Configure capabilities and authentication options for extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating extensions that support platform SSO",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-extensions-that-support-platform-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/registering-devices-and-users": {
+      "abstract": [
+        {
+          "text": "Implement device and user registration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/registering-devices-and-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering devices and users",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/registering-devices-and-users"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement/ExtensibleSingleSignOn": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure an app extension that performs single sign-on (SSO).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/ExtensibleSingleSignOn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOn",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/ExtensibleSingleSignOn"
+    },
+    "doc://com.apple.documentation/documentation/devicemanagement/extensiblesinglesignon/platformsso": {
+      "abstract": [
+        {
+          "text": "The dictionary to configure Platform SSO.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensibleSingleSignOn.PlatformSSO"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/devicemanagement/extensiblesinglesignon/platformsso",
+      "kind": "article",
+      "role": "symbol",
+      "title": "ExtensibleSingleSignOn.PlatformSSO",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/extensiblesinglesignon/platformsso"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/deployment/advanced-smart-card-options-dep7b2ede1e3/web": {
+      "identifier": "https://support.apple.com/guide/deployment/advanced-smart-card-options-dep7b2ede1e3/web",
+      "title": "Advanced smart card options on Mac",
+      "titleInlineContent": [
+        {
+          "text": "Advanced smart card options on Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/deployment/advanced-smart-card-options-dep7b2ede1e3/web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/configuring-authentication-with-the-identity-provider-idp",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager"
+      ],
+      "title": "Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/configuring-authentication-with-the-identity-provider-idp",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager"
+              ],
+              "title": "Configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1uniqueIdentifierClaimName/title",
+          "value": "uniqueIdentifierClaimName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1uniqueIdentifierClaimName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifierClaimName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration/title",
+          "value": "ASAuthorizationProviderExtensionLoginConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionLoginConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionLoginConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager/title",
+          "value": "ASAuthorizationProviderExtensionLoginManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionLoginManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionLoginManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/configuring-device-management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/configuring-device-management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

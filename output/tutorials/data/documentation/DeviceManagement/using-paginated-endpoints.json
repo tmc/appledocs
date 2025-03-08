@@ -1,0 +1,1517 @@
+{
+  "abstract": [
+    {
+      "text": "Manage paginated endpoints to efficiently work with large record sets.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/using-paginated-endpoints"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Paginated Endpoints"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To improve performance, the server uses pagination to return smaller discrete subsets of a large result set. When the number of records in a response exceeds a server-controlled limit, the server paginates it. Endpoints that support pagination can accept a ",
+              "type": "text"
+            },
+            {
+              "code": "pageIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter that indicates the page to return. You can make paginated requests in parallel to reduce the time it takes to retrieve the entire result set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following endpoints support pagination:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use versioned endpoints to retrieve only those records with changes since your previous query. Endpoints that support versioning can accept a ",
+              "type": "text"
+            },
+            {
+              "code": "sinceVersionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter. This allows you to keep your data up to date with incremental changes if you’re unable to receive update notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following endpoints support the ",
+              "type": "text"
+            },
+            {
+              "code": "sinceVersionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Handle-Pagination",
+          "level": 3,
+          "text": "Handle Pagination",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requests for large record sets return paginated responses. You can traverse the pages by supplying the ",
+              "type": "text"
+            },
+            {
+              "code": "pageIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter in your request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a ",
+              "type": "text"
+            },
+            {
+              "code": "pageIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to traverse a paginated response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make an initial request without ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which returns the first page of records.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the number of records exceeds a server-controlled limit (on the order of several hundred), the server includes a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nextPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field in the response, along with the first page of records. The MDM client passes this value as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in a subsequent request to get the next page of records. As long as additional pages remain, the server returns a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nextPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field in the response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After the server returns all records for the request, it no longer includes a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nextPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field in the response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A paginated response includes the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "currentPageIndex",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current page index of the paginated response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nextPageIndex",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The next page index in the paginated response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of records on the current page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "totalPages",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of pages in the paginated response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageIndex",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is a zero-based integer. A ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageIndex",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " of ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " returns the first page of results. If you omit it from the request, ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageIndex",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " defaults to ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The last page of results has a ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageIndex",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "totalPages",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-1.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a request for the first page of records:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --location --request GET 'https://vpp.itunes.apple.com/mdm/v2/assignments' \\",
+            "--header 'Authorization: Bearer {cToken}'"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response that contains the first page of records looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"assignments\": [",
+            "         {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"b6817f44-6229-4f1b-ba16-9eef9ebf24c6\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "            …",
+            "            …",
+            "            …",
+            "        {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"4b3f6bef-bfcd-47e6-ba8c-ad14f3b9d924\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "    ],",
+            "    \"currentPageIndex\": 0,",
+            "    \"nextPageIndex\": 1,",
+            "    \"size\": 549,",
+            "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+            "    \"totalPages\": 353,",
+            "    \"uId\": \"2049025000431439\",",
+            "    \"versionId\": \"658a45d0-5a7b-11eb-b9e4-d782eaed4cfb\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a request for the second page of records:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --location --request GET 'https://vpp.itunes.apple.com/mdm/v2/assignments?pageIndex=1' \\",
+            "--header 'Authorization: Bearer {cToken}'"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response that contains the second page of records looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"assignments\": [",
+            "         {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"b6817f44-6229-4f1b-ba16-9eef9ebf24c6\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "            …",
+            "            …",
+            "            …",
+            "        {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"4b3f6bef-bfcd-47e6-ba8c-ad14f3b9d924\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        }",
+            "    ],",
+            "    \"currentPageIndex\": 1,",
+            "    \"nextPageIndex\": 2,",
+            "    \"size\": 549,",
+            "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+            "    \"totalPages\": 353,",
+            "    \"uId\": \"2049025000431439\",",
+            "    \"versionId\": \"658a45d0-5a7b-11eb-b9e4-d782eaed4cfb\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a request for the last page of records:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --location --request GET 'https://vpp.itunes.apple.com/mdm/v2/assignments?pageIndex=352' \\",
+            "--header 'Authorization: Bearer {cToken}'"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response that contains the last page of records looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"assignments\": [",
+            "         {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"b6817f44-6229-4f1b-ba16-9eef9ebf24c6\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "            …",
+            "            …",
+            "            …",
+            "        {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"4b3f6bef-bfcd-47e6-ba8c-ad14f3b9d924\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        }",
+            "    ],",
+            "    \"currentPageIndex\": 352,",
+            "    \"size\": 549,",
+            "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+            "    \"totalPages\": 353,",
+            "    \"uId\": \"2049025000431439\",",
+            "    \"versionId\": \"658a45d0-5a7b-11eb-b9e4-d782eaed4cfb\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Parallel-Paginated-Requests",
+          "level": 3,
+          "text": "Handle Parallel Paginated Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Paginated endpoints can accept multiple requests in parallel instead of sequentially, which can significantly reduce the amount of time to request and receive records. For performance reasons, don’t submit more than five requests simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make requests for multiple pages in parallel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make an initial request for the first page of results. The response contains a value for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "totalPages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Submit subsequent requests in parallel by making the same request with different values for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ranging from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "totalPages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "totalPages",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in a result set can change while traversing a paginated result set. This occurs whenever the system modifies underlying data in the result set. When performing parallel requests, it’s important to note whether the value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "totalPages",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " changes on any paginated response, and to continue to iterate through the result set until you traverse the last page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-Versioned-Responses",
+          "level": 3,
+          "text": "Handle Versioned Responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re unable to subscribe to notifications, or are performing an initial sync, use the ",
+              "type": "text"
+            },
+            {
+              "code": "sinceVersionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter to obtain incremental updates to keep the MDM client up to date with changes without having to retrieve all records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns in the response of all versioned endpoints. The ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the state of a complete data set for an endpoint. The server generates a new ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an endpoint whenever the system modifies any underlying data for that endpoint. The MDM client can use a ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in future requests to get records with modifications since the generation of that ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When any writes occur to the underlying data in a fetch, ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "versionId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for an endpoint can change while traversing a paginated result set. Use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "versionId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that returns on the first page of results in a subsequent query to obtain all newly modified records.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a ",
+              "type": "text"
+            },
+            {
+              "code": "versionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to obtain modified records:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make an initial request. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "versionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " returns with the response that contains the first page of results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store this ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "versionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " temporarily on your server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Iterate through any remaining pages of your initial request to retrieve all current data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To retrieve only those records with modifications since your previous query, make a new request and include the query parameter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sinceVersionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "versionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from your initial request as the value for this parameter. If any newly modified records exist, the response contains a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "versionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " along with those records.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat these steps at regular intervals to keep your system up to date with incremental changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint returns a ",
+                  "type": "text"
+                },
+                {
+                  "code": "versionId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to indicate when the system modifies underlying data. However, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint doesn’t support the ",
+                  "type": "text"
+                },
+                {
+                  "code": "sinceVersionId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " query parameter so you can’t query ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to obtain only those records with modifications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a request for the initial data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --location --request GET 'https://vpp.itunes.apple.com/mdm/v2/assignments' \\",
+            "--header 'Authorization: Bearer {cToken}'"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response that contains the initial data looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"assignments\": [",
+            "         {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"b6817f44-6229-4f1b-ba16-9eef9ebf24c6\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "            …",
+            "            …",
+            "            …",
+            "        {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"4b3f6bef-bfcd-47e6-ba8c-ad14f3b9d924\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        }",
+            "    ],",
+            "    \"currentPageIndex\": 0,",
+            "    \"nextPageIndex\": 1,",
+            "    \"size\": 549,",
+            "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+            "    \"totalPages\": 353,",
+            "    \"uId\": \"2049025000431439\",",
+            "    \"versionId\": \"658a45d0-5a7b-11eb-b9e4-d782eaed4cfb\"",
+            "} "
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a request for the updated data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --location --request GET 'https://vpp.itunes.apple.com/mdm/v2/assignments?sinceVersionId=658a45d0-5a7b-11eb-b9e4-d782eaed4cfb' \\",
+            "--header 'Authorization: Bearer {cToken}'"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response that contains the updated data looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"assignments\": [",
+            "         {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"b6817f44-6229-4f1b-ba16-9eef9ebf24c6\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        },",
+            "            …",
+            "            …",
+            "            …",
+            "        {",
+            "            \"adamId\": \"377298193\",",
+            "            \"serialNumber\": \"4b3f6bef-bfcd-47e6-ba8c-ad14f3b9d924\",",
+            "            \"pricingParam\": \"STDQ\"",
+            "        }",
+            "    ],",
+            "    \"currentPageIndex\": 0,",
+            "    \"nextPageIndex\": 1,",
+            "    \"size\": 1000,",
+            "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+            "    \"totalPages\": 10,",
+            "    \"uId\": \"2049025000431439\",",
+            "    \"versionId\": \"87051b80-85f6-11eb-a3ab-95f98468c5f3\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "sinceVersionId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " query parameter can result in responses with zero records. This isn’t an error or an end signal. It’s just an indication that there aren’t any records with modifications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1": {
+      "abstract": [
+        {
+          "text": "Get the set of assets that your organization manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-4ski1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e": {
+      "abstract": [
+        {
+          "text": "Get the set of current assignments for users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-9wv1e"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln": {
+      "abstract": [
+        {
+          "text": "Get information about a set of users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-4mwln",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-users-4mwln"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations": {
+      "abstract": [
+        {
+          "text": "Get details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apps and Books for Organizations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apps-and-books-for-organizations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Error Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-error-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services": {
+      "abstract": [
+        {
+          "text": "Associate app and book purchases with users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage assets across an organization’s users and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users": {
+      "abstract": [
+        {
+          "text": "Retrieve key information to effectively manage users across an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-users"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications": {
+      "abstract": [
+        {
+          "text": "Listen to notifications to keep track of the latest events for an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Subscribing to Notifications",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/subscribing-to-notifications"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across your organization using the new API version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to the new App and Book Management API",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-the-new-app-and-book-management-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-the-new-app-and-book-management-api",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-users",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/subscribing-to-notifications",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/using-paginated-endpoints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

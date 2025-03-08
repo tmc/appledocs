@@ -1,0 +1,1335 @@
+{
+  "abstract": [
+    {
+      "text": "Represents a root of a file path.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftSystem/documentation/System",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "System",
+    "externalID": "s:6System8FilePathV4RootV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Root"
+      }
+    ],
+    "modules": [
+      {
+        "name": "System"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Root"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FilePath.Root"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Root"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Unix, a root is simply the directory separator ",
+              "type": "text"
+            },
+            {
+              "code": "/",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Windows, a root contains the entire path prefix up to and including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the final separator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unix:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "/",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Windows:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "C:\\",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "C:",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "\\",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "\\\\server\\share\\",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "\\\\?\\UNC\\server\\share\\",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "\\\\?\\Volume{12345678-abcd-1111-2222-123445789abc}\\",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftSystem/documentation/System": {
+      "abstract": [
+        {
+          "text": "Perform low-level file operations using type-safe APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/system"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath": {
+      "abstract": [
+        {
+          "text": "Represents a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath",
+      "type": "topic",
+      "url": "/documentation/system/filepath"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct": {
+      "abstract": [
+        {
+          "text": "Represents a root of a file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Root"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Root"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath.Root",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/customstringconvertible-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/decodable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/encodable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/equatable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByExtendedGraphemeClusterLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/expressiblebyextendedgraphemeclusterliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByStringLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByStringLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByStringLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/expressiblebystringliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByUnicodeScalarLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByUnicodeScalarLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByUnicodeScalarLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/expressiblebyunicodescalarliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/hashable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(_:)": {
+      "abstract": [
+        {
+          "text": "Create a file path root from a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/init(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-3s0ol": {
+      "abstract": [
+        {
+          "text": "Creates a file path root by copying bytes from a null-terminated platform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string. It is a precondition that a null byte indicates the end of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the string. The absence of a null byte will trigger a runtime error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-3s0ol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/init(platformstring:)-3s0ol"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-4twb4": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-4twb4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/init(platformstring:)-4twb4"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-5j1fu": {
+      "abstract": [
+        {
+          "text": "Creates a file path root by copying bytes from a null-terminated platform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-5j1fu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/init(platformstring:)-5j1fu"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-8hwtb": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-8hwtb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/init(platformstring:)-8hwtb"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/string": {
+      "abstract": [
+        {
+          "text": "On Unix, this returns ",
+          "type": "text"
+        },
+        {
+          "code": "\"/\"",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/string"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/withPlatformString(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the contents of the file path",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "root, represented as a null-terminated platform string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withPlatformString"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/withPlatformString(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withPlatformString(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct/withplatformstring(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByUnicodeScalarLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s33ExpressibleByUnicodeScalarLiteralP",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+        "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+        "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-3s0ol",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-4twb4",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-5j1fu",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/init(platformString:)-8hwtb"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/string"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/withPlatformString(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/CustomStringConvertible-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Decodable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Encodable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Equatable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByStringLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/ExpressibleByUnicodeScalarLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/system/filepath/root-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

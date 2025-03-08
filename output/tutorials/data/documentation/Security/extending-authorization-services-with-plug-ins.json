@@ -1,0 +1,1641 @@
+{
+  "abstract": [
+    {
+      "text": "Modify the system’s authorization policy with custom code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/authorization-plug-ins"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Extending authorization services with plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To authenticate the person using your app prior to providing access to resources within the app, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead of creating an authorization plug-in. Use authorization plug-ins to extend or change system policies.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS Security Server’s authorization engine consults its authorization policy database to determine which authorization mechanisms to use when evaluating whether to grant particular rights for the person using the Mac. You can customize this process by creating an authorization plug-in, a code bundle that provides one or more authorization mechanisms. Each authorization mechanism performs a single step in an authorization process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the policy database specifies a mechanism in your authorization plug-in, the authorization engine loads your plug-in in a dedicated host process to isolate your code. There are two plug-in hosts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One that runs as an anonymous user and can communicate with the user; for example, to ask for a password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One that runs with root privileges to perform privileged operations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Authorization plug-ins that display an interface or otherwise connect to the window server can’t run in the privileged plug-in host. Running GUI code as root is — in general — a bad idea because GUI code links in many libraries, any of which could contain security vulnerabilities.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-authorization-plug-in",
+          "level": 3,
+          "text": "Create an authorization plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The entry point for your authorization plug-in is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Your implementation of this function receives the Security Server’s authorization interface functions in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, and passes the plug-in’s interface to the Security Server by populating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to report the authorization decision.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Communicate auxiliary information by setting and getting ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hints",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "context data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Hints are data values for use during authorization; for example, you can use a hint to pass an intermediate value from one mechanism to a subsequent mechanism. Hints aren’t preserved as part of the authorization result. You set hints by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and retrieve them by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Context data is information that can be useful to an application, such as a user name the person enters during the authorization process. Each mechanism in the authorization can add, read, or modify context data, which the Security Server preserves. The Security Server can also make context data available to the authorization client when authorization is complete. You set context data by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetContextValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and retrieve them by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetContextValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you set context data, tag the data with a flag that specifies whether the Security Server should return the data to the authorization client upon request (by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function), or whether it’s restricted to the mechanisms involved in the authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your plug-in displays a window before somebody logs into a Mac, ensure you set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Register-the-authorization-plug-in",
+          "level": 3,
+          "text": "Register the authorization plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install an authorization plug-in so that the authorization engine can find it and use its authorization mechanisms, copy the bundle to ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Security/SecurityAgentPlugins",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as part of your app’s installation process. In your app, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add a rule to the authorization policy database that refers to your plug-in. Pass a dictionary as the ",
+              "type": "text"
+            },
+            {
+              "code": "rightDefinition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, using the keys listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/authorization-name-tags",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and those in the file ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationTagsPriv.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthorizationTagsPriv.h",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " isn’t part of the public API. Apple reserves the right to change this file or its contents with future releases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The name of a mechanism is the plug-in name, followed by a colon (",
+              "type": "text"
+            },
+            {
+              "code": ":",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and the name of the mechanism. To indicate that the authorization engine should load the plug-in in the privileged host, add a comma and the word ",
+              "type": "text"
+            },
+            {
+              "code": "privileged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the mechanism name; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SendFaxPlugin:ChangeUserPIN,privileged"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Participate-in-authorization-decisions",
+          "level": 3,
+          "text": "Participate in authorization decisions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the authorization engine needs an authorization decision based on a policy defined in the policy database, it calls each mechanism belonging to that policy in turn, in the order they’re listed in the policy database. For each mechanism, the authorization engine calls the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, passing the plug-in ",
+              "type": "text"
+            },
+            {
+              "code": "name:mechanism",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string for that mechanism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine doesn’t consider the authorization complete and approved until all mechanisms call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return a positive authorization decision (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), one of the mechanisms calls SetResult to return a negative decision (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultDeny",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the maximum number of retries is reached (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUndefined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or the person cancels the attempt (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUserCanceled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-an-authorization-decision",
+          "level": 3,
+          "text": "Request an authorization decision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To discover the outcome of an authorization decision based on a policy that refers to your plug-in’s mechanisms, you don’t call your plug-in’s code directly. Instead, you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing the name of the policy that references that plug-in in the rights parameter. The authorization engine uses a hierarchical strategy to find a rule matching the requested policy name. For example, if your app requests the ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.myProduct.transcripts.create",
+              "type": "codeVoice"
+            },
+            {
+              "text": " right, then the authorization searches for these rules in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.example.myProduct.transcripts.create",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.example.myProduct.transcripts.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.example.myProduct.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.example.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A generic rule, that’s always present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default policy for the generic rule is to require that the person authenticate as a member of the ",
+              "type": "text"
+            },
+            {
+              "code": "admin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " group. The Security Server can share successful authentication with multiple apps, with a timeout of 300 seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the window can be displayed at the login window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canBecomeVisibleWithoutLogin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canBecomeVisibleWithoutLogin",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetContextValue": {
+      "abstract": [
+        {
+          "text": "Reads a value collected during authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetContextValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetContextValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetContextValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/getcontextvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue": {
+      "abstract": [
+        {
+          "text": "Reads a value stored by the plug-in authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/gethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetContextValue": {
+      "abstract": [
+        {
+          "text": "Stores data collected during authorization as a key-value pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetContextValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetContextValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetContextValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/setcontextvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue": {
+      "abstract": [
+        {
+          "text": "Stores data needed during authorization as a key-value pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/sethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult": {
+      "abstract": [
+        {
+          "text": "Returns the result of an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/setresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves supporting data such as the user name and other information gathered during evaluation of authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationString",
+          "text": "AuthorizationString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AuthorizationItemSet",
+          "text": "AuthorizationItemSet"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyInfo(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyinfo(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Authorizes and preauthorizes rights synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyRights(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyrights(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate": {
+      "abstract": [
+        {
+          "text": "Initializes the plug-in and exchanges interfaces with the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugincreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface": {
+      "abstract": [
+        {
+          "text": "The interface that must be implemented by your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginInterface",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke": {
+      "abstract": [
+        {
+          "text": "Invokes an authorization mechanism to perform an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismInvoke"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismInvoke",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanisminvoke"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow": {
+      "abstract": [
+        {
+          "text": "The authorization operation succeeded and authorization should be granted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultAllow"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultAllow",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultallow"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultDeny": {
+      "abstract": [
+        {
+          "text": "The authorization operation succeeded and authorization should be denied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultDeny"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultDeny",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultDeny",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultdeny"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUndefined": {
+      "abstract": [
+        {
+          "text": "The authorization operation failed and should not be retried for this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultUndefined"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUndefined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultUndefined",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultundefined"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUserCanceled": {
+      "abstract": [
+        {
+          "text": "The user has requested that the authorization evaluation be terminated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultUserCanceled"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultUserCanceled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultUserCanceled",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultusercanceled"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates or updates a right entry in the policy database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFBundleRef",
+          "text": "CFBundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRightSet(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationrightset(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-name-tags": {
+      "abstract": [
+        {
+          "text": "Use name tags to define authorization security items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-name-tags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Name Tags",
+      "type": "topic",
+      "url": "/documentation/security/authorization-name-tags"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-plug-ins": {
+      "abstract": [
+        {
+          "text": "Extend the authorization services API by creating plug-ins that can participate in authorization decisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/authorization-plug-ins"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightSet(_:_:_:_:_:_:)/title",
+          "value": "AuthorizationRightSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightSet(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRightSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyInfo(_:_:_:)/title",
+          "value": "AuthorizationCopyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyInfo(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/title",
+          "value": "AuthorizationCopyRights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyRights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1canBecomeVisibleWithoutLogin/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "canBecomeVisibleWithoutLogin"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/extending-authorization-services-with-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/extending-authorization-services-with-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

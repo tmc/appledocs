@@ -1,1 +1,1235 @@
-{"seeAlsoSections":[{"title":"Performing Conversions","anchor":"Performing-Conversions","identifiers":["doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)","doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)","doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"],"generated":true}],"sampleCodeDownload":{"kind":"sampleDownload","action":{"type":"reference","overridingTitle":"Download","identifier":"71f0b42489a6/EncodingAndDecodingAudio.zip","isActive":true}},"metadata":{"role":"sampleCode","platforms":[{"beta":false,"introducedAt":"12.0","name":"macOS"},{"beta":false,"introducedAt":"13.3","name":"Xcode"}],"roleHeading":"Sample Code","modules":[{"name":"Audio Toolbox"}],"title":"Encoding and decoding audio"},"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"article","identifier":{"url":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio","interfaceLanguage":"swift"},"sections":[],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.audiotoolbox/documentation/AudioToolbox","doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services"]]},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/audiotoolbox/encoding-and-decoding-audio"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/audiotoolbox/encoding-and-decoding-audio"]}],"abstract":[{"text":"Convert audio formats to efficiently manage data and quality.","type":"text"}],"primaryContentSections":[{"kind":"content","content":[{"text":"Overview","anchor":"Overview","level":2,"type":"heading"},{"inlineContent":[{"type":"text","text":"This sample shows how to encode and decode audio by using Audio Toolbox. If it’s encoding, the sample outputs the audio using the Advanced Audio Coding (AAC) audio format. AAC is a compressed, lossy audio format that maintains audio quality while using less storage space. When the sample decodes audio, the output audio format is represented as pulse code modulation (PCM). PCM is both an uncompressed and lossless audio format, resulting in a larger file format."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"The sample also explores how to set up data structures that describe audio formats, read and write packets to and from audio files, retrieve and set magic cookies, and loop through the input callback that signals the end of a buffer stream."}],"type":"paragraph"},{"text":"Create input and output descriptions","anchor":"Create-input-and-output-descriptions","level":3,"type":"heading"},{"inlineContent":[{"type":"text","text":"Whether it’s encoding or decoding audio, the sample uses the structure "},{"type":"reference","isActive":true,"overridingTitle":"AudioStreamBasicDescription","identifier":"doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription","overridingTitleInlineContent":[{"code":"AudioStreamBasicDescription","type":"codeVoice"}]},{"type":"text","text":" to describe  the input and output audio data formats. When encoding audio, the sample checks whether the input audio is in PCM format. If the input is not PCM, the sample fails because a single audio converter instance can’t transcode (decode one non-PCM format and encode to another non-PCM format)."}],"type":"paragraph"},{"code":["// Open the input file and get its data format.","auto inputFile = AudioFile::Open(argv[2]);","AudioStreamBasicDescription inputDescription;","inputFile.GetProperty(","\tkAudioFilePropertyDataFormat,","\tsizeof(inputDescription),","\t&inputDescription);","","// If encoding, make sure the input data is PCM.","if (encode && (inputDescription.mFormatID != kAudioFormatLinearPCM)) {","\tstd::cerr << \"The input file data format is not PCM\" << std::endl;","\treturn EXIT_FAILURE;","}"],"syntax":"c++","type":"codeListing"},{"inlineContent":[{"text":"The sample checks whether the input uses packet descriptions. Packet descriptions accompany packets if the audio format indicates a variable number of bytes per packet, or frames per packet. Function calls and callbacks may produce or consume packet descriptions. Provide a buffer even if the client doesn’t need them or if it’s only processing a single packet.","type":"text"}],"type":"paragraph"},{"code":["const bool inputUsesPacketDescriptions =","\t(inputDescription.mBytesPerPacket == 0 || inputDescription.mFramesPerPacket == 0);"],"syntax":"c++","type":"codeListing"},{"inlineContent":[{"text":"The sample initializes the output description with the input sample rate and channels per frame. Once created, the output configuration depends on whether the sample is encoding or decoding the audio.","type":"text"}],"type":"paragraph"},{"syntax":"c++","type":"codeListing","code":["// Create the output file as PCM or AAC of the same sampling rate and number of channels as","// the input.","AudioStreamBasicDescription outputDescription{","\t.mSampleRate = inputDescription.mSampleRate,","\t.mChannelsPerFrame = inputDescription.mChannelsPerFrame,","};","AudioFileTypeID outputFileType;","if (encode) {","\toutputFileType = kAudioFileM4AType;","\toutputDescription.mFormatID = kAudioFormatMPEG4AAC;","\toutputDescription.mFormatFlags = kAudioFormatFlagsAreAllClear;","\toutputDescription.mFramesPerPacket = 1024;","} else {","\toutputFileType = kAudioFileWAVEType;","\toutputDescription.mFormatID = kAudioFormatLinearPCM;","\toutputDescription.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked;","\toutputDescription.mBytesPerPacket = 4 * inputDescription.mChannelsPerFrame;","\toutputDescription.mFramesPerPacket = 1;","\toutputDescription.mBytesPerFrame = 4 * inputDescription.mChannelsPerFrame;","\toutputDescription.mBitsPerChannel = 32;","}"]},{"inlineContent":[{"text":"With the output specification, the sample creates the audio converter object that it uses for encoding or decoding the audio.","type":"text"}],"type":"paragraph"},{"level":3,"text":"Provide a magic cookie","anchor":"Provide-a-magic-cookie","type":"heading"},{"inlineContent":[{"type":"text","text":"Some audio formats have a magic cookie that the converter requires to decompress audio data. A "},{"inlineContent":[{"type":"text","text":"magic cookie"}],"type":"emphasis"},{"type":"text","text":" refers to information in an audio file that describes its data format. An encoder produces the magic cookie, and it’s included in the same file or stream as the audio packets, in a header, or a container file format through a box."}],"type":"paragraph"},{"inlineContent":[{"text":"When decoding audio, the sample checks if the format of the audio data that the framework is converting has a magic cookie. If the audio data format has a magic cookie, the sample adds the information to the audio converter instance before converting the audio.","type":"text"}],"type":"paragraph"},{"syntax":"c++","type":"codeListing","code":["std::optional<size_t> magicCookieSize =","\tinputFile.GetPropertySize(kAudioFilePropertyMagicCookieData);","if (magicCookieSize.has_value()) {","\tstd::cout << \"The magic cookie is \"","\t\t\t  << *magicCookieSize","\t          << \" bytes in size.\"","\t\t\t  << std::endl;","","\t// Get the magic cookie from the input file.","\tstd::vector<uint8_t> magicCookie(*magicCookieSize);","\tinputFile.GetProperty(","\t\tkAudioFilePropertyMagicCookieData,","\t\tmagicCookie.size(),","\t\tmagicCookie.data());","","\t// Provide the magic cookie to the decoder, via the AudioConverter.","\taudioConverter.SetProperty(kAudioConverterDecompressionMagicCookie,","\t\tmagicCookie.size(),","\t\tmagicCookie.data());","} else {","\tstd::cout << \"There is no magic cookie.\" << std::endl;","}"]},{"inlineContent":[{"type":"text","text":"When encoding an audio file, the sample adds the magic cookie back to the file — after converting the audio — because it could change during the encoding process. Get the magic cookie by using the property "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie"},{"type":"text","text":" and then add it to the output file."}],"type":"paragraph"},{"level":3,"text":"Convert the audio","anchor":"Convert-the-audio","type":"heading"},{"inlineContent":[{"text":"After the sample creates the output description, and sets the magic cookie if it’s decoding, it converts the audio by looping through the available data. The loop begins by trying to decode the available packets.","type":"text"}],"type":"paragraph"},{"syntax":"c++","type":"codeListing","code":["// Try to handle more packets depending on whether the sample is encoding or decoding.","UInt32 numPackets = packetsPerLoop;","AudioBufferList abl{ 1, {","\t\t\t\t\t\t\toutputDescription.mChannelsPerFrame, // mNumberChannels","\t\t\t\t\t\t\t(UInt32)packetBuffer.size(),         // mDataByteSize","\t\t\t\t\t\t\tpacketBuffer.data()                  // mData","\t\t\t\t\t\t} };","audioConverter.FillComplexBuffer(InputContext::InputDataProc,","\t\t\t\t\t\t\t\t &inputContext,","\t\t\t\t\t\t\t\t numPackets,","\t\t\t\t\t\t\t\t abl,","\t\t\t\t\t\t\t\t encode ? packetDescriptions.data() : NULL);"]},{"inlineContent":[{"type":"text","text":"When looping through the available packets, the sample reads packets from the input file through an input callback that wraps "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)"},{"type":"text","text":". It’s important that "},{"code":"ioNumberDataPackets","type":"codeVoice"},{"type":"text","text":" and "},{"code":"mDataByteSize","type":"codeVoice"},{"type":"text","text":" in the buffers remain consistent. If one changes, the other must match. If the audio format calls for packet descriptions, they should also be consistent with "},{"code":"ioNumberDataPackets","type":"codeVoice"},{"type":"text","text":" and "},{"code":"mDataByteSize","type":"codeVoice"},{"type":"text","text":"."}],"type":"paragraph"},{"syntax":"c++","type":"codeListing","code":["// Read packets from the file into the buffer, along with packet descriptions, if any exist.","try {","\tself.mInputFile.ReadPackets(ioData->mBuffers[0].mDataByteSize,","\t\t\t\t\t\t\t\tself.mInputUsesPacketDescriptions ? self.mPacketDescriptions.data() : NULL,","\t\t\t\t\t\t\t\t*ioNumberDataPackets,","\t\t\t\t\t\t\t\tioData->mBuffers[0].mData);","} catch (AudioToolboxError err) {","\tstd::cerr << \"Encountered an error while reading packets: \" << err.what() << std::endl;","\treturn err.status;","}"]},{"inlineContent":[{"type":"text","text":"If the sample receives output packets, it writes them to an output file in the project build folder."}],"type":"paragraph"},{"syntax":"c++","type":"codeListing","code":["// If there are output packets, write them to the output file.","if (numPackets > 0) {","\toutputFile.WritePackets(abl.mBuffers[0].mDataByteSize,","\t\t\t\t\t\t\tencode ? packetDescriptions.data() : NULL,","\t\t\t\t\t\t\tnumPackets,","\t\t\t\t\t\t\tabl.mBuffers[0].mData);","}"]},{"inlineContent":[{"type":"text","text":"The loop stops when there aren’t enough packets to satisfy the input request. There are two additional cases to consider when running out of data."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"First, there’s no data currently available from the input stream, but data remains to convert. For example, when streaming input data in real time, the converter may not reach the end of the stream because it’s waiting to receive the next input packet. In this case, set "},{"type":"codeVoice","code":"ioNumberDataPackets"},{"type":"text","text":" to zero and return a custom error code. The error propagates to the call "},{"type":"reference","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)","isActive":true},{"type":"text","text":", which makes it distinguishable from other errors in the conversion process, such as errors that indicate there’s no data currently available. The caller receives any remaining data the converter processes."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"Second, the conversion reaches the end of the stream. In this case, set "},{"type":"codeVoice","code":"ioNumberDataPackets"},{"type":"text","text":" and "},{"type":"codeVoice","code":"mDataByteSize"},{"type":"text","text":" to zero and return "},{"type":"codeVoice","code":"noErr"},{"type":"text","text":". The audio converter may call the input procedure a few times, so return zero and "},{"type":"codeVoice","code":"noErr"},{"type":"text","text":"."}],"type":"paragraph"}]}],"references":{"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)":{"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"AudioFileReadPacketData"},{"kind":"text","text":"("},{"preciseIdentifier":"c:@T@AudioFileID","kind":"typeIdentifier","text":"AudioFileID"},{"kind":"text","text":", "},{"preciseIdentifier":"s:Sb","kind":"typeIdentifier","text":"Bool"},{"kind":"text","text":", "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"UInt32","preciseIdentifier":"s:s6UInt32V"},{"kind":"text","text":">, "},{"kind":"typeIdentifier","text":"UnsafeMutablePointer","preciseIdentifier":"s:Sp"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"AudioStreamPacketDescription","preciseIdentifier":"c:@S@AudioStreamPacketDescription"},{"kind":"text","text":">?, "},{"kind":"typeIdentifier","text":"Int64","preciseIdentifier":"s:s5Int64V"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"UnsafeMutablePointer","preciseIdentifier":"s:Sp"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"UInt32","preciseIdentifier":"s:s6UInt32V"},{"kind":"text","text":">, "},{"kind":"typeIdentifier","text":"UnsafeMutableRawPointer","preciseIdentifier":"s:Sv"},{"kind":"text","text":"?) -> "},{"kind":"typeIdentifier","text":"OSStatus","preciseIdentifier":"c:@T@OSStatus"}],"title":"AudioFileReadPacketData(_:_:_:_:_:_:_:)","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"AudioFileReadPacketData"}],"abstract":[{"text":"Reads packets of audio data from an audio file.","type":"text"}],"identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)","type":"topic","kind":"symbol","url":"/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services":{"title":"Audio Converter Services","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services","url":"/documentation/audiotoolbox/audio-converter-services","kind":"article","role":"collectionGroup","type":"topic","abstract":[{"text":"Convert between linear PCM audio formats, and between linear PCM and compressed formats.","type":"text"}]},"71f0b42489a6/EncodingAndDecodingAudio.zip":{"type":"download","checksum":"71f0b42489a60f74a7c400521cf7afb1551903cacb7a57ca959e25c8d69bd722909caf039114f69143f680853ed6d681a7d6b8c42d9a2ca6a449d91e20768fb4","identifier":"71f0b42489a6/EncodingAndDecodingAudio.zip","url":"https://docs-assets.developer.apple.com/published/71f0b42489a6/EncodingAndDecodingAudio.zip"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie":{"navigatorTitle":[{"kind":"identifier","text":"kAudioConverterCompressionMagicCookie"}],"title":"kAudioConverterCompressionMagicCookie","kind":"symbol","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie","url":"/documentation/audiotoolbox/kaudioconvertercompressionmagiccookie","role":"symbol","type":"topic","abstract":[{"text":"A ","type":"text"},{"type":"codeVoice","code":"void*"},{"text":" value that points to memory set up by the caller. This property is returned by the converter so that your application may store it along with the output data. This property can then be passed back to the converter for decompression at a later time.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"kAudioConverterCompressionMagicCookie"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@AudioConverterPropertyID","text":"AudioConverterPropertyID"}]},"doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription":{"identifier":"doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription","title":"AudioStreamBasicDescription","url":"/documentation/CoreAudioTypes/AudioStreamBasicDescription","abstract":[{"text":"A format specification for an audio stream.","type":"text"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioStreamBasicDescription","kind":"identifier"}],"type":"topic","role":"symbol","kind":"symbol"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox":{"type":"topic","kind":"symbol","title":"Audio Toolbox","role":"collection","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox","abstract":[{"text":"Record or play audio, convert formats, parse audio streams, and configure your audio session.","type":"text"}],"url":"/documentation/audiotoolbox"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)":{"role":"symbol","fragments":[{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"text":"AudioConverterConvertBuffer","kind":"identifier"},{"text":"(","kind":"text"},{"text":"AudioConverterRef","kind":"typeIdentifier","preciseIdentifier":"c:@T@AudioConverterRef"},{"text":", ","kind":"text"},{"text":"UInt32","kind":"typeIdentifier","preciseIdentifier":"s:s6UInt32V"},{"text":", ","kind":"text"},{"preciseIdentifier":"s:SV","kind":"typeIdentifier","text":"UnsafeRawPointer"},{"kind":"text","text":", "},{"preciseIdentifier":"s:Sp","kind":"typeIdentifier","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"UInt32","preciseIdentifier":"s:s6UInt32V"},{"kind":"text","text":">, "},{"kind":"typeIdentifier","text":"UnsafeMutableRawPointer","preciseIdentifier":"s:Sv"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"OSStatus","preciseIdentifier":"c:@T@OSStatus"}],"navigatorTitle":[{"kind":"identifier","text":"AudioConverterConvertBuffer"}],"identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)","abstract":[{"type":"text","text":"Converts audio data from one linear PCM format to another."}],"kind":"symbol","type":"topic","title":"AudioConverterConvertBuffer(_:_:_:_:_:)","url":"/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","type":"topic","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","role":"overview"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)":{"title":"AudioConverterFillComplexBuffer(_:_:_:_:_:_:)","role":"symbol","type":"topic","identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)","abstract":[{"type":"text","text":"Converts audio data supplied by a callback function, supporting non-interleaved and packetized formats."}],"kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioConverterFillComplexBuffer","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@AudioConverterRef","text":"AudioConverterRef","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@AudioConverterComplexInputDataProc","text":"AudioConverterComplexInputDataProc","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"s:Sv","text":"UnsafeMutableRawPointer","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:s6UInt32V","text":"UInt32","kind":"typeIdentifier"},{"text":">, ","kind":"text"},{"preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:@S@AudioBufferList","text":"AudioBufferList","kind":"typeIdentifier"},{"text":">, ","kind":"text"},{"preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:@S@AudioStreamPacketDescription","text":"AudioStreamPacketDescription","kind":"typeIdentifier"},{"text":">?) -> ","kind":"text"},{"preciseIdentifier":"c:@T@OSStatus","text":"OSStatus","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"AudioConverterFillComplexBuffer","kind":"identifier"}],"url":"/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)"},"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)":{"url":"/documentation/audiotoolbox/audioconverterconvertcomplexbuffer(_:_:_:_:)","abstract":[{"text":"Converts audio data from one linear PCM format to another, where both use the same sample rate.","type":"text"}],"identifier":"doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)","title":"AudioConverterConvertComplexBuffer(_:_:_:_:)","type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"AudioConverterConvertComplexBuffer"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@AudioConverterRef","text":"AudioConverterRef"},{"kind":"text","text":", "},{"kind":"typeIdentifier","preciseIdentifier":"s:s6UInt32V","text":"UInt32"},{"kind":"text","text":", "},{"kind":"typeIdentifier","preciseIdentifier":"s:SP","text":"UnsafePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"c:@S@AudioBufferList","text":"AudioBufferList"},{"kind":"text","text":">, "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sp","text":"UnsafeMutablePointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"c:@S@AudioBufferList","text":"AudioBufferList"},{"kind":"text","text":">) -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus","text":"OSStatus"}],"navigatorTitle":[{"kind":"identifier","text":"AudioConverterConvertComplexBuffer"}],"kind":"symbol","role":"symbol"}},"variantOverrides":[{"patch":[{"path":"/identifier/interfaceLanguage","op":"replace","value":"occ"},{"path":"/topicSections","op":"add","value":null},{"path":"/seeAlsoSections","op":"replace","value":[{"anchor":"Performing-Conversions","identifiers":["doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)","doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)","doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"],"title":"Performing Conversions","generated":true}]},{"value":"AudioFileReadPacketData","op":"replace","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/title"},{"value":[{"text":"AudioFileReadPacketData","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/fragments"},{"value":"kAudioConverterCompressionMagicCookie","op":"replace","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterCompressionMagicCookie/title"},{"value":[{"text":"kAudioConverterCompressionMagicCookie","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterCompressionMagicCookie/fragments"},{"value":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AudioStreamBasicDescription"},{"kind":"text","text":";"}],"op":"replace","path":"/references/doc:~1~1com.apple.documentation~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/fragments"},{"value":"AudioConverterConvertBuffer","op":"replace","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/title"},{"value":[{"kind":"identifier","text":"AudioConverterConvertBuffer"}],"path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/fragments","op":"replace"},{"value":"AudioConverterFillComplexBuffer","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/title","op":"replace"},{"value":[{"kind":"identifier","text":"AudioConverterFillComplexBuffer"}],"path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/fragments","op":"replace"},{"value":"AudioConverterConvertComplexBuffer","path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/title","op":"replace"},{"value":[{"text":"AudioConverterConvertComplexBuffer","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/fragments","op":"replace"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Convert audio formats to efficiently manage data and quality.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Encoding and decoding audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to encode and decode audio by using Audio Toolbox. If it’s encoding, the sample outputs the audio using the Advanced Audio Coding (AAC) audio format. AAC is a compressed, lossy audio format that maintains audio quality while using less storage space. When the sample decodes audio, the output audio format is represented as pulse code modulation (PCM). PCM is both an uncompressed and lossless audio format, resulting in a larger file format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also explores how to set up data structures that describe audio formats, read and write packets to and from audio files, retrieve and set magic cookies, and loop through the input callback that signals the end of a buffer stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-input-and-output-descriptions",
+          "level": 3,
+          "text": "Create input and output descriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether it’s encoding or decoding audio, the sample uses the structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription",
+              "isActive": true,
+              "overridingTitle": "AudioStreamBasicDescription",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AudioStreamBasicDescription",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to describe  the input and output audio data formats. When encoding audio, the sample checks whether the input audio is in PCM format. If the input is not PCM, the sample fails because a single audio converter instance can’t transcode (decode one non-PCM format and encode to another non-PCM format).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Open the input file and get its data format.",
+            "auto inputFile = AudioFile::Open(argv[2]);",
+            "AudioStreamBasicDescription inputDescription;",
+            "inputFile.GetProperty(",
+            "\tkAudioFilePropertyDataFormat,",
+            "\tsizeof(inputDescription),",
+            "\t&inputDescription);",
+            "",
+            "// If encoding, make sure the input data is PCM.",
+            "if (encode && (inputDescription.mFormatID != kAudioFormatLinearPCM)) {",
+            "\tstd::cerr << \"The input file data format is not PCM\" << std::endl;",
+            "\treturn EXIT_FAILURE;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample checks whether the input uses packet descriptions. Packet descriptions accompany packets if the audio format indicates a variable number of bytes per packet, or frames per packet. Function calls and callbacks may produce or consume packet descriptions. Provide a buffer even if the client doesn’t need them or if it’s only processing a single packet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const bool inputUsesPacketDescriptions =",
+            "\t(inputDescription.mBytesPerPacket == 0 || inputDescription.mFramesPerPacket == 0);"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample initializes the output description with the input sample rate and channels per frame. Once created, the output configuration depends on whether the sample is encoding or decoding the audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the output file as PCM or AAC of the same sampling rate and number of channels as",
+            "// the input.",
+            "AudioStreamBasicDescription outputDescription{",
+            "\t.mSampleRate = inputDescription.mSampleRate,",
+            "\t.mChannelsPerFrame = inputDescription.mChannelsPerFrame,",
+            "};",
+            "AudioFileTypeID outputFileType;",
+            "if (encode) {",
+            "\toutputFileType = kAudioFileM4AType;",
+            "\toutputDescription.mFormatID = kAudioFormatMPEG4AAC;",
+            "\toutputDescription.mFormatFlags = kAudioFormatFlagsAreAllClear;",
+            "\toutputDescription.mFramesPerPacket = 1024;",
+            "} else {",
+            "\toutputFileType = kAudioFileWAVEType;",
+            "\toutputDescription.mFormatID = kAudioFormatLinearPCM;",
+            "\toutputDescription.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked;",
+            "\toutputDescription.mBytesPerPacket = 4 * inputDescription.mChannelsPerFrame;",
+            "\toutputDescription.mFramesPerPacket = 1;",
+            "\toutputDescription.mBytesPerFrame = 4 * inputDescription.mChannelsPerFrame;",
+            "\toutputDescription.mBitsPerChannel = 32;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the output specification, the sample creates the audio converter object that it uses for encoding or decoding the audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-magic-cookie",
+          "level": 3,
+          "text": "Provide a magic cookie",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some audio formats have a magic cookie that the converter requires to decompress audio data. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "magic cookie",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refers to information in an audio file that describes its data format. An encoder produces the magic cookie, and it’s included in the same file or stream as the audio packets, in a header, or a container file format through a box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When decoding audio, the sample checks if the format of the audio data that the framework is converting has a magic cookie. If the audio data format has a magic cookie, the sample adds the information to the audio converter instance before converting the audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "std::optional<size_t> magicCookieSize =",
+            "\tinputFile.GetPropertySize(kAudioFilePropertyMagicCookieData);",
+            "if (magicCookieSize.has_value()) {",
+            "\tstd::cout << \"The magic cookie is \"",
+            "\t\t\t  << *magicCookieSize",
+            "\t          << \" bytes in size.\"",
+            "\t\t\t  << std::endl;",
+            "",
+            "\t// Get the magic cookie from the input file.",
+            "\tstd::vector<uint8_t> magicCookie(*magicCookieSize);",
+            "\tinputFile.GetProperty(",
+            "\t\tkAudioFilePropertyMagicCookieData,",
+            "\t\tmagicCookie.size(),",
+            "\t\tmagicCookie.data());",
+            "",
+            "\t// Provide the magic cookie to the decoder, via the AudioConverter.",
+            "\taudioConverter.SetProperty(kAudioConverterDecompressionMagicCookie,",
+            "\t\tmagicCookie.size(),",
+            "\t\tmagicCookie.data());",
+            "} else {",
+            "\tstd::cout << \"There is no magic cookie.\" << std::endl;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When encoding an audio file, the sample adds the magic cookie back to the file — after converting the audio — because it could change during the encoding process. Get the magic cookie by using the property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then add it to the output file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-the-audio",
+          "level": 3,
+          "text": "Convert the audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample creates the output description, and sets the magic cookie if it’s decoding, it converts the audio by looping through the available data. The loop begins by trying to decode the available packets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Try to handle more packets depending on whether the sample is encoding or decoding.",
+            "UInt32 numPackets = packetsPerLoop;",
+            "AudioBufferList abl{ 1, {",
+            "\t\t\t\t\t\t\toutputDescription.mChannelsPerFrame, // mNumberChannels",
+            "\t\t\t\t\t\t\t(UInt32)packetBuffer.size(),         // mDataByteSize",
+            "\t\t\t\t\t\t\tpacketBuffer.data()                  // mData",
+            "\t\t\t\t\t\t} };",
+            "audioConverter.FillComplexBuffer(InputContext::InputDataProc,",
+            "\t\t\t\t\t\t\t\t &inputContext,",
+            "\t\t\t\t\t\t\t\t numPackets,",
+            "\t\t\t\t\t\t\t\t abl,",
+            "\t\t\t\t\t\t\t\t encode ? packetDescriptions.data() : NULL);"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When looping through the available packets, the sample reads packets from the input file through an input callback that wraps ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It’s important that ",
+              "type": "text"
+            },
+            {
+              "code": "ioNumberDataPackets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "mDataByteSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the buffers remain consistent. If one changes, the other must match. If the audio format calls for packet descriptions, they should also be consistent with ",
+              "type": "text"
+            },
+            {
+              "code": "ioNumberDataPackets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "mDataByteSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Read packets from the file into the buffer, along with packet descriptions, if any exist.",
+            "try {",
+            "\tself.mInputFile.ReadPackets(ioData->mBuffers[0].mDataByteSize,",
+            "\t\t\t\t\t\t\t\tself.mInputUsesPacketDescriptions ? self.mPacketDescriptions.data() : NULL,",
+            "\t\t\t\t\t\t\t\t*ioNumberDataPackets,",
+            "\t\t\t\t\t\t\t\tioData->mBuffers[0].mData);",
+            "} catch (AudioToolboxError err) {",
+            "\tstd::cerr << \"Encountered an error while reading packets: \" << err.what() << std::endl;",
+            "\treturn err.status;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the sample receives output packets, it writes them to an output file in the project build folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// If there are output packets, write them to the output file.",
+            "if (numPackets > 0) {",
+            "\toutputFile.WritePackets(abl.mBuffers[0].mDataByteSize,",
+            "\t\t\t\t\t\t\tencode ? packetDescriptions.data() : NULL,",
+            "\t\t\t\t\t\t\tnumPackets,",
+            "\t\t\t\t\t\t\tabl.mBuffers[0].mData);",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The loop stops when there aren’t enough packets to satisfy the input request. There are two additional cases to consider when running out of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, there’s no data currently available from the input stream, but data remains to convert. For example, when streaming input data in real time, the converter may not reach the end of the stream because it’s waiting to receive the next input packet. In this case, set ",
+              "type": "text"
+            },
+            {
+              "code": "ioNumberDataPackets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to zero and return a custom error code. The error propagates to the call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which makes it distinguishable from other errors in the conversion process, such as errors that indicate there’s no data currently available. The caller receives any remaining data the converter processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second, the conversion reaches the end of the stream. In this case, set ",
+              "type": "text"
+            },
+            {
+              "code": "ioNumberDataPackets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "mDataByteSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to zero and return ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The audio converter may call the input procedure a few times, so return zero and ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "71f0b42489a6/EncodingAndDecodingAudio.zip": {
+      "checksum": "71f0b42489a60f74a7c400521cf7afb1551903cacb7a57ca959e25c8d69bd722909caf039114f69143f680853ed6d681a7d6b8c42d9a2ca6a449d91e20768fb4",
+      "identifier": "71f0b42489a6/EncodingAndDecodingAudio.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/71f0b42489a6/EncodingAndDecodingAudio.zip"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data from one linear PCM format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterConvertBuffer(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data from one linear PCM format to another, where both use the same sample rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertComplexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertComplexBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterConvertComplexBuffer(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterconvertcomplexbuffer(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data supplied by a callback function, supporting non-interleaved and packetized formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterFillComplexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterComplexInputDataProc",
+          "text": "AudioConverterComplexInputDataProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterFillComplexBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Reads packets of audio data from an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadPacketData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadPacketData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services": {
+      "abstract": [
+        {
+          "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-converter-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "void*",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value that points to memory set up by the caller. This property is returned by the converter so that your application may store it along with the output data. This property can then be passed back to the converter for decompression at a later time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterCompressionMagicCookie"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterCompressionMagicCookie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterCompressionMagicCookie"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterCompressionMagicCookie",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertercompressionmagiccookie"
+    },
+    "doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription": {
+      "abstract": [
+        {
+          "text": "A format specification for an audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioStreamBasicDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/AudioStreamBasicDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioStreamBasicDescription",
+      "type": "topic",
+      "url": "/documentation/CoreAudioTypes/AudioStreamBasicDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "71f0b42489a6/EncodingAndDecodingAudio.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performing-Conversions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"
+      ],
+      "title": "Performing Conversions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Performing-Conversions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"
+              ],
+              "title": "Performing Conversions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/title",
+          "value": "AudioFileReadPacketData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileReadPacketData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterCompressionMagicCookie/title",
+          "value": "kAudioConverterCompressionMagicCookie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterCompressionMagicCookie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterCompressionMagicCookie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/title",
+          "value": "AudioConverterConvertBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterConvertBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/title",
+          "value": "AudioConverterFillComplexBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterFillComplexBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/title",
+          "value": "AudioConverterConvertComplexBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterConvertComplexBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/encoding-and-decoding-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/encoding-and-decoding-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

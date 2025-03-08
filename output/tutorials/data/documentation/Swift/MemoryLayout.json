@@ -1,1 +1,1144 @@
-{"schemaVersion":{"major":0,"minor":3,"patch":0},"topicSections":[{"identifiers":["doc://com.apple.Swift/documentation/Swift/MemoryLayout/size","doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment","doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride"],"abstract":[{"type":"text","text":"Use these static properties to access a type’s layout. For example, the size of a"},{"type":"text","text":" "},{"code":"Double","type":"codeVoice"},{"type":"text","text":" instance is "},{"code":"MemoryLayout<Double>.size","type":"codeVoice"},{"type":"text","text":"."}],"title":"Accessing the Layout of a Type","anchor":"Accessing-the-Layout-of-a-Type"},{"identifiers":["doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)","doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)","doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)"],"abstract":[{"text":"Pass an instance to these static methods to acess the layout for that instance’s","type":"text"},{"text":" ","type":"text"},{"text":"type.","type":"text"}],"title":"Accessing the Layout of a Value","anchor":"Accessing-the-Layout-of-a-Value"},{"identifiers":["doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)"],"title":"Querying Type Properties","anchor":"Querying-Type-Properties"}],"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["swift"],"tokens":[{"kind":"attribute","text":"@frozen"},{"kind":"text","text":" "},{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"MemoryLayout"},{"kind":"text","text":"<"},{"kind":"genericParameter","text":"T"},{"kind":"text","text":"> "},{"kind":"keyword","text":"where"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"T"},{"kind":"text","text":" : ~Copyable"}]}]},{"content":[{"level":2,"type":"heading","anchor":"overview","text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"You can use "},{"type":"codeVoice","code":"MemoryLayout"},{"type":"text","text":" as a source of information about a type when"},{"type":"text","text":" "},{"type":"text","text":"allocating or binding memory using raw pointers. The following example"},{"type":"text","text":" "},{"type":"text","text":"declares a "},{"type":"codeVoice","code":"Point"},{"type":"text","text":" type with "},{"type":"codeVoice","code":"x"},{"type":"text","text":" and "},{"type":"codeVoice","code":"y"},{"type":"text","text":" coordinates and a Boolean"},{"type":"text","text":" "},{"type":"codeVoice","code":"isFilled"},{"type":"text","text":" property."}]},{"code":["struct Point {","    let x: Double","    let y: Double","    let isFilled: Bool","}"],"syntax":"swift","type":"codeListing"},{"type":"paragraph","inlineContent":[{"text":"The size, stride, and alignment of the ","type":"text"},{"type":"codeVoice","code":"Point"},{"text":" type are accessible as","type":"text"},{"text":" ","type":"text"},{"text":"static properties of ","type":"text"},{"type":"codeVoice","code":"MemoryLayout<Point>"},{"text":".","type":"text"}]},{"code":["// MemoryLayout<Point>.size == 17","// MemoryLayout<Point>.stride == 24","// MemoryLayout<Point>.alignment == 8"],"syntax":"swift","type":"codeListing"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Always use a multiple of a type’s "},{"type":"codeVoice","code":"stride"},{"type":"text","text":" instead of its "},{"type":"codeVoice","code":"size"},{"type":"text","text":" when"},{"type":"text","text":" "},{"type":"text","text":"allocating memory or accounting for the distance between instances in"},{"type":"text","text":" "},{"type":"text","text":"memory. This example allocates uninitialized raw memory with space"},{"type":"text","text":" "},{"type":"text","text":"for four instances of "},{"type":"codeVoice","code":"Point"},{"type":"text","text":"."}]},{"code":["let count = 4","let pointPointer = UnsafeMutableRawPointer.allocate(","        byteCount: count * MemoryLayout<Point>.stride,","        alignment: MemoryLayout<Point>.alignment)"],"syntax":"swift","type":"codeListing"}],"kind":"content"}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/swift/memorylayout"]}],"kind":"symbol","identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.Swift/documentation/Swift/MemoryLayout"},"sections":[],"abstract":[{"type":"text","text":"The memory layout of a type, describing its size, stride, and alignment."}],"metadata":{"role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MemoryLayout","kind":"identifier"}],"externalID":"s:s12MemoryLayoutO","roleHeading":"Enumeration","symbolKind":"enum","title":"MemoryLayout","navigatorTitle":[{"text":"MemoryLayout","kind":"identifier"}],"modules":[{"name":"Swift"}],"platforms":[{"name":"iOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"8.0"},{"name":"iPadOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"8.0"},{"name":"Mac Catalyst","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"13.0"},{"name":"macOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"10.10"},{"name":"tvOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"9.0"},{"name":"visionOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"1.0"},{"name":"watchOS","deprecated":false,"unavailable":false,"beta":false,"introducedAt":"2.0"}]},"relationshipsSections":[{"kind":"relationships","identifiers":["doc://com.apple.Swift/documentation/Swift/Sendable"],"title":"Conforms To","type":"conformsTo"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.Swift/documentation/Swift"]]},"references":{"doc://com.apple.Swift/documentation/Swift/MemoryLayout":{"url":"/documentation/swift/memorylayout","navigatorTitle":[{"text":"MemoryLayout","kind":"identifier"}],"identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout","title":"MemoryLayout","kind":"symbol","type":"topic","role":"symbol","abstract":[{"type":"text","text":"The memory layout of a type, describing its size, stride, and alignment."}],"fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MemoryLayout","kind":"identifier"}]},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)":{"url":"/documentation/swift/memorylayout/alignment(ofvalue:)","identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)","title":"alignment(ofValue:)","kind":"symbol","type":"topic","role":"symbol","abstract":[{"type":"text","text":"Returns the default memory alignment of "},{"type":"codeVoice","code":"T"},{"type":"text","text":"."}],"fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"alignment","kind":"identifier"},{"text":"(","kind":"text"},{"text":"ofValue","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"borrowing","kind":"keyword"},{"text":" ","kind":"text"},{"text":"T","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"Int","preciseIdentifier":"s:Si","kind":"typeIdentifier"}]},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)":{"identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)","role":"symbol","type":"topic","abstract":[{"type":"text","text":"Returns the contiguous memory footprint of the given instance."}],"url":"/documentation/swift/memorylayout/size(ofvalue:)","title":"size(ofValue:)","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"size"},{"kind":"text","text":"("},{"kind":"externalParam","text":"ofValue"},{"kind":"text","text":": "},{"kind":"keyword","text":"borrowing"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"T"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:Si","text":"Int"}],"kind":"symbol"},"doc://com.apple.Swift/documentation/Swift/Sendable":{"role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Sendable"}],"url":"/documentation/swift/sendable","navigatorTitle":[{"kind":"identifier","text":"Sendable"}],"conformance":{"conformancePrefix":[{"type":"text","text":"Conforms when"}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"constraints":[{"code":"T","type":"codeVoice"},{"type":"text","text":" conforms to "},{"code":"Copyable","type":"codeVoice"},{"type":"text","text":" and "},{"code":"Escapable","type":"codeVoice"},{"type":"text","text":"."}]},"kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/Sendable","abstract":[{"type":"text","text":"A thread-safe type whose values can be shared across arbitrary concurrent"},{"type":"text","text":" "},{"type":"text","text":"contexts without introducing a risk of data races."}],"title":"Sendable"},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)":{"identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)","role":"symbol","type":"topic","abstract":[{"type":"text","text":"Returns the number of bytes from the start of one instance of "},{"code":"T","type":"codeVoice"},{"type":"text","text":" to the"},{"type":"text","text":" "},{"type":"text","text":"start of the next when stored in contiguous memory or in an "},{"code":"Array<T>","type":"codeVoice"},{"type":"text","text":"."}],"url":"/documentation/swift/memorylayout/stride(ofvalue:)","title":"stride(ofValue:)","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"stride"},{"kind":"text","text":"("},{"kind":"externalParam","text":"ofValue"},{"kind":"text","text":": "},{"kind":"keyword","text":"borrowing"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"T"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:Si","text":"Int"}],"kind":"symbol"},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment":{"role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"alignment"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Si","text":"Int"}],"url":"/documentation/swift/memorylayout/alignment","kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment","abstract":[{"type":"text","text":"The default memory alignment of "},{"code":"T","type":"codeVoice"},{"type":"text","text":", in bytes."}],"title":"alignment"},"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies"},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)":{"role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"offset"},{"kind":"text","text":"("},{"kind":"externalParam","text":"of"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:s14PartialKeyPathC","text":"PartialKeyPath"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"T"},{"kind":"text","text":">) -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:Si","text":"Int"},{"kind":"text","text":"?"}],"url":"/documentation/swift/memorylayout/offset(of:)","kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)","abstract":[{"type":"text","text":"Returns the offset of an inline stored property within a type’s in-memory"},{"type":"text","text":" "},{"type":"text","text":"representation."}],"title":"offset(of:)"},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride":{"role":"symbol","type":"topic","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"stride","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Int","preciseIdentifier":"s:Si","kind":"typeIdentifier"}],"url":"/documentation/swift/memorylayout/stride","kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride","abstract":[{"type":"text","text":"The number of bytes from the start of one instance of "},{"code":"T","type":"codeVoice"},{"type":"text","text":" to the start of"},{"text":" ","type":"text"},{"text":"the next when stored in contiguous memory or in an ","type":"text"},{"type":"codeVoice","code":"Array<T>"},{"text":".","type":"text"}],"title":"stride"},"doc://com.apple.Swift/documentation/Swift":{"abstract":[{"text":"Build apps using a powerful open language.","type":"text"}],"type":"topic","role":"collection","title":"Swift","identifier":"doc://com.apple.Swift/documentation/Swift","url":"/documentation/swift","kind":"symbol","images":[{"identifier":"Swift-PageImage-card.png","type":"card"}]},"doc://com.apple.Swift/documentation/Swift/MemoryLayout/size":{"role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"size"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Si","text":"Int"}],"url":"/documentation/swift/memorylayout/size","kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/MemoryLayout/size","abstract":[{"type":"text","text":"The contiguous memory footprint of "},{"code":"T","type":"codeVoice"},{"type":"text","text":", in bytes."}],"title":"size"},"Swift-PageImage-card.png":{"alt":"An orange Swift logo on a gradient background.","type":"image","identifier":"Swift-PageImage-card.png","variants":[{"traits":["2x","light"],"url":"https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"},{"traits":["2x","dark"],"url":"https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"}]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "The memory layout of a type, describing its size, stride, and alignment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/MemoryLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s12MemoryLayoutO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MemoryLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MemoryLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MemoryLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MemoryLayout"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " : ~Copyable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "code": "MemoryLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a source of information about a type when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allocating or binding memory using raw pointers. The following example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declares a ",
+              "type": "text"
+            },
+            {
+              "code": "Point",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type with ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " coordinates and a Boolean",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "isFilled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Point {",
+            "    let x: Double",
+            "    let y: Double",
+            "    let isFilled: Bool",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size, stride, and alignment of the ",
+              "type": "text"
+            },
+            {
+              "code": "Point",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type are accessible as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static properties of ",
+              "type": "text"
+            },
+            {
+              "code": "MemoryLayout<Point>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// MemoryLayout<Point>.size == 17",
+            "// MemoryLayout<Point>.stride == 24",
+            "// MemoryLayout<Point>.alignment == 8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use a multiple of a type’s ",
+              "type": "text"
+            },
+            {
+              "code": "stride",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of its ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allocating memory or accounting for the distance between instances in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory. This example allocates uninitialized raw memory with space",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for four instances of ",
+              "type": "text"
+            },
+            {
+              "code": "Point",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let count = 4",
+            "let pointPointer = UnsafeMutableRawPointer.allocate(",
+            "        byteCount: count * MemoryLayout<Point>.stride,",
+            "        alignment: MemoryLayout<Point>.alignment)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout": {
+      "abstract": [
+        {
+          "text": "The memory layout of a type, describing its size, stride, and alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MemoryLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MemoryLayout",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment": {
+      "abstract": [
+        {
+          "text": "The default memory alignment of ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignment",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/alignment"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)": {
+      "abstract": [
+        {
+          "text": "Returns the default memory alignment of ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "borrowing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignment(ofValue:)",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/alignment(ofvalue:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)": {
+      "abstract": [
+        {
+          "text": "Returns the offset of an inline stored property within a type’s in-memory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(of:)",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/offset(of:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size": {
+      "abstract": [
+        {
+          "text": "The contiguous memory footprint of ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/size"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)": {
+      "abstract": [
+        {
+          "text": "Returns the contiguous memory footprint of the given instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "borrowing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size(ofValue:)",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/size(ofvalue:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride": {
+      "abstract": [
+        {
+          "text": "The number of bytes from the start of one instance of ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the start of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the next when stored in contiguous memory or in an ",
+          "type": "text"
+        },
+        {
+          "code": "Array<T>",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stride",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/stride"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of bytes from the start of one instance of ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "start of the next when stored in contiguous memory or in an ",
+          "type": "text"
+        },
+        {
+          "code": "Array<T>",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "borrowing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stride(ofValue:)",
+      "type": "topic",
+      "url": "/documentation/swift/memorylayout/stride(ofvalue:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "T",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Use these static properties to access a type’s layout. For example, the size of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Double",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance is ",
+          "type": "text"
+        },
+        {
+          "code": "MemoryLayout<Double>.size",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-the-Layout-of-a-Type",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size",
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment",
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride"
+      ],
+      "title": "Accessing the Layout of a Type"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Pass an instance to these static methods to acess the layout for that instance’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-the-Layout-of-a-Value",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/stride(ofValue:)",
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/size(ofValue:)",
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/alignment(ofValue:)"
+      ],
+      "title": "Accessing the Layout of a Value"
+    },
+    {
+      "anchor": "Querying-Type-Properties",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/MemoryLayout/offset(of:)"
+      ],
+      "title": "Querying Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/memorylayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

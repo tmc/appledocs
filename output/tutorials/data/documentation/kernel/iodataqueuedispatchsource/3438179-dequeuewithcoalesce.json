@@ -1,0 +1,552 @@
+{
+  "abstract": [
+    {
+      "text": "Removes the next queue entry, but doesn't automatically send notifications.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438179-dequeuewithcoalesce"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3438179,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IODataQueueDispatchSource@F@DequeueWithCoalesce#*b#BFv(#*1v#l)#",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IODataQueueDispatchSource"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "DequeueWithCoalesce"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DequeueWithCoalesce"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " *sendDataServiced, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientdequeueentryblock",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IODataQueueClientDequeueEntryBlock",
+              "text": "IODataQueueClientDequeueEntryBlock"
+            },
+            {
+              "kind": "text",
+              "text": " callback);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value that indicates that this method would have sent a notification. Initialize the value to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and then make one or more calls to this method. If the value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " after all of those calls, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438185-senddataserviced",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method yourself to deliver the notification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sendDataServiced"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The callback that you use to process the dequeued data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "callback"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnunderrun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the queue is empty, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the queue is corrupt. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientdequeueentryblock": {
+      "abstract": [
+        {
+          "text": "The handler block you use to remove data from a queue. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientdequeueentryblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueClientDequeueEntryBlock",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueueclientdequeueentryblock"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that manages a shared-memory data queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable": {
+      "abstract": [
+        {
+          "text": "Responds to the addition of new data to the queue. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataAvailable",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180488-setdataavailablehandler": {
+      "abstract": [
+        {
+          "text": "Sets the handler block to run when another object adds data to the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetDataAvailableHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180488-setdataavailablehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetDataAvailableHandler",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource/3180488-setdataavailablehandler"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnerror": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnError",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnunderrun": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnunderrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnUnderrun",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnunderrun"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438178-dequeue": {
+      "abstract": [
+        {
+          "text": "Removes the next entry from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438178-dequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438178-dequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438179-dequeuewithcoalesce": {
+      "abstract": [
+        {
+          "text": "Removes the next queue entry, but doesn't automatically send notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "DequeueWithCoalesce"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438179-dequeuewithcoalesce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DequeueWithCoalesce",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438179-dequeuewithcoalesce"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438182-isdataavailable": {
+      "abstract": [
+        {
+          "text": "Checks whether the data queue contains data to process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "IsDataAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438182-isdataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IsDataAvailable",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438182-isdataavailable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438183-peek": {
+      "abstract": [
+        {
+          "text": "Returns the next queue entry without removing it from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Peek"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438183-peek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Peek",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438183-peek"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438185-senddataserviced": {
+      "abstract": [
+        {
+          "text": "Notifies interested parties that you removed data from the queue. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendDataServiced"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438185-senddataserviced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SendDataServiced",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource/3438185-senddataserviced"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180488-setdataavailablehandler",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438182-isdataavailable",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438183-peek",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438178-dequeue",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource/3438185-senddataserviced",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueueclientdequeueentryblock"
+      ],
+      "title": "Removing Work from the Queue"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodataqueuedispatchsource/3438179-dequeuewithcoalesce",
+        "documentation/driverkit/iodataqueuedispatchsource/3438179-dequeuewithcoalesce"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

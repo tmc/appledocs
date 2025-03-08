@@ -1,0 +1,760 @@
+{
+  "abstract": [
+    {
+      "text": "Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_barrier_async_and_wait",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_barrier_async_and_wait"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_barrier_async_and_wait"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_barrier_async_and_wait"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_barrier_async_and_wait"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queue"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_block_t",
+              "text": "dispatch_block_t"
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The queue on which to submit the block. This parameter can’t be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queue"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block that contains the work to perform. This block has no return value and no parameters. This parameter can’t be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function submits work to the specified queue for execution. Unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this function doesn’t return until after the block finishes. Calling this function and targeting the current queue results in deadlock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When submitted to a concurrent queue, ",
+              "type": "text"
+            },
+            {
+              "code": "block",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t run until all previously submitted tasks finish executing, and subsequently submitted tasks don’t execute until after ",
+              "type": "text"
+            },
+            {
+              "code": "block",
+              "type": "codeVoice"
+            },
+            {
+              "text": " finishes. You use barriers to ensure the correct execution order of relevant work. For example, you might use them in reader/writer schemes where the order of read and write tasks is significant. If you submit the work to a non-concurrent queue, this method behaves identically to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this function respects all attributes of the queue when it executes the block. For example, it respects the quality-of-service level and autorelease frequency of the target queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the runtime has already brought up a thread to service asynchronous work items, the system uses that same thread to execute any synchronous blocks you submitted using this function. If the runtime hasn’t brought up a thread to service asynchronous work items, the system executes these synchronous blocks on the current thread as an optimization. However, these optimizations apply only when ",
+              "type": "text"
+            },
+            {
+              "code": "queue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " targets a global concurrent queue. If it targets any other queue, the system executes the work on that queue’s thread. For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "queue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " targets the main queue, the block always runs on the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this method doesn’t retain the ",
+              "type": "text"
+            },
+            {
+              "code": "queue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. Because calls to this function are synchronous, it “borrows” the reference of the caller. Moreover, no ",
+              "type": "text"
+            },
+            {
+              "code": "Block_copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is performed on the block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu": {
+      "abstract": [
+        {
+          "text": "Submits a work item for execution and returns only after it finishes executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asyncAndWait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async_and_wait"
+        }
+      ],
+      "role": "symbol",
+      "title": "asyncAndWait(execute:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw": {
+      "abstract": [
+        {
+          "text": "Submits a block object for execution and returns after that block finishes executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_sync"
+        }
+      ],
+      "role": "symbol",
+      "title": "sync(execute:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue/sync(execute:)-3segw"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async": {
+      "abstract": [
+        {
+          "text": "Submits a block for asynchronous execution on a dispatch queue and returns immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_async",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_async"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait": {
+      "abstract": [
+        {
+          "text": "Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async_and_wait"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async_and_wait",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async_and_wait"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f": {
+      "abstract": [
+        {
+          "text": "Submits a function-based work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async_and_wait_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async_and_wait_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async_and_wait_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync": {
+      "abstract": [
+        {
+          "text": "Submits a barrier block object for execution and waits until that block completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_sync"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_sync",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_sync"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f": {
+      "abstract": [
+        {
+          "text": "Submits a barrier function for execution and waits until that function completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_sync_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_sync_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_sync_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t": {
+      "abstract": [
+        {
+          "text": "The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-Barrier-Synchronously",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f"
+      ],
+      "title": "Creating a Barrier Synchronously"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1asyncAndWait(execute:)-1udeu/title",
+          "value": "dispatch_async_and_wait"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1asyncAndWait(execute:)-1udeu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_async_and_wait"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/title",
+          "value": "dispatch_queue_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1sync(execute:)-3segw/title",
+          "value": "dispatch_sync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1sync(execute:)-3segw/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_sync"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_barrier_async_and_wait"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
